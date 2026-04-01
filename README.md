@@ -1,6 +1,6 @@
 # The Amazing Agent Race (AAR) - Puzzle Data
 
-This repository contains the puzzle datasets for **The Amazing Agent Race (AAR)**, a benchmark for evaluating LLM agents on multi-step scavenger-hunt puzzles that require web navigation, tool use, and arithmetic reasoning.
+This repository contains the code and the datasets for **The Amazing Agent Race (AAR)**, a benchmark for evaluating LLM agents on multi-step scavenger-hunt puzzles that require web navigation, tool use, and arithmetic reasoning.
 
 ## Datasets
 
