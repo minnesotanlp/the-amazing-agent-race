@@ -1,0 +1,445 @@
+{
+  "trail_id": "trail_e67fd8b3",
+  "seed_url": "https://en.wikipedia.org/wiki/Goten-yama_Station",
+  "seed_title": "Goten-yama Station",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Goten-yama_Station",
+      "extraction_target": "distance from the starting point of the line at Yodoyabashi Station",
+      "extraction_section": "Lines",
+      "extracted_value": 23.5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Goten-yama_Station",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start at the seed: a local Japanese railway station to anchor the trail's origin and provide precise coordinates for later distance/duration comparisons.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Goten-yama_Station",
+      "extraction_target": "Reason: the sum of its distinct prime factors",
+      "extraction_section": null,
+      "extracted_value": 23,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (sum_prime_factors) on stop 0 value",
+      "reason_transform": "sum_prime_factors",
+      "reason_source_stop": 0,
+      "reason_code": "def prime_factors(n):\n    n = abs(int(n))\n    factors = []\n    d = 2\n    while d * d <= n:\n        while n % d == 0:\n            factors.append(d)\n            n //= d\n        d += 1\n    if n > 1: factors.append(n)\n    return factors\nresult = sum(set(prime_factors(23)))\nprint(result)",
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Dublin-Belfast_railway_line",
+      "extraction_target": "the number of stations on the line",
+      "extraction_section": null,
+      "extracted_value": 34,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Dublin-Belfast railway line wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Dublin-Belfast_railway_line",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Move to a cross-border rail link (Dublin–Belfast line) to explore regional rail services and their scale (kilometres, endpoints).",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Dublin-Belfast_railway_line",
+      "extraction_target": "Look up the elevation of Dublin-Belfast railway line",
+      "extraction_section": null,
+      "extracted_value": 3.780737638473511,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Dublin-Belfast railway line"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Dublin-Belfast railway line) from https://en.wikipedia.org/wiki/Dublin-Belfast_railway_line",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Dublin-Belfast_railway_line",
+      "extraction_target": "Look up the Google rating of Dublin-Belfast railway line",
+      "extraction_section": null,
+      "extracted_value": 3.8,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "Dublin-Belfast railway line"
+            },
+            "expected_output": null,
+            "output_key": "place_rating"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (Google rating of Dublin-Belfast railway line) from https://en.wikipedia.org/wiki/Dublin-Belfast_railway_line",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Dublin-Belfast_railway_line",
+      "extraction_target": "Combine the elevation of Dublin-Belfast railway line and the Google rating of Dublin-Belfast railway line: (3 + 3)",
+      "extraction_section": null,
+      "extracted_value": 6,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(3.780737638473511) + int(3.8)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Dublin-Belfast railway line add Google rating of Dublin-Belfast railway line",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3,
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Dublin-Belfast_railway_line",
+      "extraction_target": "Reason: the largest prime factor of that figure",
+      "extraction_section": null,
+      "extracted_value": 17,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (largest_prime_factor) on stop 1 value",
+      "reason_transform": "largest_prime_factor",
+      "reason_source_stop": 2,
+      "reason_code": "def largest_prime_factor(n):\n    n = abs(int(n))\n    if n <= 1: return n\n    d = 2\n    while d * d <= n:\n        while n % d == 0: n //= d\n        d += 1\n    return n\nresult = largest_prime_factor(34)\nprint(result)",
+      "depends_on": [
+        2
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Northern_Ireland_Railways",
+      "extraction_target": "the length of the network in kilometres as given in the infobox",
+      "extraction_section": null,
+      "extracted_value": 333,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Intercity (Deutsche Bahn) wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Intercity_(Deutsche_Bahn)",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Introduce the rail operator on the Northern Ireland side to show how services & operators shape cross-border rail travel.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Northern_Ireland_Railways",
+      "extraction_target": "Look up the Google rating of Northern Ireland Railways",
+      "extraction_section": null,
+      "extracted_value": 3.7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "Northern Ireland Railways"
+            },
+            "expected_output": null,
+            "output_key": "place_rating"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (place_rating) derived from https://en.wikipedia.org/wiki/Northern_Ireland_Railways",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        7
+      ]
+    },
+    {
+      "index": 9,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Intercity_(Deutsche_Bahn)",
+      "extraction_target": "the year all buffet cars and restaurant cars were retired",
+      "extraction_section": null,
+      "extracted_value": "2023",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Pere Marquette Railway wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Pere_Marquette_Railway",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Contrast regional cross-border services with a large European intercity service to highlight differences in scale, speed, and organization.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        8
+      ]
+    },
+    {
+      "index": 10,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Intercity_(Deutsche_Bahn)",
+      "extraction_target": "Look up the Google rating of Intercity",
+      "extraction_section": null,
+      "extracted_value": 4.2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "Intercity"
+            },
+            "expected_output": null,
+            "output_key": "place_rating"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (place_rating) derived from https://en.wikipedia.org/wiki/Intercity_(Deutsche_Bahn)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        9
+      ]
+    },
+    {
+      "index": 11,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Pere_Marquette_Railway",
+      "extraction_target": "the number of locales listed in the overview 'Locale' field",
+      "extraction_section": null,
+      "extracted_value": 7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "WGS 84 wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/WGS_84",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Add a historical North American railway to show the global variety of rail systems (modern operators vs historical lines) and how routes evolved over time.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        10
+      ]
+    },
+    {
+      "index": 12,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/WGS_84",
+      "extraction_target": "the number of fields listed in the opening sentence where WGS is used (cartography, geodesy, and satellite navigation)",
+      "extraction_section": null,
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/WGS_84",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Conclude with the geodetic reference system that underpins all coordinate-based distance and duration computations used earlier — tying the practical rail narrative back to mapping science.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        11
+      ]
+    },
+    {
+      "index": 13,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: (6 + 4) % 10",
+      "extraction_section": null,
+      "extracted_value": 0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "(6 + 4) % 10",
+        "expression_code": "result = (6 + 4) % 10\nprint(result)",
+        "referenced_stops": [
+          5,
+          10
+        ]
+      },
+      "reasoning": "Compute stop: (6 + 4) % 10 = 0",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5,
+        10
+      ]
+    }
+  ],
+  "passcode": 0,
+  "difficulty": {
+    "level": "medium",
+    "depth": 14,
+    "tool_stop_count": 5,
+    "reason_stop_count": 2,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Seek the station where the lines begin, nestled within Japan's transit network. How far does the first journey extend from where it all starts in Yodoyabashi?\n\n2. The number obtained bears significance. What is the sum of its distinct prime factors? This will lead you to the next clue.\n\n3. A railway connects two storied cities in the Emerald Isle, yet how many stations stretch along its path? Discover this from the link of your previous answer.\n\n4. Among the tracks that cut through the land, what is the height of the ground measured along this route, in meters? An elevation lookup will guide you here.\n\n5. Travelers often rate their journeys. What score do passengers grant this cross-country rail line? Check the reviews for your next gem.\n\n6. Add together the elevation you uncovered in clue 4 with the rating from clue 5; this will unveil a new number for you.\n\n7. The journey of stations uncovered a figure. Identify its largest prime factor, as it will assist you further in this quest.\n\n8. In the land of green hills and ancient stones, the rail network runs far and wide. What is the total length of these tracks in kilometers? The overview holds your answer.\n\n9. Riding the rails can be a delightful experience, but how do passengers feel about Northern Ireland's railway services? Seek the Google rating to reveal their sentiment.\n\n10. Turning to the German network, when did it bid farewell to its dining cars, the year marking this transition in the annals of history? Seek this information amidst the pages of rail travel.\n\n11. Again, as before, what is the rating given to this swift service crossing the heart of Europe? The opinions of voyageurs will uncover the answer.\n\n12. This railway brave traverses many places, but how many locales are noted in the overview field? Head to its page and return with the count.\n\n13. In the realm of mapping and navigation, where can the globe find its footing? Count the number of relevant fields mentioned concerning the system used for precision in travel. Your answer resides there.\n\n14. Finally, compute the result of taking the sum from clue 6 and the rating from clue 11, then apply modulo 10. The answer to your journey lies in this calculation, which should yield a single digit from 0 to 9.",
+  "metadata": {
+    "theme": "Tracing rail travel from a local Japanese commuter stop to international rail networks — and the geodetic system that makes mapping and distance/duration comparisons possible.",
+    "difficulty": "medium",
+    "sample_id": "sample_029",
+    "pages_crawled": 3374,
+    "source": "trail_puzzles_v2"
+  },
+  "generated_at": "2026-03-15T19:26:51.573200+00:00"
+}

@@ -1,0 +1,526 @@
+{
+  "trail_id": "trail_a6479f9e",
+  "seed_url": "https://en.wikipedia.org/wiki/Xu_Yunuo",
+  "seed_title": "Xu Yunuo",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Xu_Yunuo",
+      "extraction_target": "Xu Yunuo's age at death",
+      "extraction_section": null,
+      "extracted_value": 63,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Xu_Yunuo",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start with the seed: a Chinese baseball player to ground the trail in an individual career and the position they play.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Xu_Yunuo",
+      "extraction_target": "Reason: the sum of its digits",
+      "extraction_section": null,
+      "extracted_value": 9,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_sum) on stop 0 value",
+      "reason_transform": "digit_sum",
+      "reason_source_stop": 0,
+      "reason_code": "result = sum(int(d) for d in str(abs(int(63))))\nprint(result)",
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Kenta_Maeda",
+      "extraction_target": "Date of Maeda's MLB debut",
+      "extraction_section": null,
+      "extracted_value": "April 6, 2016",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Hiroshima_Toyo_Carp",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Move to a high-profile East Asian pitcher who bridged NPB and MLB, illustrating cross-border careers and pitching success.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Hiroshima_Toyo_Carp",
+      "extraction_target": "the year the team joined the Central League",
+      "extraction_section": null,
+      "extracted_value": 1950,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Zhengzhou wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Zhengzhou",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Connect to the NPB team that exemplifies the Japanese club context Maeda came from — team location and stadium set the scene for league play.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Zhengzhou",
+      "extraction_target": "Count the number of museums near Zhengzhou",
+      "extraction_section": null,
+      "extracted_value": 20,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "museums near Zhengzhou"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: count museums near Zhengzhou",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Zhengzhou",
+      "extraction_target": "Reason: the next prime number after that figure",
+      "extraction_section": null,
+      "extracted_value": 23,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (next_prime) on stop 3 value",
+      "reason_transform": "next_prime",
+      "reason_source_stop": 4,
+      "reason_code": "def next_prime(n):\n    n = abs(int(n))\n    if n < 2: return 2\n    candidate = n + 1\n    while True:\n        if all(candidate % i != 0 for i in range(2, int(candidate**0.5)+1)):\n            return candidate\n        candidate += 1\nresult = next_prime(20)\nprint(result)",
+      "depends_on": [
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Designated_hitter",
+      "extraction_target": "the season when MLB added the DH substitution exception (nicknamed the Ohtani rule)",
+      "extraction_section": "Major League Baseball rule",
+      "extracted_value": "2022",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Strikeout",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Shift from place to rules: the DH rule changes batting lineups and strategy, affecting how pitchers are used and relievers are deployed.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Strikeout",
+      "extraction_target": "the number of strikeouts Tony Gwynn had in his career as stated on the page",
+      "extraction_section": null,
+      "extracted_value": 434,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Relief pitcher wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Relief_pitcher",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Introduce a core pitching statistic — strikeouts — central to evaluating pitchers and their roles.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Relief_pitcher",
+      "extraction_target": "the number of games Firpo Marberry pitched between 1923 and 1935",
+      "extraction_section": "Early modern relievers/\"firemen\"",
+      "extracted_value": 551,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Relief_pitcher",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Explain how pitching staffs use specialized relievers and where strikeouts and saves become important tactical tools.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        7
+      ]
+    },
+    {
+      "index": 9,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Relief_pitcher",
+      "extraction_target": "Reason: the digital root (iterated digit sum until single digit)",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digital_root) on stop 6 value",
+      "reason_transform": "digital_root",
+      "reason_source_stop": 8,
+      "reason_code": "n = abs(int(551))\nresult = n if n == 0 else ((n - 1) % 9) + 1\nprint(result)",
+      "depends_on": [
+        8
+      ]
+    },
+    {
+      "index": 10,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Earth%27s_circumference",
+      "extraction_target": "Convert 434 km to miles",
+      "extraction_section": null,
+      "extracted_value": 269,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "# Convert km to miles\nvalue = 434.0\nconverted = value * 0.621371\nresult = int(converted)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "converted"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: convert 434 km to miles",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        9
+      ]
+    },
+    {
+      "index": 11,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Save_(baseball)",
+      "extraction_target": "the maximum lead in runs when a pitcher may enter and still earn a save by pitching at least one inning",
+      "extraction_section": null,
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Baseball Reference wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Baseball_Reference",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tie the previous discussion of relievers and strikeouts to the save statistic that defines closers' success in late-game situations.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        10
+      ]
+    },
+    {
+      "index": 12,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Save_(baseball)",
+      "extraction_target": "Look up the elevation of Save",
+      "extraction_section": null,
+      "extracted_value": 242.1774139404297,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Save"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Save) from https://en.wikipedia.org/wiki/Save_(baseball)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        11
+      ]
+    },
+    {
+      "index": 13,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Save_(baseball)",
+      "extraction_target": "Look up the Google rating of Save",
+      "extraction_section": null,
+      "extracted_value": 4.9,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "Save"
+            },
+            "expected_output": null,
+            "output_key": "place_rating"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (Google rating of Save) from https://en.wikipedia.org/wiki/Save_(baseball)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        11
+      ]
+    },
+    {
+      "index": 14,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Save_(baseball)",
+      "extraction_target": "Combine the elevation of Save and the Google rating of Save: abs(242 - 4)",
+      "extraction_section": null,
+      "extracted_value": 238,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(242.1774139404297) - int(4.9))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Save abs_diff Google rating of Save",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        12,
+        13
+      ]
+    },
+    {
+      "index": 15,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Baseball_Reference",
+      "extraction_target": "the type of site listed in the infobox",
+      "extraction_section": null,
+      "extracted_value": "Baseball statistics",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Baseball_Reference",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Conclude with a stats resource used to track players like Xu Yunuo, Kenta Maeda, strikeout totals, saves and cross-league comparisons — a practical endpoint for further exploration.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        14
+      ]
+    },
+    {
+      "index": 16,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: abs(63 - 551) % 10",
+      "extraction_section": null,
+      "extracted_value": 8,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "abs(63 - 551) % 10",
+        "expression_code": "result = abs(63 - 551) % 10\nprint(result)",
+        "referenced_stops": [
+          0,
+          8,
+          9,
+          10
+        ]
+      },
+      "reasoning": "Compute stop: abs(63 - 551) % 10 = 8",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0,
+        8,
+        9,
+        10
+      ]
+    }
+  ],
+  "passcode": 8,
+  "difficulty": {
+    "level": "medium",
+    "depth": 17,
+    "tool_stop_count": 5,
+    "reason_stop_count": 3,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Seek the player who paved the way for Chinese baseball, yet his legacy met an early end. How old was he when he departed?\n\n2. The great number you found holds secrets within. What is the sum of its digits? \n\n3. Track down the page of a pitcher who dazzled on the mound for Major League teams and made his debut in MLB — when did he first take the field in this grand league?\n\n4. a storied franchise in Japan flourished in the Central League, but in which year did they officially join this esteemed gathering?\n\n5. Investigate the midst of a bustling city, one rich in culture and history — how many museums can you discover in proximity to this urban hub?\n\n6. If the count of museums you found was a number greater than 1, what is the next prime number that follows it?\n\n7. A rule that transformed the game for hitters who switch roles — when did the MLB introduce this strategy, often associated with a notable Japanese star?\n\n8. A legendary hitter famously shunned strikeouts, but how many did he accumulate throughout his illustrious career?\n\n9. Transition to a page about those who ease the burden on starting pitchers. Discover how many games one historical figure took the mound in the 1920s and 30s.\n\n10. Before you proceed, seek the digital root of the games pitched by that reliever. What single digit emerges from your calculation?\n\n11. To attain insight into distances, convert a notable figure of 434 kilometers into miles. What distance does it reveal?\n\n12. The art of preservation lies in understanding the game; however, at what maximum lead must a pitcher find themselves to earn a specific kind of commendation in one inning?\n\n13. One curious number lies in the heights of places near a named spot — what is the elevation found at this point?\n\n14. When you peer into the community's heart, what rating do visitors bestow on this cherished site?\n\n15. Absorb the crystalline numbers you've collected: combine the elevation you found in clue 13 with the rating from clue 14. What value do they yield when you calculate their absolute difference?\n\n16. Plunge into a world of statistics; what type of site is devoted to the aggregation of baseball data, as indicated in its infobox?\n\n17. Finally, take the absolute difference of 63 and the games pitched by the historical figure in clue 9, then reduce the outcome by dividing by the known miles from clue 11. What single digit remains?",
+  "metadata": {
+    "theme": "Tracing pitching and batting roles across East Asian and global baseball — from a Chinese player (seed) through teams, statistics and rules, with three practical tool checks (altitude, local facilities, and unit conversion) to see how environment and measurement shape the game.",
+    "difficulty": "medium",
+    "sample_id": "sample_041",
+    "pages_crawled": 516
+  },
+  "generated_at": "2026-03-16T06:34:18.515450+00:00"
+}

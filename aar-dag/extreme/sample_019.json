@@ -1,0 +1,1018 @@
+{
+  "trail_id": "trail_83424fb3",
+  "seed_url": "https://en.wikipedia.org/wiki/Marcus_Jernegan",
+  "seed_title": "Marcus Jernegan",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Marcus_Jernegan",
+      "extraction_target": "year of birth",
+      "extraction_section": null,
+      "extracted_value": 1872,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Marcus_Jernegan",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Seed: an early 20th‑century historian — the trail begins with a historian who exemplifies the craft of recording past events.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Marcus_Jernegan",
+      "extraction_target": "Reason: the sum of its digits",
+      "extraction_section": null,
+      "extracted_value": 18,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_sum) on stop 0 value",
+      "reason_transform": "digit_sum",
+      "reason_source_stop": 0,
+      "reason_code": "result = sum(int(d) for d in str(abs(int(1872))))\nprint(result)",
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Greek_historiography",
+      "extraction_target": "the region where, according to Moses Finley, the first steps towards Greek history writing were taken",
+      "extraction_section": "Overview",
+      "extracted_value": "Ionia",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Greek historiography wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Greek_historiography",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Connects to Marcus Jernegan by focusing on historiographical methods — how historians frame and interpret conflicts and institutions.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Greek_historiography",
+      "extraction_target": "Look up the elevation of Ionia",
+      "extraction_section": null,
+      "extracted_value": 217.2554626464844,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Ionia"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Ionia) from https://en.wikipedia.org/wiki/Greek_historiography",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Greek_historiography",
+      "extraction_target": "Look up the count of hotels near Ionia",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "hotels near Ionia"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of hotels near Ionia) from https://en.wikipedia.org/wiki/Greek_historiography",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Greek_historiography",
+      "extraction_target": "Combine the elevation of Ionia and the count of hotels near Ionia: abs(217 - 20)",
+      "extraction_section": null,
+      "extracted_value": 197,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(217.2554626464844) - int(20.0))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Ionia abs_diff count of hotels near Ionia",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3,
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Greek_historiography",
+      "extraction_target": "Reason: the alphabetical position of its first letter (A=1, B=2, ...)",
+      "extraction_section": null,
+      "extracted_value": 9,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (alpha_position_first_letter) on stop 1 value",
+      "reason_transform": "alpha_position_first_letter",
+      "reason_source_stop": 2,
+      "reason_code": "first = \"Ionia\"[0].upper()\nresult = ord(first) - ord('A') + 1 if first.isalpha() else 0\nprint(result)",
+      "depends_on": [
+        2
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Spanish_America",
+      "extraction_target": "Convert 1872°C to a Fahrenheit-scale offset",
+      "extraction_section": null,
+      "extracted_value": 3369,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "# Convert celsius to fahrenheit_offset\nvalue = 1872.0\nconverted = value * 1.8\nresult = int(converted)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "converted"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: convert 1872 celsius to fahrenheit_offset",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Spanish_America",
+      "extraction_target": "Reason: the sum of its digits",
+      "extraction_section": null,
+      "extracted_value": 21,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_sum) on stop 2 value",
+      "reason_transform": "digit_sum",
+      "reason_source_stop": 7,
+      "reason_code": "result = sum(int(d) for d in str(abs(int(3369))))\nprint(result)",
+      "depends_on": [
+        7
+      ]
+    },
+    {
+      "index": 9,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/William_Woodville_Rockhill",
+      "extraction_target": "age at death (as listed)",
+      "extraction_section": null,
+      "extracted_value": 60,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Air Defence of Great Britain wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Air_Defence_of_Great_Britain",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A scholar‑diplomat figure who links intellectual history to on‑the‑ground geopolitical practice — a bridge to military/international affairs.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        8
+      ]
+    },
+    {
+      "index": 10,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Air_Defence_of_Great_Britain",
+      "extraction_target": "type of formation ADGB is classified as (infobox)",
+      "extraction_section": null,
+      "extracted_value": "Command",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Coltishall wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Coltishall",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Shift to organized military defense: sets the stage for the 20th‑century air war and institutional responses historians study.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        9
+      ]
+    },
+    {
+      "index": 11,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Coltishall",
+      "extraction_target": "Look up the elevation at Coltishall",
+      "extraction_section": null,
+      "extracted_value": 13.20479011535645,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Coltishall"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for Coltishall",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        10
+      ]
+    },
+    {
+      "index": 12,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/RAF_Fighter_Command",
+      "extraction_target": "the date Fighter Command is shown as having become active (start date) in the infobox",
+      "extraction_section": null,
+      "extracted_value": "14 July 1936",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Casablanca-class escort carrier wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Casablanca-class_escort_carrier",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "An operational command central to air defense narratives; historians examine its organization and battles.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        11
+      ]
+    },
+    {
+      "index": 13,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Casablanca-class_escort_carrier",
+      "extraction_target": "the number of Casablanca-class escort carriers planned",
+      "extraction_section": null,
+      "extracted_value": 50,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "UH-1N Twin Huey wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/UH-1N_Twin_Huey",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Introduces the class of escort carriers central to many Pacific actions; links institutional production to battlefield deployment.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        12
+      ]
+    },
+    {
+      "index": 14,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/UH-1N_Twin_Huey",
+      "extraction_target": "Look up the population of United Kingdom",
+      "extraction_section": null,
+      "extracted_value": 69281437,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "countries_population",
+            "arguments": {
+              "country": "United Kingdom"
+            },
+            "expected_output": null,
+            "output_key": "population"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: population of United Kingdom",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        13
+      ]
+    },
+    {
+      "index": 15,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/UH-1N_Twin_Huey",
+      "extraction_target": "Reason: the largest prime factor of that figure",
+      "extraction_section": null,
+      "extracted_value": 69281437,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (largest_prime_factor) on stop 8 value",
+      "reason_transform": "largest_prime_factor",
+      "reason_source_stop": 14,
+      "reason_code": "def largest_prime_factor(n):\n    n = abs(int(n))\n    if n <= 1: return n\n    d = 2\n    while d * d <= n:\n        while n % d == 0: n //= d\n        d += 1\n    return n\nresult = largest_prime_factor(69281437)\nprint(result)",
+      "depends_on": [
+        14
+      ]
+    },
+    {
+      "index": 16,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Battle_off_Samar",
+      "extraction_target": "the date of the Battle off Samar",
+      "extraction_section": null,
+      "extracted_value": "October 25, 1944",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Bell 204/205 wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Bell_204/205",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A pivotal escort carrier action that dramatizes the vulnerability and importance of these ships — a focal battle for the trail.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        15
+      ]
+    },
+    {
+      "index": 17,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Battle_off_Samar",
+      "extraction_target": "Look up the elevation of Battle off Samar",
+      "extraction_section": null,
+      "extracted_value": 196.8766479492188,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Battle off Samar"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Battle off Samar) from https://en.wikipedia.org/wiki/Battle_off_Samar",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        16
+      ]
+    },
+    {
+      "index": 18,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Battle_off_Samar",
+      "extraction_target": "Look up the count of restaurants near Battle off Samar",
+      "extraction_section": null,
+      "extracted_value": 15.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "restaurants near Battle off Samar"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of restaurants near Battle off Samar) from https://en.wikipedia.org/wiki/Battle_off_Samar",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        16
+      ]
+    },
+    {
+      "index": 19,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Battle_off_Samar",
+      "extraction_target": "Combine the elevation of Battle off Samar and the count of restaurants near Battle off Samar: abs(196 - 15)",
+      "extraction_section": null,
+      "extracted_value": 181,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(196.8766479492188) - int(15.0))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Battle off Samar abs_diff count of restaurants near Battle off Samar",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        17,
+        18
+      ]
+    },
+    {
+      "index": 20,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Bell_204/205",
+      "extraction_target": "Convert 1872 meters to feet",
+      "extraction_section": null,
+      "extracted_value": 6141,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "# Convert meters to feet\nvalue = 1872.0\nconverted = value * 3.28084\nresult = int(converted)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "converted"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: convert 1872 meters to feet",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        19
+      ]
+    },
+    {
+      "index": 21,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/USS_Kitkun_Bay",
+      "extraction_target": "the date the ship was laid down",
+      "extraction_section": null,
+      "extracted_value": "3 May 1943",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/5%22/38_caliber_gun",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A concrete example of a Casablanca‑class escort carrier that participated in actions like Samar — a ship‑level focal point for the historian.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        20
+      ]
+    },
+    {
+      "index": 22,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/5%22/38_caliber_gun",
+      "extraction_target": "the mass of the Mk 12 Gun Assembly",
+      "extraction_section": null,
+      "extracted_value": 3990,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Totnes wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Totnes",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Common dual‑purpose naval gun on US warships — shows the offensive/defensive kit aboard escort carriers.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        21
+      ]
+    },
+    {
+      "index": 23,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Totnes",
+      "extraction_target": "Find the sunshine duration (seconds) at Totnes on 1944-10-25",
+      "extraction_section": null,
+      "extracted_value": 8770.66,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Totnes"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "weather_historical",
+            "arguments": {
+              "__from_previous": "coords",
+              "start_date": "1944-10-25",
+              "end_date": "1944-10-25",
+              "select": [
+                "daily.sunshine_duration[0]"
+              ]
+            },
+            "expected_output": null,
+            "output_key": "sunshine"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: sunshine duration at Totnes on 1944-10-25",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        22
+      ]
+    },
+    {
+      "index": 24,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Oerlikon_20_mm_cannon",
+      "extraction_target": "the year the Oerlikon entered service",
+      "extraction_section": null,
+      "extracted_value": 1937,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "CHC Helicopter wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/CHC_Helicopter",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "One of the light anti‑aircraft weapons that defended ships — illustrates the layered AA defences historians map out.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        23
+      ]
+    },
+    {
+      "index": 25,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/CHC_Helicopter",
+      "extraction_target": "Look up the Google Maps rating of Irving",
+      "extraction_section": null,
+      "extracted_value": 4.7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "Irving"
+            },
+            "expected_output": null,
+            "output_key": "place_rating"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: Google rating of Irving",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        24
+      ]
+    },
+    {
+      "index": 26,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/CHC_Helicopter",
+      "extraction_target": "Reason: the sum of its distinct prime factors",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (sum_prime_factors) on stop 15 value",
+      "reason_transform": "sum_prime_factors",
+      "reason_source_stop": 25,
+      "reason_code": "def prime_factors(n):\n    n = abs(int(n))\n    factors = []\n    d = 2\n    while d * d <= n:\n        while n % d == 0:\n            factors.append(d)\n            n //= d\n        d += 1\n    if n > 1: factors.append(n)\n    return factors\nresult = sum(set(prime_factors(4)))\nprint(result)",
+      "depends_on": [
+        25
+      ]
+    },
+    {
+      "index": 27,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Bofors_40_mm_Automatic_Gun_L/60",
+      "extraction_target": "the year the Bofors 40 mm L/60 was designed",
+      "extraction_section": null,
+      "extracted_value": 1930,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Bofors_40_mm_Automatic_Gun_L/60",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A key medium AA weapon used widely in WWII — completes the trilogy of shipboard AA systems and their historical significance.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        26
+      ]
+    },
+    {
+      "index": 28,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Bofors_40_mm_Automatic_Gun_L/60",
+      "extraction_target": "Reason: the next prime number after that figure",
+      "extraction_section": null,
+      "extracted_value": 1931,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (next_prime) on stop 16 value",
+      "reason_transform": "next_prime",
+      "reason_source_stop": 27,
+      "reason_code": "def next_prime(n):\n    n = abs(int(n))\n    if n < 2: return 2\n    candidate = n + 1\n    while True:\n        if all(candidate % i != 0 for i in range(2, int(candidate**0.5)+1)):\n            return candidate\n        candidate += 1\nresult = next_prime(1930)\nprint(result)",
+      "depends_on": [
+        27
+      ]
+    },
+    {
+      "index": 29,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Meadowlands_Sports_Complex",
+      "extraction_target": "Count the number of universities near 40°48′51″N 74°04′26″W﻿ / ﻿40.81417°N 74.07389°W﻿ / 40.81417; -74.07389",
+      "extraction_section": null,
+      "extracted_value": 20,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "universities near 40°48′51″N 74°04′26″W﻿ / ﻿40.81417°N 74.07389°W﻿ / 40.81417; -74.07389"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: count universities near 40°48′51″N 74°04′26″W﻿ / ﻿40.81417°N 74.07389°W﻿ / 40.81417; -74.07389",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        28
+      ]
+    },
+    {
+      "index": 30,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Bell_Huey_family",
+      "extraction_target": "the month and year the XH-40 prototype was first flown",
+      "extraction_section": null,
+      "extracted_value": "October 1956",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Bell_Huey_family",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Final page: the Huey family represents the maturation of helicopter technology that changed post‑war military and civilian aviation — a present‑day endpoint for the technology narrative.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        29
+      ]
+    },
+    {
+      "index": 31,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: (18 + 15 + 3990 + 2) % 10",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "(18 + 15 + 3990 + 2) % 10",
+        "expression_code": "result = (18 + 15 + 3990 + 2) % 10\nprint(result)",
+        "referenced_stops": [
+          1,
+          18,
+          22,
+          26
+        ]
+      },
+      "reasoning": "Compute stop: (18 + 15 + 3990 + 2) % 10 = 5",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1,
+        18,
+        22,
+        26
+      ]
+    }
+  ],
+  "passcode": 5,
+  "difficulty": {
+    "level": "extreme",
+    "depth": 32,
+    "tool_stop_count": 13,
+    "reason_stop_count": 6,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Seek the historian whose insights shaped a new approach to recording the past; what year marks the beginning of his journey?\n\n2. Now, add the digits of that year together. What new number emerges from this transformation?\n\n3. In which coastal territory did the ancients begin crafting their narratives, a region noted by a famous thinker who redefined historical writing?\n\n4. Ascend to the heights of that territory! What is the elevation of this birthplace of history?\n\n5. Count how many places of rest for travelers are scattered throughout this historical region? \n\n6. Combine the elevation you uncovered with the number of hotels found. What is the absolute difference between these two figures?\n\n7. What is the position of the first letter of the region's name in the alphabet? \n\n8. Referring to a specific year, how much Celsius warming did a distant land experience — expressed in Fahrenheit offset?\n\n9. As you analyze that figure, sum the digits. What new single-digit treasure do you find?\n\n10. Dig deep into the life of a man of letters. What age did he reach at his final breath?\n\n11. What classification can be attributed to the defense formation protecting the airspace of a great nation? \n\n12. Seek the elevation at a notable locality that played its part in history, known for its air force significance. \n\n13. What significant date marks the inception of a legendary force designed to dominate the skies?\n\n14. How many vessels were envisioned in the fleet of a particular class named for a historic location?\n\n15. Investigate the population counts from a nation. How many people reside within its borders?\n\n16. What is the largest prime factor found within that population figure?\n\n17. Record the date marked by a fierce naval encounter; what day did the tides of battle turn during this clash?\n\n18. Delve into the heights conquering the location of a storied battle; what is its elevation?\n\n19. Count the culinary establishments nearby this historical site. \n\n20. What is the absolute difference between the elevation of the battle site and the number of restaurants located in that vicinity?\n\n21. Transform the height of a defined measure — how many feet comprise the 1872 you have recorded?\n\n22. Discover the fateful day when a particular vessel had its keel laid. \n\n23. What weight measurement defines the Mk 12 Gun Assembly of a historical naval artillery?\n\n24. On a significant autumn day in 1944, how many seconds of sunshine brightened the town of a quaint history?\n\n25. In what year did a celebrated piece of artillery first make its service debut?\n\n26. Consult the ratings of a renowned helicopter service — how do they stack up?\n\n27. What is the sum of the distinct prime factors derived from that service rating?\n\n28. Within the annals of time, what year was a notable anti-aircraft artillery designed? \n\n29. Seek the next prime number following that year of design; what new numerical companion does this yield? \n\n30. Tally the number of institutions of higher learning close to a specified geographic point — how many universities offer knowledge at this crossroads?\n\n31. In which month and year did a pioneering helicopter prototype first ascend into the skies?\n\n32. To conclude, perform the calculation: combine the treasures from clues 2, 19, 23, and 27, according to the expression (18 + 15 + 3990 + 2) % 10. What single digit have you unveiled?",
+  "metadata": {
+    "theme": "From historian to hardware: a short trail that starts with Marcus Jernegan and historiography, then follows how historians document conflict into 20th‑century air and naval warfare — escort carriers, their guns and anti‑aircraft weapons — finishing with the rise of helicopters and modern operators. Tool stops pull concrete data (elevation, distances, weather, population, specs, etc.) that a historian might extract to ground a narrative.",
+    "difficulty": "extreme",
+    "sample_id": "sample_019",
+    "pages_crawled": 1867
+  },
+  "generated_at": "2026-03-16T08:59:50.024848+00:00"
+}

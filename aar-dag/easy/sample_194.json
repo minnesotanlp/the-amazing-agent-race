@@ -1,0 +1,309 @@
+{
+  "trail_id": "trail_351cba07",
+  "seed_url": "https://en.wikipedia.org/wiki/Reliance_Industries",
+  "seed_title": "Reliance Industries",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Reliance_Industries",
+      "extraction_target": "the number of subsections under Criticism and controversies shown in the Contents",
+      "extraction_section": "Contents",
+      "extracted_value": 9,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Mumbai",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Seed: Reliance is the Indian conglomerate anchoring the trail — extract its HQ (links to Mumbai) and trading identity to connect to markets.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Mumbai",
+      "extraction_target": "the coordinates listed in the infobox (field: 'Coordinates')",
+      "extraction_section": "infobox",
+      "extracted_value": "19.07611, 72.87750",
+      "extracted_value_type": "coords",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Bombay_Stock_Exchange",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Mumbai is Reliance's commercial home and India's financial hub; city data will anchor the geographic leg of the trail.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Mumbai",
+      "extraction_target": "Look up the elevation of Mumbai",
+      "extraction_section": null,
+      "extracted_value": 26.31913185119629,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Mumbai"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Mumbai) from https://en.wikipedia.org/wiki/Mumbai",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Mumbai",
+      "extraction_target": "Look up the count of libraries near Mumbai",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "libraries near Mumbai"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of libraries near Mumbai) from https://en.wikipedia.org/wiki/Mumbai",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Mumbai",
+      "extraction_target": "Combine the elevation of Mumbai and the count of libraries near Mumbai: (26 + 20)",
+      "extraction_section": null,
+      "extracted_value": 46,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(26.31913185119629) + int(20.0)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Mumbai add count of libraries near Mumbai",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2,
+        3
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Bombay_Stock_Exchange",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Founded')",
+      "extraction_section": "infobox",
+      "extracted_value": 9,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Bombay_Stock_Exchange",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "The Bombay Stock Exchange represents the marketplace where large Indian firms (including Reliance) interact with investors — extract its historical/market role.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Bombay_Stock_Exchange",
+      "extraction_target": "Reason: the next prime number after that figure",
+      "extraction_section": null,
+      "extracted_value": 11,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (next_prime) on stop 2 value",
+      "reason_transform": "next_prime",
+      "reason_source_stop": 5,
+      "reason_code": "def next_prime(n):\n    n = abs(int(n))\n    if n < 2: return 2\n    candidate = n + 1\n    while True:\n        if all(candidate % i != 0 for i in range(2, int(candidate**0.5)+1)):\n            return candidate\n        candidate += 1\nresult = next_prime(9)\nprint(result)",
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Shanghai",
+      "extraction_target": "Look up the population of India",
+      "extraction_section": null,
+      "extracted_value": 1417492000,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "countries_population",
+            "arguments": {
+              "country": "India"
+            },
+            "expected_output": null,
+            "output_key": "population"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: population of India",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: digital_root(26 + 20 + 11 + 1417492000)",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "digital_root(26 + 20 + 11 + 1417492000)",
+        "expression_code": "def digital_root(n):\n    n = abs(int(n))\n    return n if n == 0 else ((n - 1) % 9) + 1\nresult = digital_root(26 + 20 + 11 + 1417492000)\nprint(result)",
+        "referenced_stops": [
+          2,
+          3,
+          6,
+          7
+        ]
+      },
+      "reasoning": "Compute stop: digital_root(26 + 20 + 11 + 1417492000) = 4",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2,
+        3,
+        6,
+        7
+      ]
+    }
+  ],
+  "passcode": 4,
+  "difficulty": {
+    "level": "easy",
+    "depth": 9,
+    "tool_stop_count": 4,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "direct_link"
+  },
+  "riddle": "1. Unearth a titan of commerce whose name is synonymous with India's industrial power — how many subsections detail its criticisms and controversies?\n\n2. Within a vibrant coastal metropolis, explore the coordinates that define this bustling hub of trade and culture — what numbers mark its precise location?\n\n3. Gaze upward; what height lies beneath the sky in this dynamic city, measured in meters above sea level?\n\n4. Seek out the knowledge that thrives nearby — how many libraries can be found in the vicinity of this urban center?\n\n5. To continue your journey, sum the height you discovered in clue 3 with the number of libraries from clue 4.\n\n6. Venture into the realm of finance where fortunes are made and lost; what year heralded the founding of this significant national exchange?\n\n7. If you consider the year unearthed in clue 6, can you find the next prime number that follows it?\n\n8. As the sun rises over the subcontinent, how many souls reside in this vast nation, represented by a single number?\n\n9. Finally, compute the digital root of the total: take the sum of your findings from clues 3, 4, 7, and 8, and reduce it to a single-digit number. What remains when you sift through the excess?",
+  "metadata": {
+    "theme": "Follow Reliance Industries from its Mumbai roots through India's business hubs and stock market to a comparison with global media corporations and their national footprints.",
+    "difficulty": "easy",
+    "sample_id": "sample_194",
+    "pages_crawled": 4619
+  },
+  "generated_at": "2026-03-17T13:14:43.192057+00:00"
+}

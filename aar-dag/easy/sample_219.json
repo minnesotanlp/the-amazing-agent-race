@@ -1,0 +1,141 @@
+{
+  "trail_id": "trail_56d8214a",
+  "seed_url": "https://en.wikipedia.org/wiki/Stephen_Polyak",
+  "seed_title": "Stephen Polyak",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Stephen_Polyak",
+      "extraction_target": "the age at which Stephen Polyak died",
+      "extraction_section": null,
+      "extracted_value": 65,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Austria-Hungary",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Stephen Polyak, being a historical figure in religion, sets the stage for a journey through various religious and cultural influences.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Austria-Hungary",
+      "extraction_target": "Look up the elevation at Vienna[[b]](#cite_note-2)",
+      "extraction_section": null,
+      "extracted_value": 172.533447265625,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Vienna[[b]](#cite_note-2)"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for Vienna[[b]](#cite_note-2)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 2,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Austria-Hungary",
+      "extraction_target": "Reason: the number of 1-bits in its binary representation",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (binary_1bit_count) on stop 1 value",
+      "reason_transform": "binary_1bit_count",
+      "reason_source_stop": 1,
+      "reason_code": "result = bin(abs(int(172))).count('1')\nprint(result)",
+      "depends_on": []
+    },
+    {
+      "index": 3,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: digital_root(65 + 172 + 4)",
+      "extraction_section": null,
+      "extracted_value": 7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "digital_root(65 + 172 + 4)",
+        "expression_code": "def digital_root(n):\n    n = abs(int(n))\n    return n if n == 0 else ((n - 1) % 9) + 1\nresult = digital_root(65 + 172 + 4)\nprint(result)",
+        "referenced_stops": [
+          0,
+          1,
+          2
+        ]
+      },
+      "reasoning": "Compute stop: digital_root(65 + 172 + 4) = 7",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    }
+  ],
+  "passcode": 7,
+  "difficulty": {
+    "level": "easy",
+    "depth": 4,
+    "tool_stop_count": 1,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "direct_link"
+  },
+  "riddle": "1. Seek out the American neuroanatomist whose work in the early to mid-20th century is highly regarded, but who began life with the name Stjepan Lucian Poljak. How many years passed between his birth in 1889 and his death in 1955?\n\n2. From the article on the dual monarchy comprising lands in Central Europe between 1867 and 1918, pinpoint the height above the sea level for the city famed for its historic opera house and the River Danube.\n\n3. Upon finding the altitude for this city of music, convert it into its binary form. Within this representation, how many ones make an appearance?\n\n4. To uncover the single-digit secret, perform a symbolic calculation: invoke the power of the digital root on the sum of the answers from clues 1, 2, and 3. The result shall be the conclusion of your quest.",
+  "metadata": {
+    "theme": "An exploration of religious influences on cultural and demographic elements",
+    "difficulty": "easy",
+    "sample_id": "sample_219",
+    "pages_crawled": 929
+  },
+  "generated_at": "2026-03-27T07:15:31.405660+00:00"
+}

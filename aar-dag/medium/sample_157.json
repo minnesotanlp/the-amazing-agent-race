@@ -1,0 +1,562 @@
+{
+  "trail_id": "trail_aa506ff3",
+  "seed_url": "https://en.wikipedia.org/wiki/Costco",
+  "seed_title": "Costco",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Costco",
+      "extraction_target": "the headquarters location of Costco",
+      "extraction_section": null,
+      "extracted_value": "Issaquah, Washington, United States",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Costco",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Seed: Costco is the warehouse-club anchor for this trail — extract its ticker/headquarters to frame corporate scale and logistics.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Costco",
+      "extraction_target": "Look up the elevation of Issaquah, Washington, United States",
+      "extraction_section": null,
+      "extracted_value": 32.22062683105469,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Issaquah, Washington, United States"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Issaquah, Washington, United States) from https://en.wikipedia.org/wiki/Costco",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Costco",
+      "extraction_target": "Look up the count of museums near Issaquah, Washington, United States",
+      "extraction_section": null,
+      "extracted_value": 4.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "museums near Issaquah, Washington, United States"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of museums near Issaquah, Washington, United States) from https://en.wikipedia.org/wiki/Costco",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Costco",
+      "extraction_target": "Combine the elevation of Issaquah, Washington, United States and the count of museums near Issaquah, Washington, United States: abs(32 - 4)",
+      "extraction_section": null,
+      "extracted_value": 28,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(32.22062683105469) - int(4.0))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Issaquah, Washington, United States abs_diff count of museums near Issaquah, Washington, United States",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1,
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Costco",
+      "extraction_target": "Reason: the number of vowels in that name",
+      "extraction_section": null,
+      "extracted_value": 12,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (vowel_count) on stop 0 value",
+      "reason_transform": "vowel_count",
+      "reason_source_stop": 0,
+      "reason_code": "result = sum(1 for c in \"Issaquah, Washington, United States\".lower() if c in 'aeiou')\nprint(result)",
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Minneapolis,_Minnesota",
+      "extraction_target": "the coordinates listed in the infobox (field: 'Coordinates')",
+      "extraction_section": "infobox",
+      "extracted_value": "44.98194, -93.26917",
+      "extracted_value_type": "coords",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Kansas_City,_Missouri",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Minneapolis is a major U.S. retail hub (home to big retailers) — useful to examine urban market size where warehouse clubs compete.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Minneapolis,_Minnesota",
+      "extraction_target": "Look up the elevation of Minneapolis, Minnesota",
+      "extraction_section": null,
+      "extracted_value": 254.7844543457031,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Minneapolis, Minnesota"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Minneapolis, Minnesota) from https://en.wikipedia.org/wiki/Minneapolis,_Minnesota",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Minneapolis,_Minnesota",
+      "extraction_target": "Look up the count of restaurants near Minneapolis, Minnesota",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "restaurants near Minneapolis, Minnesota"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of restaurants near Minneapolis, Minnesota) from https://en.wikipedia.org/wiki/Minneapolis,_Minnesota",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Minneapolis,_Minnesota",
+      "extraction_target": "Combine the elevation of Minneapolis, Minnesota and the count of restaurants near Minneapolis, Minnesota: (254 + 20)",
+      "extraction_section": null,
+      "extracted_value": 274,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(254.7844543457031) + int(20.0)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Minneapolis, Minnesota add count of restaurants near Minneapolis, Minnesota",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6,
+        7
+      ]
+    },
+    {
+      "index": 9,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Kansas_City,_Missouri",
+      "extraction_target": "Count the number of hotels near 39.09972",
+      "extraction_section": null,
+      "extracted_value": 9,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "hotels near 39.09972"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: count hotels near 39.09972",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        8
+      ]
+    },
+    {
+      "index": 10,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Kansas_City,_Missouri",
+      "extraction_target": "Reason: the digital root (iterated digit sum until single digit)",
+      "extraction_section": null,
+      "extracted_value": 9,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digital_root) on stop 2 value",
+      "reason_transform": "digital_root",
+      "reason_source_stop": 9,
+      "reason_code": "n = abs(int(9))\nresult = n if n == 0 else ((n - 1) % 9) + 1\nprint(result)",
+      "depends_on": [
+        9
+      ]
+    },
+    {
+      "index": 11,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Midwest",
+      "extraction_target": "the number of languages listed in the language links box",
+      "extraction_section": null,
+      "extracted_value": 60,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Mexico City wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Mexico_City",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A regional overview: the Midwest's demographics and geography help explain distribution, logistics, and membership patterns for warehouse clubs.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        10
+      ]
+    },
+    {
+      "index": 12,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Mexico_City",
+      "extraction_target": "the coordinates listed in the infobox (field: 'Coordinates')",
+      "extraction_section": "infobox",
+      "extracted_value": "19.433, -99.133",
+      "extracted_value_type": "coords",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Taiwan wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Taiwan",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Costco has a strong international presence in Mexico; Mexico City represents a major urban market for international warehouse operations.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        11
+      ]
+    },
+    {
+      "index": 13,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Taiwan",
+      "extraction_target": "Look up the population of Mexico",
+      "extraction_section": null,
+      "extracted_value": 130575786,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "countries_population",
+            "arguments": {
+              "country": "Mexico"
+            },
+            "expected_output": null,
+            "output_key": "population"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: population of Mexico",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        12
+      ]
+    },
+    {
+      "index": 14,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/London,_England",
+      "extraction_target": "the population listed in the infobox (field: '• [Urban](/wiki/Urban_area \"Urban area\") (2011)[[3]](#cite_note-urbanpopulation-4)')",
+      "extraction_section": "infobox",
+      "extracted_value": 9787428,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Oregon wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Oregon",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "London represents the UK/European urban market context for warehouse-style retail and membership models.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        13
+      ]
+    },
+    {
+      "index": 15,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Oregon",
+      "extraction_target": "the elevation listed in the infobox (field: 'Elevation')",
+      "extraction_section": "infobox",
+      "extracted_value": 3300,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Oregon",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Conclude the U.S. regional tour with Oregon — part of the Pacific Northwest near Costco's headquarters — to reflect on local market density and geography.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        14
+      ]
+    },
+    {
+      "index": 16,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: digital_root(32 + 28 + 130575786 + 9787428)",
+      "extraction_section": null,
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "digital_root(32 + 28 + 130575786 + 9787428)",
+        "expression_code": "def digital_root(n):\n    n = abs(int(n))\n    return n if n == 0 else ((n - 1) % 9) + 1\nresult = digital_root(32 + 28 + 130575786 + 9787428)\nprint(result)",
+        "referenced_stops": [
+          1,
+          3,
+          13,
+          14
+        ]
+      },
+      "reasoning": "Compute stop: digital_root(32 + 28 + 130575786 + 9787428) = 3",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1,
+        3,
+        13,
+        14
+      ]
+    }
+  ],
+  "passcode": 3,
+  "difficulty": {
+    "level": "medium",
+    "depth": 17,
+    "tool_stop_count": 8,
+    "reason_stop_count": 2,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Seek the corporate giant's base, where shelves are stacked and goods abound. Which city serves as the headquarters of this merchandise empire?\n\n2. As you trace its roots, how high does the ground rise in the city where this wholesale titan was born? \n\n3. Nearby this champion of savings, how many museums offer cultural treasures within a stone's throw? \n\n4. Now, take the elevation from clue 2 and the number of museums from clue 3, and find the absolute difference between them. What is the result?\n\n5. In the name revealed by clue 1, how many vowels lend their voices to its echo?\n\n6. If a thriving metropolis is a city of lakes, you will find your next destination by following its geographical details. What coordinates mark this urban center of commerce?\n\n7. Ascend to the heights of this renowned Midwestern hub — what altitude does it boast above sea level?\n\n8. Seek out the culinary establishments that gather around this northern beauty; how many restaurants can be found in its embrace?\n\n9. Combine the city's elevation found in clue 7 with the restaurant count from clue 8. What sum do you arrive at?\n\n10. In the city known for jazz and barbecue, how many hotels can be spotted near latitude 39.09972?\n\n11. Digging deeper, what is the digital root of the number of hotels you discovered in clue 10?\n\n12. In this region known for its diverse heritage, how many languages can you find listed in the language links of the encompassing area?\n\n13. The vibrant capital of a neighboring land bears coordinates recorded in its entry. What numbers mark its geographic position?\n\n14. Explore the figures of a country south of the border; what is its population?\n\n15. In the grand city known as the capital of Great Britain, what total population resides within its urban expanse, as noted in its description?\n\n16. Move west to a land of towering trees and deep valleys — what elevation does this state claim above the waves?\n\n17. To complete your quest, compute the digital root of the sum from clues 2, 4, 14, and 15. What single digit emerges from this calculation?",
+  "metadata": {
+    "theme": "Tracing Costco's footprint — from its corporate identity to competitor valuation, then through the U.S. cities and regions that shape warehouse retail markets, finishing with international population markets that influence its expansion.",
+    "difficulty": "medium",
+    "sample_id": "sample_157",
+    "pages_crawled": 9893
+  },
+  "generated_at": "2026-03-17T14:32:16.886701+00:00"
+}

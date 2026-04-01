@@ -1,0 +1,194 @@
+{
+  "trail_id": "trail_17699ed0",
+  "seed_url": "https://en.wikipedia.org/wiki/Meredith_Bergmann",
+  "seed_title": "Meredith Bergmann",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Meredith_Bergmann",
+      "extraction_target": "the year Bergmann's statue of Marian Anderson was unveiled",
+      "extraction_section": "Education and career",
+      "extracted_value": "2006",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Women%27s_Rights_Pioneers_Monument",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start with Meredith Bergmann herself — identify her signature public sculptures and background to anchor the trail's focus on monuments.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Women%27s_Rights_Pioneers_Monument",
+      "extraction_target": "the location listed in the infobox (field: 'Location')",
+      "extraction_section": "infobox",
+      "extracted_value": "New York City, New York \"New York (state)\"), U.S.",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Chrysler Museum of Art wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Chrysler_Museum_of_Art",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Follow to Bergmann's high-profile public work (the Women's Rights Pioneers Monument) to get the specific site and date that exemplify her monument work.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Chrysler_Museum_of_Art",
+      "extraction_target": "Look up the elevation at Chrysler Museum of Art",
+      "extraction_section": null,
+      "extracted_value": 2.566356897354126,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Chrysler Museum of Art"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for Chrysler Museum of Art",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Commonwealth_Avenue_(Boston)",
+      "extraction_target": "Calculate the number of days between 2006-01-01 and 2026-03-15",
+      "extraction_section": null,
+      "extracted_value": 7378,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "from datetime import date\nd1 = date.fromisoformat('2006-01-01')\nd2 = date.fromisoformat('2026-03-15')\nresult = abs((d2 - d1).days)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "days"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: date computation 2006-01-01 to 2026-03-15 (pinned)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 4,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Commonwealth_Avenue_(Boston)",
+      "extraction_target": "Reason: the sum of its digits",
+      "extraction_section": null,
+      "extracted_value": 25,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_sum) on stop 3 value",
+      "reason_transform": "digit_sum",
+      "reason_source_stop": 3,
+      "reason_code": "result = sum(int(d) for d in str(abs(int(7378))))\nprint(result)"
+    },
+    {
+      "index": 5,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: abs(2006 - 2) % 10",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "abs(2006 - 2) % 10",
+        "expression_code": "result = abs(2006 - 2) % 10\nprint(result)",
+        "referenced_stops": [
+          0,
+          2,
+          3,
+          4
+        ]
+      },
+      "reasoning": "Compute stop: abs(2006 - 2) % 10 = 4",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 4,
+  "difficulty": {
+    "level": "easy",
+    "depth": 6,
+    "tool_stop_count": 2,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "Here is the riddle with the corrected clues:\n\n1. Seek the sculptor's page known for capturing the essence of a celebrated contralto; in the Education and career paragraph, when was her statue of this remarkable singer first unveiled — give the year.\n\n2. There exists a page about the multi-figure monument linked from that article; on that monument's summary box, what place is cited as the site where the figures stand?\n\n3. What is the elevation above sea level of the museum founded from an automobile heir’s collection in Norfolk — find the ground height for that art museum site.\n\n4. If you measure the span between 2006-01-01 and 2026-03-15, how many days elapse in total?\n\n5. The next step: take the count from clue 4 and add together its decimal digits to produce a single summed number.\n\n6. The riddle's keeper now asks you to compute the final digit: evaluate abs((clue 1 + clue 3) - (clue 4 - clue 5)) % 10 and report that single-digit result (0–9).",
+  "metadata": {
+    "theme": "Tracing a sculptor's public art: from the artist (Meredith Bergmann) to her monument, then situating public sculpture in urban places (museum site elevation and public-art density on a major avenue).",
+    "difficulty": "easy",
+    "sample_id": "sample_039",
+    "pages_crawled": 1786,
+    "source": "trail_puzzles_v2"
+  },
+  "generated_at": "2026-03-15T13:32:17.757629+00:00"
+}

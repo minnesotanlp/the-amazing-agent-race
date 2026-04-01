@@ -1,0 +1,818 @@
+{
+  "trail_id": "trail_978f6392",
+  "seed_url": "https://en.wikipedia.org/wiki/SV_Odin_Hannover",
+  "seed_title": "SV Odin Hannover",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/SV_Odin_Hannover",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Founded')",
+      "extraction_section": "infobox",
+      "extracted_value": 1905,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/SV_Odin_Hannover",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Seed: the local Hannover football club anchors the trail in a specific city and founding date — our starting civic point.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/SV_Odin_Hannover",
+      "extraction_target": "Reason: the count of leap years between that year and 2000",
+      "extraction_section": null,
+      "extracted_value": 24,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (leap_years_to_2000) on stop 0 value",
+      "reason_transform": "leap_years_to_2000",
+      "reason_source_stop": 0,
+      "reason_code": "import calendar\ny = abs(int(1905))\nlo, hi = min(y, 2000), max(y, 2000)\nresult = sum(1 for yr in range(lo, hi+1) if calendar.isleap(yr))\nprint(result)",
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Red_Bull_Racing",
+      "extraction_target": "the year listed in the 'Cosworth engines' subsection title",
+      "extraction_section": "History",
+      "extracted_value": 2005,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Pan American World Airways wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Pan_American_World_Airways",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A modern, highly commercialized motorsport team — illustrates how sports teams evolved into global brands and connects sport to corporate sponsorship.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Pan_American_World_Airways",
+      "extraction_target": "the number of languages the article is available in",
+      "extraction_section": null,
+      "extracted_value": 54,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Pan_American_World_Airways",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Historic global airline — symbolizes the transport networks that enabled international sports tours and cultural exchange.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Pan_American_World_Airways",
+      "extraction_target": "Reason: the number of divisors of that figure",
+      "extraction_section": null,
+      "extracted_value": 8,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (num_divisors) on stop 2 value",
+      "reason_transform": "num_divisors",
+      "reason_source_stop": 3,
+      "reason_code": "n = abs(int(54))\ncount = sum(1 for i in range(1, n+1) if n % i == 0) if n > 0 else 0\nresult = count\nprint(result)",
+      "depends_on": [
+        3
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Wrigley_Field",
+      "extraction_target": "Count the number of restaurants near Chicago",
+      "extraction_section": null,
+      "extracted_value": 20,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "restaurants near Chicago"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: count restaurants near Chicago",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Harrisburg,_Pennsylvania",
+      "extraction_target": "the elevation listed in the infobox (field: 'Elevation [[5]](#cite_note-USGS-5)')",
+      "extraction_section": "infobox",
+      "extracted_value": 335,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "1992 in the United States wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/1992_in_the_United_States",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A mid-sized capital city example from the U.S. — useful for comparing civic scale and how sports fit into different urban contexts.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Harrisburg,_Pennsylvania",
+      "extraction_target": "Look up the elevation of Harrisburg, Pennsylvania",
+      "extraction_section": null,
+      "extracted_value": 107.1270523071289,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Harrisburg, Pennsylvania"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Harrisburg, Pennsylvania) from https://en.wikipedia.org/wiki/Harrisburg,_Pennsylvania",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Harrisburg,_Pennsylvania",
+      "extraction_target": "Look up the count of temples near Harrisburg, Pennsylvania",
+      "extraction_section": null,
+      "extracted_value": 16.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "temples near Harrisburg, Pennsylvania"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of temples near Harrisburg, Pennsylvania) from https://en.wikipedia.org/wiki/Harrisburg,_Pennsylvania",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 9,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Harrisburg,_Pennsylvania",
+      "extraction_target": "Combine the elevation of Harrisburg, Pennsylvania and the count of temples near Harrisburg, Pennsylvania: abs(107 - 16)",
+      "extraction_section": null,
+      "extracted_value": 91,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(107.1270523071289) - int(16.0))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Harrisburg, Pennsylvania abs_diff count of temples near Harrisburg, Pennsylvania",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        7,
+        8
+      ]
+    },
+    {
+      "index": 10,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/1992_in_the_United_States",
+      "extraction_target": "Look up the elevation at 1992 in the United States",
+      "extraction_section": null,
+      "extracted_value": 3236.2353515625,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "1992 in the United States"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for 1992 in the United States",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        9
+      ]
+    },
+    {
+      "index": 11,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/United_States_Capitol",
+      "extraction_target": "the location listed in the infobox (field: 'Location')",
+      "extraction_section": "infobox",
+      "extracted_value": "Capitol Hill, Washington, D.C., United States",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Third Reich wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Third_Reich",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A seat of governance — connects how public policy and civic institutions influence sport, stadium funding, and regulations.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        10
+      ]
+    },
+    {
+      "index": 12,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/United_States_Capitol",
+      "extraction_target": "Look up the elevation of Capitol Hill, Washington, D.C., United States",
+      "extraction_section": null,
+      "extracted_value": 24.02208518981934,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Capitol Hill, Washington, D.C., United States"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Capitol Hill, Washington, D.C., United States) from https://en.wikipedia.org/wiki/United_States_Capitol",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        11
+      ]
+    },
+    {
+      "index": 13,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/United_States_Capitol",
+      "extraction_target": "Look up the count of libraries near Capitol Hill, Washington, D.C., United States",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "libraries near Capitol Hill, Washington, D.C., United States"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of libraries near Capitol Hill, Washington, D.C., United States) from https://en.wikipedia.org/wiki/United_States_Capitol",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        11
+      ]
+    },
+    {
+      "index": 14,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/United_States_Capitol",
+      "extraction_target": "Combine the elevation of Capitol Hill, Washington, D.C., United States and the count of libraries near Capitol Hill, Washington, D.C., United States: abs(24 - 20)",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(24.02208518981934) - int(20.0))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Capitol Hill, Washington, D.C., United States abs_diff count of libraries near Capitol Hill, Washington, D.C., United States",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        12,
+        13
+      ]
+    },
+    {
+      "index": 15,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Third_Reich",
+      "extraction_target": "the number of language links listed at the top of the article",
+      "extraction_section": null,
+      "extracted_value": 163,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Allies_of_World_War_II",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Major historical force in 20th-century Germany — provides historical context for how politics affected German clubs, institutions, and civic life.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        14
+      ]
+    },
+    {
+      "index": 16,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Allies_of_World_War_II",
+      "extraction_target": "the number of languages the article is available in",
+      "extraction_section": null,
+      "extracted_value": 90,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Martin Heidegger wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Martin_Heidegger",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Postwar international order shaped Europe's reconstruction and the modern sporting landscape; this page contrasts with the previous stop's era.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        15
+      ]
+    },
+    {
+      "index": 17,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Martin_Heidegger",
+      "extraction_target": "the number of subsubsections under Being and Time (3.2) in the Contents",
+      "extraction_section": "Contents",
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Romanticism",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A major German philosopher — brings in intellectual and cultural currents that shape civic identity and the meanings communities attach to local clubs.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        16
+      ]
+    },
+    {
+      "index": 18,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Romanticism",
+      "extraction_target": "the number of languages the article is available in",
+      "extraction_section": null,
+      "extracted_value": 124,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Romanticism",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A cultural movement influential in German arts and identity — helps trace cultural foundations that inform local pride, aesthetics, and community life.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        17
+      ]
+    },
+    {
+      "index": 19,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Romanticism",
+      "extraction_target": "Reason: the number you get by reversing its digits",
+      "extraction_section": null,
+      "extracted_value": 421,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_reversal) on stop 10 value",
+      "reason_transform": "digit_reversal",
+      "reason_source_stop": 18,
+      "reason_code": "result = int(str(abs(int(124)))[::-1])\nprint(result)",
+      "depends_on": [
+        18
+      ]
+    },
+    {
+      "index": 20,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Impressionism",
+      "extraction_target": "the number of languages listed at the top of the article",
+      "extraction_section": null,
+      "extracted_value": 100,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Impressionism",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Another artistic movement showing how cultural currents (visual arts, music) parallel changes in public leisure and spectator culture.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        19
+      ]
+    },
+    {
+      "index": 21,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Impressionism",
+      "extraction_target": "Count universities near Impressionism",
+      "extraction_section": null,
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "universities near Impressionism"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (nearby_poi) derived from https://en.wikipedia.org/wiki/Impressionism",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        20
+      ]
+    },
+    {
+      "index": 22,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Impressionism",
+      "extraction_target": "Reason: the number of divisors of that figure",
+      "extraction_section": null,
+      "extracted_value": 9,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (num_divisors) on stop 11 value",
+      "reason_transform": "num_divisors",
+      "reason_source_stop": 20,
+      "reason_code": "n = abs(int(100))\ncount = sum(1 for i in range(1, n+1) if n % i == 0) if n > 0 else 0\nresult = count\nprint(result)",
+      "depends_on": [
+        20
+      ]
+    },
+    {
+      "index": 23,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Plato",
+      "extraction_target": "the number of languages in which the article is available (as shown at the top of the page)",
+      "extraction_section": null,
+      "extracted_value": 219,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Plato",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Philosophical root: linking civic virtues, community, and public life back to classical ideas — a final stop that frames sporting clubs as part of broader civic culture.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        22
+      ]
+    },
+    {
+      "index": 24,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Plato",
+      "extraction_target": "Look up the Google rating of Plato",
+      "extraction_section": null,
+      "extracted_value": 3.1,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "Plato"
+            },
+            "expected_output": null,
+            "output_key": "place_rating"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (place_rating) derived from https://en.wikipedia.org/wiki/Plato",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        23
+      ]
+    },
+    {
+      "index": 25,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: (4 + 3) % 10",
+      "extraction_section": null,
+      "extracted_value": 7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "(4 + 3) % 10",
+        "expression_code": "result = (4 + 3) % 10\nprint(result)",
+        "referenced_stops": [
+          14,
+          17
+        ]
+      },
+      "reasoning": "Compute stop: (4 + 3) % 10 = 7",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        14,
+        17
+      ]
+    }
+  ],
+  "passcode": 7,
+  "difficulty": {
+    "level": "hard",
+    "depth": 26,
+    "tool_stop_count": 10,
+    "reason_stop_count": 4,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Unearth the grassroots team that hails from Lower Saxony, founded in a year that can unlock a tale of local pride. What year did this club take the field for the first time?\n\n2. From the year you uncovered, count the leap years that have blossomed until the dawn of the new millennium. How many are there?\n\n3. Now turn your gaze to the realm of high-speed motorsport. What was the pivotal year when a famous racing team embraced a legendary engine brand?\n\n4. This aviator giant soared through the skies, connecting lands across oceans. Can you count how many languages tell its story on the page?\n\n5. Reflect on your previous count and discover the number of unique factors that divide it evenly. What is this intriguing figure?\n\n6. Within the Windy City lies a renowned baseball field. How many dining establishments can you find in its vicinity?\n\n7. Seek the capital city in the heart of Pennsylvania — it carries a history of its own. What is the elevation of this city above the sea?\n\n8. With the same coordinates in mind, trace the topography tilting towards heaven. What elevation does this location reveal?\n\n9. Among the sacred spaces around this city, how many temples stand devoted to beliefs of yore?\n\n10. Combine the elevation you found with the number of temples standing in pious count. What absolute difference emerges from this union?\n\n11. A pivotal year in the annals of American history awaits. Can you unveil the elevation that this notable year signifies?\n\n12. Take a journey to the seat of government, where architectural glory meets democratic power. What location is denoted in the details of this monument?\n\n13. In this very precinct, an iconic hill rises above the fray. Can you determine its elevation above sea level?\n\n14. Libraries are often the repositories of knowledge and culture. How many can be found near this important site?\n\n15. Now take the elevation from clue 13 and the library count from clue 14. How far apart do they stand when you find the absolute difference?\n\n16. A historical regime cast shadows across Europe. What count of languages reflects the tales within its pages?\n\n17. Among the forces that fought to restore the world, how many languages encapsulate their actions in written form?\n\n18. In the reflective waters of philosophy, what number of subsubsections exists under the text regarding existence in a celebrated work?\n\n19. Across a movement that stirred hearts, how many languages can heretical whispers be found? \n\n20. For the number you soon discover, reverse its digits — what figure emerges from this transformation?\n\n21. In an age of artistry merging intellect, how many languages weave the narrative of this pivotal movement in culture?\n\n22. As you contemplate this, seeking halls of academia nearby, how many universities reside in proximity?\n\n23. Keep in mind the previous figure and explore how many unique factors can be drawn from it. What’s the result of this investigation?\n\n24. Philosophical queries are often sought in many languages. What is the total number of languages in which the work of a great thinker can be found?\n\n25. Refresh your memory and discover the reputation of this philosopher on a prominent search platform. What star rating do you find?\n\n26. Finally, take the figures you derived: the absolute difference from clue 15 added to the count of subsubsections in clue 18. What remains when you compute (4 + 3) % 10? This will yield a single-digit answer, leading you to the riddle's conclusion.",
+  "metadata": {
+    "theme": "From a grassroots Hannover football club outward — a short cultural, geographic, and commercial tour connecting a local German team to cities, stadiums, historical forces, philosophy, and modern corporate/financial players that shaped sport and civic life.",
+    "difficulty": "hard",
+    "sample_id": "sample_230",
+    "pages_crawled": 35462
+  },
+  "generated_at": "2026-03-21T02:06:36.084337+00:00"
+}

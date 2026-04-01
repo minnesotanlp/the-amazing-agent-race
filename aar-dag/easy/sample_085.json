@@ -1,0 +1,308 @@
+{
+  "trail_id": "trail_f0af63a5",
+  "seed_url": "https://en.wikipedia.org/wiki/Alice_Sterling_Honig",
+  "seed_title": "Alice Sterling Honig",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Alice_Sterling_Honig",
+      "extraction_target": "the number of alma mater institutions listed in the infobox",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Radical Republicans wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Radical_Republicans",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start with the children's author who communicates history to young readers — the seed anchors the trail in how historical figures and movements are presented and remembered.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Radical_Republicans",
+      "extraction_target": "number of leader names listed in the infobox",
+      "extraction_section": null,
+      "extracted_value": 9,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Radical_Republicans",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Moves to the 19th-century political faction whose Reconstruction-era policies and advocacy shaped early federal efforts to secure voting rights for formerly enslaved people.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Radical_Republicans",
+      "extraction_target": "Reason: the number of divisors of that figure",
+      "extraction_section": null,
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (num_divisors) on stop 1 value",
+      "reason_transform": "num_divisors",
+      "reason_source_stop": 1,
+      "reason_code": "n = abs(int(9))\ncount = sum(1 for i in range(1, n+1) if n % i == 0) if n > 0 else 0\nresult = count\nprint(result)",
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Black_suffrage_in_the_United_States",
+      "extraction_target": "the year the Voting Rights Act that fully enfranchised African Americans was passed",
+      "extraction_section": null,
+      "extracted_value": "1965",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Women%27s_Rights_Pioneers_Monument",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Follows the long arc of Black voting rights — showing the gaps between legal change, suppression, and later federal protections, which together form the substantive history behind commemorations and lessons in children’s literature.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Black_suffrage_in_the_United_States",
+      "extraction_target": "Look up the elevation of Black suffrage in the United States",
+      "extraction_section": null,
+      "extracted_value": 3236.2353515625,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Black suffrage in the United States"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Black suffrage in the United States) from https://en.wikipedia.org/wiki/Black_suffrage_in_the_United_States",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Black_suffrage_in_the_United_States",
+      "extraction_target": "Look up the count of universities near Black suffrage in the United States",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "universities near Black suffrage in the United States"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of universities near Black suffrage in the United States) from https://en.wikipedia.org/wiki/Black_suffrage_in_the_United_States",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Black_suffrage_in_the_United_States",
+      "extraction_target": "Combine the elevation of Black suffrage in the United States and the count of universities near Black suffrage in the United States: (3236 + 20)",
+      "extraction_section": null,
+      "extracted_value": 3256,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(3236.2353515625) + int(20.0)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Black suffrage in the United States add count of universities near Black suffrage in the United States",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        4,
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Women%27s_Rights_Pioneers_Monument",
+      "extraction_target": "Calculate the number of days between 1965-01-01 and 2026-03-15",
+      "extraction_section": null,
+      "extracted_value": 22353,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "from datetime import date\nd1 = date.fromisoformat('1965-01-01')\nd2 = date.fromisoformat('2026-03-15')\nresult = abs((d2 - d1).days)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "days"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: date computation 1965-01-01 to 2026-03-15 (pinned)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: (4 + 9 + 1965) % 10",
+      "extraction_section": null,
+      "extracted_value": 8,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "(4 + 9 + 1965) % 10",
+        "expression_code": "result = (4 + 9 + 1965) % 10\nprint(result)",
+        "referenced_stops": [
+          0,
+          1,
+          3
+        ]
+      },
+      "reasoning": "Compute stop: (4 + 9 + 1965) % 10 = 8",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0,
+        1,
+        3
+      ]
+    }
+  ],
+  "passcode": 8,
+  "difficulty": {
+    "level": "easy",
+    "depth": 9,
+    "tool_stop_count": 4,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Seek the storyteller whose words capture the imagination of youth in realms of history — how many institutions nourished her intellect?\n\n2. What political faction, committed to fiercely advocating for equality in the turbulent times post-Civil War, had a cadre of notable leaders — count their names?\n\n3. The count of leaders revealed a number; uncover how many ways can one divide that figure evenly.\n\n4. Navigate to the page chronicling the fight for a vital right — in what year did legislation secure the ballot for African Americans, fully enfranchising them?\n\n5. In the depths of history lie lofty ambitions; discover how high one must climb to reach the elevation tied to African American suffrage.\n\n6. A quest for knowledge bears fruit near their cause; how many universities can be found within the vicinity of this pivotal movement in history?\n\n7. Combine your findings from clues 5 and 6 to unveil the sum of the heights and institutions — what number does that yield?\n\n8. Emerging from the annals of history, there lies a memorial dedicated to the pioneers of women’s rights; how many days frolic between the dawn of 1965 and the ides of March in 2026? \n\n9. Gather the figures from clues 1, 2, and 4 in a harmonious union; compute the sum (of what you found in clue 1 and clue 2, along with the year from clue 4) and take it modulo 10. What single-digit result shines forth from this gathering of numbers?",
+  "metadata": {
+    "theme": "From children’s history to voting rights: tracing how historical memory (as presented to young readers) connects to the political movements and milestones that secured — and commemorated — suffrage in the United States.",
+    "difficulty": "easy",
+    "sample_id": "sample_085",
+    "pages_crawled": 3396,
+    "source": "trail_puzzles_v2"
+  },
+  "generated_at": "2026-03-15T18:02:08.774713+00:00"
+}

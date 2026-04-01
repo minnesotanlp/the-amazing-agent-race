@@ -1,0 +1,307 @@
+{
+  "trail_id": "trail_0ad93dfb",
+  "seed_url": "https://en.wikipedia.org/wiki/Mastercard",
+  "seed_title": "Mastercard",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Mastercard",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Founded')",
+      "extraction_section": "infobox",
+      "extracted_value": 1966,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Mastercard",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start at Mastercard — the seed company whose stock ticker and headquarters will anchor comparisons and location-based checks across the trail.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Mastercard",
+      "extraction_target": "Look up the Google rating of Mastercard",
+      "extraction_section": null,
+      "extracted_value": 5.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "Mastercard"
+            },
+            "expected_output": null,
+            "output_key": "place_rating"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (place_rating) derived from https://en.wikipedia.org/wiki/Mastercard",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Mastercard",
+      "extraction_target": "Reason: the day of the week for January 1st of that year (1=Mon, 7=Sun)",
+      "extraction_section": null,
+      "extracted_value": 6,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (day_of_week) on stop 0 value",
+      "reason_transform": "day_of_week",
+      "reason_source_stop": 0,
+      "reason_code": "from datetime import date\nresult = date(abs(int(1966)), 1, 1).isoweekday()\nprint(result)",
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/London",
+      "extraction_target": "the population listed in the infobox (field: '• [Urban](/wiki/Urban_area \"Urban area\") (2011)[[3]](#cite_note-urbanpopulation-4)')",
+      "extraction_section": "infobox",
+      "extracted_value": 9787428,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Federal Reserve wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Federal_Reserve",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Visit London as a leading global financial centre to illustrate Mastercard's international market presence and adoption in major cities.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/London",
+      "extraction_target": "Look up the elevation of London",
+      "extraction_section": null,
+      "extracted_value": 7.165058612823486,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "London"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of London) from https://en.wikipedia.org/wiki/London",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/London",
+      "extraction_target": "Look up the count of hotels near London",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "hotels near London"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of hotels near London) from https://en.wikipedia.org/wiki/London",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/London",
+      "extraction_target": "Combine the elevation of London and the count of hotels near London: abs(7 - 20)",
+      "extraction_section": null,
+      "extracted_value": 13,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(7.165058612823486) - int(20.0))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of London abs_diff count of hotels near London",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        4,
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Federal_Reserve",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Established')",
+      "extraction_section": "infobox",
+      "extracted_value": 23,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Federal_Reserve",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Conclude with the Federal Reserve to provide regulatory and monetary-policy context that shapes payment networks and corporate behaviour.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: abs(5 - 20) % 10",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "abs(5 - 20) % 10",
+        "expression_code": "result = abs(5 - 20) % 10\nprint(result)",
+        "referenced_stops": [
+          1,
+          5,
+          6
+        ]
+      },
+      "reasoning": "Compute stop: abs(5 - 20) % 10 = 5",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1,
+        5,
+        6
+      ]
+    }
+  ],
+  "passcode": 5,
+  "difficulty": {
+    "level": "easy",
+    "depth": 9,
+    "tool_stop_count": 4,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. A payment pioneer began its journey in the year of establishment — can you unveil this moment in time?\n\n2. Discover how travelers rate the services of this renowned payment solutions provider. What is their score out of five?\n\n3. In the year you just uncovered, determine what day January 1st fell on — was it a Monday or perhaps a Sunday?\n\n4. Seek the city that stands as a financial hub and has a buzzing population; what number of residents called it home in the latest census?\n\n5. Ascend now to find how far above sea level this bustling capital rests — what is its elevation in meters?\n\n6. Count how many places of lodging can be found in the vicinity of this vibrant metropolis. What is that total?\n\n7. Blend your findings from clues 5 and 6 by calculating the absolute difference between the two values you retrieved.\n\n8. Turn your attention to the influential entity that steers the monetary policy of a vast nation — what year marked its establishment?\n\n9. Now, compute the absolute difference of the values from clues 2, 6, and 7, then find the remainder when that result is divided by 10. What single digit do you unveil?",
+  "metadata": {
+    "theme": "Tracing Mastercard's place in the global payments ecosystem: corporate footprint, tech partnerships, major financial centres, and regulatory context",
+    "difficulty": "easy",
+    "sample_id": "sample_154",
+    "pages_crawled": 2200
+  },
+  "generated_at": "2026-03-17T09:21:59.880694+00:00"
+}

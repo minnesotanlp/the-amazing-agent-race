@@ -1,0 +1,802 @@
+{
+  "trail_id": "trail_2c669b4c",
+  "seed_url": "https://en.wikipedia.org/wiki/Alexia_Bonatsos",
+  "seed_title": "Alexia Bonatsos",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Alexia_Bonatsos",
+      "extraction_target": "occupation listed in the infobox",
+      "extraction_section": null,
+      "extracted_value": "General Partner of Dream Machine",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Alexia_Bonatsos",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Seed: a modern digital journalist whose career exemplifies starting in smaller outlets and moving into broadcast and media coverage.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Alexia_Bonatsos",
+      "extraction_target": "Reason: the alphabetical position of its first letter (A=1, B=2, ...)",
+      "extraction_section": null,
+      "extracted_value": 7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (alpha_position_first_letter) on stop 0 value",
+      "reason_transform": "alpha_position_first_letter",
+      "reason_source_stop": 0,
+      "reason_code": "first = \"General Partner of Dream Machine\"[0].upper()\nresult = ord(first) - ord('A') + 1 if first.isalpha() else 0\nprint(result)",
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Campus_radio",
+      "extraction_target": "the number of music genres listed in the lead as examples associated with campus radio",
+      "extraction_section": null,
+      "extracted_value": 6,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "CBC Television wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/CBC_Television",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Where many broadcasters and reporters begin — campus radio represents grassroots training in audio production and live reporting.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Campus_radio",
+      "extraction_target": "Look up the Google rating of Campus radio",
+      "extraction_section": null,
+      "extracted_value": 3.5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "Campus radio"
+            },
+            "expected_output": null,
+            "output_key": "place_rating"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (place_rating) derived from https://en.wikipedia.org/wiki/Campus_radio",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/CBC_Television",
+      "extraction_target": "the headquarters city of CBC Television",
+      "extraction_section": null,
+      "extracted_value": "Toronto",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/CBC_Television",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A national public broadcaster example showing the scale and institutional home many journalists aspire to join.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/CBC_Television",
+      "extraction_target": "Look up the elevation of Toronto",
+      "extraction_section": null,
+      "extracted_value": 94.81500244140625,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Toronto"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Toronto) from https://en.wikipedia.org/wiki/CBC_Television",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/CBC_Television",
+      "extraction_target": "Look up the count of hospitals near Toronto",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "hospitals near Toronto"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of hospitals near Toronto) from https://en.wikipedia.org/wiki/CBC_Television",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        4
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/CBC_Television",
+      "extraction_target": "Combine the elevation of Toronto and the count of hospitals near Toronto: (94 + 20)",
+      "extraction_section": null,
+      "extracted_value": 114,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(94.81500244140625) + int(20.0)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Toronto add count of hospitals near Toronto",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5,
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/CBC_Television",
+      "extraction_target": "Reason: the alphabetical position of its first letter (A=1, B=2, ...)",
+      "extraction_section": null,
+      "extracted_value": 20,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (alpha_position_first_letter) on stop 2 value",
+      "reason_transform": "alpha_position_first_letter",
+      "reason_source_stop": 4,
+      "reason_code": "first = \"Toronto\"[0].upper()\nresult = ord(first) - ord('A') + 1 if first.isalpha() else 0\nprint(result)",
+      "depends_on": [
+        4
+      ]
+    },
+    {
+      "index": 9,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Multiple-camera_setup",
+      "extraction_target": "the number of main sections listed in the article's table of contents (excluding the top/jump link)",
+      "extraction_section": null,
+      "extracted_value": 7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Nielsen ratings wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Nielsen_ratings",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Production technique used across news, sports, and entertainment TV — understanding it explains how broadcasts are put together.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        8
+      ]
+    },
+    {
+      "index": 10,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Nielsen_ratings",
+      "extraction_target": "the number of media types explicitly listed in the opening sentence (television, radio, theatre, films, newspapers)",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Nielsen_ratings",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Audience measurement drives programming and careers; Nielsen ratings show how viewership is quantified and valued.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        9
+      ]
+    },
+    {
+      "index": 11,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Nielsen_ratings",
+      "extraction_target": "Reason: the sum of its distinct prime factors",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (sum_prime_factors) on stop 4 value",
+      "reason_transform": "sum_prime_factors",
+      "reason_source_stop": 10,
+      "reason_code": "def prime_factors(n):\n    n = abs(int(n))\n    factors = []\n    d = 2\n    while d * d <= n:\n        while n % d == 0:\n            factors.append(d)\n            n //= d\n        d += 1\n    if n > 1: factors.append(n)\n    return factors\nresult = sum(set(prime_factors(5)))\nprint(result)",
+      "depends_on": [
+        10
+      ]
+    },
+    {
+      "index": 12,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/G_postcode_area",
+      "extraction_target": "Count the number of parks near 55.869",
+      "extraction_section": null,
+      "extracted_value": 1,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "parks near 55.869"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: count parks near 55.869",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        11
+      ]
+    },
+    {
+      "index": 13,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Canadian_Screen_Awards",
+      "extraction_target": "the country listed in the infobox (field: 'Country')",
+      "extraction_section": "infobox",
+      "extracted_value": "Canada",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Southshore, New Zealand wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Southshore,_New_Zealand",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Industry recognition highlights career milestones and the institutions that reward excellence in television and film.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        12
+      ]
+    },
+    {
+      "index": 14,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Southshore,_New_Zealand",
+      "extraction_target": "Look up the population of Canada",
+      "extraction_section": null,
+      "extracted_value": 41651653,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "countries_population",
+            "arguments": {
+              "country": "Canada"
+            },
+            "expected_output": null,
+            "output_key": "population"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: population of Canada",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        13
+      ]
+    },
+    {
+      "index": 15,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/The_Real_Housewives_of_Beverly_Hills",
+      "extraction_target": "the country of origin as listed in the infobox",
+      "extraction_section": null,
+      "extracted_value": "United States",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Eastbound & Down wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Eastbound_%26_Down",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A reality-television example that illustrates programming types that drive strong ratings and social-media attention.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        14
+      ]
+    },
+    {
+      "index": 16,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/The_Real_Housewives_of_Beverly_Hills",
+      "extraction_target": "Look up the population of United States",
+      "extraction_section": null,
+      "extracted_value": 87146.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "countries_population",
+            "arguments": {
+              "country": "United States"
+            },
+            "expected_output": null,
+            "output_key": "population"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (population of United States) from https://en.wikipedia.org/wiki/The_Real_Housewives_of_Beverly_Hills",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        15
+      ]
+    },
+    {
+      "index": 17,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/The_Real_Housewives_of_Beverly_Hills",
+      "extraction_target": "Look up the area of United States in km²",
+      "extraction_section": null,
+      "extracted_value": 347.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "countries_area",
+            "arguments": {
+              "country": "United States"
+            },
+            "expected_output": null,
+            "output_key": "area_km2"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (area of United States in km²) from https://en.wikipedia.org/wiki/The_Real_Housewives_of_Beverly_Hills",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        15
+      ]
+    },
+    {
+      "index": 18,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/The_Real_Housewives_of_Beverly_Hills",
+      "extraction_target": "Combine the population of United States and the area of United States in km²: (87146 + 347)",
+      "extraction_section": null,
+      "extracted_value": 87493,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(87146.0) + int(347.0)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: population of United States add area of United States in km²",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        16,
+        17
+      ]
+    },
+    {
+      "index": 19,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Eastbound_%26_Down",
+      "extraction_target": "the number of seasons",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Eastbound_%26_Down",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A scripted-comedy contrast to reality TV, showing diversity of television genres a media professional might cover or produce.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        18
+      ]
+    },
+    {
+      "index": 20,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Eastbound_%26_Down",
+      "extraction_target": "Reason: the number of characters when written as a Roman numeral",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (roman_numeral_letter_count) on stop 9 value",
+      "reason_transform": "roman_numeral_letter_count",
+      "reason_source_stop": 19,
+      "reason_code": "def to_roman(n):\n    n = abs(int(n))\n    vals = [(1000,'M'),(900,'CM'),(500,'D'),(400,'CD'),(100,'C'),\n            (90,'XC'),(50,'L'),(40,'XL'),(10,'X'),(9,'IX'),(5,'V'),(4,'IV'),(1,'I')]\n    r = ''\n    for v, s in vals:\n        while n >= v:\n            r += s; n -= v\n    return r\nresult = len(to_roman(4))\nprint(result)",
+      "depends_on": [
+        19
+      ]
+    },
+    {
+      "index": 21,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/NHL_on_TSN",
+      "extraction_target": "the original release year of TSN Hockey",
+      "extraction_section": null,
+      "extracted_value": 1987,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Bob Cole (sportscaster) wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Bob_Cole_(sportscaster)",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Sports broadcasting is a major sector of televised media; this stop connects to sportscasters and the production demands of live sports.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        20
+      ]
+    },
+    {
+      "index": 22,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Bob_Cole_(sportscaster)",
+      "extraction_target": "year he received the Foster Hewitt Memorial Award",
+      "extraction_section": null,
+      "extracted_value": 1996,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Paul Romanuk wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Paul_Romanuk",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A prominent national sportscaster illustrates the human face of sports broadcasting and long-form career trajectories in the industry.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        21
+      ]
+    },
+    {
+      "index": 23,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Paul_Romanuk",
+      "extraction_target": "Paul Romanuk's occupation as shown in the infobox",
+      "extraction_section": null,
+      "extracted_value": "Sportscaster",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Labatt Blue wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Labatt_Blue",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Another sportscaster example showing varied career paths across networks and formats (play-by-play, studio work).",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        22
+      ]
+    },
+    {
+      "index": 24,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Labatt_Blue",
+      "extraction_target": "Convert 1987°C to a Fahrenheit-scale offset",
+      "extraction_section": null,
+      "extracted_value": 3576,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "# Convert celsius to fahrenheit_offset\nvalue = 1987.0\nconverted = value * 1.8\nresult = int(converted)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "converted"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: convert 1987 celsius to fahrenheit_offset",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        23
+      ]
+    },
+    {
+      "index": 25,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: digital_root(4 + 1996)",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "digital_root(4 + 1996)",
+        "expression_code": "def digital_root(n):\n    n = abs(int(n))\n    return n if n == 0 else ((n - 1) % 9) + 1\nresult = digital_root(4 + 1996)\nprint(result)",
+        "referenced_stops": [
+          19,
+          22
+        ]
+      },
+      "reasoning": "Compute stop: digital_root(4 + 1996) = 2",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        19,
+        22
+      ]
+    }
+  ],
+  "passcode": 2,
+  "difficulty": {
+    "level": "hard",
+    "depth": 26,
+    "tool_stop_count": 10,
+    "reason_stop_count": 4,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Track down the visionary behind a new era of digital media, known for her impactful role in broadcasting. What is her profession?\n\n2. In which letter does this trail's guiding star begin? Assign it a number based on its position in the alphabet.\n\n3. Search for the auditory landscape often shaped by students — what genres can be found flourishing within its vibrant halls?\n\n4. From that lively atmosphere, how do listeners rate this hub of sound on a popular review platform?\n\n5. At the heart of a national broadcasting network, what city serves as the headquarters of a television pioneer in Canada?\n\n6. Seek out how high the ground rises in the city found in clue 5 — how many meters above sea level is it?\n\n7. Examine the healthcare landscape: how many hospitals are situated near the metropolis you uncovered in clue 5?\n\n8. Combine the elevation discovered in clue 6 with the hospital count from clue 7 to find a new total.\n\n9. What letter leads the name of the headquarters city mentioned in clue 5? Assign it its numerical position in the alphabet.\n\n10. Within the pages that describe a shooting style for television, how many primary sections can be counted in the table of contents?\n\n11. Discover the opening of a system used to measure viewership across various media — how many forms are detailed in the introductory sentence?\n\n12. Search through the factors underlying your findings from clue 11 — what is the total when you sum the distinct primes?\n\n13. Near the coordinates 55.869, count how many green spaces adorn the landscape.\n\n14. The page noting prestigious acknowledgments in film and television mentions a nation — which one is it?\n\n15. As you delve into another realm, uncover the number of citizens residing in the country you identified in clue 14.\n\n16. Back in Hollywood's embrace, find out what country is flagged as the origin for a certain reality television series.\n\n17. From the fabled land of the brave, what is the total headcount of its inhabitants? \n\n18. Seek the expanse of this beloved land — how many square kilometers do its borders cover?\n\n19. Merge the population figure from clue 17 with the area from clue 18 to create a new sum.\n\n20. Delve into a show chronicling the highs and lows of an athlete's journey; how many seasons span this compelling narrative?\n\n21. Transform the season count you found in clue 20 into its Roman numeral form — how many letters does it contain?\n\n22. Navigate toward the channel focusing on national hockey, what was the inaugural year it took to air its first games?\n\n23. Seek out the year when a legendary sportscaster received a prestigious honor that recognizes excellence in broadcasting.\n\n24. The page detailing a master of sports commentary reveals his line of work; what title does he hold?\n\n25. In the world of brews, convert the year 1987’s Celsius reading into a Fahrenheit-scale offset.\n\n26. Now, take the result from clue 20 and from clue 23, and combine them. Finally, compute the digital root of (4 + 1996) to find your answer. What single digit emerges?",
+  "metadata": {
+    "theme": "From student radio to national broadcast: tracing a media career and the production, measurement, and markets that shape TV and sports broadcasting.",
+    "difficulty": "hard",
+    "sample_id": "sample_114",
+    "pages_crawled": 8996
+  },
+  "generated_at": "2026-03-16T21:29:30.612486+00:00"
+}

@@ -1,0 +1,634 @@
+{
+  "trail_id": "trail_48b7eeed",
+  "seed_url": "https://en.wikipedia.org/wiki/Alphabet_Inc.",
+  "seed_title": "Alphabet Inc.",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Alphabet_Inc.",
+      "extraction_target": "the number of subsections under Investments and acquisitions listed in the Contents",
+      "extraction_section": "Investments and acquisitions",
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Google_Chrome",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start at Alphabet Inc. — the parent company that ties together the Google products and research efforts that shape the rest of the trail.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Google_Chrome",
+      "extraction_target": "the number of languages the article is available in (as shown near the top of the page)",
+      "extraction_section": null,
+      "extracted_value": 117,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Google_Maps",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Chrome is Alphabet/Google's flagship browser — the entry point for many users into Google's web services.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Google_Maps",
+      "extraction_target": "the number of top-level subsections under Criticism and controversies",
+      "extraction_section": "Criticism and controversies",
+      "extracted_value": 6,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Google_Maps",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Google Maps is the central mapping platform that demonstrates how Alphabet's software maps and models the physical world.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 3,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Google_Maps",
+      "extraction_target": "Reason: the number of characters when written as a Roman numeral",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (roman_numeral_letter_count) on stop 2 value",
+      "reason_transform": "roman_numeral_letter_count",
+      "reason_source_stop": 2,
+      "reason_code": "def to_roman(n):\n    n = abs(int(n))\n    vals = [(1000,'M'),(900,'CM'),(500,'D'),(400,'CD'),(100,'C'),\n            (90,'XC'),(50,'L'),(40,'XL'),(10,'X'),(9,'IX'),(5,'V'),(4,'IV'),(1,'I')]\n    r = ''\n    for v, s in vals:\n        while n >= v:\n            r += s; n -= v\n    return r\nresult = len(to_roman(6))\nprint(result)"
+    },
+    {
+      "index": 4,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Mississippi",
+      "extraction_target": "Calculate the driving distance between Mississippi and Googleplex",
+      "extraction_section": null,
+      "extracted_value": 3466.772,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Mississippi"
+            },
+            "expected_output": null,
+            "output_key": "coords_a"
+          },
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Googleplex"
+            },
+            "expected_output": null,
+            "output_key": "coords_b"
+          },
+          {
+            "tool_name": "maps_distance_matrix",
+            "arguments": {
+              "__from_previous_as_origins_destinations": [
+                "coords_a",
+                "coords_b"
+              ]
+            },
+            "expected_output": null,
+            "output_key": "distance_km"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: distance between Mississippi and Googleplex",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 5,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Mississippi",
+      "extraction_target": "Reason: the next prime number after that figure",
+      "extraction_section": null,
+      "extracted_value": 3467,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (next_prime) on stop 3 value",
+      "reason_transform": "next_prime",
+      "reason_source_stop": 4,
+      "reason_code": "def next_prime(n):\n    n = abs(int(n))\n    if n < 2: return 2\n    candidate = n + 1\n    while True:\n        if all(candidate % i != 0 for i in range(2, int(candidate**0.5)+1)):\n            return candidate\n        candidate += 1\nresult = next_prime(3466)\nprint(result)"
+    },
+    {
+      "index": 6,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Google_Earth",
+      "extraction_target": "the number of subsections under Controversy and criticism in the Contents",
+      "extraction_section": "Controversy and criticism",
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Waze",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Google Earth visualizes satellite imagery and elevation data — a natural next stop after Maps to talk about 3D and terrain.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 7,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Waze",
+      "extraction_target": "the month and year Waze Mobile was acquired by Google",
+      "extraction_section": null,
+      "extracted_value": "June 2013",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Connecticut wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Connecticut",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Waze represents community-driven navigation features that complement Google Maps' routing and traffic data.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 8,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Connecticut",
+      "extraction_target": "Get the driving duration in minutes from Connecticut to Googleplex",
+      "extraction_section": null,
+      "extracted_value": 2659,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_directions",
+            "arguments": {
+              "origin": "Connecticut",
+              "destination": "Googleplex",
+              "mode": "driving"
+            },
+            "expected_output": null,
+            "output_key": "duration"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: directions duration Connecticut to Googleplex",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 9,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Connecticut",
+      "extraction_target": "Reason: the number you get by reversing its digits",
+      "extraction_section": null,
+      "extracted_value": 9562,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_reversal) on stop 6 value",
+      "reason_transform": "digit_reversal",
+      "reason_source_stop": 8,
+      "reason_code": "result = int(str(abs(int(2659)))[::-1])\nprint(result)"
+    },
+    {
+      "index": 10,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Google_Assistant",
+      "extraction_target": "the number of platforms listed in the infobox Platform field",
+      "extraction_section": null,
+      "extracted_value": 14,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Gemini_(chatbot)",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Google Assistant shows how Alphabet brings mapping, search and actions together via a conversational interface.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 11,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Gemini_(chatbot)",
+      "extraction_target": "the number of languages listed near the top of the article",
+      "extraction_section": null,
+      "extracted_value": 68,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Greater Manchester wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Greater_Manchester",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Gemini represents Alphabet's large-language-model/AI efforts — the conversational AI counterpart to Assistant and other products.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 12,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Greater_Manchester",
+      "extraction_target": "Count the number of churches near 53.5025",
+      "extraction_section": null,
+      "extracted_value": 6,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "churches near 53.5025"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: count churches near 53.5025",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 13,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Greater_Manchester",
+      "extraction_target": "Reason: the largest prime factor of that figure",
+      "extraction_section": null,
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (largest_prime_factor) on stop 9 value",
+      "reason_transform": "largest_prime_factor",
+      "reason_source_stop": 12,
+      "reason_code": "def largest_prime_factor(n):\n    n = abs(int(n))\n    if n <= 1: return n\n    d = 2\n    while d * d <= n:\n        while n % d == 0: n //= d\n        d += 1\n    return n\nresult = largest_prime_factor(6)\nprint(result)"
+    },
+    {
+      "index": 14,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Tensor_Processing_Unit",
+      "extraction_target": "the number of languages listed at the top of the article",
+      "extraction_section": null,
+      "extracted_value": 22,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Pub wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Pub",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "TPUs are the hardware backbone behind many of Google's AI services (including Gemini), connecting product capability to infrastructure.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 15,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Pub",
+      "extraction_target": "Look up the Google Maps rating of Pub",
+      "extraction_section": null,
+      "extracted_value": 4.5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "Pub"
+            },
+            "expected_output": null,
+            "output_key": "place_rating"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: Google rating of Pub",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 16,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Google_Photos",
+      "extraction_target": "the maximum photo megapixels allowed for compressed uploads",
+      "extraction_section": null,
+      "extracted_value": 16,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Google_Glass",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Google Photos ties imaging, AI-driven organization and location metadata together — another example of Alphabet's consumer-facing services.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 17,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Google_Glass",
+      "extraction_target": "the number of subsections listed under the Use in medicine section in the table of contents",
+      "extraction_section": "Use in medicine",
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Honda wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Honda",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Google Glass is an early example of head-mounted computing that intersects with AR, mapping overlays and privacy debates.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 18,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Honda",
+      "extraction_target": "Look up the closing price of HMC on 2013-01-01",
+      "extraction_section": null,
+      "extracted_value": 26.83,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "stock_historical_price",
+            "arguments": {
+              "ticker": "HMC",
+              "date": "2013-01-01"
+            },
+            "expected_output": null,
+            "output_key": "stock_price"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: stock price HMC on 2013-01-01",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 19,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Privacy_concerns_regarding_Google",
+      "extraction_target": "year Privacy International raised concerns and ranked Google 'Hostile to Privacy' in its Consultation Report",
+      "extraction_section": "History",
+      "extracted_value": "2007",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "2020 U.S. presidential election wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/2020_U.S._presidential_election",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Finish the product-to-policy thread by addressing privacy concerns and regulatory challenges that arise from Google's data, mapping and AI services.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 20,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/2020_U.S._presidential_election",
+      "extraction_target": "Calculate the number of days between 2007-01-01 and 2026-03-19",
+      "extraction_section": null,
+      "extracted_value": 7017,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "from datetime import date\nd1 = date.fromisoformat('2007-01-01')\nd2 = date.fromisoformat('2026-03-19')\nresult = abs((d2 - d1).days)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "days"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: date computation 2007-01-01 to 2026-03-19 (pinned)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 21,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/2020_U.S._presidential_election",
+      "extraction_target": "Reason: the number of 1-bits in its binary representation",
+      "extraction_section": null,
+      "extracted_value": 8,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (binary_1bit_count) on stop 16 value",
+      "reason_transform": "binary_1bit_count",
+      "reason_source_stop": 20,
+      "reason_code": "result = bin(abs(int(7017))).count('1')\nprint(result)"
+    },
+    {
+      "index": 22,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: digital_root(2659 + 68 + 16 + 3)",
+      "extraction_section": null,
+      "extracted_value": 1,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "digital_root(2659 + 68 + 16 + 3)",
+        "expression_code": "def digital_root(n):\n    n = abs(int(n))\n    return n if n == 0 else ((n - 1) % 9) + 1\nresult = digital_root(2659 + 68 + 16 + 3)\nprint(result)",
+        "referenced_stops": [
+          8,
+          11,
+          16,
+          17
+        ]
+      },
+      "reasoning": "Compute stop: digital_root(2659 + 68 + 16 + 3) = 1",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 1,
+  "difficulty": {
+    "level": "extreme",
+    "depth": 23,
+    "tool_stop_count": 6,
+    "reason_stop_count": 5,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "Here is the edited riddle with the necessary changes:\n\n1. Seek the corporate profile of the parent company of Google, which was created as part of a corporate restructuring; in its contents, how many subsections sit beneath the Investments and acquisitions heading, and then follow the link labeled \"Chrome\" to a web browser developed by Google.\n\n2. Track down that browser's page (the web client made by Google) and report how many languages the article is available in near the top, then follow the link that leads to Google's web mapping service (the online map launched in 2005).\n\n3. What page describing the web mapping service launched in 2005 lists how many top-level subsections under its Criticism and controversies section in the table of contents? Click the link on that page labeled \"Article\" to continue.\n\n4. If you take the numeric answer from clue 3 and write it as a Roman numeral, how many characters long does that Roman numeral become?\n\n5. The following stop is the Wikipedia entry for the U.S. state that shares its name with a great central river; calculate the driving distance between that state (use its main article) and Google's California headquarters (the Googleplex).\n\n6. Now take the driving-distance figure you obtained in clue 5 and give the next prime number larger than that distance.\n\n7. Follow the article about Google's 3D internet mapping program and tell me how many subsections appear under Controversy and criticism in its table of contents, then click the link on that page that points to a popular mobile GPS navigation app.\n\n8. When you arrive at the page for that mobile navigation app, extract the month and year in which its parent company was acquired by Google.\n\n9. How many minutes does a driving route take from the U.S. state on Long Island Sound (the one home to Yale) to the Googleplex, as shown by the route directions?\n\n10. Reverse the digits of the minute-count you found in clue 9 and report the resulting number.\n\n11. Inspect the article about Google's AI-powered digital assistant and state how many platforms are listed in its platform field within the infobox, then follow the link that leads to Google's conversational AI project.\n\n12. Discover how many languages are listed near the top of the conversational-AI project's article.\n\n13. Count the number of churches returned by a place search for \"churches near 53.5025\".\n\n14. Then take that church-count and return its largest prime factor.\n\n15. Study the page about Google's custom AI silicon (the accelerator ASIC) and note how many language options are shown at the top of that article.\n\n16. Query a place search for the generic term for a licensed establishment that sells alcoholic beverages for consumption on the premises and report the average star rating shown for the top result on the map service's place listing.\n\n17. Find the page describing Google's photo-storage service and extract the maximum megapixel size allowed for compressed uploads.\n\n18. Observe the article on Google's optical head-mounted glasses and count how many subsections are listed under the Use in medicine section in the table of contents.\n\n19. Check the historical stock record for the automobile maker whose models include the Civic and Accord (ticker HMC) and give the closing price on 2013-01-01.\n\n20. Note the year in which Privacy International raised concerns and ranked the company \"Hostile to Privacy\" in its consultation report, as recorded in the history section of the privacy-criticism article.\n\n21. Calculate how many days elapsed between 2007-01-01 and 2026-03-19.\n\n22. Next, take the day-count from clue 21 and tell me how many 1-bits appear in its binary representation.\n\n23. Finally, compute the digital root of (clue 9 + clue 12 + clue 17 + clue 18) and give the result as a single digit (0–9).",
+  "metadata": {
+    "theme": "A guided tour of Alphabet/Google's product and mapping ecosystem — from core consumer apps and AI to the real-world places and policy questions their services touch.",
+    "difficulty": "extreme",
+    "sample_id": "sample_198",
+    "pages_crawled": 25330
+  },
+  "generated_at": "2026-03-19T19:24:42.982088+00:00"
+}

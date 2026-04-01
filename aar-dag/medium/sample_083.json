@@ -1,0 +1,400 @@
+{
+  "trail_id": "trail_da5d1fff",
+  "seed_url": "https://en.wikipedia.org/wiki/The_Bells_Have_Gone_to_Rome",
+  "seed_title": "The Bells Have Gone to Rome",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/The_Bells_Have_Gone_to_Rome",
+      "extraction_target": "release date listed in the infobox",
+      "extraction_section": null,
+      "extracted_value": "30 April 1959",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Order of precedence in the Catholic Church wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Order_of_precedence_in_the_Catholic_Church",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start with the seed: a film whose title evokes Rome and church bells — a cultural prompt to explore papal ceremony and how that ritual authority projects outward.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/The_Bells_Have_Gone_to_Rome",
+      "extraction_target": "Look up the elevation of The Bells Have Gone to Rome",
+      "extraction_section": null,
+      "extracted_value": 18.09856605529785,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "The Bells Have Gone to Rome"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of The Bells Have Gone to Rome) from https://en.wikipedia.org/wiki/The_Bells_Have_Gone_to_Rome",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/The_Bells_Have_Gone_to_Rome",
+      "extraction_target": "Look up the count of temples near The Bells Have Gone to Rome",
+      "extraction_section": null,
+      "extracted_value": 1.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "temples near The Bells Have Gone to Rome"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of temples near The Bells Have Gone to Rome) from https://en.wikipedia.org/wiki/The_Bells_Have_Gone_to_Rome",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/The_Bells_Have_Gone_to_Rome",
+      "extraction_target": "Combine the elevation of The Bells Have Gone to Rome and the count of temples near The Bells Have Gone to Rome: abs(18 - 1)",
+      "extraction_section": null,
+      "extracted_value": 17,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(18.09856605529785) - int(1.0))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of The Bells Have Gone to Rome abs_diff count of temples near The Bells Have Gone to Rome",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1,
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Order_of_precedence_in_the_Catholic_Church",
+      "extraction_target": "the number of top-level items listed under 'Administrative and pastoral titles' in the introductory list",
+      "extraction_section": null,
+      "extracted_value": 33,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Order_of_precedence_in_the_Catholic_Church",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Establish the formal hierarchy that determines ceremonial standing (whose bells and processions take precedence) — central to understanding papal ritual order invoked by the film title.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Order_of_precedence_in_the_Catholic_Church",
+      "extraction_target": "Reason: the next prime number after that figure",
+      "extraction_section": null,
+      "extracted_value": 37,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (next_prime) on stop 1 value",
+      "reason_transform": "next_prime",
+      "reason_source_stop": 4,
+      "reason_code": "def next_prime(n):\n    n = abs(int(n))\n    if n < 2: return 2\n    candidate = n + 1\n    while True:\n        if all(candidate % i != 0 for i in range(2, int(candidate**0.5)+1)):\n            return candidate\n        candidate += 1\nresult = next_prime(33)\nprint(result)",
+      "depends_on": [
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Papal_majordomo",
+      "extraction_target": "the short description of the office given at the start of the article",
+      "extraction_section": null,
+      "extracted_value": "Chief steward of the household of the pope",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Papal_majordomo",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Zoom into a key household office that organizes papal liturgy and ceremony — the practical manager of the rituals (and symbolic sounds) of Rome.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Papal_majordomo",
+      "extraction_target": "Reason: the number of vowels in that name",
+      "extraction_section": null,
+      "extracted_value": 14,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (vowel_count) on stop 2 value",
+      "reason_transform": "vowel_count",
+      "reason_source_stop": 6,
+      "reason_code": "result = sum(1 for c in \"Chief steward of the household of the pope\".lower() if c in 'aeiou')\nprint(result)",
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Cardinal_protector",
+      "extraction_target": "the number of languages listed in the interlanguage links",
+      "extraction_section": null,
+      "extracted_value": 9,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "St. Sarkis Church (Tsovinar, Gegharkunik, Armenia) wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/St._Sarkis_Church_(Tsovinar,_Gegharkunik,_Armenia)",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Show how cardinal-level offices historically extended Rome's influence by protecting churches, orders, and communities — connecting central ceremony to distant parishes.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        7
+      ]
+    },
+    {
+      "index": 9,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/St._Sarkis_Church_(Tsovinar,_Gegharkunik,_Armenia)",
+      "extraction_target": "Look up the elevation at Tsovinar",
+      "extraction_section": null,
+      "extracted_value": 1931.42626953125,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Tsovinar"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for Tsovinar",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        8
+      ]
+    },
+    {
+      "index": 10,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/City_of_Cessnock",
+      "extraction_target": "Look up the population of Hungary",
+      "extraction_section": null,
+      "extracted_value": 9539502,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "countries_population",
+            "arguments": {
+              "country": "Hungary"
+            },
+            "expected_output": null,
+            "output_key": "population"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: population of Hungary",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        9
+      ]
+    },
+    {
+      "index": 11,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: abs(18 - 37) % 10",
+      "extraction_section": null,
+      "extracted_value": 9,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "abs(18 - 37) % 10",
+        "expression_code": "result = abs(18 - 37) % 10\nprint(result)",
+        "referenced_stops": [
+          1,
+          5
+        ]
+      },
+      "reasoning": "Compute stop: abs(18 - 37) % 10 = 9",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1,
+        5
+      ]
+    }
+  ],
+  "passcode": 9,
+  "difficulty": {
+    "level": "medium",
+    "depth": 12,
+    "tool_stop_count": 5,
+    "reason_stop_count": 2,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Unearth the film that echoes the tolling of bells in Rome — what was its release date?\n\n2. At the heart of your discovery lies an elevation. How high does the world stand beneath the tale of those ringing bells?\n\n3. Look around this cinematic spot: how many temples are nestled nearby, whispering ancient prayers?\n\n4. Combine your findings from clues 2 and 3. What is the absolute difference between the elevation and the congregation of temples?\n\n5. There exists a page where ceremonial hierarchy meets sacred duty. Count the titles listed under the administrative section — what number do you find?\n\n6. Now, let fate play its hand. What prime number follows the figure from clue 5?\n\n7. Skim through the page that reveals the overseer of papal arrangements. What brief description introduces this esteemed office, capturing its essence?\n\n8. By considering that title, what is the count of vowels it possesses? \n\n9. A cardinal of mercy and advocacy opens a path to linguistic diversity — how many languages can you find linked within this page?\n\n10. Seek the elevation that stands steadfast at a church named after a saint in Tsovinar. What altitude graces this hallowed ground?\n\n11. Venture beyond borders to explore a land defined by its culture. What is the population count of Hungary, a nation with a rich history?\n\n12. One final calculation awaits you: take the absolute difference between the findings in clue 2 and clue 6, then reduce it, modulo 10. \n\nIn your quest, you shall find your last answer is a single digit (0-9).",
+  "metadata": {
+    "theme": "From a film title about Rome's bells to the offices and global reach of papal ceremony — trace how papal ceremonial roles organize sacred sound and authority, then check real-world parish geography and communities that carry that tradition.",
+    "difficulty": "medium",
+    "sample_id": "sample_083",
+    "pages_crawled": 4239
+  },
+  "generated_at": "2026-03-16T16:20:21.009246+00:00"
+}

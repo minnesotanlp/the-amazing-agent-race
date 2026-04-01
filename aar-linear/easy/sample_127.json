@@ -1,0 +1,153 @@
+{
+  "trail_id": "trail_3ab8b5f1",
+  "seed_url": "https://en.wikipedia.org/wiki/Adobe_Inc.",
+  "seed_title": "Adobe Inc.",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Adobe_Inc.",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Founded')",
+      "extraction_section": "infobox",
+      "extracted_value": 1982,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Adobe_Inc.",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start at Adobe to anchor the trail in a major Silicon Valley software company and get its HQ city (used to contextualize local tech geography).",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Adobe_Inc.",
+      "extraction_target": "Reason: the number of divisors of that figure",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (num_divisors) on stop 0 value",
+      "reason_transform": "num_divisors",
+      "reason_source_stop": 0,
+      "reason_code": "n = abs(int(1982))\ncount = sum(1 for i in range(1, n+1) if n % i == 0) if n > 0 else 0\nresult = count\nprint(result)"
+    },
+    {
+      "index": 2,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Artificial_intelligence",
+      "extraction_target": "the number of sub-subsections listed under 'Risks and harm' in Ethics",
+      "extraction_section": "Ethics",
+      "extracted_value": 9,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Artificial_intelligence",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Contextualize why companies such as Adobe rely increasingly on AI and GPUs; this conceptual stop ties the software and hardware links together.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Artificial_intelligence",
+      "extraction_target": "Count hotels near Artificial intelligence",
+      "extraction_section": null,
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "hotels near Artificial intelligence"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (nearby_poi) derived from https://en.wikipedia.org/wiki/Artificial_intelligence",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 4,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: digital_root(1982 + 4 + 9 + 3)",
+      "extraction_section": null,
+      "extracted_value": 9,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "digital_root(1982 + 4 + 9 + 3)",
+        "expression_code": "def digital_root(n):\n    n = abs(int(n))\n    return n if n == 0 else ((n - 1) % 9) + 1\nresult = digital_root(1982 + 4 + 9 + 3)\nprint(result)",
+        "referenced_stops": [
+          0,
+          1,
+          2,
+          3
+        ]
+      },
+      "reasoning": "Compute stop: digital_root(1982 + 4 + 9 + 3) = 9",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 9,
+  "difficulty": {
+    "level": "easy",
+    "depth": 5,
+    "tool_stop_count": 1,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "direct_link"
+  },
+  "riddle": "1. In a creative realm where pixels dance and ideas take flight, seek the company that sparked the imagination in the year of 1982. What is this digital pioneer’s establishment year?\n\n2. The number you uncovered holds more than just history; what hidden treasure can be found by counting its divisors? \n\n3. Now, journey to a page that explores the dream of machines that think. How many sub-subsections are outlined under 'Risks and harm' in the ethics of this emerging frontier? \n\n4. If you were to map out a route through the vicinity of this intellectual innovation, how many hotels could you find sheltering nearby?\n\n5. To unveil the path forward, sum the digits of (clue 1 + clue 2 + clue 3 + clue 4) where the starting year of creativity, the count of its divisors, the risks outlined in ethics, and the nearby lodging options gather together. What number surfaces when you find the digital root of this sum? \n\nRemember, the answer is a single digit between 0 and 9.",
+  "metadata": {
+    "theme": "A short Silicon Valley trail connecting Adobe (creative software), the AI revolution it leverages, the GPU maker powering modern AI (Nvidia), and the short Silicon Valley commute between company hubs.",
+    "difficulty": "easy",
+    "sample_id": "sample_127",
+    "pages_crawled": 600
+  },
+  "generated_at": "2026-03-17T07:21:35.746867+00:00"
+}

@@ -1,0 +1,129 @@
+{
+  "trail_id": "trail_c26a0b73",
+  "seed_url": "https://en.wikipedia.org/wiki/Bank_of_America",
+  "seed_title": "Bank of America",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Bank_of_America",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Founded')",
+      "extraction_section": "infobox",
+      "extracted_value": 1998,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Bank_of_America",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Seed: Bank of America is the central financial institution tying the trail together — extract its ticker and HQ to anchor the financial narrative.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Bank_of_America",
+      "extraction_target": "Reason: the sum of its distinct prime factors",
+      "extraction_section": null,
+      "extracted_value": 42,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (sum_prime_factors) on stop 0 value",
+      "reason_transform": "sum_prime_factors",
+      "reason_source_stop": 0,
+      "reason_code": "def prime_factors(n):\n    n = abs(int(n))\n    factors = []\n    d = 2\n    while d * d <= n:\n        while n % d == 0:\n            factors.append(d)\n            n //= d\n        d += 1\n    if n > 1: factors.append(n)\n    return factors\nresult = sum(set(prime_factors(1998)))\nprint(result)"
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Bank_of_America_Tower_(Manhattan)",
+      "extraction_target": "Count the number of stadiums near Sixth Avenue & 42nd Street \"42nd Street (Manhattan)\") Manhattan",
+      "extraction_section": null,
+      "extracted_value": 8,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "stadiums near Sixth Avenue & 42nd Street \"42nd Street (Manhattan)\") Manhattan"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: count stadiums near Sixth Avenue & 42nd Street \"42nd Street (Manhattan)\") Manhattan",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 3,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: digital_root(1998 + 42 + 8)",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "digital_root(1998 + 42 + 8)",
+        "expression_code": "def digital_root(n):\n    n = abs(int(n))\n    return n if n == 0 else ((n - 1) % 9) + 1\nresult = digital_root(1998 + 42 + 8)\nprint(result)",
+        "referenced_stops": [
+          0,
+          1,
+          2
+        ]
+      },
+      "reasoning": "Compute stop: digital_root(1998 + 42 + 8) = 5",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 5,
+  "difficulty": {
+    "level": "easy",
+    "depth": 4,
+    "tool_stop_count": 1,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "direct_link"
+  },
+  "riddle": "1. Seek the Wikipedia page for the large American multinational banking and financial services corporation often shortened to a two-letter initialism; what year does that page give as its founding?\n\n2. There exists an instruction here: take the year you just uncovered, factor it into primes, then add together the distinct prime factors — what sum results?\n\n3. How many stadiums are listed by a map search as being near Sixth Avenue and 42nd Street in Manhattan — the vicinity around the office skyscraper linked from the bank's page?\n\n4. If you compute the digital root of (clue 1 + clue 2 + clue 3), what single digit (0–9) do you obtain?",
+  "metadata": {
+    "theme": "A short investigative trail through modern American finance: from Bank of America (the institution) to the financial crisis that reshaped banking, to market leaders that emerged afterward, and finally to the bank's prominent Manhattan tower as a physical landmark of finance.",
+    "difficulty": "easy",
+    "sample_id": "sample_150",
+    "pages_crawled": 2000
+  },
+  "generated_at": "2026-03-17T09:04:41.801236+00:00"
+}

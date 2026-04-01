@@ -1,0 +1,341 @@
+{
+  "trail_id": "trail_f2ca1f99",
+  "seed_url": "https://en.wikipedia.org/wiki/Orders,_decorations,_and_medals_of_Brunei",
+  "seed_title": "Orders, decorations, and medals of Brunei",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Orders,_decorations,_and_medals_of_Brunei",
+      "extraction_target": "the entity that awards the orders, decorations, and medals",
+      "extraction_section": null,
+      "extracted_value": "Sultan of Brunei",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "France wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/France",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "This page introduces the theme of formal recognition through orders and decorations, establishing the idea of how societies honor significant contributions.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Orders,_decorations,_and_medals_of_Brunei",
+      "extraction_target": "Look up the elevation of Sultan of Brunei",
+      "extraction_section": null,
+      "extracted_value": 65.17974090576172,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Sultan of Brunei"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Sultan of Brunei) from https://en.wikipedia.org/wiki/Orders,_decorations,_and_medals_of_Brunei",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Orders,_decorations,_and_medals_of_Brunei",
+      "extraction_target": "Look up the Google rating of Sultan of Brunei",
+      "extraction_section": null,
+      "extracted_value": 4.5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "Sultan of Brunei"
+            },
+            "expected_output": null,
+            "output_key": "place_rating"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (Google rating of Sultan of Brunei) from https://en.wikipedia.org/wiki/Orders,_decorations,_and_medals_of_Brunei",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Orders,_decorations,_and_medals_of_Brunei",
+      "extraction_target": "Combine the elevation of Sultan of Brunei and the Google rating of Sultan of Brunei: abs(65 - 4)",
+      "extraction_section": null,
+      "extracted_value": 61,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(65.17974090576172) - int(4.5))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Sultan of Brunei abs_diff Google rating of Sultan of Brunei",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1,
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/France",
+      "extraction_target": "Look up the elevation at France",
+      "extraction_section": null,
+      "extracted_value": 423.1949462890625,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "France"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for France",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Nazi_Germany",
+      "extraction_target": "the length of the Nazi Germany period in years according to the text",
+      "extraction_section": null,
+      "extracted_value": 12,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Schutzstaffel",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Nazi Germany represents a historical context where medals and decorations were used both for propaganda and recognition, showcasing a dark contrast to the honor-based systems.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Schutzstaffel",
+      "extraction_target": "the number of Waffen-SS divisions at the height of World War II",
+      "extraction_section": "SS in World War II",
+      "extracted_value": "38",
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Schutzstaffel",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Exploring the Schutzstaffel highlights how organizations in historical regimes utilized decorations as tools of power and fear.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Schutzstaffel",
+      "extraction_target": "Reason: the number of 1-bits in its binary representation",
+      "extraction_section": null,
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (binary_1bit_count) on stop 3 value",
+      "reason_transform": "binary_1bit_count",
+      "reason_source_stop": 6,
+      "reason_code": "result = bin(abs(int(38))).count('1')\nprint(result)",
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/N._Rajam",
+      "extraction_target": "The birth year of N. Rajam",
+      "extraction_section": null,
+      "extracted_value": "1938",
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "N. Rajam, a renowned violinist, demonstrates the cultural accolades in music, bringing the theme full circle by showcasing personal recognition in the arts.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        7
+      ]
+    },
+    {
+      "index": 9,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: (61 + 12 + 38) % 10",
+      "extraction_section": null,
+      "extracted_value": 1,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "(61 + 12 + 38) % 10",
+        "expression_code": "result = (61 + 12 + 38) % 10\nprint(result)",
+        "referenced_stops": [
+          3,
+          5,
+          6
+        ]
+      },
+      "reasoning": "Compute stop: (61 + 12 + 38) % 10 = 1",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3,
+        5,
+        6
+      ]
+    }
+  ],
+  "passcode": 1,
+  "difficulty": {
+    "level": "easy",
+    "depth": 10,
+    "tool_stop_count": 4,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Seek the page that honors those recognized with insignia and awards in the Land of Unexpected Treasures. Discover who is the granter of these prestigious accolades.\n\n2. Imagine standing in the heart of this sultanate. Ascertain how lofty the ground lies beneath the feet of its regal leader.\n\n3. Travelers often rate their experiences. Determine how they have appraised their visits to the ruling seat of this sultanate.\n\n4. Now, blend the height found in clue 2 with the admiration rating from clue 3 to find the difference between 65 and 4.\n\n5. In a land once central to revolutions and known for its baguettes, how high is the land there, taken in meters?\n\n6. A nation under a notorious regime from long past—uncover how many years this state endured.\n\n7. Within the notorious paramilitary chapters of history's dark times, how many divisions were formed at their strongest?\n\n8. Transform the divisions' count: be intrigued by how many 1s appear when the number is dressed in binary.\n\n9. An artist of strings, born in 1938, is linked with musical mastery from India's rich cultural tapestry. Note her arrival year.\n\n10. For the final key, seize the results from clue 4, merge them using (clue 4 + clue 6 + clue 7), and apply the modulus of 10 to reveal a single digit ending your journey through history's echoes.",
+  "metadata": {
+    "theme": "The interplay of recognition, culture, and history",
+    "difficulty": "easy",
+    "sample_id": "sample_205",
+    "pages_crawled": 347
+  },
+  "generated_at": "2026-03-27T06:55:18.904557+00:00"
+}

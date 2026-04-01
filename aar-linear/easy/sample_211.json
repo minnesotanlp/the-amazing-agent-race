@@ -1,0 +1,129 @@
+{
+  "trail_id": "trail_0c30275f",
+  "seed_url": "https://en.wikipedia.org/wiki/Longest_word_in_English",
+  "seed_title": "Longest word in English",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Longest_word_in_English",
+      "extraction_target": "the number of letters in the fictional dish word (Lopadotemachos...pterygon) as listed in the opening table",
+      "extraction_section": null,
+      "extracted_value": 183,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Morse code wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Morse_code",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start with the canonical 'longest word in English' and extract the raw numeric measure (number of letters) to drive the rest of the trail.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Morse_code",
+      "extraction_target": "Convert 183 meters to yards",
+      "extraction_section": null,
+      "extracted_value": 200,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "# Convert meters to yards\nvalue = 183.0\nconverted = value * 1.09361\nresult = int(converted)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "converted"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: convert 183 meters to yards",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Morse_code",
+      "extraction_target": "Reason: the sum of its digits",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_sum) on stop 1 value",
+      "reason_transform": "digit_sum",
+      "reason_source_stop": 1,
+      "reason_code": "result = sum(int(d) for d in str(abs(int(200))))\nprint(result)"
+    },
+    {
+      "index": 3,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: (183 + 200 + 2) % 10",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "(183 + 200 + 2) % 10",
+        "expression_code": "result = (183 + 200 + 2) % 10\nprint(result)",
+        "referenced_stops": [
+          0,
+          1,
+          2
+        ]
+      },
+      "reasoning": "Compute stop: (183 + 200 + 2) % 10 = 5",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 5,
+  "difficulty": {
+    "level": "easy",
+    "depth": 4,
+    "tool_stop_count": 1,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "Here is the revised riddle:\n\n1. Seek the page that chronicles the word reputed for its extraordinary length, renowned as a comedic term for a fictional feast beginning \"Lopado...\" that stretches to a ludicrously long -pterygon ending. In the opening table, how many letters are recorded for that jocular name?  \n2. There exists an article about the dot-and-dash telegraphic alphabet used to send brief pulses; on that page, if something measures 183 metres, what is its length expressed in whole yards (report the integer result)?  \n3. What is the sum of the digits of the integer you just found in clue 2 — reduce that number by adding its individual digits together.  \n4. If you now compute (clue 1 + clue 2 + clue 3) modulo 10, which single digit (0–9) remains? Give that digit as your final answer.",
+  "metadata": {
+    "theme": "Measuring 'long' across domains — from the longest English word to its transmission time, a comparable geographic distance, and a playful market valuation per letter.",
+    "difficulty": "easy",
+    "sample_id": "sample_211",
+    "pages_crawled": 5161
+  },
+  "generated_at": "2026-03-21T03:01:42.551272+00:00"
+}

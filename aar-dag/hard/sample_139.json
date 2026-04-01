@@ -1,0 +1,900 @@
+{
+  "trail_id": "trail_0739d539",
+  "seed_url": "https://en.wikipedia.org/wiki/Procter_%26_Gamble",
+  "seed_title": "Procter & Gamble",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Procter_%26_Gamble",
+      "extraction_target": "the number of subsections listed under Misinformation and conspiracies in the table of contents",
+      "extraction_section": "Contents",
+      "extracted_value": 1,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Cincinnati",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Seed: P&G is an archetypal consumer‑goods giant; extracting its headquarters points the trail to the company's regional base and supply network.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Cincinnati",
+      "extraction_target": "the number of subsections listed under Arts and culture in the table of contents",
+      "extraction_section": "Arts and culture",
+      "extracted_value": 7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Cincinnati",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "P&G's Cincinnati HQ anchors the local industrial geography and distribution networks that moved consumer goods through the Midwest.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Cincinnati",
+      "extraction_target": "Look up the elevation of Cincinnati",
+      "extraction_section": null,
+      "extracted_value": 167.9832916259766,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Cincinnati"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Cincinnati) from https://en.wikipedia.org/wiki/Cincinnati",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Cincinnati",
+      "extraction_target": "Look up the count of churches near Cincinnati",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "churches near Cincinnati"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of churches near Cincinnati) from https://en.wikipedia.org/wiki/Cincinnati",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Cincinnati",
+      "extraction_target": "Combine the elevation of Cincinnati and the count of churches near Cincinnati: (167 + 20)",
+      "extraction_section": null,
+      "extracted_value": 187,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(167.9832916259766) + int(20.0)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Cincinnati add count of churches near Cincinnati",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2,
+        3
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Cincinnati",
+      "extraction_target": "Reason: the sum of its distinct prime factors",
+      "extraction_section": null,
+      "extracted_value": 7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (sum_prime_factors) on stop 1 value",
+      "reason_transform": "sum_prime_factors",
+      "reason_source_stop": 1,
+      "reason_code": "def prime_factors(n):\n    n = abs(int(n))\n    factors = []\n    d = 2\n    while d * d <= n:\n        while n % d == 0:\n            factors.append(d)\n            n //= d\n        d += 1\n    if n > 1: factors.append(n)\n    return factors\nresult = sum(set(prime_factors(7)))\nprint(result)",
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Chicago,_Illinois",
+      "extraction_target": "the coordinates listed in the infobox (field: 'Coordinates')",
+      "extraction_section": "infobox",
+      "extracted_value": "41.88194, -87.62778",
+      "extracted_value_type": "coords",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/St._Louis",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Chicago is a major logistics and distribution center for Midwestern goods — useful context for how consumer products travel regionally.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Chicago,_Illinois",
+      "extraction_target": "Look up the elevation of Chicago, Illinois",
+      "extraction_section": null,
+      "extracted_value": 183.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Chicago, Illinois"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Chicago, Illinois) from https://en.wikipedia.org/wiki/Chicago,_Illinois",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Chicago,_Illinois",
+      "extraction_target": "Look up the count of museums near Chicago, Illinois",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "museums near Chicago, Illinois"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of museums near Chicago, Illinois) from https://en.wikipedia.org/wiki/Chicago,_Illinois",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 9,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Chicago,_Illinois",
+      "extraction_target": "Combine the elevation of Chicago, Illinois and the count of museums near Chicago, Illinois: abs(183 - 20)",
+      "extraction_section": null,
+      "extracted_value": 163,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(183.0) - int(20.0))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Chicago, Illinois abs_diff count of museums near Chicago, Illinois",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        7,
+        8
+      ]
+    },
+    {
+      "index": 10,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/St._Louis",
+      "extraction_target": "Count the number of restaurants near 38.62722",
+      "extraction_section": null,
+      "extracted_value": 18,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "restaurants near 38.62722"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: count restaurants near 38.62722",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        9
+      ]
+    },
+    {
+      "index": 11,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/St._Louis",
+      "extraction_target": "Reason: the digital root (iterated digit sum until single digit)",
+      "extraction_section": null,
+      "extracted_value": 9,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digital_root) on stop 3 value",
+      "reason_transform": "digital_root",
+      "reason_source_stop": 10,
+      "reason_code": "n = abs(int(18))\nresult = n if n == 0 else ((n - 1) % 9) + 1\nprint(result)",
+      "depends_on": [
+        10
+      ]
+    },
+    {
+      "index": 12,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Midwest",
+      "extraction_target": "the number of language editions listed at the top of the article",
+      "extraction_section": null,
+      "extracted_value": 60,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Coca-Cola wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Coca-Cola",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Bring the regional scale into view — the Midwest as the manufacturing and agricultural backbone for many consumer‑product supply chains.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        11
+      ]
+    },
+    {
+      "index": 13,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Midwest",
+      "extraction_target": "Count universities near Midwest",
+      "extraction_section": null,
+      "extracted_value": 20,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "universities near Midwest"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (nearby_poi) derived from https://en.wikipedia.org/wiki/Midwest",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        12
+      ]
+    },
+    {
+      "index": 14,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Coca-Cola",
+      "extraction_target": "the number of languages the article is available in (stated near the title)",
+      "extraction_section": null,
+      "extracted_value": 139,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Coca",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Contrast P&G with another beverage titan whose history ties into botanical ingredients (coca) and global consumer markets.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        13
+      ]
+    },
+    {
+      "index": 15,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Coca",
+      "extraction_target": "the number of cultivated plants in the family Erythroxylaceae referred to as 'Coca' in the opening sentence",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Cocaine",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Trace an ingredient’s origin — the coca plant — to connect global agricultural sources with processed consumer products and their histories.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        14
+      ]
+    },
+    {
+      "index": 16,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Coca",
+      "extraction_target": "Look up the elevation of Coca",
+      "extraction_section": null,
+      "extracted_value": 782.5159301757812,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Coca"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Coca) from https://en.wikipedia.org/wiki/Coca",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        15
+      ]
+    },
+    {
+      "index": 17,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Coca",
+      "extraction_target": "Look up the count of hotels near Coca",
+      "extraction_section": null,
+      "extracted_value": 8.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "hotels near Coca"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of hotels near Coca) from https://en.wikipedia.org/wiki/Coca",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        15
+      ]
+    },
+    {
+      "index": 18,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Coca",
+      "extraction_target": "Combine the elevation of Coca and the count of hotels near Coca: (782 + 8)",
+      "extraction_section": null,
+      "extracted_value": 790,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(782.5159301757812) + int(8.0)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Coca add count of hotels near Coca",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        16,
+        17
+      ]
+    },
+    {
+      "index": 19,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Cocaine",
+      "extraction_target": "the number of language links shown at the top of the article",
+      "extraction_section": null,
+      "extracted_value": 100,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Cocaine",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Follow the coca plant to its potent alkaloid (cocaine) to explore how stimulant chemistry intersects with law, medicine and public health.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        18
+      ]
+    },
+    {
+      "index": 20,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Cocaine",
+      "extraction_target": "Reason: the next prime number after that figure",
+      "extraction_section": null,
+      "extracted_value": 101,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (next_prime) on stop 7 value",
+      "reason_transform": "next_prime",
+      "reason_source_stop": 19,
+      "reason_code": "def next_prime(n):\n    n = abs(int(n))\n    if n < 2: return 2\n    candidate = n + 1\n    while True:\n        if all(candidate % i != 0 for i in range(2, int(candidate**0.5)+1)):\n            return candidate\n        candidate += 1\nresult = next_prime(100)\nprint(result)",
+      "depends_on": [
+        19
+      ]
+    },
+    {
+      "index": 21,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Stimulants",
+      "extraction_target": "the number of languages listed at the top of the article",
+      "extraction_section": null,
+      "extracted_value": 50,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Caffeine",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Broaden to the stimulant class (caffeine, cocaine, amphetamines) to compare legal everyday stimulants and controlled substances.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        20
+      ]
+    },
+    {
+      "index": 22,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Caffeine",
+      "extraction_target": "the number of main (top-level) sections listed in the table of contents",
+      "extraction_section": "Contents",
+      "extracted_value": 18,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Morphine",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A common, legal stimulant central to beverages; extract typical doses to later compare quantities and conversions relevant to public health messaging.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        21
+      ]
+    },
+    {
+      "index": 23,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Morphine",
+      "extraction_target": "Convert 4°C to a Fahrenheit-scale offset",
+      "extraction_section": null,
+      "extracted_value": 7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "# Convert celsius to fahrenheit_offset\nvalue = 4.0\nconverted = value * 1.8\nresult = int(converted)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "converted"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: convert 4 celsius to fahrenheit_offset",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        22
+      ]
+    },
+    {
+      "index": 24,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Morphine",
+      "extraction_target": "Reason: the largest prime factor of that figure",
+      "extraction_section": null,
+      "extracted_value": 7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (largest_prime_factor) on stop 10 value",
+      "reason_transform": "largest_prime_factor",
+      "reason_source_stop": 23,
+      "reason_code": "def largest_prime_factor(n):\n    n = abs(int(n))\n    if n <= 1: return n\n    d = 2\n    while d * d <= n:\n        while n % d == 0: n //= d\n        d += 1\n    return n\nresult = largest_prime_factor(7)\nprint(result)",
+      "depends_on": [
+        23
+      ]
+    },
+    {
+      "index": 25,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/United_States_Justice_Department",
+      "extraction_target": "the number of top-level sections listed in the Contents",
+      "extraction_section": "Contents",
+      "extracted_value": 9,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/United_States_Justice_Department",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tie the scientific and commercial threads back to enforcement and regulation — the Justice Department's role in overseeing controlled substances and corporate legal issues.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        24
+      ]
+    },
+    {
+      "index": 26,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/United_States_Justice_Department",
+      "extraction_target": "Count universities near United States Justice Department",
+      "extraction_section": null,
+      "extracted_value": 20,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "universities near United States Justice Department"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (nearby_poi) derived from https://en.wikipedia.org/wiki/United_States_Justice_Department",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        25
+      ]
+    },
+    {
+      "index": 27,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: (7 + 9 + 7) % 10",
+      "extraction_section": null,
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "(7 + 9 + 7) % 10",
+        "expression_code": "result = (7 + 9 + 7) % 10\nprint(result)",
+        "referenced_stops": [
+          5,
+          11,
+          23
+        ]
+      },
+      "reasoning": "Compute stop: (7 + 9 + 7) % 10 = 3",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5,
+        11,
+        23
+      ]
+    }
+  ],
+  "passcode": 3,
+  "difficulty": {
+    "level": "hard",
+    "depth": 28,
+    "tool_stop_count": 13,
+    "reason_stop_count": 4,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Seek the corporation rooted in the Queen City, famed for its array of household goods. How many subsections dwell beneath the shadow of \"Misinformation and conspiracies\"?\n\n2. A city once vibrant, famed for its arts and culture, known as the birthplace of the modern rhythm. Count how many subsections are listed under its rich tapestry of sections.\n\n3. To reach the next waypoint, gather knowledge of the heights—what is the level upon which this grand city stands above the waves, expressed in meters?\n\n4. Cast your eyes upon the community nearby; how many places of worship share the skyline of this spirited locale?\n\n5. To proceed, unite the altitude you uncovered with the count of sacred halls you just discovered. What new measure does that yield?\n\n6. As you delve deeper, this city holds a secret—what is the sum of distinct prime factors of the number you found in clue 2?\n\n7. Journey to a bustling metropolis known for its skyline and pizza; this place was once dubbed \"The Second City.\" What coordinates mark its vibrant heart?\n\n8. Seek to uncover the elevation of this urban giant—how far above sea level does it rise?\n\n9. Yet close at hand, muse on the number of institutions dedicated to art and history surrounding this northern gem. What figure emerges from your count? \n\n10. To discover your next clue, calculate the absolute difference between the elevation you found for this city and the number of museums you noted earlier.\n\n11. Traveling south to the gateway of the West, how many places to dine flourish near its geographical center? Count them well.\n\n12. Within this locale, a mathematical mystery awaits—what is the digital root of the restaurant count you found in the previous step?\n\n13. Amidst the heart of the nation lies a region characterized by its agriculture and culture; discover how many language editions this section features at the top of its article.\n\n14. As you explore further, find how many institutions of higher learning are scattered around this central region.\n\n15. In a different context, dive into the effervescent world of a famed beverage; how many languages does its written tale span?\n\n16. As you examine the green plant family known for its potent leaves, how many cultivated forms are referred to as 'Coca' in the very first sentence?\n\n17. A trip to this verdant haven reveals its geographical points; what is the height above sea level where this plant thrives?\n\n18. Look around; how many places to rest and recharge can you find near this green paradise?\n\n19. Next, let the elevation of the verdant ground combine with the count of nearby accommodations. What total arises from this addition?\n\n20. Shift your focus to a white powder's tale; how many language links greet you atop its article?\n\n21. As you conclude this journey, seek the next prime number following the total you just discovered in clue 20.\n\n22. Delve into the section on substances that enhance energy—how many languages speak of this role at the outset?\n\n23. Turning to the buzz of the coffee bean, how many main sections structure the knowledge of this energizing substance?\n\n24. In a medicinal context, what would be the Fahrenheit offset for the modest temperature of 4°C?\n\n25. Contemplate the numeric value you found in the previous clue and identify its largest prime factor.\n\n26. Now, shift your mind to the law; how many top-level sections organize the contents of the department responsible for justice in the land?\n\n27. Additionally, explore the landscape surrounding the enforcement body; how many universities are nearby, nurturing legal minds?\n\n28. Finally, compute the expression: (clue 6 + clue 12 + clue 24) % 10. This will yield a single digit, your final answer.",
+  "metadata": {
+    "theme": "From household consumer goods to the ingredients, companies and regulation that shape them — a Midwest-rooted trek linking Procter & Gamble's Cincinnati HQ to beverage giants, stimulant chemistry, corporate markets and public‑health enforcement.",
+    "difficulty": "hard",
+    "sample_id": "sample_139",
+    "pages_crawled": 13478
+  },
+  "generated_at": "2026-03-17T14:59:54.620631+00:00"
+}

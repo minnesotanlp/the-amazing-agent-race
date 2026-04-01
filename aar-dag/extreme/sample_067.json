@@ -1,0 +1,873 @@
+{
+  "trail_id": "trail_93de9b5e",
+  "seed_url": "https://en.wikipedia.org/wiki/Pyar_Hua_Chori_Chori",
+  "seed_title": "Pyar Hua Chori Chori",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Pyar_Hua_Chori_Chori",
+      "extraction_target": "the film's running time in minutes",
+      "extraction_section": null,
+      "extracted_value": 125,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Pyar_Hua_Chori_Chori",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Seed film (a 1990s Hindi romantic comedy) that starts our trail into people and companies of Indian cinema.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Pyar_Hua_Chori_Chori",
+      "extraction_target": "Reason: the sum of its distinct prime factors",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (sum_prime_factors) on stop 0 value",
+      "reason_transform": "sum_prime_factors",
+      "reason_source_stop": 0,
+      "reason_code": "def prime_factors(n):\n    n = abs(int(n))\n    factors = []\n    d = 2\n    while d * d <= n:\n        while n % d == 0:\n            factors.append(d)\n            n //= d\n        d += 1\n    if n > 1: factors.append(n)\n    return factors\nresult = sum(set(prime_factors(125)))\nprint(result)",
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Priyadarshan",
+      "extraction_target": "the number of children Priyadarshan has",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Chithram",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Prominent Indian director whose career connects Malayalam and Hindi film industries — a bridge between regional and national cinema.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Chithram",
+      "extraction_target": "the running time of the film in minutes",
+      "extraction_section": null,
+      "extracted_value": 160,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Hyderabad wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Hyderabad",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A major Malayalam hit associated with the director above — illustrates regional blockbuster dynamics that influenced Hindi remakes and talent flow.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Chithram",
+      "extraction_target": "Look up the Google rating of Chithram",
+      "extraction_section": null,
+      "extracted_value": 4.9,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "Chithram"
+            },
+            "expected_output": null,
+            "output_key": "place_rating"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (place_rating) derived from https://en.wikipedia.org/wiki/Chithram",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Hyderabad",
+      "extraction_target": "Look up the elevation at Hyderabad",
+      "extraction_section": null,
+      "extracted_value": 536.6129150390625,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Hyderabad"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for Hyderabad",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/D._Ramanaidu",
+      "extraction_target": "the year he founded Suresh Productions",
+      "extraction_section": null,
+      "extracted_value": 1964,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Suresh_Productions",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Legendary Telugu producer and founder of Suresh Productions — central to the industrial side of South Indian cinema.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Suresh_Productions",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Founded')",
+      "extraction_section": "infobox",
+      "extracted_value": 1964,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Amit Kumar wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Amit_Kumar",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "The production house founded by D. Ramanaidu — shows how family-run studios shaped Telugu film output and industry infrastructure.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Amit_Kumar",
+      "extraction_target": "Look up the population of India",
+      "extraction_section": null,
+      "extracted_value": 1417492000,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "countries_population",
+            "arguments": {
+              "country": "India"
+            },
+            "expected_output": null,
+            "output_key": "population"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: population of India",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        7
+      ]
+    },
+    {
+      "index": 9,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Amit_Kumar",
+      "extraction_target": "Reason: the next prime number after that figure",
+      "extraction_section": null,
+      "extracted_value": 1417492007,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (next_prime) on stop 6 value",
+      "reason_transform": "next_prime",
+      "reason_source_stop": 8,
+      "reason_code": "def next_prime(n):\n    n = abs(int(n))\n    if n < 2: return 2\n    candidate = n + 1\n    while True:\n        if all(candidate % i != 0 for i in range(2, int(candidate**0.5)+1)):\n            return candidate\n        candidate += 1\nresult = next_prime(1417492000)\nprint(result)",
+      "depends_on": [
+        8
+      ]
+    },
+    {
+      "index": 10,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/K._Raghavendra_Rao",
+      "extraction_target": "the age shown in the infobox",
+      "extraction_section": null,
+      "extracted_value": 83,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/K._Raghavendra_Rao",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Prolific Telugu director whose stylistic and commercial work connects to the producers and actors we've encountered.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        9
+      ]
+    },
+    {
+      "index": 11,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/K._Raghavendra_Rao",
+      "extraction_target": "Reason: the largest prime factor of that figure",
+      "extraction_section": null,
+      "extracted_value": 83,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (largest_prime_factor) on stop 7 value",
+      "reason_transform": "largest_prime_factor",
+      "reason_source_stop": 10,
+      "reason_code": "def largest_prime_factor(n):\n    n = abs(int(n))\n    if n <= 1: return n\n    d = 2\n    while d * d <= n:\n        while n % d == 0: n //= d\n        d += 1\n    return n\nresult = largest_prime_factor(83)\nprint(result)",
+      "depends_on": [
+        10
+      ]
+    },
+    {
+      "index": 12,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Soggadu_(1975_film)",
+      "extraction_target": "the film's running time in minutes",
+      "extraction_section": null,
+      "extracted_value": 155,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Johny Mera Naam wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Johny_Mera_Naam",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A classic Telugu film illustrating the genres and star vehicles that shaped regional audience tastes and careers.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        11
+      ]
+    },
+    {
+      "index": 13,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Johny_Mera_Naam",
+      "extraction_target": "Convert 155°C to a Fahrenheit-scale offset",
+      "extraction_section": null,
+      "extracted_value": 279,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "# Convert celsius to fahrenheit_offset\nvalue = 155.0\nconverted = value * 1.8\nresult = int(converted)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "converted"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: convert 155 celsius to fahrenheit_offset",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        12
+      ]
+    },
+    {
+      "index": 14,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Ramudu_Bheemudu",
+      "extraction_target": "the country listed in the infobox (field: 'Country')",
+      "extraction_section": "infobox",
+      "extracted_value": "India",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Ramudu_Bheemudu",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A Telugu film title that exemplifies the star-centric, dual-role and masala traditions which influenced cross-industry remakes and careers.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        13
+      ]
+    },
+    {
+      "index": 15,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Ramudu_Bheemudu",
+      "extraction_target": "Look up the elevation of India",
+      "extraction_section": null,
+      "extracted_value": 272.2876586914062,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "India"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of India) from https://en.wikipedia.org/wiki/Ramudu_Bheemudu",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        14
+      ]
+    },
+    {
+      "index": 16,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Ramudu_Bheemudu",
+      "extraction_target": "Look up the count of hospitals near India",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "hospitals near India"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of hospitals near India) from https://en.wikipedia.org/wiki/Ramudu_Bheemudu",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        14
+      ]
+    },
+    {
+      "index": 17,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Ramudu_Bheemudu",
+      "extraction_target": "Combine the elevation of India and the count of hospitals near India: abs(272 - 20)",
+      "extraction_section": null,
+      "extracted_value": 252,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(272.2876586914062) - int(20.0))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of India abs_diff count of hospitals near India",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        15,
+        16
+      ]
+    },
+    {
+      "index": 18,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Ramudu_Bheemudu",
+      "extraction_target": "Reason: the alphabetical position of its first letter (A=1, B=2, ...)",
+      "extraction_section": null,
+      "extracted_value": 9,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (alpha_position_first_letter) on stop 10 value",
+      "reason_transform": "alpha_position_first_letter",
+      "reason_source_stop": 14,
+      "reason_code": "first = \"India\"[0].upper()\nresult = ord(first) - ord('A') + 1 if first.isalpha() else 0\nprint(result)",
+      "depends_on": [
+        14
+      ]
+    },
+    {
+      "index": 19,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Krishnam_Raju",
+      "extraction_target": "Krishnam Raju's age at death as given in the article",
+      "extraction_section": null,
+      "extracted_value": 82,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Sarada (actress) wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Sarada_(actress)",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Major Telugu actor whose career intersects with the directors and films already featured — anchors the actor-side of the network.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        18
+      ]
+    },
+    {
+      "index": 20,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Sarada_(actress)",
+      "extraction_target": "the number of National Film Awards for Best Actress Sarada has received",
+      "extraction_section": null,
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Gautami",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Veteran actress with major roles in South Indian cinema — represents the female star trajectories in regional film histories.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        19
+      ]
+    },
+    {
+      "index": 21,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Gautami",
+      "extraction_target": "the number of children listed for Gautami",
+      "extraction_section": null,
+      "extracted_value": 1,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "The Shoppes at River Crossing wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/The_Shoppes_at_River_Crossing",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Actress who worked across Telugu, Tamil and Hindi films — exemplifies cross-industry mobility of talent we are tracing.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        20
+      ]
+    },
+    {
+      "index": 22,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/The_Shoppes_at_River_Crossing",
+      "extraction_target": "Count the number of stadiums near Macon",
+      "extraction_section": null,
+      "extracted_value": 20,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "stadiums near Macon"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: count stadiums near Macon",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        21
+      ]
+    },
+    {
+      "index": 23,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Jaggayya",
+      "extraction_target": "age at death (as given)",
+      "extraction_section": null,
+      "extracted_value": 77,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Jaggayya",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A respected Telugu actor and voice artist — adds depth to the performer network and historical continuity of regional cinema.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        22
+      ]
+    },
+    {
+      "index": 24,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Jaggayya",
+      "extraction_target": "Reason: the digital root (iterated digit sum until single digit)",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digital_root) on stop 15 value",
+      "reason_transform": "digital_root",
+      "reason_source_stop": 23,
+      "reason_code": "n = abs(int(77))\nresult = n if n == 0 else ((n - 1) % 9) + 1\nprint(result)",
+      "depends_on": [
+        23
+      ]
+    },
+    {
+      "index": 25,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/K._Bapayya",
+      "extraction_target": "the year K. Bapayya made his Tollywood directorial debut with Drohi",
+      "extraction_section": "Career",
+      "extracted_value": 1970,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/K._Bapayya",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Director active in Telugu/Hindi crossovers — helps show the production-side links between regional industries and Bollywood.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        24
+      ]
+    },
+    {
+      "index": 26,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/K._Bapayya",
+      "extraction_target": "Reason: the number of 1-bits in its binary representation",
+      "extraction_section": null,
+      "extracted_value": 7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (binary_1bit_count) on stop 16 value",
+      "reason_transform": "binary_1bit_count",
+      "reason_source_stop": 25,
+      "reason_code": "result = bin(abs(int(1970))).count('1')\nprint(result)",
+      "depends_on": [
+        25
+      ]
+    },
+    {
+      "index": 27,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/K._S._Prakash_Rao",
+      "extraction_target": "the number of children listed",
+      "extraction_section": null,
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/K._S._Prakash_Rao",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Senior director/producer whose career situates the older generation of South Indian filmmakers that shaped the institutions we've visited on this trail.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        26
+      ]
+    },
+    {
+      "index": 28,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: abs(125 - 2) % 10",
+      "extraction_section": null,
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "abs(125 - 2) % 10",
+        "expression_code": "result = abs(125 - 2) % 10\nprint(result)",
+        "referenced_stops": [
+          0,
+          2,
+          18,
+          27
+        ]
+      },
+      "reasoning": "Compute stop: abs(125 - 2) % 10 = 3",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0,
+        2,
+        18,
+        27
+      ]
+    }
+  ],
+  "passcode": 3,
+  "difficulty": {
+    "level": "extreme",
+    "depth": 29,
+    "tool_stop_count": 8,
+    "reason_stop_count": 6,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. To commence your journey, discover the romantic tale from 1993 that spins a complex narrative. What is the running time of this film measured in minutes?\n\n2. Tally the distinct prime companions of your previous answer. What is their sum?\n\n3. Transition into the life of a celebrated filmmaker known for his comedies. How many children has he brought into the world?\n\n4. Seek the entry of a particular film featuring generous doses of humor and romance, hailed from the south of India. What length of time does this cinematic piece run, in minutes?\n\n5. Look up the rating bestowed by viewers upon this specific film. How many stars do they award?\n\n6. With the sights set on a bustling metropolis in southern India, uncover the elevation of this city suspended above sea level.\n\n7. Track the legacy of a legendary producer mentioned in the annals of Indian cinema. In which year did he bring forth his illustrious production company?\n\n8. This same production house still flourishes today. In which year did it first open its doors to the public?\n\n9. In the vast fields of the Indian subcontinent, what is the current population of this populous nation?\n\n10. Glance beyond the number of inhabitants to find the next prime number that comes after the figure you just uncovered.\n\n11. Dive into the journey of a filmmaker known for his artistic brilliance. How old was he when he departed this world?\n\n12. Determine the mightiest of prime numbers contained within the age you just found. What is that value?\n\n13. From the past of Indian cinema, discover a 1975 film. Measure its runtime in minutes — how long does it last?\n\n14. Within the pages discussing a classic Hindi film, convert a specific high temperature from Celsius to an offset on the Fahrenheit scale. What is that value?\n\n15. Unravel the threads of another beloved film to find the country where this story hails from. Which nation is listed?\n\n16. Journey back to the land of diversity, and seek the elevation of this vast country — how high is it above sea level?\n\n17. Explore the healthcare landscape; how many hospitals can you find in proximity to this great nation?\n\n18. Eye the numbers gathered from previous clues. Take the absolute difference between the elevation from clue 16 and the count of hospitals from clue 17.\n\n19. The country you just identified has a name that starts with a particular letter. What is its alphabetical position, where A=1, B=2, and so on?\n\n20. Reflect on the life of an iconic actor-turned-politician. At what age did he exit this realm?\n\n21. Honor the talents of another actress. How many National Film Awards for Best Actress has she received in her career?\n\n22. From another celebrated actress, ascertain how many children she has in her family.\n\n23. In a different location altogether, seek the number of sports venues near a town named Macon — how many can you find?\n\n24. Delve into the life story of a revered actor. At what age did he cease his journey on this earth?\n\n25. What is the digital root of this esteemed actor’s age, condensed to a single digit?\n\n26. Turn your gaze back to a noted director and note the year when he embarked on his directorial journey with a renowned film.\n\n27. Reflect on K. Bapayya's debut. How many 1-bits reside in the binary form of that year?\n\n28. Finally, a different filmmaker has left his mark—how many offspring does he have?\n\n29. Now, bring together the numerical discoveries from clues 1, 3, 19, and 28. Compute: abs(125 - 2) % 10. What is the single digit you derive from that calculation?",
+  "metadata": {
+    "theme": "From a 1993 Hindi romantic comedy outwards: tracing a network of Indian filmmakers, studios and films (Hindi & South Indian), then using geospatial and computation tools to situate their people and places — a cine-geography of modern Indian cinema.",
+    "difficulty": "extreme",
+    "sample_id": "sample_067",
+    "pages_crawled": 313
+  },
+  "generated_at": "2026-03-16T06:01:30.897437+00:00"
+}

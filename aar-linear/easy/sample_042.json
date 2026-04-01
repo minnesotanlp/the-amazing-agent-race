@@ -1,0 +1,154 @@
+{
+  "trail_id": "trail_ea28e4d0",
+  "seed_url": "https://en.wikipedia.org/wiki/The_Outlet_Collection_at_Riverwalk",
+  "seed_title": "The Outlet Collection at Riverwalk",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/The_Outlet_Collection_at_Riverwalk",
+      "extraction_target": "the location listed in the infobox (field: 'Location')",
+      "extraction_section": "infobox",
+      "extracted_value": "Central Business District of New Orleans, Louisiana, United States",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/The_Outlet_Collection_at_Riverwalk",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start at the Outlet Collection at Riverwalk — the contemporary riverfront outlet mall whose site and opening reflect redevelopment of New Orleans' riverfront retail space.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/The_Outlet_Collection_at_Riverwalk",
+      "extraction_target": "Reason: the alphabetical position of its first letter (A=1, B=2, ...)",
+      "extraction_section": null,
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (alpha_position_first_letter) on stop 0 value",
+      "reason_transform": "alpha_position_first_letter",
+      "reason_source_stop": 0,
+      "reason_code": "first = \"Central Business District of New Orleans, Louisiana, United States\"[0].upper()\nresult = ord(first) - ord('A') + 1 if first.isalpha() else 0\nprint(result)"
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/1984_Louisiana_World_Exposition",
+      "extraction_target": "Get the driving duration in minutes from New Orleans to Central Business District of New Orleans",
+      "extraction_section": null,
+      "extracted_value": 1,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_directions",
+            "arguments": {
+              "origin": "New Orleans",
+              "destination": "Central Business District of New Orleans",
+              "mode": "driving"
+            },
+            "expected_output": null,
+            "output_key": "duration"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: directions duration New Orleans to Central Business District of New Orleans",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 3,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Festival_marketplace",
+      "extraction_target": "the number of main sections listed in the table of contents",
+      "extraction_section": null,
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Festival_marketplace",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Finish with the festival marketplace concept — the retail development model (waterfront-focused, mixed attractions and food courts) that helped inspire many riverfront commercial projects like the Riverwalk outlet.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 4,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: (3 + 1) % 10",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "(3 + 1) % 10",
+        "expression_code": "result = (3 + 1) % 10\nprint(result)",
+        "referenced_stops": [
+          1,
+          2
+        ]
+      },
+      "reasoning": "Compute stop: (3 + 1) % 10 = 4",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 4,
+  "difficulty": {
+    "level": "easy",
+    "depth": 5,
+    "tool_stop_count": 1,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "direct_link"
+  },
+  "riddle": "1. Seek the Wikipedia page for the riverside outlet mall that replaced the old Riverwalk Marketplace and sits beside the Ernest N. Morial Convention Center on the Mississippi in downtown New Orleans; pinpoint the city and state where that riverfront outlet is said to sit — read the place name shown at the top of the article.\n\n2. There exists a simple transformation: take the place name you just found and convert its first letter into its alphabetical rank (A = 1, B = 2, and so on); that number becomes your next value.\n\n3. How many minutes would a drive take from New Orleans to the city's central business district if you set off without unusual delays?\n\n4. If you visit the article about the 1970s–80s urban redevelopment concept that turned old piers into lively shopping-and-dining destinations, then count the number of primary headings shown near the top that divide the article into its main sections.\n\n5. In the final accounting of this riverfront reinvention, compute this single-digit result: (clue 2 + clue 3) % 10 — your answer should be one digit between 0 and 9.",
+  "metadata": {
+    "theme": "Tracing the reinvention of New Orleans' riverfront: from World's Fair and festival marketplace ideas to the modern Outlet Collection at Riverwalk",
+    "difficulty": "easy",
+    "sample_id": "sample_042",
+    "pages_crawled": 1852,
+    "source": "trail_puzzles_v2"
+  },
+  "generated_at": "2026-03-15T13:48:01.995939+00:00"
+}

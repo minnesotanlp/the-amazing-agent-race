@@ -1,0 +1,562 @@
+{
+  "trail_id": "trail_1600745b",
+  "seed_url": "https://en.wikipedia.org/wiki/Solar_Liberty",
+  "seed_title": "Solar Liberty",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Solar_Liberty",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Founded')",
+      "extraction_section": "infobox",
+      "extracted_value": 2003,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Solar_Liberty",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start at the seed: Solar Liberty is the local solar installer around which this trail is built — capture its HQ/founding to anchor the company in place and time.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Solar_Liberty",
+      "extraction_target": "Look up the elevation of Solar Liberty",
+      "extraction_section": null,
+      "extracted_value": 201.2863464355469,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Solar Liberty"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Solar Liberty) from https://en.wikipedia.org/wiki/Solar_Liberty",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Solar_Liberty",
+      "extraction_target": "Look up the Google rating of Solar Liberty",
+      "extraction_section": null,
+      "extracted_value": 4.9,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "Solar Liberty"
+            },
+            "expected_output": null,
+            "output_key": "place_rating"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (Google rating of Solar Liberty) from https://en.wikipedia.org/wiki/Solar_Liberty",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Solar_Liberty",
+      "extraction_target": "Combine the elevation of Solar Liberty and the Google rating of Solar Liberty: (201 + 4)",
+      "extraction_section": null,
+      "extracted_value": 205,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(201.2863464355469) + int(4.9)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Solar Liberty add Google rating of Solar Liberty",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1,
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Solar_Liberty",
+      "extraction_target": "Reason: the largest prime factor of that figure",
+      "extraction_section": null,
+      "extracted_value": 2003,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (largest_prime_factor) on stop 0 value",
+      "reason_transform": "largest_prime_factor",
+      "reason_source_stop": 0,
+      "reason_code": "def largest_prime_factor(n):\n    n = abs(int(n))\n    if n <= 1: return n\n    d = 2\n    while d * d <= n:\n        while n % d == 0: n //= d\n        d += 1\n    return n\nresult = largest_prime_factor(2003)\nprint(result)",
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Buffalo,_New_York",
+      "extraction_target": "Get the driving duration in minutes from Buffalo, New York to Williamsville",
+      "extraction_section": null,
+      "extracted_value": 18,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_directions",
+            "arguments": {
+              "origin": "Buffalo, New York",
+              "destination": "Williamsville",
+              "mode": "driving"
+            },
+            "expected_output": null,
+            "output_key": "duration"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: directions duration Buffalo, New York to Williamsville",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Buffalo,_New_York",
+      "extraction_target": "Reason: the number of divisors of that figure",
+      "extraction_section": null,
+      "extracted_value": 6,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (num_divisors) on stop 1 value",
+      "reason_transform": "num_divisors",
+      "reason_source_stop": 5,
+      "reason_code": "n = abs(int(18))\ncount = sum(1 for i in range(1, n+1) if n % i == 0) if n > 0 else 0\nresult = count\nprint(result)",
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Williamsville,_NY",
+      "extraction_target": "Look up the elevation at Williamsville, NY",
+      "extraction_section": null,
+      "extracted_value": 204.9295349121094,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Williamsville, NY"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for Williamsville, NY",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Inc._(magazine)",
+      "extraction_target": "the year Inc. was founded",
+      "extraction_section": null,
+      "extracted_value": 1979,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Corporate title wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Corporate_title",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Business press like Inc. profiles growing private companies — useful for understanding how local firms (like Solar Liberty) are portrayed and benchmarked.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        7
+      ]
+    },
+    {
+      "index": 9,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Corporate_title",
+      "extraction_target": "the month and year when the article was tagged as possibly containing original research",
+      "extraction_section": null,
+      "extracted_value": "February 2012",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Corporate_liability",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Solar installers scale into formal management — corporate titles show how leadership roles map onto operational needs.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        8
+      ]
+    },
+    {
+      "index": 10,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Corporate_liability",
+      "extraction_target": "the number of subsections under Standards of liability",
+      "extraction_section": "Standards of liability",
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Audit committee wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Audit_committee",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Identifying legal exposure (warranties, installation accidents, contract disputes) helps frame risk management for a solar company.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        9
+      ]
+    },
+    {
+      "index": 11,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Audit_committee",
+      "extraction_target": "the number of subsections under the Responsibilities section (3.1–3.5)",
+      "extraction_section": "Responsibilities",
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Advisory_board",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "As private energy firms grow, financial oversight mechanisms (audit committees) become important for investor confidence and compliance.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        10
+      ]
+    },
+    {
+      "index": 12,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Advisory_board",
+      "extraction_target": "the number of subsections listed under 'Creating and operating an advisory board' in the table of contents",
+      "extraction_section": "Creating and operating an advisory board",
+      "extracted_value": 6,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Advisory_board",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Advisory boards are a common governance tool for companies seeking technical and market guidance without full board restructuring.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        11
+      ]
+    },
+    {
+      "index": 13,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Advisory_board",
+      "extraction_target": "Reason: the number of divisors of that figure",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (num_divisors) on stop 7 value",
+      "reason_transform": "num_divisors",
+      "reason_source_stop": 12,
+      "reason_code": "n = abs(int(6))\ncount = sum(1 for i in range(1, n+1) if n % i == 0) if n > 0 else 0\nresult = count\nprint(result)",
+      "depends_on": [
+        12
+      ]
+    },
+    {
+      "index": 14,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Supervisory_board",
+      "extraction_target": "the number of languages listed in the interlanguage links at the top of the page",
+      "extraction_section": null,
+      "extracted_value": 20,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Corporate_crime",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Contrast governance models (one-tier vs two-tier) to consider how investor oversight or governance might be implemented in different jurisdictions.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        13
+      ]
+    },
+    {
+      "index": 15,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Corporate_crime",
+      "extraction_target": "the opening-line definition of corporate crime as it appears under the article title",
+      "extraction_section": null,
+      "extracted_value": "Crimes committed either by a corporation or its representatives",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "International trade law wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/International_trade_law",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Understanding corporate crime and compliance failures highlights legal pitfalls (fraud, safety lapses) that energy firms must avoid.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        14
+      ]
+    },
+    {
+      "index": 16,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/International_trade_law",
+      "extraction_target": "the section number of 'World Trade Organization' in the table of contents",
+      "extraction_section": "Contents",
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/International_trade_law",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Supply chains for PV components are international — trade rules, tariffs, and treaties affect procurement costs and timelines for installers.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        15
+      ]
+    },
+    {
+      "index": 17,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: abs(4 - 205) % 10",
+      "extraction_section": null,
+      "extracted_value": 1,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "abs(4 - 205) % 10",
+        "expression_code": "result = abs(4 - 205) % 10\nprint(result)",
+        "referenced_stops": [
+          2,
+          3,
+          5,
+          6
+        ]
+      },
+      "reasoning": "Compute stop: abs(4 - 205) % 10 = 1",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2,
+        3,
+        5,
+        6
+      ]
+    }
+  ],
+  "passcode": 1,
+  "difficulty": {
+    "level": "medium",
+    "depth": 18,
+    "tool_stop_count": 5,
+    "reason_stop_count": 3,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Unearth the tale of a company that champions harnessing beams from the sun — when did it take its first steps into the world?\n\n2. How high does this solar enterprise rise above sea level? Seek the answer hidden within the heart of its page.\n\n3. What score do patrons bestow upon this eco-friendly installer? Discover the rating that speaks of their reputation among customers.\n\n4. Combine the elevation you uncovered with the score from the previous clue, and let this sum illuminate your path forward.\n\n5. From the founding year that you found, extract the largest prime factor — a number that will guide your next decision.\n\n6. If you chart a course from the city known for its wings to a village that thrives on commerce, how many minutes would the drive consume?\n\n7. Consider the outcome of your last journey; how many divisors are there of this travel duration? Reflect on this number as you press on.\n\n8. The ground rests at a certain height in that village of commerce; what elevation do you find recorded in its own article?\n\n9. A publication nationally recognized for nurturing entrepreneurship was birthed in a certain year. What is that year, detailing its genesis?\n\n10. To what month and year is a certain article tagged for potential original thought? This date might hold significance for your quest.\n\n11. Regarding the standards of accountability discussed within the realm of legal structures, how many subsections can you find there? This will serve your efforts well.\n\n12. Turn to the page that outlines the duties of a financial watchdog—how many subsections are laid out in their responsibilities?\n\n13. Under the premise of guidance and wisdom-sharing, how many subsections appear in the segment dedicated to creating and operating an advisory board?\n\n14. Reflect on your findings about advisory boards from earlier; calculate how many divisors belong to that last number.\n\n15. A board overseeing corporate strategies may be multilingual; how many tongues are mirrored through the interlanguage links at the top of the page?\n\n16. Corporate malfeasance is defined in a specific way; can you reveal its definition as it stands at the start of the article? This will reveal underlying truths.\n\n17. How is the chapter delineated that discusses a major intergovernmental agreement for trade? Identify its number within the table of contents.\n\n18. Finally, compute the absolute difference between the score you found in clue 3 and the driving duration from clue 6, then reduce this by 10. Your answer will reveal the final single-digit key that springs from your journey.",
+  "metadata": {
+    "theme": "From a local solar installer to the legal, governance, and regional factors that shape its growth — tracing Solar Liberty’s place in community, corporate structure, and the renewable-energy supply chain.",
+    "difficulty": "medium",
+    "sample_id": "sample_035",
+    "pages_crawled": 106
+  },
+  "generated_at": "2026-03-16T05:29:35.794616+00:00"
+}

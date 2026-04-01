@@ -1,0 +1,995 @@
+{
+  "trail_id": "trail_2cedb595",
+  "seed_url": "https://en.wikipedia.org/wiki/Piotr_Pyrdoł",
+  "seed_title": "Piotr Pyrdoł",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Piotr_Pyrdo%C5%82",
+      "extraction_target": "Piotr Pyrdoł's playing position",
+      "extraction_section": null,
+      "extracted_value": "Winger",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Piotr_Pyrdo%C5%82",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start from the seed: the player whose hypothetical career-path and moves we'll follow and contextualize.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Piotr_Pyrdo%C5%82",
+      "extraction_target": "Reason: the alphabetical position of its first letter (A=1, B=2, ...)",
+      "extraction_section": null,
+      "extracted_value": 23,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (alpha_position_first_letter) on stop 0 value",
+      "reason_transform": "alpha_position_first_letter",
+      "reason_source_stop": 0,
+      "reason_code": "first = \"Winger\"[0].upper()\nresult = ord(first) - ord('A') + 1 if first.isalpha() else 0\nprint(result)",
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Stourbridge_Football_Club",
+      "extraction_target": "the name of the club's ground",
+      "extraction_section": null,
+      "extracted_value": "War Memorial Athletic Ground",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Budafoki MTE wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Budafoki_MTE",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "An example English non-league club to represent potential short-term moves within the UK lower tiers.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Stourbridge_Football_Club",
+      "extraction_target": "Look up the elevation of Stourbridge Football Club",
+      "extraction_section": null,
+      "extracted_value": 76.91657257080078,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Stourbridge Football Club"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Stourbridge Football Club) from https://en.wikipedia.org/wiki/Stourbridge_Football_Club",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Stourbridge_Football_Club",
+      "extraction_target": "Look up the count of universities near Stourbridge Football Club",
+      "extraction_section": null,
+      "extracted_value": 2.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "universities near Stourbridge Football Club"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of universities near Stourbridge Football Club) from https://en.wikipedia.org/wiki/Stourbridge_Football_Club",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Stourbridge_Football_Club",
+      "extraction_target": "Combine the elevation of Stourbridge Football Club and the count of universities near Stourbridge Football Club: (76 + 2)",
+      "extraction_section": null,
+      "extracted_value": 78,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(76.91657257080078) + int(2.0)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Stourbridge Football Club add count of universities near Stourbridge Football Club",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3,
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Budafoki_MTE",
+      "extraction_target": "the ground (stadium) of the club",
+      "extraction_section": null,
+      "extracted_value": "Promontor utcai Stadion",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Budafoki_MTE",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A Hungarian club representing Central/Eastern European lower-league opportunities often on a player's route.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Budafoki_MTE",
+      "extraction_target": "Look up the Google rating of Promontor utcai Stadion",
+      "extraction_section": null,
+      "extracted_value": 4.5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "Promontor utcai Stadion"
+            },
+            "expected_output": null,
+            "output_key": "place_rating"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (place_rating) derived from https://en.wikipedia.org/wiki/Budafoki_MTE",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Budafoki_MTE",
+      "extraction_target": "Reason: the alphabetical position of its first letter (A=1, B=2, ...)",
+      "extraction_section": null,
+      "extracted_value": 16,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (alpha_position_first_letter) on stop 2 value",
+      "reason_transform": "alpha_position_first_letter",
+      "reason_source_stop": 6,
+      "reason_code": "first = \"Promontor utcai Stadion\"[0].upper()\nresult = ord(first) - ord('A') + 1 if first.isalpha() else 0\nprint(result)",
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 9,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Tiszak%C3%A9cske_FC",
+      "extraction_target": "the stadium capacity",
+      "extraction_section": null,
+      "extracted_value": 4500,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "North Shore (New Zealand electorate) wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/North_Shore_(New_Zealand_electorate)",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Another Hungarian club to map domestic league structure and club facilities that shape player choices.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        8
+      ]
+    },
+    {
+      "index": 10,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/North_Shore_(New_Zealand_electorate)",
+      "extraction_target": "Convert 4500 km to miles",
+      "extraction_section": null,
+      "extracted_value": 2796,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "# Convert km to miles\nvalue = 4500.0\nconverted = value * 0.621371\nresult = int(converted)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "converted"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: convert 4500 km to miles",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        9
+      ]
+    },
+    {
+      "index": 11,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/A.C._Renate",
+      "extraction_target": "the stadium capacity",
+      "extraction_section": null,
+      "extracted_value": 3000,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "S.S. Matelica Calcio 1921 wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/S.S._Matelica_Calcio_1921",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "An Italian lower-division club illustrating a common step for players moving into Italy's professional pyramid.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        10
+      ]
+    },
+    {
+      "index": 12,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/S.S._Matelica_Calcio_1921",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Founded')",
+      "extraction_section": "infobox",
+      "extracted_value": 1921,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "S.S. Matelica Calcio 1921 wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/S.S._Matelica_Calcio_1921",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Another Italian club that helps show the mosaic of small-town teams that form a player's possible itinerary.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        11
+      ]
+    },
+    {
+      "index": 13,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/S.S._Matelica_Calcio_1921",
+      "extraction_target": "Look up the elevation of S.S. Matelica Calcio 1921",
+      "extraction_section": null,
+      "extracted_value": 375.5180053710938,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "S.S. Matelica Calcio 1921"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of S.S. Matelica Calcio 1921) from https://en.wikipedia.org/wiki/S.S._Matelica_Calcio_1921",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        12
+      ]
+    },
+    {
+      "index": 14,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/S.S._Matelica_Calcio_1921",
+      "extraction_target": "Look up the Google rating of S.S. Matelica Calcio 1921",
+      "extraction_section": null,
+      "extracted_value": 5.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "S.S. Matelica Calcio 1921"
+            },
+            "expected_output": null,
+            "output_key": "place_rating"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (Google rating of S.S. Matelica Calcio 1921) from https://en.wikipedia.org/wiki/S.S._Matelica_Calcio_1921",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        12
+      ]
+    },
+    {
+      "index": 15,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/S.S._Matelica_Calcio_1921",
+      "extraction_target": "Combine the elevation of S.S. Matelica Calcio 1921 and the Google rating of S.S. Matelica Calcio 1921: (375 + 5)",
+      "extraction_section": null,
+      "extracted_value": 380,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(375.5180053710938) + int(5.0)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of S.S. Matelica Calcio 1921 add Google rating of S.S. Matelica Calcio 1921",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        13,
+        14
+      ]
+    },
+    {
+      "index": 16,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/S.S._Matelica_Calcio_1921",
+      "extraction_target": "Reason: the number of 1-bits in its binary representation",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (binary_1bit_count) on stop 6 value",
+      "reason_transform": "binary_1bit_count",
+      "reason_source_stop": 12,
+      "reason_code": "result = bin(abs(int(1921))).count('1')\nprint(result)",
+      "depends_on": [
+        12
+      ]
+    },
+    {
+      "index": 17,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/6%C3%976",
+      "extraction_target": "Convert 3000°C to a Fahrenheit-scale offset",
+      "extraction_section": null,
+      "extracted_value": 5400,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "# Convert celsius to fahrenheit_offset\nvalue = 3000.0\nconverted = value * 1.8\nresult = int(converted)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "converted"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: convert 3000 celsius to fahrenheit_offset",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        16
+      ]
+    },
+    {
+      "index": 18,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/6%C3%976",
+      "extraction_target": "Reason: the digital root (iterated digit sum until single digit)",
+      "extraction_section": null,
+      "extracted_value": 9,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digital_root) on stop 7 value",
+      "reason_transform": "digital_root",
+      "reason_source_stop": 17,
+      "reason_code": "n = abs(int(5400))\nresult = n if n == 0 else ((n - 1) % 9) + 1\nprint(result)",
+      "depends_on": [
+        17
+      ]
+    },
+    {
+      "index": 19,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Sabino_Barinaga",
+      "extraction_target": "number of goals scored for Southampton's reserve team in one season",
+      "extraction_section": "Playing career",
+      "extracted_value": 62,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Ignacio_Eizaguirre",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A historical Spanish footballer/manager to introduce Spanish football heritage and pathways that influenced modern club moves.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        18
+      ]
+    },
+    {
+      "index": 20,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Ignacio_Eizaguirre",
+      "extraction_target": "playing position",
+      "extraction_section": null,
+      "extracted_value": "Goalkeeper",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Ignacio_Eizaguirre",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A notable Spanish goalkeeper to anchor the Spanish chapter of the narrative and link players, clubs and major domestic competitions.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        19
+      ]
+    },
+    {
+      "index": 21,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Ignacio_Eizaguirre",
+      "extraction_target": "Reason: the alphabetical position of its first letter (A=1, B=2, ...)",
+      "extraction_section": null,
+      "extracted_value": 7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (alpha_position_first_letter) on stop 9 value",
+      "reason_transform": "alpha_position_first_letter",
+      "reason_source_stop": 20,
+      "reason_code": "first = \"Goalkeeper\"[0].upper()\nresult = ord(first) - ord('A') + 1 if first.isalpha() else 0\nprint(result)",
+      "depends_on": [
+        20
+      ]
+    },
+    {
+      "index": 22,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/1951_Copa_del_General%C3%ADsimo_final",
+      "extraction_target": "attendance at the final",
+      "extraction_section": "Details",
+      "extracted_value": 75000,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Internet censorship in South Africa wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Internet_censorship_in_South_Africa",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "An example of a historic domestic cup final showing the competitive milestones players in Spain chase.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        21
+      ]
+    },
+    {
+      "index": 23,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Internet_censorship_in_South_Africa",
+      "extraction_target": "Look up the elevation at Internet censorship in South Africa",
+      "extraction_section": null,
+      "extracted_value": 1106.688720703125,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Internet censorship in South Africa"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for Internet censorship in South Africa",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        22
+      ]
+    },
+    {
+      "index": 24,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Alianza_Atl%C3%A9tico",
+      "extraction_target": "stadium capacity as given in the infobox",
+      "extraction_section": null,
+      "extracted_value": 12000,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Alianza_Atl%C3%A9tico",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A Peruvian club to open the South American leg of the trail, showing how players sometimes move between continents.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        23
+      ]
+    },
+    {
+      "index": 25,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Alianza_Atl%C3%A9tico",
+      "extraction_target": "Reason: the number of divisors of that figure",
+      "extraction_section": null,
+      "extracted_value": 48,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (num_divisors) on stop 12 value",
+      "reason_transform": "num_divisors",
+      "reason_source_stop": 24,
+      "reason_code": "n = abs(int(12000))\ncount = sum(1 for i in range(1, n+1) if n % i == 0) if n > 0 else 0\nresult = count\nprint(result)",
+      "depends_on": [
+        24
+      ]
+    },
+    {
+      "index": 26,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Academia_Deportiva_Cantolao",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Founded')",
+      "extraction_section": "infobox",
+      "extracted_value": 1981,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Dubai Financial Market wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Dubai_Financial_Market",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A famed Peruvian academy emphasising youth development as an alternate pathway for players across the globe.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        25
+      ]
+    },
+    {
+      "index": 27,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Dubai_Financial_Market",
+      "extraction_target": "Look up the elevation at Dubai",
+      "extraction_section": null,
+      "extracted_value": -2.962820291519165,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Dubai"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for Dubai",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        26
+      ]
+    },
+    {
+      "index": 28,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/2011_Torneo_Descentralizado",
+      "extraction_target": "the number of teams that play in the Play-off to determine the season champion",
+      "extraction_section": "Competition modus",
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "NIFL Championship wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/NIFL_Championship",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "The Peruvian top-tier season structure contextualises where clubs like Alianza Atlético and Cantolao compete.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        27
+      ]
+    },
+    {
+      "index": 29,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/NIFL_Championship",
+      "extraction_target": "the level of the NIFL Championship on the Northern Ireland football league pyramid (as shown in the infobox)",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Italy national athletics team wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Italy_national_athletics_team",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Northern Ireland's second-tier competition provides another example of a smaller European league that forms a player's career options.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        28
+      ]
+    },
+    {
+      "index": 30,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Italy_national_athletics_team",
+      "extraction_target": "number of athletes Italy fielded at the 2023 World Athletics Championships",
+      "extraction_section": "Medal count",
+      "extracted_value": 78,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Italy_national_athletics_team",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Finish with a national sports team to broaden from club football to national representation, comparing how athletes (and by analogy players) are showcased on larger stages.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        29
+      ]
+    },
+    {
+      "index": 31,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: abs(2 - 16) % 10",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "abs(2 - 16) % 10",
+        "expression_code": "result = abs(2 - 16) % 10\nprint(result)",
+        "referenced_stops": [
+          4,
+          8,
+          9,
+          21
+        ]
+      },
+      "reasoning": "Compute stop: abs(2 - 16) % 10 = 4",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        4,
+        8,
+        9,
+        21
+      ]
+    }
+  ],
+  "passcode": 4,
+  "difficulty": {
+    "level": "extreme",
+    "depth": 32,
+    "tool_stop_count": 11,
+    "reason_stop_count": 6,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Unearth the tale of a Polish player and his journey; discover his role within the beautiful game. What position does this athlete hold?\n\n2. What is the numerical position of the first letter in the title of the position you've uncovered? (Remember: A=1, B=2, ...)\n\n3. Seek out the name of the ground where a club in the lower English leagues fights for glory. What is this venue called?\n\n4. At what height above sea level does the turf of this ground lie? Discover its elevation for the next step.\n\n5. Investigate the academic presence nearby—how many institutions of higher learning can be found close to this football club's ground?\n\n6. Combine the elevation you uncovered in clue 4 with the count of universities from clue 5 to reveal a new value.\n\n7. Navigate to the page of a Hungarian club and reveal the name of its venue — what is the name of this stadium?\n\n8. What rating do travelers bestow upon Promontor utcai Stadion? Seek this figure from the digital realm.\n\n9. What is the alphabetical position of the first letter in the name of the venue you've just discovered? (A=1, B=2, ...)\n\n10. Look for a page dedicated to another club; find how many spectators its ground can accommodate in a single match.\n\n11. If you were to travel from here to the North Shore, how many miles would that cover? Convert 4500 kilometers into miles.\n\n12. Next, reveal how many fans could fit in the stadium of another Italian club you just discovered — what's its capacity?\n\n13. On the page about this Italian club, determine the year in which it first established itself — when did it come into existence?\n\n14. Ascend to discover the elevation at which this Italian club plays. What is the height above sea level?\n\n15. Investigate the fame of this club and unveil its Google rating — how well do the fans rate it?\n\n16. Add the elevation you found in clue 14 to the rating you retrieved in clue 15 to derive a new total.\n\n17. From the founding year in clue 13, how many 1-bits can be found in its binary form? Seek this computational puzzle's solution.\n\n18. Imagine intense heat — if you were to convert 3000 degrees Celsius into a Fahrenheit offset, what number would you arrive at?\n\n19. What is the digital root of your previous answer from clue 18? Continue until you reduce it down to a single digit.\n\n20. Discover the number of goals scored by a player during a season with Southampton's reserve team. How many goals did he net?\n\n21. At the next stop, what playing position did a prominent figure from the Spanish leagues hold? Identify this role.\n\n22. What is the numerical position of the first letter of this role? (A=1, B=2, ...)\n\n23. A football final once saw thousands in attendance; how many fans filled the stands for this memorable event?\n\n24. Look up the elevation concerning the topic of online restrictions in a certain country; what is its altitude?\n\n25. In another sporting arena, how many spectators can the stadium of an Atlético club host? Reveal this capacity.\n\n26. Find the total number of divisors that the figure from clue 25 has. What is this mathematical detail?\n\n27. Another football club waits to be discovered — what year did it first kick off its journey? \n\n28. Somewhere in a bustling city, how high does the land rise in elevation? Learn this number, connected to a financial market.\n\n29. How many teams competed in the Play-off format for the title during a specific season? What number do you find?\n\n30. In the Northern Ireland football hierarchy, what tier does the NIFL Championship occupy? Record this level.\n\n31. At the grand World Athletics Championships, how many athletes represented Italy in 2023? Seek this detail from the pages of history.\n\n32. Finally, compute the absolute difference between the numbers you obtained from clues 5 and 9, followed by 10 and 22; reduce this through modulo 10. What single digit do you find?",
+  "metadata": {
+    "theme": "A journeyman-football narrative: tracing a Polish player's career through European lower leagues and overseas football cultures, pausing to compute geography, travel and context (distances, elevations, populations, pitch conversions) that shape a player's moves.",
+    "difficulty": "extreme",
+    "sample_id": "sample_103",
+    "pages_crawled": 5931
+  },
+  "generated_at": "2026-03-16T20:00:49.137464+00:00"
+}

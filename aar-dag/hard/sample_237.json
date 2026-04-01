@@ -1,0 +1,848 @@
+{
+  "trail_id": "trail_8241efe5",
+  "seed_url": "https://en.wikipedia.org/wiki/Opatov_(Svitavy_District)",
+  "seed_title": "Opatov (Svitavy District)",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Opatov_(Svitavy_District)",
+      "extraction_target": "the elevation listed in the infobox (field: 'Elevation')",
+      "extraction_section": "infobox",
+      "extracted_value": 438,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Opatov_(Svitavy_District)",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Opatov connects us to the heart of Europe, a region with deep historical roots that have shaped today's cultural boundaries.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Opatov_(Svitavy_District)",
+      "extraction_target": "Look up the elevation of Opatov",
+      "extraction_section": null,
+      "extracted_value": 436.9131164550781,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Opatov"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Opatov) from https://en.wikipedia.org/wiki/Opatov_(Svitavy_District)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Opatov_(Svitavy_District)",
+      "extraction_target": "Look up the count of stadiums near Opatov",
+      "extraction_section": null,
+      "extracted_value": 17.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "stadiums near Opatov"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of stadiums near Opatov) from https://en.wikipedia.org/wiki/Opatov_(Svitavy_District)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Opatov_(Svitavy_District)",
+      "extraction_target": "Combine the elevation of Opatov and the count of stadiums near Opatov: abs(436 - 17)",
+      "extraction_section": null,
+      "extracted_value": 419,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(436.9131164550781) - int(17.0))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Opatov abs_diff count of stadiums near Opatov",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1,
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Opatov_(Svitavy_District)",
+      "extraction_target": "Reason: the sum of its distinct prime factors",
+      "extraction_section": null,
+      "extracted_value": 78,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (sum_prime_factors) on stop 0 value",
+      "reason_transform": "sum_prime_factors",
+      "reason_source_stop": 0,
+      "reason_code": "def prime_factors(n):\n    n = abs(int(n))\n    factors = []\n    d = 2\n    while d * d <= n:\n        while n % d == 0:\n            factors.append(d)\n            n //= d\n        d += 1\n    if n > 1: factors.append(n)\n    return factors\nresult = sum(set(prime_factors(438)))\nprint(result)",
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Christianity",
+      "extraction_target": "the number of major branches listed under Churches and denominations",
+      "extraction_section": "Churches and denominations",
+      "extracted_value": 7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Christianity",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Christianity has played a significant role in shaping Western culture and political boundaries, influencing countless nations.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Christianity",
+      "extraction_target": "Reason: the number of characters when written as a Roman numeral",
+      "extraction_section": null,
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (roman_numeral_letter_count) on stop 1 value",
+      "reason_transform": "roman_numeral_letter_count",
+      "reason_source_stop": 5,
+      "reason_code": "def to_roman(n):\n    n = abs(int(n))\n    vals = [(1000,'M'),(900,'CM'),(500,'D'),(400,'CD'),(100,'C'),\n            (90,'XC'),(50,'L'),(40,'XL'),(10,'X'),(9,'IX'),(5,'V'),(4,'IV'),(1,'I')]\n    r = ''\n    for v, s in vals:\n        while n >= v:\n            r += s; n -= v\n    return r\nresult = len(to_roman(7))\nprint(result)",
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/United_Kingdom_of_Great_Britain_and_Northern_Ireland",
+      "extraction_target": "Look up the area in km² of Czech Republic",
+      "extraction_section": null,
+      "extracted_value": 78865.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "countries_area",
+            "arguments": {
+              "country": "Czech Republic"
+            },
+            "expected_output": null,
+            "output_key": "area_km2"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: area of Czech Republic",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/United_Kingdom_of_Great_Britain_and_Northern_Ireland",
+      "extraction_target": "Reason: the number of 1-bits in its binary representation",
+      "extraction_section": null,
+      "extracted_value": 6,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (binary_1bit_count) on stop 2 value",
+      "reason_transform": "binary_1bit_count",
+      "reason_source_stop": 7,
+      "reason_code": "result = bin(abs(int(78865))).count('1')\nprint(result)",
+      "depends_on": [
+        7
+      ]
+    },
+    {
+      "index": 9,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Eastern_Orthodox_Church",
+      "extraction_target": "the year of the Great Schism mentioned in the History section",
+      "extraction_section": "History",
+      "extracted_value": 1054,
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Eastern_Orthodox_Church",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "As a major Christian denomination, it has a profound cultural impact in Eastern Europe and beyond.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        8
+      ]
+    },
+    {
+      "index": 10,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Eastern_Orthodox_Church",
+      "extraction_target": "Reason: the number of characters when written as a Roman numeral",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (roman_numeral_letter_count) on stop 3 value",
+      "reason_transform": "roman_numeral_letter_count",
+      "reason_source_stop": 9,
+      "reason_code": "def to_roman(n):\n    n = abs(int(n))\n    vals = [(1000,'M'),(900,'CM'),(500,'D'),(400,'CD'),(100,'C'),\n            (90,'XC'),(50,'L'),(40,'XL'),(10,'X'),(9,'IX'),(5,'V'),(4,'IV'),(1,'I')]\n    r = ''\n    for v, s in vals:\n        while n >= v:\n            r += s; n -= v\n    return r\nresult = len(to_roman(1054))\nprint(result)",
+      "depends_on": [
+        9
+      ]
+    },
+    {
+      "index": 11,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Bangladesh",
+      "extraction_target": "Look up the population of Czech Republic",
+      "extraction_section": null,
+      "extracted_value": 10882341,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "countries_population",
+            "arguments": {
+              "country": "Czech Republic"
+            },
+            "expected_output": null,
+            "output_key": "population"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: population of Czech Republic",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        10
+      ]
+    },
+    {
+      "index": 12,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Washington,_D.C.",
+      "extraction_target": "the elevation listed in the infobox (field: 'Highest elevation ([Fort Reno Park](/wiki/Fort_Reno_Park \"Fort Reno Park\"))')",
+      "extraction_section": "infobox",
+      "extracted_value": 409,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Tokyo wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Tokyo",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "As the capital of the United States, Washington, D.C. is a center of political power and international diplomacy.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        11
+      ]
+    },
+    {
+      "index": 13,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Tokyo",
+      "extraction_target": "Count the number of libraries near 35.68972",
+      "extraction_section": null,
+      "extracted_value": 7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "libraries near 35.68972"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: count libraries near 35.68972",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        12
+      ]
+    },
+    {
+      "index": 14,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/United_Nations",
+      "extraction_target": "the official language listed in the infobox (field: '[Official languages](/wiki/Official_languages_of_the_United_Nations \"Official languages of the United Nations\")')",
+      "extraction_section": "infobox",
+      "extracted_value": "Arabic * Chinese * English * French * Russian * Spanish",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Neolithic wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Neolithic",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "The UN's role in global governance illustrates the interconnectedness of nations and cultures.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        13
+      ]
+    },
+    {
+      "index": 15,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Neolithic",
+      "extraction_target": "the section number of 'Periods by region'",
+      "extraction_section": "Contents",
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "2011 Tōhoku earthquake and tsunami wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/2011_T%C5%8Dhoku_earthquake_and_tsunami",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "The Neolithic era marks the beginning of settled human societies, laying the groundwork for cultural development.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        14
+      ]
+    },
+    {
+      "index": 16,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/2011_T%C5%8Dhoku_earthquake_and_tsunami",
+      "extraction_target": "the date when the Tōhoku earthquake occurred",
+      "extraction_section": null,
+      "extracted_value": "11 March 2011",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Alps wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Alps",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "This disaster had significant cultural and economic impacts on Japan and raised global awareness about disaster preparedness.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        15
+      ]
+    },
+    {
+      "index": 17,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/2011_T%C5%8Dhoku_earthquake_and_tsunami",
+      "extraction_target": "Look up the elevation of 2011 Tōhoku earthquake and tsunami",
+      "extraction_section": null,
+      "extracted_value": 48.83643341064453,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "2011 Tōhoku earthquake and tsunami"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of 2011 Tōhoku earthquake and tsunami) from https://en.wikipedia.org/wiki/2011_T%C5%8Dhoku_earthquake_and_tsunami",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        16
+      ]
+    },
+    {
+      "index": 18,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/2011_T%C5%8Dhoku_earthquake_and_tsunami",
+      "extraction_target": "Look up the count of temples near 2011 Tōhoku earthquake and tsunami",
+      "extraction_section": null,
+      "extracted_value": 14.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "temples near 2011 Tōhoku earthquake and tsunami"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of temples near 2011 Tōhoku earthquake and tsunami) from https://en.wikipedia.org/wiki/2011_T%C5%8Dhoku_earthquake_and_tsunami",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        16
+      ]
+    },
+    {
+      "index": 19,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/2011_T%C5%8Dhoku_earthquake_and_tsunami",
+      "extraction_target": "Combine the elevation of 2011 Tōhoku earthquake and tsunami and the count of temples near 2011 Tōhoku earthquake and tsunami: (48 + 14)",
+      "extraction_section": null,
+      "extracted_value": 62,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(48.83643341064453) + int(14.0)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of 2011 Tōhoku earthquake and tsunami add count of temples near 2011 Tōhoku earthquake and tsunami",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        17,
+        18
+      ]
+    },
+    {
+      "index": 20,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Alps",
+      "extraction_target": "the elevation listed in the infobox (field: '[Elevation](/wiki/Summit \"Summit\")')",
+      "extraction_section": "infobox",
+      "extracted_value": 4808.73,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Thirty Years' War wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Thirty_Years%27_War",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "The Alps have shaped European culture and commerce as a natural barrier and through promoting winter sports.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        19
+      ]
+    },
+    {
+      "index": 21,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Alps",
+      "extraction_target": "Look up the elevation of Alps",
+      "extraction_section": null,
+      "extracted_value": 2242.813720703125,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Alps"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Alps) from https://en.wikipedia.org/wiki/Alps",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        20
+      ]
+    },
+    {
+      "index": 22,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Alps",
+      "extraction_target": "Look up the count of parks near Alps",
+      "extraction_section": null,
+      "extracted_value": 6.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "parks near Alps"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of parks near Alps) from https://en.wikipedia.org/wiki/Alps",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        20
+      ]
+    },
+    {
+      "index": 23,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Alps",
+      "extraction_target": "Combine the elevation of Alps and the count of parks near Alps: (2242 + 6)",
+      "extraction_section": null,
+      "extracted_value": 2248,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(2242.813720703125) + int(6.0)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Alps add count of parks near Alps",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        21,
+        22
+      ]
+    },
+    {
+      "index": 24,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Thirty_Years%27_War",
+      "extraction_target": "Calculate the number of days between 2011-03-11 and 2026-03-27",
+      "extraction_section": null,
+      "extracted_value": 5495,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "from datetime import date\nd1 = date.fromisoformat('2011-03-11')\nd2 = date.fromisoformat('2026-03-27')\nresult = abs((d2 - d1).days)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "days"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: date computation 2011-03-11 to 2026-03-27 (pinned)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        23
+      ]
+    },
+    {
+      "index": 25,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: abs(4 - 7) % 10",
+      "extraction_section": null,
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "abs(4 - 7) % 10",
+        "expression_code": "result = abs(4 - 7) % 10\nprint(result)",
+        "referenced_stops": [
+          10,
+          13,
+          22
+        ]
+      },
+      "reasoning": "Compute stop: abs(4 - 7) % 10 = 3",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        10,
+        13,
+        22
+      ]
+    }
+  ],
+  "passcode": 3,
+  "difficulty": {
+    "level": "hard",
+    "depth": 26,
+    "tool_stop_count": 13,
+    "reason_stop_count": 4,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Seek out a municipality in the Pardubice region of the Czech lands known for its harmonious name. What height above sea level does it boast in the infobox?\n\n2. The same name from the past clue should now prompt you to consult a map. How high does this township, nestled among Czech humps, rise in meters?\n\n3. In this Czech locale, the echoes of cheering crowds linger. How many arenas of sport lie in proximity to its center?\n\n4. Add together the zenith reached in clue 2 and the arenas counted in clue 3. What is the difference between them by absolute measure?\n\n5. Delve into the prime dividers of the altitude discovered in clue 1. Add these distinct elements — what sum greets you?\n\n6. Cross cultural history to the belief that arose in the Roman Empire and branched into many schools. Consult the part listing Churches and denominations, how many key offshoots does it declare?\n\n7. Take the count from clue 6 and inscribe it in the numerals of ancient Rome. How abundant are the letters needed to do this task?\n\n8. Picture an island realm of tea and tradition as you search for the landmass of the Czech realm in square kilometers.\n\n9. Now, imagine the digital language of computers. How many ones appear when your answer from clue 8 takes binary disguise?\n\n10. Journey to the time a wedge split the oldest church — what fateful year is recorded in histories here?\n\n11. Like Caesar with legends written in stone, convert the year from clue 10 to the numeric script of emperors. How many inscribing marks do you make?\n\n12. In the lush lands of South Asia, find a populace number for the Czech citizenry today.\n\n13. Ascend to the heights where power gathers in a city crowned as the U.S. political heart. How tall does its highest ground rise in the infobox?\n\n14. A snapshot of Japan’s capital beckons. How many book havens cluster near the coordinates suggesting the center?\n\n15. When the world convenes, what tongues are declared for all to function? Find this global society and its official lexicon.\n\n16. Turn back the stone calendar to the age before metal tools. Which numbered section categorizes eras by their lands?\n\n17. In one of Earth's mighty quakes, what singular day marked upheaval on Japan's coast?\n\n18. This quake left the land altered — what new height did the earth achieve?\n\n19. Temples of peace and reflection stand around this shifting ground. Count these places of worship near the quake's mark.\n\n20. Combine the post-quake elevation with the sanctuaries from clue 19 and see what number emerges.\n\n21. Gaze upward at Europe's great peaks. At what elevation do the Alps touch the sky in the infobox?\n\n22. Take the snow-capped range and inquire of its heights using the tools of geographers — what result?\n\n23. Lush parks welcome explorers near these peaks. How many such green spaces are counted?\n\n24. Marry the tall peaks with the parks nearby. Where does this addition bring you?\n\n25. Two dates, both pivotal, now separated by time. What count of days lies between them?\n\n26. Begin with the numeral from clue 11, measure its difference with the collection of libraries in clue 14, then seek its remainder divided by ten. What number stands singular at the end of your hunt?",
+  "metadata": {
+    "theme": "The Intersection of Culture, History, and Global Influence",
+    "difficulty": "hard",
+    "sample_id": "sample_237",
+    "pages_crawled": 1853
+  },
+  "generated_at": "2026-03-27T07:51:12.226888+00:00"
+}

@@ -1,0 +1,151 @@
+{
+  "trail_id": "trail_19600609",
+  "seed_url": "https://en.wikipedia.org/wiki/David_Coulter_(minister)",
+  "seed_title": "David Coulter (minister)",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/David_Coulter_(minister)",
+      "extraction_target": "number of conflicts listed in the infobox",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Church_of_Scotland",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start with David Coulter as the personal anchor — a Christian minister whose biography links to the Church of Scotland and to ministerial service in the UK; extract the dates and denominational affiliation that set up the trail.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Church_of_Scotland",
+      "extraction_target": "the number of languages listed at the top of the page",
+      "extraction_section": null,
+      "extracted_value": 35,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Church_of_Scotland",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Move from the individual to the national denomination that shapes a minister's identity and practice; this page provides the institutional context for David Coulter's ministry.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Church_of_Scotland",
+      "extraction_target": "Reason: the sum of its digits",
+      "extraction_section": null,
+      "extracted_value": 8,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_sum) on stop 1 value",
+      "reason_transform": "digit_sum",
+      "reason_source_stop": 1,
+      "reason_code": "result = sum(int(d) for d in str(abs(int(35))))\nprint(result)"
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/The_Troubles",
+      "extraction_target": "Convert 2 km to miles",
+      "extraction_section": null,
+      "extracted_value": 1,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "# Convert km to miles\nvalue = 2.0\nconverted = value * 0.621371\nresult = int(converted)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "converted"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: convert 2 km to miles",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 4,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: abs(2 - 1) % 10",
+      "extraction_section": null,
+      "extracted_value": 1,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "abs(2 - 1) % 10",
+        "expression_code": "result = abs(2 - 1) % 10\nprint(result)",
+        "referenced_stops": [
+          0,
+          3
+        ]
+      },
+      "reasoning": "Compute stop: abs(2 - 1) % 10 = 1",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 1,
+  "difficulty": {
+    "level": "easy",
+    "depth": 5,
+    "tool_stop_count": 1,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "direct_link"
+  },
+  "riddle": "Here is the riddle with the corrected clues:\n\n1. Seek the Wikipedia page for a 19th-century Scottish minister known for his contributions to the Church affiliated with the Reformed tradition; on that entry, examine the career-summary box and tell me how many conflicts are listed there, then follow the link to Scotland's national Presbyterian body.\n\n2. There exists a page about that national Presbyterian body of Scotland; on its article, count how many different languages are shown in the language list at the page's head, and then open the main article linked from the top (the full article page).\n\n3. What is the sum of the digits of the number you just recorded in clue 2? (Treat the result from clue 2 as a normal base-10 integer and add its digits to produce a new number.)\n\n4. The article whose opening line mentions a decades-long conflict in Northern Ireland contains many historical details; on that page, convert two kilometres into miles and record the whole-number result (round down to the nearest whole mile).\n\n5. In this final step, perform the arithmetic using only the numeric values you uncovered: take the absolute difference between clue 1 and clue 4, then reduce that result modulo 10; the final answer must be a single digit (0–9).",
+  "metadata": {
+    "theme": "From a Church of Scotland minister to the churches and contested history of Northern Ireland — following a ministerial starting point to the national church, the period of the Troubles, and the city of Belfast.",
+    "difficulty": "easy",
+    "sample_id": "sample_204",
+    "pages_crawled": 324
+  },
+  "generated_at": "2026-03-20T00:24:16.614051+00:00"
+}

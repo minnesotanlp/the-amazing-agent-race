@@ -1,0 +1,474 @@
+{
+  "trail_id": "trail_8554a9c1",
+  "seed_url": "https://en.wikipedia.org/wiki/Bristol-Myers_Squibb",
+  "seed_title": "Bristol-Myers Squibb",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Bristol-Myers_Squibb",
+      "extraction_target": "the registered headquarters location",
+      "extraction_section": null,
+      "extracted_value": "Princeton, New Jersey, U.S.",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Pharmaceutical_company",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Seed: a major modern pharmaceutical company that anchors the trail in industry, R&D, and commercial drug development.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Bristol-Myers_Squibb",
+      "extraction_target": "Look up the elevation of Princeton, New Jersey, U.S.",
+      "extraction_section": null,
+      "extracted_value": 58.33136749267578,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Princeton, New Jersey, U.S."
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Princeton, New Jersey, U.S.) from https://en.wikipedia.org/wiki/Bristol-Myers_Squibb",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Bristol-Myers_Squibb",
+      "extraction_target": "Look up the count of parks near Princeton, New Jersey, U.S.",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "parks near Princeton, New Jersey, U.S."
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of parks near Princeton, New Jersey, U.S.) from https://en.wikipedia.org/wiki/Bristol-Myers_Squibb",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Bristol-Myers_Squibb",
+      "extraction_target": "Combine the elevation of Princeton, New Jersey, U.S. and the count of parks near Princeton, New Jersey, U.S.: abs(58 - 20)",
+      "extraction_section": null,
+      "extracted_value": 38,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(58.33136749267578) - int(20.0))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Princeton, New Jersey, U.S. abs_diff count of parks near Princeton, New Jersey, U.S.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1,
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Pharmaceutical_company",
+      "extraction_target": "the number of subsections listed under Research and development in the Contents",
+      "extraction_section": "Research and development",
+      "extracted_value": 1,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Cocaine wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Cocaine",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Contextual stop that defines the industry role Bristol‑Myers Squibb plays and frames later examples of marketed drugs and regulation.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Cocaine",
+      "extraction_target": "the number of languages listed at the top of the article",
+      "extraction_section": null,
+      "extracted_value": 100,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Cocaine",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "An example of a once‑medicinal but now controlled compound illustrating how medical practice and regulation evolved.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Cocaine",
+      "extraction_target": "Reason: the number of 1-bits in its binary representation",
+      "extraction_section": null,
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (binary_1bit_count) on stop 2 value",
+      "reason_transform": "binary_1bit_count",
+      "reason_source_stop": 5,
+      "reason_code": "result = bin(abs(int(100))).count('1')\nprint(result)",
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Morphine",
+      "extraction_target": "the number of subsections under Medical uses",
+      "extraction_section": "Medical uses",
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Providence, Rhode Island wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Providence,_Rhode_Island",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Opioid history complements cocaine as a case study in how potent therapeutics prompted regulatory, medical, and social responses.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Providence,_Rhode_Island",
+      "extraction_target": "Count the number of restaurants near 41.82361",
+      "extraction_section": null,
+      "extracted_value": 19,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "restaurants near 41.82361"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: count restaurants near 41.82361",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        7
+      ]
+    },
+    {
+      "index": 9,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Fluoxetine",
+      "extraction_target": "number of language editions listed at the top of the article",
+      "extraction_section": null,
+      "extracted_value": 52,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Fluoxetine",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A modern psychiatric medication showing the transition to large‑scale, regulated prescription drugs with major public impact.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        8
+      ]
+    },
+    {
+      "index": 10,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Fluoxetine",
+      "extraction_target": "Count churches near Fluoxetine",
+      "extraction_section": null,
+      "extracted_value": 20,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "churches near Fluoxetine"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (nearby_poi) derived from https://en.wikipedia.org/wiki/Fluoxetine",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        9
+      ]
+    },
+    {
+      "index": 11,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Fluoxetine",
+      "extraction_target": "Reason: the sum of its digits",
+      "extraction_section": null,
+      "extracted_value": 7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_sum) on stop 5 value",
+      "reason_transform": "digit_sum",
+      "reason_source_stop": 9,
+      "reason_code": "result = sum(int(d) for d in str(abs(int(52))))\nprint(result)",
+      "depends_on": [
+        9
+      ]
+    },
+    {
+      "index": 12,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Moderna_COVID%E2%80%9119_vaccine",
+      "extraction_target": "the number of subsections under the Society and culture section listed in the Contents",
+      "extraction_section": "Society and culture",
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "HIV/AIDS wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/HIV/AIDS",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A recent high‑impact pharmaceutical intervention demonstrating rapid R&D, regulatory emergency use, and global public‑health effects.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        11
+      ]
+    },
+    {
+      "index": 13,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/HIV/AIDS",
+      "extraction_target": "the number of subsections under Signs and symptoms",
+      "extraction_section": "Signs and symptoms",
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/HIV/AIDS",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Concluding public‑health case showing how sustained pharmaceutical innovation (antivirals, vaccines, treatments) transformed the outlook for a major global epidemic.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        12
+      ]
+    },
+    {
+      "index": 14,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: digital_root(1 + 100 + 3 + 52)",
+      "extraction_section": null,
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "digital_root(1 + 100 + 3 + 52)",
+        "expression_code": "def digital_root(n):\n    n = abs(int(n))\n    return n if n == 0 else ((n - 1) % 9) + 1\nresult = digital_root(1 + 100 + 3 + 52)\nprint(result)",
+        "referenced_stops": [
+          4,
+          5,
+          7,
+          9
+        ]
+      },
+      "reasoning": "Compute stop: digital_root(1 + 100 + 3 + 52) = 3",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        4,
+        5,
+        7,
+        9
+      ]
+    }
+  ],
+  "passcode": 3,
+  "difficulty": {
+    "level": "medium",
+    "depth": 15,
+    "tool_stop_count": 5,
+    "reason_stop_count": 2,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Seek the pharmaceutical giant based in a town known for its prestigious university. In which city does this company hang its hat?\n\n2. What height does the ground claim amidst the charming streets of this university town, which hosts your first answer? Uncover the elevation in meters.\n\n3. How many parks do the residents of this scholarly haven enjoy in their green spaces? Count the parks near the city you've just unearthed.\n\n4. Now, take the absolute difference between the elevation from clue 2 and the park count from clue 3. What number emerges from this calculation?\n\n5. Turn your gaze to the realm of medical corporations. What lies beneath the surface in the domain of innovation and discovery? Discover how many subsections there are under the chapter of Research and development in this universe.\n\n6. Among the many languages that speak of a certain stimulating substance, how many tongues share its story at the start of its article? \n\n7. Once you've found that total, consider it anew: what is the number of 1-bits in its binary form? \n\n8. Seek the substance known for its pain-relieving properties, often described as a liquid treasure in medicine’s chest. How many subsections detail its medical uses?\n\n9. In the city that boasts a river of the same name, how many eateries line the streets? Count the restaurants near its geographic coordinates.\n\n10. Find the edition languages attributed to the pharmaceutical wizard that is often prescribed for mood elevation. This should be on the surface of the article.\n\n11. Count the places of worship situated in proximity to the magical concoction you just explored. How many churches surround its name?\n\n12. Reflect on the number you gathered in clue 10. What result do you achieve by summing its digits?\n\n13. At the intersection of science and culture, a remedy emerged during a global crisis. How many subsections speak to the society and culture within that context?\n\n14. Turning to a complex virus, discover how many aspects of signs and symptoms are laid bare under its description. What is that number?\n\n15. To conclude your journey, compute the digital root of the total you gathered from clues 5, 6, 8, and 10, using this expression: digital_root(1 + 100 + 3 + 52). This final answer is a single digit, a key that unlocks the next phase of your exploration.",
+  "metadata": {
+    "theme": "Tracing the arc of pharmaceuticals: from companies to controlled substances, medical breakthroughs, public health crises, and the political/economic forces that shaped drug regulation and markets.",
+    "difficulty": "medium",
+    "sample_id": "sample_149",
+    "pages_crawled": 9443
+  },
+  "generated_at": "2026-03-17T13:01:39.718674+00:00"
+}

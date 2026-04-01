@@ -1,0 +1,175 @@
+{
+  "trail_id": "trail_4fc5a405",
+  "seed_url": "https://en.wikipedia.org/wiki/FedEx",
+  "seed_title": "FedEx",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/FedEx",
+      "extraction_target": "the number of subsections listed under Criticism, controversies, and incidents in the table of contents",
+      "extraction_section": "Criticism, controversies, and incidents",
+      "extracted_value": 10,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/FedEx",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Seed: FedEx is the starting point as a major global courier; extract its headquarters/main air hub to anchor the route geographically.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/FedEx",
+      "extraction_target": "Count libraries near FedEx",
+      "extraction_section": null,
+      "extracted_value": 20,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "libraries near FedEx"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (nearby_poi) derived from https://en.wikipedia.org/wiki/FedEx",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/FedEx",
+      "extraction_target": "Reason: the sum of its distinct prime factors",
+      "extraction_section": null,
+      "extracted_value": 7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (sum_prime_factors) on stop 0 value",
+      "reason_transform": "sum_prime_factors",
+      "reason_source_stop": 0,
+      "reason_code": "def prime_factors(n):\n    n = abs(int(n))\n    factors = []\n    d = 2\n    while d * d <= n:\n        while n % d == 0:\n            factors.append(d)\n            n //= d\n        d += 1\n    if n > 1: factors.append(n)\n    return factors\nresult = sum(set(prime_factors(10)))\nprint(result)"
+    },
+    {
+      "index": 3,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Amsterdam",
+      "extraction_target": "the coordinates listed in the infobox (field: 'Coordinates')",
+      "extraction_section": "infobox",
+      "extracted_value": "52.37278, 4.89361",
+      "extracted_value_type": "coords",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Transportation wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Transportation",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Amsterdam represents a major European logistics and freight gateway; follow the transatlantic connection from Memphis to Amsterdam.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 4,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Transportation",
+      "extraction_target": "the number of subsections listed under Modes",
+      "extraction_section": "Modes",
+      "extracted_value": 6,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Transportation",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Step back to the broader transportation industry to contextualize how companies like FedEx and Amazon Logistics fit into modal networks and global freight flows.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 5,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: digital_root(10 + 20 + 7)",
+      "extraction_section": null,
+      "extracted_value": 1,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "digital_root(10 + 20 + 7)",
+        "expression_code": "def digital_root(n):\n    n = abs(int(n))\n    return n if n == 0 else ((n - 1) % 9) + 1\nresult = digital_root(10 + 20 + 7)\nprint(result)",
+        "referenced_stops": [
+          0,
+          1,
+          2
+        ]
+      },
+      "reasoning": "Compute stop: digital_root(10 + 20 + 7) = 1",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 1,
+  "difficulty": {
+    "level": "easy",
+    "depth": 6,
+    "tool_stop_count": 1,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Unearth the American titan of freight, known for its rapid delivery and an expansive global network. How many subsections reveal the company's shadows under criticism, controversies, and incidents in the contents?\n\n2. Track down the literary havens that surround this freight behemoth. How many libraries stand within reach of its headquarters?\n\n3. In the realm of numbers, seek the unique prime factors of the count you discovered in clue 1. What is their sum?\n\n4. A city renowned for its canals and artistic heritage serves as a new waypoint. Delve into this capital of the Netherlands and find its specific geographic marks—what are the coordinates it claims?\n\n5. The journey continues to an entry about the many ways we traverse the globe. How many subsections articulate the various modes of movement in this expansive field?\n\n6. With the wisdom from clues 1, 2, and 3, embark on a numeric transformation. What is the digital root of (10 from clue 1 + 20 from clue 2 + the sum of distinct prime factors from clue 3)? The answer is a single digit (0-9).",
+  "metadata": {
+    "theme": "Tracing global logistics from a US shipping giant to international routes and the broader transportation industry",
+    "difficulty": "easy",
+    "sample_id": "sample_180",
+    "pages_crawled": 3869
+  },
+  "generated_at": "2026-03-17T11:53:16.176748+00:00"
+}

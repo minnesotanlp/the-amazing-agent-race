@@ -1,0 +1,174 @@
+{
+  "trail_id": "trail_69c6c341",
+  "seed_url": "https://en.wikipedia.org/wiki/Texas_Instruments",
+  "seed_title": "Texas Instruments",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Texas_Instruments",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Founded')",
+      "extraction_section": "infobox",
+      "extracted_value": 1930,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Jack_Kilby",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Seed of the trail — Texas Instruments is where Jack Kilby developed the first integrated circuit; extracting its headquarters ties the company to Texas tech geography that the trail will revisit.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Jack_Kilby",
+      "extraction_target": "Convert 1930°C to a Fahrenheit-scale offset",
+      "extraction_section": null,
+      "extracted_value": 3474,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "# Convert celsius to fahrenheit_offset\nvalue = 1930.0\nconverted = value * 1.8\nresult = int(converted)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "converted"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: convert 1930 celsius to fahrenheit_offset",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Large_Scale_Integration",
+      "extraction_target": "the number of languages the article is available in",
+      "extraction_section": null,
+      "extracted_value": 92,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Large Scale Integration wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Large_Scale_Integration",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Explains the technological scaling (Large-Scale Integration) that followed the first IC and shows how transistor counts and integration levels enabled the devices that came later.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 3,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Large_Scale_Integration",
+      "extraction_target": "Reason: the sum of its distinct prime factors",
+      "extraction_section": null,
+      "extracted_value": 25,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (sum_prime_factors) on stop 2 value",
+      "reason_transform": "sum_prime_factors",
+      "reason_source_stop": 2,
+      "reason_code": "def prime_factors(n):\n    n = abs(int(n))\n    factors = []\n    d = 2\n    while d * d <= n:\n        while n % d == 0:\n            factors.append(d)\n            n //= d\n        d += 1\n    if n > 1: factors.append(n)\n    return factors\nresult = sum(set(prime_factors(92)))\nprint(result)"
+    },
+    {
+      "index": 4,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/NASA",
+      "extraction_target": "the year range shown for the 'International Space Station' subsection in the table of contents",
+      "extraction_section": "International Space Station (1993–present)",
+      "extracted_value": "1993–present",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/NASA",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Shows early high-reliability applications of integrated circuits in spaceflight (NASA projects), demonstrating a critical domain that accelerated IC adoption and trust.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 5,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: abs(1930 - 3474) % 10",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "abs(1930 - 3474) % 10",
+        "expression_code": "result = abs(1930 - 3474) % 10\nprint(result)",
+        "referenced_stops": [
+          0,
+          1
+        ]
+      },
+      "reasoning": "Compute stop: abs(1930 - 3474) % 10 = 4",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 4,
+  "difficulty": {
+    "level": "easy",
+    "depth": 6,
+    "tool_stop_count": 1,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "Here is the rewritten riddle:\n\n1. Seek the Wikipedia page for a prominent American multinational electronics company known for its calculators and semiconductors; note the year the company was established; once done, follow the page's link to the engineer credited with inventing the first integrated circuit (an American electronics engineer, 1923–2005).\n\n2. On that inventor's page, what integer do you get when you convert 1930°C to the Fahrenheit scale (express the result as a whole number); after noting this, proceed via any linked term that discusses packing thousands of transistors into a single chip.\n\n3. There exists an article describing the era when circuits grew to thousands of components on a chip; count how many language editions host that article and record that number.\n\n4. If you now take the language-count from clue 3, compute the sum of its distinct prime factors — that arithmetic result becomes the value of clue 4.\n\n5. The entry whose opening line names America's civil space and aeronautics agency lists an item labeled \"International Space Station\" in its contents; read the year-range shown next to that contents entry and keep it as clue 5.\n\n6. (Final arithmetic) Take the absolute difference between clue 1 and clue 2, then reduce that difference modulo 10; compute abs(clue 1 - clue 2) % 10 and report the single digit (0–9) that you obtain.",
+  "metadata": {
+    "theme": "From invention to impact: tracing the integrated circuit’s journey — Texas Instruments' birth of the IC, its inventor and scaling (LSI), adoption in spaceflight, and modern commercial impact and Texas tech geography.",
+    "difficulty": "easy",
+    "sample_id": "sample_145",
+    "pages_crawled": 1715
+  },
+  "generated_at": "2026-03-17T08:44:53.533310+00:00"
+}

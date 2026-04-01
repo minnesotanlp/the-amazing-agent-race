@@ -1,0 +1,175 @@
+{
+  "trail_id": "trail_70a66e88",
+  "seed_url": "https://en.wikipedia.org/wiki/Netflix",
+  "seed_title": "Netflix",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Netflix",
+      "extraction_target": "the number of languages listed in the language links near the top of the page",
+      "extraction_section": null,
+      "extracted_value": 132,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Blockbuster_(retailer)",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start at the seed: Netflix is the streaming pioneer whose infobox lists its corporate headquarters — this anchors the trail geographically and corporately.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Blockbuster_(retailer)",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Founded')",
+      "extraction_section": "infobox",
+      "extracted_value": 19,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Los Gatos, California wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Los_Gatos,_California",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Contrast point: Blockbuster represents the pre-streaming video-rental industry whose rise and fall highlight the disruptive impact of streaming services like Netflix.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Los_Gatos,_California",
+      "extraction_target": "Count the number of universities near 37.23611",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "universities near 37.23611"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: count universities near 37.23611",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 3,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Los_Gatos,_California",
+      "extraction_target": "Reason: the digital root (iterated digit sum until single digit)",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digital_root) on stop 2 value",
+      "reason_transform": "digital_root",
+      "reason_source_stop": 2,
+      "reason_code": "n = abs(int(5))\nresult = n if n == 0 else ((n - 1) % 9) + 1\nprint(result)"
+    },
+    {
+      "index": 4,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Amazon_Prime_Video",
+      "extraction_target": "the year Prime Video's logo has been used since (as shown in the infobox caption)",
+      "extraction_section": null,
+      "extracted_value": "2024",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Amazon_Prime_Video",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Finish by situating Netflix within the modern competitive streaming landscape — Amazon Prime Video is a major rival owned by Amazon, showing how tech giants expanded into streaming.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 5,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: abs(132 - 5) % 10",
+      "extraction_section": null,
+      "extracted_value": 7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "abs(132 - 5) % 10",
+        "expression_code": "result = abs(132 - 5) % 10\nprint(result)",
+        "referenced_stops": [
+          0,
+          2,
+          3
+        ]
+      },
+      "reasoning": "Compute stop: abs(132 - 5) % 10 = 7",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 7,
+  "difficulty": {
+    "level": "easy",
+    "depth": 6,
+    "tool_stop_count": 1,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "Here is the riddle with the modified clue:\n\n1. Seek the streaming service known for its red logo; near the top there is a cluster of language links — how many languages are listed there? After noting that number, follow the page's link to the once-ubiquitous video-rental chain that transformed how people rented films, innovating with a subscription model and DVD mailings.\n\n2. There exists a page about that American video-rental company; on that page, what year does the article say the business was founded (look to the summary panel near the top)? Once recorded, look for the Wikipedia entry for the small California town that hosts the corporate headquarters of the streaming service with a strong script-like logo.\n\n3. How many universities can you find near latitude 37.23611 on that town’s page or its local maps — count the institutions that qualify as universities in the vicinity.\n\n4. If you take the count you just found in clue 3, compute its digital root by repeatedly summing digits until a single digit remains; that single digit is your clue 4.\n\n5. The article whose opening line names the streaming arm run by the world’s largest online retailer holds the next detail; read the logo caption in the page’s summary panel and record the year indicated there as the year that logo has been used since.\n\n6. In the end, compute the absolute difference between clue 1 and clue 4, then take that result modulo 10: that final calculation (abs(clue 1 - clue 4) mod 10) yields a single digit between 0 and 9.",
+  "metadata": {
+    "theme": "From Blockbuster rentals to global streaming: follow Netflix’s corporate footprint (headquarters and market value) and how streaming reshaped the local entertainment landscape and competition.",
+    "difficulty": "easy",
+    "sample_id": "sample_125",
+    "pages_crawled": 500
+  },
+  "generated_at": "2026-03-17T07:15:51.789280+00:00"
+}

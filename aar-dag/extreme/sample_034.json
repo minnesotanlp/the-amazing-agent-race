@@ -1,0 +1,1105 @@
+{
+  "trail_id": "trail_de6d9d7a",
+  "seed_url": "https://en.wikipedia.org/wiki/Little_Fire_River",
+  "seed_title": "Little Fire River",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Little_Fire_River",
+      "extraction_target": "the elevation listed in the infobox (field: '• elevation')",
+      "extraction_section": "infobox",
+      "extracted_value": 397,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Little_Fire_River",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Seed: the expedition's starting point — a remote northern Ontario waterway that anchors the trail.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Little_Fire_River",
+      "extraction_target": "Reason: the number of characters when written as a Roman numeral",
+      "extraction_section": null,
+      "extracted_value": 8,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (roman_numeral_letter_count) on stop 0 value",
+      "reason_transform": "roman_numeral_letter_count",
+      "reason_source_stop": 0,
+      "reason_code": "def to_roman(n):\n    n = abs(int(n))\n    vals = [(1000,'M'),(900,'CM'),(500,'D'),(400,'CD'),(100,'C'),\n            (90,'XC'),(50,'L'),(40,'XL'),(10,'X'),(9,'IX'),(5,'V'),(4,'IV'),(1,'I')]\n    r = ''\n    for v, s in vals:\n        while n >= v:\n            r += s; n -= v\n    return r\nresult = len(to_roman(397))\nprint(result)",
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Chapleau_Crown_Game_Preserve",
+      "extraction_target": "area of the preserve in square kilometres",
+      "extraction_section": null,
+      "extracted_value": 7000,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Chapleau_Crown_Game_Preserve",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "The preserve that frames the river — a large protected area and ecological context for local wildlife and land management.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Chapleau_Crown_Game_Preserve",
+      "extraction_target": "Reason: the digital root (iterated digit sum until single digit)",
+      "extraction_section": null,
+      "extracted_value": 7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digital_root) on stop 1 value",
+      "reason_transform": "digital_root",
+      "reason_source_stop": 2,
+      "reason_code": "n = abs(int(7000))\nresult = n if n == 0 else ((n - 1) % 9) + 1\nprint(result)",
+      "depends_on": [
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Queensland_Sport_and_Athletics_Centre",
+      "extraction_target": "Look up the elevation at Kessels Road * Nathan",
+      "extraction_section": null,
+      "extracted_value": 43.42757415771484,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Kessels Road * Nathan"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for Kessels Road * Nathan",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Telephone_numbers_in_Canada",
+      "extraction_target": "the country calling code assigned to the NANP as shown in the infobox",
+      "extraction_section": null,
+      "extracted_value": 1,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Population of Canada wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Population_of_Canada",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Communications context: how Canada is numbered and connected — useful when planning logistics to remote areas like the Little Fire River.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Telephone_numbers_in_Canada",
+      "extraction_target": "Look up the elevation of Telephone numbers in Canada",
+      "extraction_section": null,
+      "extracted_value": 469.0814514160156,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Telephone numbers in Canada"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Telephone numbers in Canada) from https://en.wikipedia.org/wiki/Telephone_numbers_in_Canada",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Telephone_numbers_in_Canada",
+      "extraction_target": "Look up the Google rating of Telephone numbers in Canada",
+      "extraction_section": null,
+      "extracted_value": 3.1,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "Telephone numbers in Canada"
+            },
+            "expected_output": null,
+            "output_key": "place_rating"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (Google rating of Telephone numbers in Canada) from https://en.wikipedia.org/wiki/Telephone_numbers_in_Canada",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Telephone_numbers_in_Canada",
+      "extraction_target": "Combine the elevation of Telephone numbers in Canada and the Google rating of Telephone numbers in Canada: abs(469 - 3)",
+      "extraction_section": null,
+      "extracted_value": 466,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(469.0814514160156) - int(3.1))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Telephone numbers in Canada abs_diff Google rating of Telephone numbers in Canada",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6,
+        7
+      ]
+    },
+    {
+      "index": 9,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Population_of_Canada",
+      "extraction_target": "Look up the population of Canada",
+      "extraction_section": null,
+      "extracted_value": 41651653,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "countries_population",
+            "arguments": {
+              "country": "Canada"
+            },
+            "expected_output": null,
+            "output_key": "population"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: population of Canada",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        8
+      ]
+    },
+    {
+      "index": 10,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Population_of_Canada",
+      "extraction_target": "Reason: the digital root (iterated digit sum until single digit)",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digital_root) on stop 4 value",
+      "reason_transform": "digital_root",
+      "reason_source_stop": 9,
+      "reason_code": "n = abs(int(41651653))\nresult = n if n == 0 else ((n - 1) % 9) + 1\nprint(result)",
+      "depends_on": [
+        9
+      ]
+    },
+    {
+      "index": 11,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Historic_district_(United_States)",
+      "extraction_target": "the number of languages listed at the top of the article",
+      "extraction_section": null,
+      "extracted_value": 8,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Non-metropolitan district wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Non-metropolitan_district",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Introduce the idea of formal protection designations and how cultural/land preservation is codified in different jurisdictions.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        10
+      ]
+    },
+    {
+      "index": 12,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Non-metropolitan_district",
+      "extraction_target": "the number of non-metropolitan districts",
+      "extraction_section": null,
+      "extracted_value": 226,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "BYU Cougars wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/BYU_Cougars",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Compare administrative units and scales of local governance that oversee land use and services in rural regions.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        11
+      ]
+    },
+    {
+      "index": 13,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/BYU_Cougars",
+      "extraction_target": "Look up the population of Canada",
+      "extraction_section": null,
+      "extracted_value": 41651653,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "countries_population",
+            "arguments": {
+              "country": "Canada"
+            },
+            "expected_output": null,
+            "output_key": "population"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: population of Canada",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        12
+      ]
+    },
+    {
+      "index": 14,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Electoral_ward",
+      "extraction_target": "the year Centre (No. 5) and West (No. 6) wards in Cork were defined",
+      "extraction_section": "Origins",
+      "extracted_value": "1853",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Counties of Northern Ireland wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Counties_of_Northern_Ireland",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Examine the smallest units of political representation and how they map onto land management and local services near preserved areas.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        13
+      ]
+    },
+    {
+      "index": 15,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Counties_of_Northern_Ireland",
+      "extraction_target": "the number of counties listed in the infobox",
+      "extraction_section": null,
+      "extracted_value": 6,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Governance of England wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Governance_of_England",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A comparative example of subnational divisions — useful for seeing different models of land and administrative boundaries.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        14
+      ]
+    },
+    {
+      "index": 16,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Counties_of_Northern_Ireland",
+      "extraction_target": "Look up the elevation of Counties of Northern Ireland",
+      "extraction_section": null,
+      "extracted_value": 12.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Counties of Northern Ireland"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Counties of Northern Ireland) from https://en.wikipedia.org/wiki/Counties_of_Northern_Ireland",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        15
+      ]
+    },
+    {
+      "index": 17,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Counties_of_Northern_Ireland",
+      "extraction_target": "Look up the count of libraries near Counties of Northern Ireland",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "libraries near Counties of Northern Ireland"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of libraries near Counties of Northern Ireland) from https://en.wikipedia.org/wiki/Counties_of_Northern_Ireland",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        15
+      ]
+    },
+    {
+      "index": 18,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Counties_of_Northern_Ireland",
+      "extraction_target": "Combine the elevation of Counties of Northern Ireland and the count of libraries near Counties of Northern Ireland: (12 + 20)",
+      "extraction_section": null,
+      "extracted_value": 32,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(12.0) + int(20.0)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Counties of Northern Ireland add count of libraries near Counties of Northern Ireland",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        16,
+        17
+      ]
+    },
+    {
+      "index": 19,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Governance_of_England",
+      "extraction_target": "the number of subsections listed under section 3 (\"England-only\" departments and agencies of the UK central government)",
+      "extraction_section": "\"England-only\" departments and agencies of the UK central government",
+      "extracted_value": 8,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "New South Wales Government wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/New_South_Wales_Government",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Compare governance structures that determine land use, conservation policy and local service delivery in another jurisdiction.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        18
+      ]
+    },
+    {
+      "index": 20,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Governance_of_England",
+      "extraction_target": "Look up the elevation of Governance of England",
+      "extraction_section": null,
+      "extracted_value": 95.00697326660156,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Governance of England"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Governance of England) from https://en.wikipedia.org/wiki/Governance_of_England",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        19
+      ]
+    },
+    {
+      "index": 21,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Governance_of_England",
+      "extraction_target": "Look up the count of libraries near Governance of England",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "libraries near Governance of England"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of libraries near Governance of England) from https://en.wikipedia.org/wiki/Governance_of_England",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        19
+      ]
+    },
+    {
+      "index": 22,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Governance_of_England",
+      "extraction_target": "Combine the elevation of Governance of England and the count of libraries near Governance of England: (95 + 20)",
+      "extraction_section": null,
+      "extracted_value": 115,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(95.00697326660156) + int(20.0)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Governance of England add count of libraries near Governance of England",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        20,
+        21
+      ]
+    },
+    {
+      "index": 23,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Governance_of_England",
+      "extraction_target": "Look up the elevation of Governance of England",
+      "extraction_section": null,
+      "extracted_value": 95.00697326660156,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Governance of England"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (elevation) derived from https://en.wikipedia.org/wiki/Governance_of_England",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        22
+      ]
+    },
+    {
+      "index": 24,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/New_South_Wales_Government",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Established')",
+      "extraction_section": "infobox",
+      "extracted_value": 6,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "NAPA Auto Parts 300 wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/NAPA_Auto_Parts_300",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Another administrative model (Australian state government) for cross-jurisdictional comparison of environmental governance.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        23
+      ]
+    },
+    {
+      "index": 25,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/NAPA_Auto_Parts_300",
+      "extraction_target": "Look up the population of Canada",
+      "extraction_section": null,
+      "extracted_value": 41651653,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "countries_population",
+            "arguments": {
+              "country": "Canada"
+            },
+            "expected_output": null,
+            "output_key": "population"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: population of Canada",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        24
+      ]
+    },
+    {
+      "index": 26,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/NAPA_Auto_Parts_300",
+      "extraction_target": "Reason: the next prime number after that figure",
+      "extraction_section": null,
+      "extracted_value": 41651663,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (next_prime) on stop 12 value",
+      "reason_transform": "next_prime",
+      "reason_source_stop": 25,
+      "reason_code": "def next_prime(n):\n    n = abs(int(n))\n    if n < 2: return 2\n    candidate = n + 1\n    while True:\n        if all(candidate % i != 0 for i in range(2, int(candidate**0.5)+1)):\n            return candidate\n        candidate += 1\nresult = next_prime(41651653)\nprint(result)",
+      "depends_on": [
+        25
+      ]
+    },
+    {
+      "index": 27,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Dwight_Morrow_High_School",
+      "extraction_target": "the coordinates listed in the infobox (field: 'Coordinates')",
+      "extraction_section": "infobox",
+      "extracted_value": "40°54′29″N 73°58′50″W﻿ / ﻿40.908126°N 73.980656°W﻿ / 40.908126; -73.980656",
+      "extracted_value_type": "coords",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Human rights in Austria wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Human_rights_in_Austria",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A community anchor example — schools represent local populations and services that differ sharply from preserve zones.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        26
+      ]
+    },
+    {
+      "index": 28,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Human_rights_in_Austria",
+      "extraction_target": "the number of languages listed at the top of the article",
+      "extraction_section": null,
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Human_rights_in_Germany",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Introduce legal frameworks that influence land use, Indigenous rights, and conservation policy in different countries.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        27
+      ]
+    },
+    {
+      "index": 29,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Human_rights_in_Germany",
+      "extraction_target": "the number of language links shown at the top of the article",
+      "extraction_section": null,
+      "extracted_value": 6,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Human_rights_in_Germany",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A second legal example for comparative analysis of rights and protections affecting environmental governance.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        28
+      ]
+    },
+    {
+      "index": 30,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Human_rights_in_Germany",
+      "extraction_target": "Reason: the sum of its digits",
+      "extraction_section": null,
+      "extracted_value": 6,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_sum) on stop 15 value",
+      "reason_transform": "digit_sum",
+      "reason_source_stop": 29,
+      "reason_code": "result = sum(int(d) for d in str(abs(int(6))))\nprint(result)",
+      "depends_on": [
+        29
+      ]
+    },
+    {
+      "index": 31,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Telephone_numbers_in_Austria",
+      "extraction_target": "the numbering plan type listed in the infobox",
+      "extraction_section": null,
+      "extracted_value": "open",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Telephone_numbers_in_Austria",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A communications-country contrast (Austria vs Canada) to highlight infrastructure and connectivity differences.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        30
+      ]
+    },
+    {
+      "index": 32,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Telephone_numbers_in_Austria",
+      "extraction_target": "Reason: the alphabetical position of its first letter (A=1, B=2, ...)",
+      "extraction_section": null,
+      "extracted_value": 15,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (alpha_position_first_letter) on stop 16 value",
+      "reason_transform": "alpha_position_first_letter",
+      "reason_source_stop": 31,
+      "reason_code": "first = \"open\"[0].upper()\nresult = ord(first) - ord('A') + 1 if first.isalpha() else 0\nprint(result)",
+      "depends_on": [
+        31
+      ]
+    },
+    {
+      "index": 33,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Immigration_and_Naturalization_Service",
+      "extraction_target": "the number of agencies most of INS functions were transferred to in 2003",
+      "extraction_section": null,
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Immigration_and_Naturalization_Service",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Administrative agency example: how different layers of government regulate access, travel and human movement — relevant to planning and protecting remote areas.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        32
+      ]
+    },
+    {
+      "index": 34,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: (7000 + 32) % 10",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "(7000 + 32) % 10",
+        "expression_code": "result = (7000 + 32) % 10\nprint(result)",
+        "referenced_stops": [
+          2,
+          18
+        ]
+      },
+      "reasoning": "Compute stop: (7000 + 32) % 10 = 2",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2,
+        18
+      ]
+    }
+  ],
+  "passcode": 2,
+  "difficulty": {
+    "level": "extreme",
+    "depth": 35,
+    "tool_stop_count": 14,
+    "reason_stop_count": 6,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Seek the flowing waters whose name suggests a fiery glow — what is the height above sea level that they embrace?\n\n2. Converting that elevation into a Roman numeral, how many characters does it take to symbolize this value?\n\n3. Travel onward to the vast expanse devoted to wildlife conservation nearby; what is the area of this protected realm, measured in square kilometers?\n\n4. Reflect on the previous area you uncovered; what is its digital root when summing the digits until only a single digit remains?\n\n5. Cast your gaze on the land down under to find a famous athletics center; what is the elevation at Kessels Road * Nathan?\n\n6. The country that hosts telephonic connections of North America has its own calling code—what number is assigned to this region within the North American Numbering Plan?\n\n7. In the realm of phone calls, discover the elevation associated with the geography of those calling codes—what height can you find?\n\n8. Now, while traversing the digital landscape, seek the star rating bestowed upon this telecommunication topic — what do travelers give it?\n\n9. Add the elevation from clue 7 to the Google rating you obtained in clue 8 to uncover a new numeric treasure.\n\n10. Seeking a broader understanding, check how many people inhabit the land of maple syrup, eh? What is the current population count for this nation?\n\n11. Take the figure from clue 10 and reduce it to its essence — what is the digital root of this population?\n\n12. Within the annals of historic governance, the number of languages spoken under U.S. protections is recorded; how many will you find at the start of that article?\n\n13. Transitioning to non-metropolitan living, seek out how many such districts exist — what is that total?\n\n14. Discover the population for a beloved collegiate athletic team — how many reside within the surrounding community?\n\n15. Find the year that marked the beginning of the Centre (No. 5) and West (No. 6) wards in a southern Irish city — what year was this?\n\n16. Discover the number of counties charted in the region where history and governance intertwine; how many do you tally from that article?\n\n17. In this land of counties, what is the elevation of the geographic boundaries?\n\n18. For those seeking knowledge, how many libraries can be found nearby this land of counties?\n\n19. Combine the elevation from clue 17 with the count of libraries from clue 18 — what numerical result do you arrive at?\n\n20. Investigate how many sections govern the \"England-only\" agencies of the United Kingdom, as indicated in the relevant article; what is that count?\n\n21. What is the elevation attributed to the governance of this historical region? Seek and record that figure.\n\n22. Nearby this governance, how many libraries can be found; count them and carry forth the number?\n\n23. Add the elevation acquired in clue 21 to the total number of libraries in clue 22 — what sum do you derive?\n\n24. Find the elevation of this significant governance region once more; what height do you discover?\n\n25. Investigate when a government formed in Australia's most populated state — what year marks this establishment?\n\n26. Seeking those in the fast lane, what is the population of the nation that this auto event calls home?\n\n27. Find the next prime number after the figure you uncovered in relation to the automotive race — what is it?\n\n28. Geographically pinpoint the school where the namesake once thrived; what are its coordinates?\n\n29. In an engaging discussion about human rights, how many languages are referenced in Austria's coverage?\n\n30. Expand your inquiry to Germany's rights; how many language links are displayed at the top of the respective article?\n\n31. From this count, sum up the digits you've encountered to reveal a new value.\n\n32. In the telecommunications world, what classification describes Austria's phone numbering system?\n\n33. As you decipher this classification, what is the positional value of its first letter in the alphabet?\n\n34. An agency was formed in 2003 from a larger entity; discover how many departments were born from this division.\n\n35. Finally, summarize your journey from clues 3 and 19 by computing: (7000 + 32) % 10. What single digit emerges from your calculations?",
+  "metadata": {
+    "theme": "A field expedition that begins at a remote Ontario river and radiates outward: examining the protected Chapleau Crown Game Preserve, then comparing governance, communications, population context and infrastructure across regions — using geographic and climate tools to quantify elevation, remoteness, travel, nearby services, sunshine and national population to situate the river in a broader human / environmental landscape.",
+    "difficulty": "extreme",
+    "sample_id": "sample_034",
+    "pages_crawled": 5566
+  },
+  "generated_at": "2026-03-16T18:46:22.040162+00:00"
+}

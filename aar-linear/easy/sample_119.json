@@ -1,0 +1,162 @@
+{
+  "trail_id": "trail_e5dbe94b",
+  "seed_url": "https://en.wikipedia.org/wiki/M-Net_Edge",
+  "seed_title": "M-Net Edge",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/M-Net_Edge",
+      "extraction_target": "the launch date of M-Net Edge",
+      "extraction_section": null,
+      "extracted_value": "20 October 2014",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/M-Net",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start at M-Net Edge — the niche entertainment channel whose creation and fate illustrate programming strategies within the South African pay-TV market.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/M-Net",
+      "extraction_target": "the year M-Net was established by Naspers",
+      "extraction_section": null,
+      "extracted_value": 1986,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/M-Net",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Move to M-Net, the parent broadcaster — its corporate and location details explain the institutional context behind channels like M-Net Edge.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/M-Net",
+      "extraction_target": "Reason: the count of leap years between that year and 2000",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (leap_years_to_2000) on stop 1 value",
+      "reason_transform": "leap_years_to_2000",
+      "reason_source_stop": 1,
+      "reason_code": "import calendar\ny = abs(int(1986))\nlo, hi = min(y, 2000), max(y, 2000)\nresult = sum(1 for yr in range(lo, hi+1) if calendar.isleap(yr))\nprint(result)"
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Sentech",
+      "extraction_target": "Look up the elevation at Johannesburg",
+      "extraction_section": null,
+      "extracted_value": 1722.341796875,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Johannesburg"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for Johannesburg",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 4,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: digital_root(1986 + 4 + 1722)",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "digital_root(1986 + 4 + 1722)",
+        "expression_code": "def digital_root(n):\n    n = abs(int(n))\n    return n if n == 0 else ((n - 1) % 9) + 1\nresult = digital_root(1986 + 4 + 1722)\nprint(result)",
+        "referenced_stops": [
+          1,
+          2,
+          3
+        ]
+      },
+      "reasoning": "Compute stop: digital_root(1986 + 4 + 1722) = 4",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 4,
+  "difficulty": {
+    "level": "easy",
+    "depth": 5,
+    "tool_stop_count": 1,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "direct_link"
+  },
+  "riddle": "1. Seek the satellite channel that once catered to aficionados of edgy dramas and niche shows. Uncover the date when this channel first illuminated screens across South Africa. \n\n2. In the land of entrepreneurial endeavors, find the year when the broadcasting giant sprouted its roots, founded by the publishing powerhouse that hails from the south.\n\n3. Now calculate the number of leap year commitments made between that foundational year and the dawn of a new millennium, the year 2000.\n\n4. If Johannesburg's skyline beckons, determine how high this city of gold soars from sea level, where signal beams take flight.\n\n5. With numbers in hand, trace back the film reel of time—combine the second year from which you counted leap years, the soaring height found in the City of Gold, and the quad from your leap year tally. Discover their essence through digital alchemy, revealing a single numeral.\n\nFinal challenge: Calculating the sum digital root: (clue 2 + clue 3 + clue 4) will unveil the treasure's position, a singular digit within the puzzle.",
+  "metadata": {
+    "theme": "Tracing the South African pay-television pipeline: from a niche channel to its broadcaster and the signal/distribution infrastructure that delivers it.",
+    "difficulty": "easy",
+    "sample_id": "sample_119",
+    "pages_crawled": 1036,
+    "source": "trail_puzzles_v2",
+    "reverbalized": true
+  },
+  "generated_at": "2026-03-15T12:09:08.346563+00:00"
+}

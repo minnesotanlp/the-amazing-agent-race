@@ -1,0 +1,184 @@
+{
+  "trail_id": "trail_9a43e1df",
+  "seed_url": "https://en.wikipedia.org/wiki/Meta_Platforms",
+  "seed_title": "Meta Platforms",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Meta_Platforms",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Founded')",
+      "extraction_section": "infobox",
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Reality_Labs",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start at Meta Platforms to anchor the trail in the company pursuing the metaverse and AR/VR — its HQ and business divisions set the context for subsequent stops.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Reality_Labs",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Founded')",
+      "extraction_section": "infobox",
+      "extracted_value": 2012,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Googleplex wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Googleplex",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Visit Meta's Reality Labs to examine the hardware and research arm actually building AR/VR devices that embody the company's metaverse strategy.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Googleplex",
+      "extraction_target": "Count the number of restaurants near Mountain View",
+      "extraction_section": null,
+      "extracted_value": 20,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "restaurants near Mountain View"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: count restaurants near Mountain View",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/2021_Facebook_outage",
+      "extraction_target": "Calculate the number of days between 2025-01-01 and 2026-03-16",
+      "extraction_section": null,
+      "extracted_value": 439,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "from datetime import date\nd1 = date.fromisoformat('2025-01-01')\nd2 = date.fromisoformat('2026-03-16')\nresult = abs((d2 - d1).days)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "days"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: date computation 2025-01-01 to 2026-03-16 (pinned)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 4,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/2021_Facebook_outage",
+      "extraction_target": "Reason: the number of 1-bits in its binary representation",
+      "extraction_section": null,
+      "extracted_value": 7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (binary_1bit_count) on stop 3 value",
+      "reason_transform": "binary_1bit_count",
+      "reason_source_stop": 3,
+      "reason_code": "result = bin(abs(int(439))).count('1')\nprint(result)"
+    },
+    {
+      "index": 5,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: abs(4 - 2012) % 10",
+      "extraction_section": null,
+      "extracted_value": 8,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "abs(4 - 2012) % 10",
+        "expression_code": "result = abs(4 - 2012) % 10\nprint(result)",
+        "referenced_stops": [
+          0,
+          1,
+          2
+        ]
+      },
+      "reasoning": "Compute stop: abs(4 - 2012) % 10 = 8",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 8,
+  "difficulty": {
+    "level": "easy",
+    "depth": 6,
+    "tool_stop_count": 2,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "Here is the rewritten riddle:\n\n1. Seek the Wikipedia page about the parent company known for its social networking platforms; on that page, discover in which year the company was established and note that number.\n\n2. There exists a linked article from the previous page about the firm’s virtual and augmented reality hardware division — follow that link and record the year that division was founded.\n\n3. What count of restaurants is listed as being near Mountain View? (Consult the article about Google’s Mountain View headquarters complex and extract the number of nearby eateries.)\n\n4. If you consult the article that documents the global outage which silenced all of Facebook’s services, compute how many days lie between 2025-01-01 and 2026-03-16; write down that span in days.\n\n5. The article whose opening line mentions that outage provides the number you just calculated; take that number (from clue 4) and convert it to binary, then count how many 1-bits appear — that tally is your new value.\n\n6. In the end, perform this arithmetic using only the numeric values you discovered earlier: compute abs(clue1 - clue2) % 10. The result of that expression is a single digit between 0 and 9.",
+  "metadata": {
+    "theme": "Following Meta's metaverse strategy from corporate HQ to hardware division, the Silicon Valley campus ecosystem, and market/time signals that shape its path",
+    "difficulty": "easy",
+    "sample_id": "sample_124",
+    "pages_crawled": 250
+  },
+  "generated_at": "2026-03-17T06:58:37.355937+00:00"
+}

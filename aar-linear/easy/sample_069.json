@@ -1,0 +1,177 @@
+{
+  "trail_id": "trail_ad0fa044",
+  "seed_url": "https://en.wikipedia.org/wiki/Ivo_Posti",
+  "seed_title": "Ivo Posti",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Ivo_Posti",
+      "extraction_target": "the number of people listed with whom he had master classes",
+      "extraction_section": "Early life",
+      "extracted_value": 8,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Bolero wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Bolero",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start with Ivo Posti to ground the trail in a European classical vocal tradition (an Estonian opera singer) as the seed for comparing other singing styles.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Bolero",
+      "extraction_target": "the city listed as the cultural origin of bolero in the infobox",
+      "extraction_section": null,
+      "extracted_value": "Santiago de Cuba",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Tango_music",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Bolero represents a very different vocal tradition (Spanish/Latin ballad forms) that contrasts operatic technique with popular, romantic song styles.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Bolero",
+      "extraction_target": "Count restaurants near Santiago de Cuba",
+      "extraction_section": null,
+      "extracted_value": 20,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "restaurants near Santiago de Cuba"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (nearby_poi) derived from https://en.wikipedia.org/wiki/Bolero",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 3,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Tango_music",
+      "extraction_target": "the number of languages the article is available in (as listed at top)",
+      "extraction_section": null,
+      "extracted_value": 20,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Tango_music",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tango music closes the loop with a Latin American vocal-dance tradition (Argentina/Uruguay), allowing a final comparison of regional vocal styles, performance contexts, and instrumentation.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 4,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Tango_music",
+      "extraction_target": "Reason: the sum of its distinct prime factors",
+      "extraction_section": null,
+      "extracted_value": 7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (sum_prime_factors) on stop 2 value",
+      "reason_transform": "sum_prime_factors",
+      "reason_source_stop": 3,
+      "reason_code": "def prime_factors(n):\n    n = abs(int(n))\n    factors = []\n    d = 2\n    while d * d <= n:\n        while n % d == 0:\n            factors.append(d)\n            n //= d\n        d += 1\n    if n > 1: factors.append(n)\n    return factors\nresult = sum(set(prime_factors(20)))\nprint(result)"
+    },
+    {
+      "index": 5,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: (8 + 20 + 20 + 7) % 10",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "(8 + 20 + 20 + 7) % 10",
+        "expression_code": "result = (8 + 20 + 20 + 7) % 10\nprint(result)",
+        "referenced_stops": [
+          0,
+          2,
+          3,
+          4
+        ]
+      },
+      "reasoning": "Compute stop: (8 + 20 + 20 + 7) % 10 = 5",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 5,
+  "difficulty": {
+    "level": "easy",
+    "depth": 6,
+    "tool_stop_count": 1,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Seek the melodic voice of Estonia, whose mastery shaped many. Count how many students trained under his tutelage, and let that number guide you onward.\n\n2. A rhythm sways from a city famed for its vibrancy and dance. What urban heartbeat is recognized as the cradle of a passionate music style?\n\n3. Nestled in a coastal paradise, culinary delights abound. How many eateries can you find near the heart of this vibrant place known for its musical legacy?\n\n4. A dance born of the streets, renowned in the salons, knows many tongues. In how many languages is the discourse surrounding this lively genre available?\n\n5. To dive deeper into the culture, consider the unique numbers that define its reach. What is the sum of the distinct primes that emerge from clue 4's answer?\n\n6. With various threads woven together, compute the final puzzle: Find the result of (clue 1 + clue 3 + clue 4 + clue 5) modulo 10. The answer will manifest as a single digit (0-9).",
+  "metadata": {
+    "theme": "A short cross-cultural tour of vocal traditions — from an Estonian operatic singer to Latin song forms and Indian popular vocal culture, highlighting how voice and audience vary worldwide",
+    "difficulty": "easy",
+    "sample_id": "sample_069",
+    "pages_crawled": 2891,
+    "source": "trail_puzzles_v2"
+  },
+  "generated_at": "2026-03-15T16:26:18.832495+00:00"
+}

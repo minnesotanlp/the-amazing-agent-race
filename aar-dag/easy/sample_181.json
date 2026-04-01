@@ -1,0 +1,341 @@
+{
+  "trail_id": "trail_d1f24c97",
+  "seed_url": "https://en.wikipedia.org/wiki/Union_Pacific_Railroad",
+  "seed_title": "Union Pacific Railroad",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Union_Pacific_Railroad",
+      "extraction_target": "the number of subsections directly under Locomotives and rolling stock in the table of contents",
+      "extraction_section": "Locomotives and rolling stock",
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Abraham_Lincoln",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start at the company that forged the transcontinental rail link — establishes the subject (Union Pacific), its origin date, and its headquarters to anchor the trail geographically and historically.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Abraham_Lincoln",
+      "extraction_target": "the number of subsections listed under the 'Family and childhood' section in the Contents",
+      "extraction_section": "Family and childhood",
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Omaha, Nebraska wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Omaha,_Nebraska",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Show the political origin: Lincoln's administration authorized the Pacific Railway Acts that enabled construction of Union Pacific and other western rail lines.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Omaha,_Nebraska",
+      "extraction_target": "the number of main sections listed in the Contents",
+      "extraction_section": "Contents",
+      "extracted_value": 18,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Omaha,_Nebraska",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Omaha is Union Pacific's operational headquarters and a central Midwestern rail hub — provides the geographic point for measuring rail connections.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Omaha,_Nebraska",
+      "extraction_target": "Look up the elevation of Omaha, Nebraska",
+      "extraction_section": null,
+      "extracted_value": 316.9607849121094,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Omaha, Nebraska"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Omaha, Nebraska) from https://en.wikipedia.org/wiki/Omaha,_Nebraska",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Omaha,_Nebraska",
+      "extraction_target": "Look up the count of libraries near Omaha, Nebraska",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "libraries near Omaha, Nebraska"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of libraries near Omaha, Nebraska) from https://en.wikipedia.org/wiki/Omaha,_Nebraska",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Omaha,_Nebraska",
+      "extraction_target": "Combine the elevation of Omaha, Nebraska and the count of libraries near Omaha, Nebraska: (316 + 20)",
+      "extraction_section": null,
+      "extracted_value": 336,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(316.9607849121094) + int(20.0)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Omaha, Nebraska add count of libraries near Omaha, Nebraska",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3,
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Omaha,_Nebraska",
+      "extraction_target": "Look up the elevation of Omaha, Nebraska",
+      "extraction_section": null,
+      "extracted_value": 316.9607849121094,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Omaha, Nebraska"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (elevation) derived from https://en.wikipedia.org/wiki/Omaha,_Nebraska",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Omaha,_Nebraska",
+      "extraction_target": "Reason: the number of divisors of that figure",
+      "extraction_section": null,
+      "extracted_value": 6,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (num_divisors) on stop 2 value",
+      "reason_transform": "num_divisors",
+      "reason_source_stop": 2,
+      "reason_code": "n = abs(int(18))\ncount = sum(1 for i in range(1, n+1) if n % i == 0) if n > 0 else 0\nresult = count\nprint(result)",
+      "depends_on": [
+        2
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Kansas_City,_Missouri",
+      "extraction_target": "the number of languages listed in the language links box at the top of the article",
+      "extraction_section": null,
+      "extracted_value": 108,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Kansas_City,_Missouri",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Kansas City represents another major Midwestern interchange for freight and passenger lines — illustrates the regional network Union Pacific served.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        7
+      ]
+    },
+    {
+      "index": 9,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: digital_root(336 + 316 + 108)",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "digital_root(336 + 316 + 108)",
+        "expression_code": "def digital_root(n):\n    n = abs(int(n))\n    return n if n == 0 else ((n - 1) % 9) + 1\nresult = digital_root(336 + 316 + 108)\nprint(result)",
+        "referenced_stops": [
+          5,
+          6,
+          8
+        ]
+      },
+      "reasoning": "Compute stop: digital_root(336 + 316 + 108) = 4",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5,
+        6,
+        8
+      ]
+    }
+  ],
+  "passcode": 4,
+  "difficulty": {
+    "level": "easy",
+    "depth": 10,
+    "tool_stop_count": 4,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Unearth the roots of a railway that stitched together a nation. This iron path is known as what specific American railroad company born from the dreams of the 19th century?\n\n2. A leader of great renown once made his home in a city named for the river that shares its name. How many subsections detail the family history of that influential man?\n\n3. Venture to the city nestled near that river, known for its vibrant scene and a significant cultural tapestry. Count the main sections within its article — how many tell its story?\n\n4. Beyond the cityscape, rise to where the land meets the sky. What is the height above sea level of this Midwestern gem that you just explored?\n\n5. A treasure trove of knowledge lies within its borders; seek how many libraries dwell in proximity to this city.\n\n6. Gather the insights of both height and literary abundance. What do you get when you add the elevation found in clue 4 to the number of libraries discovered in clue 5?\n\n7. Once again, gaze upon the heights of this city. What is the elevation above sea level, as you confirmed earlier in clue 4?\n\n8. For your next step, consider the number you found in clue 3. What is the count of its divisors? (Be careful while you count those little numbers.)\n\n9. The city known for jazz and barbecue sings a multilingual song. How many languages does the links box mention near the top of its article?\n\n10. With knowledge from clues 6, 7, and 9, calculate the final offering. Take the whole number from clue 6 and clue 7; add them to the count from clue 9. Then, find that number's digital root. What single digit emerges from your computation: digital_root(336 + 316 + 108)?",
+  "metadata": {
+    "theme": "From the 19th‑century transcontinental railroad that built America to 21st‑century e‑commerce logistics: following Union Pacific's historical roots through Midwestern rail hubs to modern freight companies.",
+    "difficulty": "easy",
+    "sample_id": "sample_181",
+    "pages_crawled": 3919
+  },
+  "generated_at": "2026-03-17T11:58:21.101320+00:00"
+}

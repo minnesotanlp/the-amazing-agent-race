@@ -1,0 +1,272 @@
+{
+  "trail_id": "trail_3f256ab4",
+  "seed_url": "https://en.wikipedia.org/wiki/Wizardry_Online",
+  "seed_title": "Wizardry Online",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Wizardry_Online",
+      "extraction_target": "the release date listed in the infobox",
+      "extraction_section": null,
+      "extracted_value": "30 January 2013",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Video games in the United States wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Video_games_in_the_United_States",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start at the seed: the niche MMORPG that anchors this trail and gives us the specific game to trace outward into industry, platforms, infrastructure, and places.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Video_games_in_the_United_States",
+      "extraction_target": "the World Economic Forum's estimate for the size of the American gaming industry by 2025",
+      "extraction_section": null,
+      "extracted_value": 42300000000,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Google Cloud Platform wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Google_Cloud_Platform",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Situate Wizardry Online within the broader U.S. video-game industry — market scale, developer hubs, and distribution channels that shape games.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Google_Cloud_Platform",
+      "extraction_target": "the Autonomous System Number (ASN) listed for Google Cloud Platform",
+      "extraction_section": null,
+      "extracted_value": 396982,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Google_Cloud_Platform",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Move to the cloud infrastructure side — online games (especially MMOs) rely on cloud compute, CDN, and managed services for matchmaking, persistence, and uptime.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 3,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Google_Cloud_Platform",
+      "extraction_target": "Reason: the number of 1-bits in its binary representation",
+      "extraction_section": null,
+      "extracted_value": 10,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (binary_1bit_count) on stop 2 value",
+      "reason_transform": "binary_1bit_count",
+      "reason_source_stop": 2,
+      "reason_code": "result = bin(abs(int(396982))).count('1')\nprint(result)"
+    },
+    {
+      "index": 4,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/New_York_metropolitan_area",
+      "extraction_target": "Calculate the driving distance between New York metropolitan area and Video games in the United States",
+      "extraction_section": null,
+      "extracted_value": 3236.173,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "New York metropolitan area"
+            },
+            "expected_output": null,
+            "output_key": "coords_a"
+          },
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Video games in the United States"
+            },
+            "expected_output": null,
+            "output_key": "coords_b"
+          },
+          {
+            "tool_name": "maps_distance_matrix",
+            "arguments": {
+              "__from_previous_as_origins_destinations": [
+                "coords_a",
+                "coords_b"
+              ]
+            },
+            "expected_output": null,
+            "output_key": "distance_km"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: distance between New York metropolitan area and Video games in the United States",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 5,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/New_York_metropolitan_area",
+      "extraction_target": "Reason: the next prime number after that figure",
+      "extraction_section": null,
+      "extracted_value": 3251,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (next_prime) on stop 3 value",
+      "reason_transform": "next_prime",
+      "reason_source_stop": 4,
+      "reason_code": "def next_prime(n):\n    n = abs(int(n))\n    if n < 2: return 2\n    candidate = n + 1\n    while True:\n        if all(candidate % i != 0 for i in range(2, int(candidate**0.5)+1)):\n            return candidate\n        candidate += 1\nresult = next_prime(3236)\nprint(result)"
+    },
+    {
+      "index": 6,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Paterson,_New_Jersey",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Established')",
+      "extraction_section": "infobox",
+      "extracted_value": 22,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Jacksonville, Florida wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Jacksonville,_Florida",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "An example nearby city inside the New York metro area — illustrates local communities, event venues, and the human geography that supports gaming culture.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 7,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Jacksonville,_Florida",
+      "extraction_target": "Count the number of churches near 30.27222",
+      "extraction_section": null,
+      "extracted_value": 20,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "churches near 30.27222"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: count churches near 30.27222",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 8,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: digital_root(3251 + 22 + 9)",
+      "extraction_section": null,
+      "extracted_value": 6,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "digital_root(3251 + 22 + 9)",
+        "expression_code": "def digital_root(n):\n    n = abs(int(n))\n    return n if n == 0 else ((n - 1) % 9) + 1\nresult = digital_root(3251 + 22 + 9)\nprint(result)",
+        "referenced_stops": [
+          5,
+          6,
+          7
+        ]
+      },
+      "reasoning": "Compute stop: digital_root(3251 + 22 + 9) = 6",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 6,
+  "difficulty": {
+    "level": "medium",
+    "depth": 9,
+    "tool_stop_count": 2,
+    "reason_stop_count": 2,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "Here is the revised riddle with the appropriate clues adjusted:\n\n1. Seek the seed page about a game that continues the legacy of a classic RPG series known for its turn-based combat and dungeon exploration, and read its opening summary: on what date did this game first launch according to the page?\n\n2. There exists a Wikipedia article that surveys the national video-game industry in the United States; on that industry overview, what dollar figure does the World Economic Forum give as its estimate for the American games market by 2025?\n\n3. Which cloud division operated by Alphabet — the web giant's platform described as a provider of cloud-based services and infrastructure — is mentioned on links from that industry article, and what Autonomous System Number is recorded on that cloud platform's page?\n\n4. If you write the Autonomous System Number you found in clue 3 in base two, how many 1 bits appear in its binary form (count the ones and report that count)?\n\n5. The article whose opening sentence describes the sprawling region around New York City is your next geographic anchor; using that metropolitan region and the U.S. games-industry overview located in clue 2, calculate the driving distance between them — how many kilometers (or miles, converted to your preferred unit) would you be told to drive along roads?\n\n6. Imagine that driving-distance figure on an odometer or scoreboard; treat it as an integer and find the next prime number that is strictly greater than that value.\n\n7. Personified like an old mill-city whispering its origins, the page about the city in Passaic County, New Jersey records the year it was established — which year does that article list as the founding or establishment year?\n\n8. (As a detour, visit the Florida city you searched next and, centered on latitude 30.27222, count how many nearby places labeled as churches appear in a local places search — report that count.)\n\n9. Finally, compute the digital root of (clue 6 + clue 7 + clue 8); state that single digit (0–9) as your final answer.",
+  "metadata": {
+    "theme": "From a niche MMORPG to the real-world ecosystem that sustains games — tracing Wizardry Online outward into the U.S. games scene, major platform businesses, cloud infrastructure, and the cities/markets that host players and events.",
+    "difficulty": "medium",
+    "sample_id": "sample_211",
+    "pages_crawled": 14623
+  },
+  "generated_at": "2026-03-20T03:18:06.923939+00:00"
+}

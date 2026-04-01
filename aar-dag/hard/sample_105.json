@@ -1,0 +1,762 @@
+{
+  "trail_id": "trail_af5e416d",
+  "seed_url": "https://en.wikipedia.org/wiki/The_Simpsons:_Testify",
+  "seed_title": "The Simpsons: Testify",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/The_Simpsons:_Testify",
+      "extraction_target": "the number of previously unaired bonus tracks included on the album",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/The_Simpsons:_Testify",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Seed: the Simpsons soundtrack album anchors the trail — its release details and label tie into the industry thread we'll follow.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/The_Simpsons:_Testify",
+      "extraction_target": "Reason: the number of characters when written as a Roman numeral",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (roman_numeral_letter_count) on stop 0 value",
+      "reason_transform": "roman_numeral_letter_count",
+      "reason_source_stop": 0,
+      "reason_code": "def to_roman(n):\n    n = abs(int(n))\n    vals = [(1000,'M'),(900,'CM'),(500,'D'),(400,'CD'),(100,'C'),\n            (90,'XC'),(50,'L'),(40,'XL'),(10,'X'),(9,'IX'),(5,'V'),(4,'IV'),(1,'I')]\n    r = ''\n    for v, s in vals:\n        while n >= v:\n            r += s; n -= v\n    return r\nresult = len(to_roman(4))\nprint(result)",
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Tales_from_the_Public_Domain",
+      "extraction_target": "the episode number within the thirteenth season",
+      "extraction_section": null,
+      "extracted_value": 14,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Shout! Factory wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Shout!_Factory",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A Simpsons episode that showcases how the show mixes story and music — links the album back to specific TV content and its original broadcast context.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Shout!_Factory",
+      "extraction_target": "the company's headquarters city and state",
+      "extraction_section": null,
+      "extracted_value": "Los Angeles, California, U.S.",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Shout!_Factory",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "An independent label/distributor known for TV and soundtrack reissues; helps trace how Simpsons music is packaged and re-released.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Shout!_Factory",
+      "extraction_target": "Look up the elevation of Los Angeles, California, U.S.",
+      "extraction_section": null,
+      "extracted_value": 95.03137969970703,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Los Angeles, California, U.S."
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Los Angeles, California, U.S.) from https://en.wikipedia.org/wiki/Shout!_Factory",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Shout!_Factory",
+      "extraction_target": "Look up the count of libraries near Los Angeles, California, U.S.",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "libraries near Los Angeles, California, U.S."
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of libraries near Los Angeles, California, U.S.) from https://en.wikipedia.org/wiki/Shout!_Factory",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Shout!_Factory",
+      "extraction_target": "Combine the elevation of Los Angeles, California, U.S. and the count of libraries near Los Angeles, California, U.S.: (95 + 20)",
+      "extraction_section": null,
+      "extracted_value": 115,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(95.03137969970703) + int(20.0)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Los Angeles, California, U.S. add count of libraries near Los Angeles, California, U.S.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        4,
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Shout!_Factory",
+      "extraction_target": "Reason: the number of vowels in that name",
+      "extraction_section": null,
+      "extracted_value": 10,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (vowel_count) on stop 2 value",
+      "reason_transform": "vowel_count",
+      "reason_source_stop": 3,
+      "reason_code": "result = sum(1 for c in \"Los Angeles, California, U.S.\".lower() if c in 'aeiou')\nprint(result)",
+      "depends_on": [
+        3
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Sony_BMG",
+      "extraction_target": "the ownership percentage held by each parent company (infobox)",
+      "extraction_section": null,
+      "extracted_value": 50,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "53rd Primetime Emmy Awards wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/53rd_Primetime_Emmy_Awards",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A major record company that represents the other end of the distribution spectrum; contrast indie reissue practice with major-label syndication of TV music.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        7
+      ]
+    },
+    {
+      "index": 9,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/53rd_Primetime_Emmy_Awards",
+      "extraction_target": "Calculate the number of days between 2001-11-04 and 2026-03-16",
+      "extraction_section": null,
+      "extracted_value": 8898,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "from datetime import date\nd1 = date.fromisoformat('2001-11-04')\nd2 = date.fromisoformat('2026-03-16')\nresult = abs((d2 - d1).days)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "days"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: date computation 2001-11-04 to 2026-03-16 (pinned)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        8
+      ]
+    },
+    {
+      "index": 10,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/CD-single",
+      "extraction_target": "the number of languages listed in the language links at the top of the article",
+      "extraction_section": null,
+      "extracted_value": 24,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "About Damn Time wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/About_Damn_Time",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A format-focused stop: CD-singles illustrate physical distribution choices for tracks drawn from TV shows and soundtracks.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        9
+      ]
+    },
+    {
+      "index": 11,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/About_Damn_Time",
+      "extraction_target": "Convert 4°C to a Fahrenheit-scale offset",
+      "extraction_section": null,
+      "extracted_value": 7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "# Convert celsius to fahrenheit_offset\nvalue = 4.0\nconverted = value * 1.8\nresult = int(converted)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "converted"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: convert 4 celsius to fahrenheit_offset",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        10
+      ]
+    },
+    {
+      "index": 12,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Sub_Pop",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Founded')",
+      "extraction_section": "infobox",
+      "extracted_value": 1986,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Sub_Pop",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "An influential indie label — use it to discuss alternative distribution channels and how TV music may be handled by smaller, regionally rooted labels.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        11
+      ]
+    },
+    {
+      "index": 13,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Sub_Pop",
+      "extraction_target": "Reason: the number of 1-bits in its binary representation",
+      "extraction_section": null,
+      "extracted_value": 6,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (binary_1bit_count) on stop 7 value",
+      "reason_transform": "binary_1bit_count",
+      "reason_source_stop": 12,
+      "reason_code": "result = bin(abs(int(1986))).count('1')\nprint(result)",
+      "depends_on": [
+        12
+      ]
+    },
+    {
+      "index": 14,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Los_Lobos",
+      "extraction_target": "the band's place of origin as listed in the infobox",
+      "extraction_section": null,
+      "extracted_value": "East Los Angeles, California, U.S.",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Los_Lobos",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A band whose career intersects film/TV placements and cross-cultural musical representation — exemplifies artists who contribute to or benefit from soundtrack exposure.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        13
+      ]
+    },
+    {
+      "index": 15,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Los_Lobos",
+      "extraction_target": "Look up the elevation of East Los Angeles, California, U.S.",
+      "extraction_section": null,
+      "extracted_value": 58.68019104003906,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "East Los Angeles, California, U.S."
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of East Los Angeles, California, U.S.) from https://en.wikipedia.org/wiki/Los_Lobos",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        14
+      ]
+    },
+    {
+      "index": 16,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Los_Lobos",
+      "extraction_target": "Look up the count of stadiums near East Los Angeles, California, U.S.",
+      "extraction_section": null,
+      "extracted_value": 7.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "stadiums near East Los Angeles, California, U.S."
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of stadiums near East Los Angeles, California, U.S.) from https://en.wikipedia.org/wiki/Los_Lobos",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        14
+      ]
+    },
+    {
+      "index": 17,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Los_Lobos",
+      "extraction_target": "Combine the elevation of East Los Angeles, California, U.S. and the count of stadiums near East Los Angeles, California, U.S.: abs(58 - 7)",
+      "extraction_section": null,
+      "extracted_value": 51,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(58.68019104003906) - int(7.0))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of East Los Angeles, California, U.S. abs_diff count of stadiums near East Los Angeles, California, U.S.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        15,
+        16
+      ]
+    },
+    {
+      "index": 18,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Los_Lobos",
+      "extraction_target": "Reason: the number of vowels in that name",
+      "extraction_section": null,
+      "extracted_value": 12,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (vowel_count) on stop 8 value",
+      "reason_transform": "vowel_count",
+      "reason_source_stop": 14,
+      "reason_code": "result = sum(1 for c in \"East Los Angeles, California, U.S.\".lower() if c in 'aeiou')\nprint(result)",
+      "depends_on": [
+        14
+      ]
+    },
+    {
+      "index": 19,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Leader_of_the_Opposition_(Bangladesh)",
+      "extraction_target": "Convert 50 meters to yards",
+      "extraction_section": null,
+      "extracted_value": 54,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "# Convert meters to yards\nvalue = 50.0\nconverted = value * 1.09361\nresult = int(converted)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "converted"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: convert 50 meters to yards",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        18
+      ]
+    },
+    {
+      "index": 20,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Michael_Pollack_(songwriter)",
+      "extraction_target": "Michael Pollack's age as listed in the infobox",
+      "extraction_section": null,
+      "extracted_value": 31,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Mumbai Police wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Mumbai_Police",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A contemporary songwriter entry to highlight the creators behind tracks that end up on soundtracks or licensed for TV — ties the industry chain back to writers and credits.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        19
+      ]
+    },
+    {
+      "index": 21,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Mumbai_Police",
+      "extraction_target": "Convert 14 meters to yards",
+      "extraction_section": null,
+      "extracted_value": 15,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "# Convert meters to yards\nvalue = 14.0\nconverted = value * 1.09361\nresult = int(converted)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "converted"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: convert 14 meters to yards",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        20
+      ]
+    },
+    {
+      "index": 22,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/A_Chorus_Line",
+      "extraction_target": "the year A Chorus Line is described as a musical",
+      "extraction_section": null,
+      "extracted_value": 1975,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/A_Chorus_Line",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A landmark musical that connects the trail to stage traditions, demonstrating how theatrical music, TV soundtracks and popular songwriting intersect.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        21
+      ]
+    },
+    {
+      "index": 23,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: (2 + 20 + 58 + 54) % 10",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "(2 + 20 + 58 + 54) % 10",
+        "expression_code": "result = (2 + 20 + 58 + 54) % 10\nprint(result)",
+        "referenced_stops": [
+          1,
+          5,
+          15,
+          19
+        ]
+      },
+      "reasoning": "Compute stop: (2 + 20 + 58 + 54) % 10 = 4",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1,
+        5,
+        15,
+        19
+      ]
+    }
+  ],
+  "passcode": 4,
+  "difficulty": {
+    "level": "hard",
+    "depth": 24,
+    "tool_stop_count": 10,
+    "reason_stop_count": 4,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Dive into the vibrant world of a certain animated family’s musical offering, and unveil how many unheard bonus tracks grace this album.\n\n2. When you take the number from the previous clue and translate it into the ancient art of Roman numerals, how many characters will you find?\n\n3. In a tale spun by the digital realms, discover an episode nestled within the thirteenth season of a well-loved series; what is its numerical designation?\n\n4. To unravel the chief dwelling of a beloved media company renowned for releasing classic films and television, what city and state do they call home?\n\n5. Ascend to the heights of the beloved city shelters filmmakers and artists — what is the elevation of this metropolis, grounded in meters?\n\n6. In the vicinity of the cinematic heart, how many libraries can one find whispering the stories of yore throughout this sprawling landscape?\n\n7. Add together the elevation from clue 5 and the library count from clue 6, then find their combined total.\n\n8. Reflect upon the name of the media company; how many vowels dance within its letters?\n\n9. Seek to know the ownership percentages held by the reigning parent companies of a certain formidable music enterprise.\n\n10. Calculate the number of days that span between a momentous date in 2001 and a day in 2026; how many days tick by?\n\n11. Within a certain brief format that used to be a staple of music collection, how many languages do you find listed at the top of its article?\n\n12. In the warmth of an expectedly brisk day, convert a temperature of 4°C into its Fahrenheit-scale counterpart; what number do you reach?\n\n13. To find the roots of a certain iconic music label, discover the year it was established; what year is it?\n\n14. With the establishment year in mind, how many 1-bits are present in the binary representation of that year?\n\n15. From the celebrated Mexican-American band, trace back to their origins; where do they hail from?\n\n16. Far across the lands, find the elevation of a certain East-side neighborhood in Los Angeles — what height does it stand at in meters?\n\n17. Nearby this neighborhood, how many stadiums echo with the sounds of cheering crowds?\n\n18. Combine the elevation you found for the area of East Los Angeles from clue 16 with the count of stadiums from clue 17. What is the absolute difference?\n\n19. Like the harmony of their name, count the vowels nestled within the title of the band from clue 15.\n\n20. When converted, how many yards will you come to find in the distance of 50 meters?\n\n21. Uncover the age of the songwriter known for contributions to popular music; how many years has he seen?\n\n22. In the bustling folds of Mumbai, measure the distance of 14 meters converted into yards; what numerical output do you achieve?\n\n23. Within the realm of musical theater, what year is it recounted when the acclaimed production of a certain chorus first arrived?\n\n24. Now, engage your mind with arithmetic: compute (clue 2 + clue 6 + clue 16 + clue 20) mod 10. What single digit is revealed?",
+  "metadata": {
+    "theme": "Tracing a soundtrack's journey: from a Simpsons album to the labels, formats, creators and venues that shape how TV music is produced, distributed and performed around the world.",
+    "difficulty": "hard",
+    "sample_id": "sample_105",
+    "pages_crawled": 7495
+  },
+  "generated_at": "2026-03-16T18:50:42.730915+00:00"
+}

@@ -1,0 +1,215 @@
+{
+  "trail_id": "trail_6dfe8bd8",
+  "seed_url": "https://en.wikipedia.org/wiki/Amphion_(horse)",
+  "seed_title": "Amphion (horse)",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Amphion_(horse)",
+      "extraction_target": "the number of career wins recorded for Amphion",
+      "extraction_section": null,
+      "extracted_value": 14,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Epsom_Derby",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start with Amphion, the seed racehorse — extracting its foaling year and major wins anchors the personal starting point for this historical racing trail.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Epsom_Derby",
+      "extraction_target": "the year the Epsom Derby was inaugurated",
+      "extraction_section": null,
+      "extracted_value": 1780,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Kempton Park Racecourse wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Kempton_Park_Racecourse",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "The Epsom Derby is the quintessential British Classic; linking Amphion to the Derby situates the horse within the broader tradition of Classic flat racing.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Kempton_Park_Racecourse",
+      "extraction_target": "Look up the elevation at Sunbury-on-Thames",
+      "extraction_section": null,
+      "extracted_value": 12.69510078430176,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Sunbury-on-Thames"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for Sunbury-on-Thames",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 3,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Kempton_Park_Racecourse",
+      "extraction_target": "Reason: the next prime number after that figure",
+      "extraction_section": null,
+      "extracted_value": 13,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (next_prime) on stop 2 value",
+      "reason_transform": "next_prime",
+      "reason_source_stop": 2,
+      "reason_code": "def next_prime(n):\n    n = abs(int(n))\n    if n < 2: return 2\n    candidate = n + 1\n    while True:\n        if all(candidate % i != 0 for i in range(2, int(candidate**0.5)+1)):\n            return candidate\n        candidate += 1\nresult = next_prime(12)\nprint(result)"
+    },
+    {
+      "index": 4,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Hermit_(horse)",
+      "extraction_target": "the country listed in the infobox (field: 'Country')",
+      "extraction_section": "infobox",
+      "extracted_value": "United Kingdom of Great Britain and Ireland",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Sandown Park Racecourse wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Sandown_Park_Racecourse",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Hermit was a notable Epsom Derby winner — examining a contemporary/classic-winning horse gives a human/historical counterpart to Amphion and highlights lineage and era.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 5,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Sandown_Park_Racecourse",
+      "extraction_target": "Calculate the number of days between 1875-01-01 and 2026-03-15",
+      "extraction_section": null,
+      "extracted_value": 55225,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "from datetime import date\nd1 = date.fromisoformat('1875-01-01')\nd2 = date.fromisoformat('2026-03-15')\nresult = abs((d2 - d1).days)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "days"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: date computation 1875-01-01 to 2026-03-15 (pinned)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 6,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: digital_root(13 + 55225)",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "digital_root(13 + 55225)",
+        "expression_code": "def digital_root(n):\n    n = abs(int(n))\n    return n if n == 0 else ((n - 1) % 9) + 1\nresult = digital_root(13 + 55225)\nprint(result)",
+        "referenced_stops": [
+          3,
+          5
+        ]
+      },
+      "reasoning": "Compute stop: digital_root(13 + 55225) = 5",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 5,
+  "difficulty": {
+    "level": "easy",
+    "depth": 7,
+    "tool_stop_count": 2,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "Here is the revised riddle:\n\n1. Seek the seed page of a renowned thoroughbred known for its racing lineage, whose name means \"the one who plays music\" in Greek mythology: how many races did this thoroughbred win in its career, and then follow the link labelled \"Derby\" to continue the trail.  \n\n2. There exists a page where England's great flat classic is described from its first running onward — on that page, record the year the race was inaugurated.  \n\n3. What is the height above mean sea level at Sunbury-on-Thames, the town that hosts the well-known racecourse near London?  \n\n4. If you take the elevation you just uncovered for Sunbury-on-Thames, advance to the next prime number greater than that elevation and note it.  \n\n5. The article whose subject is a victorious stallion from the 19th century, known for its performance in classic races, will name a homeland; which nation is listed as the horse's country of origin, and then seek the page for the racecourse in Esher, Surrey to proceed.  \n\n6. In 1875 a new racecourse opened; compute the total number of days between 1 January 1875 and 15 March 2026 (inclusive of the elapsed days) using that Esher course's page as your waypoint.  \n\n7. The Derby trophy wears a gem — compute the digital root of (clue 4 + clue 6) and report that single digit (0–9) as your final answer.",
+  "metadata": {
+    "theme": "A short historical tour of British flat racing: from a starting racehorse (Amphion) to the major classic, racecourses and a contemporary Derby winner — using facts and simple computations to connect horse, race and place.",
+    "difficulty": "easy",
+    "sample_id": "sample_052",
+    "pages_crawled": 2199,
+    "source": "trail_puzzles_v2"
+  },
+  "generated_at": "2026-03-15T14:43:39.000565+00:00"
+}

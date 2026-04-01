@@ -1,0 +1,746 @@
+{
+  "trail_id": "trail_3788517d",
+  "seed_url": "https://en.wikipedia.org/wiki/British_Business_Bank",
+  "seed_title": "British Business Bank",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/British_Business_Bank",
+      "extraction_target": "the headquarters location listed in the infobox",
+      "extraction_section": null,
+      "extracted_value": "Sheffield",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Department_for_Business,_Innovation_and_Skills",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Seed: the public development bank set up to finance UK SMEs — the trail begins by grounding the institution's origin and base of operations.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/British_Business_Bank",
+      "extraction_target": "Look up the elevation of Sheffield",
+      "extraction_section": null,
+      "extracted_value": 81.6724853515625,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Sheffield"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Sheffield) from https://en.wikipedia.org/wiki/British_Business_Bank",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/British_Business_Bank",
+      "extraction_target": "Look up the count of libraries near Sheffield",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "libraries near Sheffield"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of libraries near Sheffield) from https://en.wikipedia.org/wiki/British_Business_Bank",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/British_Business_Bank",
+      "extraction_target": "Combine the elevation of Sheffield and the count of libraries near Sheffield: (81 + 20)",
+      "extraction_section": null,
+      "extracted_value": 101,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(81.6724853515625) + int(20.0)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Sheffield add count of libraries near Sheffield",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1,
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Department_for_Business,_Innovation_and_Skills",
+      "extraction_target": "date the Department for Business, Innovation and Skills was formed",
+      "extraction_section": null,
+      "extracted_value": "5 June 2009",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Giffnock railway station wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Giffnock_railway_station",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Shows the departmental history and policy lineage that helped create/oversight institutions like the British Business Bank.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Giffnock_railway_station",
+      "extraction_target": "Get the driving duration in minutes from Giffnock to Sheffield",
+      "extraction_section": null,
+      "extracted_value": 278,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_directions",
+            "arguments": {
+              "origin": "Giffnock",
+              "destination": "Sheffield",
+              "mode": "driving"
+            },
+            "expected_output": null,
+            "output_key": "duration"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: directions duration Giffnock to Sheffield",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Giffnock_railway_station",
+      "extraction_target": "Reason: the sum of its digits",
+      "extraction_section": null,
+      "extracted_value": 17,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_sum) on stop 2 value",
+      "reason_transform": "digit_sum",
+      "reason_source_stop": 5,
+      "reason_code": "result = sum(int(d) for d in str(abs(int(278))))\nprint(result)",
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Department_for_Business_and_Trade",
+      "extraction_target": "date the department was formed (Formed)",
+      "extraction_section": null,
+      "extracted_value": "7 February 2023",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Irreligion in the United Kingdom wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Irreligion_in_the_United_Kingdom",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Current UK department responsible for business and trade policy — key partner for national business support and international trade promotion.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Department_for_Business_and_Trade",
+      "extraction_target": "Look up the elevation of Department for Business and Trade",
+      "extraction_section": null,
+      "extracted_value": 6.883800506591797,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Department for Business and Trade"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Department for Business and Trade) from https://en.wikipedia.org/wiki/Department_for_Business_and_Trade",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        7
+      ]
+    },
+    {
+      "index": 9,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Department_for_Business_and_Trade",
+      "extraction_target": "Look up the count of parks near Department for Business and Trade",
+      "extraction_section": null,
+      "extracted_value": 1.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "parks near Department for Business and Trade"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of parks near Department for Business and Trade) from https://en.wikipedia.org/wiki/Department_for_Business_and_Trade",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        7
+      ]
+    },
+    {
+      "index": 10,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Department_for_Business_and_Trade",
+      "extraction_target": "Combine the elevation of Department for Business and Trade and the count of parks near Department for Business and Trade: abs(6 - 1)",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(6.883800506591797) - int(1.0))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Department for Business and Trade abs_diff count of parks near Department for Business and Trade",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        8,
+        9
+      ]
+    },
+    {
+      "index": 11,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Irreligion_in_the_United_Kingdom",
+      "extraction_target": "Calculate the number of days between 2023-02-07 and 2026-03-16",
+      "extraction_section": null,
+      "extracted_value": 1133,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "from datetime import date\nd1 = date.fromisoformat('2023-02-07')\nd2 = date.fromisoformat('2026-03-16')\nresult = abs((d2 - d1).days)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "days"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: date computation 2023-02-07 to 2026-03-16 (pinned)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        10
+      ]
+    },
+    {
+      "index": 12,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Irreligion_in_the_United_Kingdom",
+      "extraction_target": "Reason: the number of 1-bits in its binary representation",
+      "extraction_section": null,
+      "extracted_value": 6,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (binary_1bit_count) on stop 4 value",
+      "reason_transform": "binary_1bit_count",
+      "reason_source_stop": 11,
+      "reason_code": "result = bin(abs(int(1133))).count('1')\nprint(result)",
+      "depends_on": [
+        11
+      ]
+    },
+    {
+      "index": 13,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/United_Kingdom_company_law",
+      "extraction_target": "the year of the Companies Act mentioned",
+      "extraction_section": null,
+      "extracted_value": "2006",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "United States campaigns in World War I wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/United_States_campaigns_in_World_War_I",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "The corporate legal framework shapes company formation, investor protections and the business environment the Bank and departments operate within.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        12
+      ]
+    },
+    {
+      "index": 14,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/United_States_campaigns_in_World_War_I",
+      "extraction_target": "Look up the elevation at United States campaigns in World War I",
+      "extraction_section": null,
+      "extracted_value": 3236.2353515625,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "United States campaigns in World War I"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for United States campaigns in World War I",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        13
+      ]
+    },
+    {
+      "index": 15,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/United_States_corporate_law",
+      "extraction_target": "the year of the Securities and Exchange Act mentioned in the opening paragraph",
+      "extraction_section": null,
+      "extracted_value": "1934",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "The Publishers Association wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/The_Publishers_Association",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A jurisdictional contrast: US corporate law is structured differently to the UK's — important when thinking about cross-border investment and corporate domiciles.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        14
+      ]
+    },
+    {
+      "index": 16,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/The_Publishers_Association",
+      "extraction_target": "number of representatives elected from the membership on the PA Council",
+      "extraction_section": "Governance",
+      "extracted_value": 20,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/The_Publishers_Association",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "An example trade body from a creative/knowledge sector that relies on business policy, funding and IP frameworks — illustrates sector-specific needs.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        15
+      ]
+    },
+    {
+      "index": 17,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/The_Publishers_Association",
+      "extraction_target": "Reason: the number you get by reversing its digits",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_reversal) on stop 8 value",
+      "reason_transform": "digit_reversal",
+      "reason_source_stop": 16,
+      "reason_code": "result = int(str(abs(int(20)))[::-1])\nprint(result)",
+      "depends_on": [
+        16
+      ]
+    },
+    {
+      "index": 18,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Boston_Common",
+      "extraction_target": "Count the number of restaurants near Boston",
+      "extraction_section": null,
+      "extracted_value": 20,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "restaurants near Boston"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: count restaurants near Boston",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        17
+      ]
+    },
+    {
+      "index": 19,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Boston_Common",
+      "extraction_target": "Reason: the next prime number after that figure",
+      "extraction_section": null,
+      "extracted_value": 23,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (next_prime) on stop 9 value",
+      "reason_transform": "next_prime",
+      "reason_source_stop": 18,
+      "reason_code": "def next_prime(n):\n    n = abs(int(n))\n    if n < 2: return 2\n    candidate = n + 1\n    while True:\n        if all(candidate % i != 0 for i in range(2, int(candidate**0.5)+1)):\n            return candidate\n        candidate += 1\nresult = next_prime(20)\nprint(result)",
+      "depends_on": [
+        18
+      ]
+    },
+    {
+      "index": 20,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Institute_of_Cancer_Research",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Established')",
+      "extraction_section": "infobox",
+      "extracted_value": 1909,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "British R&B wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/British_R%26B",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A life‑science research institute representing high‑growth, R&D‑intensive organisations that interact with public funding, commercialization and business support mechanisms.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        19
+      ]
+    },
+    {
+      "index": 21,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/British_R%26B",
+      "extraction_target": "the year of Muddy Waters' visit that influenced Cyril Davies and Alexis Korner",
+      "extraction_section": null,
+      "extracted_value": 1958,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/British_R%26B",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A cultural-industry example (British R&B) to close the trail — showing how creative sectors are part of the broader business ecosystem supported by policy, law and funding structures.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        20
+      ]
+    },
+    {
+      "index": 22,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: digital_root(278 + 5 + 1133 + 1909)",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "digital_root(278 + 5 + 1133 + 1909)",
+        "expression_code": "def digital_root(n):\n    n = abs(int(n))\n    return n if n == 0 else ((n - 1) % 9) + 1\nresult = digital_root(278 + 5 + 1133 + 1909)\nprint(result)",
+        "referenced_stops": [
+          5,
+          10,
+          11,
+          20
+        ]
+      },
+      "reasoning": "Compute stop: digital_root(278 + 5 + 1133 + 1909) = 4",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5,
+        10,
+        11,
+        20
+      ]
+    }
+  ],
+  "passcode": 4,
+  "difficulty": {
+    "level": "hard",
+    "depth": 23,
+    "tool_stop_count": 10,
+    "reason_stop_count": 4,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Seek the institution that champions growth in the UK market; where are its headquarters nestled?\n\n2. How high above sea level does the city you uncovered rest — an industrial hub that has seen many transformations?\n\n3. Hidden among the streets of that city, what is the total number of libraries that serve its residents?\n\n4. Combine the height of this urban landscape with the treasure trove of libraries nearby. What new number do you find?\n\n5. A government body overseeing innovation sprouted into existence — in which year did this entity first come to life?\n\n6. Journey forth to a station in a town known for its greenery; how long does it take to drive from there to the industrial heart you previously discovered?\n\n7. Take the count from your last exploration, and sum its individual digits. What total do you reach?\n\n8. The next chapter of public service emerged with a different name — can you discover when this department was formed?\n\n9. Looking back at your last stop, let your curiosity lead you to the elevation of the place related to this new administrative body.\n\n10. Amidst the infrastructure near the previous destination, how many parks can you find, dotting the landscape?\n\n11. Combine the elevation of the latest institution with the number of parks nearby; what difference do you obtain?\n\n12. In a land where beliefs vary, how many days stretch between February's chill of 2023 and a date in March 2026?\n\n13. Examine the figure from your last findings; how many 1-bits can you reveal within its binary shadow?\n\n14. Laws governing companies were penned in a significant year. What date marks this pivotal legislation?\n\n15. In an epoch uniting forces, seek the height above sea for the campaigns that shaped history — how high does that elevate?\n\n16. A document of regulations crafted in another nation shares a year of significance — can you discover when this was enacted?\n\n17. Within an association dedicated to publishing, how many representatives guide its council, reflecting the voice of its membership?\n\n18. Reflect upon the number of council members; when you reverse their digits, what new figure emerges?\n\n19. Find a remarkable spot where you can dine among nature’s beauty; how many restaurants welcome visitors near this well-known park?\n\n20. Among the feast of eateries, what is the next prime number that follows after your previously found total?\n\n21. Delve into the annals of a research institute dedicated to health — what year did it see its establishment?\n\n22. Seek the influential musician whose visit inspired a new sound; what year did this visit transpire?\n\n23. Gather your findings from the journeys made thus far: compute the digital root of (the driving duration from clue 6 + the absolute outcome from clue 11 + the day count from clue 12 + the establishment year from clue 21). What single digit do you reveal from this arithmetic?",
+  "metadata": {
+    "theme": "Tracing how UK public policy, institutions and law support business growth — then comparing markets and industry examples (creative, publishing, and life sciences) to show how regulation, geography and scale shape enterprise.",
+    "difficulty": "hard",
+    "sample_id": "sample_107",
+    "pages_crawled": 7856
+  },
+  "generated_at": "2026-03-16T19:33:51.440364+00:00"
+}

@@ -1,0 +1,287 @@
+{
+  "trail_id": "trail_2c4a13b8",
+  "seed_url": "https://en.wikipedia.org/wiki/Jamal_Uddin_Ahmed_(banker)",
+  "seed_title": "Jamal Uddin Ahmed (banker)",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Jamal_Uddin_Ahmed_(banker)",
+      "extraction_target": "the year Ahmed completed his undergraduate degree in accounting",
+      "extraction_section": "Early life and education",
+      "extracted_value": "1977",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Government Seal of Bangladesh wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Government_Seal_of_Bangladesh",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start with the seed banker as the human entry point — his office and origins anchor the trail in contemporary Bangladesh finance.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Government_Seal_of_Bangladesh",
+      "extraction_target": "Look up the elevation at Government Seal of Bangladesh",
+      "extraction_section": null,
+      "extracted_value": 5.13073205947876,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Government Seal of Bangladesh"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for Government Seal of Bangladesh",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Government_Seal_of_Bangladesh",
+      "extraction_target": "Reason: the next prime number after that figure",
+      "extraction_section": null,
+      "extracted_value": 7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (next_prime) on stop 1 value",
+      "reason_transform": "next_prime",
+      "reason_source_stop": 1,
+      "reason_code": "def next_prime(n):\n    n = abs(int(n))\n    if n < 2: return 2\n    candidate = n + 1\n    while True:\n        if all(candidate % i != 0 for i in range(2, int(candidate**0.5)+1)):\n            return candidate\n        candidate += 1\nresult = next_prime(5)\nprint(result)"
+    },
+    {
+      "index": 3,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Indigenous_peoples_in_Bangladesh",
+      "extraction_target": "the number of indigenous living linguistic communities according to Ethnologue",
+      "extraction_section": null,
+      "extracted_value": 36,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Indigenous peoples in Bangladesh wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Indigenous_peoples_in_Bangladesh",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Shift from national totals to the diverse communities within Bangladesh to understand social context for economic policy and banking outreach.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 4,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Indigenous_peoples_in_Bangladesh",
+      "extraction_target": "Reason: the number of characters when written as a Roman numeral",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (roman_numeral_letter_count) on stop 2 value",
+      "reason_transform": "roman_numeral_letter_count",
+      "reason_source_stop": 3,
+      "reason_code": "def to_roman(n):\n    n = abs(int(n))\n    vals = [(1000,'M'),(900,'CM'),(500,'D'),(400,'CD'),(100,'C'),\n            (90,'XC'),(50,'L'),(40,'XL'),(10,'X'),(9,'IX'),(5,'V'),(4,'IV'),(1,'I')]\n    r = ''\n    for v, s in vals:\n        while n >= v:\n            r += s; n -= v\n    return r\nresult = len(to_roman(36))\nprint(result)"
+    },
+    {
+      "index": 5,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Power_Grid_Company_of_Bangladesh_Limited",
+      "extraction_target": "formation year of Power Grid Bangladesh",
+      "extraction_section": null,
+      "extracted_value": "1996",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Bangladeshi English wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Bangladeshi_English",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Move to national infrastructure: the power grid company ties economic activity (and banking) to physical networks and where they are managed.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 6,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Bangladeshi_English",
+      "extraction_target": "the year the High Court of Bangladesh banned the use of Benglish in radio and television programs",
+      "extraction_section": "Use",
+      "extracted_value": "2012",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Sri Maha Bodhi Viharaya wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Sri_Maha_Bodhi_Viharaya",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Return to cultural infrastructure: language variety affects banking communication, documentation and access across communities.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 7,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Sri_Maha_Bodhi_Viharaya",
+      "extraction_target": "Get the driving duration in minutes from Kandy to Bangladeshi English",
+      "extraction_section": null,
+      "extracted_value": 3231,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_directions",
+            "arguments": {
+              "origin": "Kandy",
+              "destination": "Bangladeshi English",
+              "mode": "driving"
+            },
+            "expected_output": null,
+            "output_key": "duration"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: directions duration Kandy to Bangladeshi English",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 8,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Marma_people",
+      "extraction_target": "population of Marma in Bangladesh as listed in the infobox",
+      "extraction_section": null,
+      "extracted_value": 224261,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Marma_people",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Conclude with a particular indigenous group (Marma) to reconnect the trail to specific communities whose livelihoods and geography intersect with banking, energy and transport decisions.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 9,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: (1977 + 5 + 5) % 10",
+      "extraction_section": null,
+      "extracted_value": 7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "(1977 + 5 + 5) % 10",
+        "expression_code": "result = (1977 + 5 + 5) % 10\nprint(result)",
+        "referenced_stops": [
+          0,
+          1,
+          4
+        ]
+      },
+      "reasoning": "Compute stop: (1977 + 5 + 5) % 10 = 7",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 7,
+  "difficulty": {
+    "level": "medium",
+    "depth": 10,
+    "tool_stop_count": 2,
+    "reason_stop_count": 2,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "Here is the revised riddle:\n\n1. Seek the Wikipedia page about the prominent banker who completed his undergraduate degree in accounting, noting the details from his early life and education section—particularly the year he achieved that milestone.  \n\n2. There exists a page for the nation's official seal you can reach from the site—on that page, discover how many meters above sea level the ground beneath that emblem's registered location sits.  \n\n3. What prime number comes immediately after the elevation (in meters) you just recorded; in other words, take that elevation and find the next prime.  \n\n4. If you follow a link toward articles on the country's indigenous peoples, consult the Ethnologue citation there and report how many living linguistic communities it lists for Bangladesh.  \n\n5. The number obtained from Ethnologue, when converted into Roman numerals, uses how many symbols? (Write the numeral and count its characters.)  \n\n6. In a separate turn, consult the article about the national company that manages transmission of electricity across Bangladesh and read off the year that company was formed.  \n\n7. The nation's local variety of English has its own entry; on that page's discussion of usage, in which year did the High Court prohibit the use of so-called \"Benglish\" in radio and television programming?  \n\n8. One small aside: if you requested driving directions from Kandy to the place you just named (the entry about the local English variety), how many minutes would the suggested drive take according to the directions service?  \n\n9. Pinpoint the page about the Arakan-descended hill community living in Bangladesh; what population figure does the infobox attribute to them within the country?  \n\n10. Finally, compute this explicitly and give a single-digit answer (0–9): (clue 1 + clue 2 + clue 5) % 10. Use only the numeric values you discovered for each referenced clue to perform this arithmetic.",
+  "metadata": {
+    "theme": "From a Bangladeshi banker outward — tracing Bangladesh's people, infrastructure and regional links: banks, indigenous communities, national institutions, maps and travel.",
+    "difficulty": "medium",
+    "sample_id": "sample_014",
+    "pages_crawled": 1754,
+    "source": "trail_puzzles_v2"
+  },
+  "generated_at": "2026-03-15T14:45:57.298949+00:00"
+}

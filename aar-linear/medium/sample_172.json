@@ -1,0 +1,354 @@
+{
+  "trail_id": "trail_c7198704",
+  "seed_url": "https://en.wikipedia.org/wiki/Bitcoin",
+  "seed_title": "Bitcoin",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Bitcoin",
+      "extraction_target": "Look up the closing price of BTCUSDT on 2024-06-15",
+      "extraction_section": null,
+      "extracted_value": 66249.99,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "crypto_historical_price",
+            "arguments": {
+              "symbol": "BTCUSDT",
+              "date": "2024-06-15"
+            },
+            "expected_output": null,
+            "output_key": "crypto_price"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: crypto price BTCUSDT on 2024-06-15",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Cryptography",
+      "extraction_target": "the number of languages the article is available in (displayed near the top)",
+      "extraction_section": null,
+      "extracted_value": 99,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Computer_security",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Bitcoin is built on cryptographic primitives — this page explains the technical foundations (public-key crypto, hashing) underlying cryptocurrency.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Computer_security",
+      "extraction_target": "the number of languages indicated at the top of the article",
+      "extraction_section": null,
+      "extracted_value": 76,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Computer_security",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Moving from crypto primitives to the practice of protecting systems: computer security frames the operational risks for cryptocurrencies, wallets and exchanges.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 3,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Computer_security",
+      "extraction_target": "Reason: the number of characters when written as a Roman numeral",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (roman_numeral_letter_count) on stop 2 value",
+      "reason_transform": "roman_numeral_letter_count",
+      "reason_source_stop": 2,
+      "reason_code": "def to_roman(n):\n    n = abs(int(n))\n    vals = [(1000,'M'),(900,'CM'),(500,'D'),(400,'CD'),(100,'C'),\n            (90,'XC'),(50,'L'),(40,'XL'),(10,'X'),(9,'IX'),(5,'V'),(4,'IV'),(1,'I')]\n    r = ''\n    for v, s in vals:\n        while n >= v:\n            r += s; n -= v\n    return r\nresult = len(to_roman(76))\nprint(result)"
+    },
+    {
+      "index": 4,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Anonymous_(hacker_group)",
+      "extraction_target": "the number of languages the article is available in (shown at the top of the page)",
+      "extraction_section": null,
+      "extracted_value": 67,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Anonymous_(hacker_group)",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Hacker collectives like Anonymous illustrate how decentralized online actors interact with systems (and sometimes with cryptocurrencies) for activism, leaks and attacks.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 5,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Anonymous_(hacker_group)",
+      "extraction_target": "Reason: the digital root (iterated digit sum until single digit)",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digital_root) on stop 3 value",
+      "reason_transform": "digital_root",
+      "reason_source_stop": 4,
+      "reason_code": "n = abs(int(67))\nresult = n if n == 0 else ((n - 1) % 9) + 1\nprint(result)"
+    },
+    {
+      "index": 6,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/WikiLeaks",
+      "extraction_target": "the number of languages listed near the top of the article",
+      "extraction_section": null,
+      "extracted_value": 111,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/WikiLeaks",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "WikiLeaks is a high-profile example of leaked information and the tension between transparency, state secrecy and platforms that host controversial disclosures — contexts where anonymous funding and crypto have been used.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 7,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/WikiLeaks",
+      "extraction_target": "Reason: the largest prime factor of that figure",
+      "extraction_section": null,
+      "extracted_value": 37,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (largest_prime_factor) on stop 4 value",
+      "reason_transform": "largest_prime_factor",
+      "reason_source_stop": 6,
+      "reason_code": "def largest_prime_factor(n):\n    n = abs(int(n))\n    if n <= 1: return n\n    d = 2\n    while d * d <= n:\n        while n % d == 0: n //= d\n        d += 1\n    return n\nresult = largest_prime_factor(111)\nprint(result)"
+    },
+    {
+      "index": 8,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/National_Security_Agency",
+      "extraction_target": "the number of languages listed in the article's language links",
+      "extraction_section": null,
+      "extracted_value": 67,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Alexander Hamilton wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Alexander_Hamilton",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "State surveillance agencies like the NSA represent the centralised, security-focused response to information leaks, cyber threats and the privacy promises of cryptographic tools and cryptocurrencies.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 9,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Alexander_Hamilton",
+      "extraction_target": "the number of subsections listed under 'First U.S. secretary of the treasury (1789–1795)' in the table of contents",
+      "extraction_section": "First U.S. secretary of the treasury (1789–1795)",
+      "extracted_value": 9,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Panic of 1873 wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Panic_of_1873",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "To contrast decentralized money with state-issued currency and financial institutions, this stop revisits the historical architect of America's financial system.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 10,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Panic_of_1873",
+      "extraction_target": "the number of language links listed at the top of the article",
+      "extraction_section": null,
+      "extracted_value": 25,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/2023_United_States_banking_crisis",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Historical banking panics show the fragility of centralized financial systems and help explain why alternatives like Bitcoin attract interest after modern crises.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 11,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/2023_United_States_banking_crisis",
+      "extraction_target": "Look up the elevation at 2023 United States banking crisis",
+      "extraction_section": null,
+      "extracted_value": 3236.2353515625,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "2023 United States banking crisis"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for 2023 United States banking crisis",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 12,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: (99 + 67 + 3236) % 10",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "(99 + 67 + 3236) % 10",
+        "expression_code": "result = (99 + 67 + 3236) % 10\nprint(result)",
+        "referenced_stops": [
+          1,
+          4,
+          11
+        ]
+      },
+      "reasoning": "Compute stop: (99 + 67 + 3236) % 10 = 2",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 2,
+  "difficulty": {
+    "level": "medium",
+    "depth": 13,
+    "tool_stop_count": 2,
+    "reason_stop_count": 3,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "Here is the revised riddle:\n\n1. Seek the page about a cryptocurrency that originated in 2009, known for its decentralized nature and blockchain technology; record one figure: what was the closing price of BTCUSDT on 2024-06-15?\n\n2. There exists a Wikipedia article about the science of secret codes and ciphers (the accepted version); on that page, how many language editions are listed near the top — and then follow the link labelled for the discipline that protects computer systems from information disclosure, theft or damage to continue.\n\n3. Examine the article concerned with the protection of computer systems from information disclosure, theft or damage and note its number of language editions shown near the top.\n\n4. If you take the numeric result you obtained in clue 3, convert that number into a Roman numeral and tell me how many characters long that Roman numeral is (this is the transformed value of clue 3).\n\n5. The article describing the decentralized hacktivist collective famous for mask symbolism shows a count at its top; how many language editions are listed there?\n\n6. In dispersed operations and mask‑waving protests the page displays a number — take the number from clue 5 and reduce it to a single digit by repeatedly summing its digits until only one digit remains (that digital root is your value for clue 6).\n\n7. Imagine the news‑leak publishing organisation that releases classified material; consult its page and record how many language editions it lists near the top.\n\n8. (A small aside: take the integer you found in clue 7 and compute its largest prime factor — that prime is the transformed value you will carry forward.)\n\n9. Locate the article about the United States signals‑intelligence agency; how many language editions does that page show near the top, and with that done, search for the Founding Father who served as the first U.S. secretary of the treasury (born 1755–1804).\n\n10. Now, on that Founding Father's article, look under the Table of Contents entry covering his service as First U.S. secretary of the treasury (1789–1795) and count how many subsections are listed beneath that heading.\n\n11. If you trace back to the 1873 financial collapse that ushered in a long depression across Europe and North America, its article will display language links — how many language editions appear near the top of that page? Then follow the in‑page link that refers to the banking crisis beginning in March 2023 in the United States.\n\n12. The page about the banking turmoil beginning in March 2023 in the United States points you to a modern locus; pose a geolocation query for that subject and report the elevation in meters returned for that location (this is the numeric value for clue 12).\n\n13. Finally, compute the remainder when (clue 2 + clue 5 + clue 12) is divided by 10; that remainder is your single‑digit answer (0–9).",
+  "metadata": {
+    "theme": "From Bitcoin's price to the institutions, technologies and crises that shaped money and security — a short investigative trail linking cryptocurrency, cryptography and markets to state surveillance, hacking and historical banking panics.",
+    "difficulty": "medium",
+    "sample_id": "sample_172",
+    "pages_crawled": 11243
+  },
+  "generated_at": "2026-03-17T18:16:39.619483+00:00"
+}

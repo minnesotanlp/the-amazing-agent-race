@@ -1,0 +1,284 @@
+{
+  "trail_id": "trail_82843f00",
+  "seed_url": "https://en.wikipedia.org/wiki/Santiago_a_Mil_International_Theater_Festival",
+  "seed_title": "Santiago a Mil International Theater Festival",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Santiago_a_Mil_International_Theater_Festival",
+      "extraction_target": "the location listed in the infobox (field: 'Location')",
+      "extraction_section": "infobox",
+      "extracted_value": "Santiago, Chile  Chile",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Provinces of Chile wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Provinces_of_Chile",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start at Santiago a Mil — a flagship international street and fringe theatre festival that frames the trail's focus on public and small-venue performance.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Santiago_a_Mil_International_Theater_Festival",
+      "extraction_target": "Count parks near Santiago, Chile  Chile",
+      "extraction_section": null,
+      "extracted_value": 20,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "parks near Santiago, Chile  Chile"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (nearby_poi) derived from https://en.wikipedia.org/wiki/Santiago_a_Mil_International_Theater_Festival",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Provinces_of_Chile",
+      "extraction_target": "Look up the elevation at Chile",
+      "extraction_section": null,
+      "extracted_value": 193.3970642089844,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Chile"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for Chile",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 3,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Provinces_of_Chile",
+      "extraction_target": "Reason: the number of characters when written as a Roman numeral",
+      "extraction_section": null,
+      "extracted_value": 6,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (roman_numeral_letter_count) on stop 1 value",
+      "reason_transform": "roman_numeral_letter_count",
+      "reason_source_stop": 2,
+      "reason_code": "def to_roman(n):\n    n = abs(int(n))\n    vals = [(1000,'M'),(900,'CM'),(500,'D'),(400,'CD'),(100,'C'),\n            (90,'XC'),(50,'L'),(40,'XL'),(10,'X'),(9,'IX'),(5,'V'),(4,'IV'),(1,'I')]\n    r = ''\n    for v, s in vals:\n        while n >= v:\n            r += s; n -= v\n    return r\nresult = len(to_roman(193))\nprint(result)"
+    },
+    {
+      "index": 4,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Gastown",
+      "extraction_target": "the coordinates of Gastown as given in the article (full DMS and decimal string)",
+      "extraction_section": null,
+      "extracted_value": "49°17′05″N 123°06′39″W / 49.284688°N 123.110953°W / 49.284688; -123.110953",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "George Square wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/George_Square",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Gastown is a historic neighbourhood known for street life and outdoor events — a useful comparison to Santiago's street-theatre sites.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 5,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/George_Square",
+      "extraction_target": "the coordinates listed in the infobox (field: 'Coordinates')",
+      "extraction_section": "infobox",
+      "extracted_value": "55°51′40″N 04°15′01″W﻿ / ﻿55.86111°N 4.25028°W﻿ / 55.86111; -4.25028",
+      "extracted_value_type": "coords",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Finborough Theatre wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Finborough_Theatre",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "George Square exemplifies the public square as a performance and civic-gathering venue, linking outdoor festival programming to urban centers.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 6,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Finborough_Theatre",
+      "extraction_target": "the capacity listed in the infobox (field: 'Capacity')",
+      "extraction_section": "infobox",
+      "extracted_value": 50,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Finborough_Theatre",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "The Finborough Theatre represents the intimate, fringe venue end of the festival spectrum — smaller stages where new works often premiere.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 7,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Finborough_Theatre",
+      "extraction_target": "Reason: the next prime number after that figure",
+      "extraction_section": null,
+      "extracted_value": 53,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (next_prime) on stop 4 value",
+      "reason_transform": "next_prime",
+      "reason_source_stop": 6,
+      "reason_code": "def next_prime(n):\n    n = abs(int(n))\n    if n < 2: return 2\n    candidate = n + 1\n    while True:\n        if all(candidate % i != 0 for i in range(2, int(candidate**0.5)+1)):\n            return candidate\n        candidate += 1\nresult = next_prime(50)\nprint(result)"
+    },
+    {
+      "index": 8,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Assassins_(musical)",
+      "extraction_target": "the year Sondheim read Charles Gilbert Jr.'s script at Stuart Ostrow's Musical Theater Lab",
+      "extraction_section": "Background",
+      "extracted_value": 1979,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Assassins_(musical)",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Finish with a concrete example of festival and fringe programming: a notable musical frequently produced in both small theatres and festival lineups.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 9,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: abs(20 - 193) % 10",
+      "extraction_section": null,
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "abs(20 - 193) % 10",
+        "expression_code": "result = abs(20 - 193) % 10\nprint(result)",
+        "referenced_stops": [
+          1,
+          2
+        ]
+      },
+      "reasoning": "Compute stop: abs(20 - 193) % 10 = 3",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 3,
+  "difficulty": {
+    "level": "medium",
+    "depth": 10,
+    "tool_stop_count": 2,
+    "reason_stop_count": 2,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. A vibrant street theatre festival paints the heart of a Chilean capital. Can you uncover this artistic hub's name and its location?\n\n2. Discover how many patches of green grace the vicinity of this urban marvel — count the parks near the capital.\n\n3. Ascend to the heights and reveal how far above the sea level the land lies in this remarkable country.\n\n4. Transform that figure you just found into Roman script; how many characters does that numeral contain?\n\n5. Track the coordinates of a historic neighborhood in a Canadian city — what are they for this storied area known for its cobblestone streets?\n\n6. As you travel further, locate a public square that sits in the heart of a Scottish city. What are its coordinates whispered in the infobox?\n\n7. From grandeur to intimacy, find a venue nestled in London, famed for its productions. What is the maximum number of patrons it can hold for a performance?\n\n8. Before leaping forward, find the next prime number after the capacity you just unearthed. What new value emerges?\n\n9. Turn back to the world of musicals; in what year did a famed composer encounter the script that would inspire a notable production at a theater lab?\n\n10. Finally, compute the variation between clue 2 and the elevation in clue 3, then apply modulo 10 to reveal your treasure — what single digit do you uncover?",
+  "metadata": {
+    "theme": "A micro-tour of live-performance spaces and festival programming — from Santiago's major street theatre festival to urban squares, neighbourhood stages and an example musical, with data stops to compare scale and reach.",
+    "difficulty": "medium",
+    "sample_id": "sample_020",
+    "pages_crawled": 2545,
+    "source": "trail_puzzles_v2"
+  },
+  "generated_at": "2026-03-15T17:15:20.814754+00:00"
+}

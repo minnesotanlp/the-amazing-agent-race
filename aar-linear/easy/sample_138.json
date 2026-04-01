@@ -1,0 +1,184 @@
+{
+  "trail_id": "trail_506e57ed",
+  "seed_url": "https://en.wikipedia.org/wiki/Netflix",
+  "seed_title": "Netflix",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Netflix",
+      "extraction_target": "the number of subsections listed under Availability and access in the Contents",
+      "extraction_section": "Availability and access",
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/DreamWorks_Animation",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start at Netflix to anchor the trail in the service/company whose strategy (originals, licensing, global rollout) drives the rest of the exploration.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/DreamWorks_Animation",
+      "extraction_target": "the number of sub-subsections listed under Parks and experiences",
+      "extraction_section": "Parks and experiences",
+      "extracted_value": 6,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Brazil wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Brazil",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Move to a major content producer to illustrate where streaming platforms source films/series and how studio catalogs factor into streaming strategies.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Brazil",
+      "extraction_target": "Look up the elevation at Brasília 15°47′S 47°52′W﻿ / ﻿15.783°S 47.867°W﻿ / -15.783; -47.867",
+      "extraction_section": null,
+      "extracted_value": 1114.332641601562,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Brasília 15°47′S 47°52′W﻿ / ﻿15.783°S 47.867°W﻿ / -15.783; -47.867"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for Brasília 15°47′S 47°52′W﻿ / ﻿15.783°S 47.867°W﻿ / -15.783; -47.867",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 3,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Brazil",
+      "extraction_target": "Reason: the number you get by reversing its digits",
+      "extraction_section": null,
+      "extracted_value": 4111,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_reversal) on stop 2 value",
+      "reason_transform": "digit_reversal",
+      "reason_source_stop": 2,
+      "reason_code": "result = int(str(abs(int(1114)))[::-1])\nprint(result)"
+    },
+    {
+      "index": 4,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/The_Walt_Disney_Company",
+      "extraction_target": "the number of subsections listed under Criticism and controversies in the Contents",
+      "extraction_section": "Contents",
+      "extracted_value": 6,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/The_Walt_Disney_Company",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Finish at a leading media conglomerate to contrast business models (content ownership, direct-to-consumer services) and highlight the competitive landscape for Netflix.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 5,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: digital_root(3 + 1114 + 4111 + 6)",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "digital_root(3 + 1114 + 4111 + 6)",
+        "expression_code": "def digital_root(n):\n    n = abs(int(n))\n    return n if n == 0 else ((n - 1) % 9) + 1\nresult = digital_root(3 + 1114 + 4111 + 6)\nprint(result)",
+        "referenced_stops": [
+          0,
+          2,
+          3,
+          4
+        ]
+      },
+      "reasoning": "Compute stop: digital_root(3 + 1114 + 4111 + 6) = 5",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 5,
+  "difficulty": {
+    "level": "easy",
+    "depth": 6,
+    "tool_stop_count": 1,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "Here is the riddle with the specified changes:\n\n1. Seek the page for the streaming service that revolutionized how we watch films and TV shows; in its Contents find the heading titled Availability and access and count how many subsections are listed beneath that heading — record that number as clue 1, then follow the in-page link that leads to the American animation studio famous for Shrek and similar films.\n\n2. There exists a page about that animation studio; within its Contents locate Parks and experiences and count the number of sub-subsections (the entries one level below that section) — that count becomes clue 2, and next look up the South American country whose capital is Brasília to continue.\n\n3. What elevation, in metres, does the capital at coordinates 15°47′S 47°52′W report as its height above sea level? Use the page for that South American nation to confirm the value and note it as clue 3.\n\n4. If you reverse the digits of the elevation number you just found (take its decimal digits and write them in reverse order), the resulting integer is your clue 4.\n\n5. The article whose opening line names the large American media and entertainment conglomerate behind Mickey Mouse and major theme parks hides your next figure; in its Contents find the Criticism and controversies heading and count how many subsections appear under that heading — that count is clue 5.\n\n6. In the end, compute the digital root of (clue 1 + clue 3 + clue 4 + clue 5) — repeatedly sum the digits of the total until a single digit remains — and report that single digit (0–9) as your final answer.",
+  "metadata": {
+    "theme": "Tracing Netflix's business story: its market performance, content partnerships, and global market reach in the streaming-media ecosystem",
+    "difficulty": "easy",
+    "sample_id": "sample_138",
+    "pages_crawled": 1350
+  },
+  "generated_at": "2026-03-17T08:11:47.193175+00:00"
+}

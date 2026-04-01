@@ -1,0 +1,160 @@
+{
+  "trail_id": "trail_ccdb8f09",
+  "seed_url": "https://en.wikipedia.org/wiki/Volumetric_mesh",
+  "seed_title": "Volumetric mesh",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Volumetric_mesh",
+      "extraction_target": "the page's last edited date and time as given on the page",
+      "extraction_section": null,
+      "extracted_value": "2 October 2024, at 02:55 (UTC)",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Polygon_mesh",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start at volumetric meshes to introduce how 3D solids are discretized into elements for simulation and physical analysis — the 'solid' end of the representation pipeline.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Polygon_mesh",
+      "extraction_target": "Look up the elevation at Polygon mesh",
+      "extraction_section": null,
+      "extracted_value": 74.94766998291016,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Polygon mesh"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for Polygon mesh",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Polygon_mesh",
+      "extraction_target": "Reason: the sum of its digits",
+      "extraction_section": null,
+      "extracted_value": 11,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_sum) on stop 1 value",
+      "reason_transform": "digit_sum",
+      "reason_source_stop": 1,
+      "reason_code": "result = sum(int(d) for d in str(abs(int(74))))\nprint(result)"
+    },
+    {
+      "index": 3,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Computer_representation_of_surfaces",
+      "extraction_target": "the month and year shown in the maintenance template requesting additional citations",
+      "extraction_section": null,
+      "extracted_value": "December 2009",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Computer_representation_of_surfaces",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Finish at computer surface representations to show the source formats and techniques (surfaces and meshes) that feed into polygon meshes and, when needed, are converted into volumetric meshes for simulation or rendering.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 4,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: digital_root(74 + 11)",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "digital_root(74 + 11)",
+        "expression_code": "def digital_root(n):\n    n = abs(int(n))\n    return n if n == 0 else ((n - 1) % 9) + 1\nresult = digital_root(74 + 11)\nprint(result)",
+        "referenced_stops": [
+          1,
+          2
+        ]
+      },
+      "reasoning": "Compute stop: digital_root(74 + 11) = 4",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 4,
+  "difficulty": {
+    "level": "easy",
+    "depth": 5,
+    "tool_stop_count": 1,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "direct_link"
+  },
+  "riddle": "Here is the rewritten riddle:\n\n1. Seek the page that discusses a data structure representing a volume using elements defined by networks of flat polygons; note the page's last edited date and time as shown on the article; then follow the link on that page which leads to the topic about networks of flat polygons stitched into a surface.  \n\n2. There exists an article about those polygon networks; if you were to query a maps/elevation lookup for the phrase that titles that article, what altitude above sea level would the lookup return (give the numeric elevation).  \n\n3. What is the sum of the digits of the elevation you wrote down in clue 2 — perform that digit-sum operation on the number from clue 2 and keep the result.  \n\n4. If you navigate to the entry describing how computers represent surfaces, inspect the maintenance banner that requests additional citations and record the month and year displayed in that template.  \n\n5. In the final reckoning, compute the digital root of (clue 2 + clue 3) and report that single digit; your treasure is the result of digital_root(clue 2 + clue 3), a number between 0 and 9.",
+  "metadata": {
+    "theme": "From surfaces to solids — tracing how 3D shapes are represented and converted in computer graphics and simulation",
+    "difficulty": "easy",
+    "sample_id": "sample_002",
+    "pages_crawled": 57,
+    "source": "trail_puzzles_v2"
+  },
+  "generated_at": "2026-03-15T09:49:45.942053+00:00"
+}

@@ -1,0 +1,205 @@
+{
+  "trail_id": "trail_efba59d0",
+  "seed_url": "https://en.wikipedia.org/wiki/Boeing",
+  "seed_title": "Boeing",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Boeing",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Founded')",
+      "extraction_section": "infobox",
+      "extracted_value": 15,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/United_Airlines",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Seed of the trail — Boeing is the central aerospace manufacturer whose products, customers and controversies drive the rest of the route.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/United_Airlines",
+      "extraction_target": "the number of subsections under 'Controversies and passenger incidents' listed in the Contents",
+      "extraction_section": "Controversies and passenger incidents",
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/September_11_attacks",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A major airline customer of Boeing — understanding United's headquarters and hubs links Boeing's products to airline operations and route networks.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/September_11_attacks",
+      "extraction_target": "the number of languages listed at the top of the article",
+      "extraction_section": null,
+      "extracted_value": 146,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/United_States_Congress",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A defining security event in commercial aviation history that reshaped aircraft design, airline operations, and government regulation — directly implicates commercial aircraft manufacturers.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 3,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/United_States_Congress",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Founded')",
+      "extraction_section": "infobox",
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/United_States_Congress",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Political and regulatory endpoint — Congress makes laws and conducts oversight that affect Boeing, airlines, aviation safety, and industry subsidies; closes the loop between industry, security events, and policy.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 4,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/United_States_Congress",
+      "extraction_target": "Look up the elevation of United States Congress",
+      "extraction_section": null,
+      "extracted_value": 3236.2353515625,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "United States Congress"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (elevation) derived from https://en.wikipedia.org/wiki/United_States_Congress",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 5,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/United_States_Congress",
+      "extraction_target": "Reason: the number of characters when written as a Roman numeral",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (roman_numeral_letter_count) on stop 3 value",
+      "reason_transform": "roman_numeral_letter_count",
+      "reason_source_stop": 3,
+      "reason_code": "def to_roman(n):\n    n = abs(int(n))\n    vals = [(1000,'M'),(900,'CM'),(500,'D'),(400,'CD'),(100,'C'),\n            (90,'XC'),(50,'L'),(40,'XL'),(10,'X'),(9,'IX'),(5,'V'),(4,'IV'),(1,'I')]\n    r = ''\n    for v, s in vals:\n        while n >= v:\n            r += s; n -= v\n    return r\nresult = len(to_roman(4))\nprint(result)"
+    },
+    {
+      "index": 6,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: abs(146 - 2) % 10",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "abs(146 - 2) % 10",
+        "expression_code": "result = abs(146 - 2) % 10\nprint(result)",
+        "referenced_stops": [
+          2,
+          5
+        ]
+      },
+      "reasoning": "Compute stop: abs(146 - 2) % 10 = 4",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 4,
+  "difficulty": {
+    "level": "easy",
+    "depth": 7,
+    "tool_stop_count": 1,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "direct_link"
+  },
+  "riddle": "1. Begin your quest with the aerospace giant that took flight in the early 20th century; what year did it first spread its wings in the industry?\n\n2. Once you've captured that year, explore the company whose name is synonymous with the skies in America. Within its record of controversies, how many subsections can you find under the shadows of mishaps?\n\n3. Journey to the fateful day in 2001 that changed aviation forever. Among its narrative, how many tongues can share the tale of these tragic events?\n\n4. The legislative body that shapes national policy carries a legacy from its inception. Seek the year it was established — when did it first convene to govern?\n\n5. Amidst the echoing halls of this prominent assembly, what elevation does it stand at above sea level? Seek the answer to uncover its towering presence.\n\n6. An intriguing twist awaits you! Transform the founding year from the previous discovery into Roman numerals. Count how many characters it takes to write that ancient style.\n\n7. Finally, with your knowledge amassed, compute the absolute difference between the languages from clue 3 and the character count from clue 6. Reduce it through modulo 10 — reveal to me the single digit that surfaces.",
+  "metadata": {
+    "theme": "The modern commercial aviation ecosystem — Boeing's business, airline customers and hubs, how major corporate markets move, and the political/security forces that shape aviation policy.",
+    "difficulty": "easy",
+    "sample_id": "sample_175",
+    "pages_crawled": 3569
+  },
+  "generated_at": "2026-03-17T11:25:26.289814+00:00"
+}

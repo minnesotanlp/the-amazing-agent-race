@@ -1,0 +1,128 @@
+{
+  "trail_id": "trail_dae31575",
+  "seed_url": "https://en.wikipedia.org/wiki/Cisco",
+  "seed_title": "Cisco",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Cisco",
+      "extraction_target": "the number of top-level sections listed in the table of contents",
+      "extraction_section": "Contents",
+      "extracted_value": 10,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Cisco",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start at Cisco (seed). extracting its headquarters city anchors the trail in Silicon Valley and provides the location used by subsequent place-based tools.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Cisco",
+      "extraction_target": "Reason: the largest prime factor of that figure",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (largest_prime_factor) on stop 0 value",
+      "reason_transform": "largest_prime_factor",
+      "reason_source_stop": 0,
+      "reason_code": "def largest_prime_factor(n):\n    n = abs(int(n))\n    if n <= 1: return n\n    d = 2\n    while d * d <= n:\n        while n % d == 0: n //= d\n        d += 1\n    return n\nresult = largest_prime_factor(10)\nprint(result)"
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/San_Jose,_California",
+      "extraction_target": "Count the number of libraries near 37.33611",
+      "extraction_section": null,
+      "extracted_value": 8,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "libraries near 37.33611"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: count libraries near 37.33611",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 3,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: abs(10 - 8) % 10",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "abs(10 - 8) % 10",
+        "expression_code": "result = abs(10 - 8) % 10\nprint(result)",
+        "referenced_stops": [
+          0,
+          2
+        ]
+      },
+      "reasoning": "Compute stop: abs(10 - 8) % 10 = 2",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 2,
+  "difficulty": {
+    "level": "easy",
+    "depth": 4,
+    "tool_stop_count": 1,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "direct_link"
+  },
+  "riddle": "1. Seek the company page of the Silicon Valley networking giant whose opening line reads \"American multinational technology company\" and count the number of top-level sections shown in its table of contents.  \n2. What is the largest prime factor of the integer you just recorded from that contents list?  \n3. If you visit the municipal article for the Valley's largest city (use latitude 37.33611 as your map-pin), how many public libraries appear when you search for libraries near that coordinate?  \n4. In the end, compute the absolute difference between clue 1 and clue 3, then take that result modulo 10: abs(clue 1 - clue 3) % 10 — the outcome is a single digit (0–9).",
+  "metadata": {
+    "theme": "Tracing Cisco from its Silicon Valley roots into the local tech ecosystem and nearby industry — mapping its HQ, local points of interest and commute links, then comparing market standing with a major semiconductor peer.",
+    "difficulty": "easy",
+    "sample_id": "sample_128",
+    "pages_crawled": 700
+  },
+  "generated_at": "2026-03-17T07:24:54.013410+00:00"
+}

@@ -1,0 +1,908 @@
+{
+  "trail_id": "trail_e35a61c7",
+  "seed_url": "https://en.wikipedia.org/wiki/Bend-Or_spots",
+  "seed_title": "Bend-Or spots",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Bend-Or_spots",
+      "extraction_target": "the types of horses on which Bend-Or spots are most commonly seen",
+      "extraction_section": null,
+      "extracted_value": "palominos, chestnuts, and darker horses",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Fur trade wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Fur_trade",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Seed: a concrete example of 'markings' on animals — a small, tangible starting point for a trail about marks, trade in pelts, and how animal and human movements intersect.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Fur_trade",
+      "extraction_target": "the number of languages the article is available in (displayed near the top)",
+      "extraction_section": null,
+      "extracted_value": 30,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Fur_trade",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Connects animal markings/coats to economic value: fur trade drove exploration, transport of animals and people, and early contact zones that reshaped demographics.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Fur_trade",
+      "extraction_target": "Count museums near Fur trade",
+      "extraction_section": null,
+      "extracted_value": 18,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "museums near Fur trade"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (nearby_poi) derived from https://en.wikipedia.org/wiki/Fur_trade",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Fur_trade",
+      "extraction_target": "Reason: the number of characters when written as a Roman numeral",
+      "extraction_section": null,
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (roman_numeral_letter_count) on stop 1 value",
+      "reason_transform": "roman_numeral_letter_count",
+      "reason_source_stop": 1,
+      "reason_code": "def to_roman(n):\n    n = abs(int(n))\n    vals = [(1000,'M'),(900,'CM'),(500,'D'),(400,'CD'),(100,'C'),\n            (90,'XC'),(50,'L'),(40,'XL'),(10,'X'),(9,'IX'),(5,'V'),(4,'IV'),(1,'I')]\n    r = ''\n    for v, s in vals:\n        while n >= v:\n            r += s; n -= v\n    return r\nresult = len(to_roman(30))\nprint(result)",
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/California_Gold_Rush",
+      "extraction_target": "Calculate the number of days between 1848-01-24 and 2026-03-20",
+      "extraction_section": null,
+      "extracted_value": 65069,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "from datetime import date\nd1 = date.fromisoformat('1848-01-24')\nd2 = date.fromisoformat('2026-03-20')\nresult = abs((d2 - d1).days)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "days"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: date computation 1848-01-24 to 2026-03-20 (pinned)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/California_Gold_Rush",
+      "extraction_target": "Reason: the sum of its distinct prime factors",
+      "extraction_section": null,
+      "extracted_value": 2130,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (sum_prime_factors) on stop 2 value",
+      "reason_transform": "sum_prime_factors",
+      "reason_source_stop": 4,
+      "reason_code": "def prime_factors(n):\n    n = abs(int(n))\n    factors = []\n    d = 2\n    while d * d <= n:\n        while n % d == 0:\n            factors.append(d)\n            n //= d\n        d += 1\n    if n > 1: factors.append(n)\n    return factors\nresult = sum(set(prime_factors(65069)))\nprint(result)",
+      "depends_on": [
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Black_Hills_gold_rush",
+      "extraction_target": "month and year the large placer gold deposits of Deadwood Gulch were discovered",
+      "extraction_section": null,
+      "extracted_value": "November 1875",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Manchukuo wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Manchukuo",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A later North American gold rush that continued the pattern of rapid migration, conflict over land, and economic reshaping of regions — complements the California example.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Black_Hills_gold_rush",
+      "extraction_target": "Look up the elevation of Black Hills gold rush",
+      "extraction_section": null,
+      "extracted_value": 1932.61279296875,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Black Hills gold rush"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Black Hills gold rush) from https://en.wikipedia.org/wiki/Black_Hills_gold_rush",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Black_Hills_gold_rush",
+      "extraction_target": "Look up the count of libraries near Black Hills gold rush",
+      "extraction_section": null,
+      "extracted_value": 5.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "libraries near Black Hills gold rush"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of libraries near Black Hills gold rush) from https://en.wikipedia.org/wiki/Black_Hills_gold_rush",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 9,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Black_Hills_gold_rush",
+      "extraction_target": "Combine the elevation of Black Hills gold rush and the count of libraries near Black Hills gold rush: abs(1932 - 5)",
+      "extraction_section": null,
+      "extracted_value": 1927,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(1932.61279296875) - int(5.0))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Black Hills gold rush abs_diff count of libraries near Black Hills gold rush",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        7,
+        8
+      ]
+    },
+    {
+      "index": 10,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Manchukuo",
+      "extraction_target": "Look up the elevation at Hsinking (Changchun) (until 9 August 1945) * Tonghua (from 9 August 1945)",
+      "extraction_section": null,
+      "extracted_value": 222.7384948730469,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Hsinking (Changchun) (until 9 August 1945) * Tonghua (from 9 August 1945)"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for Hsinking (Changchun) (until 9 August 1945) * Tonghua (from 9 August 1945)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        9
+      ]
+    },
+    {
+      "index": 11,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Manchukuo",
+      "extraction_target": "Reason: the sum of its digits",
+      "extraction_section": null,
+      "extracted_value": 6,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_sum) on stop 4 value",
+      "reason_transform": "digit_sum",
+      "reason_source_stop": 10,
+      "reason_code": "result = sum(int(d) for d in str(abs(int(222))))\nprint(result)",
+      "depends_on": [
+        10
+      ]
+    },
+    {
+      "index": 12,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Kentucky",
+      "extraction_target": "the area listed in the infobox (field: '[Largest metro](/wiki/Statistical_area_(United_States) \"Statistical area (United States)\") and [urban](/wiki/List_of_United_States_urban_areas \"List of United States urban areas\") areas')",
+      "extraction_section": "infobox",
+      "extracted_value": -1,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Race_and_ethnicity_in_the_United_States_census",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "State-level stop to pivot back to U.S. domestic geography — Kentucky (and its cities) served as staging grounds or waypoints in internal migration patterns related to trade and settlement.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        11
+      ]
+    },
+    {
+      "index": 13,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Kentucky",
+      "extraction_target": "Look up the elevation of Kentucky",
+      "extraction_section": null,
+      "extracted_value": 237.7756958007812,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Kentucky"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Kentucky) from https://en.wikipedia.org/wiki/Kentucky",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        12
+      ]
+    },
+    {
+      "index": 14,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Kentucky",
+      "extraction_target": "Look up the count of museums near Kentucky",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "museums near Kentucky"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of museums near Kentucky) from https://en.wikipedia.org/wiki/Kentucky",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        12
+      ]
+    },
+    {
+      "index": 15,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Kentucky",
+      "extraction_target": "Combine the elevation of Kentucky and the count of museums near Kentucky: (237 + 20)",
+      "extraction_section": null,
+      "extracted_value": 257,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(237.7756958007812) + int(20.0)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Kentucky add count of museums near Kentucky",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        13,
+        14
+      ]
+    },
+    {
+      "index": 16,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Race_and_ethnicity_in_the_United_States_census",
+      "extraction_target": "the year since which respondents are categorized by membership in one of two ethnic categories",
+      "extraction_section": null,
+      "extracted_value": "1980",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Non-Hispanic or Latino African Americans wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Non-Hispanic_or_Latino_African_Americans",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Shifts from movement and settlement to how populations are categorized — the census records the demographic outcomes of migrations and economic shifts driven by trade and resource rushes.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        15
+      ]
+    },
+    {
+      "index": 17,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Non-Hispanic_or_Latino_African_Americans",
+      "extraction_target": "the number of subsections listed under Racism and social status in the table of contents",
+      "extraction_section": "Racism and social status",
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Native American (U.S. Census) wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Native_American_(U.S._Census)",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A focused look at one major U.S. demographic group to illustrate how historical movements, labor demands, and policy shaped present population categories.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        16
+      ]
+    },
+    {
+      "index": 18,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Native_American_(U.S._Census)",
+      "extraction_target": "the agencies that define the set of self-identified categories of race and ethnicity for the census",
+      "extraction_section": null,
+      "extracted_value": "U.S. Census Bureau and the Office of Management and Budget (OMB)",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Military history of African Americans wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Military_history_of_African_Americans",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Examines an indigenous perspective — gold rushes, land seizures, and trade routes dramatically affected Native populations; the census entry shows how those effects became recorded (and contested).",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        17
+      ]
+    },
+    {
+      "index": 19,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Military_history_of_African_Americans",
+      "extraction_target": "the month and year when the Tuskegee Airmen attended a briefing at Ramitelli Airfield (from the image caption)",
+      "extraction_section": null,
+      "extracted_value": "March 1945",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Los Angeles County, California wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Los_Angeles_County,_California",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Explores another dimension of movement and identity: military service shaped migration, opportunity, and civil status for African Americans, further changing demographics and regional cultures.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        18
+      ]
+    },
+    {
+      "index": 20,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Los_Angeles_County,_California",
+      "extraction_target": "Count the number of museums near 34.050",
+      "extraction_section": null,
+      "extracted_value": 1,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "museums near 34.050"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: count museums near 34.050",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        19
+      ]
+    },
+    {
+      "index": 21,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Omaha",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Founded')",
+      "extraction_section": "infobox",
+      "extracted_value": 1854,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Omaha wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Omaha",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Omaha as an historical gateway/transport hub exemplifies inland migration routes feeding westward expansion and urban growth — ties back to trade, gold rushes, and settlement patterns.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        20
+      ]
+    },
+    {
+      "index": 22,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Omaha",
+      "extraction_target": "Look up the elevation of Omaha",
+      "extraction_section": null,
+      "extracted_value": 316.9607849121094,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Omaha"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Omaha) from https://en.wikipedia.org/wiki/Omaha",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        21
+      ]
+    },
+    {
+      "index": 23,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Omaha",
+      "extraction_target": "Look up the count of hospitals near Omaha",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "hospitals near Omaha"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of hospitals near Omaha) from https://en.wikipedia.org/wiki/Omaha",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        21
+      ]
+    },
+    {
+      "index": 24,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Omaha",
+      "extraction_target": "Combine the elevation of Omaha and the count of hospitals near Omaha: abs(316 - 20)",
+      "extraction_section": null,
+      "extracted_value": 296,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(316.9607849121094) - int(20.0))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Omaha abs_diff count of hospitals near Omaha",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        22,
+        23
+      ]
+    },
+    {
+      "index": 25,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Omaha",
+      "extraction_target": "Reason: the number you get by reversing its digits",
+      "extraction_section": null,
+      "extracted_value": 4581,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_reversal) on stop 11 value",
+      "reason_transform": "digit_reversal",
+      "reason_source_stop": 21,
+      "reason_code": "result = int(str(abs(int(1854)))[::-1])\nprint(result)",
+      "depends_on": [
+        21
+      ]
+    },
+    {
+      "index": 26,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Tampa",
+      "extraction_target": "the elevation listed in the infobox (field: 'Elevation [[10]](#cite_note-gnis-11)')",
+      "extraction_section": "infobox",
+      "extracted_value": 10,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Tampa",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A coastal city that received waves of migrants and immigrants; contrasts interior hubs like Omaha and shows how different places absorbed population shifts over time.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        25
+      ]
+    },
+    {
+      "index": 27,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: digital_root(1932 + 5 + 237)",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "digital_root(1932 + 5 + 237)",
+        "expression_code": "def digital_root(n):\n    n = abs(int(n))\n    return n if n == 0 else ((n - 1) % 9) + 1\nresult = digital_root(1932 + 5 + 237)\nprint(result)",
+        "referenced_stops": [
+          7,
+          8,
+          13
+        ]
+      },
+      "reasoning": "Compute stop: digital_root(1932 + 5 + 237) = 5",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        7,
+        8,
+        13
+      ]
+    }
+  ],
+  "passcode": 5,
+  "difficulty": {
+    "level": "hard",
+    "depth": 28,
+    "tool_stop_count": 13,
+    "reason_stop_count": 4,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Seek the equine with dappled patterns; what breed is often marked by Bend-Or spots?\n\n2. There exists a source that discusses the trade of pelts and animal furs; how many tongues tell its tale?\n\n3. Pinpoint the cultural institutions surrounding this commerce; how many museums can you discover nearby?\n\n4. If you convert the previous answer into its ancient numeral representation, how many characters does it take to write?\n\n5. In 1848, a major rush toward golden riches began; how many days lie between that date and the dawn of March in 2026?\n\n6. Delving deeper, find the sum of the distinct prime factors of the number of days you just calculated.\n\n7. Track down the month and year when treasure troves were unearthed in the name of Deadwood Gulch; when did the discovery occur?\n\n8. This mountainous region holds allure beyond gold—what is its elevation above the sea?\n\n9. What literary sanctuaries populate the landscape near those historic digs? Count the libraries close to the discovered riches.\n\n10. To continue your journey, tally the elevation from clue 8 and the libraries found in clue 9; what absolute difference emerges?\n\n11. Now turn your gaze to an area remembered for its historical governance; check the elevation at Hsinking, a notable location in an intricate tale—what figure do you find?\n\n12. Adding a twist, sum the digits of the value unearthed in clue 11—what do you get?\n\n13. There exists a place in a land well-known for its horse races; what is the area of this state as recorded?\n\n14. How high does this celebrated state rise above sea level? Discover the elevation of this land.\n\n15. Museums reflect a culture's essence; how many of these institutions stand near the state you’ve explored?\n\n16. Add the elevation from clue 14 to the number of museums from clue 15; what total do you reach?\n\n17. In a report about cultural diversity, what year marked the beginning of categorization? Seek out this pivotal date.\n\n18. From within a page discussing societal pressures, how many subsections are listed beneath the topic of discrimination and status?\n\n19. The census is a way to understand identity; name the agencies that establish racial and ethnic categories on the census. \n\n20. When did the brave aviators of the Tuskegee Airmen gain insight at a strategic airfield; what month and year were they gathered?\n\n21. Now journey to a populous area known for its vibrant culture and art; how many museums can you count nearby?\n\n22. The place known for its architectural roots has a foundation date—what year was it established?\n\n23. Seek the city's height above the land; what is Omaha's elevation?\n\n24. Hospitals provide crucial care; what is the count of these facilities near Omaha?\n\n25. Combine the height from clue 23 with the number of hospitals in clue 24; what is the absolute difference you discover?\n\n26. As we near the conclusion, reverse the digits of the year you found in clue 22; what new number do you see?\n\n27. As the final stop, discover the elevation listed in the page of the city known for its bay; what value do you uncover?\n\n28. Compute the digital root of the total derived from the data gathered in clues 8, 9, and 14. This final answer is a single digit.",
+  "metadata": {
+    "theme": "Marks, migration and identity — a historical trail that begins with animal coat markings and the fur trade, follows goldrushes and mining that propelled human migration, and ends by tracing how those movements shaped U.S. places and racial/ethnic identities (with data checks along the way).",
+    "difficulty": "hard",
+    "sample_id": "sample_209",
+    "pages_crawled": 29345
+  },
+  "generated_at": "2026-03-20T08:06:32.051468+00:00"
+}

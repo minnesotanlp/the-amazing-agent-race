@@ -1,0 +1,333 @@
+{
+  "trail_id": "trail_356b982c",
+  "seed_url": "https://en.wikipedia.org/wiki/Qualcomm",
+  "seed_title": "Qualcomm",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Qualcomm",
+      "extraction_target": "the headquarters city of Qualcomm",
+      "extraction_section": null,
+      "extracted_value": "San Diego, California, U.S.",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Qualcomm",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Seed: Qualcomm is a leading mobile SoC designer (Snapdragon). Start here to anchor the trail in mobile chip design and Qualcomm's role in the semiconductor ecosystem.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Qualcomm",
+      "extraction_target": "Look up the elevation of San Diego, California, U.S.",
+      "extraction_section": null,
+      "extracted_value": 15.22497749328613,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "San Diego, California, U.S."
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of San Diego, California, U.S.) from https://en.wikipedia.org/wiki/Qualcomm",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Qualcomm",
+      "extraction_target": "Look up the count of churches near San Diego, California, U.S.",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "churches near San Diego, California, U.S."
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of churches near San Diego, California, U.S.) from https://en.wikipedia.org/wiki/Qualcomm",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Qualcomm",
+      "extraction_target": "Combine the elevation of San Diego, California, U.S. and the count of churches near San Diego, California, U.S.: (15 + 20)",
+      "extraction_section": null,
+      "extracted_value": 35,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(15.22497749328613) + int(20.0)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of San Diego, California, U.S. add count of churches near San Diego, California, U.S.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1,
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Qualcomm",
+      "extraction_target": "Reason: the alphabetical position of its first letter (A=1, B=2, ...)",
+      "extraction_section": null,
+      "extracted_value": 19,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (alpha_position_first_letter) on stop 0 value",
+      "reason_transform": "alpha_position_first_letter",
+      "reason_source_stop": 0,
+      "reason_code": "first = \"San Diego, California, U.S.\"[0].upper()\nresult = ord(first) - ord('A') + 1 if first.isalpha() else 0\nprint(result)",
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Semiconductor_industry",
+      "extraction_target": "the year Motorola is listed as an early company in the industry",
+      "extraction_section": null,
+      "extracted_value": "1952",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/System_on_a_chip",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Broad context: place Qualcomm within the global semiconductor industry — supply chain, market drivers, and major players that shape chip development and demand.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Semiconductor_industry",
+      "extraction_target": "Count churches near Semiconductor industry",
+      "extraction_section": null,
+      "extracted_value": 20,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "churches near Semiconductor industry"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (nearby_poi) derived from https://en.wikipedia.org/wiki/Semiconductor_industry",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/System_on_a_chip",
+      "extraction_target": "the model name and number of the Exynos SoC shown in the image caption",
+      "extraction_section": null,
+      "extracted_value": "Exynos 4 Quad (4412)",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "AI boom wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/AI_boom",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Technical link: explain the SoC concept that underlies Qualcomm's products and show how SoCs connect mobile devices to broader compute trends.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/AI_boom",
+      "extraction_target": "the number of language editions linked at the top of the page",
+      "extraction_section": null,
+      "extracted_value": 28,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/AI_boom",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Trend pivot: demonstrate how the AI boom is reshaping demand for specialized chips (GPUs, accelerators), which in turn affects semiconductor firms and markets tied to chip design and fabrication.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        7
+      ]
+    },
+    {
+      "index": 9,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: abs(15 - 20) % 10",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "abs(15 - 20) % 10",
+        "expression_code": "result = abs(15 - 20) % 10\nprint(result)",
+        "referenced_stops": [
+          1,
+          2,
+          3
+        ]
+      },
+      "reasoning": "Compute stop: abs(15 - 20) % 10 = 5",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1,
+        2,
+        3
+      ]
+    }
+  ],
+  "passcode": 5,
+  "difficulty": {
+    "level": "easy",
+    "depth": 10,
+    "tool_stop_count": 4,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Seek the company rooted in cellular technology, whose headquarters lies by the shores of the Pacific — where do they call home?\n\n2. What is the height, in meters, of the city you just discovered, known for its sunny weather and vibrant culture?\n\n3. In the vicinity of your previous answer, how many houses of worship can be found scattered across the landscape?\n\n4. Take the elevation you uncovered in clue 2 and combine it with the number of churches you found in clue 3 to unveil a new number.\n\n5. Unravel the initial of the city you spoke of in clue 1: what is its place in the alphabet?\n\n6. A significant milestone in tech history: what year saw the rise of a company that laid early foundations in the field of electronic chips?\n\n7. How many places of worship grace the space around the industry encapsulated in your last clue?\n\n8. In this intricate device that houses all necessary components, what model name and number does the leading South Korean manufacturer showcase?\n\n9. Discover the diversity of tongues represented at the top of an article about the surge in artificial intelligence — how many versions are available?\n\n10. Finally, evaluate this expression: take the absolute difference between the values gathered from clues 2 and 3, then find the result modulo 10. What single digit arises from this inquiry?",
+  "metadata": {
+    "theme": "From Qualcomm's mobile system-on-chip roots to the AI-driven surge in semiconductor demand — a short exploration of SoCs, the semiconductor industry, and market signals (checking an AI-chip maker's stock as a proxy).",
+    "difficulty": "easy",
+    "sample_id": "sample_130",
+    "pages_crawled": 800
+  },
+  "generated_at": "2026-03-17T07:30:23.415613+00:00"
+}

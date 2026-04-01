@@ -1,0 +1,324 @@
+{
+  "trail_id": "trail_1676c637",
+  "seed_url": "https://en.wikipedia.org/wiki/Jenny_Durkan",
+  "seed_title": "Jenny Durkan",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Jenny_Durkan",
+      "extraction_target": "the start date of her term as Mayor of Seattle",
+      "extraction_section": null,
+      "extracted_value": "November 28, 2017",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/2017_Seattle_mayoral_election",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Seed: Jenny Durkan is the central figure — former U.S. Attorney and Mayor of Seattle — anchoring the trail in municipal leadership and legal oversight.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/2017_Seattle_mayoral_election",
+      "extraction_target": "the popular vote count for Jenny Durkan",
+      "extraction_section": null,
+      "extracted_value": 122442,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/2017_Seattle_mayoral_election",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Contextual stop: the 2017 election that elected Durkan; extracting election facts explains the political mandate and civic geography behind her mayoralty.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/2017_Seattle_mayoral_election",
+      "extraction_target": "Reason: the number of 1-bits in its binary representation",
+      "extraction_section": null,
+      "extracted_value": 10,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (binary_1bit_count) on stop 1 value",
+      "reason_transform": "binary_1bit_count",
+      "reason_source_stop": 1,
+      "reason_code": "result = bin(abs(int(122442))).count('1')\nprint(result)"
+    },
+    {
+      "index": 3,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/United_States_District_Court_for_the_Western_District_of_Washington",
+      "extraction_target": "the number of counties in the court's jurisdiction",
+      "extraction_section": null,
+      "extracted_value": 19,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "George Floyd protests in Washington (state) wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/George_Floyd_protests_in_Washington_(state)",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Legal stop: the federal court in the same region ties municipal decisions to legal accountability and high-profile litigation that can follow protests and policy decisions.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 4,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/George_Floyd_protests_in_Washington_(state)",
+      "extraction_target": "Calculate the driving distance between Washington \"Washington (state)\") and 2017 Seattle mayoral election",
+      "extraction_section": null,
+      "extracted_value": 165.063,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Washington \"Washington (state)\")"
+            },
+            "expected_output": null,
+            "output_key": "coords_a"
+          },
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "2017 Seattle mayoral election"
+            },
+            "expected_output": null,
+            "output_key": "coords_b"
+          },
+          {
+            "tool_name": "maps_distance_matrix",
+            "arguments": {
+              "__from_previous_as_origins_destinations": [
+                "coords_a",
+                "coords_b"
+              ]
+            },
+            "expected_output": null,
+            "output_key": "distance_km"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: distance between Washington \"Washington (state)\") and 2017 Seattle mayoral election",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 5,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Hollywood_and_Vine",
+      "extraction_target": "Get the driving duration in minutes from Hollywood and Vine to United States Courthouse \"United States Courthouse (Seattle)\") (Seattle)  *More locations*  * Union Station \"Union Station (Tacoma",
+      "extraction_section": null,
+      "extracted_value": 2716,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_directions",
+            "arguments": {
+              "origin": "Hollywood and Vine",
+              "destination": "United States Courthouse \"United States Courthouse (Seattle)\") (Seattle)  *More locations*  * Union Station \"Union Station (Tacoma",
+              "mode": "driving"
+            },
+            "expected_output": null,
+            "output_key": "duration"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: directions duration Hollywood and Vine to United States Courthouse \"United States Courthouse (Seattle)\") (Seattle)  *More locations*  * Union Station \"Union Station (Tacoma",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 6,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Hollywood_and_Vine",
+      "extraction_target": "Reason: the largest prime factor of that figure",
+      "extraction_section": null,
+      "extracted_value": 97,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (largest_prime_factor) on stop 4 value",
+      "reason_transform": "largest_prime_factor",
+      "reason_source_stop": 5,
+      "reason_code": "def largest_prime_factor(n):\n    n = abs(int(n))\n    if n <= 1: return n\n    d = 2\n    while d * d <= n:\n        while n % d == 0: n //= d\n        d += 1\n    return n\nresult = largest_prime_factor(2716)\nprint(result)"
+    },
+    {
+      "index": 7,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Karnataka_Legislative_Assembly",
+      "extraction_target": "Look up the elevation at Karnataka Legislative Assembly",
+      "extraction_section": null,
+      "extracted_value": 673.0191650390625,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Karnataka Legislative Assembly"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for Karnataka Legislative Assembly",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 8,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Avalon_Hollywood",
+      "extraction_target": "Count the number of universities near Hollywood",
+      "extraction_section": null,
+      "extracted_value": 20,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "universities near Hollywood"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: count universities near Hollywood",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 9,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: abs(10 - 19) % 10",
+      "extraction_section": null,
+      "extracted_value": 9,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "abs(10 - 19) % 10",
+        "expression_code": "result = abs(10 - 19) % 10\nprint(result)",
+        "referenced_stops": [
+          2,
+          3,
+          6,
+          8
+        ]
+      },
+      "reasoning": "Compute stop: abs(10 - 19) % 10 = 9",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 9,
+  "difficulty": {
+    "level": "medium",
+    "depth": 10,
+    "tool_stop_count": 4,
+    "reason_stop_count": 2,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "Here is the riddle with the updated clue:\n\n1. Seek the Wikipedia page for the first female mayor of Seattle and note the date when her mayoral term began; that start date is your first prize.\n\n2. There exists a page linked from her biography under the anchor labeled \"2017\" — on that contest page, record the raw number of votes the city's first female mayor received.\n\n3. How many binary ones appear when you write the vote total from clue 2 in base two? Count the 1-bits and keep that tally.\n\n4. If you consult the federal court that sits in Seattle and administers several counties in the western part of the state, determine how many counties fall under its jurisdiction.\n\n5. The article recounting the 2020 protests across this Pacific Northwest state invites a geographic detour: what is the driving distance between that state (as a point of reference) and the election page you visited earlier? Record the distance in the same linear units the mapping tool gives.\n\n6. Once, in Los Angeles, a bustling intersection by the studios became emblematic of the city; its article supplies a route time—find how many minutes a drive would take from that famous crossroads to Seattle’s federal courthouse.\n\n7. The numbers must reveal their prime hearts: take the minute-count from clue 6 and determine its largest prime factor.\n\n8. (A quick detour to southern India) — look up the elevation at the state legislative assembly building in Bangalore and note the elevation figure presented.\n\n9. Compare local campuses: perform a places search around Hollywood and count how many universities are listed nearby; that count is your next quantity.\n\n10. Finally, compute the absolute difference between (clue 3 + clue 4) and (clue 7 + clue 9), then take that result modulo 10; the outcome is the single digit answer (0–9).",
+  "metadata": {
+    "theme": "From city hall to the streets and the courthouse — a short investigative trail through Seattle's municipal leadership (Jenny Durkan), the 2017 mayoral contest that brought her to power, and the civic unrest that tested urban governance, using geospatial, population and weather tools to compare urban contexts.",
+    "difficulty": "medium",
+    "sample_id": "sample_090",
+    "pages_crawled": 4815
+  },
+  "generated_at": "2026-03-16T18:30:56.347697+00:00"
+}

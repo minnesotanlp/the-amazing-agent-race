@@ -1,0 +1,420 @@
+{
+  "trail_id": "trail_2ceddca5",
+  "seed_url": "https://en.wikipedia.org/wiki/Bobby_Sprowl",
+  "seed_title": "Bobby Sprowl",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Bobby_Sprowl",
+      "extraction_target": "the number of strikeouts in Bobby Sprowl's MLB career",
+      "extraction_section": null,
+      "extracted_value": 34,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/1978_Boston_Red_Sox_season",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start with the seed: Sprowl is the rookie protagonist whose 1978 appearances kick off this trail.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/1978_Boston_Red_Sox_season",
+      "extraction_target": "the Red Sox's place in the American League East (divisional place)",
+      "extraction_section": null,
+      "extracted_value": "2nd",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/1978_Major_League_Baseball_season",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Place Sprowl in context: the Red Sox organization and how the club fared during his rookie year.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/1978_Boston_Red_Sox_season",
+      "extraction_target": "Look up the elevation of 2nd",
+      "extraction_section": null,
+      "extracted_value": 203.8132476806641,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "2nd"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of 2nd) from https://en.wikipedia.org/wiki/1978_Boston_Red_Sox_season",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/1978_Boston_Red_Sox_season",
+      "extraction_target": "Look up the Google rating of 2nd",
+      "extraction_section": null,
+      "extracted_value": 4.5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "2nd"
+            },
+            "expected_output": null,
+            "output_key": "place_rating"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (Google rating of 2nd) from https://en.wikipedia.org/wiki/1978_Boston_Red_Sox_season",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/1978_Boston_Red_Sox_season",
+      "extraction_target": "Combine the elevation of 2nd and the Google rating of 2nd: abs(203 - 4)",
+      "extraction_section": null,
+      "extracted_value": 199,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(203.8132476806641) - int(4.5))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of 2nd abs_diff Google rating of 2nd",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2,
+        3
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/1978_Major_League_Baseball_season",
+      "extraction_target": "Convert 34 meters to yards",
+      "extraction_section": null,
+      "extracted_value": 37,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "# Convert meters to yards\nvalue = 34.0\nconverted = value * 1.09361\nresult = int(converted)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "converted"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: convert 34 meters to yards",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Luis_Tiant",
+      "extraction_target": "Luis Tiant's age at death as listed",
+      "extraction_section": null,
+      "extracted_value": 83,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Luis_Tiant",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Introduce a veteran Red Sox pitcher from the era — a teammate/foil who helps illustrate the pitching landscape Sprowl entered.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Luis_Tiant",
+      "extraction_target": "Reason: the number of divisors of that figure",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (num_divisors) on stop 3 value",
+      "reason_transform": "num_divisors",
+      "reason_source_stop": 6,
+      "reason_code": "n = abs(int(83))\ncount = sum(1 for i in range(1, n+1) if n % i == 0) if n > 0 else 0\nresult = count\nprint(result)",
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Memorial_Stadium_(Baltimore)",
+      "extraction_target": "Get the driving duration in minutes from Baltimore to Boston",
+      "extraction_section": null,
+      "extracted_value": 384,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_directions",
+            "arguments": {
+              "origin": "Baltimore",
+              "destination": "Boston",
+              "mode": "driving"
+            },
+            "expected_output": null,
+            "output_key": "duration"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: directions duration Baltimore to Boston",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        7
+      ]
+    },
+    {
+      "index": 9,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Memorial_Stadium_(Baltimore)",
+      "extraction_target": "Reason: the number of 1-bits in its binary representation",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (binary_1bit_count) on stop 4 value",
+      "reason_transform": "binary_1bit_count",
+      "reason_source_stop": 8,
+      "reason_code": "result = bin(abs(int(384))).count('1')\nprint(result)",
+      "depends_on": [
+        8
+      ]
+    },
+    {
+      "index": 10,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Thurman_Munson",
+      "extraction_target": "Thurman Munson's age at death",
+      "extraction_section": null,
+      "extracted_value": 32,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/1978_New_York_Yankees_season",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Profile a leading rival figure from the era — Munson anchors the Yankees side of the AL East rivalry that shaped the season.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        9
+      ]
+    },
+    {
+      "index": 11,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/1978_New_York_Yankees_season",
+      "extraction_target": "the ordinal number season for the Yankees (which season it was)",
+      "extraction_section": null,
+      "extracted_value": 76,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/1978_New_York_Yankees_season",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Finish by summarizing the chief rival's season — the Yankees' 1978 campaign closes the loop on the divisional story that shaped Sprowl's rookie year.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        10
+      ]
+    },
+    {
+      "index": 12,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: abs(37 - 2) % 10",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "abs(37 - 2) % 10",
+        "expression_code": "result = abs(37 - 2) % 10\nprint(result)",
+        "referenced_stops": [
+          5,
+          9
+        ]
+      },
+      "reasoning": "Compute stop: abs(37 - 2) % 10 = 5",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5,
+        9
+      ]
+    }
+  ],
+  "passcode": 5,
+  "difficulty": {
+    "level": "medium",
+    "depth": 13,
+    "tool_stop_count": 5,
+    "reason_stop_count": 2,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "direct_link"
+  },
+  "riddle": "1. Track down the career statistics of a pitcher whose name rings a bell in a 1970s baseball tale: how many times did he send batters back to the bench with a strikeout?\n\n2. A team donned in red, competing fiercely in a summer of hits and home runs, stood at what rank within their division's hierarchy during that season?\n\n3. This ballpark's location on 2nd Street awaits — perhaps its altitude is a clue as to the many soaring home runs witnessed there. What number signifies its height above sea level?\n\n4. Alongside the rows of seats and cheers, visitors rate this iconic spot — what score do they bestow upon it in their reviews?\n\n5. Take the height you discovered in clue 3 and the rating from clue 4; what is the absolute difference between them?\n\n6. In a game of yardage conversion, imagine the height of a towering foul pole at 34 meters — how many yards does that measure out to be?\n\n7. Seek out a notable figure who helped shape the pitching staff of a famous baseball club, gone but not forgotten. What was his age when he departed from the world?\n\n8. Delve into the legacy of the player you just uncovered; for the number representing his years, discover how many unique factors lie within that number.\n\n9. From the city of monuments to one of champions, what is the travel duration, in minutes, when venturing from Baltimore to the thriving heart of Boston?\n\n10. Reflect on your journey — with the driving time from clue 9 in hand, how many 1-bits does its binary form reveal?\n\n11. A legend at the plate, he met an untimely end too soon. What age did he reach before the final curtain call?\n\n12. The year 1978 marked yet another chapter for a storied franchise. Which sequential season was it for the Yankees?\n\n13. Now combine the calculated values of clue 6 and clue 10. Then, the journey concludes with: what does the expression, the absolute difference between 37 and 2, reduced modulo 10 yield? The final answer is a single digit.",
+  "metadata": {
+    "theme": "Tracing Bobby Sprowl's short MLB story through the 1978 season — teammates, rivals and the ballparks that framed that year in the American League",
+    "difficulty": "medium",
+    "sample_id": "sample_064",
+    "pages_crawled": 2443
+  },
+  "generated_at": "2026-03-16T11:19:34.461896+00:00"
+}

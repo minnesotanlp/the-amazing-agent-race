@@ -1,0 +1,494 @@
+{
+  "trail_id": "trail_2090b84b",
+  "seed_url": "https://en.wikipedia.org/wiki/General_Mills",
+  "seed_title": "General Mills",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/General_Mills",
+      "extraction_target": "the headquarters city and state listed for General Mills",
+      "extraction_section": null,
+      "extracted_value": "Golden Valley, Minnesota, U.S.",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Soy",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Seed: start at General Mills to anchor the trail in a major consumer‑food company (HQ and products steer the rest of the route).",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Soy",
+      "extraction_target": "the number of subsections under the Uses section listed in the table of contents",
+      "extraction_section": "Contents",
+      "extracted_value": 11,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Plant",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Connects General Mills to ingredient supply chains — soy is a common food/ingredient crop used across processed foods and cereals.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Plant",
+      "extraction_target": "the number of languages the article is available in",
+      "extraction_section": null,
+      "extracted_value": 236,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Plant",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Places soy in its biological and agricultural context, helping explain upstream sources of cereal ingredients.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 3,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Plant",
+      "extraction_target": "Reason: the largest prime factor of that figure",
+      "extraction_section": null,
+      "extracted_value": 59,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (largest_prime_factor) on stop 2 value",
+      "reason_transform": "largest_prime_factor",
+      "reason_source_stop": 2,
+      "reason_code": "def largest_prime_factor(n):\n    n = abs(int(n))\n    if n <= 1: return n\n    d = 2\n    while d * d <= n:\n        while n % d == 0: n //= d\n        d += 1\n    return n\nresult = largest_prime_factor(236)\nprint(result)"
+    },
+    {
+      "index": 4,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Guangzhou",
+      "extraction_target": "Look up the elevation at Guangzhou",
+      "extraction_section": null,
+      "extracted_value": 8.755773544311523,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Guangzhou"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for Guangzhou",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 5,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Fifth_Avenue",
+      "extraction_target": "Count the number of restaurants near Manhattan",
+      "extraction_section": null,
+      "extracted_value": 20,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "restaurants near Manhattan"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: count restaurants near Manhattan",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 6,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Fifth_Avenue",
+      "extraction_target": "Reason: the largest prime factor of that figure",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (largest_prime_factor) on stop 4 value",
+      "reason_transform": "largest_prime_factor",
+      "reason_source_stop": 5,
+      "reason_code": "def largest_prime_factor(n):\n    n = abs(int(n))\n    if n <= 1: return n\n    d = 2\n    while d * d <= n:\n        while n % d == 0: n //= d\n        d += 1\n    return n\nresult = largest_prime_factor(20)\nprint(result)"
+    },
+    {
+      "index": 7,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Madison_Square_Garden",
+      "extraction_target": "the capacity listed in the infobox (field: 'Capacity')",
+      "extraction_section": "infobox",
+      "extracted_value": 19812,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Warner Bros. Entertainment, Inc. wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Warner_Bros._Entertainment,_Inc.",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A major venue for sports and entertainment where consumer brands (including cereal manufacturers) run promotions and sponsorships — ties marketing to physical events.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 8,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Warner_Bros._Entertainment,_Inc.",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Founded')",
+      "extraction_section": "infobox",
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "United Airlines Holdings wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/United_Airlines_Holdings",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Media companies drive the ad channels and tie‑ins (TV, film, streaming) that consumer‑food brands use for campaigns and licensing partnerships.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 9,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Warner_Bros._Entertainment,_Inc.",
+      "extraction_target": "Count libraries near Warner Bros. Entertainment, Inc.",
+      "extraction_section": null,
+      "extracted_value": 20,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "libraries near Warner Bros. Entertainment, Inc."
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (nearby_poi) derived from https://en.wikipedia.org/wiki/Warner_Bros._Entertainment,_Inc.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 10,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/United_Airlines_Holdings",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Founded')",
+      "extraction_section": "infobox",
+      "extracted_value": 6,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Park Avenue wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Park_Avenue",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Logistics and air networks matter for corporate travel and time‑sensitive distribution (specialty goods, promotional deliveries) — link to supply/distribution.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 11,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Park_Avenue",
+      "extraction_target": "the length listed in the infobox (field: 'Length')",
+      "extraction_section": "infobox",
+      "extracted_value": 10.9,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "PETA wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/PETA",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Corporate and advertising offices in Manhattan (Park Avenue area) are part of the marketing ecosystem that shapes brand campaigns for large consumer companies.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 12,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/PETA",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Founded')",
+      "extraction_section": "infobox",
+      "extracted_value": 22,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "PETA wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/PETA",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Activist organizations influence corporate sourcing, labeling and campaign decisions — important context for consumer‑facing food companies.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 13,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/PETA",
+      "extraction_target": "Reason: the number you get by reversing its digits",
+      "extraction_section": null,
+      "extracted_value": 22,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_reversal) on stop 9 value",
+      "reason_transform": "digit_reversal",
+      "reason_source_stop": 12,
+      "reason_code": "result = int(str(abs(int(22)))[::-1])\nprint(result)"
+    },
+    {
+      "index": 14,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/America",
+      "extraction_target": "Look up the elevation at Washington",
+      "extraction_section": null,
+      "extracted_value": 22.09991455078125,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Washington"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for Washington",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 15,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Hyatt",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Founded')",
+      "extraction_section": "infobox",
+      "extracted_value": 27,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Hyatt",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Hotels and hospitality (Hyatt) are downstream partners for consumer product placements, promotions and institutional food service — closing the loop from ingredient to consumer experience.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 16,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Hyatt",
+      "extraction_target": "Reason: the number of characters when written as a Roman numeral",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (roman_numeral_letter_count) on stop 11 value",
+      "reason_transform": "roman_numeral_letter_count",
+      "reason_source_stop": 15,
+      "reason_code": "def to_roman(n):\n    n = abs(int(n))\n    vals = [(1000,'M'),(900,'CM'),(500,'D'),(400,'CD'),(100,'C'),\n            (90,'XC'),(50,'L'),(40,'XL'),(10,'X'),(9,'IX'),(5,'V'),(4,'IV'),(1,'I')]\n    r = ''\n    for v, s in vals:\n        while n >= v:\n            r += s; n -= v\n    return r\nresult = len(to_roman(27))\nprint(result)"
+    },
+    {
+      "index": 17,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: abs(20 - 20) % 10",
+      "extraction_section": null,
+      "extracted_value": 0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "abs(20 - 20) % 10",
+        "expression_code": "result = abs(20 - 20) % 10\nprint(result)",
+        "referenced_stops": [
+          5,
+          9,
+          10
+        ]
+      },
+      "reasoning": "Compute stop: abs(20 - 20) % 10 = 0",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 0,
+  "difficulty": {
+    "level": "hard",
+    "depth": 18,
+    "tool_stop_count": 4,
+    "reason_stop_count": 4,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "Here is the revised riddle with the necessary clues modified:\n\n1. Track down the headquarters of the multinational food giant whose products fill your kitchen shelves. In which city and state does this company call home?\n\n2. Upon uncovering your answer, embark on a journey to explore the versatile organism that provides oil, protein, and more. How many subdivisions reflect its uses in the contents of its article?\n\n3. The kingdom that embraces diverse life forms includes one that holds your previous figure’s significance. In how many languages can you find the words of this botanical realm?\n\n4. With your newfound total, seek out the greatest prime that lies within it. What number will lead you deeper into the mysteries of nature’s green?\n\n5. In a bustling city known for its trading ports, determine how high above sea level does one of its greatest expanses rise? \n\n6. As you watch the well-dressed crowds bustle, note the dining establishments nearby that keep the area's heart beating. How many restaurants can you find in close proximity?\n\n7. Take the figure you just discovered and find the largest prime that exists within its bounds. What unique number emerges to guide you further?\n\n8. Enter the realm of entertainment, where a famed arena in New York City hosts countless events. What’s the maximum number of spectators this venue can accommodate?\n\n9. Turn your focus to an influential media company that has entertained generations. What year did it first come into existence?\n\n10. Still in the vibrant world of information and leisure, how many libraries surround the birthplace of this entertainment titan?\n\n11. Moving onward, identify the year in which a major airline was established within the skies of the U.S. \n\n12. A prominent north-south avenue in New York has a continuous stretch that meets the eye. What is its full length in miles or kilometers?\n\n13. Another significant organization emerged to champion animal rights; what year did this advocacy take flight?\n\n14. By altering your last figure, what do you get when you turn its digits completely upside down? \n\n15. A political heart beats within the nation's capital—check how high its elevation stands. \n\n16. Your quest brings you to a renowned hospitality brand. Can you unveil the year it first opened for travelers seeking comfort?\n\n17. As a final riddle rests upon you, ascertain how many characters are needed to write that year in the timeless format of Roman numerals.\n\n18. With patience, compute: take the absolute difference between the number of eateries you found in clue 6 and the libraries from clue 10, and reduce it using modulo 10. The resolve is a single digit that unfolds the treasure’s final location.",
+  "metadata": {
+    "theme": "From cereal bowl to global markets — tracing General Mills' supply, manufacturing hubs, advertising venues, corporate peers, logistics and public‑health context",
+    "difficulty": "hard",
+    "sample_id": "sample_175",
+    "pages_crawled": 20028
+  },
+  "generated_at": "2026-03-18T14:43:24.011770+00:00"
+}

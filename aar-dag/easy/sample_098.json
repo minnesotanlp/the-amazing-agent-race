@@ -1,0 +1,336 @@
+{
+  "trail_id": "trail_55772f7e",
+  "seed_url": "https://en.wikipedia.org/wiki/Tunisavia",
+  "seed_title": "Tunisavia",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Tunisavia",
+      "extraction_target": "the city and country listed as Tunisavia's headquarters",
+      "extraction_section": null,
+      "extracted_value": "Tunis, Tunisia",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Cessna_Citation_II",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start at Tunisavia to anchor the trail in a Tunisian air operator: extract its base, hub and fleet to set the local aviation context.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Tunisavia",
+      "extraction_target": "Look up the elevation of Tunis, Tunisia",
+      "extraction_section": null,
+      "extracted_value": 0.3381153643131256,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Tunis, Tunisia"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Tunis, Tunisia) from https://en.wikipedia.org/wiki/Tunisavia",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Tunisavia",
+      "extraction_target": "Look up the count of universities near Tunis, Tunisia",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "universities near Tunis, Tunisia"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of universities near Tunis, Tunisia) from https://en.wikipedia.org/wiki/Tunisavia",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Tunisavia",
+      "extraction_target": "Combine the elevation of Tunis, Tunisia and the count of universities near Tunis, Tunisia: abs(0 - 20)",
+      "extraction_section": null,
+      "extracted_value": 20,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(0.3381153643131256) - int(20.0))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Tunis, Tunisia abs_diff count of universities near Tunis, Tunisia",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1,
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Cessna_Citation_II",
+      "extraction_target": "the number of II and II/SP aircraft delivered",
+      "extraction_section": null,
+      "extracted_value": 688,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Civil Aeronautics Board wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Civil_Aeronautics_Board",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Bring in a representative business jet type to compare aircraft performance (range/speed) against the routes and durations identified earlier.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Civil_Aeronautics_Board",
+      "extraction_target": "the year of the Civil Aeronautics Act that originated the CAB's regulatory powers",
+      "extraction_section": null,
+      "extracted_value": 1938,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Forbes Field wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Forbes_Field",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Add regulatory history to the trail: the Civil Aeronautics Board exemplifies how oversight and policy shape airline route rights and operations over time.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Forbes_Field",
+      "extraction_target": "the location listed in the infobox (field: 'Location')",
+      "extraction_section": "infobox",
+      "extracted_value": "230 South Bouquet St. in Oakland \"Oakland (Pittsburgh)\"), adjacent to Schenley Park",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Forbes_Field",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "End at a historic airport to reflect on how airfields and infrastructure evolve — contrasting early 20th-century airport history with modern Tunisian operations and aircraft.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Forbes_Field",
+      "extraction_target": "Look up the Google rating of Forbes Field",
+      "extraction_section": null,
+      "extracted_value": 4.9,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "Forbes Field"
+            },
+            "expected_output": null,
+            "output_key": "place_rating"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (place_rating) derived from https://en.wikipedia.org/wiki/Forbes_Field",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Forbes_Field",
+      "extraction_target": "Reason: the number of vowels in that name",
+      "extraction_section": null,
+      "extracted_value": 22,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (vowel_count) on stop 3 value",
+      "reason_transform": "vowel_count",
+      "reason_source_stop": 6,
+      "reason_code": "result = sum(1 for c in \"230 South Bouquet St. in Oakland \\\"Oakland (Pittsburgh)\\\"), adjacent to Schenley Park\".lower() if c in 'aeiou')\nprint(result)",
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 9,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: (0 + 20 + 1938 + 4) % 10",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "(0 + 20 + 1938 + 4) % 10",
+        "expression_code": "result = (0 + 20 + 1938 + 4) % 10\nprint(result)",
+        "referenced_stops": [
+          1,
+          2,
+          5,
+          7
+        ]
+      },
+      "reasoning": "Compute stop: (0 + 20 + 1938 + 4) % 10 = 2",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1,
+        2,
+        5,
+        7
+      ]
+    }
+  ],
+  "passcode": 2,
+  "difficulty": {
+    "level": "easy",
+    "depth": 10,
+    "tool_stop_count": 4,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. A modern carrier rises from the city where the medina breathes history. What city and country is its home?\n\n2. As you journey through this capital, how high above the sea does it rest, in meters?\n\n3. Seek the halls of learning nearby; how many institutions of higher education can be counted within reach of this bustling hub?\n\n4. Now, take the elevation from clue 2 and the count from clue 3, then discover the absolute difference between them.\n\n5. Next, delve into the realm of business jets; a certain model's deliveries total how many units including its more advanced variant?\n\n6. In which year did a landmark act empower that regulatory body overseeing civil aviation in the United States, marking the dawn of its authority?\n\n7. In a famous location known for its historical significance, what city claims this site?\n\n8. How do travelers rate this location, on a scale of one to five stars?\n\n9. Reflect on the name you just discovered in clue 7. How many vowels are found within its letters?\n\n10. Finally, from clues 2, 3, 6, and 8, compute the following: (0 + clue 3 + clue 6 + clue 8) % 10. Your answer will reveal a single digit (0-9).",
+  "metadata": {
+    "theme": "A short exploration of Tunisian air operations outward to aircraft types, flight durations, historical airports and regulatory context — connecting a modern Tunisian carrier to jets, flight-time planning, aviation history and oversight.",
+    "difficulty": "easy",
+    "sample_id": "sample_098",
+    "pages_crawled": 3941,
+    "source": "trail_puzzles_v2"
+  },
+  "generated_at": "2026-03-15T19:15:23.752575+00:00"
+}

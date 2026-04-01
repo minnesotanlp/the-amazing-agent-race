@@ -1,0 +1,961 @@
+{
+  "trail_id": "trail_668ee89c",
+  "seed_url": "https://en.wikipedia.org/wiki/Adyen",
+  "seed_title": "Adyen",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Adyen",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Founded')",
+      "extraction_section": "infobox",
+      "extracted_value": 2006,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Spice trade wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Spice_trade",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Seed: Adyen represents contemporary global payment infrastructure that connects consumers, retailers and corporations — the modern endpoint of centuries of commerce.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Spice_trade",
+      "extraction_target": "the number of main entries listed in the article's table of contents",
+      "extraction_section": null,
+      "extracted_value": 9,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Spice_trade",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Historic commerce: the spice trade drove early global exchange networks and created demand patterns that reshaped economies — a prelude to globalized markets.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Spice_trade",
+      "extraction_target": "Reason: the next prime number after that figure",
+      "extraction_section": null,
+      "extracted_value": 11,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (next_prime) on stop 1 value",
+      "reason_transform": "next_prime",
+      "reason_source_stop": 1,
+      "reason_code": "def next_prime(n):\n    n = abs(int(n))\n    if n < 2: return 2\n    candidate = n + 1\n    while True:\n        if all(candidate % i != 0 for i in range(2, int(candidate**0.5)+1)):\n            return candidate\n        candidate += 1\nresult = next_prime(9)\nprint(result)",
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Slavery_in_the_colonial_history_of_the_United_States",
+      "extraction_target": "the month and year when the first documented Africans arrived in America (transported on the White Lion)",
+      "extraction_section": null,
+      "extracted_value": "August 1619",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Slavery_in_the_United_States",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Shows how early trade and colonial economies were intertwined with coerced labor — the human cost feeding commercial expansion.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Slavery_in_the_colonial_history_of_the_United_States",
+      "extraction_target": "Look up the elevation of Slavery in the colonial history of the United States",
+      "extraction_section": null,
+      "extracted_value": 3236.2353515625,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Slavery in the colonial history of the United States"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Slavery in the colonial history of the United States) from https://en.wikipedia.org/wiki/Slavery_in_the_colonial_history_of_the_United_States",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Slavery_in_the_colonial_history_of_the_United_States",
+      "extraction_target": "Look up the count of libraries near Slavery in the colonial history of the United States",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "libraries near Slavery in the colonial history of the United States"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of libraries near Slavery in the colonial history of the United States) from https://en.wikipedia.org/wiki/Slavery_in_the_colonial_history_of_the_United_States",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Slavery_in_the_colonial_history_of_the_United_States",
+      "extraction_target": "Combine the elevation of Slavery in the colonial history of the United States and the count of libraries near Slavery in the colonial history of the United States: abs(3236 - 20)",
+      "extraction_section": null,
+      "extracted_value": 3216,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(3236.2353515625) - int(20.0))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Slavery in the colonial history of the United States abs_diff count of libraries near Slavery in the colonial history of the United States",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        4,
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Slavery_in_the_United_States",
+      "extraction_target": "the number of subsections listed under 'Slavery in the American Revolution and early republic' in the Contents",
+      "extraction_section": "Contents",
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Slavery_in_the_United_States",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Continuing the thread: slavery underpinned large parts of the US economy, influencing wealth distribution and commercial institutions that later evolved into modern firms.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Slavery_in_the_United_States",
+      "extraction_target": "Look up the elevation of Slavery in the United States",
+      "extraction_section": null,
+      "extracted_value": 3236.2353515625,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Slavery in the United States"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Slavery in the United States) from https://en.wikipedia.org/wiki/Slavery_in_the_United_States",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        7
+      ]
+    },
+    {
+      "index": 9,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Slavery_in_the_United_States",
+      "extraction_target": "Look up the count of restaurants near Slavery in the United States",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "restaurants near Slavery in the United States"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of restaurants near Slavery in the United States) from https://en.wikipedia.org/wiki/Slavery_in_the_United_States",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        7
+      ]
+    },
+    {
+      "index": 10,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Slavery_in_the_United_States",
+      "extraction_target": "Combine the elevation of Slavery in the United States and the count of restaurants near Slavery in the United States: (3236 + 20)",
+      "extraction_section": null,
+      "extracted_value": 3256,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(3236.2353515625) + int(20.0)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Slavery in the United States add count of restaurants near Slavery in the United States",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        8,
+        9
+      ]
+    },
+    {
+      "index": 11,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Slavery_in_the_United_States",
+      "extraction_target": "Reason: the digital root (iterated digit sum until single digit)",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digital_root) on stop 3 value",
+      "reason_transform": "digital_root",
+      "reason_source_stop": 7,
+      "reason_code": "n = abs(int(4))\nresult = n if n == 0 else ((n - 1) % 9) + 1\nprint(result)",
+      "depends_on": [
+        7
+      ]
+    },
+    {
+      "index": 12,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Timeline_of_African-American_history",
+      "extraction_target": "the number of languages listed at the top of the article",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Civil_rights_movement_(1865%E2%80%931896)",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A chronological bridge from forced labor eras to civil rights and cultural influence — contextualizing social change alongside economic change.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        11
+      ]
+    },
+    {
+      "index": 13,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Civil_rights_movement_(1865%E2%80%931896)",
+      "extraction_target": "the number of languages listed near the top of the article",
+      "extraction_section": null,
+      "extracted_value": 6,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Black_power_movement",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Early organized struggles for rights that reshaped labor laws and citizenship — influencing participation in commerce and markets.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        12
+      ]
+    },
+    {
+      "index": 14,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Black_power_movement",
+      "extraction_target": "the number of languages listed at the top of the article",
+      "extraction_section": null,
+      "extracted_value": 8,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Black_power_movement",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Mid-20th-century political and cultural movement that affected economic empowerment, entrepreneurship and cultural industries.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        13
+      ]
+    },
+    {
+      "index": 15,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Black_power_movement",
+      "extraction_target": "Reason: the sum of its digits",
+      "extraction_section": null,
+      "extracted_value": 8,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_sum) on stop 6 value",
+      "reason_transform": "digit_sum",
+      "reason_source_stop": 14,
+      "reason_code": "result = sum(int(d) for d in str(abs(int(8))))\nprint(result)",
+      "depends_on": [
+        14
+      ]
+    },
+    {
+      "index": 16,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Post%E2%80%93civil_rights_era_in_African-American_history",
+      "extraction_target": "the month and year shown in the maintenance template indicating when the message was added",
+      "extraction_section": null,
+      "extracted_value": "May 2025",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/African-American_culture",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Examines how legal gains translated into economic and cultural influence in later decades — an era of increased commercial integration.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        15
+      ]
+    },
+    {
+      "index": 17,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/African-American_culture",
+      "extraction_target": "the number of subsections listed under the Sports and recreation section in the table of contents",
+      "extraction_section": "Sports and recreation",
+      "extracted_value": 1,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Retailing wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Retailing",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Cultural output (music, sports, entertainment) became major commercial sectors, driving new revenue streams and consumer markets.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        16
+      ]
+    },
+    {
+      "index": 18,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Retailing",
+      "extraction_target": "the number of languages in which the article is available (displayed at the top)",
+      "extraction_section": null,
+      "extracted_value": 75,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Manchester United F.C. wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Manchester_United_F.C.",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Retail is the front line where payments meet consumers — changes in retail structure directly shape payment innovation (Adyen's territory).",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        17
+      ]
+    },
+    {
+      "index": 19,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Manchester_United_F.C.",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Founded')",
+      "extraction_section": "infobox",
+      "extracted_value": 1878,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Manchester_United_F.C.",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A cultural brand turned global commercial enterprise — exemplifies monetization of culture and the need for global payment/commerce systems.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        18
+      ]
+    },
+    {
+      "index": 20,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Manchester_United_F.C.",
+      "extraction_target": "Reason: the number of divisors of that figure",
+      "extraction_section": null,
+      "extracted_value": 8,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (num_divisors) on stop 10 value",
+      "reason_transform": "num_divisors",
+      "reason_source_stop": 19,
+      "reason_code": "n = abs(int(1878))\ncount = sum(1 for i in range(1, n+1) if n % i == 0) if n > 0 else 0\nresult = count\nprint(result)",
+      "depends_on": [
+        19
+      ]
+    },
+    {
+      "index": 21,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Gmail",
+      "extraction_target": "the number of languages listed at the top of the article",
+      "extraction_section": null,
+      "extracted_value": 99,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "U2 wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/U2",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Digital platforms (email, cloud services) form the infrastructure layer for modern commerce, marketing and customer interactions supporting payments.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        20
+      ]
+    },
+    {
+      "index": 22,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/U2",
+      "extraction_target": "the year range in the subsection title 'Formation and early years (1976–1980)'",
+      "extraction_section": "Formation and early years (1976–1980)",
+      "extracted_value": "1976–1980",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Vodafone Japan wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Vodafone_Japan",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Global entertainment acts illustrate cross-border commerce — tours and merch require international payment and ticketing solutions.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        21
+      ]
+    },
+    {
+      "index": 23,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Vodafone_Japan",
+      "extraction_target": "Look up the closing price of TYO on 2025-01-01",
+      "extraction_section": null,
+      "extracted_value": 14.37,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "stock_historical_price",
+            "arguments": {
+              "ticker": "TYO",
+              "date": "2025-01-01"
+            },
+            "expected_output": null,
+            "output_key": "stock_price"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: stock price TYO on 2025-01-01",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        22
+      ]
+    },
+    {
+      "index": 24,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Ally_Financial",
+      "extraction_target": "Look up the trading volume of ALLY on 2025-01-01",
+      "extraction_section": null,
+      "extracted_value": 1207500,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "stock_volume",
+            "arguments": {
+              "ticker": "ALLY",
+              "date": "2025-01-01"
+            },
+            "expected_output": null,
+            "output_key": "stock_volume"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: stock volume ALLY on 2025-01-01",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        23
+      ]
+    },
+    {
+      "index": 25,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Ally_Financial",
+      "extraction_target": "Reason: the next prime number after that figure",
+      "extraction_section": null,
+      "extracted_value": 1207501,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (next_prime) on stop 14 value",
+      "reason_transform": "next_prime",
+      "reason_source_stop": 24,
+      "reason_code": "def next_prime(n):\n    n = abs(int(n))\n    if n < 2: return 2\n    candidate = n + 1\n    while True:\n        if all(candidate % i != 0 for i in range(2, int(candidate**0.5)+1)):\n            return candidate\n        candidate += 1\nresult = next_prime(1207500)\nprint(result)",
+      "depends_on": [
+        24
+      ]
+    },
+    {
+      "index": 26,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/San_Antonio",
+      "extraction_target": "Count the number of churches near 29.425",
+      "extraction_section": null,
+      "extracted_value": 10,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "churches near 29.425"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: count churches near 29.425",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        25
+      ]
+    },
+    {
+      "index": 27,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/History_of_Jamaica",
+      "extraction_target": "Look up the elevation at History of Jamaica",
+      "extraction_section": null,
+      "extracted_value": 206.3031463623047,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "History of Jamaica"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for History of Jamaica",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        26
+      ]
+    },
+    {
+      "index": 28,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Titanic_(1997_film)",
+      "extraction_target": "Calculate the number of days between 2025-01-01 and 2026-03-19",
+      "extraction_section": null,
+      "extracted_value": 442,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "from datetime import date\nd1 = date.fromisoformat('2025-01-01')\nd2 = date.fromisoformat('2026-03-19')\nresult = abs((d2 - d1).days)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "days"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: date computation 2025-01-01 to 2026-03-19 (pinned)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        27
+      ]
+    },
+    {
+      "index": 29,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Titanic_(1997_film)",
+      "extraction_target": "Reason: the sum of its distinct prime factors",
+      "extraction_section": null,
+      "extracted_value": 32,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (sum_prime_factors) on stop 17 value",
+      "reason_transform": "sum_prime_factors",
+      "reason_source_stop": 28,
+      "reason_code": "def prime_factors(n):\n    n = abs(int(n))\n    factors = []\n    d = 2\n    while d * d <= n:\n        while n % d == 0:\n            factors.append(d)\n            n //= d\n        d += 1\n    if n > 1: factors.append(n)\n    return factors\nresult = sum(set(prime_factors(442)))\nprint(result)",
+      "depends_on": [
+        28
+      ]
+    },
+    {
+      "index": 30,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: digital_root(2006 + 4 + 6)",
+      "extraction_section": null,
+      "extracted_value": 9,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "digital_root(2006 + 4 + 6)",
+        "expression_code": "def digital_root(n):\n    n = abs(int(n))\n    return n if n == 0 else ((n - 1) % 9) + 1\nresult = digital_root(2006 + 4 + 6)\nprint(result)",
+        "referenced_stops": [
+          0,
+          11,
+          13
+        ]
+      },
+      "reasoning": "Compute stop: digital_root(2006 + 4 + 6) = 9",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0,
+        11,
+        13
+      ]
+    }
+  ],
+  "passcode": 9,
+  "difficulty": {
+    "level": "extreme",
+    "depth": 31,
+    "tool_stop_count": 11,
+    "reason_stop_count": 6,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. A cutting-edge payment system emerged from the minds that founded it — seek when this innovation began to flourish.\n\n2. A global endeavor traversed treacherous waters to bring flavors to distant kitchens; how many main components does the associated tale include?\n\n3. What's the next prime number after the figure you just unearthed? \n\n4. The journey of a people can be marked by the month and year they first arrived on foreign shores aboard a vessel named for a majestic feline — what month and year was that?\n\n5. Where does knowledge rest? Ascertain the height above sea level at which this historical event transpired.\n\n6. Libraries stand as bastions of learning and culture—discover how many are within reach of this narrative's echoes.\n\n7. By combining heights and knowledge, what is the absolute difference between your findings on elevation and library count?\n\n8. A saga continued in a new land. How many subsections detail the influences during the Revolutionary bellows and the early years of democracy?\n\n9. Above or below ground? Calculate the height where the events surrounding bondage in a young nation left their mark, looking at this history.\n\n10. Cuisine reflects culture. What is the tally of places to dine near the chronicles of this somber history?\n\n11. Elevation and dining converge; add together the figures from the previous two clues to find a new height where flavors and stories intertwine. \n\n12. Encapsulating the struggles in a land defined by its beginnings — what is the digital root of the number of subsections about rebellion you just found?\n\n13. Turn your gaze to a lineage filled with resilience; how many languages can you count at the very start of the chronicle about African Americans in history?\n\n14. Another chapter unfolds — examine how many languages greet you at the founding of resistance movements during the years of change.\n\n15. The powerful voices echo in many tongues; what is the number that represents how many languages tell the tale of those fighting for their rights?\n\n16. Through the digital maze, sum the digits of the languages you found in the previous clue to glean something more.\n\n17. As time moves forward, when was a pivotal moment marked in the landscape of struggle and achievement? Record the month and year it became known.\n\n18. In the heart of the community, how many sections share the joy of sports and recreation under the culture's tapestry?\n\n19. Commerce has linguistic diversity too; what number of languages adorns the overview of trade in modern times? \n\n20. One team became a symbol of unity and glory — what year did this celebrated football club find its footing?\n\n21. The strength of a name can be quantified; how many unique divisors can you identify in the founding year of this legendary club?\n\n22. Communication connects worlds—discover how many languages float at the beginning of this digital postal service's overview. \n\n23. From formation to fame, which years are encapsulated in the first chapter of one of rock’s legendary bands?\n\n24. Look into the future of retail through this telecommunications giant; what was the market standing of TYO on the first day of 2025?\n\n25. Shift your focus to another financial entity; what was the trading volume of ALLY on the same fateful day? \n\n26. The pursuit of connections continues — what is the next prime number in the sequence, just beyond the figure you gathered about trading volume?\n\n27. Churches dot the landscape of a vibrant city; how many can you find nearby the coordinates of San Antonio?\n\n28. Roots carry stories of heritage high above sea level — seek the elevation noted in the chronicles of this Caribbean locale.\n\n29. A grand tale unfurled in 1997, spanning time — how many days lie between the rise of a fictional vessel and a future date in 2026?\n\n30. What is the sum of the distinct prime factors for the number of days you calculated? \n\n31. Finally, combine your insights: compute the digital root of the sum of the founding year from clue 1, the transformation from clue 12, and the finding from clue 14, leaving you with a single digit.",
+  "metadata": {
+    "theme": "From historic trade and its human costs to modern commerce and digital payments — tracing how global trade (spice routes, slavery) evolved into today's corporate, cultural and fintech ecosystems",
+    "difficulty": "extreme",
+    "sample_id": "sample_186",
+    "pages_crawled": 23380
+  },
+  "generated_at": "2026-03-19T11:00:51.932079+00:00"
+}

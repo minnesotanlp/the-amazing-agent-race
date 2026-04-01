@@ -1,0 +1,152 @@
+{
+  "trail_id": "trail_99f21988",
+  "seed_url": "https://en.wikipedia.org/wiki/Sony_Group_Corporation",
+  "seed_title": "Sony Group Corporation",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Sony_Group_Corporation",
+      "extraction_target": "the number of subsections under 'Formats and technologies' in the table of contents",
+      "extraction_section": "Formats and technologies",
+      "extracted_value": 10,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Sony Group Corporation wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Sony_Group_Corporation",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start at Sony as a global electronics and entertainment conglomerate — its headquarters and listed industries set the context for why it competes and collaborates across hardware, studios and streaming.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Sony_Group_Corporation",
+      "extraction_target": "Reason: the number of divisors of that figure",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (num_divisors) on stop 0 value",
+      "reason_transform": "num_divisors",
+      "reason_source_stop": 0,
+      "reason_code": "n = abs(int(10))\ncount = sum(1 for i in range(1, n+1) if n % i == 0) if n > 0 else 0\nresult = count\nprint(result)"
+    },
+    {
+      "index": 2,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Disney%2B",
+      "extraction_target": "the month and year shown in the article maintenance notice indicating when parts of the article need updating",
+      "extraction_section": null,
+      "extracted_value": "February 2025",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Santa Monica, California wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Santa_Monica,_California",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Move to streaming (Disney+) to show the distribution side of the ecosystem where studios and device-makers (like Sony) interact — extracting the service launch/date highlights the recent shift to streaming platforms.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Santa_Monica,_California",
+      "extraction_target": "Count the number of churches near 34.02194",
+      "extraction_section": null,
+      "extracted_value": 20,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "churches near 34.02194"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: count churches near 34.02194",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 4,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: digital_root(10 + 4 + 20)",
+      "extraction_section": null,
+      "extracted_value": 7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "digital_root(10 + 4 + 20)",
+        "expression_code": "def digital_root(n):\n    n = abs(int(n))\n    return n if n == 0 else ((n - 1) % 9) + 1\nresult = digital_root(10 + 4 + 20)\nprint(result)",
+        "referenced_stops": [
+          0,
+          1,
+          3
+        ]
+      },
+      "reasoning": "Compute stop: digital_root(10 + 4 + 20) = 7",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 7,
+  "difficulty": {
+    "level": "easy",
+    "depth": 5,
+    "tool_stop_count": 1,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Seek the Tokyo-headquartered conglomerate that makes cameras, game consoles and film studios; on its Wikipedia page, in the table of contents find the entry that groups its media formats and technical initiatives and count how many subsections hang beneath that entry.\n\n2. There exists a small number-theory task: take the whole number you just found and determine how many positive divisors it has.\n\n3. Which month and year does the maintenance notice display on the article for the widely known American subscription video service operated by the studio famous for Mickey Mouse; after you read that timestamp, look up the coastal Los Angeles city famed for a pier and beachfront startups to continue.\n\n4. If you consult that seaside city's page, use the map coordinate 34.02194 as your marker and tell me how many churches the map search turns up nearby.\n\n5. Like an archivist distilling many ledgers into a single beat, compute the digital root of (clue 1 + clue 2 + clue 4) and report that single digit; remember the result must be one digit between 0 and 9.",
+  "metadata": {
+    "theme": "From consumer electronics to content: tracing how Sony fits into the modern media ecosystem (hardware maker → studios → streaming → local media hubs).",
+    "difficulty": "easy",
+    "sample_id": "sample_188",
+    "pages_crawled": 4269
+  },
+  "generated_at": "2026-03-17T12:35:45.494749+00:00"
+}

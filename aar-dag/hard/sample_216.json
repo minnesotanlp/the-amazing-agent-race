@@ -1,0 +1,744 @@
+{
+  "trail_id": "trail_02d2bab9",
+  "seed_url": "https://en.wikipedia.org/wiki/Katia_Elizarova",
+  "seed_title": "Katia Elizarova",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Katia_Elizarova",
+      "extraction_target": "the subject's date of birth",
+      "extraction_section": null,
+      "extracted_value": "17 August 1986",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Chelsea, Manhattan wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Chelsea,_Manhattan",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start at Katia Elizarova's biography as the personal anchor — her origins and early career connect to fashion and international cultural life.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Chelsea,_Manhattan",
+      "extraction_target": "Count the number of hotels near 40.74639",
+      "extraction_section": null,
+      "extracted_value": 20,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "hotels near 40.74639"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: count hotels near 40.74639",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Chelsea,_Manhattan",
+      "extraction_target": "Reason: the number of divisors of that figure",
+      "extraction_section": null,
+      "extracted_value": 6,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (num_divisors) on stop 1 value",
+      "reason_transform": "num_divisors",
+      "reason_source_stop": 1,
+      "reason_code": "n = abs(int(20))\ncount = sum(1 for i in range(1, n+1) if n % i == 0) if n > 0 else 0\nresult = count\nprint(result)",
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/American_film_industry",
+      "extraction_target": "the number of subsections listed under Hollywood and politics in the Contents",
+      "extraction_section": "Hollywood and politics",
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/20th_Century_Fox",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Move from neighborhood-level creative hubs to the larger industry that employs models as performers and influencers.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/American_film_industry",
+      "extraction_target": "Look up the elevation of American film industry",
+      "extraction_section": null,
+      "extracted_value": 3236.2353515625,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "American film industry"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of American film industry) from https://en.wikipedia.org/wiki/American_film_industry",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/American_film_industry",
+      "extraction_target": "Look up the count of churches near American film industry",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "churches near American film industry"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of churches near American film industry) from https://en.wikipedia.org/wiki/American_film_industry",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/American_film_industry",
+      "extraction_target": "Combine the elevation of American film industry and the count of churches near American film industry: abs(3236 - 20)",
+      "extraction_section": null,
+      "extracted_value": 3216,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(3236.2353515625) - int(20.0))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of American film industry abs_diff count of churches near American film industry",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        4,
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/20th_Century_Fox",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Founded')",
+      "extraction_section": "infobox",
+      "extracted_value": 31,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "20th Century Fox wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/20th_Century_Fox",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A major studio example — shows concrete institutions within the film industry that shape careers and public visibility.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/20th_Century_Fox",
+      "extraction_target": "Reason: the sum of its distinct prime factors",
+      "extraction_section": null,
+      "extracted_value": 31,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (sum_prime_factors) on stop 3 value",
+      "reason_transform": "sum_prime_factors",
+      "reason_source_stop": 7,
+      "reason_code": "def prime_factors(n):\n    n = abs(int(n))\n    factors = []\n    d = 2\n    while d * d <= n:\n        while n % d == 0:\n            factors.append(d)\n            n //= d\n        d += 1\n    if n > 1: factors.append(n)\n    return factors\nresult = sum(set(prime_factors(31)))\nprint(result)",
+      "depends_on": [
+        7
+      ]
+    },
+    {
+      "index": 9,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Mel_Brooks",
+      "extraction_target": "Calculate the number of days between 1986-08-17 and 2026-03-20",
+      "extraction_section": null,
+      "extracted_value": 14460,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "from datetime import date\nd1 = date.fromisoformat('1986-08-17')\nd2 = date.fromisoformat('2026-03-20')\nresult = abs((d2 - d1).days)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "days"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: date computation 1986-08-17 to 2026-03-20 (pinned)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        8
+      ]
+    },
+    {
+      "index": 10,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/MGM",
+      "extraction_target": "the number of subsections under History",
+      "extraction_section": "History",
+      "extracted_value": 12,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "MGM wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/MGM",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Another major studio to illustrate the ecosystem of film production and venues that intersect with modeling and celebrity culture.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        9
+      ]
+    },
+    {
+      "index": 11,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/MGM",
+      "extraction_target": "Reason: the number of characters when written as a Roman numeral",
+      "extraction_section": null,
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (roman_numeral_letter_count) on stop 5 value",
+      "reason_transform": "roman_numeral_letter_count",
+      "reason_source_stop": 10,
+      "reason_code": "def to_roman(n):\n    n = abs(int(n))\n    vals = [(1000,'M'),(900,'CM'),(500,'D'),(400,'CD'),(100,'C'),\n            (90,'XC'),(50,'L'),(40,'XL'),(10,'X'),(9,'IX'),(5,'V'),(4,'IV'),(1,'I')]\n    r = ''\n    for v, s in vals:\n        while n >= v:\n            r += s; n -= v\n    return r\nresult = len(to_roman(12))\nprint(result)",
+      "depends_on": [
+        10
+      ]
+    },
+    {
+      "index": 12,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Beacon_Theatre_(New_York_City)",
+      "extraction_target": "Look up the Google Maps rating of 2124 Broadway \"Broadway (Manhattan)\") (at 74th Street \"74th Street (Manhattan)\"))",
+      "extraction_section": null,
+      "extracted_value": 4.7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "2124 Broadway \"Broadway (Manhattan)\") (at 74th Street \"74th Street (Manhattan)\"))"
+            },
+            "expected_output": null,
+            "output_key": "place_rating"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: Google rating of 2124 Broadway \"Broadway (Manhattan)\") (at 74th Street \"74th Street (Manhattan)\"))",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        11
+      ]
+    },
+    {
+      "index": 13,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Illumination_(company)",
+      "extraction_target": "the founding date of the company",
+      "extraction_section": null,
+      "extracted_value": "January 17, 2007",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Italian diaspora wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Italian_diaspora",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Include an animation studio to show the breadth of entertainment media (film, animation, events) where models/actors can cross over.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        12
+      ]
+    },
+    {
+      "index": 14,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Italian_diaspora",
+      "extraction_target": "the total population of the Italian diaspora as given in the infobox",
+      "extraction_section": null,
+      "extracted_value": 80000000,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Italian_Americans",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Shift to cultural origins and diaspora influences — fashion and style have deep European roots; the Italian diaspora is a major channel for fashion and cultural exchange.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        13
+      ]
+    },
+    {
+      "index": 15,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Italian_diaspora",
+      "extraction_target": "Look up the elevation of Italian diaspora",
+      "extraction_section": null,
+      "extracted_value": 39.45388031005859,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Italian diaspora"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Italian diaspora) from https://en.wikipedia.org/wiki/Italian_diaspora",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        14
+      ]
+    },
+    {
+      "index": 16,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Italian_diaspora",
+      "extraction_target": "Look up the Google rating of Italian diaspora",
+      "extraction_section": null,
+      "extracted_value": 4.7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "Italian diaspora"
+            },
+            "expected_output": null,
+            "output_key": "place_rating"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (Google rating of Italian diaspora) from https://en.wikipedia.org/wiki/Italian_diaspora",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        14
+      ]
+    },
+    {
+      "index": 17,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Italian_diaspora",
+      "extraction_target": "Combine the elevation of Italian diaspora and the Google rating of Italian diaspora: abs(39 - 4)",
+      "extraction_section": null,
+      "extracted_value": 35,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(39.45388031005859) - int(4.7))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Italian diaspora abs_diff Google rating of Italian diaspora",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        15,
+        16
+      ]
+    },
+    {
+      "index": 18,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Italian_Americans",
+      "extraction_target": "the number of languages shown under the article title",
+      "extraction_section": null,
+      "extracted_value": 33,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Kingdom of Italy wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Kingdom_of_Italy",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Narrow from the diaspora to the U.S. community that has shaped American style, cuisine, and entertainment — tying cultural heritage to cities and industries Katia navigates.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        17
+      ]
+    },
+    {
+      "index": 19,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Kingdom_of_Italy",
+      "extraction_target": "Look up the elevation at Turin (1861–1865) * Florence (1865–1871) * Rome (1871–1946) * Brindisi (1943–1944; *de facto*)",
+      "extraction_section": null,
+      "extracted_value": 138.6253814697266,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Turin (1861–1865) * Florence (1865–1871) * Rome (1871–1946) * Brindisi (1943–1944; *de facto*)"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for Turin (1861–1865) * Florence (1865–1871) * Rome (1871–1946) * Brindisi (1943–1944; *de facto*)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        18
+      ]
+    },
+    {
+      "index": 20,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Kingdom_of_Italy",
+      "extraction_target": "Reason: the number you get by reversing its digits",
+      "extraction_section": null,
+      "extracted_value": 831,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_reversal) on stop 10 value",
+      "reason_transform": "digit_reversal",
+      "reason_source_stop": 19,
+      "reason_code": "result = int(str(abs(int(138)))[::-1])\nprint(result)",
+      "depends_on": [
+        19
+      ]
+    },
+    {
+      "index": 21,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Domino%27s",
+      "extraction_target": "the years the company used the name DomiNick's Pizza",
+      "extraction_section": null,
+      "extracted_value": "1960–1965",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Domino%27s",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Urban food chains like Domino's are part of the everyday cultural landscape around neighborhoods, studios and events — a final cultural touchpoint before a geographic check.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        20
+      ]
+    },
+    {
+      "index": 22,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: digital_root(20 + 3236 + 31 + 39)",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "digital_root(20 + 3236 + 31 + 39)",
+        "expression_code": "def digital_root(n):\n    n = abs(int(n))\n    return n if n == 0 else ((n - 1) % 9) + 1\nresult = digital_root(20 + 3236 + 31 + 39)\nprint(result)",
+        "referenced_stops": [
+          1,
+          4,
+          7,
+          15
+        ]
+      },
+      "reasoning": "Compute stop: digital_root(20 + 3236 + 31 + 39) = 5",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1,
+        4,
+        7,
+        15
+      ]
+    }
+  ],
+  "passcode": 5,
+  "difficulty": {
+    "level": "hard",
+    "depth": 23,
+    "tool_stop_count": 10,
+    "reason_stop_count": 4,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Unearth the story of the luminary who graced runways and screens alike. What day did this model and actress first see the light of day?\n\n2. There exists a neighborhood where art and commerce blend, a haven for hoteliers and creatives near the bustling coordinates. Count how many hotels lie nearby.\n\n3. The number you uncovered awaits transformation. How many divisors can be found within that hotel count you just counted?\n\n4. A realm of motion where celluloid dreams come to life captures a colorful history. Within the sections of Hollywood and politics, how many distinct subsections dwell?\n\n5. Rising above the city's pulse, what is the height at which this cinematic world thrives?\n\n6. Among sacred spaces, how many churches are situated close to the heart of this filmic kingdom?\n\n7. To discover a new value, combine the elevation you just revealed with the count of churches you mentioned previously. What result do you get?\n\n8. Seek the studio that reshaped cinema and birthed classics, beginning from when it first opened its doors. What year marked the inception of this iconic establishment?\n\n9. By examining the year of foundation, what is the sum of its distinct prime factors?\n\n10. From the era of laughter, compute the total span of days from August 17, 1986, to March 20, 2026. The humor cannot be measured in years alone.\n\n11. Explore an empire of film and glitz; how many subsections flow under the expansive tapestry of its history?\n\n12. As you delve deeper into the fabric of this institution, how many characters does its abbreviated name yield when inscribed in Roman numerals?\n\n13. In the land of theatrical wonders, what is the average rating given to an entertainment venue at the coordinates 2124 Broadway? \n\n14. Shifting to creativity, uncover the founding date of the animated minds behind memorable stories and unforgettable characters.\n\n15. To understand a rich cultural tapestry, what is the total population of the Italian community dispersed around the globe?\n\n16. High above the land, what is the elevation at which this broad diaspora can be found?\n\n17. In the digital realm, what is the Google rating attributed to the Italian community across the world?\n\n18. To find new clarity, take the elevation from clue 16 and the rating from clue 17 — what is the absolute difference between the two?\n\n19. What is the count of languages that adorn the pages of those celebrating the Italian heritage in America?\n\n20. As you wander through time, look for the elevation associated with the cities of Turin, Florence, Rome, and Brindisi during their historic peaks — what do you discover?\n\n21. Reflecting on your findings, what is the number you obtain by reversing the digits of the total elevation discovered in the previous clue?\n\n22. In the world of pizza, remember the years when the company once called itself DomiNick's Pizza; what years linger in history?\n\n23. Converge your insights: calculate the digital root of the equation involving the values from clues 2, 5, 8, and 16, each one contributing to a final single digit that may reveal hidden connections. \n\nYour journey will lead you to a single digit, the essence distilled from many stories.",
+  "metadata": {
+    "theme": "Tracing Katia Elizarova's trajectory from model/actress into the cultural ecosystems that support fashion and entertainment — neighborhoods, venues, studios, diasporas, and the businesses that orbit them.",
+    "difficulty": "hard",
+    "sample_id": "sample_216",
+    "pages_crawled": 30576
+  },
+  "generated_at": "2026-03-20T11:52:03.796651+00:00"
+}

@@ -1,0 +1,200 @@
+{
+  "trail_id": "trail_1ddff2b7",
+  "seed_url": "https://en.wikipedia.org/wiki/Francis_S.P._Ng",
+  "seed_title": "Francis S.P. Ng",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Francis_S.P._Ng",
+      "extraction_target": "the title of the position he held at the Forest Research Institute Malaysia",
+      "extraction_section": null,
+      "extracted_value": "Deputy Director-General",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "M-Net wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/M-Net",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start with Francis S.P. Ng as an example scientist whose botanical research and field imagery are the kind of content that may be adapted into nature programming for broadcast audiences.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/M-Net",
+      "extraction_target": "the owner of M-Net as listed in the infobox",
+      "extraction_section": null,
+      "extracted_value": "MultiChoice (Canal+ S.A.)",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/DStv",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "M-Net is a major South African pay-TV channel that commissions and broadcasts documentary and natural-history programmes — a likely outlet for content derived from botanical research.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/DStv",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Founded')",
+      "extraction_section": "infobox",
+      "extracted_value": 6,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Naspers",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "DStv is the pan-African satellite platform that distributes channels like M-Net across multiple countries, connecting local and regional audiences to documentary content.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Naspers",
+      "extraction_target": "Look up the population of South Africa",
+      "extraction_section": null,
+      "extracted_value": 63100945,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "countries_population",
+            "arguments": {
+              "country": "South Africa"
+            },
+            "expected_output": null,
+            "output_key": "population"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: population of South Africa",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 4,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Sentech",
+      "extraction_target": "the height (in metres) of the tower at Aliwal North listed in the Main radio/TV sites section",
+      "extraction_section": "Main radio/TV sites",
+      "extracted_value": 143,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Sentech",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Finish at Sentech to highlight the broadcast infrastructure side — the state-owned signal distributor that helps deliver television services over the air and via transmission networks, completing the path from research content to household reception.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 5,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Sentech",
+      "extraction_target": "Reason: the sum of its digits",
+      "extraction_section": null,
+      "extracted_value": 8,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_sum) on stop 4 value",
+      "reason_transform": "digit_sum",
+      "reason_source_stop": 4,
+      "reason_code": "result = sum(int(d) for d in str(abs(int(143))))\nprint(result)"
+    },
+    {
+      "index": 6,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: digital_root(6 + 63100945 + 143 + 8)",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "digital_root(6 + 63100945 + 143 + 8)",
+        "expression_code": "def digital_root(n):\n    n = abs(int(n))\n    return n if n == 0 else ((n - 1) % 9) + 1\nresult = digital_root(6 + 63100945 + 143 + 8)\nprint(result)",
+        "referenced_stops": [
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      "reasoning": "Compute stop: digital_root(6 + 63100945 + 143 + 8) = 5",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 5,
+  "difficulty": {
+    "level": "easy",
+    "depth": 7,
+    "tool_stop_count": 1,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "Here is the revised riddle:\n\n1. Seek the page of a notable Malaysian botanist and academic known for his extensive work in forest research; from its description of his career, what title did he hold at the Forest Research Institute Malaysia?\n\n2. There exists a page about a South African subscription television channel known for local drama and documentary commissions — which company is named there as its corporate owner in the top-right summary? After you note that name, follow the link on the page that leads to the satellite bouquet which distributes its channels.\n\n3. What year does that satellite-bouquet service list as the year it was founded? When you have that number, follow the link on its page to the parent media conglomerate it references.\n\n4. If you arrive at the conglomerate's article, record the population figure given for South Africa; how many people are listed as living in that country?\n\n5. The article whose \"Main radio/TV sites\" section catalogs transmission masts will disclose the Aliwal North tower's vertical measure — what is that height, in metres?\n\n6. In the service of measurements and modest arithmetic: take the height you just found in clue 5 and add together each of its digits to produce a single summed number.\n\n7. The digital oracle commands this final arithmetic: compute the digital root of (clue 3 + clue 4 + clue 5 + clue 6). Give that single-digit result (0–9).",
+  "metadata": {
+    "theme": "From field research to viewers: tracing how scientific and natural-history work (exemplified by botanist Francis S.P. Ng) travels from researcher to audience through South African pay-TV networks and broadcast infrastructure.",
+    "difficulty": "easy",
+    "sample_id": "sample_083",
+    "pages_crawled": 3317,
+    "source": "trail_puzzles_v2"
+  },
+  "generated_at": "2026-03-15T17:44:57.082211+00:00"
+}

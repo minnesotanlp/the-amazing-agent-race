@@ -1,0 +1,644 @@
+{
+  "trail_id": "trail_27b15b88",
+  "seed_url": "https://en.wikipedia.org/wiki/Cardinal_Newman_High_School,_Bellshill",
+  "seed_title": "Cardinal Newman High School, Bellshill",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Cardinal_Newman_High_School,_Bellshill",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Established')",
+      "extraction_section": "infobox",
+      "extracted_value": 1977,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Cardinal_Newman_High_School,_Bellshill",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start at the local—a Catholic secondary school named for Cardinal Newman anchors the trail in community education and Catholic identity.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Cardinal_Newman_High_School,_Bellshill",
+      "extraction_target": "Look up the elevation of Cardinal Newman High School, Bellshill",
+      "extraction_section": null,
+      "extracted_value": 77.48782348632812,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Cardinal Newman High School, Bellshill"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Cardinal Newman High School, Bellshill) from https://en.wikipedia.org/wiki/Cardinal_Newman_High_School,_Bellshill",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Cardinal_Newman_High_School,_Bellshill",
+      "extraction_target": "Look up the count of parks near Cardinal Newman High School, Bellshill",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "parks near Cardinal Newman High School, Bellshill"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of parks near Cardinal Newman High School, Bellshill) from https://en.wikipedia.org/wiki/Cardinal_Newman_High_School,_Bellshill",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Cardinal_Newman_High_School,_Bellshill",
+      "extraction_target": "Combine the elevation of Cardinal Newman High School, Bellshill and the count of parks near Cardinal Newman High School, Bellshill: abs(77 - 20)",
+      "extraction_section": null,
+      "extracted_value": 57,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(77.48782348632812) - int(20.0))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Cardinal Newman High School, Bellshill abs_diff count of parks near Cardinal Newman High School, Bellshill",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1,
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Cardinal_Newman_High_School,_Bellshill",
+      "extraction_target": "Reason: the largest prime factor of that figure",
+      "extraction_section": null,
+      "extracted_value": 659,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (largest_prime_factor) on stop 0 value",
+      "reason_transform": "largest_prime_factor",
+      "reason_source_stop": 0,
+      "reason_code": "def largest_prime_factor(n):\n    n = abs(int(n))\n    if n <= 1: return n\n    d = 2\n    while d * d <= n:\n        while n % d == 0: n //= d\n        d += 1\n    return n\nresult = largest_prime_factor(1977)\nprint(result)",
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Religious_order_(Catholic)",
+      "extraction_target": "the number of languages listed at the top of the article",
+      "extraction_section": null,
+      "extracted_value": 12,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Religious brother wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Religious_brother",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Move from the school to the institutions that historically staffed and supported Catholic education: religious orders and their foundations.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Religious_order_(Catholic)",
+      "extraction_target": "Look up the Google rating of Religious order",
+      "extraction_section": null,
+      "extracted_value": 4.5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "Religious order"
+            },
+            "expected_output": null,
+            "output_key": "place_rating"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (place_rating) derived from https://en.wikipedia.org/wiki/Religious_order_(Catholic)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Religious_brother",
+      "extraction_target": "the number of vows listed as usually taken by a religious brother",
+      "extraction_section": null,
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Canon regular wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Canon_regular",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Zoom in on the individuals — religious brothers often worked in schools, linking institutional orders to classroom life.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Canon_regular",
+      "extraction_target": "the two kinds of persons identified as making up the Canons Regular in the opening line",
+      "extraction_section": null,
+      "extracted_value": "Catholic priests and religious brothers",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Canon_regular",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Explore a specific clerical form with close ties to parish life and communal rule — canons regular bridge monastic life and parish ministry, relevant to parish schools.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        7
+      ]
+    },
+    {
+      "index": 9,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Canon_regular",
+      "extraction_target": "Reason: the alphabetical position of its first letter (A=1, B=2, ...)",
+      "extraction_section": null,
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (alpha_position_first_letter) on stop 3 value",
+      "reason_transform": "alpha_position_first_letter",
+      "reason_source_stop": 8,
+      "reason_code": "first = \"Catholic priests and religious brothers\"[0].upper()\nresult = ord(first) - ord('A') + 1 if first.isalpha() else 0\nprint(result)",
+      "depends_on": [
+        8
+      ]
+    },
+    {
+      "index": 10,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Cleric_regular",
+      "extraction_target": "the Wikidata item identifier linked from the page",
+      "extraction_section": null,
+      "extracted_value": "Q2138822",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Delhi Durbar wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Delhi_Durbar",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Contrast different types of clerics (clerics regular vs canons/secular clergy) to understand who administrates and staffs Catholic institutions.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        9
+      ]
+    },
+    {
+      "index": 11,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Delhi_Durbar",
+      "extraction_target": "Look up the elevation at Delhi Durbar",
+      "extraction_section": null,
+      "extracted_value": 236.4042358398438,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Delhi Durbar"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for Delhi Durbar",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        10
+      ]
+    },
+    {
+      "index": 12,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Delhi_Durbar",
+      "extraction_target": "Reason: the number you get by reversing its digits",
+      "extraction_section": null,
+      "extracted_value": 632,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_reversal) on stop 5 value",
+      "reason_transform": "digit_reversal",
+      "reason_source_stop": 11,
+      "reason_code": "result = int(str(abs(int(236)))[::-1])\nprint(result)",
+      "depends_on": [
+        11
+      ]
+    },
+    {
+      "index": 13,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Chaplain_of_His_Holiness",
+      "extraction_target": "the number of languages listed at the top of the article",
+      "extraction_section": null,
+      "extracted_value": 13,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Crown-cardinal",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Examine papal-related clerical titles and how the papacy recognizes clergy — connects local chaplaincy roles up to papal honors.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        12
+      ]
+    },
+    {
+      "index": 14,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Crown-cardinal",
+      "extraction_target": "the name of the person shown in the article image who was both a cardinal and King of Portugal",
+      "extraction_section": null,
+      "extracted_value": "D. Henrique I of Portugal",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Deanery wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Deanery",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A thematic stop showing how certain cardinals historically served as political agents of monarchs, illustrating church-state entanglements referenced earlier.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        13
+      ]
+    },
+    {
+      "index": 15,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Crown-cardinal",
+      "extraction_target": "Look up the elevation of D. Henrique I of Portugal",
+      "extraction_section": null,
+      "extracted_value": 167.0383453369141,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "D. Henrique I of Portugal"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of D. Henrique I of Portugal) from https://en.wikipedia.org/wiki/Crown-cardinal",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        14
+      ]
+    },
+    {
+      "index": 16,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Crown-cardinal",
+      "extraction_target": "Look up the Google rating of D. Henrique I of Portugal",
+      "extraction_section": null,
+      "extracted_value": 4.6,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "D. Henrique I of Portugal"
+            },
+            "expected_output": null,
+            "output_key": "place_rating"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (Google rating of D. Henrique I of Portugal) from https://en.wikipedia.org/wiki/Crown-cardinal",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        14
+      ]
+    },
+    {
+      "index": 17,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Crown-cardinal",
+      "extraction_target": "Combine the elevation of D. Henrique I of Portugal and the Google rating of D. Henrique I of Portugal: abs(167 - 4)",
+      "extraction_section": null,
+      "extracted_value": 163,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(167.0383453369141) - int(4.6))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of D. Henrique I of Portugal abs_diff Google rating of D. Henrique I of Portugal",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        15,
+        16
+      ]
+    },
+    {
+      "index": 18,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Deanery",
+      "extraction_target": "the number of languages listed in the language links at the top of the page",
+      "extraction_section": "Languages",
+      "extracted_value": 26,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Deanery",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Finish by returning to local church administration: the deanery ties parishes (and parish schools) together, bringing the trail back from global roles and history to everyday church governance.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        17
+      ]
+    },
+    {
+      "index": 19,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: abs(77 - 13) % 10",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "abs(77 - 13) % 10",
+        "expression_code": "result = abs(77 - 13) % 10\nprint(result)",
+        "referenced_stops": [
+          1,
+          13
+        ]
+      },
+      "reasoning": "Compute stop: abs(77 - 13) % 10 = 4",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1,
+        13
+      ]
+    }
+  ],
+  "passcode": 4,
+  "difficulty": {
+    "level": "medium",
+    "depth": 20,
+    "tool_stop_count": 8,
+    "reason_stop_count": 3,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Unearth the educational institution that shares its name with a renowned theologian, noting the year when its doors first opened. \n\n2. What rises above the town where this school lies, lending its elevation to the tapestry of the landscape? Seek this height in meters next. \n\n3. In the vicinity of this academic haven, how many parks offer green space for the students to wander and play?\n\n4. Now, combine the height you discovered in clue 2 with the count of parks from clue 3. What is the result of their absolute difference?\n\n5. From the founding year unearthed in clue 1, extract the largest prime factor that will guide your next step.\n\n6. A group of individuals dedicated to a life of service within the Church often have a diverse language skillset. What is the total number of languages mentioned at the beginning of their collective page?\n\n7. Seek out the star rating bestowed upon these religious communities in reviews; how do travelers rate the global contributions of such orders?\n\n8. A brotherhood devoted to the Church traditionally renounces how many vows? Find this count in their historical account.\n\n9. The noble Canons Regular are distinguished by their lifestyle. Identify the two types of individuals this order comprises, as stated in the opening of their article.\n\n10. From your findings in clue 9, take the first letter's position in the alphabet: what number corresponds to it? \n\n11. Brothers of the cloth are also referred to as clerics in certain contexts. Within their account, what unique identifier connects to this community?\n\n12. In a magnificent celebration of empire and culture, how high is the elevation addressed in the chronicles of a notable historical event hosted in Delhi?\n\n13. Consider this elevation figure: what number emerges when you reverse its digits?\n\n14. An article regarding a distinguished title within the Church also lists several languages. How many can you count at the page's beginning?\n\n15. Seek the identity of a ruler who held both cardinal and royal titles, as depicted in the image of their article; unearth their name.\n\n16. The illustrious royal mentioned in clue 15 also has an elevation associated with their legacy. What is that height above ground level in meters?\n\n17. Ratings are not only reserved for monuments; what score do visitors attribute to the figure from clue 15?\n\n18. To progress, combine the two numerical pieces in your possession: the elevation found in clue 16 and the Google rating from clue 17 by calculating the absolute difference.\n\n19. The denizens of a district, marked with ecclesiastical boundaries, detail their linguistic diversity. What number reflects the languages spoken in their overview?\n\n20. Finally, compute the expression derived from clue 2 and clue 14: take the absolute difference between those results and find the value modulo 10. What single digit do you discover?",
+  "metadata": {
+    "theme": "From a local Catholic school to the global roles, offices and historical ties of the Catholic Church — a short pilgrimage linking local education, clerical roles, church administration and the church's intersection with state and geography.",
+    "difficulty": "medium",
+    "sample_id": "sample_117",
+    "pages_crawled": 6686
+  },
+  "generated_at": "2026-03-16T23:14:51.449959+00:00"
+}

@@ -1,0 +1,634 @@
+{
+  "trail_id": "trail_35f5b9f7",
+  "seed_url": "https://en.wikipedia.org/wiki/Natori_River",
+  "seed_title": "Natori River",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Natori_River",
+      "extraction_target": "the length of the river in kilometers",
+      "extraction_section": null,
+      "extracted_value": 55,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Tides wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Tides",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Seed: a Japanese river whose mouth, flow and floods set the starting point for a journey downstream toward tides, the sea and coastal systems.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Natori_River",
+      "extraction_target": "Look up the elevation of Natori River",
+      "extraction_section": null,
+      "extracted_value": 141.5762023925781,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Natori River"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (elevation) derived from https://en.wikipedia.org/wiki/Natori_River",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Tides",
+      "extraction_target": "the number of languages listed at the top of the article",
+      "extraction_section": null,
+      "extracted_value": 102,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Tides wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Tides",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Explain how tides shape river mouths and estuaries where rivers meet the sea.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 3,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Tides",
+      "extraction_target": "Reason: the sum of its distinct prime factors",
+      "extraction_section": null,
+      "extracted_value": 22,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (sum_prime_factors) on stop 1 value",
+      "reason_transform": "sum_prime_factors",
+      "reason_source_stop": 2,
+      "reason_code": "def prime_factors(n):\n    n = abs(int(n))\n    factors = []\n    d = 2\n    while d * d <= n:\n        while n % d == 0:\n            factors.append(d)\n            n //= d\n        d += 1\n    if n > 1: factors.append(n)\n    return factors\nresult = sum(set(prime_factors(102)))\nprint(result)"
+    },
+    {
+      "index": 4,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Sea",
+      "extraction_target": "the number of subsections listed under the Humans and the sea section (4.x items)",
+      "extraction_section": "Humans and the sea",
+      "extracted_value": 12,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Sailing (sport) wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Sailing_(sport)",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Context for the oceanic environment that receives river discharge and supports shipping, ecosystems and weather.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 5,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Sailing_(sport)",
+      "extraction_target": "the number of subsections under Classes and ratings listed in the table of contents",
+      "extraction_section": "Classes and ratings",
+      "extracted_value": 6,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Sailing_(sport)",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Human uses of coastal waters — recreational and commercial sailing that depend on tides and coastal geography.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 6,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Sailing_(sport)",
+      "extraction_target": "Reason: the sum of its distinct prime factors",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (sum_prime_factors) on stop 3 value",
+      "reason_transform": "sum_prime_factors",
+      "reason_source_stop": 5,
+      "reason_code": "def prime_factors(n):\n    n = abs(int(n))\n    factors = []\n    d = 2\n    while d * d <= n:\n        while n % d == 0:\n            factors.append(d)\n            n //= d\n        d += 1\n    if n > 1: factors.append(n)\n    return factors\nresult = sum(set(prime_factors(6)))\nprint(result)"
+    },
+    {
+      "index": 7,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Methylene_blue",
+      "extraction_target": "Convert 12 km to miles",
+      "extraction_section": null,
+      "extracted_value": 7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "# Convert km to miles\nvalue = 12.0\nconverted = value * 0.621371\nresult = int(converted)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "converted"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: convert 12 km to miles",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 8,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Methylene_blue",
+      "extraction_target": "Reason: the number of 1-bits in its binary representation",
+      "extraction_section": null,
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (binary_1bit_count) on stop 4 value",
+      "reason_transform": "binary_1bit_count",
+      "reason_source_stop": 7,
+      "reason_code": "result = bin(abs(int(7))).count('1')\nprint(result)"
+    },
+    {
+      "index": 9,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Submarines",
+      "extraction_target": "the number of languages the article is available in (as shown near the top of the page)",
+      "extraction_section": null,
+      "extracted_value": 126,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "James Cameron wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/James_Cameron",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Shift from surface craft to underwater technology — how humans explore and operate beneath the waves where rivers meet the sea.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 10,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/James_Cameron",
+      "extraction_target": "the number of languages the article is available in (as shown)",
+      "extraction_section": null,
+      "extracted_value": 101,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/James_Cameron",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A modern figure linking filmmaking, deep-sea exploration and public interest in the ocean depths.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 11,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/James_Cameron",
+      "extraction_target": "Reason: the number of divisors of that figure",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (num_divisors) on stop 6 value",
+      "reason_transform": "num_divisors",
+      "reason_source_stop": 10,
+      "reason_code": "n = abs(int(101))\ncount = sum(1 for i in range(1, n+1) if n % i == 0) if n > 0 else 0\nresult = count\nprint(result)"
+    },
+    {
+      "index": 12,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Renewable_energy",
+      "extraction_target": "the number of subsections under Market and industry trends",
+      "extraction_section": "Market and industry trends",
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Renewable_energy",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Introduce how rivers and coasts are used for sustainable power (hydro, tidal, offshore wind).",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 13,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Renewable_energy",
+      "extraction_target": "Reason: the number of divisors of that figure",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (num_divisors) on stop 7 value",
+      "reason_transform": "num_divisors",
+      "reason_source_stop": 12,
+      "reason_code": "n = abs(int(5))\ncount = sum(1 for i in range(1, n+1) if n % i == 0) if n > 0 else 0\nresult = count\nprint(result)"
+    },
+    {
+      "index": 14,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Renewable_power",
+      "extraction_target": "the number of subsections under 'Market and industry trends' (section 5)",
+      "extraction_section": "Market and industry trends",
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Narendra Modi wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Narendra_Modi",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Focus on power-generating technologies that link rivers, estuaries and coasts to energy systems.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 15,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Narendra_Modi",
+      "extraction_target": "Look up the population of Japan",
+      "extraction_section": null,
+      "extracted_value": 123210000,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "countries_population",
+            "arguments": {
+              "country": "Japan"
+            },
+            "expected_output": null,
+            "output_key": "population"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: population of Japan",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 16,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Vaishali_(ancient_city)",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Founded')",
+      "extraction_section": "infobox",
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Krishna Janmasthan Temple Complex wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Krishna_Janmasthan_Temple_Complex",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "An example of ancient riverine civilization illustrating how rivers have long shaped settlement, religion and economy.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 17,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Krishna_Janmasthan_Temple_Complex",
+      "extraction_target": "the location listed in the infobox (field: 'Location')",
+      "extraction_section": "infobox",
+      "extracted_value": "Mathura",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Clean Water Act wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Clean_Water_Act",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Religious and cultural sites that cluster near rivers, showing the cultural dimension of rivers and coasts.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 18,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Clean_Water_Act",
+      "extraction_target": "the U.S. Congress session that enacted the Clean Water Act",
+      "extraction_section": null,
+      "extracted_value": "92nd United States Congress",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "San Diego County wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/San_Diego_County",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A legal milestone illustrating how societies regulate water quality to protect rivers, coasts and human uses.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 19,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Clean_Water_Act",
+      "extraction_target": "Count stadiums near 92nd United States Congress",
+      "extraction_section": null,
+      "extracted_value": 10,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "stadiums near 92nd United States Congress"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (nearby_poi) derived from https://en.wikipedia.org/wiki/Clean_Water_Act",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 20,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/San_Diego_County",
+      "extraction_target": "Count the number of restaurants near 33.02",
+      "extraction_section": null,
+      "extracted_value": 16,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "restaurants near 33.02"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: count restaurants near 33.02",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 21,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Air_quality",
+      "extraction_target": "number of major pollutants listed in the Major pollutants subsection",
+      "extraction_section": "Major pollutants",
+      "extracted_value": 9,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Particulate_matter",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Consider linked environmental issues: pollution doesn’t stop at the coast — air and water quality interact around urbanized estuaries.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 22,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Particulate_matter",
+      "extraction_target": "the number of languages this article is available in (as shown at the top of the page)",
+      "extraction_section": null,
+      "extracted_value": 40,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Particulate_matter",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A specific pollutant class with implications for urban coastal populations and ecosystem health.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 23,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: (22 + 2 + 5 + 16) % 10",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "(22 + 2 + 5 + 16) % 10",
+        "expression_code": "result = (22 + 2 + 5 + 16) % 10\nprint(result)",
+        "referenced_stops": [
+          3,
+          11,
+          12,
+          20
+        ]
+      },
+      "reasoning": "Compute stop: (22 + 2 + 5 + 16) % 10 = 5",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 5,
+  "difficulty": {
+    "level": "extreme",
+    "depth": 24,
+    "tool_stop_count": 5,
+    "reason_stop_count": 5,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Track down the river in Japan known for tracing its path through Miyagi Prefecture. How many kilometers does it meander from source to mouth?\n\n2. The waterway could reveal its secrets: what elevation marks the starting point of this river's journey?\n\n3. What natural phenomenon, pivotal in shaping coastlines, has its intricacies detailed in a widely recognized article? Count the languages that discuss this flow of nature.\n\n4. In the discourse of this phenomenon, what is the total of each unique prime number that divides the count you just fetched?\n\n5. Beyond the river, a vast body of salty water awaits. How many specific sections are laid out therein concerning the relationship between humanity and the ocean?\n\n6. On the winds of competition, a sport unfolds upon the waves. Within the contents of its discourse, how many categories are identified under the distinction of classes and ratings?\n\n7. The spirit of sailing thrives on numbers; calculate the total of the distinct prime factors from your previous discovery regarding classes and ratings.\n\n8. This vibrant blue hue, often associated with depths of thought, transforms kilometers into miles. How far does 12 kilometers extend in this new measure?\n\n9. Shifting from color to code, discover how many '1's light up in the binary version of the previous figure that you converted.\n\n10. Underwater vessels, often unseen, tell tales of exploration. What is the count of languages available for this vessel’s recounting?\n\n11. A cinematic visionary in the realm of deep exploration has a story told in many tongues. Determine how many languages narrate his remarkable journey.\n\n12. From the previous count, ascertain the number of divisors of this figure, a true reflection of its complexity.\n\n13. Seek the insights found where energy flows from the forces of nature. How many subsections exist under the industry's trends and shifts?\n\n14. Turning our gaze back to unique numbers, measure the diversities of that last figure you discovered; how many distinct factors does it hold?\n\n15. Power derived from continual resources is discussed in detail; how many subdivisions lie nestled beneath the umbrella of market dynamics in this content?\n\n16. From leadership in India, discover the essence of the land's population. What number reveals the current inhabitants of this nation?\n\n17. A storied ancient city resonates through time. When did it first find its roots — what year marked its establishment?\n\n18. Journey to a sacred birthplace, steeped in tradition, and identify what geographic location is noted in its defining passage.\n\n19. The annals of legislation create waves of protection. Which session of Congress birthed the regulatory framework known for addressing water pollution?\n\n20. Staying close to our legislative roots, how many sports arenas can be found in proximity to the historic laws of the 92nd Congress?\n\n21. With culinary delights igniting the senses, search the vicinity and determine how many eateries are within reach of a scenic location nearby.\n\n22. The air around us holds both goodness and danger. How many key pollutants are identified within the critical context of air quality concerns?\n\n23. Zeroing in on the delicate matter, an extensive account is woven across multiple languages. How many tongues share knowledge of this particulate presence?\n\n24. Compute the outcome of your journey: (22 + 2 + 5 + 16) % 10. This will yield a single digit, the final treasure at the end of your quest.",
+  "metadata": {
+    "theme": "From river to sea — a short trail tracing the Natori River’s place in coastal systems, tides and maritime culture, then outward to underwater exploration, renewable power, legal protection and global heritage.",
+    "difficulty": "extreme",
+    "sample_id": "sample_224",
+    "pages_crawled": 30822
+  },
+  "generated_at": "2026-03-20T20:16:40.849632+00:00"
+}

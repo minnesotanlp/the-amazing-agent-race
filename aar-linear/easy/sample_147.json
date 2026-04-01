@@ -1,0 +1,176 @@
+{
+  "trail_id": "trail_560c77f2",
+  "seed_url": "https://en.wikipedia.org/wiki/Snowflake_Inc.",
+  "seed_title": "Snowflake Inc.",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Snowflake_Inc.",
+      "extraction_target": "the city and state listed as Snowflake's headquarters",
+      "extraction_section": null,
+      "extracted_value": "Bozeman, Montana",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Google_Cloud_Platform",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start at Snowflake (seed): identify its stock ticker and headquarters to anchor later financial and geographic checks.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Google_Cloud_Platform",
+      "extraction_target": "the revenue amount reported (in US$ billions)",
+      "extraction_section": null,
+      "extracted_value": 58.7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Google_Cloud_Platform",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Examine Google Cloud Platform to map Snowflake's infrastructure partners/available deployment targets and understand cloud-provider context.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Google_Cloud_Platform",
+      "extraction_target": "Count universities near Google Cloud Platform",
+      "extraction_section": null,
+      "extracted_value": 20,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "universities near Google Cloud Platform"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (nearby_poi) derived from https://en.wikipedia.org/wiki/Google_Cloud_Platform",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 3,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Google_Cloud_Platform",
+      "extraction_target": "Reason: the digital root (iterated digit sum until single digit)",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digital_root) on stop 1 value",
+      "reason_transform": "digital_root",
+      "reason_source_stop": 1,
+      "reason_code": "n = abs(int(58))\nresult = n if n == 0 else ((n - 1) % 9) + 1\nprint(result)"
+    },
+    {
+      "index": 4,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/European_Union_competition_law",
+      "extraction_target": "the number of language editions listed for this article",
+      "extraction_section": null,
+      "extracted_value": 21,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/European_Union_competition_law",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Conclude with EU competition law to frame the regulatory risks and compliance context Snowflake and major cloud providers face when operating in Europe.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 5,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: digital_root(58 + 20 + 4 + 21)",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "digital_root(58 + 20 + 4 + 21)",
+        "expression_code": "def digital_root(n):\n    n = abs(int(n))\n    return n if n == 0 else ((n - 1) % 9) + 1\nresult = digital_root(58 + 20 + 4 + 21)\nprint(result)",
+        "referenced_stops": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "reasoning": "Compute stop: digital_root(58 + 20 + 4 + 21) = 4",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 4,
+  "difficulty": {
+    "level": "easy",
+    "depth": 6,
+    "tool_stop_count": 1,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "direct_link"
+  },
+  "riddle": "1. Seek the cloud-based data warehousing company with its heart in a city named for a golden state — where does it thrive?\n\n2. This tech titan amongst the clouds generates a revenue amount measured in billions; what is the sum of that financial skyward ascent?\n\n3. Among the institutions that shape minds near this digital infrastructure, how many universities stand ready to enlighten future innovators?\n\n4. The revenue you uncovered in clue 2 holds a secret; reduce it to a single digit by finding its digital root — what remains?\n\n5. Legal frameworks safeguard fair competition across nations; discover how many languages you can read about this oversight in the European context.\n\n6. At last, compute a simpler essence from several clues: what is the digital root of the sum made from clue 2, clue 3, clue 4, and clue 5? This final answer, a journey through the numbers, orbits between 0 and 9.",
+  "metadata": {
+    "theme": "Tracing Snowflake Inc.'s place in the global tech ecosystem — from the company itself to cloud partners/peers, market valuation, geographic reach, and the regulatory landscape that shapes big tech.",
+    "difficulty": "easy",
+    "sample_id": "sample_147",
+    "pages_crawled": 1800
+  },
+  "generated_at": "2026-03-17T08:51:05.782985+00:00"
+}

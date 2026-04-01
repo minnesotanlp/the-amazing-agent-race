@@ -1,0 +1,1275 @@
+{
+  "trail_id": "trail_b4ac6e6c",
+  "seed_url": "https://en.wikipedia.org/wiki/Royal_Bank_of_Canada",
+  "seed_title": "Royal Bank of Canada",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Royal_Bank_of_Canada",
+      "extraction_target": "original founding city of the Royal Bank of Canada",
+      "extraction_section": null,
+      "extracted_value": "Halifax, Nova Scotia",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Royal_Bank_of_Canada",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Seed: start with Royal Bank of Canada as the financial anchor — a Canadian bank whose history and headquarters tie into domestic and international commerce.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Royal_Bank_of_Canada",
+      "extraction_target": "Look up the elevation of Halifax, Nova Scotia",
+      "extraction_section": null,
+      "extracted_value": 99.54357147216797,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Halifax, Nova Scotia"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Halifax, Nova Scotia) from https://en.wikipedia.org/wiki/Royal_Bank_of_Canada",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Royal_Bank_of_Canada",
+      "extraction_target": "Look up the count of restaurants near Halifax, Nova Scotia",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "restaurants near Halifax, Nova Scotia"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of restaurants near Halifax, Nova Scotia) from https://en.wikipedia.org/wiki/Royal_Bank_of_Canada",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Royal_Bank_of_Canada",
+      "extraction_target": "Combine the elevation of Halifax, Nova Scotia and the count of restaurants near Halifax, Nova Scotia: (99 + 20)",
+      "extraction_section": null,
+      "extracted_value": 119,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(99.54357147216797) + int(20.0)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Halifax, Nova Scotia add count of restaurants near Halifax, Nova Scotia",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1,
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Royal_Bank_of_Canada",
+      "extraction_target": "Reason: the number of vowels in that name",
+      "extraction_section": null,
+      "extracted_value": 8,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (vowel_count) on stop 0 value",
+      "reason_transform": "vowel_count",
+      "reason_source_stop": 0,
+      "reason_code": "result = sum(1 for c in \"Halifax, Nova Scotia\".lower() if c in 'aeiou')\nprint(result)",
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Fur_trade",
+      "extraction_target": "the number of languages listed near the top of the page",
+      "extraction_section": null,
+      "extracted_value": 30,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Fur_trade",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Shows an early economic foundation in Canada; fur trade financing and credit routes helped shape early banking needs in North America.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Fur_trade",
+      "extraction_target": "Count parks near Fur trade",
+      "extraction_section": null,
+      "extracted_value": 14,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "parks near Fur trade"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (nearby_poi) derived from https://en.wikipedia.org/wiki/Fur_trade",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Fur_trade",
+      "extraction_target": "Reason: the number of divisors of that figure",
+      "extraction_section": null,
+      "extracted_value": 8,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (num_divisors) on stop 1 value",
+      "reason_transform": "num_divisors",
+      "reason_source_stop": 5,
+      "reason_code": "n = abs(int(30))\ncount = sum(1 for i in range(1, n+1) if n % i == 0) if n > 0 else 0\nresult = count\nprint(result)",
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Pan_American_World_Airways",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Founded')",
+      "extraction_section": "infobox",
+      "extracted_value": 14,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Pan_American_World_Airways",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Pan Am exemplifies how global transport connected markets — critical for banks underwriting trade and corporate finance across borders.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        7
+      ]
+    },
+    {
+      "index": 9,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Pan_American_World_Airways",
+      "extraction_target": "Reason: the largest prime factor of that figure",
+      "extraction_section": null,
+      "extracted_value": 7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (largest_prime_factor) on stop 2 value",
+      "reason_transform": "largest_prime_factor",
+      "reason_source_stop": 8,
+      "reason_code": "def largest_prime_factor(n):\n    n = abs(int(n))\n    if n <= 1: return n\n    d = 2\n    while d * d <= n:\n        while n % d == 0: n //= d\n        d += 1\n    return n\nresult = largest_prime_factor(14)\nprint(result)",
+      "depends_on": [
+        8
+      ]
+    },
+    {
+      "index": 10,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Lisbon",
+      "extraction_target": "the elevation listed in the infobox (field: 'Elevation')",
+      "extraction_section": "infobox",
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "People's Bank of China wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/People%27s_Bank_of_China",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A historic Atlantic trade hub — shows the long arc from age-of-sail commerce to modern global finance.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        9
+      ]
+    },
+    {
+      "index": 11,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Lisbon",
+      "extraction_target": "Count churches near Lisbon",
+      "extraction_section": null,
+      "extracted_value": 20,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "churches near Lisbon"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (nearby_poi) derived from https://en.wikipedia.org/wiki/Lisbon",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        10
+      ]
+    },
+    {
+      "index": 12,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/People%27s_Bank_of_China",
+      "extraction_target": "Look up the population of Portugal",
+      "extraction_section": null,
+      "extracted_value": 10749635,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "countries_population",
+            "arguments": {
+              "country": "Portugal"
+            },
+            "expected_output": null,
+            "output_key": "population"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: population of Portugal",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        11
+      ]
+    },
+    {
+      "index": 13,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Qingdao",
+      "extraction_target": "the area listed in the infobox (field: '• [Urban](/wiki/Urban_area \"Urban area\")')",
+      "extraction_section": "infobox",
+      "extracted_value": 7172451,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Nanjing",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A modern Chinese port city that ties trade flows (imports/exports) to financial services and corporate activity.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        12
+      ]
+    },
+    {
+      "index": 14,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Nanjing",
+      "extraction_target": "the elevation listed in the infobox (field: 'Elevation')",
+      "extraction_section": "infobox",
+      "extracted_value": 15,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "British Raj wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/British_Raj",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Historic Chinese political and economic center — includes episodes of finance, trade and state involvement that affect banking relationships.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        13
+      ]
+    },
+    {
+      "index": 15,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Nanjing",
+      "extraction_target": "Look up the elevation of Nanjing",
+      "extraction_section": null,
+      "extracted_value": 6.323486328125,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Nanjing"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Nanjing) from https://en.wikipedia.org/wiki/Nanjing",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        14
+      ]
+    },
+    {
+      "index": 16,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Nanjing",
+      "extraction_target": "Look up the count of stadiums near Nanjing",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "stadiums near Nanjing"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of stadiums near Nanjing) from https://en.wikipedia.org/wiki/Nanjing",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        14
+      ]
+    },
+    {
+      "index": 17,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Nanjing",
+      "extraction_target": "Combine the elevation of Nanjing and the count of stadiums near Nanjing: abs(6 - 20)",
+      "extraction_section": null,
+      "extracted_value": 14,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(6.323486328125) - int(20.0))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Nanjing abs_diff count of stadiums near Nanjing",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        15,
+        16
+      ]
+    },
+    {
+      "index": 18,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/British_Raj",
+      "extraction_target": "Look up the elevation at Calcutta[[c]](#cite_note-6) (1858–1911) * New Delhi (1911/1931[[d]](#cite_note-7)–1947)",
+      "extraction_section": null,
+      "extracted_value": 232.0728302001953,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Calcutta[[c]](#cite_note-6) (1858–1911) * New Delhi (1911/1931[[d]](#cite_note-7)–1947)"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for Calcutta[[c]](#cite_note-6) (1858–1911) * New Delhi (1911/1931[[d]](#cite_note-7)–1947)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        17
+      ]
+    },
+    {
+      "index": 19,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Shenyang",
+      "extraction_target": "the elevation listed in the infobox (field: 'Elevation')",
+      "extraction_section": "infobox",
+      "extracted_value": 55,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Nagoya wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Nagoya",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "An industrial northeast Chinese city — demonstrates manufacturing centers that require corporate finance and bank lending.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        18
+      ]
+    },
+    {
+      "index": 20,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Shenyang",
+      "extraction_target": "Look up the elevation of Shenyang",
+      "extraction_section": null,
+      "extracted_value": 51.4462890625,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Shenyang"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Shenyang) from https://en.wikipedia.org/wiki/Shenyang",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        19
+      ]
+    },
+    {
+      "index": 21,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Shenyang",
+      "extraction_target": "Look up the count of churches near Shenyang",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "churches near Shenyang"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of churches near Shenyang) from https://en.wikipedia.org/wiki/Shenyang",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        19
+      ]
+    },
+    {
+      "index": 22,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Shenyang",
+      "extraction_target": "Combine the elevation of Shenyang and the count of churches near Shenyang: (51 + 20)",
+      "extraction_section": null,
+      "extracted_value": 71,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(51.4462890625) + int(20.0)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Shenyang add count of churches near Shenyang",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        20,
+        21
+      ]
+    },
+    {
+      "index": 23,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Nagoya",
+      "extraction_target": "the area listed in the infobox (field: '• [Metro](/wiki/Metropolitan_area \"Metropolitan area\") [[1]](#cite_note-1)')",
+      "extraction_section": "infobox",
+      "extracted_value": 10240000,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Bangalore, India wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Bangalore,_India",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A major Japanese manufacturing and automotive center — connects industrial borrowers and supply chains to global finance.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        22
+      ]
+    },
+    {
+      "index": 24,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Bangalore,_India",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Established')",
+      "extraction_section": "infobox",
+      "extracted_value": 1537,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Bangalore, India wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Bangalore,_India",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A modern services hub — highlights the shift from commodity trade to services and fintech, which reshape banking client bases and products.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        23
+      ]
+    },
+    {
+      "index": 25,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Bangalore,_India",
+      "extraction_target": "Look up the elevation of Bangalore, India",
+      "extraction_section": null,
+      "extracted_value": 923.6414184570312,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Bangalore, India"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Bangalore, India) from https://en.wikipedia.org/wiki/Bangalore,_India",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        24
+      ]
+    },
+    {
+      "index": 26,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Bangalore,_India",
+      "extraction_target": "Look up the count of stadiums near Bangalore, India",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "stadiums near Bangalore, India"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of stadiums near Bangalore, India) from https://en.wikipedia.org/wiki/Bangalore,_India",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        24
+      ]
+    },
+    {
+      "index": 27,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Bangalore,_India",
+      "extraction_target": "Combine the elevation of Bangalore, India and the count of stadiums near Bangalore, India: abs(923 - 20)",
+      "extraction_section": null,
+      "extracted_value": 903,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(923.6414184570312) - int(20.0))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Bangalore, India abs_diff count of stadiums near Bangalore, India",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        25,
+        26
+      ]
+    },
+    {
+      "index": 28,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Bangalore,_India",
+      "extraction_target": "Reason: the largest prime factor of that figure",
+      "extraction_section": null,
+      "extracted_value": 53,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (largest_prime_factor) on stop 10 value",
+      "reason_transform": "largest_prime_factor",
+      "reason_source_stop": 24,
+      "reason_code": "def largest_prime_factor(n):\n    n = abs(int(n))\n    if n <= 1: return n\n    d = 2\n    while d * d <= n:\n        while n % d == 0: n //= d\n        d += 1\n    return n\nresult = largest_prime_factor(1537)\nprint(result)",
+      "depends_on": [
+        24
+      ]
+    },
+    {
+      "index": 29,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Pune,_India",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Established')",
+      "extraction_section": "infobox",
+      "extracted_value": 758,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Trump Tower wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Trump_Tower",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "An Indian industrial and educational center — example of regional clusters that attract corporate finance and banking services.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        28
+      ]
+    },
+    {
+      "index": 30,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Pune,_India",
+      "extraction_target": "Look up the elevation of Pune, India",
+      "extraction_section": null,
+      "extracted_value": 577.1499633789062,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Pune, India"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Pune, India) from https://en.wikipedia.org/wiki/Pune,_India",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        29
+      ]
+    },
+    {
+      "index": 31,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Pune,_India",
+      "extraction_target": "Look up the count of museums near Pune, India",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "museums near Pune, India"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of museums near Pune, India) from https://en.wikipedia.org/wiki/Pune,_India",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        29
+      ]
+    },
+    {
+      "index": 32,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Pune,_India",
+      "extraction_target": "Combine the elevation of Pune, India and the count of museums near Pune, India: (577 + 20)",
+      "extraction_section": null,
+      "extracted_value": 597,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(577.1499633789062) + int(20.0)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Pune, India add count of museums near Pune, India",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        30,
+        31
+      ]
+    },
+    {
+      "index": 33,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Trump_Tower",
+      "extraction_target": "Look up the population of India",
+      "extraction_section": null,
+      "extracted_value": 1417492000,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "countries_population",
+            "arguments": {
+              "country": "India"
+            },
+            "expected_output": null,
+            "output_key": "population"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: population of India",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        32
+      ]
+    },
+    {
+      "index": 34,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Frankfurt",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Founded')",
+      "extraction_section": "infobox",
+      "extracted_value": 1,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Zurich wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Zurich",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A principal European financial center — demonstrates global capital markets' hubs that banks like RBC engage with internationally.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        33
+      ]
+    },
+    {
+      "index": 35,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Zurich",
+      "extraction_target": "the elevation listed in the infobox (field: 'Elevation (Zurich main railway station)')",
+      "extraction_section": "infobox",
+      "extracted_value": 408,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Charles Deere wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Charles_Deere",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Swiss banking center — a key node in international private and commercial banking networks.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        34
+      ]
+    },
+    {
+      "index": 36,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Charles_Deere",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Founded')",
+      "extraction_section": "infobox",
+      "extracted_value": 1837,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Charles_Deere",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Representative of industrial/agricultural manufacturers with public listings — shows the kinds of corporate clients banks finance (and whose stock performance banks monitor).",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        35
+      ]
+    },
+    {
+      "index": 37,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Charles_Deere",
+      "extraction_target": "Reason: the largest prime factor of that figure",
+      "extraction_section": null,
+      "extracted_value": 167,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (largest_prime_factor) on stop 15 value",
+      "reason_transform": "largest_prime_factor",
+      "reason_source_stop": 36,
+      "reason_code": "def largest_prime_factor(n):\n    n = abs(int(n))\n    if n <= 1: return n\n    d = 2\n    while d * d <= n:\n        while n % d == 0: n //= d\n        d += 1\n    return n\nresult = largest_prime_factor(1837)\nprint(result)",
+      "depends_on": [
+        36
+      ]
+    },
+    {
+      "index": 38,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: digital_root(10749635 + 903 + 53)",
+      "extraction_section": null,
+      "extracted_value": 1,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "digital_root(10749635 + 903 + 53)",
+        "expression_code": "def digital_root(n):\n    n = abs(int(n))\n    return n if n == 0 else ((n - 1) % 9) + 1\nresult = digital_root(10749635 + 903 + 53)\nprint(result)",
+        "referenced_stops": [
+          12,
+          27,
+          28
+        ]
+      },
+      "reasoning": "Compute stop: digital_root(10749635 + 903 + 53) = 1",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        12,
+        27,
+        28
+      ]
+    }
+  ],
+  "passcode": 1,
+  "difficulty": {
+    "level": "extreme",
+    "depth": 39,
+    "tool_stop_count": 20,
+    "reason_stop_count": 5,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Track down the humble origins of a financial institution, born in a vibrant port known as the cradle of the Empire of Canada.\n\n2. In a city by the sea, what height stands beneath the clouds in meters, just east of the Bay of Fundy?\n\n3. Delve into the culinary scene nearby: how many dining establishments can you count in this coastal hub?\n\n4. Now, sum together the height of this maritime city from clue 2 with the dining options you noted in clue 3.\n\n5. A key to its name rests in the sound of its vowels — discover how many there are in the establishment mentioned in the first clue.\n\n6. Seek the trade that helped build a nation — how many languages echo through its history near the top of its entry?\n\n7. Count the lush parks that flourish in the vicinity of this historic trade, serving both nature lovers and traders alike.\n\n8. For the language count discovered in clue 6, how many divisors does that figure possess? This knowledge shall reveal another layer.\n\n9. A pioneering air service emerged here — what year marked the beginning of its journey across the skies?\n\n10. The prime factor of that seminal year you just unearthed; which number holds the honor as the largest?\n\n11. Onward to a city where seven hills meet the Atlantic — what elevation does this urban gem reach above sea level?\n\n12. Just beyond this hilly charm, how many churches reflect devotion and community spirit in its landscape?\n\n13. Moving to the world's most populous nation, what lives within its borders as the total headcount for this nation?\n\n14. In a coastal city where trade flourished, what is the measure of urban sprawl noted in its geographical entries?\n\n15. Seek the benchmark of elevation in a modern city developing quickly — what is this height, hovering in meters?\n\n16. Take a stroll and report back on the number of stadiums that share their home near this vibrant community.\n\n17. Combine the height found in clue 15 with the count of stadiums from clue 16 — what total do you reach?\n\n18. Historically significant regions share space in politics — what is the elevation of circles that once held power in New Delhi?\n\n19. Next, to a city born from the legacy of a dynasty, what elevation does its name behold?\n\n20. Once more, what is the elevation experienced in a city where echoes of dynasties can be noted in its churches?\n\n21. Now, the number that describes the blend of the previous answers from clues 19 and 20 awaits you.\n\n22. A bustling metropolis in Japan beckons; seek out how extensive the breadth of its urban area is, measured in square kilometers.\n\n23. An important Indian city has its roots in a year long past — what time marks its inception?\n\n24. Discover the elevation high above in a city known both for tech and tradition; how does it rise in meters?\n\n25. Among art and culture, what is the tally of museums contributing to the richness of this city?\n\n26. Combine the elevation you found in clue 24 with the quantity of museums from clue 25 — note this sum!\n\n27. An astonishing figure emerges from the world’s second largest nation; what is the enumeration of its vibrant populace?\n\n28. Seek out the wealth of a city important for finance in Germany; what year marks its contribution to the financial landscape?\n\n29. What elevation does this spirited Swiss city claim, soaring above the surrounding vistas?\n\n30. An entity that thrived on agriculture's progress — what founding year is documented for this inventive company? \n\n31. In thought, return to clue 30 and derive the largest prime factor of the year of establishment mentioned therein.\n\n32. Tally and compute the digital root of (clue 13 + clue 28 + clue 31). Let this figure guide you, but remember, it must be a single digit!",
+  "metadata": {
+    "theme": "From a Canadian bank's origins to the global web of trade, industry and finance — following threads of commerce (fur trade, transport, cities, manufacturers and banks) across continents.",
+    "difficulty": "extreme",
+    "sample_id": "sample_182",
+    "pages_crawled": 22780
+  },
+  "generated_at": "2026-03-19T08:50:18.400719+00:00"
+}

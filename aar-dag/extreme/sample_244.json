@@ -1,0 +1,759 @@
+{
+  "trail_id": "trail_0777f379",
+  "seed_url": "https://en.wikipedia.org/wiki/Croydon_London_Borough_Council",
+  "seed_title": "Croydon London Borough Council",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Croydon_London_Borough_Council",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Founded')",
+      "extraction_section": "infobox",
+      "extracted_value": 1,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Surrey",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Seed: Croydon Council defines the borough's civic footprint — population and area set the scale for the trail.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Surrey",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Established')",
+      "extraction_section": "infobox",
+      "extracted_value": 1066,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Church of England wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Church_of_England",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Regional context: Surrey borders parts of Greater London and helps situate Croydon within its county-level geography.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Surrey",
+      "extraction_target": "Look up the elevation of Surrey",
+      "extraction_section": null,
+      "extracted_value": 77.03086853027344,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Surrey"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Surrey) from https://en.wikipedia.org/wiki/Surrey",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Surrey",
+      "extraction_target": "Look up the count of hospitals near Surrey",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "hospitals near Surrey"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of hospitals near Surrey) from https://en.wikipedia.org/wiki/Surrey",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Surrey",
+      "extraction_target": "Combine the elevation of Surrey and the count of hospitals near Surrey: abs(77 - 20)",
+      "extraction_section": null,
+      "extracted_value": 57,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(77.03086853027344) - int(20.0))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Surrey abs_diff count of hospitals near Surrey",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2,
+        3
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Church_of_England",
+      "extraction_target": "the number of language editions indicated at the top of the article",
+      "extraction_section": null,
+      "extracted_value": 86,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Mauritius wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Mauritius",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "The Church of England is a key local religious institution influencing civic life and public ceremonies in English boroughs like Croydon.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Mauritius",
+      "extraction_target": "Look up the population of United Kingdom",
+      "extraction_section": null,
+      "extracted_value": 69281437,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "countries_population",
+            "arguments": {
+              "country": "United Kingdom"
+            },
+            "expected_output": null,
+            "output_key": "population"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: population of United Kingdom",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Mauritius",
+      "extraction_target": "Reason: the sum of its digits",
+      "extraction_section": null,
+      "extracted_value": 40,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_sum) on stop 3 value",
+      "reason_transform": "digit_sum",
+      "reason_source_stop": 6,
+      "reason_code": "result = sum(int(d) for d in str(abs(int(69281437))))\nprint(result)",
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Roman_Catholic_Church",
+      "extraction_target": "the number of language editions listed at the top of the article",
+      "extraction_section": null,
+      "extracted_value": 178,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "West Bengal wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/West_Bengal",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Explore another major Christian tradition active in borough life; Roman Catholic institutions complement the Anglican presence.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        7
+      ]
+    },
+    {
+      "index": 9,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/West_Bengal",
+      "extraction_target": "Look up the area in km² of United Kingdom",
+      "extraction_section": null,
+      "extracted_value": 244376.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "countries_area",
+            "arguments": {
+              "country": "United Kingdom"
+            },
+            "expected_output": null,
+            "output_key": "area_km2"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: area of United Kingdom",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        8
+      ]
+    },
+    {
+      "index": 10,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Jesuits",
+      "extraction_target": "the number of languages the article is available in",
+      "extraction_section": null,
+      "extracted_value": 107,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Murshidabad wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Murshidabad",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Religious orders such as the Jesuits have historical roles in education and social services that affect urban communities.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        9
+      ]
+    },
+    {
+      "index": 11,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Murshidabad",
+      "extraction_target": "Count the number of parks near 24.18",
+      "extraction_section": null,
+      "extracted_value": 20,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "parks near 24.18"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: count parks near 24.18",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        10
+      ]
+    },
+    {
+      "index": 12,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Baptism",
+      "extraction_target": "the number of languages listed at the top of the article",
+      "extraction_section": null,
+      "extracted_value": 116,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Baptism",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Baptism is a central communal rite across denominations in borough parishes and highlights how religion marks civic life.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        11
+      ]
+    },
+    {
+      "index": 13,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Baptism",
+      "extraction_target": "Reason: the number of divisors of that figure",
+      "extraction_section": null,
+      "extracted_value": 6,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (num_divisors) on stop 8 value",
+      "reason_transform": "num_divisors",
+      "reason_source_stop": 12,
+      "reason_code": "n = abs(int(116))\ncount = sum(1 for i in range(1, n+1) if n % i == 0) if n > 0 else 0\nresult = count\nprint(result)",
+      "depends_on": [
+        12
+      ]
+    },
+    {
+      "index": 14,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Prayer",
+      "extraction_target": "the number of languages in which the article is available (displayed at the top of the page)",
+      "extraction_section": null,
+      "extracted_value": 120,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "2008 Democratic National Convention wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/2008_Democratic_National_Convention",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Prayer as a community practice ties together the various faith traditions present in an urban borough.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        13
+      ]
+    },
+    {
+      "index": 15,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/2008_Democratic_National_Convention",
+      "extraction_target": "Calculate the number of days between 2008-01-01 and 2026-03-21",
+      "extraction_section": null,
+      "extracted_value": 6654,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "from datetime import date\nd1 = date.fromisoformat('2008-01-01')\nd2 = date.fromisoformat('2026-03-21')\nresult = abs((d2 - d1).days)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "days"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: date computation 2008-01-01 to 2026-03-21 (pinned)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        14
+      ]
+    },
+    {
+      "index": 16,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/2008_Democratic_National_Convention",
+      "extraction_target": "Reason: the digital root (iterated digit sum until single digit)",
+      "extraction_section": null,
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digital_root) on stop 10 value",
+      "reason_transform": "digital_root",
+      "reason_source_stop": 15,
+      "reason_code": "n = abs(int(6654))\nresult = n if n == 0 else ((n - 1) % 9) + 1\nprint(result)",
+      "depends_on": [
+        15
+      ]
+    },
+    {
+      "index": 17,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Methodism",
+      "extraction_target": "the number of languages the article is available in",
+      "extraction_section": null,
+      "extracted_value": 72,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Mary, mother of Jesus wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Mary,_mother_of_Jesus",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Methodism is another denomination with local congregations that have shaped social services, education and civic life in English towns.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        16
+      ]
+    },
+    {
+      "index": 18,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Mary,_mother_of_Jesus",
+      "extraction_target": "the number of languages the article is available in (as shown under the title)",
+      "extraction_section": null,
+      "extracted_value": 159,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "UK government wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/UK_government",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Mary is central to many Christian devotional practices represented among Croydon's congregations; her feast days mark communal observances.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        17
+      ]
+    },
+    {
+      "index": 19,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/UK_government",
+      "extraction_target": "Get the driving duration in minutes from UK government to Generalate**:** Borgo S. Spirito 4",
+      "extraction_section": null,
+      "extracted_value": 1482,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_directions",
+            "arguments": {
+              "origin": "UK government",
+              "destination": "Generalate**:** Borgo S. Spirito 4",
+              "mode": "driving"
+            },
+            "expected_output": null,
+            "output_key": "duration"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: directions duration UK government to Generalate**:** Borgo S. Spirito 4",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        18
+      ]
+    },
+    {
+      "index": 20,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/UK_government",
+      "extraction_target": "Reason: the number of characters when written as a Roman numeral",
+      "extraction_section": null,
+      "extracted_value": 9,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (roman_numeral_letter_count) on stop 13 value",
+      "reason_transform": "roman_numeral_letter_count",
+      "reason_source_stop": 19,
+      "reason_code": "def to_roman(n):\n    n = abs(int(n))\n    vals = [(1000,'M'),(900,'CM'),(500,'D'),(400,'CD'),(100,'C'),\n            (90,'XC'),(50,'L'),(40,'XL'),(10,'X'),(9,'IX'),(5,'V'),(4,'IV'),(1,'I')]\n    r = ''\n    for v, s in vals:\n        while n >= v:\n            r += s; n -= v\n    return r\nresult = len(to_roman(1482))\nprint(result)",
+      "depends_on": [
+        19
+      ]
+    },
+    {
+      "index": 21,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/John_Lennon",
+      "extraction_target": "the number of language links shown near the top of the article",
+      "extraction_section": null,
+      "extracted_value": 141,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Ringo_Starr",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Shift to cultural life: John Lennon represents the broader music heritage that influences urban communities and public culture in places like Croydon.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        20
+      ]
+    },
+    {
+      "index": 22,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Ringo_Starr",
+      "extraction_target": "the number of languages in which the article is available",
+      "extraction_section": null,
+      "extracted_value": 104,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Ringo_Starr",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Another musical figure to close the trail: map civic spaces (council, churches, public squares) as places that nurture culture and community identity.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        21
+      ]
+    },
+    {
+      "index": 23,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Ringo_Starr",
+      "extraction_target": "Reason: the digital root (iterated digit sum until single digit)",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digital_root) on stop 15 value",
+      "reason_transform": "digital_root",
+      "reason_source_stop": 22,
+      "reason_code": "n = abs(int(104))\nresult = n if n == 0 else ((n - 1) % 9) + 1\nprint(result)",
+      "depends_on": [
+        22
+      ]
+    },
+    {
+      "index": 24,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: abs(1 - 9) % 10",
+      "extraction_section": null,
+      "extracted_value": 8,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "abs(1 - 9) % 10",
+        "expression_code": "result = abs(1 - 9) % 10\nprint(result)",
+        "referenced_stops": [
+          0,
+          20
+        ]
+      },
+      "reasoning": "Compute stop: abs(1 - 9) % 10 = 8",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0,
+        20
+      ]
+    }
+  ],
+  "passcode": 8,
+  "difficulty": {
+    "level": "extreme",
+    "depth": 25,
+    "tool_stop_count": 8,
+    "reason_stop_count": 5,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Track down the digital realm unveiling Croydon’s governance; what year heralded its inception?\n\n2. Seek the historic county, where the rolling hills blend with the legacy of ancient peoples — in what year did it form as a recognized territory?\n\n3. The ground beneath this area rises above sea level — how many meters does it ascend?\n\n4. Hospitals serve the community's needs; how many of these healing establishments exist within reach of the region?\n\n5. To continue your journey, take the absolute difference between your findings from clues 3 and 4 — what new value have you discovered?\n\n6. Somewhere in this land resides a notable institution of faith; how many unique translations of its teachings can be found?\n\n7. Think beyond borders: what is the number of residents of an island nation known for its vibrant culture and diverse ancestry?\n\n8. Calculate the sum of the digits from your last discovery; what result emerges?\n\n9. Follow the path to a significant religious body, renowned for its rituals; how many languages does its lore span?\n\n10. Now turn to the area of a nation steeped in history and complexity — how many square kilometers encompass its breadth?\n\n11. Discover the teachings of a brotherhood with roots deep in education and social reform; how many languages narrate their story?\n\n12. In a city rich with greenery, how many parks can you find near the given coordinates of 24.18?\n\n13. Uncover the customs of a significant religious rite; how many tongues express the traditions of this ceremony?\n\n14. As you ponder the ritual of rebirth, calculate the number of divisors associated with your previous answer.\n\n15. Dive into the realm of spiritual expressions; how many languages accompany the profound act of negotiation with the divine?\n\n16. In a monumental gathering of political will, calculate the span in days from the start of a year that ushered in a pivotal era to a future date in spring.\n\n17. Through the lens of arithmetic, find the digital root — the essence distilled from your previous calculation.\n\n18. Journey back to a movement that emphasizes a heartfelt endurance of faith; in how many languages do its principles resonate?\n\n19. Now, explore the revered figure central to many beliefs; how many languages reflect her story?\n\n20. As your adventure nears its culmination, discern the travel time in minutes from a governmental beacon to a sacred site in Italy.\n\n21. Contemplate the value you've unearthed — how many characters would it take to render the driving duration in Roman numerals?\n\n22. Old legends and lyricism wait for you under one roof — how many ways are documented to recount the tale of a man of peace and music?\n\n23. In partnership with his companion in rhythm and rhyme, how many languages are at the ready to tell their illustrious story?\n\n24. As a final step, find the digital root of the last partnership figure you discovered.\n\n25. Combining the success of clues 1 and 21, what is the absolute difference calculated as (clue 1 - clue 21) modulo 10? The result is a single digit that closes your quest.",
+  "metadata": {
+    "theme": "A civic-to-cultural trail: start at Croydon Council, map the borough into its regional geography, then follow how religious institutions and community practices shape local life and cultural connections — finishing with global and economic touchpoints that situate Croydon's community in a wider world.",
+    "difficulty": "extreme",
+    "sample_id": "sample_244",
+    "pages_crawled": 36774
+  },
+  "generated_at": "2026-03-21T11:53:20.845092+00:00"
+}

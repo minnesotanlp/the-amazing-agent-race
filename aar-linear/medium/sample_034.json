@@ -1,0 +1,376 @@
+{
+  "trail_id": "trail_2905f6b4",
+  "seed_url": "https://en.wikipedia.org/wiki/OrangeAcademy",
+  "seed_title": "OrangeAcademy",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/OrangeAcademy",
+      "extraction_target": "the year the club was founded",
+      "extraction_section": null,
+      "extracted_value": "1994",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Ratiopharm_Ulm",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Seed: OrangeAcademy is the youth/development programme tied to a pro club; start here to anchor the trail in a real academy that feeds the German leagues.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Ratiopharm_Ulm",
+      "extraction_target": "the arena capacity for BBL games",
+      "extraction_section": null,
+      "extracted_value": 6000,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Giessen 46ers wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Giessen_46ers",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Ratiopharm Ulm is OrangeAcademy’s parent club — shows the direct link between academy and top-tier professional side.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Giessen_46ers",
+      "extraction_target": "Look up the elevation at Gießen",
+      "extraction_section": null,
+      "extracted_value": 158.5879974365234,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Gießen"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for Gießen",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 3,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/ProB",
+      "extraction_target": "number of divisions in the ProB",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/ProA",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "ProB is the level where many academies and reserve teams (like OrangeAcademy) compete — essential for understanding the competitive environment for developing players.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 4,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/ProA",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Founded')",
+      "extraction_section": "infobox",
+      "extracted_value": 2007,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/ProA",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "ProA is the level above ProB and the gateway to the top flight; it frames the promotion targets for ambitious clubs and players.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 5,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/ProA",
+      "extraction_target": "Reason: the number of characters when written as a Roman numeral",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (roman_numeral_letter_count) on stop 4 value",
+      "reason_transform": "roman_numeral_letter_count",
+      "reason_source_stop": 4,
+      "reason_code": "def to_roman(n):\n    n = abs(int(n))\n    vals = [(1000,'M'),(900,'CM'),(500,'D'),(400,'CD'),(100,'C'),\n            (90,'XC'),(50,'L'),(40,'XL'),(10,'X'),(9,'IX'),(5,'V'),(4,'IV'),(1,'I')]\n    r = ''\n    for v, s in vals:\n        while n >= v:\n            r += s; n -= v\n    return r\nresult = len(to_roman(2007))\nprint(result)"
+    },
+    {
+      "index": 6,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/German_basketball_league_system",
+      "extraction_target": "the number of different competitions on the pyramid",
+      "extraction_section": null,
+      "extracted_value": 6,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Göttingen wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/G%C3%B6ttingen",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Provides the structural map of German basketball — where academies, ProB, ProA and the Bundesliga fit together.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 7,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/G%C3%B6ttingen",
+      "extraction_target": "Count the number of museums near Göttingen",
+      "extraction_section": null,
+      "extracted_value": 20,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "museums near Göttingen"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: count museums near Göttingen",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 8,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/G%C3%B6ttingen",
+      "extraction_target": "Reason: the next prime number after that figure",
+      "extraction_section": null,
+      "extracted_value": 23,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (next_prime) on stop 6 value",
+      "reason_transform": "next_prime",
+      "reason_source_stop": 7,
+      "reason_code": "def next_prime(n):\n    n = abs(int(n))\n    if n < 2: return 2\n    candidate = n + 1\n    while True:\n        if all(candidate % i != 0 for i in range(2, int(candidate**0.5)+1)):\n            return candidate\n        candidate += 1\nresult = next_prime(20)\nprint(result)"
+    },
+    {
+      "index": 9,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/2017%E2%80%9318_ProA",
+      "extraction_target": "the number of teams promoted to the 2018–19 Basketball Bundesliga (champions and runners-up)",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Crailsheim_Merlins",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A concrete season example to show promotion/relegation outcomes and how clubs move between tiers — useful to track a club's path over time.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 10,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Crailsheim_Merlins",
+      "extraction_target": "the capacity of the Arena Hohenlohe",
+      "extraction_section": null,
+      "extracted_value": 3000,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Medi Bayreuth wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Medi_Bayreuth",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "An example club that has moved through the German system; helps illustrate real club trajectories from lower tiers toward the top flight.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 11,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Medi_Bayreuth",
+      "extraction_target": "the arena capacity listed in the infobox",
+      "extraction_section": null,
+      "extracted_value": 3500,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Medi_Bayreuth",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Another regional club example (Bayreuth) that shows regional spread of teams and the level of facilities available to professional and developing players.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 12,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Medi_Bayreuth",
+      "extraction_target": "Reason: the number of 1-bits in its binary representation",
+      "extraction_section": null,
+      "extracted_value": 7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (binary_1bit_count) on stop 9 value",
+      "reason_transform": "binary_1bit_count",
+      "reason_source_stop": 11,
+      "reason_code": "result = bin(abs(int(3500))).count('1')\nprint(result)"
+    },
+    {
+      "index": 13,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: digital_root(6000 + 5 + 3000)",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "digital_root(6000 + 5 + 3000)",
+        "expression_code": "def digital_root(n):\n    n = abs(int(n))\n    return n if n == 0 else ((n - 1) % 9) + 1\nresult = digital_root(6000 + 5 + 3000)\nprint(result)",
+        "referenced_stops": [
+          1,
+          5,
+          10
+        ]
+      },
+      "reasoning": "Compute stop: digital_root(6000 + 5 + 3000) = 5",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 5,
+  "difficulty": {
+    "level": "medium",
+    "depth": 14,
+    "tool_stop_count": 2,
+    "reason_stop_count": 3,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "Here is the revised riddle:\n\n1. Seek the page dedicated to a youth club affiliated with a team known for its distinctive orange colors, and note the year this academy first opened its doors; after you have that date, follow the link to the senior Ulm professional outfit that sponsors the academy.\n\n2. There exists a page for that Ulm pro side — on it, discover the capacity used for top-division (BBL) home games, then hunt for the professional club that plays in the town of Gießen (the team whose nickname includes a number) and go to its page.\n\n3. How high above sea level does the town that hosts that numbered club sit? (Check the town’s elevation.)\n\n4. If you land on the page describing Germany’s third-tier men’s league (the national competition split regionally), record how many separate regional divisions it contains; afterwards follow the link to the league one tier above it.\n\n5. The article whose opening explains the second-tier competition contains the year it began — read the year shown in the competition’s information box.\n\n6. In that year you just uncovered, imagine it written as Roman numerals and count the letters used — how many characters long is that numeral?\n\n7. The ladder-like diagram of national competitions holds a count of the different competitions across the pyramid; find that total, and then search for the university town famous for its mathematician, located south of Hanover.\n\n8. (One detail to extract on that university town’s page: how many museums are listed near the city?) Treat this as a local-places query and tally the museums shown.\n\n9. As a numerical challenge, take the museum count you just found and give the next prime number greater than it.\n\n10. Which clubs finished in the top two of the 2017–18 second-tier season and thus earned promotion to the Basketball Bundesliga — count how many teams were promoted (champion and runner-up), then follow the link from that season page to the team from Crailsheim (the club named after stage conjurers).\n\n11. Seek the Hohenlohe arena entry on that Crailsheim team’s page and record the arena’s stated spectator capacity.\n\n12. Consider the Bayreuth club page (the side sponsored by a health-products company) and read the arena capacity listed in its information box.\n\n13. Now convert the capacity number you found for the Bayreuth venue into base two and count the number of 1-bits in that binary representation.\n\n14. Finally, compute the digital root of the sum (clue 2 + clue 6 + clue 11) and give that single-digit result — your answer should be one digit between 0 and 9.",
+  "metadata": {
+    "theme": "From youth development to the professional stage: tracing OrangeAcademy’s place in the German basketball pyramid — clubs, leagues, seasons and local context.",
+    "difficulty": "medium",
+    "sample_id": "sample_034",
+    "pages_crawled": 52
+  },
+  "generated_at": "2026-03-16T05:20:28.421301+00:00"
+}

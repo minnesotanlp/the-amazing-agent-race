@@ -1,0 +1,130 @@
+{
+  "trail_id": "trail_f8420be4",
+  "seed_url": "https://en.wikipedia.org/wiki/Robert_McAfee_Brown",
+  "seed_title": "Robert McAfee Brown",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Robert_McAfee_Brown",
+      "extraction_target": "the subject's age at death",
+      "extraction_section": null,
+      "extracted_value": 81,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Robert_McAfee_Brown",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start with Brown himself — his denomination and listed affiliations anchor the trail and explain his role as a theologian-activist who helped lead clergy opposition to the Vietnam War.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Robert_McAfee_Brown",
+      "extraction_target": "Reason: the number of 1-bits in its binary representation",
+      "extraction_section": null,
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (binary_1bit_count) on stop 0 value",
+      "reason_transform": "binary_1bit_count",
+      "reason_source_stop": 0,
+      "reason_code": "result = bin(abs(int(81))).count('1')\nprint(result)"
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Pacific_School_of_Religion",
+      "extraction_target": "Count the number of hotels near Berkeley",
+      "extraction_section": null,
+      "extracted_value": 20,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "hotels near Berkeley"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: count hotels near Berkeley",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 3,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: digital_root(81 + 3 + 20)",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "digital_root(81 + 3 + 20)",
+        "expression_code": "def digital_root(n):\n    n = abs(int(n))\n    return n if n == 0 else ((n - 1) % 9) + 1\nresult = digital_root(81 + 3 + 20)\nprint(result)",
+        "referenced_stops": [
+          0,
+          1,
+          2
+        ]
+      },
+      "reasoning": "Compute stop: digital_root(81 + 3 + 20) = 5",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 5,
+  "difficulty": {
+    "level": "easy",
+    "depth": 4,
+    "tool_stop_count": 1,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "direct_link"
+  },
+  "riddle": "1. Seek the Wikipedia page of the American Presbyterian minister and theologian often described as a bridge between mainline Protestantism and social activism (his three-part name includes the uncommon middle name \"McAfee\"); read its opening and note the subject’s age at death as a number, then follow the link labeled \"Article\" on that page to continue.  \n2. How many ones appear if you write the age from clue 1 in binary — convert that age to base two and count the set bits to produce clue 2.  \n3. There exists a Wikipedia entry for the theological school connected to his work near Berkeley (you arrived there via the previous \"Article\" link); on that page, find how many hotels are counted as being near Berkeley — that count is clue 3.  \n4. If you have clues 1, 2 and 3, compute the digital root of (clue 1 + clue 2 + clue 3) and give the resulting single digit (0–9).",
+  "metadata": {
+    "theme": "Religious protest and institutional faith: tracing theologian Robert McAfee Brown's activism, the clergy movement he helped found opposing the Vietnam War, and the seminary connected to his work.",
+    "difficulty": "easy",
+    "sample_id": "sample_116",
+    "pages_crawled": 393,
+    "source": "trail_puzzles_v3"
+  },
+  "generated_at": "2026-03-15T23:26:03.365956+00:00"
+}

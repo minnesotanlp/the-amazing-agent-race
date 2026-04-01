@@ -1,0 +1,185 @@
+{
+  "trail_id": "trail_9658078d",
+  "seed_url": "https://en.wikipedia.org/wiki/Shuhei_Fukuda_(baseball,_born_1992)",
+  "seed_title": "Shuhei Fukuda (baseball, born 1992)",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Shuhei_Fukuda_(baseball,_born_1992)",
+      "extraction_target": "date of birth",
+      "extraction_section": null,
+      "extracted_value": "August 8, 1992",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Batting_average_(baseball)",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start at the player's page to anchor the trail in a real athlete (team and birthdate give context for performance and season-age calculations).",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Batting_average_(baseball)",
+      "extraction_target": "Calculate the number of days between 1992-08-08 and 2026-03-15",
+      "extraction_section": null,
+      "extracted_value": 12272,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "from datetime import date\nd1 = date.fromisoformat('1992-08-08')\nd2 = date.fromisoformat('2026-03-15')\nresult = abs((d2 - d1).days)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "days"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: date computation 1992-08-08 to 2026-03-15 (pinned)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Batting_average_(baseball)",
+      "extraction_target": "Reason: the sum of its digits",
+      "extraction_section": null,
+      "extracted_value": 14,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_sum) on stop 1 value",
+      "reason_transform": "digit_sum",
+      "reason_source_stop": 1,
+      "reason_code": "result = sum(int(d) for d in str(abs(int(12272))))\nprint(result)"
+    },
+    {
+      "index": 3,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Run_batted_in",
+      "extraction_target": "the season when runs batted in became an official baseball statistic",
+      "extraction_section": null,
+      "extracted_value": "1920 Major League Baseball season",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Japan Series wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Japan_Series",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Clarify what RBIs measure and how they complement batting average when evaluating a player's offensive contribution.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 4,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Japan_Series",
+      "extraction_target": "Calculate the number of days between 1992-08-08 and 2026-03-15",
+      "extraction_section": null,
+      "extracted_value": 12272,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "from datetime import date\nd1 = date.fromisoformat('1992-08-08')\nd2 = date.fromisoformat('2026-03-15')\nresult = abs((d2 - d1).days)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "days"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: date computation 1992-08-08 to 2026-03-15 (pinned)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 5,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: (12272 + 14 + 12272) % 10",
+      "extraction_section": null,
+      "extracted_value": 8,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "(12272 + 14 + 12272) % 10",
+        "expression_code": "result = (12272 + 14 + 12272) % 10\nprint(result)",
+        "referenced_stops": [
+          1,
+          2,
+          4
+        ]
+      },
+      "reasoning": "Compute stop: (12272 + 14 + 12272) % 10 = 8",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 8,
+  "difficulty": {
+    "level": "easy",
+    "depth": 6,
+    "tool_stop_count": 2,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "Here is the riddle with the necessary adjustments:\n\n1. Seek the profile of a professional baseball player born in 1992 in Fukuoka, Japan; on that page, what date is recorded as the day he entered the world?\n\n2. There exists a page that explains the ratio of a batter’s hits to his official at-bats; using the birthdate you uncovered, calculate how many days elapsed between that date and 2026-03-15.\n\n3. What is the sum of the digits of the days-count you just computed on that batting-statistics exposition?\n\n4. If you follow the link about the statistic that awards a batter credit when his plate appearance causes a run to score, determine in which season (year) that run-producing credit was first recognized as an official statistic.\n\n5. The article that appears when you search for the championship series that crowns Japan’s professional baseball champion contains a context for those metrics; while there, again compute the number of days between the birthdate you found and 2026-03-15.\n\n6. In the end, perform this arithmetic and report a single digit: compute (clue 2 + clue 3 + clue 5) modulo 10 — the result should be a single digit from 0 to 9.",
+  "metadata": {
+    "theme": "Follow a Japanese outfielder from his profile into the batting metrics that define his season: convert a batting-average decimal into a percent, clarify RBIs, and place those stats in the historical context of the Japan Series.",
+    "difficulty": "easy",
+    "sample_id": "sample_075",
+    "pages_crawled": 3075,
+    "source": "trail_puzzles_v2"
+  },
+  "generated_at": "2026-03-15T16:59:01.572995+00:00"
+}

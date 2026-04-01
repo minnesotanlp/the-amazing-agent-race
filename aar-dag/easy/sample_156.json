@@ -1,0 +1,315 @@
+{
+  "trail_id": "trail_a5afab4c",
+  "seed_url": "https://en.wikipedia.org/wiki/American_Express",
+  "seed_title": "American Express",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/American_Express",
+      "extraction_target": "the number of subsections listed under Marketing and advertising",
+      "extraction_section": "Marketing and advertising",
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/American_Express",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start at American Express as the seed: a major financial-services firm headquartered in New York City that anchors the trail in corporate finance and local geography.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/American_Express",
+      "extraction_target": "Reason: the digital root (iterated digit sum until single digit)",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digital_root) on stop 0 value",
+      "reason_transform": "digital_root",
+      "reason_source_stop": 0,
+      "reason_code": "n = abs(int(4))\nresult = n if n == 0 else ((n - 1) % 9) + 1\nprint(result)",
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Midtown_Manhattan",
+      "extraction_target": "the coordinates as degrees, minutes and seconds shown in the infobox",
+      "extraction_section": null,
+      "extracted_value": "40°45′17″N 73°59′03″W",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Netflix, Inc. wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Netflix,_Inc.",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Place the company within Midtown Manhattan's central business district to situate American Express in the city's corporate geography.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Midtown_Manhattan",
+      "extraction_target": "Look up the elevation of Midtown Manhattan",
+      "extraction_section": null,
+      "extracted_value": 20.32340240478516,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Midtown Manhattan"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Midtown Manhattan) from https://en.wikipedia.org/wiki/Midtown_Manhattan",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Midtown_Manhattan",
+      "extraction_target": "Look up the count of museums near Midtown Manhattan",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "museums near Midtown Manhattan"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of museums near Midtown Manhattan) from https://en.wikipedia.org/wiki/Midtown_Manhattan",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Midtown_Manhattan",
+      "extraction_target": "Combine the elevation of Midtown Manhattan and the count of museums near Midtown Manhattan: (20 + 20)",
+      "extraction_section": null,
+      "extracted_value": 40,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(20.32340240478516) + int(20.0)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Midtown Manhattan add count of museums near Midtown Manhattan",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3,
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Netflix,_Inc.",
+      "extraction_target": "the headquarters city of Netflix, Inc.",
+      "extraction_section": null,
+      "extracted_value": "Los Gatos, California",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Netflix,_Inc.",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Shift from local corporate geography to a publicly traded media company (Netflix) to broaden the trail from finance in place to actors in the public markets.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Netflix,_Inc.",
+      "extraction_target": "Look up the elevation of Los Gatos, California",
+      "extraction_section": null,
+      "extracted_value": 110.9721298217773,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Los Gatos, California"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (elevation) derived from https://en.wikipedia.org/wiki/Netflix,_Inc.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: (4 + 20 + 40) % 10",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "(4 + 20 + 40) % 10",
+        "expression_code": "result = (4 + 20 + 40) % 10\nprint(result)",
+        "referenced_stops": [
+          0,
+          3,
+          5
+        ]
+      },
+      "reasoning": "Compute stop: (4 + 20 + 40) % 10 = 4",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0,
+        3,
+        5
+      ]
+    }
+  ],
+  "passcode": 4,
+  "difficulty": {
+    "level": "easy",
+    "depth": 9,
+    "tool_stop_count": 4,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Seek the financial giant known for its iconic blue card, where you can uncover the subsections beneath its promotional strategies.\n\n2. Extract a singular digit from the total you found in the previous clue — what is the digital root of that number?\n\n3. A bustling region in the heart of a great city is your next destination; find out the precise coordinates of this energetic locale.\n\n4. How high does the ground rise above the sea in the lively hub you just identified?\n\n5. Nearby treasures await exploration; count how many museums enrich the cultural tapestry of this vibrant area.\n\n6. Combine the elevation noted in clue 4 with the museum total from clue 5 to discover a new figure vital for your journey.\n\n7. The streaming titan operates from a city steeped in innovation; can you uncover its headquarters' name?\n\n8. A picturesque town in California cradles this entertainment powerhouse. What altitude does this charming location embrace?\n\n9. Bring together the findings of clue 1 and the heights of clue 4 with the combined result of clue 6, then apply modulo 10 to unveil your final answer.",
+  "metadata": {
+    "theme": "From a New York financial headquarters to nearby Manhattan landmarks, then outward to public markets — tracing a local corporate footprint into global corporate finance.",
+    "difficulty": "easy",
+    "sample_id": "sample_156",
+    "pages_crawled": 2300
+  },
+  "generated_at": "2026-03-17T09:30:34.244208+00:00"
+}

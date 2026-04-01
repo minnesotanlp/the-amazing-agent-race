@@ -1,0 +1,177 @@
+{
+  "trail_id": "trail_52c0ead8",
+  "seed_url": "https://en.wikipedia.org/wiki/Khvor_Khvor-e_Olya",
+  "seed_title": "Khvor Khvor-e Olya",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Khvor_Khvor-e_Olya",
+      "extraction_target": "the population of Khvor Khvor-e Olya at the 2016 census",
+      "extraction_section": "Population",
+      "extracted_value": 35,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Qeshlaq-e_Sharqi_Rural_District",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start at the seed village: its coordinates and population anchor the trail and provide the location to which subsequent administrative and heritage data will be related.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Qeshlaq-e_Sharqi_Rural_District",
+      "extraction_target": "the population of Qeshlaq-e Sharqi Rural District at the 2016 census",
+      "extraction_section": "Population",
+      "extracted_value": 10052,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Iran National Heritage List wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Iran_National_Heritage_List",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Move up one administrative level to the rural district that contains the village to understand local governance and demographics.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Qeshlaq-e_Sharqi_Rural_District",
+      "extraction_target": "Count temples near Qeshlaq-e Sharqi Rural District",
+      "extraction_section": null,
+      "extracted_value": 1,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "temples near Qeshlaq-e Sharqi Rural District"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (nearby_poi) derived from https://en.wikipedia.org/wiki/Qeshlaq-e_Sharqi_Rural_District",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 3,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Iran_National_Heritage_List",
+      "extraction_target": "the number of items registered by André Godard",
+      "extraction_section": "History",
+      "extracted_value": 385,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Iran_National_Heritage_List",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Connect the local area to the national context of protected sites—identify whether nearby landmarks are recognized on Iran's heritage list.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 4,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Iran_National_Heritage_List",
+      "extraction_target": "Reason: the sum of its distinct prime factors",
+      "extraction_section": null,
+      "extracted_value": 23,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (sum_prime_factors) on stop 2 value",
+      "reason_transform": "sum_prime_factors",
+      "reason_source_stop": 3,
+      "reason_code": "def prime_factors(n):\n    n = abs(int(n))\n    factors = []\n    d = 2\n    while d * d <= n:\n        while n % d == 0:\n            factors.append(d)\n            n //= d\n        d += 1\n    if n > 1: factors.append(n)\n    return factors\nresult = sum(set(prime_factors(385)))\nprint(result)"
+    },
+    {
+      "index": 5,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: digital_root(35 + 10052 + 1 + 385)",
+      "extraction_section": null,
+      "extracted_value": 6,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "digital_root(35 + 10052 + 1 + 385)",
+        "expression_code": "def digital_root(n):\n    n = abs(int(n))\n    return n if n == 0 else ((n - 1) % 9) + 1\nresult = digital_root(35 + 10052 + 1 + 385)\nprint(result)",
+        "referenced_stops": [
+          0,
+          1,
+          2,
+          3
+        ]
+      },
+      "reasoning": "Compute stop: digital_root(35 + 10052 + 1 + 385) = 6",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 6,
+  "difficulty": {
+    "level": "easy",
+    "depth": 6,
+    "tool_stop_count": 1,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Track down the village where the local count at the last census reached a vibrant population in 2016. What number will you find?\n\n2. In this rural expanse, a neighboring district embodies the spirit of community. How many residents called it home in the same year?\n\n3. Hidden near this agricultural haven, how many places of worship can you count? Seek the sanctuaries within the vicinity.\n\n4. A tapestry of heritage threads through a storied nation. Discover the number of treasures cataloged by a visionary architect in his chronicles of cultural significance.\n\n5. To proceed, delve into the essence of that heritage: what is the sum of the distinct prime factors of the count you just obtained? \n\n6. Calculate your next destination by finding the digital root of (clue 1 + clue 2 + clue 3 + clue 4). This final answer will reveal a single digit, leading you closer to the treasure!",
+  "metadata": {
+    "theme": "From village to heritage: tracing Khvor Khvor-e Olya through its local administrative units to Iran's national heritage and measuring proximity to a historic mosque",
+    "difficulty": "easy",
+    "sample_id": "sample_073",
+    "pages_crawled": 3009,
+    "source": "trail_puzzles_v2"
+  },
+  "generated_at": "2026-03-15T16:47:22.170326+00:00"
+}

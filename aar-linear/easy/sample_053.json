@@ -1,0 +1,129 @@
+{
+  "trail_id": "trail_b6722a5e",
+  "seed_url": "https://en.wikipedia.org/wiki/Pakokku_District",
+  "seed_title": "Pakokku District",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Pakokku_District",
+      "extraction_target": "total population of Pakokku District (2014 Census)",
+      "extraction_section": null,
+      "extracted_value": 1055545,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Districts_of_Burma",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start here to establish Pakokku District's current size and human scale as the trail's anchor.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Districts_of_Burma",
+      "extraction_target": "Convert 1055545°C to a Fahrenheit-scale offset",
+      "extraction_section": null,
+      "extracted_value": 1899981,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "# Convert celsius to fahrenheit_offset\nvalue = 1055545.0\nconverted = value * 1.8\nresult = int(converted)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "converted"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: convert 1055545 celsius to fahrenheit_offset",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Districts_of_Burma",
+      "extraction_target": "Reason: the number of divisors of that figure",
+      "extraction_section": null,
+      "extracted_value": 24,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (num_divisors) on stop 1 value",
+      "reason_transform": "num_divisors",
+      "reason_source_stop": 1,
+      "reason_code": "n = abs(int(1899981))\ncount = sum(1 for i in range(1, n+1) if n % i == 0) if n > 0 else 0\nresult = count\nprint(result)"
+    },
+    {
+      "index": 3,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: digital_root(1055545 + 24)",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "digital_root(1055545 + 24)",
+        "expression_code": "def digital_root(n):\n    n = abs(int(n))\n    return n if n == 0 else ((n - 1) % 9) + 1\nresult = digital_root(1055545 + 24)\nprint(result)",
+        "referenced_stops": [
+          0,
+          2
+        ]
+      },
+      "reasoning": "Compute stop: digital_root(1055545 + 24) = 4",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 4,
+  "difficulty": {
+    "level": "easy",
+    "depth": 4,
+    "tool_stop_count": 1,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "direct_link"
+  },
+  "riddle": "Here is the revised riddle:\n\n1. Seek the page that details a region in Myanmar, known for its agricultural heartland and a major river sharing part of its name with the country. Note its total population as given for the 2014 census; afterward, follow the internal link labelled \"district\" to continue.  \n2. On the districts overview you land upon, imagine the population you just recorded as a temperature in degrees Celsius — what number does that become when converted onto a Fahrenheit-style offset?  \n3. If you take the integer offset from clue 2, determine how many positive divisors that whole number possesses.  \n4. In the end, compute the digital root of (clue 1 + clue 3) and report the single-digit result (0–9).",
+  "metadata": {
+    "theme": "Placing Pakokku District in a regional-historical context: extract its population, measure distance to an important Southeast Asian historic capital (Trowulan), and convert administrative area figures for easier comparison.",
+    "difficulty": "easy",
+    "sample_id": "sample_053",
+    "pages_crawled": 2231,
+    "source": "trail_puzzles_v2"
+  },
+  "generated_at": "2026-03-15T14:46:40.003746+00:00"
+}

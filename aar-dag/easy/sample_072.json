@@ -1,0 +1,334 @@
+{
+  "trail_id": "trail_6ca73f75",
+  "seed_url": "https://en.wikipedia.org/wiki/Ouled_Farès_District",
+  "seed_title": "Ouled Farès District",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Ouled_Far%C3%A8s_District",
+      "extraction_target": "number of communes listed in the Communes section",
+      "extraction_section": "Communes",
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Communes_of_Algeria",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start at the seed district to anchor the trail in a real Algerian administrative unit and extract its basic administrative facts.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Ouled_Far%C3%A8s_District",
+      "extraction_target": "Look up the elevation of Ouled Farès District",
+      "extraction_section": null,
+      "extracted_value": 121.479362487793,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Ouled Farès District"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Ouled Farès District) from https://en.wikipedia.org/wiki/Ouled_Far%C3%A8s_District",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Ouled_Far%C3%A8s_District",
+      "extraction_target": "Look up the count of parks near Ouled Farès District",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "parks near Ouled Farès District"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of parks near Ouled Farès District) from https://en.wikipedia.org/wiki/Ouled_Far%C3%A8s_District",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Ouled_Far%C3%A8s_District",
+      "extraction_target": "Combine the elevation of Ouled Farès District and the count of parks near Ouled Farès District: abs(121 - 20)",
+      "extraction_section": null,
+      "extracted_value": 101,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(121.479362487793) - int(20.0))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Ouled Farès District abs_diff count of parks near Ouled Farès District",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1,
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Communes_of_Algeria",
+      "extraction_target": "the number of municipalities in Algeria as of 2002",
+      "extraction_section": null,
+      "extracted_value": 1541,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Quarter (urban subdivision) wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Quarter_(urban_subdivision)",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Zoom out to the national level of local government to explain how Ouled Farès District is organized into communes and where it fits in Algeria's administrative hierarchy.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Quarter_(urban_subdivision)",
+      "extraction_target": "the number of languages listed at the top of the article",
+      "extraction_section": null,
+      "extracted_value": 21,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Malek bin Abbas Mosque wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Malek_bin_Abbas_Mosque",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Move from formal administrative units to the lived urban scale (quarters) to consider how residents experience communes and districts on the neighborhood level.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Malek_bin_Abbas_Mosque",
+      "extraction_target": "the religious affiliation of the mosque",
+      "extraction_section": null,
+      "extracted_value": "Sunni Islam",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Malek_bin_Abbas_Mosque",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Highlight a local cultural and religious landmark to show how heritage sites sit inside communes and quarters, illustrating the district's cultural landscape.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Malek_bin_Abbas_Mosque",
+      "extraction_target": "Reason: the number of vowels in that name",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (vowel_count) on stop 3 value",
+      "reason_transform": "vowel_count",
+      "reason_source_stop": 6,
+      "reason_code": "result = sum(1 for c in \"Sunni Islam\".lower() if c in 'aeiou')\nprint(result)",
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Salah_Rais",
+      "extraction_target": "Look up the population of Algeria",
+      "extraction_section": null,
+      "extracted_value": 47400000,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "countries_population",
+            "arguments": {
+              "country": "Algeria"
+            },
+            "expected_output": null,
+            "output_key": "population"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: population of Algeria",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        7
+      ]
+    },
+    {
+      "index": 9,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: abs(3 - 121) % 10",
+      "extraction_section": null,
+      "extracted_value": 8,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "abs(3 - 121) % 10",
+        "expression_code": "result = abs(3 - 121) % 10\nprint(result)",
+        "referenced_stops": [
+          0,
+          1,
+          5
+        ]
+      },
+      "reasoning": "Compute stop: abs(3 - 121) % 10 = 8",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0,
+        1,
+        5
+      ]
+    }
+  ],
+  "passcode": 8,
+  "difficulty": {
+    "level": "easy",
+    "depth": 10,
+    "tool_stop_count": 4,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. A place where districts number their communities — how many communes does this locality hold? \n\n2. Scale the heights where this district lies — what is its elevation, in meters, above the sea?\n\n3. Nearby greens lie waiting; how many parks can one find within reach of this district?\n\n4. Take the elevation from clue 2 and the park count from clue 3 — what is the absolute difference between these two values?\n\n5. From where you stand, reflect on a broader landscape — how many municipalities mark their presence in the nation as of 2002?\n\n6. Seek a page about urban spaces divided into quarters; what is the total count of languages spoken there?\n\n7. A sacred place within the community holds deep meaning. What religious affiliation does this mosque embrace?\n\n8. Look closely at the name stumbled upon in clue 7: how many vowels lie hidden within its letters?\n\n9. Now, turn your gaze to the population of the vast land known as Algeria — what figure defines its people?\n\n10. Lastly, compute the expression: take the absolute difference between clue 1 and the elevation from clue 2, then reduce it modulo 10. What single digit emerges from this calculation?",
+  "metadata": {
+    "theme": "Tracing local administration and cultural landmarks in Algeria: from a district to its communes, urban quarters, and a historic mosque — then sizing the country to give the district context.",
+    "difficulty": "easy",
+    "sample_id": "sample_072",
+    "pages_crawled": 2966,
+    "source": "trail_puzzles_v2"
+  },
+  "generated_at": "2026-03-15T16:40:06.892428+00:00"
+}

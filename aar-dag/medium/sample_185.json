@@ -1,0 +1,506 @@
+{
+  "trail_id": "trail_2e2debc4",
+  "seed_url": "https://en.wikipedia.org/wiki/Shopify",
+  "seed_title": "Shopify",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Shopify",
+      "extraction_target": "the city and province of Shopify's headquarters",
+      "extraction_section": null,
+      "extracted_value": "Ottawa, Ontario , Canada",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Shopify",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Seed: Shopify is a leading e‑commerce platform — start by pulling its revenue and HQ to ground the trail in a concrete company and location.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Shopify",
+      "extraction_target": "Look up the elevation of Ottawa, Ontario , Canada",
+      "extraction_section": null,
+      "extracted_value": 72.36231231689453,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Ottawa, Ontario , Canada"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Ottawa, Ontario , Canada) from https://en.wikipedia.org/wiki/Shopify",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Shopify",
+      "extraction_target": "Look up the count of parks near Ottawa, Ontario , Canada",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "parks near Ottawa, Ontario , Canada"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of parks near Ottawa, Ontario , Canada) from https://en.wikipedia.org/wiki/Shopify",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Shopify",
+      "extraction_target": "Combine the elevation of Ottawa, Ontario , Canada and the count of parks near Ottawa, Ontario , Canada: abs(72 - 20)",
+      "extraction_section": null,
+      "extracted_value": 52,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(72.36231231689453) - int(20.0))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Ottawa, Ontario , Canada abs_diff count of parks near Ottawa, Ontario , Canada",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1,
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Shopify",
+      "extraction_target": "Reason: the alphabetical position of its first letter (A=1, B=2, ...)",
+      "extraction_section": null,
+      "extracted_value": 15,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (alpha_position_first_letter) on stop 0 value",
+      "reason_transform": "alpha_position_first_letter",
+      "reason_source_stop": 0,
+      "reason_code": "first = \"Ottawa, Ontario , Canada\"[0].upper()\nresult = ord(first) - ord('A') + 1 if first.isalpha() else 0\nprint(result)",
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Online_shopping",
+      "extraction_target": "the protection level displayed for the article",
+      "extraction_section": null,
+      "extracted_value": "semi-protected",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Online_shopping",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Places Shopify in the broader context of online shopping history and practices.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Online_shopping",
+      "extraction_target": "Reason: the number of vowels in that name",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (vowel_count) on stop 1 value",
+      "reason_transform": "vowel_count",
+      "reason_source_stop": 5,
+      "reason_code": "result = sum(1 for c in \"semi-protected\".lower() if c in 'aeiou')\nprint(result)",
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/App_Store_(iOS)",
+      "extraction_target": "the number of subsections listed under Development and monetization in the Contents",
+      "extraction_section": "Contents",
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/IPad",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Mobile app marketplaces transformed how merchants reach customers — connect app distribution to e‑commerce.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/IPad",
+      "extraction_target": "the number of languages the article is available in (as shown near the top)",
+      "extraction_section": null,
+      "extracted_value": 88,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Intel Corp wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Intel_Corp",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Devices like the iPad define customer experience and buying patterns for app‑based and mobile commerce.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        7
+      ]
+    },
+    {
+      "index": 9,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Intel_Corp",
+      "extraction_target": "Convert 3 meters to yards",
+      "extraction_section": null,
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "# Convert meters to yards\nvalue = 3.0\nconverted = value * 1.09361\nresult = int(converted)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "converted"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: convert 3 meters to yards",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        8
+      ]
+    },
+    {
+      "index": 10,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Google_Checkout",
+      "extraction_target": "the date the web checkout part of the service was fully retired",
+      "extraction_section": null,
+      "extracted_value": "November 20, 2013",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Fraud",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Payments infrastructure evolution (Google Checkout is an example of payments/products that rose and fell as commerce matured).",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        9
+      ]
+    },
+    {
+      "index": 11,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Fraud",
+      "extraction_target": "the number of languages listed at the top of the article",
+      "extraction_section": null,
+      "extracted_value": 64,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Cuba wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Cuba",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Highlight legal and risk challenges merchants and platforms face (fraud is a major operational and regulatory issue in e‑commerce).",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        10
+      ]
+    },
+    {
+      "index": 12,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Cuba",
+      "extraction_target": "Look up the elevation at Cuba",
+      "extraction_section": null,
+      "extracted_value": 71.68138885498047,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Cuba"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for Cuba",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        11
+      ]
+    },
+    {
+      "index": 13,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/First_Amendment",
+      "extraction_target": "the number of languages indicated in the language links section",
+      "extraction_section": null,
+      "extracted_value": 38,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "First Amendment wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/First_Amendment",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "End by touching on legal speech protections and how platform moderation, merchant speech, and regulation intersect with commerce and policy.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        12
+      ]
+    },
+    {
+      "index": 14,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/First_Amendment",
+      "extraction_target": "Reason: the number you get by reversing its digits",
+      "extraction_section": null,
+      "extracted_value": 83,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_reversal) on stop 8 value",
+      "reason_transform": "digit_reversal",
+      "reason_source_stop": 13,
+      "reason_code": "result = int(str(abs(int(38)))[::-1])\nprint(result)",
+      "depends_on": [
+        13
+      ]
+    },
+    {
+      "index": 15,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: digital_root(20 + 5 + 88)",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "digital_root(20 + 5 + 88)",
+        "expression_code": "def digital_root(n):\n    n = abs(int(n))\n    return n if n == 0 else ((n - 1) % 9) + 1\nresult = digital_root(20 + 5 + 88)\nprint(result)",
+        "referenced_stops": [
+          2,
+          6,
+          8
+        ]
+      },
+      "reasoning": "Compute stop: digital_root(20 + 5 + 88) = 5",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2,
+        6,
+        8
+      ]
+    }
+  ],
+  "passcode": 5,
+  "difficulty": {
+    "level": "medium",
+    "depth": 16,
+    "tool_stop_count": 5,
+    "reason_stop_count": 3,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. In the bustling world of e-commerce, seek the city and province that houses the headquarters of a notable online platform revolutionizing commerce. Where do they hang their digital hat?\n\n2. What is the number of meters that elevate this political capital above sea level? Find the height of the place you just identified.\n\n3. Nearby, how many patches of green do residents enjoy in the verdant capital? Count the parks that grace the area surrounding your previous find.\n\n4. Combine the altitude you discovered with the number of parks you just counted. What is the absolute difference of these two values?\n\n5. A revelation awaits within the name of the company you uncovered earlier. Can you deduce the alphabetical position of its first letter? (Remember: A=1, B=2...) \n\n6. While exploring an online shopping phenomenon, you’ll find a level of protection provided for customers detailed in the article. Unearth this safeguarding descriptor.\n\n7. The title from which you garnered the protection level offers another layer of complexity. How many vowels dance within that name? Count them carefully.\n\n8. Transition to a digital realm where app distribution dances with user demand. Hidden within the contents, what is the total number of subsections listed under the topic of development and monetization?\n\n9. Wandering further through tech advancements, visit the sleek device that sparked a tablet revolution. How many languages is this famous gadget's article available in?\n\n10. Turn your gaze to a titan of silicon — the corporation known for its processors. Convert a modest three meters into yards and discover their equivalent length.\n\n11. Among the digital checkout innovations, a service saw its web presence fully retired on a notable date. Can you identify this moment in time?\n\n12. A deeper dive into the digital world brings you to a page listing potential deceit. What is the count of languages presented at the top of this article?\n\n13. Head to a sun-kissed land known for its cigars and revolutionary history. What is the elevation of this island nation?\n\n14. Sharpen your focus on the article that guards rights and freedoms. How many languages are cited in the language links of this cherished amendment?\n\n15. Just for fun, reverse the digits of the number you uncovered in the previous clue. What new value does this give you?\n\n16. Finally, wield the findings from clues 3, 7, and 9 to compute the digital root of the sum of 20, 5, and 88. What single digit emerges from this calculation?",
+  "metadata": {
+    "theme": "Tracing the modern digital commerce ecosystem — from Shopify's e‑commerce platform to app marketplaces, device platforms, payment systems, geographic HQ, legal risks, and global market reach.",
+    "difficulty": "medium",
+    "sample_id": "sample_185",
+    "pages_crawled": 12143
+  },
+  "generated_at": "2026-03-17T20:54:16.841326+00:00"
+}

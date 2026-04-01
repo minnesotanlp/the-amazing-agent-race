@@ -1,0 +1,128 @@
+{
+  "trail_id": "trail_a92e0351",
+  "seed_url": "https://en.wikipedia.org/wiki/Toyota",
+  "seed_title": "Toyota",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Toyota",
+      "extraction_target": "the number of language editions listed at the top of the article",
+      "extraction_section": null,
+      "extracted_value": 143,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Detroit wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Detroit",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start at Toyota (the seed): extract its HQ and identify its financial subsidiary to connect the manufacturer to its corporate/financial presence.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Detroit",
+      "extraction_target": "Count the number of universities near 42.333",
+      "extraction_section": null,
+      "extracted_value": 1,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "universities near 42.333"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: count universities near 42.333",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Detroit",
+      "extraction_target": "Reason: the number of 1-bits in its binary representation",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (binary_1bit_count) on stop 1 value",
+      "reason_transform": "binary_1bit_count",
+      "reason_source_stop": 1,
+      "reason_code": "result = bin(abs(int(6))).count('1')\nprint(result)"
+    },
+    {
+      "index": 3,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: digital_root(143 + 6)",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "digital_root(143 + 6)",
+        "expression_code": "def digital_root(n):\n    n = abs(int(n))\n    return n if n == 0 else ((n - 1) % 9) + 1\nresult = digital_root(143 + 6)\nprint(result)",
+        "referenced_stops": [
+          0,
+          1
+        ]
+      },
+      "reasoning": "Compute stop: digital_root(143 + 6) = 5",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 5,
+  "difficulty": {
+    "level": "easy",
+    "depth": 4,
+    "tool_stop_count": 1,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "Here is the revised riddle:\n\n1. Seek the Wikipedia page for the automobile manufacturer founded in 1937 in Japan, known for producing reliable cars and their development of hybrid technology; count how many language editions are linked at the very top of that article and record that number.  \n2. There exists a page for the largest city in Michigan, United States — on that city's article, find how many universities lie near latitude 42.333 (search for places or universities around that coordinate) and note the count.  \n3. How many 1-bits appear when you write the number from clue 2 in base two? (Take the value you obtained in clue 2 and count the ones in its binary representation.)  \n4. If you now combine your discoveries, compute the digital root of (clue 1 + clue 2); the final answer is a single digit between 0 and 9.",
+  "metadata": {
+    "theme": "Tracing Toyota's corporate footprint: from the manufacturer to its financial arm and presence in a U.S. auto hub",
+    "difficulty": "easy",
+    "sample_id": "sample_185",
+    "pages_crawled": 4119
+  },
+  "generated_at": "2026-03-17T12:15:37.097073+00:00"
+}

@@ -1,0 +1,558 @@
+{
+  "trail_id": "trail_fb9a4aba",
+  "seed_url": "https://en.wikipedia.org/wiki/Coca-Cola_Company",
+  "seed_title": "Coca-Cola Company",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Coca-Cola_Company",
+      "extraction_target": "the section number of 'Revenue and sales' in the table of contents",
+      "extraction_section": "Contents",
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Coca",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Seed: the company whose product links the rest of the trail — start with Coca‑Cola's founding and HQ to anchor the narrative.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Coca",
+      "extraction_target": "the minimum number of years ago that chewing coca leaves dates back, as given",
+      "extraction_section": null,
+      "extracted_value": 8000,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Caffeine",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Ingredient origin: follow the 'Coca' in Coca‑Cola back to the plant that inspired the original formula.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Coca",
+      "extraction_target": "Look up the elevation of Coca",
+      "extraction_section": null,
+      "extracted_value": 782.5159301757812,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Coca"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Coca) from https://en.wikipedia.org/wiki/Coca",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Coca",
+      "extraction_target": "Look up the count of restaurants near Coca",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "restaurants near Coca"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of restaurants near Coca) from https://en.wikipedia.org/wiki/Coca",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Coca",
+      "extraction_target": "Combine the elevation of Coca and the count of restaurants near Coca: (782 + 20)",
+      "extraction_section": null,
+      "extracted_value": 802,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(782.5159301757812) + int(20.0)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Coca add count of restaurants near Coca",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2,
+        3
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Coca",
+      "extraction_target": "Count libraries near Coca",
+      "extraction_section": null,
+      "extracted_value": 6,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "libraries near Coca"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (nearby_poi) derived from https://en.wikipedia.org/wiki/Coca",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Caffeine",
+      "extraction_target": "the number of subsections under the 'Society and culture' section",
+      "extraction_section": "Society and culture",
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Drink industry wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Drink_industry",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Active component: examine caffeine — the stimulant long associated with cola beverages — and its physiological effects.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Drink_industry",
+      "extraction_target": "number of languages listed beneath the article title",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Atlanta wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Atlanta",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Industry context: place Coca‑Cola within the global drink industry and market forces that shape its business.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Atlanta",
+      "extraction_target": "the coordinates listed in the infobox (field: 'Coordinates')",
+      "extraction_section": "infobox",
+      "extracted_value": "33.74889, -84.39000",
+      "extracted_value_type": "coords",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "MTV wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/MTV",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Headquarters city: connect the company to its home city, understanding the local context of Atlanta.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        7
+      ]
+    },
+    {
+      "index": 9,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Atlanta",
+      "extraction_target": "Look up the elevation of Atlanta",
+      "extraction_section": null,
+      "extracted_value": 317.6960754394531,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Atlanta"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Atlanta) from https://en.wikipedia.org/wiki/Atlanta",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        8
+      ]
+    },
+    {
+      "index": 10,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Atlanta",
+      "extraction_target": "Look up the count of churches near Atlanta",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "churches near Atlanta"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of churches near Atlanta) from https://en.wikipedia.org/wiki/Atlanta",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        8
+      ]
+    },
+    {
+      "index": 11,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Atlanta",
+      "extraction_target": "Combine the elevation of Atlanta and the count of churches near Atlanta: abs(317 - 20)",
+      "extraction_section": null,
+      "extracted_value": 297,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(317.6960754394531) - int(20.0))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Atlanta abs_diff count of churches near Atlanta",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        9,
+        10
+      ]
+    },
+    {
+      "index": 12,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/MTV",
+      "extraction_target": "the number of subsections listed under Influence and controversies in the table of contents",
+      "extraction_section": "Influence and controversies",
+      "extracted_value": 10,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/MTV",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Cultural reach: Coca‑Cola's brand has been amplified through mass media — MTV exemplifies media channels that shaped consumer culture.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        11
+      ]
+    },
+    {
+      "index": 13,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/MTV",
+      "extraction_target": "Reason: the sum of its distinct prime factors",
+      "extraction_section": null,
+      "extracted_value": 7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (sum_prime_factors) on stop 5 value",
+      "reason_transform": "sum_prime_factors",
+      "reason_source_stop": 12,
+      "reason_code": "def prime_factors(n):\n    n = abs(int(n))\n    factors = []\n    d = 2\n    while d * d <= n:\n        while n % d == 0:\n            factors.append(d)\n            n //= d\n        d += 1\n    if n > 1: factors.append(n)\n    return factors\nresult = sum(set(prime_factors(10)))\nprint(result)",
+      "depends_on": [
+        12
+      ]
+    },
+    {
+      "index": 14,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Quebec",
+      "extraction_target": "Look up the population of Canada",
+      "extraction_section": null,
+      "extracted_value": 41651653,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "countries_population",
+            "arguments": {
+              "country": "Canada"
+            },
+            "expected_output": null,
+            "output_key": "population"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: population of Canada",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        13
+      ]
+    },
+    {
+      "index": 15,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Quebec",
+      "extraction_target": "Reason: the sum of its digits",
+      "extraction_section": null,
+      "extracted_value": 31,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_sum) on stop 6 value",
+      "reason_transform": "digit_sum",
+      "reason_source_stop": 14,
+      "reason_code": "result = sum(int(d) for d in str(abs(int(41651653))))\nprint(result)",
+      "depends_on": [
+        14
+      ]
+    },
+    {
+      "index": 16,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: digital_root(4 + 31)",
+      "extraction_section": null,
+      "extracted_value": 8,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "digital_root(4 + 31)",
+        "expression_code": "def digital_root(n):\n    n = abs(int(n))\n    return n if n == 0 else ((n - 1) % 9) + 1\nresult = digital_root(4 + 31)\nprint(result)",
+        "referenced_stops": [
+          7,
+          15
+        ]
+      },
+      "reasoning": "Compute stop: digital_root(4 + 31) = 8",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        7,
+        15
+      ]
+    }
+  ],
+  "passcode": 8,
+  "difficulty": {
+    "level": "medium",
+    "depth": 17,
+    "tool_stop_count": 8,
+    "reason_stop_count": 2,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. A global icon was born from a blend — seek the entry that tells the tale of fizzy refreshment crafted in a pharmacy.\n\n2. From a leaf with a historical bite, can you determine how many laps around the sun have seen the spirit of this plant?\n\n3. Now, reach for the sky! What altitude does that verdant region call home, measured in meters above sea level?\n\n4. Nearby culinary delights await discovery. How many eateries serve sumptuous meals within a stone's throw from the plant's origin?\n\n5. Take the number of dining spots you just unearthed and add it to the height you found in clue 3. What total do you reach?\n\n6. Curiosity beckons towards repositories of knowledge. Count how many libraries stand sentinel near the vibrant region you explored.\n\n7. In a world defined by energetic brews, how many subcategories reside under the cultural impact of a popular stimulant found in many beverages?\n\n8. This sector boasts a rich tapestry of languages. How many tongues are represented beneath the title of the place known for quenching thirst?\n\n9. An intriguing city lies where the past meets the present. What geographic markers help define this metropolis, hidden within its introductory details?\n\n10. Ascend to the heights of the city — find out what elevation marks this urban landscape's peak in meters.\n\n11. Churches often dot the landscape of this lively town. How many places of worship reside in the vicinity?\n\n12. Combine what you discovered about the city's elevation from clue 10 and the count of local churches from clue 11. What is the absolute difference?\n\n13. A cultural phenomenon emerged with powerful influence. How many subsections within the contentious arena of its legacy are found in the article about this medium?\n\n14. Among the factors that shaped its history, sum the distinct primes of the number you uncovered in clue 13. What total emerges from this calculation?\n\n15. Across a vast land, how many souls can be counted in the nation that shelters the entry known for its rich culture and history?\n\n16. Delve into the digits of the figure you extracted from clue 15. What does their sum reveal?\n\n17. Combine your insights from clues 8 and 16! Compute the digital root of the total reached by adding those two figures. The final result is a single digit, unveiling the essence of this journey.",
+  "metadata": {
+    "theme": "Tracing Coca‑Cola's journey from its raw ingredients to global corporate, cultural, and regulatory contexts — following the drink from plant and stimulant origins through industry, city headquarters, media reach, and corporate comparisons.",
+    "difficulty": "medium",
+    "sample_id": "sample_151",
+    "pages_crawled": 9543
+  },
+  "generated_at": "2026-03-17T13:24:48.596016+00:00"
+}

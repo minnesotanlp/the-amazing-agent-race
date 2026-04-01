@@ -1,0 +1,333 @@
+{
+  "trail_id": "trail_021a8600",
+  "seed_url": "https://en.wikipedia.org/wiki/ASML_Holding",
+  "seed_title": "ASML Holding",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/ASML_Holding",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Founded')",
+      "extraction_section": "infobox",
+      "extracted_value": 1984,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Dublin wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Dublin",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Seed: ASML is the central supplier of photolithography equipment used by leading chipmakers — a natural starting point for mapping the semiconductor supply chain.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Dublin",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Founded')",
+      "extraction_section": "infobox",
+      "extracted_value": 10,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Ireland",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Dublin is a key European location for Intel fabs and tech operations — illustrating where ASML's equipment is ultimately deployed.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Ireland",
+      "extraction_target": "Look up the population of Ireland",
+      "extraction_section": null,
+      "extracted_value": 5458600,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "countries_population",
+            "arguments": {
+              "country": "Ireland"
+            },
+            "expected_output": null,
+            "output_key": "population"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: population of Ireland",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Ireland",
+      "extraction_target": "Reason: the next prime number after that figure",
+      "extraction_section": null,
+      "extracted_value": 5458601,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (next_prime) on stop 2 value",
+      "reason_transform": "next_prime",
+      "reason_source_stop": 2,
+      "reason_code": "def next_prime(n):\n    n = abs(int(n))\n    if n < 2: return 2\n    candidate = n + 1\n    while True:\n        if all(candidate % i != 0 for i in range(2, int(candidate**0.5)+1)):\n            return candidate\n        candidate += 1\nresult = next_prime(5458600)\nprint(result)",
+      "depends_on": [
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Austin,_Texas",
+      "extraction_target": "the number of languages the article is available in (as shown under the title)",
+      "extraction_section": null,
+      "extracted_value": 150,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Bengaluru wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Bengaluru",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Austin represents a major US semiconductor and tech cluster — connecting ASML and chipmakers to North American manufacturing and design centers.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Austin,_Texas",
+      "extraction_target": "Look up the elevation of Austin, Texas",
+      "extraction_section": null,
+      "extracted_value": 149.0889434814453,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Austin, Texas"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Austin, Texas) from https://en.wikipedia.org/wiki/Austin,_Texas",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Austin,_Texas",
+      "extraction_target": "Look up the count of stadiums near Austin, Texas",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "stadiums near Austin, Texas"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of stadiums near Austin, Texas) from https://en.wikipedia.org/wiki/Austin,_Texas",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        4
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Austin,_Texas",
+      "extraction_target": "Combine the elevation of Austin, Texas and the count of stadiums near Austin, Texas: (149 + 20)",
+      "extraction_section": null,
+      "extracted_value": 169,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(149.0889434814453) + int(20.0)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Austin, Texas add count of stadiums near Austin, Texas",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5,
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Bengaluru",
+      "extraction_target": "the number of languages listed at the top of the article",
+      "extraction_section": null,
+      "extracted_value": 142,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Bengaluru",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Bengaluru highlights the design and engineering talent side of the semiconductor ecosystem, completing the trail from equipment (ASML) to makers (Intel), and to the cities and countries that house fabs and engineers.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        7
+      ]
+    },
+    {
+      "index": 9,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: digital_root(1984 + 150 + 149)",
+      "extraction_section": null,
+      "extracted_value": 6,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "digital_root(1984 + 150 + 149)",
+        "expression_code": "def digital_root(n):\n    n = abs(int(n))\n    return n if n == 0 else ((n - 1) % 9) + 1\nresult = digital_root(1984 + 150 + 149)\nprint(result)",
+        "referenced_stops": [
+          0,
+          4,
+          5
+        ]
+      },
+      "reasoning": "Compute stop: digital_root(1984 + 150 + 149) = 6",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0,
+        4,
+        5
+      ]
+    }
+  ],
+  "passcode": 6,
+  "difficulty": {
+    "level": "easy",
+    "depth": 10,
+    "tool_stop_count": 4,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Seek the company at the forefront of lithography, responsible for making chips possible. In which year did this innovative entity first take shape?\n\n2. A vibrant capital city once served as a beacon for arts and literature — what year did this storied location come into existence?\n\n3. Turning to a nation whose lush landscapes cradle a thriving culture, can you reveal the total number of inhabitants within its borders?\n\n4. Discover the prime number that follows the population total you just calculated. \n\n5. In a city renowned for its live music scene and tech industry, how many languages are spoken as indicated in its article?\n\n6. As you explore the landscapes of that Texan city, what lies beneath its skyline? Find the answer to its elevation above sea level.\n\n7. Nearby, sports and entertainment flourish — how many stadiums entertain the masses in the vicinity of this urban center?\n\n8. Add together the height of that Texan metropolis from clue 6 and the tally of stadiums from clue 7 to embark on your next leg of the journey.\n\n9. In a city where innovation meets tradition, how many languages can be found at the apex of its description?\n\n10. Finally, unveil the digital soul of your discoveries. Compute the digital root of the sum of the year from clue 1, the languages total from clue 5, and the elevation from clue 6. This will lead you to a single digit treasure from your quest.",
+  "metadata": {
+    "theme": "Tracing the global semiconductor ecosystem: from ASML (lithography equipment) to major chipmakers and the cities/countries that host fabs, design talent and market impact.",
+    "difficulty": "easy",
+    "sample_id": "sample_197",
+    "pages_crawled": 4769
+  },
+  "generated_at": "2026-03-17T13:32:24.472336+00:00"
+}

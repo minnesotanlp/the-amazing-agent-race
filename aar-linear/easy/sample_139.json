@@ -1,0 +1,182 @@
+{
+  "trail_id": "trail_5a44f3cb",
+  "seed_url": "https://en.wikipedia.org/wiki/Salesforce",
+  "seed_title": "Salesforce",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Salesforce",
+      "extraction_target": "the company's headquarters city and state as listed in the infobox",
+      "extraction_section": null,
+      "extracted_value": "Salesforce Tower, San Francisco, California, U.S.",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Amazon.com wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Amazon.com",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start at Salesforce to anchor the trail: the company's HQ and origin set the geographic and industry context for connections to regional tech hubs and other Big Tech players.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Amazon.com",
+      "extraction_target": "the number of subsections under Products and services",
+      "extraction_section": "Products and services",
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Amazon.com",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Move to a major cloud and retail titan (Amazon/AWS) to contrast Salesforce's cloud software focus with hyperscale cloud providers that shape enterprise IT strategy and competition.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Amazon.com",
+      "extraction_target": "Reason: the sum of its digits",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_sum) on stop 1 value",
+      "reason_transform": "digit_sum",
+      "reason_source_stop": 1,
+      "reason_code": "result = sum(int(d) for d in str(abs(int(4))))\nprint(result)"
+    },
+    {
+      "index": 3,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Cambridge,_Massachusetts",
+      "extraction_target": "the elevation listed in the infobox (field: 'Elevation')",
+      "extraction_section": "infobox",
+      "extracted_value": 39,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Cambridge,_Massachusetts",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "End at a prominent R&D and talent hub (Cambridge, MA) to highlight where engineering and research talent and university partnerships originate — the human capital that fuels companies like Salesforce, Amazon, and Apple.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 4,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Cambridge,_Massachusetts",
+      "extraction_target": "Look up the elevation of Cambridge, Massachusetts",
+      "extraction_section": null,
+      "extracted_value": 6.57575798034668,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Cambridge, Massachusetts"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (elevation) derived from https://en.wikipedia.org/wiki/Cambridge,_Massachusetts",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 5,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: digital_root(4 + 6)",
+      "extraction_section": null,
+      "extracted_value": 1,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "digital_root(4 + 6)",
+        "expression_code": "def digital_root(n):\n    n = abs(int(n))\n    return n if n == 0 else ((n - 1) % 9) + 1\nresult = digital_root(4 + 6)\nprint(result)",
+        "referenced_stops": [
+          1,
+          4
+        ]
+      },
+      "reasoning": "Compute stop: digital_root(4 + 6) = 1",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 1,
+  "difficulty": {
+    "level": "easy",
+    "depth": 6,
+    "tool_stop_count": 1,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Unearth the name of the software titan that reshaped customer relationship management. In which city and state does its headquarters reside?\n\n2. A colossal online marketplace thrives alongside this tech giant. What is the total number of topics listed under its offerings, as discussed in its product landscape?\n\n3. Add together the digits found in the previous answer — what do they total?\n\n4. Seek elevation in the city known for its prestigious institutions and innovative spirit. What is the height above sea level recorded for this urban center?\n\n5. Discover the precise elevation of the aforementioned city using a geographic tool. How high above the sea does it rise?\n\n6. Now, compute the digital root of the sum of clues 2 and 5. Your treasure awaits in this final single-digit answer, derived from the charm of numbers that echo back to clue 2.",
+  "metadata": {
+    "theme": "Tracing Salesforce's place in the Big Tech ecosystem: headquarters and regional connections, major cloud/tech competitors, and the talent/R&D hubs that feed them.",
+    "difficulty": "easy",
+    "sample_id": "sample_139",
+    "pages_crawled": 1400
+  },
+  "generated_at": "2026-03-17T08:19:56.776597+00:00"
+}

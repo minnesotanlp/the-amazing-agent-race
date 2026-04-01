@@ -1,0 +1,257 @@
+{
+  "trail_id": "trail_82bb5706",
+  "seed_url": "https://en.wikipedia.org/wiki/Marenisco_Township,_Michigan",
+  "seed_title": "Marenisco Township, Michigan",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Marenisco_Township,_Michigan",
+      "extraction_target": "the elevation listed in the infobox (field: 'Elevation')",
+      "extraction_section": "infobox",
+      "extracted_value": 1493,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Marenisco_Township,_Michigan",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Marenisco Township is a small community nestled in Michigan's Upper Peninsula, which has notable elevation differences contributing to its unique environment.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Marenisco_Township,_Michigan",
+      "extraction_target": "Look up the elevation of Marenisco Township, Michigan",
+      "extraction_section": null,
+      "extracted_value": 401.1535949707031,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Marenisco Township, Michigan"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Marenisco Township, Michigan) from https://en.wikipedia.org/wiki/Marenisco_Township,_Michigan",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Marenisco_Township,_Michigan",
+      "extraction_target": "Look up the count of museums near Marenisco Township, Michigan",
+      "extraction_section": null,
+      "extracted_value": 18.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "museums near Marenisco Township, Michigan"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of museums near Marenisco Township, Michigan) from https://en.wikipedia.org/wiki/Marenisco_Township,_Michigan",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Marenisco_Township,_Michigan",
+      "extraction_target": "Combine the elevation of Marenisco Township, Michigan and the count of museums near Marenisco Township, Michigan: abs(401 - 18)",
+      "extraction_section": null,
+      "extracted_value": 383,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(401.1535949707031) - int(18.0))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Marenisco Township, Michigan abs_diff count of museums near Marenisco Township, Michigan",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1,
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Marenisco_Township,_Michigan",
+      "extraction_target": "Reason: the number of characters when written as a Roman numeral",
+      "extraction_section": null,
+      "extracted_value": 8,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (roman_numeral_letter_count) on stop 0 value",
+      "reason_transform": "roman_numeral_letter_count",
+      "reason_source_stop": 0,
+      "reason_code": "def to_roman(n):\n    n = abs(int(n))\n    vals = [(1000,'M'),(900,'CM'),(500,'D'),(400,'CD'),(100,'C'),\n            (90,'XC'),(50,'L'),(40,'XL'),(10,'X'),(9,'IX'),(5,'V'),(4,'IV'),(1,'I')]\n    r = ''\n    for v, s in vals:\n        while n >= v:\n            r += s; n -= v\n    return r\nresult = len(to_roman(1493))\nprint(result)",
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Wuhan",
+      "extraction_target": "Look up the Google Maps rating of Wuhan",
+      "extraction_section": null,
+      "extracted_value": 0.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "Wuhan"
+            },
+            "expected_output": null,
+            "output_key": "place_rating"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: Google rating of Wuhan",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: digital_root(1493 + 401 + 383 + 8)",
+      "extraction_section": null,
+      "extracted_value": 8,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "digital_root(1493 + 401 + 383 + 8)",
+        "expression_code": "def digital_root(n):\n    n = abs(int(n))\n    return n if n == 0 else ((n - 1) % 9) + 1\nresult = digital_root(1493 + 401 + 383 + 8)\nprint(result)",
+        "referenced_stops": [
+          0,
+          1,
+          3,
+          4
+        ]
+      },
+      "reasoning": "Compute stop: digital_root(1493 + 401 + 383 + 8) = 8",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0,
+        1,
+        3,
+        4
+      ]
+    }
+  ],
+  "passcode": 8,
+  "difficulty": {
+    "level": "easy",
+    "depth": 7,
+    "tool_stop_count": 4,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "direct_link"
+  },
+  "riddle": "1. Begin your quest in Marenisco Township, Michigan. Under its youthful sky, glean from its tale the height at which it stands above sea level, measured in meters.\n\n2. While the previous source holds a clue, now gaze towards the heavens via digital maps to learn again the altitude of this same landscape. \n\n3. This land of forests whispers history through its institutions. Use your cartographic tools to count the establishments dedicated to preserving heritage in its vicinity.\n\n4. By combining your cosmic knowledge, unite the heights discovered in clue 2 with the tally from clue 3. What singular value does this union reveal?\n\n5. The height from clue 1 holds riches: transcribe it into ancient Roman dress and ask how many letters it wears.\n\n6. A city in central China, known for vigour and tradition, also boasts a reputation. Seek the opinions of travelers — what star rating do they assign?\n\n7. Having gathered your findings through space and time, harmonize these notes. With values from clues 1, 2, 4, and 5, compute their digital root. This melodic number sings the final answer, a single digit truth.",
+  "metadata": {
+    "theme": "Exploring cultural connections through elevation, weather, and music",
+    "difficulty": "easy",
+    "sample_id": "sample_206",
+    "pages_crawled": 389
+  },
+  "generated_at": "2026-03-27T06:56:47.361523+00:00"
+}

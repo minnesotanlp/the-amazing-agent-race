@@ -1,0 +1,343 @@
+{
+  "trail_id": "trail_08e554fe",
+  "seed_url": "https://en.wikipedia.org/wiki/S%26P_Global",
+  "seed_title": "S&P Global",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/S%26P_Global",
+      "extraction_target": "the headquarters address as listed in the infobox",
+      "extraction_section": null,
+      "extracted_value": "55 Water Street, New York City, US",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Chicago wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Chicago",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start at S&P Global — the seed. As a provider of market indices and financial data, it frames the trail: whose prices and economic signals we'll inspect next.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/S%26P_Global",
+      "extraction_target": "Look up the elevation of 55 Water Street, New York City, US",
+      "extraction_section": null,
+      "extracted_value": 11.86480522155762,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "55 Water Street, New York City, US"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (elevation) derived from https://en.wikipedia.org/wiki/S%26P_Global",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Chicago",
+      "extraction_target": "the number of sub-subsections under 20th and 21st centuries (History → 20th and 21st centuries)",
+      "extraction_section": "History",
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Beijing wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Beijing",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Move to a major U.S. city and financial center whose markets and industries interact with the companies and indices S&P Global covers.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Chicago",
+      "extraction_target": "Look up the elevation of Chicago",
+      "extraction_section": null,
+      "extracted_value": 183.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Chicago"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Chicago) from https://en.wikipedia.org/wiki/Chicago",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Chicago",
+      "extraction_target": "Look up the count of stadiums near Chicago",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "stadiums near Chicago"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of stadiums near Chicago) from https://en.wikipedia.org/wiki/Chicago",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Chicago",
+      "extraction_target": "Combine the elevation of Chicago and the count of stadiums near Chicago: (183 + 20)",
+      "extraction_section": null,
+      "extracted_value": 203,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(183.0) + int(20.0)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Chicago add count of stadiums near Chicago",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3,
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Beijing",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Established')",
+      "extraction_section": "infobox",
+      "extracted_value": 1045,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Beijing",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Shift to a major international market hub (Beijing) to emphasize the global scope of financial data and cross-border economic influence on indices.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Beijing",
+      "extraction_target": "Reason: the number of divisors of that figure",
+      "extraction_section": null,
+      "extracted_value": 8,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (num_divisors) on stop 2 value",
+      "reason_transform": "num_divisors",
+      "reason_source_stop": 6,
+      "reason_code": "n = abs(int(1045))\ncount = sum(1 for i in range(1, n+1) if n % i == 0) if n > 0 else 0\nresult = count\nprint(result)",
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Economy_of_the_United_States",
+      "extraction_target": "the GDP listed in the infobox (field: 'GDP rank')",
+      "extraction_section": "infobox",
+      "extracted_value": 1,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Economy_of_the_United_States",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Finish with the national economic context whose aggregate metrics (GDP, sector composition) are reflected in market indices and corporate performance reported by S&P Global.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        7
+      ]
+    },
+    {
+      "index": 9,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: abs(11 - 183) % 10",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "abs(11 - 183) % 10",
+        "expression_code": "result = abs(11 - 183) % 10\nprint(result)",
+        "referenced_stops": [
+          1,
+          3,
+          4,
+          7
+        ]
+      },
+      "reasoning": "Compute stop: abs(11 - 183) % 10 = 2",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1,
+        3,
+        4,
+        7
+      ]
+    }
+  ],
+  "passcode": 2,
+  "difficulty": {
+    "level": "easy",
+    "depth": 10,
+    "tool_stop_count": 4,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. A global firm, rooted in financial analytics, has its heart where the streets share a name with a famous park in New York. What is the address of their headquarters?  \n\n2. Nestled on the bustling street of New York, there lies a structure known for its height — what is the ground's elevation at the address you just uncovered?  \n\n3. In a city that once hosted a famous World's Fair, find the tale of its recent history, specifically the number of chapters chronicling the 20th and 21st centuries. What is this count?  \n\n4. If you wander through the heart of the Windy City, what is the elevation of the land there, high above Lake Michigan?  \n\n5. Seek the thrill of sport nearby this urban center — how many stadiums can you discover in that vicinity?  \n\n6. As you tally your city’s features, take the land's height found in clue 4 and combine it with the number of stadiums that grace the area from clue 5. What sum do you form?  \n\n7. Seek out the ancient capital city, known for its storied past and cultural treasures. What year marked its establishment?  \n\n8. From the year you now possess, unravel the secrets of its numerical makeup — how many distinct divisors does that year hold?  \n\n9. Turn your gaze towards a sprawling nation where the economic engine of the world thrives. What is the rank of this country’s GDP in the global landscape?  \n\n10. In this final challenge, compute the absolute difference between 11 and the ground elevation you uncovered in clue 2, then apply the mod 10 transformation. What single digit emerges from your final calculation?  \n\nEngage with each clue, for the sum of your discoveries leads you to the final answer!",
+  "metadata": {
+    "theme": "Tracing how market data shapes understanding of the global economy: from S&P Global's market signals to the stocks it covers (tech and retail) and the major cities and national economy those markets reflect.",
+    "difficulty": "easy",
+    "sample_id": "sample_159",
+    "pages_crawled": 2483
+  },
+  "generated_at": "2026-03-17T09:41:23.132428+00:00"
+}

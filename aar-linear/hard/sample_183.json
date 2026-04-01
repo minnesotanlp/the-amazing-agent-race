@@ -1,0 +1,524 @@
+{
+  "trail_id": "trail_f4c2f8f6",
+  "seed_url": "https://en.wikipedia.org/wiki/Moody%27s_Corporation",
+  "seed_title": "Moody's Corporation",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Moody%27s_Corporation",
+      "extraction_target": "the NYSE ticker symbol for Moody's Corporation",
+      "extraction_section": null,
+      "extracted_value": "MCO",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Moody%27s_Corporation",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Seed: Moody's is the credit-ratings firm anchoring the trail — start by extracting its ticker and HQ to orient the financial narrative.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Moody%27s_Corporation",
+      "extraction_target": "Look up the Google rating of MCO",
+      "extraction_section": null,
+      "extracted_value": 4.1,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "MCO"
+            },
+            "expected_output": null,
+            "output_key": "place_rating"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (place_rating) derived from https://en.wikipedia.org/wiki/Moody%27s_Corporation",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Moody%27s_Corporation",
+      "extraction_target": "Reason: the alphabetical position of its first letter (A=1, B=2, ...)",
+      "extraction_section": null,
+      "extracted_value": 13,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (alpha_position_first_letter) on stop 0 value",
+      "reason_transform": "alpha_position_first_letter",
+      "reason_source_stop": 0,
+      "reason_code": "first = \"MCO\"[0].upper()\nresult = ord(first) - ord('A') + 1 if first.isalpha() else 0\nprint(result)"
+    },
+    {
+      "index": 3,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Federal_Reserve_System",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Established')",
+      "extraction_section": "infobox",
+      "extracted_value": 23,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Central_bank",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Monetary policy: the Fed's actions influence credit conditions and ratings that Moody's publishes.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 4,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Central_bank",
+      "extraction_target": "the number of languages the article is available in (displayed near the top)",
+      "extraction_section": null,
+      "extracted_value": 91,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Central_bank",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Concept: situate the Fed within the broader concept of central banks that steer national monetary policy and market liquidity.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 5,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Central_bank",
+      "extraction_target": "Reason: the sum of its distinct prime factors",
+      "extraction_section": null,
+      "extracted_value": 20,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (sum_prime_factors) on stop 2 value",
+      "reason_transform": "sum_prime_factors",
+      "reason_source_stop": 4,
+      "reason_code": "def prime_factors(n):\n    n = abs(int(n))\n    factors = []\n    d = 2\n    while d * d <= n:\n        while n % d == 0:\n            factors.append(d)\n            n //= d\n        d += 1\n    if n > 1: factors.append(n)\n    return factors\nresult = sum(set(prime_factors(91)))\nprint(result)"
+    },
+    {
+      "index": 6,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Great_Recession_in_the_United_States",
+      "extraction_target": "the month and year of the 34th G8 summit listed in the infobox",
+      "extraction_section": null,
+      "extracted_value": "July 2008",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Russell 1000 Index wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Russell_1000_Index",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Crisis context: examine a major event where credit ratings, central banks and market indices all interacted dramatically.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 7,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Russell_1000_Index",
+      "extraction_target": "the number of constituents of the Russell 1000 Index (approximate)",
+      "extraction_section": null,
+      "extracted_value": 1000,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Hasbro",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Market lens: a large-cap index showing how corporates (and thus credit risk) are aggregated in market benchmarks.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 8,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Hasbro",
+      "extraction_target": "Look up the closing price of HAS on 2008-01-01",
+      "extraction_section": null,
+      "extracted_value": 14.37,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "stock_historical_price",
+            "arguments": {
+              "ticker": "HAS",
+              "date": "2008-01-01"
+            },
+            "expected_output": null,
+            "output_key": "stock_price"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: stock price HAS on 2008-01-01",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 9,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Hasbro",
+      "extraction_target": "Reason: the number of characters when written as a Roman numeral",
+      "extraction_section": null,
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (roman_numeral_letter_count) on stop 5 value",
+      "reason_transform": "roman_numeral_letter_count",
+      "reason_source_stop": 8,
+      "reason_code": "def to_roman(n):\n    n = abs(int(n))\n    vals = [(1000,'M'),(900,'CM'),(500,'D'),(400,'CD'),(100,'C'),\n            (90,'XC'),(50,'L'),(40,'XL'),(10,'X'),(9,'IX'),(5,'V'),(4,'IV'),(1,'I')]\n    r = ''\n    for v, s in vals:\n        while n >= v:\n            r += s; n -= v\n    return r\nresult = len(to_roman(14))\nprint(result)"
+    },
+    {
+      "index": 10,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Johannesburg_Stock_Exchange",
+      "extraction_target": "the location listed in the infobox (field: 'Location')",
+      "extraction_section": "infobox",
+      "extracted_value": "Sandton, Johannesburg, South Africa",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Nelson Mandela wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Nelson_Mandela",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Global reach: move to an important emerging-market exchange to show Moody's and market linkages beyond the U.S.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 11,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Nelson_Mandela",
+      "extraction_target": "the height listed in the infobox (field: 'Height')",
+      "extraction_section": "infobox",
+      "extracted_value": 1.93,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Northern Ireland, United Kingdom wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Northern_Ireland,_United_Kingdom",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Political-economic context: Nelson Mandela's role helps explain South Africa's political transition that shaped market development and investor confidence.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 12,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Northern_Ireland,_United_Kingdom",
+      "extraction_target": "Convert 1000 km to miles",
+      "extraction_section": null,
+      "extracted_value": 621,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "# Convert km to miles\nvalue = 1000.0\nconverted = value * 0.621371\nresult = int(converted)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "converted"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: convert 1000 km to miles",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 13,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Asian_Financial_Crisis",
+      "extraction_target": "the number of languages the article is available in",
+      "extraction_section": null,
+      "extracted_value": 53,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Economic_liberalisation_in_India",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Shock episode: another major crisis illustrating how sovereign and corporate credit risk rapidly transmitted through markets.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 14,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Economic_liberalisation_in_India",
+      "extraction_target": "the number of sub-sub-subsections listed under 'Impact on domestic monetary and fiscal policies' in the Contents",
+      "extraction_section": "Impact on domestic monetary and fiscal policies",
+      "extracted_value": 1,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Metropolitan Life Insurance Company Tower wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Metropolitan_Life_Insurance_Company_Tower",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Policy response: show how structural reforms and liberalisation influence domestic markets and creditworthiness over the long run.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 15,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Metropolitan_Life_Insurance_Company_Tower",
+      "extraction_target": "the location listed in the infobox (field: 'Location')",
+      "extraction_section": "infobox",
+      "extracted_value": "1 Madison Avenue Manhattan, New York, U.S.",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "US Dollar wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/US_Dollar",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Financial landmarks: the tower anchors New York's financial geography — useful for visualizing where firms like Moody's operate.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 16,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/US_Dollar",
+      "extraction_target": "the number of subsections in the International use as reserve currency section (7.x)",
+      "extraction_section": "Contents",
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Russian Revolution (1917) wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Russian_Revolution_(1917)",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Currency backbone: the dollar's centrality underpins global credit markets and ratings dynamics that Moody's monitors.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 17,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Russian_Revolution_(1917)",
+      "extraction_target": "Calculate the number of days between 2008-01-01 and 2026-03-18",
+      "extraction_section": null,
+      "extracted_value": 6651,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "from datetime import date\nd1 = date.fromisoformat('2008-01-01')\nd2 = date.fromisoformat('2026-03-18')\nresult = abs((d2 - d1).days)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "days"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: date computation 2008-01-01 to 2026-03-18 (pinned)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 18,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Russian_Revolution_(1917)",
+      "extraction_target": "Reason: the sum of its digits",
+      "extraction_section": null,
+      "extracted_value": 18,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_sum) on stop 13 value",
+      "reason_transform": "digit_sum",
+      "reason_source_stop": 17,
+      "reason_code": "result = sum(int(d) for d in str(abs(int(6651))))\nprint(result)"
+    },
+    {
+      "index": 19,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: (91 + 1000) % 10",
+      "extraction_section": null,
+      "extracted_value": 1,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "(91 + 1000) % 10",
+        "expression_code": "result = (91 + 1000) % 10\nprint(result)",
+        "referenced_stops": [
+          4,
+          7
+        ]
+      },
+      "reasoning": "Compute stop: (91 + 1000) % 10 = 1",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 1,
+  "difficulty": {
+    "level": "hard",
+    "depth": 20,
+    "tool_stop_count": 4,
+    "reason_stop_count": 4,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Unearth the corporate giant that rates creditworthiness, known by the letters MCO on the stock exchange. What symbol graces this financial titan's trading? \n\n2. Consider the reputation of this company: what score do the patrons of this entity leave on the popular review platform? \n\n3. As you ponder the first letter of the symbol you've discovered, reflect on its place within the alphabet — what number assigns it a rank? \n\n4. A pivotal body governs currency in a powerful nation — which year saw its creation? Seek this founding date and further delve into its influence. \n\n5. This monetary authority communicates in many tongues; how many languages does its description span? \n\n6. Reflecting upon the languages from your previous discovery, what do their prime components sum to? \n\n7. A significant downturn marked a certain time in history; in which month and year did a notable summit convene amidst its aftermath? \n\n8. Within the confines of a renowned stock index, how many notable companies contribute their financial heft to sway the markets? \n\n9. On a pivotal day in the past, what was the worth of a certain toy company per share — specifically on the first day of January 2008? \n\n10. Recount the price you discovered in Roman numeral form: how many characters does it take to represent that value? \n\n11. The bustling hub for stocks in a vibrant region invites inquiry: where does this exchange operate from, amid its iconic skyline? \n\n12. This leader inspired his nation while being known for his height — can you contrast his stature with the number associated with him? \n\n13. If a thousand kilometers were to transform into miles, how many would you traverse on another scale? \n\n14. An economic upheaval once shadowed many nations; how many languages recount this critical period? \n\n15. The tale of a transforming economy unfolds — what is the count of sections detailing impacts on finance within this article? \n\n16. Beneath the shadows of sky-high structures, which landmark casts its prominence, and from which urban center does it rise? \n\n17. Seek the currency that holds sway in global transactions — how many subsections detail its international usage as a reserve? \n\n18. Days turned into years between a significant market downturn and today, how many sunrises have passed from January 1, 2008, until March 18, 2026? \n\n19. Once you have the days reachable from the prior clue, what is the sum of their digits? \n\n20. Calculate the final treasure: Combine the discoveries from clue 5 and clue 8, take that sum, and reduce it under modulo 10 to uncover a single digit answer for your journey.",
+  "metadata": {
+    "theme": "From credit ratings to global markets: trace how Moody's credit analysis connects to central banking, market indices, major corporations, regional exchanges and economic crises that shape capital flows worldwide.",
+    "difficulty": "hard",
+    "sample_id": "sample_183",
+    "pages_crawled": 22078
+  },
+  "generated_at": "2026-03-18T22:16:52.778323+00:00"
+}

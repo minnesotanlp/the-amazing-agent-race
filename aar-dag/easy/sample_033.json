@@ -1,0 +1,310 @@
+{
+  "trail_id": "trail_91b135a2",
+  "seed_url": "https://en.wikipedia.org/wiki/Samuel_H._Yamashita",
+  "seed_title": "Samuel H. Yamashita",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Samuel_H._Yamashita",
+      "extraction_target": "the number of works listed in the Works section",
+      "extraction_section": "Works",
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Chrysler Museum of Art wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Chrysler_Museum_of_Art",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start with Samuel H. Yamashita — a historian whose work frames how societies record and interpret the past, setting the trail's attention on memory and narrative.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Samuel_H._Yamashita",
+      "extraction_target": "Reason: the number of 1-bits in its binary representation",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (binary_1bit_count) on stop 0 value",
+      "reason_transform": "binary_1bit_count",
+      "reason_source_stop": 0,
+      "reason_code": "result = bin(abs(int(3))).count('1')\nprint(result)",
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Chrysler_Museum_of_Art",
+      "extraction_target": "the year the museum was established",
+      "extraction_section": null,
+      "extracted_value": "1933",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "The Last of Us wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/The_Last_of_Us",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "The Chrysler Museum of Art represents institutions that collect and curate cultural memory — a physical repository of stories and artifacts the historian studies.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Chrysler_Museum_of_Art",
+      "extraction_target": "Look up the elevation of Chrysler Museum of Art",
+      "extraction_section": null,
+      "extracted_value": 2.566356897354126,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Chrysler Museum of Art"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Chrysler Museum of Art) from https://en.wikipedia.org/wiki/Chrysler_Museum_of_Art",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Chrysler_Museum_of_Art",
+      "extraction_target": "Look up the Google rating of Chrysler Museum of Art",
+      "extraction_section": null,
+      "extracted_value": 4.8,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "Chrysler Museum of Art"
+            },
+            "expected_output": null,
+            "output_key": "place_rating"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (Google rating of Chrysler Museum of Art) from https://en.wikipedia.org/wiki/Chrysler_Museum_of_Art",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Chrysler_Museum_of_Art",
+      "extraction_target": "Combine the elevation of Chrysler Museum of Art and the Google rating of Chrysler Museum of Art: (2 + 4)",
+      "extraction_section": null,
+      "extracted_value": 6,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(2.566356897354126) + int(4.8)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Chrysler Museum of Art add Google rating of Chrysler Museum of Art",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3,
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Chrysler_Museum_of_Art",
+      "extraction_target": "Count museums near Chrysler Museum of Art",
+      "extraction_section": null,
+      "extracted_value": 7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "museums near Chrysler Museum of Art"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (nearby_poi) derived from https://en.wikipedia.org/wiki/Chrysler_Museum_of_Art",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/The_Last_of_Us",
+      "extraction_target": "the date of the first release listed in the infobox",
+      "extraction_section": null,
+      "extracted_value": "June 14, 2013",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/The_Last_of_Us",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Conclude with The Last of Us as a high-profile example of contemporary storytelling adapted across media — showing how historical themes and cultural memory circulate through museums, corporations, and popular culture.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: abs(2 - 2) % 10",
+      "extraction_section": null,
+      "extracted_value": 0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "abs(2 - 2) % 10",
+        "expression_code": "result = abs(2 - 2) % 10\nprint(result)",
+        "referenced_stops": [
+          1,
+          3,
+          4,
+          6
+        ]
+      },
+      "reasoning": "Compute stop: abs(2 - 2) % 10 = 0",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1,
+        3,
+        4,
+        6
+      ]
+    }
+  ],
+  "passcode": 0,
+  "difficulty": {
+    "level": "easy",
+    "depth": 9,
+    "tool_stop_count": 4,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Unearth the storyteller who chronicled the resilience of the Japanese American community. In his works, how many unique titles does he offer to the world?\n\n2. From your discovery, transform it into its binary essence. How many 1-bits dance in the shadows of that number?\n\n3. Seek the grand institution of creativity nestled in a city known for its neon glow. What year was this temple of art brought to life?\n\n4. Gaze upon the heights where this cultural haven resides — what is its elevation above sea level?\n\n5. Journey into the world of reviews and accolades. What star rating does this renowned institution earn from its visitors?\n\n6. Draw together the two nuggets you have from clues 4 and 5. What emerges when you combine these values, forging a new number?\n\n7. Nearby, a tapestry of culture unfolds. Count how many other museums you can find in close proximity to your last stop.\n\n8. Turn your attention to a narrative adaptation that has captured hearts across the globe. When did this tale first grace the screens?\n\n9. Now, calculate the final key: take the absolute difference between the value from clue 2 and clue 4, and then apply the modulus of 10 to it. What single digit do you uncover?",
+  "metadata": {
+    "theme": "Tracing stories and cultural memory: from a historian who studies how societies remember, to institutions that preserve art, to the global media companies that distribute content, finishing with a major contemporary narrative adaptation.",
+    "difficulty": "easy",
+    "sample_id": "sample_033",
+    "pages_crawled": 1518,
+    "source": "trail_puzzles_v2"
+  },
+  "generated_at": "2026-03-15T13:01:20.306383+00:00"
+}

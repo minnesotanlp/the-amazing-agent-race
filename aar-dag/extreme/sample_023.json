@@ -1,0 +1,994 @@
+{
+  "trail_id": "trail_9189fb06",
+  "seed_url": "https://en.wikipedia.org/wiki/Patentscope",
+  "seed_title": "Patentscope",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Patentscope",
+      "extraction_target": "the number of patent documents included in the database as of June 2023",
+      "extraction_section": "History",
+      "extracted_value": 111000000,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Patentscope",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start at the patent search service that catalogs inventions worldwide — the trail's origin for tracking how ideas move from filings into technology.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Patentscope",
+      "extraction_target": "Reason: the sum of its digits",
+      "extraction_section": null,
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_sum) on stop 0 value",
+      "reason_transform": "digit_sum",
+      "reason_source_stop": 0,
+      "reason_code": "result = sum(int(d) for d in str(abs(int(111000000))))\nprint(result)",
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Non-patent_literature",
+      "extraction_target": "the number of top-level entries (letters) in the Contents list",
+      "extraction_section": "Contents",
+      "extracted_value": 26,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "PMOS logic wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/PMOS_logic",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Non-patent literature often appears alongside patents — it helps show how technical knowledge outside formal patents influences innovation.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Non-patent_literature",
+      "extraction_target": "Look up the elevation of Non-patent literature",
+      "extraction_section": null,
+      "extracted_value": 1965.729858398438,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Non-patent literature"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Non-patent literature) from https://en.wikipedia.org/wiki/Non-patent_literature",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Non-patent_literature",
+      "extraction_target": "Look up the count of libraries near Non-patent literature",
+      "extraction_section": null,
+      "extracted_value": 1.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "libraries near Non-patent literature"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of libraries near Non-patent literature) from https://en.wikipedia.org/wiki/Non-patent_literature",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Non-patent_literature",
+      "extraction_target": "Combine the elevation of Non-patent literature and the count of libraries near Non-patent literature: abs(1965 - 1)",
+      "extraction_section": null,
+      "extracted_value": 1964,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(1965.729858398438) - int(1.0))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Non-patent literature abs_diff count of libraries near Non-patent literature",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3,
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/PMOS_logic",
+      "extraction_target": "the percentage of the area a MOSFET requires compared to a bipolar junction transistor",
+      "extraction_section": "History and application",
+      "extracted_value": 10,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/NMOS_logic",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Follow into semiconductor logic families — PMOS is an early transistor logic that underpins how digital circuits were built from patents to products.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/NMOS_logic",
+      "extraction_target": "the number of modes of operation of nMOS transistors",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "8-bit wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/8-bit",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "NMOS represents the next step in logic-family evolution — comparing families shows technological progress often tracked in patent records.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/8-bit",
+      "extraction_target": "the month and year shown in the 'needs additional citations' maintenance template",
+      "extraction_section": null,
+      "extracted_value": "October 2009",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Program_counter",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "The 8-bit era is a recognizable consumer embodiment of transistor and logic advances — a milestone from patents to mainstream devices.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        7
+      ]
+    },
+    {
+      "index": 9,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Program_counter",
+      "extraction_target": "the amount the ARM7 program counter value visible to the programmer is ahead of the current instruction in ARM State",
+      "extraction_section": null,
+      "extracted_value": 8,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Index register wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Index_register",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Drill into CPU internals: the program counter is a small patented/engineered building block that makes instruction sequencing possible in processors.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        8
+      ]
+    },
+    {
+      "index": 10,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Index_register",
+      "extraction_target": "the number of X-registers in the UNIVAC 1107",
+      "extraction_section": "History",
+      "extracted_value": 15,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Vultee A-31 Vengeance wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Vultee_A-31_Vengeance",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Another CPU register concept showing how low-level design choices (often patented or documented) affect software and hardware capabilities.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        9
+      ]
+    },
+    {
+      "index": 11,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Vultee_A-31_Vengeance",
+      "extraction_target": "Convert 4 km to miles",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "# Convert km to miles\nvalue = 4.0\nconverted = value * 0.621371\nresult = int(converted)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "converted"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: convert 4 km to miles",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        10
+      ]
+    },
+    {
+      "index": 12,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/8-track_tape",
+      "extraction_target": "the year the Stereo 8 cartridge was released",
+      "extraction_section": null,
+      "extracted_value": "1965",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "WDP-4 wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/WDP-4",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Move to consumer media: the 8‑track tape shows how electronic and mechanical inventions (protected by patents) became mass-market formats.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        11
+      ]
+    },
+    {
+      "index": 13,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/WDP-4",
+      "extraction_target": "build date ranges for EMD-built and DLW-built units",
+      "extraction_section": null,
+      "extracted_value": "(EMD) 2000–2001  (DLW) 2003–2017",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Midland Railway wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Midland_Railway",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Shift to transport technology: the WDP-4 locomotive exemplifies modern engineering products that arise from incremental innovations and design documentation.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        12
+      ]
+    },
+    {
+      "index": 14,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Midland_Railway",
+      "extraction_target": "the locale served by the Midland Railway",
+      "extraction_section": null,
+      "extracted_value": "England and Wales",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Midland_Railway",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Historic railways show the progression of transport technology and infrastructure investment that often involved patented technologies or proprietary designs.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        13
+      ]
+    },
+    {
+      "index": 15,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Midland_Railway",
+      "extraction_target": "Look up the elevation of England and Wales",
+      "extraction_section": null,
+      "extracted_value": 95.00697326660156,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "England and Wales"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of England and Wales) from https://en.wikipedia.org/wiki/Midland_Railway",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        14
+      ]
+    },
+    {
+      "index": 16,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Midland_Railway",
+      "extraction_target": "Look up the count of libraries near England and Wales",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "libraries near England and Wales"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of libraries near England and Wales) from https://en.wikipedia.org/wiki/Midland_Railway",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        14
+      ]
+    },
+    {
+      "index": 17,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Midland_Railway",
+      "extraction_target": "Combine the elevation of England and Wales and the count of libraries near England and Wales: abs(95 - 20)",
+      "extraction_section": null,
+      "extracted_value": 75,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(95.00697326660156) - int(20.0))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of England and Wales abs_diff count of libraries near England and Wales",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        15,
+        16
+      ]
+    },
+    {
+      "index": 18,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Midland_Railway",
+      "extraction_target": "Reason: the alphabetical position of its first letter (A=1, B=2, ...)",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (alpha_position_first_letter) on stop 10 value",
+      "reason_transform": "alpha_position_first_letter",
+      "reason_source_stop": 14,
+      "reason_code": "first = \"England and Wales\"[0].upper()\nresult = ord(first) - ord('A') + 1 if first.isalpha() else 0\nprint(result)",
+      "depends_on": [
+        14
+      ]
+    },
+    {
+      "index": 19,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Madrid%E2%80%93Seville_high-speed_rail_line",
+      "extraction_target": "Calculate the driving distance between Madrid–Seville high-speed rail line and Derby",
+      "extraction_section": null,
+      "extracted_value": 1940.792,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Madrid–Seville high-speed rail line"
+            },
+            "expected_output": null,
+            "output_key": "coords_a"
+          },
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Derby"
+            },
+            "expected_output": null,
+            "output_key": "coords_b"
+          },
+          {
+            "tool_name": "maps_distance_matrix",
+            "arguments": {
+              "__from_previous_as_origins_destinations": [
+                "coords_a",
+                "coords_b"
+              ]
+            },
+            "expected_output": null,
+            "output_key": "distance_km"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: distance between Madrid–Seville high-speed rail line and Derby",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        18
+      ]
+    },
+    {
+      "index": 20,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Madrid%E2%80%93Seville_high-speed_rail_line",
+      "extraction_target": "Reason: the count of leap years between that year and 2000",
+      "extraction_section": null,
+      "extracted_value": 16,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (leap_years_to_2000) on stop 11 value",
+      "reason_transform": "leap_years_to_2000",
+      "reason_source_stop": 19,
+      "reason_code": "import calendar\ny = abs(int(1940))\nlo, hi = min(y, 2000), max(y, 2000)\nresult = sum(1 for yr in range(lo, hi+1) if calendar.isleap(yr))\nprint(result)",
+      "depends_on": [
+        19
+      ]
+    },
+    {
+      "index": 21,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Southern_Railway_(US)",
+      "extraction_target": "number of miles of railroad operated by Southern at the end of 1971",
+      "extraction_section": null,
+      "extracted_value": 6026,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Southern Railway (US) wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Southern_Railway_(US)",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A large railroad company illustrates how transport engineering scales and how corporate entities have historically implemented patented technologies.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        20
+      ]
+    },
+    {
+      "index": 22,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Southern_Railway_(US)",
+      "extraction_target": "Reason: the number of divisors of that figure",
+      "extraction_section": null,
+      "extracted_value": 8,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (num_divisors) on stop 12 value",
+      "reason_transform": "num_divisors",
+      "reason_source_stop": 21,
+      "reason_code": "n = abs(int(6026))\ncount = sum(1 for i in range(1, n+1) if n % i == 0) if n > 0 else 0\nresult = count\nprint(result)",
+      "depends_on": [
+        21
+      ]
+    },
+    {
+      "index": 23,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/P%26O_(company)",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Founded')",
+      "extraction_section": "infobox",
+      "extracted_value": 22,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "East Indiaman wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/East_Indiaman",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Shipping companies like P&O show how transportation technology moved goods and people worldwide — linking patents, ships, and global commerce.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        22
+      ]
+    },
+    {
+      "index": 24,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/P%26O_(company)",
+      "extraction_target": "Look up the Google rating of P&O",
+      "extraction_section": null,
+      "extracted_value": 4.8,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "P&O"
+            },
+            "expected_output": null,
+            "output_key": "place_rating"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (place_rating) derived from https://en.wikipedia.org/wiki/P%26O_(company)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        23
+      ]
+    },
+    {
+      "index": 25,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/East_Indiaman",
+      "extraction_target": "the year the ships Earl of Mansfield and Lascelles were built at Deptford",
+      "extraction_section": "Description of the sailing vessels and the trade",
+      "extracted_value": "1795",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Ship commissioning wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Ship_commissioning",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Historical ship types such as the East Indiaman trace centuries of maritime technology evolution that preceded modern patenting and corporate shipping.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        24
+      ]
+    },
+    {
+      "index": 26,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Ship_commissioning",
+      "extraction_target": "maximum preparation and readiness time between christening-launching and commissioning for a nuclear-powered aircraft carrier",
+      "extraction_section": null,
+      "extracted_value": "three years",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Ship_commissioning",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Understanding how ships are commissioned ties the lifecycle of a transport product from design and construction to operational service — analogous to how inventions move from patent to deployed asset.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        25
+      ]
+    },
+    {
+      "index": 27,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Ship_commissioning",
+      "extraction_target": "Reason: the alphabetical position of its first letter (A=1, B=2, ...)",
+      "extraction_section": null,
+      "extracted_value": 20,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (alpha_position_first_letter) on stop 15 value",
+      "reason_transform": "alpha_position_first_letter",
+      "reason_source_stop": 26,
+      "reason_code": "first = \"three years\"[0].upper()\nresult = ord(first) - ord('A') + 1 if first.isalpha() else 0\nprint(result)",
+      "depends_on": [
+        26
+      ]
+    },
+    {
+      "index": 28,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/2016_Canadian_census",
+      "extraction_target": "Look up the population of Canada",
+      "extraction_section": null,
+      "extracted_value": 41651653,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "countries_population",
+            "arguments": {
+              "country": "Canada"
+            },
+            "expected_output": null,
+            "output_key": "population"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: population of Canada",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        27
+      ]
+    },
+    {
+      "index": 29,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/2016_Canadian_census",
+      "extraction_target": "Reason: the number of divisors of that figure",
+      "extraction_section": null,
+      "extracted_value": 8,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (num_divisors) on stop 16 value",
+      "reason_transform": "num_divisors",
+      "reason_source_stop": 28,
+      "reason_code": "n = abs(int(41651653))\ncount = sum(1 for i in range(1, n+1) if n % i == 0) if n > 0 else 0\nresult = count\nprint(result)",
+      "depends_on": [
+        28
+      ]
+    },
+    {
+      "index": 30,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/North_Shore_(New_Zealand_electorate)",
+      "extraction_target": "Convert 6026 km to miles",
+      "extraction_section": null,
+      "extracted_value": 3744,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "# Convert km to miles\nvalue = 6026.0\nconverted = value * 0.621371\nresult = int(converted)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "converted"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: convert 6026 km to miles",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        29
+      ]
+    },
+    {
+      "index": 31,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: digital_root(10 + 20)",
+      "extraction_section": null,
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "digital_root(10 + 20)",
+        "expression_code": "def digital_root(n):\n    n = abs(int(n))\n    return n if n == 0 else ((n - 1) % 9) + 1\nresult = digital_root(10 + 20)\nprint(result)",
+        "referenced_stops": [
+          6,
+          27
+        ]
+      },
+      "reasoning": "Compute stop: digital_root(10 + 20) = 3",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6,
+        27
+      ]
+    }
+  ],
+  "passcode": 3,
+  "difficulty": {
+    "level": "extreme",
+    "depth": 32,
+    "tool_stop_count": 11,
+    "reason_stop_count": 6,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Seek the database where patents are cataloged — how many documents are stored within as of June 2023?\n\n2. The sum of the digits you just discovered will lead you to your next insight. What is that sum?\n\n3. From here, proceed to the realm where innovation spans beyond patents — count the top-level letters in the contents list.\n\n4. Let your curiosity guide you to the heights! What is the elevation above sea level for the earlier domain?\n\n5. Libraries stand near this influential domain — how many can you uncover?\n\n6. Now, combine your findings from clues 4 and 5. What is their absolute difference?\n\n7. Explore the logic gates where one type of transistor reigns. What percentage of area does a MOSFET occupy compared to its bipolar counterpart?\n\n8. In the same vein, discover how many operational modes nMOS transistors can engage.\n\n9. Then, arrive at a page where metrics of 8-bit technology linger. What month and year does the citation notice reveal?\n\n10. Journey onwards to the counter guiding processors. How far ahead does the ARM7 program counter run compared to the current instruction?\n\n11. Locate the historical record of a register type within computing. How many X-registers were utilized in the UNIVAC 1107?\n\n12. A plane, the Vultee A-31, makes its appearance — convert 4 kilometers to miles. What is your result?\n\n13. Venture into the territory of music playback technologies. What year saw the release of the Stereo 8 cartridge?\n\n14. As you shift focus to locomotives, look for the ranges of construction for EMD and DLW units. What do you find?\n\n15. Narrow down the acute locale served by the railroad service — a distinct geographical area awaits your attention.\n\n16. Tread carefully to uncover the elevation of this locale, spanning England and Wales. What measurement do you uncover?\n\n17. Count the libraries that share the company of this geographical expanse. What number presents itself?\n\n18. Using the elevation of England and Wales from clue 16 and the library count from clue 17, what is their absolute difference?\n\n19. Now, consider the text you found in clue 15. What is the alphabetical position of its first letter?\n\n20. By tracing the railway's trajectory, calculate the distance between the Madrid–Seville high-speed rail line and Derby. What is the numeric outcome?\n\n21. Reflect on your journey; how many leap years have passed between the year derived in clue 20 and the year 2000?\n\n22. Seek the vastness of the Southern Railway's reach — how many miles of track were operated at the close of 1971?\n\n23. Stepping from this mileage, calculate how many divisors this figure possesses. \n\n24. An illustrious company originating by the sea claims a founding year — what is that year?\n\n25. How is this maritime entity rated by travelers? Uncover the Google rating.\n\n26. Look to the seafaring ships, particularly the Earl of Mansfield and Lascelles — which year did they take shape inDeptford?\n\n27. On the nautical front, how long is the maximum period from christening-launching to commissioning for a nuclear carrier? What do you discover?\n\n28. Revisit what you found in clue 27 and analyze its first letter. What number aligns with its alphabetical position?\n\n29. Across a vast nation, what is Canada's population as per the most recent census? \n\n30. Consider the figure from clue 29 — how many divisors can you ascertain for it?\n\n31. As a final transformation, convert the distance of 6026 kilometers to miles. What result do you reach?\n\n32. Combine the digital results of clues 7 and 28. What is the digital root of this sum, giving you the ultimate single-digit answer?",
+  "metadata": {
+    "theme": "From patents to products: trace how inventions recorded in patent literature seed technical building blocks (semiconductors and CPU registers), become consumer media and transport technologies, and are deployed across places — with data checks (geography, units, population, climate) along the way.",
+    "difficulty": "extreme",
+    "sample_id": "sample_023",
+    "pages_crawled": 2542
+  },
+  "generated_at": "2026-03-16T10:51:45.689000+00:00"
+}

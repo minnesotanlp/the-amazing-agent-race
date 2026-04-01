@@ -1,0 +1,880 @@
+{
+  "trail_id": "trail_8189b7ac",
+  "seed_url": "https://en.wikipedia.org/wiki/Urensky_District",
+  "seed_title": "Urensky District",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Urensky_District",
+      "extraction_target": "the total population of Urensky District according to the 2010 Census",
+      "extraction_section": null,
+      "extracted_value": 30106,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Urensky_District",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Seed: a Russian administrative district to anchor the trail in a concrete example of local government (population and basic stats will be our baseline).",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Urensky_District",
+      "extraction_target": "Look up the elevation of Urensky District",
+      "extraction_section": null,
+      "extracted_value": 123.1792984008789,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Urensky District"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Urensky District) from https://en.wikipedia.org/wiki/Urensky_District",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Urensky_District",
+      "extraction_target": "Look up the count of hotels near Urensky District",
+      "extraction_section": null,
+      "extracted_value": 4.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "hotels near Urensky District"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of hotels near Urensky District) from https://en.wikipedia.org/wiki/Urensky_District",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Urensky_District",
+      "extraction_target": "Combine the elevation of Urensky District and the count of hotels near Urensky District: abs(123 - 4)",
+      "extraction_section": null,
+      "extracted_value": 119,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(123.1792984008789) - int(4.0))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Urensky District abs_diff count of hotels near Urensky District",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1,
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Urensky_District",
+      "extraction_target": "Reason: the next prime number after that figure",
+      "extraction_section": null,
+      "extracted_value": 30109,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (next_prime) on stop 0 value",
+      "reason_transform": "next_prime",
+      "reason_source_stop": 0,
+      "reason_code": "def next_prime(n):\n    n = abs(int(n))\n    if n < 2: return 2\n    candidate = n + 1\n    while True:\n        if all(candidate % i != 0 for i in range(2, int(candidate**0.5)+1)):\n            return candidate\n        candidate += 1\nresult = next_prime(30106)\nprint(result)",
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Poor_Knights_Islands",
+      "extraction_target": "Look up the elevation at Northland",
+      "extraction_section": null,
+      "extracted_value": 108.3850326538086,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Northland"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for Northland",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Naw_Zad_District",
+      "extraction_target": "the total population of Nawzad District in 2012",
+      "extraction_section": null,
+      "extracted_value": 49500,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Provinces of Peru wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Provinces_of_Peru",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Another district (Afghanistan) provides a cross-country contrast in population and security/administrative context for district-level governance.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Naw_Zad_District",
+      "extraction_target": "Look up the elevation of Naw Zad District",
+      "extraction_section": null,
+      "extracted_value": 1306.918579101562,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Naw Zad District"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Naw Zad District) from https://en.wikipedia.org/wiki/Naw_Zad_District",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Naw_Zad_District",
+      "extraction_target": "Look up the count of parks near Naw Zad District",
+      "extraction_section": null,
+      "extracted_value": 1.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "parks near Naw Zad District"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of parks near Naw Zad District) from https://en.wikipedia.org/wiki/Naw_Zad_District",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 9,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Naw_Zad_District",
+      "extraction_target": "Combine the elevation of Naw Zad District and the count of parks near Naw Zad District: abs(1306 - 1)",
+      "extraction_section": null,
+      "extracted_value": 1305,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(1306.918579101562) - int(1.0))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Naw Zad District abs_diff count of parks near Naw Zad District",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        7,
+        8
+      ]
+    },
+    {
+      "index": 10,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Provinces_of_Peru",
+      "extraction_target": "the number of constitutional provinces listed in the Administrative divisions line",
+      "extraction_section": null,
+      "extracted_value": 1,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Electoral district of Canterbury wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Electoral_district_of_Canterbury",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A national-level view of subnational units: Peru's provinces show another model of territorial subdivision and how many second-level units compose a country.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        9
+      ]
+    },
+    {
+      "index": 11,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Electoral_district_of_Canterbury",
+      "extraction_target": "the area listed in the infobox (field: 'Area')",
+      "extraction_section": "infobox",
+      "extracted_value": 18,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Electoral_district_of_Canterbury",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "An electoral district (New South Wales) showing how electoral boundaries and administrative areas differ from purely geographic districts.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        10
+      ]
+    },
+    {
+      "index": 12,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Electoral_district_of_Canterbury",
+      "extraction_target": "Look up the elevation of Electoral district of Canterbury",
+      "extraction_section": null,
+      "extracted_value": 15.57453441619873,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Electoral district of Canterbury"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Electoral district of Canterbury) from https://en.wikipedia.org/wiki/Electoral_district_of_Canterbury",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        11
+      ]
+    },
+    {
+      "index": 13,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Electoral_district_of_Canterbury",
+      "extraction_target": "Look up the count of restaurants near Electoral district of Canterbury",
+      "extraction_section": null,
+      "extracted_value": 6.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "restaurants near Electoral district of Canterbury"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of restaurants near Electoral district of Canterbury) from https://en.wikipedia.org/wiki/Electoral_district_of_Canterbury",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        11
+      ]
+    },
+    {
+      "index": 14,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Electoral_district_of_Canterbury",
+      "extraction_target": "Combine the elevation of Electoral district of Canterbury and the count of restaurants near Electoral district of Canterbury: abs(15 - 6)",
+      "extraction_section": null,
+      "extracted_value": 9,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(15.57453441619873) - int(6.0))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Electoral district of Canterbury abs_diff count of restaurants near Electoral district of Canterbury",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        12,
+        13
+      ]
+    },
+    {
+      "index": 15,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Electoral_district_of_Canterbury",
+      "extraction_target": "Reason: the digital root (iterated digit sum until single digit)",
+      "extraction_section": null,
+      "extracted_value": 9,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digital_root) on stop 4 value",
+      "reason_transform": "digital_root",
+      "reason_source_stop": 11,
+      "reason_code": "n = abs(int(18))\nresult = n if n == 0 else ((n - 1) % 9) + 1\nprint(result)",
+      "depends_on": [
+        11
+      ]
+    },
+    {
+      "index": 16,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Cabinet_of_Australia",
+      "extraction_target": "Look up the population of Russia",
+      "extraction_section": null,
+      "extracted_value": 146028325,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "countries_population",
+            "arguments": {
+              "country": "Russia"
+            },
+            "expected_output": null,
+            "output_key": "population"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: population of Russia",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        15
+      ]
+    },
+    {
+      "index": 17,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Electoral_district_of_Swansea",
+      "extraction_target": "the area listed in the infobox (field: 'Area')",
+      "extraction_section": "infobox",
+      "extracted_value": 191.45,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Cabinet of Bangladesh wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Cabinet_of_Bangladesh",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A UK/UK-linked electoral district example to contrast electoral unit sizes and governance models with other countries.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        16
+      ]
+    },
+    {
+      "index": 18,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Cabinet_of_Bangladesh",
+      "extraction_target": "Look up the area in km² of Russia",
+      "extraction_section": null,
+      "extracted_value": 17098246.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "countries_area",
+            "arguments": {
+              "country": "Russia"
+            },
+            "expected_output": null,
+            "output_key": "area_km2"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: area of Russia",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        17
+      ]
+    },
+    {
+      "index": 19,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Cabinet_of_Bangladesh",
+      "extraction_target": "Reason: the number of divisors of that figure",
+      "extraction_section": null,
+      "extracted_value": 16,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (num_divisors) on stop 7 value",
+      "reason_transform": "num_divisors",
+      "reason_source_stop": 18,
+      "reason_code": "n = abs(int(17098246))\ncount = sum(1 for i in range(1, n+1) if n % i == 0) if n > 0 else 0\nresult = count\nprint(result)",
+      "depends_on": [
+        18
+      ]
+    },
+    {
+      "index": 20,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/City_of_Cessnock",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Established')",
+      "extraction_section": "infobox",
+      "extracted_value": 7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Belmore Sports Ground wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Belmore_Sports_Ground",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "An Australian local government area (LGA) gives a municipal-level example of services, population and responsibilities at the council level.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        19
+      ]
+    },
+    {
+      "index": 21,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Belmore_Sports_Ground",
+      "extraction_target": "Count the number of parks near Belmore",
+      "extraction_section": null,
+      "extracted_value": 8,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "parks near Belmore"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: count parks near Belmore",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        20
+      ]
+    },
+    {
+      "index": 22,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Belmore_Sports_Ground",
+      "extraction_target": "Reason: the number of divisors of that figure",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (num_divisors) on stop 9 value",
+      "reason_transform": "num_divisors",
+      "reason_source_stop": 21,
+      "reason_code": "n = abs(int(8))\ncount = sum(1 for i in range(1, n+1) if n % i == 0) if n > 0 else 0\nresult = count\nprint(result)",
+      "depends_on": [
+        21
+      ]
+    },
+    {
+      "index": 23,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/North_Yorkshire_Council",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Founded')",
+      "extraction_section": "infobox",
+      "extracted_value": 1,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Amendments to the Constitution of Bangladesh wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Amendments_to_the_Constitution_of_Bangladesh",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A large UK county council example to discuss governance at a larger subnational scale (area and population of the council territory).",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        22
+      ]
+    },
+    {
+      "index": 24,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Amendments_to_the_Constitution_of_Bangladesh",
+      "extraction_target": "the number of top-level sections (main entries) listed in the table of contents",
+      "extraction_section": "Contents",
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Responsible government wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Responsible_government",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Shows how national constitutional change can reshape subnational governance and the legal framework local governments operate within.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        23
+      ]
+    },
+    {
+      "index": 25,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Responsible_government",
+      "extraction_target": "the system of government that responsible government is described as the foundation of",
+      "extraction_section": null,
+      "extracted_value": "Westminster system of parliamentary democracy",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Responsible_government",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Conceptual capstone: the principle of responsible government ties together electoral districts, cabinets and local accountability across the examples examined.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        24
+      ]
+    },
+    {
+      "index": 26,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: (9 + 146028325) % 10",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "(9 + 146028325) % 10",
+        "expression_code": "result = (9 + 146028325) % 10\nprint(result)",
+        "referenced_stops": [
+          14,
+          16
+        ]
+      },
+      "reasoning": "Compute stop: (9 + 146028325) % 10 = 4",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        14,
+        16
+      ]
+    }
+  ],
+  "passcode": 4,
+  "difficulty": {
+    "level": "hard",
+    "depth": 27,
+    "tool_stop_count": 13,
+    "reason_stop_count": 4,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Unearth a district in Russia where locals have shared their numbers; consult the 2010 Census for their count — how many souls reside there?\n\n2. From your findings, seek the heights of this region, hidden beneath the clouds — what is its elevation above sea level?\n\n3. Next, journey through the landscape and discover the number of hotels that offer refuge — how many can you find nearby?\n\n4. Combine your elevation—from clue 2—with the number of hotels from clue 3; what is the absolute difference between these two values?\n\n5. As you continue, find a new prime number greater than the total population you uncovered in clue 1. What is this next gem?\n\n6. Shift your focus to a rugged paradise known for its natural beauty; uncover the height above sea level in Northland—how high does it rise?\n\n7. A tumultuous region, this area faced challenges of its own; search for a district in Afghanistan and find its total population from the year 2012 — how many inhabitants does it claim?\n\n8. Seek the elevation of this challenged territory — what is the measure above sea level for this district?\n\n9. Nearby, seek out the serene green spaces; how many parks are in close proximity to this district?\n\n10. Merge the elevation you found in clue 8 with the count of parks from clue 9; what is the absolute difference between these two treasures?\n\n11. Now explore a land of contrasts called Peru, where constitutional provinces are plentiful—can you name how many are listed in administrative divisions?\n\n12. Delve into an electoral district that holds sway in New Zealand; determine the area it covers — what number is listed in its details?\n\n13. Within this electoral realm, seek its height above sea level. What is the elevation for this district?\n\n14. A vibrant locale often features many dining options—what is the count of restaurants nearby their engaging streets?\n\n15. Combine the elevation from clue 13 with your finding of eateries in clue 14; obtain the absolute difference between these two figures.\n\n16. Transform the area measured in clue 12; what is the digital root of that number, distilled down to a single digit?\n\n17. In the vast lands where history shapes governance, seek the current population of a powerful nation — what is the number for Russia?\n\n18. Find a coastal electoral district in Wales and ascertain its area; what measurement stands in its details?\n\n19. Consult the realm of Bangladesh and uncover the area it encompasses — how vast is this land in square kilometers?\n\n20. From your calculations regarding clue 19, what is the count of divisors for that value you revealed?\n\n21. A city in Australia marks its origin; discover the year it was established — when did it arise from the ground?\n\n22. In the vicinity of a famous sports ground, count how many parks are found nearby — what number do you find?\n\n23. Reflect on the figure you uncovered in clue 22; how many divisors does it possess?\n\n24. As you hunt for knowledge, turn to a council in Northern England; what year did it officially come into being?\n\n25. Amendments often guide a nation's laws; how many top-level sections compose the Constitution of this country? Seek that number.\n\n26. Hearken to the government progress, as it is known as the foundation of a much-admired system. What does it describe?\n\n27. Combine the absolute difference from clue 15 with the population of Russia from clue 17, and compute: (9 + 146028325) mod 10. What single digit results from this operation?",
+  "metadata": {
+    "theme": "Comparing local government and administrative units worldwide — population, area and infrastructure that shape how districts, councils and electoral regions function.",
+    "difficulty": "hard",
+    "sample_id": "sample_061",
+    "pages_crawled": 8894
+  },
+  "generated_at": "2026-03-16T21:12:39.657558+00:00"
+}

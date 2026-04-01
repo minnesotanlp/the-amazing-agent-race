@@ -1,0 +1,198 @@
+{
+  "trail_id": "trail_c7ff1172",
+  "seed_url": "https://en.wikipedia.org/wiki/Icon_of_Mani",
+  "seed_title": "Icon of Mani",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Icon_of_Mani",
+      "extraction_target": "the year the black and white photo of the painting was originally published in the Japanese periodical \"Guo Hua\"",
+      "extraction_section": "Discovery process",
+      "extracted_value": "1937",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Mass (liturgy) wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Mass_(liturgy)",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start with the Icon of Mani to introduce an early example of a religious image and a non-Christian (Manichaean) sacramental/visual tradition that influenced later visual culture in the region.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Icon_of_Mani",
+      "extraction_target": "Reason: the number of characters when written as a Roman numeral",
+      "extraction_section": null,
+      "extracted_value": 9,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (roman_numeral_letter_count) on stop 0 value",
+      "reason_transform": "roman_numeral_letter_count",
+      "reason_source_stop": 0,
+      "reason_code": "def to_roman(n):\n    n = abs(int(n))\n    vals = [(1000,'M'),(900,'CM'),(500,'D'),(400,'CD'),(100,'C'),\n            (90,'XC'),(50,'L'),(40,'XL'),(10,'X'),(9,'IX'),(5,'V'),(4,'IV'),(1,'I')]\n    r = ''\n    for v, s in vals:\n        while n >= v:\n            r += s; n -= v\n    return r\nresult = len(to_roman(1937))\nprint(result)"
+    },
+    {
+      "index": 2,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Mass_(liturgy)",
+      "extraction_target": "the number of subsections listed under 'Western Rite Orthodox Churches' in the table of contents",
+      "extraction_section": "Western Rite Orthodox Churches",
+      "extracted_value": 1,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/First_Communion",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Move to the Mass to connect iconography and ritual: the Christian Eucharist is the central sacramental act around which visual and liturgical traditions (art, vestments, icons) develop.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 3,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/First_Communion",
+      "extraction_target": "the number of denominations explicitly named as places where First Communion is most common in the opening paragraph",
+      "extraction_section": null,
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Roman Catholic Archdiocese of Perth wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Roman_Catholic_Archdiocese_of_Perth",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Focus on First Communion as the rite that initiates individuals into regular participation in the Eucharist, showing how ritual practice becomes personal and communal.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 4,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Roman_Catholic_Archdiocese_of_Perth",
+      "extraction_target": "Count the number of libraries near Roman Catholic Archdiocese of Perth",
+      "extraction_section": null,
+      "extracted_value": 1,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "libraries near Roman Catholic Archdiocese of Perth"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: count libraries near Roman Catholic Archdiocese of Perth",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 5,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Parish_(Catholic_Church)",
+      "extraction_target": "the number of languages listed at the top of the article",
+      "extraction_section": null,
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Parish_(Catholic_Church)",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "End at the parish level to close the loop: parishes are the local units that sustain liturgical life (Mass, First Communion) and steward religious imagery and practice in communities today.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 6,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: (3 + 3) % 10",
+      "extraction_section": null,
+      "extracted_value": 6,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "(3 + 3) % 10",
+        "expression_code": "result = (3 + 3) % 10\nprint(result)",
+        "referenced_stops": [
+          3,
+          5
+        ]
+      },
+      "reasoning": "Compute stop: (3 + 3) % 10 = 6",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 6,
+  "difficulty": {
+    "level": "easy",
+    "depth": 7,
+    "tool_stop_count": 1,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Seek the sacred imagery that once illustrated the teachings of a prophet, its first appearance noted in a Japanese periodical's 1930s edition. What year was it published?\n\n2. The date you found in clue 1 holds a secret. Convert that year into the elegant symbols of ancient Rome. How many characters does it require?\n\n3. Where can you find the rich rituals that unite believers each week in worship? Explore the page that details the ceremony known for its transformative nature, and count the subsections under a specific branch known for its venerable traditions.\n\n4. Precious moments mark the rite when young initiates partake in their first taste of the sacred. On that page, how many distinct faith communities are mentioned as having this cherished practice?\n\n5. Nearby the archdiocese in a land known for expansive libraries, how many repositories of knowledge can one find? Uncover this number relating to literature and learning.\n\n6. In a domain defined by its local gatherings, how many different tongues can the faithful find conversing amongst themselves, as noted at the start of the page about communal structures?\n\n7. Finally, you have gathered your numbers. Compute the result of (clue 4 + clue 6) modulo 10. This should reveal a single digit, the destination of your quest.",
+  "metadata": {
+    "theme": "Tracing the journey from ancient sacred imagery to living Christian sacramental practice: from Manichaean iconography to the Eucharist, First Communion, and how parishes organize that practice today.",
+    "difficulty": "easy",
+    "sample_id": "sample_050",
+    "pages_crawled": 2080,
+    "source": "trail_puzzles_v2"
+  },
+  "generated_at": "2026-03-15T14:28:14.142551+00:00"
+}

@@ -1,0 +1,159 @@
+{
+  "trail_id": "trail_62772d55",
+  "seed_url": "https://en.wikipedia.org/wiki/William_(hippopotamus_figurine)",
+  "seed_title": "William (hippopotamus figurine)",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/William_(hippopotamus_figurine)",
+      "extraction_target": "the length listed in the infobox (field: 'Length')",
+      "extraction_section": "infobox",
+      "extracted_value": 20,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Metropolitan_Museum_of_Art",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start with an exploration of ancient Egyptian art through a widely recognized figurine, symbolizing the richness of ancient craftsmanship and culture.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Metropolitan_Museum_of_Art",
+      "extraction_target": "the type of items in the Robert Lehman Collection at the Metropolitan Museum of Art",
+      "extraction_section": "Collections",
+      "extracted_value": "Drawings and prints",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Metropolitan_Museum_of_Art",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Visit one of the largest and most prestigious art museums in the world, where collections from around the globe, including ancient Egypt, are displayed.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 2,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Metropolitan_Museum_of_Art",
+      "extraction_target": "Reason: the alphabetical position of its first letter (A=1, B=2, ...)",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (alpha_position_first_letter) on stop 1 value",
+      "reason_transform": "alpha_position_first_letter",
+      "reason_source_stop": 1,
+      "reason_code": "first = \"Drawings and prints\"[0].upper()\nresult = ord(first) - ord('A') + 1 if first.isalpha() else 0\nprint(result)",
+      "depends_on": []
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/New_York_(state)",
+      "extraction_target": "Get the driving duration in minutes from New York (state) to 1000 Fifth Avenue (The Met Fifth Avenue) 99 Margaret Corbin Drive (The Cloisters) New York City",
+      "extraction_section": null,
+      "extracted_value": 204,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_directions",
+            "arguments": {
+              "origin": "New York (state)",
+              "destination": "1000 Fifth Avenue (The Met Fifth Avenue) 99 Margaret Corbin Drive (The Cloisters) New York City",
+              "mode": "driving"
+            },
+            "expected_output": null,
+            "output_key": "duration"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: directions duration New York (state) to 1000 Fifth Avenue (The Met Fifth Avenue) 99 Margaret Corbin Drive (The Cloisters) New York City",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 4,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: digital_root(20 + 4 + 204)",
+      "extraction_section": null,
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "digital_root(20 + 4 + 204)",
+        "expression_code": "def digital_root(n):\n    n = abs(int(n))\n    return n if n == 0 else ((n - 1) % 9) + 1\nresult = digital_root(20 + 4 + 204)\nprint(result)",
+        "referenced_stops": [
+          0,
+          2,
+          3
+        ]
+      },
+      "reasoning": "Compute stop: digital_root(20 + 4 + 204) = 3",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    }
+  ],
+  "passcode": 3,
+  "difficulty": {
+    "level": "easy",
+    "depth": 5,
+    "tool_stop_count": 1,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "direct_link"
+  },
+  "riddle": "1. Begin your journey with the vibrant water-dweller from ancient Egypt, often referred to as William. Uncover how long he is supposed to lounge at rest.\n\n2. From this blue artifact, travel to a grand institution in the city that never sleeps, known for housing treasures from around the world. Discover the kind of treasures held within the Robert Lehman Collection.\n\n3. With the answer in hand, ponder a small but crucial character detail: what numeric position is occupied by the first letter of this collection's treasures?\n\n4. Along the path of culture and creations, calculate the minutes a vehicle would require on a journey from the Empire State to its renowned Fifth Avenue and its sister location that brings the past to life in the northern realm.\n\n5. For the final challenge, weave together your findings: start with the length of William, add the position from clues past, and the travel time, then find the repeated digital sum until a single digit remains. This is your final key to the city of answers.",
+  "metadata": {
+    "theme": "An Artistic and Cultural Journey through Major Cities",
+    "difficulty": "easy",
+    "sample_id": "sample_223",
+    "pages_crawled": 1032
+  },
+  "generated_at": "2026-03-27T07:52:40.050792+00:00"
+}

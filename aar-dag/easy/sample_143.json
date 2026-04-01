@@ -1,0 +1,291 @@
+{
+  "trail_id": "trail_c4d86e69",
+  "seed_url": "https://en.wikipedia.org/wiki/Qualcomm",
+  "seed_title": "Qualcomm",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Qualcomm",
+      "extraction_target": "the city where Qualcomm's headquarters is located",
+      "extraction_section": null,
+      "extracted_value": "San Diego",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "ARM architecture family wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/ARM_architecture_family",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Seed page — establishes Qualcomm's identity as a mobile SoC and modem designer and gives its headquarters location to anchor the trail.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Qualcomm",
+      "extraction_target": "Look up the elevation of San Diego",
+      "extraction_section": null,
+      "extracted_value": 15.22497749328613,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "San Diego"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of San Diego) from https://en.wikipedia.org/wiki/Qualcomm",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Qualcomm",
+      "extraction_target": "Look up the count of stadiums near San Diego",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "stadiums near San Diego"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of stadiums near San Diego) from https://en.wikipedia.org/wiki/Qualcomm",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Qualcomm",
+      "extraction_target": "Combine the elevation of San Diego and the count of stadiums near San Diego: abs(15 - 20)",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(15.22497749328613) - int(20.0))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of San Diego abs_diff count of stadiums near San Diego",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1,
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/ARM_architecture_family",
+      "extraction_target": "the number of top-level sections listed in the table of contents",
+      "extraction_section": "Contents",
+      "extracted_value": 13,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "India wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/India",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Explains the core architecture (ARM) that Qualcomm licences and builds its mobile processors around — key technical connection to Qualcomm's products.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/India",
+      "extraction_target": "Look up the elevation at New Delhi 28°36′50″N 77°12′30″E﻿ / ﻿28.61389°N 77.20833°E﻿ / 28.61389; 77.20833",
+      "extraction_section": null,
+      "extracted_value": 232.0728302001953,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "New Delhi 28°36′50″N 77°12′30″E﻿ / ﻿28.61389°N 77.20833°E﻿ / 28.61389; 77.20833"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for New Delhi 28°36′50″N 77°12′30″E﻿ / ﻿28.61389°N 77.20833°E﻿ / 28.61389; 77.20833",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/India",
+      "extraction_target": "Reason: the number of characters when written as a Roman numeral",
+      "extraction_section": null,
+      "extracted_value": 7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (roman_numeral_letter_count) on stop 2 value",
+      "reason_transform": "roman_numeral_letter_count",
+      "reason_source_stop": 5,
+      "reason_code": "def to_roman(n):\n    n = abs(int(n))\n    vals = [(1000,'M'),(900,'CM'),(500,'D'),(400,'CD'),(100,'C'),\n            (90,'XC'),(50,'L'),(40,'XL'),(10,'X'),(9,'IX'),(5,'V'),(4,'IV'),(1,'I')]\n    r = ''\n    for v, s in vals:\n        while n >= v:\n            r += s; n -= v\n    return r\nresult = len(to_roman(232))\nprint(result)",
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: abs(20 - 5) % 10",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "abs(20 - 5) % 10",
+        "expression_code": "result = abs(20 - 5) % 10\nprint(result)",
+        "referenced_stops": [
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      "reasoning": "Compute stop: abs(20 - 5) % 10 = 5",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2,
+        3,
+        4,
+        5
+      ]
+    }
+  ],
+  "passcode": 5,
+  "difficulty": {
+    "level": "easy",
+    "depth": 8,
+    "tool_stop_count": 4,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. A titan in mobile technology resides in a sun-kissed city by the bay—what is the name of its headquarters' home?\n\n2. Ascend to where ocean meets land and uncover the height above sea level of this vibrant coastal city.\n\n3. Near this locale, sports enthusiasts gather—how many stadiums can you count within reach?\n\n4. To further your quest, take the absolute difference between the elevation you unearthed in clue 2 and the count from clue 3 — what do you discover?\n\n5. Journey onward to a page where a collection of designs form the backbone of many modern devices—how many principal sections feature in its table of contents?\n\n6. Set your compass east to the capital of the world's largest democracy—what is the height of this grand city above the ocean's surface?\n\n7. Conversion calls! Transform the elevation from clue 6 into its Roman numeral form; how many letters does it contain?\n\n8. Finally, take the absolute difference from clue 3 and clue 4, then subtract the number of sections from clue 5, and reduce the result modulo 10. What remains, as a single digit, is your answer.",
+  "metadata": {
+    "theme": "Tracing Qualcomm's role in the global mobile silicon ecosystem — from its HQ and chip architecture to the market context and scale of key regions.",
+    "difficulty": "easy",
+    "sample_id": "sample_143",
+    "pages_crawled": 1650
+  },
+  "generated_at": "2026-03-17T08:37:47.690591+00:00"
+}

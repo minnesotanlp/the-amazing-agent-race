@@ -1,0 +1,392 @@
+{
+  "trail_id": "trail_3393bf76",
+  "seed_url": "https://en.wikipedia.org/wiki/Bholath_Assembly_constituency",
+  "seed_title": "Bholath Assembly constituency",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Bholath_Assembly_constituency",
+      "extraction_target": "Year the incumbent MLA was elected",
+      "extraction_section": null,
+      "extracted_value": "2022",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Bhulath",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start at the seed: the Bholath Assembly constituency is the local electoral unit that anchors the trail.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Bhulath",
+      "extraction_target": "the coordinates listed in the infobox (field: 'Coordinates')",
+      "extraction_section": "infobox",
+      "extracted_value": "31.5328, 75.5022",
+      "extracted_value_type": "coords",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Hoshiarpur (Lok Sabha constituency) wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Hoshiarpur_(Lok_Sabha_constituency)",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Bhulath town is the population centre associated with the constituency — extract its location and size to ground the constituency geographically.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Bhulath",
+      "extraction_target": "Look up the elevation of Bhulath",
+      "extraction_section": null,
+      "extracted_value": 257.09326171875,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Bhulath"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Bhulath) from https://en.wikipedia.org/wiki/Bhulath",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Bhulath",
+      "extraction_target": "Look up the count of hospitals near Bhulath",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "hospitals near Bhulath"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of hospitals near Bhulath) from https://en.wikipedia.org/wiki/Bhulath",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Bhulath",
+      "extraction_target": "Combine the elevation of Bhulath and the count of hospitals near Bhulath: abs(257 - 20)",
+      "extraction_section": null,
+      "extracted_value": 237,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(257.09326171875) - int(20.0))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Bhulath abs_diff count of hospitals near Bhulath",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2,
+        3
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Hoshiarpur_(Lok_Sabha_constituency)",
+      "extraction_target": "Look up the population of India",
+      "extraction_section": null,
+      "extracted_value": 1417492000,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "countries_population",
+            "arguments": {
+              "country": "India"
+            },
+            "expected_output": null,
+            "output_key": "population"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: population of India",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/16th_Punjab_Assembly",
+      "extraction_target": "the number of Aam Aadmi Party members forming the treasury benches",
+      "extraction_section": null,
+      "extracted_value": 94,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/16th_Punjab_Assembly",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Show the assembly in which Bholath sits — extract the legislature term and party composition to relate the constituency's contribution to state politics.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/16th_Punjab_Assembly",
+      "extraction_target": "Reason: the next prime number after that figure",
+      "extraction_section": null,
+      "extracted_value": 97,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (next_prime) on stop 3 value",
+      "reason_transform": "next_prime",
+      "reason_source_stop": 6,
+      "reason_code": "def next_prime(n):\n    n = abs(int(n))\n    if n < 2: return 2\n    candidate = n + 1\n    while True:\n        if all(candidate % i != 0 for i in range(2, int(candidate**0.5)+1)):\n            return candidate\n        candidate += 1\nresult = next_prime(94)\nprint(result)",
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/India",
+      "extraction_target": "Look up the population of India",
+      "extraction_section": null,
+      "extracted_value": 1417492000,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "countries_population",
+            "arguments": {
+              "country": "India"
+            },
+            "expected_output": null,
+            "output_key": "population"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: population of India",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        7
+      ]
+    },
+    {
+      "index": 9,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Member_of_the_Legislative_Assembly_(India)",
+      "extraction_target": "the term length in years of an MLA",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Member_of_the_Legislative_Assembly_(India)",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Explain the office held by the constituency's representative — what an MLA does and how long they serve, tying place to political role.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        8
+      ]
+    },
+    {
+      "index": 10,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Member_of_the_Legislative_Assembly_(India)",
+      "extraction_target": "Reason: the number of divisors of that figure",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (num_divisors) on stop 5 value",
+      "reason_transform": "num_divisors",
+      "reason_source_stop": 9,
+      "reason_code": "n = abs(int(5))\ncount = sum(1 for i in range(1, n+1) if n % i == 0) if n > 0 else 0\nresult = count\nprint(result)",
+      "depends_on": [
+        9
+      ]
+    },
+    {
+      "index": 11,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: digital_root(257 + 5)",
+      "extraction_section": null,
+      "extracted_value": 1,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "digital_root(257 + 5)",
+        "expression_code": "def digital_root(n):\n    n = abs(int(n))\n    return n if n == 0 else ((n - 1) % 9) + 1\nresult = digital_root(257 + 5)\nprint(result)",
+        "referenced_stops": [
+          2,
+          9
+        ]
+      },
+      "reasoning": "Compute stop: digital_root(257 + 5) = 1",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2,
+        9
+      ]
+    }
+  ],
+  "passcode": 1,
+  "difficulty": {
+    "level": "medium",
+    "depth": 12,
+    "tool_stop_count": 5,
+    "reason_stop_count": 2,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Pinpoint the assembly constituency in Punjab that has a current representative elected in a year waiting to be unveiled. What year was it?\n\n2. This constituency lies within a city known for its geographical coordinates—what are their precise values?\n\n3. Amongst the features of this place, how high does it rise above the sea level, in meters?\n\n4. Scattered through and around this area, how many hospitals can you find nearby?\n\n5. Calculate the difference between the elevation you discovered in clue 3 and the count of hospitals from clue 4. What is the absolute value of that difference?\n\n6. In the landscape where you tread, how many people inhabit the vast nation belonging to this region?\n\n7. The legislative body framework has a current assembly with some members on the treasury benches. How many members from a certain party sit there?\n\n8. A number you found in clue 7 is significant—what is the next prime number after that figure?\n\n9. Returning to the vast nation, how many people call it home once more?\n\n10. Discover the duration, in years, that a member serves in the assembly. What is that term length?\n\n11. To understand the influence of their tenure, unveil the number of divisors of the term length from clue 10.\n\n12. Follow the path back to the elevation you unearthed in clue 3 and the term duration from clue 10. Now, compute the digital root of the sum of those two numbers increased by five. What is the result? \n\nRemember, your final answer will be a single digit derived from your computations!",
+  "metadata": {
+    "theme": "Mapping local democracy: follow a Punjab assembly constituency from its place on the map to its role in the state and nation — combining electoral pages with geographic and population tools to understand scale, distance and travel.",
+    "difficulty": "medium",
+    "sample_id": "sample_038",
+    "pages_crawled": 361
+  },
+  "generated_at": "2026-03-16T06:13:44.087581+00:00"
+}

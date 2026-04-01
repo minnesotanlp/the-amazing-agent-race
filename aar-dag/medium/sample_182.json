@@ -1,0 +1,497 @@
+{
+  "trail_id": "trail_70fd226d",
+  "seed_url": "https://en.wikipedia.org/wiki/Binance",
+  "seed_title": "Binance",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Binance",
+      "extraction_target": "the number of founders listed in the infobox",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/United_States_Department_of_Justice",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start at Binance — the exchange anchoring the trail. Extract its legal/operational base and founding date to anchor the timeline and jurisdictional questions that follow.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/United_States_Department_of_Justice",
+      "extraction_target": "the number of languages in which the article is available (as shown near the top)",
+      "extraction_section": null,
+      "extracted_value": 49,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "United Nations Office on Drugs and Crime wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/United_Nations_Office_on_Drugs_and_Crime",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "The U.S. Department of Justice is a key enforcer in cases involving exchanges, sanctions, and illicit-finance investigations — linking exchange activity to legal accountability.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/United_Nations_Office_on_Drugs_and_Crime",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Established')",
+      "extraction_section": "infobox",
+      "extracted_value": 1997,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/United_Nations_Office_on_Drugs_and_Crime",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "UNODC frames the international, multilateral perspective on money laundering and illicit financial flows that can involve crypto platforms.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/United_Nations_Office_on_Drugs_and_Crime",
+      "extraction_target": "Reason: the sum of its distinct prime factors",
+      "extraction_section": null,
+      "extracted_value": 1997,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (sum_prime_factors) on stop 2 value",
+      "reason_transform": "sum_prime_factors",
+      "reason_source_stop": 2,
+      "reason_code": "def prime_factors(n):\n    n = abs(int(n))\n    factors = []\n    d = 2\n    while d * d <= n:\n        while n % d == 0:\n            factors.append(d)\n            n //= d\n        d += 1\n    if n > 1: factors.append(n)\n    return factors\nresult = sum(set(prime_factors(1997)))\nprint(result)",
+      "depends_on": [
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Hamas",
+      "extraction_target": "the section number assigned to 'Policies towards Israel and Palestine' in the table of contents",
+      "extraction_section": "Contents",
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Gaza_war",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Non-state armed groups like Hamas are often central to discussions about conflict finance and sanctions compliance — relevant when tracing how funds might move through or around exchanges.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Gaza_war",
+      "extraction_target": "the date range in the title of subsection 3.3 (Initial invasion and first ceasefire)",
+      "extraction_section": "War in Israel and Gaza",
+      "extracted_value": "October–November 2023",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/October_7_attacks",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "The Gaza war provides the larger conflict context in which questions of funding, sanctions, and digital-asset flows arise.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Gaza_war",
+      "extraction_target": "Look up the elevation of Gaza war",
+      "extraction_section": null,
+      "extracted_value": 36.32131576538086,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Gaza war"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Gaza war) from https://en.wikipedia.org/wiki/Gaza_war",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Gaza_war",
+      "extraction_target": "Look up the Google rating of Gaza war",
+      "extraction_section": null,
+      "extracted_value": 4.9,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "Gaza war"
+            },
+            "expected_output": null,
+            "output_key": "place_rating"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (Google rating of Gaza war) from https://en.wikipedia.org/wiki/Gaza_war",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Gaza_war",
+      "extraction_target": "Combine the elevation of Gaza war and the Google rating of Gaza war: (36 + 4)",
+      "extraction_section": null,
+      "extracted_value": 40,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(36.32131576538086) + int(4.9)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Gaza war add Google rating of Gaza war",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6,
+        7
+      ]
+    },
+    {
+      "index": 9,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/October_7_attacks",
+      "extraction_target": "Calculate the number of days between 2023-01-01 and 2026-03-17",
+      "extraction_section": null,
+      "extracted_value": 1171,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "from datetime import date\nd1 = date.fromisoformat('2023-01-01')\nd2 = date.fromisoformat('2026-03-17')\nresult = abs((d2 - d1).days)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "days"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: date computation 2023-01-01 to 2026-03-17 (pinned)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        8
+      ]
+    },
+    {
+      "index": 10,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/October_7_attacks",
+      "extraction_target": "Reason: the sum of its digits",
+      "extraction_section": null,
+      "extracted_value": 10,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_sum) on stop 5 value",
+      "reason_transform": "digit_sum",
+      "reason_source_stop": 9,
+      "reason_code": "result = sum(int(d) for d in str(abs(int(1171))))\nprint(result)",
+      "depends_on": [
+        9
+      ]
+    },
+    {
+      "index": 11,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Hezbollah",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Founded')",
+      "extraction_section": "infobox",
+      "extracted_value": 1982,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/CNN",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Hezbollah is another armed group frequently discussed in sanctions and illicit-finance contexts — comparing organizational profiles helps map where enforcement pressures might focus.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        10
+      ]
+    },
+    {
+      "index": 12,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/CNN",
+      "extraction_target": "the title of subsection 2.3 as listed in the Contents",
+      "extraction_section": "Contents",
+      "extracted_value": "On-air presentation",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/CNN",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Mainstream media (example: CNN) shapes public narratives about exchanges, enforcement, and conflict finance — include a media node to capture how stories propagate.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        11
+      ]
+    },
+    {
+      "index": 13,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/CNN",
+      "extraction_target": "Reason: the number of vowels in that name",
+      "extraction_section": null,
+      "extracted_value": 8,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (vowel_count) on stop 7 value",
+      "reason_transform": "vowel_count",
+      "reason_source_stop": 12,
+      "reason_code": "result = sum(1 for c in \"On-air presentation\".lower() if c in 'aeiou')\nprint(result)",
+      "depends_on": [
+        12
+      ]
+    },
+    {
+      "index": 14,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/SoftBank_Group",
+      "extraction_target": "Look up the closing price of TYO on 2022-12-30",
+      "extraction_section": null,
+      "extracted_value": 11.95,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "stock_historical_price",
+            "arguments": {
+              "ticker": "TYO",
+              "date": "2022-12-30"
+            },
+            "expected_output": null,
+            "output_key": "stock_price"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: stock price TYO on 2022-12-30",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        13
+      ]
+    },
+    {
+      "index": 15,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: (1982 + 8) % 10",
+      "extraction_section": null,
+      "extracted_value": 0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "(1982 + 8) % 10",
+        "expression_code": "result = (1982 + 8) % 10\nprint(result)",
+        "referenced_stops": [
+          11,
+          13
+        ]
+      },
+      "reasoning": "Compute stop: (1982 + 8) % 10 = 0",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        11,
+        13
+      ]
+    }
+  ],
+  "passcode": 0,
+  "difficulty": {
+    "level": "medium",
+    "depth": 16,
+    "tool_stop_count": 5,
+    "reason_stop_count": 3,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Seek the platform where the exchange of digital currencies reigns supreme, crafted by a handful of founders—how many are there?\n\n2. What esteemed body in the land of liberty upholds the law in a multitude of tongues? Count the languages in which their page is presented.\n\n3. Trace the origins of the organization committed to combating drugs and crime—when did this noble effort begin?\n\n4. To advance, extract the sum of the unique prime numbers that factor into the year you’ve just uncovered. \n\n5. Unveil the entity known for its controversial stances on neighboring states. Note the position of their policy regarding Israel and Palestine in the index.\n\n6. A conflict erupted and a war ensued—what dates frame the initial chaos and subsequent ceasefire in this confrontation?\n\n7. When you reflect on the geographical conflict's elevation, how high does the land rise above the sea?\n\n8. Seek what travelers have rated this turmoil—what score do they give?\n\n9. To move forward, take the findings from clues 7 and 8, and merge them into one singular number by adding them together.\n\n10. A shocking event marked a change in history—calculate the total number of days from the first day of the year 2023 to a significant date in March 2026.\n\n11. Beyond the days lies a secret—sum the digits of the number you’ve just calculated.\n\n12. Discover the inception year of the group known for its resilient stand in the region—what year marked their foundation?\n\n13. Turn now to the global news network renowned for its coverage—what title appears for the subsection detailing its programming evolution?\n\n14. Within that title, what is the count of the vowels hidden amongst the letters?\n\n15. A major corporation's stock reveals its worth—what was the closing price of its shares on the last trading day of 2022 in Tokyo?\n\n16. Calculate the final step: take the year acquired in clue 12 and add it to the vowel count from clue 14, then divide the sum by 10 to reveal the modulo result. \n\nThe answer you seek lies within a single digit, determined by the formula: (clue 12 + clue 14) % 10.",
+  "metadata": {
+    "theme": "Tracing Binance outward: how a major crypto exchange sits at the intersection of global enforcement, conflict finance, media scrutiny, and traditional capital markets.",
+    "difficulty": "medium",
+    "sample_id": "sample_182",
+    "pages_crawled": 11893
+  },
+  "generated_at": "2026-03-17T20:17:32.853884+00:00"
+}

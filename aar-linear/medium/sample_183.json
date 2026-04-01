@@ -1,0 +1,285 @@
+{
+  "trail_id": "trail_24695c3f",
+  "seed_url": "https://en.wikipedia.org/wiki/Robinhood_Markets",
+  "seed_title": "Robinhood Markets",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Robinhood_Markets",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Founded')",
+      "extraction_section": "infobox",
+      "extracted_value": 18,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/2020_stock_market_crash",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Seed: Robinhood Markets is the retail-trading app that catalyzed the modern 'meme stock' era — starting point for a trail about markets, crises, and oversight.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/2020_stock_market_crash",
+      "extraction_target": "the date of the pre-crash high mentioned in the DJIA image caption",
+      "extraction_section": null,
+      "extracted_value": "12 February",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/COVID-19_pandemic_in_New_York_City",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Context: a recent major market shock that frames how external events (pandemic) create volatility which platforms and retail traders react to.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/COVID-19_pandemic_in_New_York_City",
+      "extraction_target": "the location of the first outbreak as listed in the infobox",
+      "extraction_section": null,
+      "extracted_value": "Wuhan, Hubei, China",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Alexandria Ocasio-Cortez wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Alexandria_Ocasio-Cortez",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Local-impact case study: NYC's pandemic experience drove economic disruption and influenced markets — important to understand regional effects tied to national market reactions.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 3,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Alexandria_Ocasio-Cortez",
+      "extraction_target": "the number of languages the article is available in (as shown near the top)",
+      "extraction_section": null,
+      "extracted_value": 74,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Alexandria_Ocasio-Cortez",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Political oversight: AOC and other legislators were central to hearings and debates about market fairness, platform conduct, and retail investor protections after meme-stock episodes.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 4,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Alexandria_Ocasio-Cortez",
+      "extraction_target": "Reason: the next prime number after that figure",
+      "extraction_section": null,
+      "extracted_value": 79,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (next_prime) on stop 3 value",
+      "reason_transform": "next_prime",
+      "reason_source_stop": 3,
+      "reason_code": "def next_prime(n):\n    n = abs(int(n))\n    if n < 2: return 2\n    candidate = n + 1\n    while True:\n        if all(candidate % i != 0 for i in range(2, int(candidate**0.5)+1)):\n            return candidate\n        candidate += 1\nresult = next_prime(74)\nprint(result)"
+    },
+    {
+      "index": 5,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Nigeria",
+      "extraction_target": "Look up the elevation at Abuja 9°4′N 7°29′E﻿ / ﻿9.067°N 7.483°E﻿ / 9.067; 7.483",
+      "extraction_section": null,
+      "extracted_value": 498.2035827636719,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Abuja 9°4′N 7°29′E﻿ / ﻿9.067°N 7.483°E﻿ / 9.067; 7.483"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for Abuja 9°4′N 7°29′E﻿ / ﻿9.067°N 7.483°E﻿ / 9.067; 7.483",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 6,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/US_House",
+      "extraction_target": "the number of subsections listed under Membership, qualifications, and apportionment",
+      "extraction_section": "Membership, qualifications, and apportionment",
+      "extracted_value": 6,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Nashville, Tennessee wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Nashville,_Tennessee",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Institutional follow-up: the U.S. House is where legislative responses to market and platform issues (hearings, bills) are often initiated — ties the civic/regulatory angle back into the trail.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 7,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Nashville,_Tennessee",
+      "extraction_target": "Count the number of libraries near 36.16222",
+      "extraction_section": null,
+      "extracted_value": 9,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "libraries near 36.16222"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: count libraries near 36.16222",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 8,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Nashville,_Tennessee",
+      "extraction_target": "Reason: the sum of its distinct prime factors",
+      "extraction_section": null,
+      "extracted_value": 11,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (sum_prime_factors) on stop 6 value",
+      "reason_transform": "sum_prime_factors",
+      "reason_source_stop": 7,
+      "reason_code": "def prime_factors(n):\n    n = abs(int(n))\n    factors = []\n    d = 2\n    while d * d <= n:\n        while n % d == 0:\n            factors.append(d)\n            n //= d\n        d += 1\n    if n > 1: factors.append(n)\n    return factors\nresult = sum(set(prime_factors(11)))\nprint(result)"
+    },
+    {
+      "index": 9,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: (18 + 79 + 6 + 11) % 10",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "(18 + 79 + 6 + 11) % 10",
+        "expression_code": "result = (18 + 79 + 6 + 11) % 10\nprint(result)",
+        "referenced_stops": [
+          0,
+          4,
+          6,
+          8
+        ]
+      },
+      "reasoning": "Compute stop: (18 + 79 + 6 + 11) % 10 = 4",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 4,
+  "difficulty": {
+    "level": "medium",
+    "depth": 10,
+    "tool_stop_count": 2,
+    "reason_stop_count": 2,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "Here is the revised riddle:\n\n1. Seek the page about a financial services company known for its commission-free trading and targeting a younger demographic; from its infobox, record the year it was founded, then follow the link on that page that discusses the large 2020 market plunge to continue.\n\n2. What date does the Dow Jones image caption give as the index's pre-collapse high on that article about the 2020 market plunge?\n\n3. There exists a metropolitan pandemic article for the city in question; in that article's infobox note the location given as the site of the first outbreak.\n\n4. If you now locate the profile of the US politician and activist born in 1989 who represents parts of the Bronx and Queens, find the small language-count displayed near the top of her article and report that number.\n\n5. In a brief numerical diversion: take the number from clue 4 and find the next prime number after it — that prime is your answer for this clue.\n\n6. The capital of the West African country sits at coordinates 9.067°N, 7.483°E; ask a map what the elevation above sea level is at those coordinates and write down that height in meters (or the nearest whole number).\n\n7. The article about the lower chamber of the United States Congress (the page explaining representation and terms) contains a section titled Membership, qualifications, and apportionment — count how many subsections are listed under that section and record the count.\n\n8. (As a local detour) perform a place search around latitude 36.16222 for public libraries and tally how many libraries are returned by that query.\n\n9. Now transform the tally from clue 8 by computing the sum of its distinct prime factors; that sum is the value for this clue.\n\n10. Compute the final single-digit answer by evaluating this expression and reducing it modulo 10: (clue 1 + clue 5 + clue 7 + clue 9) mod 10. The result of that computation is the treasure-hunt's final digit (0–9).",
+  "metadata": {
+    "theme": "From retail trading platforms to market shocks and political response — tracing how a modern brokerage (Robinhood) connects to market volatility, pandemic impact, tech-sector influence, political oversight, and global demographic context.",
+    "difficulty": "medium",
+    "sample_id": "sample_183",
+    "pages_crawled": 11943
+  },
+  "generated_at": "2026-03-17T20:25:47.873978+00:00"
+}

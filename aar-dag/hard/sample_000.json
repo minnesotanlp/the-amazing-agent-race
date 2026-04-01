@@ -1,0 +1,790 @@
+{
+  "trail_id": "trail_f1701c75",
+  "seed_url": "https://en.wikipedia.org/wiki/Sindh_River",
+  "seed_title": "Sindh River",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Sindh_River",
+      "extraction_target": "total length of the Sindh River in kilometres",
+      "extraction_section": null,
+      "extracted_value": 470,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Sindh_River",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Seed of the trail — the Sindh River is the regional spine. Extracting its basic hydrological facts frames downstream connections and human uses.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Sindh_River",
+      "extraction_target": "Reason: the sum of its distinct prime factors",
+      "extraction_section": null,
+      "extracted_value": 54,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (sum_prime_factors) on stop 0 value",
+      "reason_transform": "sum_prime_factors",
+      "reason_source_stop": 0,
+      "reason_code": "def prime_factors(n):\n    n = abs(int(n))\n    factors = []\n    d = 2\n    while d * d <= n:\n        while n % d == 0:\n            factors.append(d)\n            n //= d\n        d += 1\n    if n > 1: factors.append(n)\n    return factors\nresult = sum(set(prime_factors(470)))\nprint(result)",
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/India",
+      "extraction_target": "Look up the population of India",
+      "extraction_section": null,
+      "extracted_value": 1417492000,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "countries_population",
+            "arguments": {
+              "country": "India"
+            },
+            "expected_output": null,
+            "output_key": "population"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: population of India",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/India",
+      "extraction_target": "Reason: the sum of its distinct prime factors",
+      "extraction_section": null,
+      "extracted_value": 354380,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (sum_prime_factors) on stop 1 value",
+      "reason_transform": "sum_prime_factors",
+      "reason_source_stop": 2,
+      "reason_code": "def prime_factors(n):\n    n = abs(int(n))\n    factors = []\n    d = 2\n    while d * d <= n:\n        while n % d == 0:\n            factors.append(d)\n            n //= d\n        d += 1\n    if n > 1: factors.append(n)\n    return factors\nresult = sum(set(prime_factors(1417492000)))\nprint(result)",
+      "depends_on": [
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Pahuj_River",
+      "extraction_target": "the river of which the Pahuj is a tributary",
+      "extraction_section": "Sources",
+      "extracted_value": "Sindh River",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Gambhir river, Madhya Pradesh wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Gambhir_river,_Madhya_Pradesh",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Pahuj is a local tributary that directly connects to the Sindh system — important for understanding headwater inputs and local hydrology.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Pahuj_River",
+      "extraction_target": "Look up the elevation of Sindh River",
+      "extraction_section": null,
+      "extracted_value": 188.4090423583984,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Sindh River"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Sindh River) from https://en.wikipedia.org/wiki/Pahuj_River",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Pahuj_River",
+      "extraction_target": "Look up the count of restaurants near Sindh River",
+      "extraction_section": null,
+      "extracted_value": 5.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "restaurants near Sindh River"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of restaurants near Sindh River) from https://en.wikipedia.org/wiki/Pahuj_River",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        4
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Pahuj_River",
+      "extraction_target": "Combine the elevation of Sindh River and the count of restaurants near Sindh River: abs(188 - 5)",
+      "extraction_section": null,
+      "extracted_value": 183,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(188.4090423583984) - int(5.0))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Sindh River abs_diff count of restaurants near Sindh River",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5,
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Pahuj_River",
+      "extraction_target": "Look up the elevation of Sindh River",
+      "extraction_section": null,
+      "extracted_value": 188.4090423583984,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Sindh River"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (elevation) derived from https://en.wikipedia.org/wiki/Pahuj_River",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        7
+      ]
+    },
+    {
+      "index": 9,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Gambhir_river,_Madhya_Pradesh",
+      "extraction_target": "the river into which the Gambhir River flows (mouth)",
+      "extraction_section": null,
+      "extracted_value": "Shipra River",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Kanhan_River",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Another neighbouring Madhya Pradesh river; comparing courses and administrative districts shows how multiple rivers shape regional land use.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        8
+      ]
+    },
+    {
+      "index": 10,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Gambhir_river,_Madhya_Pradesh",
+      "extraction_target": "Look up the elevation of Shipra River",
+      "extraction_section": null,
+      "extracted_value": 528.3707885742188,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Shipra River"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Shipra River) from https://en.wikipedia.org/wiki/Gambhir_river,_Madhya_Pradesh",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        9
+      ]
+    },
+    {
+      "index": 11,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Gambhir_river,_Madhya_Pradesh",
+      "extraction_target": "Look up the count of libraries near Shipra River",
+      "extraction_section": null,
+      "extracted_value": 16.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "libraries near Shipra River"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of libraries near Shipra River) from https://en.wikipedia.org/wiki/Gambhir_river,_Madhya_Pradesh",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        9
+      ]
+    },
+    {
+      "index": 12,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Gambhir_river,_Madhya_Pradesh",
+      "extraction_target": "Combine the elevation of Shipra River and the count of libraries near Shipra River: abs(528 - 16)",
+      "extraction_section": null,
+      "extracted_value": 512,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(528.3707885742188) - int(16.0))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Shipra River abs_diff count of libraries near Shipra River",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        10,
+        11
+      ]
+    },
+    {
+      "index": 13,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Kanhan_River",
+      "extraction_target": "Calculate the driving distance between Kanhan River and Sindh River",
+      "extraction_section": null,
+      "extracted_value": 1503.403,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Kanhan River"
+            },
+            "expected_output": null,
+            "output_key": "coords_a"
+          },
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Sindh River"
+            },
+            "expected_output": null,
+            "output_key": "coords_b"
+          },
+          {
+            "tool_name": "maps_distance_matrix",
+            "arguments": {
+              "__from_previous_as_origins_destinations": [
+                "coords_a",
+                "coords_b"
+              ]
+            },
+            "expected_output": null,
+            "output_key": "distance_km"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: distance between Kanhan River and Sindh River",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        12
+      ]
+    },
+    {
+      "index": 14,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Kanhan_River",
+      "extraction_target": "Reason: the number of divisors of that figure",
+      "extraction_section": null,
+      "extracted_value": 6,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (num_divisors) on stop 4 value",
+      "reason_transform": "num_divisors",
+      "reason_source_stop": 13,
+      "reason_code": "n = abs(int(1503))\ncount = sum(1 for i in range(1, n+1) if n % i == 0) if n > 0 else 0\nresult = count\nprint(result)",
+      "depends_on": [
+        13
+      ]
+    },
+    {
+      "index": 15,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Kwari_River",
+      "extraction_target": "the number of towns listed as located along the river's bank (Bijeypur and Kailaras)",
+      "extraction_section": "Geography",
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Bhoj Wetland wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Bhoj_Wetland",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Kwari (Kunwari) is part of the same central-India river network; extracting its local connections reveals impacts on settlements and irrigation.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        14
+      ]
+    },
+    {
+      "index": 16,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Bhoj_Wetland",
+      "extraction_target": "the Ramsar Sites Information Service reference number for Bhoj Wetland",
+      "extraction_section": null,
+      "extracted_value": 1206,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Tawa_River",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A major wetland tied to regional hydrology — extracting its size and protection status links river flows to biodiversity and ecosystem services.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        15
+      ]
+    },
+    {
+      "index": 17,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Tawa_River",
+      "extraction_target": "the length listed in the infobox (field: 'Length')",
+      "extraction_section": "infobox",
+      "extracted_value": 172,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Tawa_Reservoir",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tawa feeds a major reservoir in the region; extracting its basic hydrology sets up discussion of flow regulation and human infrastructure.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        16
+      ]
+    },
+    {
+      "index": 18,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Tawa_Reservoir",
+      "extraction_target": "the year Tawa Reservoir was designated a Ramsar site of national importance",
+      "extraction_section": null,
+      "extracted_value": "2024",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Pench River wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Pench_River",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Reservoirs like Tawa modify natural flows — knowing capacity and purpose helps explain altered downstream hydrology and habitats.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        17
+      ]
+    },
+    {
+      "index": 19,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Pench_River",
+      "extraction_target": "Get the driving duration in minutes from Pench River to Shipra River",
+      "extraction_section": null,
+      "extracted_value": 533,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_directions",
+            "arguments": {
+              "origin": "Pench River",
+              "destination": "Shipra River",
+              "mode": "driving"
+            },
+            "expected_output": null,
+            "output_key": "duration"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: directions duration Pench River to Shipra River",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        18
+      ]
+    },
+    {
+      "index": 20,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Pench_River",
+      "extraction_target": "Reason: the digital root (iterated digit sum until single digit)",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digital_root) on stop 9 value",
+      "reason_transform": "digital_root",
+      "reason_source_stop": 19,
+      "reason_code": "n = abs(int(533))\nresult = n if n == 0 else ((n - 1) % 9) + 1\nprint(result)",
+      "depends_on": [
+        19
+      ]
+    },
+    {
+      "index": 21,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Dhasan_River",
+      "extraction_target": "the length of the Dhasan River that forms the common boundary between Madhya Pradesh and Uttar Pradesh (in km)",
+      "extraction_section": "Origin and length",
+      "extracted_value": 54,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Karera Wildlife Sanctuary wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Karera_Wildlife_Sanctuary",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Dhasan is another regional tributary tying into the greater river network; extracting basin connections helps trace water pathways across landscapes.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        20
+      ]
+    },
+    {
+      "index": 22,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Karera_Wildlife_Sanctuary",
+      "extraction_target": "the principal tree species in the sanctuary",
+      "extraction_section": "Flora",
+      "extracted_value": "acacia",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Karera_Wildlife_Sanctuary",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "End the trail in a conservation area dependent on regional water dynamics — this stop ties hydrology to biodiversity and conservation challenges.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        21
+      ]
+    },
+    {
+      "index": 23,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: (470 + 1417492000 + 2) % 10",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "(470 + 1417492000 + 2) % 10",
+        "expression_code": "result = (470 + 1417492000 + 2) % 10\nprint(result)",
+        "referenced_stops": [
+          0,
+          2,
+          15
+        ]
+      },
+      "reasoning": "Compute stop: (470 + 1417492000 + 2) % 10 = 2",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0,
+        2,
+        15
+      ]
+    }
+  ],
+  "passcode": 2,
+  "difficulty": {
+    "level": "hard",
+    "depth": 24,
+    "tool_stop_count": 10,
+    "reason_stop_count": 4,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Seek the river that courses through central India, renowned for its significant length — how many kilometers does it stretch?\n\n2. What hidden treasure lies in the prime factors of that very distance? Calculate their sum.\n\n3. This vast nation, teeming with life, holds the title of the second most populous in the world. Discover its population.\n\n4. As before, determine the essence of the number you just unveiled. What is the sum of its distinct prime factors?\n\n5. Find the tributary veiled in the mists of geography, whose waters feed into the larger stream of the region. Which river is it?\n\n6. Above the valley where this tributary flows, what is the elevation of the main river in meters?\n\n7. Often a haven for food lovers, how many restaurants can be found in close proximity to this riverside?\n\n8. Combine the height of the river you just discovered with the culinary options nearby — what is the absolute difference between them?\n\n9. As you navigate deeper, uncover once more the elevation of the main river. \n\n10. An adjacent river nestles against this one; into what larger body does it ultimately pour its waters?\n\n11. Ascend to the heavens and learn the elevation of the river that greets the reclaimed waters of nearby lakes. \n\n12. The banks of this flowing companion host not only flora but also places of knowledge — how many libraries exist in its shadow?\n\n13. Relate the elevation of this river you just examined with the number of libraries nearby. What is the absolute difference between those two figures?\n\n14. Chart your course and determine the driving distance between the river that has welcomed visitors for ages and your earlier focal stream. \n\n15. For the journey you’ve calculated, what is the total count of its divisors?\n\n16. Along the banks of the river that forms a boundary there lie towns; how many are they?\n\n17. In the network of wetlands, find the reference number tied to significant conservation efforts for a certain ecological area. \n\n18. Delve into the waters and find the length of a river that dances nearby; what measurement does its span claim in kilometers?\n\n19. Discover the year when a reservoir reflecting nature’s magnificence was declared a national treasure.\n\n20. What is the travel duration in minutes needed to transition from the expanse of the Pench to that of the serene Shipra?\n\n21. Engage in a deeper mathematical adventure: what is the digital root of your travel time from the last clue?\n\n22. Measure the length of the river that serves as a delicate boundary between states; how many kilometers does it stretch?\n\n23. Among the trees in a nearby wildlife sanctuary, what is the primary species that thrives there?\n\n24. Now, compute the following: What is the result of (the length from clue 1, plus the population from clue 3, plus the towns from clue 16) modulo 10?",
+  "metadata": {
+    "theme": "A field expedition through central India's river network: tracing the Sindh River from source to wetlands, reservoirs and wildlife areas to understand hydrology, human dependence, and conservation pressures.",
+    "difficulty": "hard",
+    "sample_id": "sample_000",
+    "pages_crawled": 263,
+    "source": "trail_puzzles_v2"
+  },
+  "generated_at": "2026-03-15T10:21:45.744028+00:00"
+}

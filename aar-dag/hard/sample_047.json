@@ -1,0 +1,792 @@
+{
+  "trail_id": "trail_9626d1c7",
+  "seed_url": "https://en.wikipedia.org/wiki/Matt's_Bar",
+  "seed_title": "Matt's Bar",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Matt%27s_Bar",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Established')",
+      "extraction_section": "infobox",
+      "extracted_value": 1954,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Matt%27s_Bar",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Seed stop — the local, iconic burger joint that launches our food-focused trail.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Matt%27s_Bar",
+      "extraction_target": "Reason: the sum of its distinct prime factors",
+      "extraction_section": null,
+      "extracted_value": 979,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (sum_prime_factors) on stop 0 value",
+      "reason_transform": "sum_prime_factors",
+      "reason_source_stop": 0,
+      "reason_code": "def prime_factors(n):\n    n = abs(int(n))\n    factors = []\n    d = 2\n    while d * d <= n:\n        while n % d == 0:\n            factors.append(d)\n            n //= d\n        d += 1\n    if n > 1: factors.append(n)\n    return factors\nresult = sum(set(prime_factors(1954)))\nprint(result)",
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Le_Bernardin",
+      "extraction_target": "Count the number of hospitals near 155 West 51st Street \"51st Street (Manhattan)\") Midtown Manhattan New York",
+      "extraction_section": null,
+      "extracted_value": 8,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "hospitals near 155 West 51st Street \"51st Street (Manhattan)\") Midtown Manhattan New York"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: count hospitals near 155 West 51st Street \"51st Street (Manhattan)\") Midtown Manhattan New York",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Le_Bernardin",
+      "extraction_target": "Reason: the next prime number after that figure",
+      "extraction_section": null,
+      "extracted_value": 11,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (next_prime) on stop 1 value",
+      "reason_transform": "next_prime",
+      "reason_source_stop": 2,
+      "reason_code": "def next_prime(n):\n    n = abs(int(n))\n    if n < 2: return 2\n    candidate = n + 1\n    while True:\n        if all(candidate % i != 0 for i in range(2, int(candidate**0.5)+1)):\n            return candidate\n        candidate += 1\nresult = next_prime(8)\nprint(result)",
+      "depends_on": [
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Gilda%27s_Italian_Restaurant",
+      "extraction_target": "year the restaurant was established",
+      "extraction_section": null,
+      "extracted_value": "2010",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Labatt Blue wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Labatt_Blue",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A neighborhood Italian restaurant — shows a different strand of American dining culture between dive bars and haute cuisine.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Labatt_Blue",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Founded')",
+      "extraction_section": "infobox",
+      "extracted_value": 1847,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "City of Lake Macquarie wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/City_of_Lake_Macquarie",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Introduce beverage culture — how regional beers travel and pair with different dining scenes.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/City_of_Lake_Macquarie",
+      "extraction_target": "the total population of the City of Lake Macquarie as reported (2021 census)",
+      "extraction_section": null,
+      "extracted_value": 213845,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Ethnic groups in Indonesia wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Ethnic_groups_in_Indonesia",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A neighbouring coastal city to the Hunter wine region — useful for understanding regional demand and food-tourism markets.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/City_of_Lake_Macquarie",
+      "extraction_target": "Count restaurants near City of Lake Macquarie",
+      "extraction_section": null,
+      "extracted_value": 20,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "restaurants near City of Lake Macquarie"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (nearby_poi) derived from https://en.wikipedia.org/wiki/City_of_Lake_Macquarie",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Ethnic_groups_in_Indonesia",
+      "extraction_target": "the percentage of the population that is Javanese",
+      "extraction_section": null,
+      "extracted_value": 40.06,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Ethnic_groups_in_Indonesia",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Shift to how ethnic diversity shapes national cuisines — a look at Indonesia's many groups and culinary traditions.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        7
+      ]
+    },
+    {
+      "index": 9,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Ethnic_groups_in_Indonesia",
+      "extraction_target": "Reason: the number of 1-bits in its binary representation",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (binary_1bit_count) on stop 5 value",
+      "reason_transform": "binary_1bit_count",
+      "reason_source_stop": 8,
+      "reason_code": "result = bin(abs(int(40))).count('1')\nprint(result)",
+      "depends_on": [
+        8
+      ]
+    },
+    {
+      "index": 10,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Indian_Indonesian",
+      "extraction_target": "the number of Indian nationals living and working in Indonesia according to the Indian Ministry of External Affairs (as of January 2012)",
+      "extraction_section": null,
+      "extracted_value": 9000,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Hinduism in England wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Hinduism_in_England",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A focused example of diaspora influence on food: how Indian communities in Indonesia have contributed dishes and food culture.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        9
+      ]
+    },
+    {
+      "index": 11,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Hinduism_in_England",
+      "extraction_target": "the percentage increase in Hindu population between 2001 and 2011 as shown in the Historical Population table",
+      "extraction_section": null,
+      "extracted_value": 47.4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Hinduism_in_England",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Returning to the UK/Europe: religion and migration shape restaurant landscapes and the availability of regional cuisines.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        10
+      ]
+    },
+    {
+      "index": 12,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Hinduism_in_England",
+      "extraction_target": "Look up the elevation of Hinduism in England",
+      "extraction_section": null,
+      "extracted_value": 95.00697326660156,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Hinduism in England"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Hinduism in England) from https://en.wikipedia.org/wiki/Hinduism_in_England",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        11
+      ]
+    },
+    {
+      "index": 13,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Hinduism_in_England",
+      "extraction_target": "Look up the Google rating of Hinduism in England",
+      "extraction_section": null,
+      "extracted_value": 4.9,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "Hinduism in England"
+            },
+            "expected_output": null,
+            "output_key": "place_rating"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (Google rating of Hinduism in England) from https://en.wikipedia.org/wiki/Hinduism_in_England",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        11
+      ]
+    },
+    {
+      "index": 14,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Hinduism_in_England",
+      "extraction_target": "Combine the elevation of Hinduism in England and the Google rating of Hinduism in England: (95 + 4)",
+      "extraction_section": null,
+      "extracted_value": 99,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(95.00697326660156) + int(4.9)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Hinduism in England add Google rating of Hinduism in England",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        12,
+        13
+      ]
+    },
+    {
+      "index": 15,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Hinduism_in_England",
+      "extraction_target": "Count stadiums near Hinduism in England",
+      "extraction_section": null,
+      "extracted_value": 20,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "stadiums near Hinduism in England"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (nearby_poi) derived from https://en.wikipedia.org/wiki/Hinduism_in_England",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        14
+      ]
+    },
+    {
+      "index": 16,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Hinduism_in_England",
+      "extraction_target": "Reason: the number of 1-bits in its binary representation",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (binary_1bit_count) on stop 7 value",
+      "reason_transform": "binary_1bit_count",
+      "reason_source_stop": 11,
+      "reason_code": "result = bin(abs(int(47))).count('1')\nprint(result)",
+      "depends_on": [
+        11
+      ]
+    },
+    {
+      "index": 17,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Buddhism_in_England",
+      "extraction_target": "the number of languages the article is available in",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Sikhism in England wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Sikhism_in_England",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Another strand of immigrant communities that contribute vegetarian/monastic and regional dishes to the broader food scene.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        16
+      ]
+    },
+    {
+      "index": 18,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Buddhism_in_England",
+      "extraction_target": "Look up the elevation of Buddhism in England",
+      "extraction_section": null,
+      "extracted_value": 95.00697326660156,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Buddhism in England"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Buddhism in England) from https://en.wikipedia.org/wiki/Buddhism_in_England",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        17
+      ]
+    },
+    {
+      "index": 19,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Buddhism_in_England",
+      "extraction_target": "Look up the Google rating of Buddhism in England",
+      "extraction_section": null,
+      "extracted_value": 4.8,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "Buddhism in England"
+            },
+            "expected_output": null,
+            "output_key": "place_rating"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (Google rating of Buddhism in England) from https://en.wikipedia.org/wiki/Buddhism_in_England",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        17
+      ]
+    },
+    {
+      "index": 20,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Buddhism_in_England",
+      "extraction_target": "Combine the elevation of Buddhism in England and the Google rating of Buddhism in England: (95 + 4)",
+      "extraction_section": null,
+      "extracted_value": 99,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(95.00697326660156) + int(4.8)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Buddhism in England add Google rating of Buddhism in England",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        18,
+        19
+      ]
+    },
+    {
+      "index": 21,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Sikhism_in_England",
+      "extraction_target": "the total Sikh population in England (2021)",
+      "extraction_section": null,
+      "extracted_value": 520092,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "North Riding of Yorkshire wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/North_Riding_of_Yorkshire",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Sikh communities have heavily influenced British South Asian dining — highlights the role of communities in shaping local food options.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        20
+      ]
+    },
+    {
+      "index": 22,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/North_Riding_of_Yorkshire",
+      "extraction_target": "Look up the elevation at North Riding of Yorkshire",
+      "extraction_section": null,
+      "extracted_value": 14.47940063476562,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "North Riding of Yorkshire"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for North Riding of Yorkshire",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        21
+      ]
+    },
+    {
+      "index": 23,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/West_Norwood_Cemetery",
+      "extraction_target": "the year West Norwood Cemetery was established",
+      "extraction_section": null,
+      "extracted_value": "1837",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/West_Norwood_Cemetery",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Finish with a local cultural landmark in London that ties food to place and memory — cemeteries and neighbourhood history often sit beside long-lived eateries and markets.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        22
+      ]
+    },
+    {
+      "index": 24,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: abs(11 - 4) % 10",
+      "extraction_section": null,
+      "extracted_value": 7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "abs(11 - 4) % 10",
+        "expression_code": "result = abs(11 - 4) % 10\nprint(result)",
+        "referenced_stops": [
+          3,
+          13
+        ]
+      },
+      "reasoning": "Compute stop: abs(11 - 4) % 10 = 7",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3,
+        13
+      ]
+    }
+  ],
+  "passcode": 7,
+  "difficulty": {
+    "level": "hard",
+    "depth": 25,
+    "tool_stop_count": 10,
+    "reason_stop_count": 4,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. A local treasure in Minneapolis serves a burger beloved for its cheesy surprise. What year did this culinary gem first open its doors?\n\n2. Now that you have a year, seek the wonders hidden within it — what is the sum of its distinct prime factors?\n\n3. Journey onward to the restaurant renowned for its refined seafood offerings in the heart of Manhattan. How many medical centers can be found in proximity to 155 West 51st Street?\n\n4. The search doesn't end there — what is the next prime number following the count you just unearthed?\n\n5. Shift your gaze to an Italian dining establishment, famed for its vibrant atmosphere and founding roots. In what year did this eatery first take its place on the culinary map?\n\n6. Now, let’s indulge in a brew from Canada. Discover the establishment year of this well-known lager.\n\n7. A coastal city in Australia has a name reflecting its picturesque lakes. What is the total population of this thriving community, as recorded in the latest census?\n\n8. Nearby this city, culinary options abound. Count how many restaurants can be found close by.\n\n9. The archipelago of Indonesia boasts rich ethnic diversity. What percentage of its population identifies as Javanese?\n\n10. Before proceeding, redefine the value you’ve just gathered — how many 1-bits are present in that number's binary representation?\n\n11. Among the population of Indonesian expatriates, how many Indian nationals reside and work in Indonesia, as reported earlier?\n\n12. Investigate the spiritual milieu in England where Hinduism flourished. What was the percentage increase in this community's numbers from 2001 to 2011?\n\n13. Rise to the heights of the earth. How high does the land sit where Hinduism thrives in England?\n\n14. What rating do visitors assign to the system of beliefs surrounding Hindu practices in England?\n\n15. Together these two figures can be combined. Take the elevation found in clue 13 and the rating from clue 14 — what sums from those heights?\n\n16. Sporting venues are hubs of community pride. How many stadiums can be counted near the heart of Hinduism in England?\n\n17. Returning to the percentage you gathered in clue 12, what is the count of 1-bits in its binary form?\n\n18. Seek out another belief system present in England. How many language versions are available for its detailed exploration?\n\n19. The realm of Buddhism also finds its place in England. How high does this area rise above sea level?\n\n20. Ratings can offer glimpses into popularity. What score does this belief system receive on Google?\n\n21. Combine the elevation from clue 19 and the rating discovered in clue 20. What revelations lie within their sum?\n\n22. From the spiritual to the ethnic, how many Sikhs reside in England, according to the latest census?\n\n23. Uncover the heights in the region known for its historical significance. What elevation can be measured in North Riding of Yorkshire?\n\n24. A resting place of notable individuals can be found in a cemetery established in the late 1800s. In which year did it lay its first stones?\n\n25. For your final computing task, merge your findings from clue 4 and clue 14 in this way: perform the calculation |11 - 4| mod 10. Remember, the answer must return a single digit (0-9).",
+  "metadata": {
+    "theme": "A culinary-cultural journey: start at Minneapolis' Matt's Bar (home of the Jucy Lucy) and travel outward to world-class restaurants, beverages, and the cities and communities that shape what—and where—we eat.",
+    "difficulty": "hard",
+    "sample_id": "sample_047",
+    "pages_crawled": 5773
+  },
+  "generated_at": "2026-03-16T14:58:23.090965+00:00"
+}

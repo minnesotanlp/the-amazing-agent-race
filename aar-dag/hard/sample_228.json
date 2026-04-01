@@ -1,0 +1,872 @@
+{
+  "trail_id": "trail_3fcf255b",
+  "seed_url": "https://en.wikipedia.org/wiki/Little_Canada_(term)",
+  "seed_title": "Little Canada (term)",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Little_Canada_(term)",
+      "extraction_target": "the number of French-Canadians who emigrated to the United States in the period 1840-1930",
+      "extraction_section": "History",
+      "extracted_value": 900000,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Little_Canada_(term)",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Seed: defines the 'Little Canada' term and lists the neighbourhoods/places that the trail will explore conceptually.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Little_Canada_(term)",
+      "extraction_target": "Reason: the number of divisors of that figure",
+      "extraction_section": null,
+      "extracted_value": 108,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (num_divisors) on stop 0 value",
+      "reason_transform": "num_divisors",
+      "reason_source_stop": 0,
+      "reason_code": "n = abs(int(900000))\ncount = sum(1 for i in range(1, n+1) if n % i == 0) if n > 0 else 0\nresult = count\nprint(result)",
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Maps_of_American_ancestries",
+      "extraction_target": "the number of census-defined regions listed in the text (Northeast, Midwest, South, and West)",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Maps_of_American_ancestries",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Provides visual demographic context — where ethnic enclaves (like 'Little Canada') are concentrated across the United States.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Maps_of_American_ancestries",
+      "extraction_target": "Look up the elevation of Maps of American ancestries",
+      "extraction_section": null,
+      "extracted_value": 3236.2353515625,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Maps of American ancestries"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Maps of American ancestries) from https://en.wikipedia.org/wiki/Maps_of_American_ancestries",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Maps_of_American_ancestries",
+      "extraction_target": "Look up the Google rating of Maps of American ancestries",
+      "extraction_section": null,
+      "extracted_value": 3.6,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "Maps of American ancestries"
+            },
+            "expected_output": null,
+            "output_key": "place_rating"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (Google rating of Maps of American ancestries) from https://en.wikipedia.org/wiki/Maps_of_American_ancestries",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Maps_of_American_ancestries",
+      "extraction_target": "Combine the elevation of Maps of American ancestries and the Google rating of Maps of American ancestries: (3236 + 3)",
+      "extraction_section": null,
+      "extracted_value": 3239,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(3236.2353515625) + int(3.6)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Maps of American ancestries add Google rating of Maps of American ancestries",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3,
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Maps_of_American_ancestries",
+      "extraction_target": "Reason: the digital root (iterated digit sum until single digit)",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digital_root) on stop 1 value",
+      "reason_transform": "digital_root",
+      "reason_source_stop": 2,
+      "reason_code": "n = abs(int(4))\nresult = n if n == 0 else ((n - 1) % 9) + 1\nprint(result)",
+      "depends_on": [
+        2
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/French_Americans",
+      "extraction_target": "the total population including French-Canadian (alone or in combination) according to 2021 estimates",
+      "extraction_section": null,
+      "extracted_value": 9053902,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "New York state wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/New_York_state",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "French (including French-Canadian) ancestry is historically linked to many 'Little Canada' communities; this stop examines that ancestry group.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/New_York_state",
+      "extraction_target": "the elevation listed in the infobox (field: 'Elevation')",
+      "extraction_section": "infobox",
+      "extracted_value": 980,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Long_Island",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "New York State is a major locus for immigrant neighbourhoods and close to Canada — important geographic setting for many 'Little' enclaves.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        7
+      ]
+    },
+    {
+      "index": 9,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/New_York_state",
+      "extraction_target": "Look up the elevation of New York state",
+      "extraction_section": null,
+      "extracted_value": 376.3551330566406,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "New York state"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of New York state) from https://en.wikipedia.org/wiki/New_York_state",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        8
+      ]
+    },
+    {
+      "index": 10,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/New_York_state",
+      "extraction_target": "Look up the count of libraries near New York state",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "libraries near New York state"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of libraries near New York state) from https://en.wikipedia.org/wiki/New_York_state",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        8
+      ]
+    },
+    {
+      "index": 11,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/New_York_state",
+      "extraction_target": "Combine the elevation of New York state and the count of libraries near New York state: (376 + 20)",
+      "extraction_section": null,
+      "extracted_value": 396,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(376.3551330566406) + int(20.0)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of New York state add count of libraries near New York state",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        9,
+        10
+      ]
+    },
+    {
+      "index": 12,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Long_Island",
+      "extraction_target": "the number of subsections under the Government and politics section in the Contents",
+      "extraction_section": "Government and politics",
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Concord, New Hampshire wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Concord,_New_Hampshire",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A specific New York region where immigrant neighborhoods form — useful as a local case study of enclave formation and urban context.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        11
+      ]
+    },
+    {
+      "index": 13,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Long_Island",
+      "extraction_target": "Look up the elevation of Long Island",
+      "extraction_section": null,
+      "extracted_value": 25.39910316467285,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Long Island"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Long Island) from https://en.wikipedia.org/wiki/Long_Island",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        12
+      ]
+    },
+    {
+      "index": 14,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Long_Island",
+      "extraction_target": "Look up the Google rating of Long Island",
+      "extraction_section": null,
+      "extracted_value": 4.5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "Long Island"
+            },
+            "expected_output": null,
+            "output_key": "place_rating"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (Google rating of Long Island) from https://en.wikipedia.org/wiki/Long_Island",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        12
+      ]
+    },
+    {
+      "index": 15,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Long_Island",
+      "extraction_target": "Combine the elevation of Long Island and the Google rating of Long Island: (25 + 4)",
+      "extraction_section": null,
+      "extracted_value": 29,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(25.39910316467285) + int(4.5)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Long Island add Google rating of Long Island",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        13,
+        14
+      ]
+    },
+    {
+      "index": 16,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Concord,_New_Hampshire",
+      "extraction_target": "the elevation listed in the infobox (field: 'Elevation [[3]](#cite_note-3)')",
+      "extraction_section": "infobox",
+      "extracted_value": 272,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Turkish-American wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Turkish-American",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A New England city example to explore how 'Little Canada' style settlements appear outside big metros — New England has historical Canadian migration.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        15
+      ]
+    },
+    {
+      "index": 17,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Turkish-American",
+      "extraction_target": "population range given by the Turkish Coalition of America in the infobox",
+      "extraction_section": null,
+      "extracted_value": "350,000-500,000",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Kemalism wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Kemalism",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Expands the trail from Canadian enclaves to another diaspora type (Turkish Americans), showing how 'Little X' patterns recur for other origin groups.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        16
+      ]
+    },
+    {
+      "index": 18,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Kemalism",
+      "extraction_target": "Look up the area in km² of United States",
+      "extraction_section": null,
+      "extracted_value": 347.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "countries_area",
+            "arguments": {
+              "country": "United States"
+            },
+            "expected_output": null,
+            "output_key": "area_km2"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: area of United States",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        17
+      ]
+    },
+    {
+      "index": 19,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Iranian-American",
+      "extraction_target": "the total Iranian American population according to the 2020 census",
+      "extraction_section": null,
+      "extracted_value": 568564,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Cold War wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Cold_War",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Another diaspora example (Iranian Americans) highlighting how political events and migration produce urban enclaves similar to 'Little' neighbourhoods.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        18
+      ]
+    },
+    {
+      "index": 20,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Cold_War",
+      "extraction_target": "Look up the population of United States",
+      "extraction_section": null,
+      "extracted_value": 87146,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "countries_population",
+            "arguments": {
+              "country": "United States"
+            },
+            "expected_output": null,
+            "output_key": "population"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: population of United States",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        19
+      ]
+    },
+    {
+      "index": 21,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Cold_War",
+      "extraction_target": "Reason: the sum of its distinct prime factors",
+      "extraction_section": null,
+      "extracted_value": 43575,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (sum_prime_factors) on stop 9 value",
+      "reason_transform": "sum_prime_factors",
+      "reason_source_stop": 20,
+      "reason_code": "def prime_factors(n):\n    n = abs(int(n))\n    factors = []\n    d = 2\n    while d * d <= n:\n        while n % d == 0:\n            factors.append(d)\n            n //= d\n        d += 1\n    if n > 1: factors.append(n)\n    return factors\nresult = sum(set(prime_factors(87146)))\nprint(result)",
+      "depends_on": [
+        20
+      ]
+    },
+    {
+      "index": 22,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Chinese_New_Year",
+      "extraction_target": "the number of top-level sections listed in the table of contents",
+      "extraction_section": "Contents",
+      "extracted_value": 15,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Chinese_New_Year",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Cultural festivals (like Chinese New Year) are focal activities in many ethnic enclaves; this stop shows the role of cultural calendar events for enclave identity.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        21
+      ]
+    },
+    {
+      "index": 23,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Chinese_New_Year",
+      "extraction_target": "Look up the Google rating of Chinese New Year",
+      "extraction_section": null,
+      "extracted_value": 4.4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "Chinese New Year"
+            },
+            "expected_output": null,
+            "output_key": "place_rating"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (place_rating) derived from https://en.wikipedia.org/wiki/Chinese_New_Year",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        22
+      ]
+    },
+    {
+      "index": 24,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Chinese_New_Year",
+      "extraction_target": "Reason: the number of 1-bits in its binary representation",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (binary_1bit_count) on stop 10 value",
+      "reason_transform": "binary_1bit_count",
+      "reason_source_stop": 22,
+      "reason_code": "result = bin(abs(int(15))).count('1')\nprint(result)",
+      "depends_on": [
+        22
+      ]
+    },
+    {
+      "index": 25,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Human_rights_in_India",
+      "extraction_target": "Look up the population of United States",
+      "extraction_section": null,
+      "extracted_value": 87146,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "countries_population",
+            "arguments": {
+              "country": "United States"
+            },
+            "expected_output": null,
+            "output_key": "population"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: population of United States",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        24
+      ]
+    },
+    {
+      "index": 26,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: abs(3 - 9053902) % 10",
+      "extraction_section": null,
+      "extracted_value": 9,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "abs(3 - 9053902) % 10",
+        "expression_code": "result = abs(3 - 9053902) % 10\nprint(result)",
+        "referenced_stops": [
+          4,
+          7
+        ]
+      },
+      "reasoning": "Compute stop: abs(3 - 9053902) % 10 = 9",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        4,
+        7
+      ]
+    }
+  ],
+  "passcode": 9,
+  "difficulty": {
+    "level": "hard",
+    "depth": 27,
+    "tool_stop_count": 13,
+    "reason_stop_count": 4,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Seek the page that recounts the French-Canadian journey south, where an estimated number of individuals sought a new life between 1840 and 1930.\n\n2. From the figure you just discovered, find how many ways that number can be divided evenly: what is the count of its divisors?\n\n3. There exists a page that portrays the demographic tapestry of America — can you tell how many census-designated regions define this land?\n\n4. As you explore the geographic landscape, what lies beneath the ground where those regions are mapped? Determine the elevation of that page.\n\n5. Travelers rate experiences that capture the essence of cultural identity. What star rating do people give to the page dedicated to American ancestries?\n\n6. Merging your findings from clues 4 and 5, what number do you arrive at when you add the elevation to the rating from your recent discovery?\n\n7. Reflect on the regional divisions revealed in clue 3. What single-digit number emerges when you apply the digital root to that count?\n\n8. Turn now to the descendants of the French in America. What was the estimated count of those identifying as French-Canadian or in combination according to the latest census?\n\n9. The elevation of a significant state can be found within the article dedicated to it. What is that number that reflects its height above sea level?\n\n10. Climb further into this state’s details and discover: what lies beneath the surface — can you find out its elevation from a mapping tool?\n\n11. Count the number of libraries that open their doors to seekers near this state; how many do you uncover?\n\n12. Combine the findings from clues 10 and 11 — what total results from adding the elevation of the state to the library count nearby?\n\n13. Direct your attention to an island rooted in culture and politics. Identify how many subsections comprise the governance section within this article’s contents.\n\n14. Seek out the height above the waves for this long stretch of land. What is Long Island’s elevation as defined by geographic tools?\n\n15. Ratings matter here, too! What score do visitors give this piece of land reflecting both beauty and history?\n\n16. By blending clues 14 and 15, calculate the total elevation and rating to find a new number.\n\n17. Another cornerstone of New England awaits — turn your gaze to a city whose name resonates through history. What is its elevation according to the infobox you will find there?\n\n18. A community that carries its Turkish roots deeply — what is the population range cited in the article discussing those of Turkish descent in the U.S.?\n\n19. Exploring the ideological landscape, find the area in square kilometers of a certain nation. What numerical figure defines the space occupied by the United States?\n\n20. Within the pages detailing Iranian diaspora, ascertain the total count of Iranian Americans as reported in the most recent census.\n\n21. Now, focus your quest on the history of the world — what is the population count of the United States according to reliable historical records?\n\n22. From the number you found in clue 21, reveal the sum of its distinct prime factors. What value emerges from this operation?\n\n23. Dance into the celebration of the lunar new year; can you count how many major sections this festive article divides into?\n\n24. Color the air with reviews — what rating does the world impart to the page documenting this vibrant celebration?\n\n25. With your findings from clue 23, determine the count of 1-bits hidden within its binary representation.\n\n26. Recall the total population of the U.S., once more, from a reliable source to enrich your understanding.\n\n27. Compute the final challenge: What is the absolute difference between the star rating from clue 5 and the total French-American population from clue 8, then take that result modulo 10? \n\nIn the end, use the arithmetic from clues 5 and 8 to reveal a single digit between 0 and 9 as your treasure.",
+  "metadata": {
+    "theme": "Tracing 'Little X' immigrant enclaves in the United States — from Canadian 'Little Canada' pockets to other diasporas — and enriching the trail with geographic, historical and country data to compare origins, distances and timelines.",
+    "difficulty": "hard",
+    "sample_id": "sample_228",
+    "pages_crawled": 34380
+  },
+  "generated_at": "2026-03-20T23:25:50.294116+00:00"
+}

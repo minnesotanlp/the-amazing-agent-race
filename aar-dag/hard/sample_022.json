@@ -1,0 +1,750 @@
+{
+  "trail_id": "trail_ab0c8379",
+  "seed_url": "https://en.wikipedia.org/wiki/Los_Roques_Airport",
+  "seed_title": "Los Roques Airport",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Los_Roques_Airport",
+      "extraction_target": "the elevation listed in the infobox (field: 'Elevation [AMSL](/wiki/Height_above_sea_level \"Height above sea level\")')",
+      "extraction_section": "infobox",
+      "extracted_value": 10,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Los_Roques_Airport",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Seed: the small airstrip that connects the Los Roques archipelago to the Venezuelan mainland — starting point for local navigation and aviation context.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Los_Roques_Airport",
+      "extraction_target": "Look up the elevation of Los Roques Airport",
+      "extraction_section": null,
+      "extracted_value": 2.455786228179932,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Los Roques Airport"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Los Roques Airport) from https://en.wikipedia.org/wiki/Los_Roques_Airport",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Los_Roques_Airport",
+      "extraction_target": "Look up the count of hospitals near Los Roques Airport",
+      "extraction_section": null,
+      "extracted_value": 6.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "hospitals near Los Roques Airport"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of hospitals near Los Roques Airport) from https://en.wikipedia.org/wiki/Los_Roques_Airport",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Los_Roques_Airport",
+      "extraction_target": "Combine the elevation of Los Roques Airport and the count of hospitals near Los Roques Airport: (2 + 6)",
+      "extraction_section": null,
+      "extracted_value": 8,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(2.455786228179932) + int(6.0)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Los Roques Airport add count of hospitals near Los Roques Airport",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1,
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Los_Roques_Airport",
+      "extraction_target": "Reason: the sum of its distinct prime factors",
+      "extraction_section": null,
+      "extracted_value": 7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (sum_prime_factors) on stop 0 value",
+      "reason_transform": "sum_prime_factors",
+      "reason_source_stop": 0,
+      "reason_code": "def prime_factors(n):\n    n = abs(int(n))\n    factors = []\n    d = 2\n    while d * d <= n:\n        while n % d == 0:\n            factors.append(d)\n            n //= d\n        d += 1\n    if n > 1: factors.append(n)\n    return factors\nresult = sum(set(prime_factors(10)))\nprint(result)",
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Gran_Roque",
+      "extraction_target": "the population listed in the infobox (field: 'Population')",
+      "extraction_section": "infobox",
+      "extracted_value": 3.1,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "El Gran Roque wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/El_Gran_Roque",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "The main island hosting the airport and community — anchors the human/geographic side of the trail.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/El_Gran_Roque",
+      "extraction_target": "Look up the elevation at 11°57′00″N 66°40′36″W﻿ / ﻿11.95000°N 66.67667°W﻿ / 11.95000; -66.67667",
+      "extraction_section": null,
+      "extracted_value": 586.1619873046875,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "11°57′00″N 66°40′36″W﻿ / ﻿11.95000°N 66.67667°W﻿ / 11.95000; -66.67667"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for 11°57′00″N 66°40′36″W﻿ / ﻿11.95000°N 66.67667°W﻿ / 11.95000; -66.67667",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/El_Gran_Roque",
+      "extraction_target": "Reason: the sum of its distinct prime factors",
+      "extraction_section": null,
+      "extracted_value": 295,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (sum_prime_factors) on stop 2 value",
+      "reason_transform": "sum_prime_factors",
+      "reason_source_stop": 6,
+      "reason_code": "def prime_factors(n):\n    n = abs(int(n))\n    factors = []\n    d = 2\n    while d * d <= n:\n        while n % d == 0:\n            factors.append(d)\n            n //= d\n        d += 1\n    if n > 1: factors.append(n)\n    return factors\nresult = sum(set(prime_factors(586)))\nprint(result)",
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/2008_Los_Roques_Archipelago_Transaven_Let_L-410_crash",
+      "extraction_target": "year the aircraft was built",
+      "extraction_section": "Aircraft",
+      "extracted_value": 1987,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Conviasa wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Conviasa",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A local aviation incident that highlights operational risks in the archipelago and motivates careful navigation and geodetic referencing.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        7
+      ]
+    },
+    {
+      "index": 9,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/2008_Los_Roques_Archipelago_Transaven_Let_L-410_crash",
+      "extraction_target": "Look up the elevation of 2008 Los Roques Archipelago Transaven Let L-410 crash",
+      "extraction_section": null,
+      "extracted_value": -0.8253421187400818,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "2008 Los Roques Archipelago Transaven Let L-410 crash"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of 2008 Los Roques Archipelago Transaven Let L-410 crash) from https://en.wikipedia.org/wiki/2008_Los_Roques_Archipelago_Transaven_Let_L-410_crash",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        8
+      ]
+    },
+    {
+      "index": 10,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/2008_Los_Roques_Archipelago_Transaven_Let_L-410_crash",
+      "extraction_target": "Look up the count of museums near 2008 Los Roques Archipelago Transaven Let L-410 crash",
+      "extraction_section": null,
+      "extracted_value": 11.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "museums near 2008 Los Roques Archipelago Transaven Let L-410 crash"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of museums near 2008 Los Roques Archipelago Transaven Let L-410 crash) from https://en.wikipedia.org/wiki/2008_Los_Roques_Archipelago_Transaven_Let_L-410_crash",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        8
+      ]
+    },
+    {
+      "index": 11,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/2008_Los_Roques_Archipelago_Transaven_Let_L-410_crash",
+      "extraction_target": "Combine the elevation of 2008 Los Roques Archipelago Transaven Let L-410 crash and the count of museums near 2008 Los Roques Archipelago Transaven Let L-410 crash: (0 + 11)",
+      "extraction_section": null,
+      "extracted_value": 11,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(-0.8253421187400818) + int(11.0)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of 2008 Los Roques Archipelago Transaven Let L-410 crash add count of museums near 2008 Los Roques Archipelago Transaven Let L-410 crash",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        9,
+        10
+      ]
+    },
+    {
+      "index": 12,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Conviasa",
+      "extraction_target": "Conviasa's fleet size",
+      "extraction_section": null,
+      "extracted_value": 30,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Domestic airport wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Domestic_airport",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A national carrier linked to flights in Venezuela — connects operational airline context to the Los Roques service network.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        11
+      ]
+    },
+    {
+      "index": 13,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Domestic_airport",
+      "extraction_target": "the number of countries listed as examples of small countries or regions that do not have any public domestic airports",
+      "extraction_section": null,
+      "extracted_value": 9,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Simón Bolívar International Airport (Venezuela) wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Sim%C3%B3n_Bol%C3%ADvar_International_Airport_(Venezuela)",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Places Los Roques Airport in the broader classification of airports and explains typical services and limitations for short regional routes.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        12
+      ]
+    },
+    {
+      "index": 14,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Sim%C3%B3n_Bol%C3%ADvar_International_Airport_(Venezuela)",
+      "extraction_target": "Convert 3°C to a Fahrenheit-scale offset",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "# Convert celsius to fahrenheit_offset\nvalue = 3.1\nconverted = value * 1.8\nresult = int(converted)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "converted"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: convert 3 celsius to fahrenheit_offset",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        13
+      ]
+    },
+    {
+      "index": 15,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Sim%C3%B3n_Bol%C3%ADvar_International_Airport_(Venezuela)",
+      "extraction_target": "Reason: the number of 1-bits in its binary representation",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (binary_1bit_count) on stop 6 value",
+      "reason_transform": "binary_1bit_count",
+      "reason_source_stop": 14,
+      "reason_code": "result = bin(abs(int(5))).count('1')\nprint(result)",
+      "depends_on": [
+        14
+      ]
+    },
+    {
+      "index": 16,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Venezuela",
+      "extraction_target": "Look up the elevation at Venezuela",
+      "extraction_section": null,
+      "extracted_value": 89.8474349975586,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Venezuela"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for Venezuela",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        15
+      ]
+    },
+    {
+      "index": 17,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Geodetic_coordinates",
+      "extraction_target": "the range of longitude values used for the Earth, Moon and Sun",
+      "extraction_section": "Definitions",
+      "extracted_value": "−180° to +180°",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Spatial reference system wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Spatial_reference_system",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Introduce the coordinate concepts used to define precise airport and island locations — essential for navigation and mapping.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        16
+      ]
+    },
+    {
+      "index": 18,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Spatial_reference_system",
+      "extraction_target": "number of components a particular SRS specification comprises (Earth ellipsoid, horizontal datum, map projection, origin point, and unit of measure)",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Spatial_reference_system",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Explains the reference systems that tie coordinate values to the Earth — why a consistent spatial reference matters for aviation and mapping.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        17
+      ]
+    },
+    {
+      "index": 19,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Spatial_reference_system",
+      "extraction_target": "Reason: the largest prime factor of that figure",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (largest_prime_factor) on stop 9 value",
+      "reason_transform": "largest_prime_factor",
+      "reason_source_stop": 18,
+      "reason_code": "def largest_prime_factor(n):\n    n = abs(int(n))\n    if n <= 1: return n\n    d = 2\n    while d * d <= n:\n        while n % d == 0: n //= d\n        d += 1\n    return n\nresult = largest_prime_factor(5)\nprint(result)",
+      "depends_on": [
+        18
+      ]
+    },
+    {
+      "index": 20,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/GRS_80",
+      "extraction_target": "the number of components GRS80 consists of as stated in the opening sentence (reference ellipsoid and normal gravity model)",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Earth%27s_circumference",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A real reference ellipsoid used in geodesy — links the theoretical model (ellipsoid) to practical coordinate/elevation computations used in navigation.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        19
+      ]
+    },
+    {
+      "index": 21,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Earth%27s_circumference",
+      "extraction_target": "Convert 3 km to miles",
+      "extraction_section": null,
+      "extracted_value": 1,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "# Convert km to miles\nvalue = 3.1\nconverted = value * 0.621371\nresult = int(converted)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "converted"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: convert 3 km to miles",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        20
+      ]
+    },
+    {
+      "index": 22,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: (2 + 8 + 0) % 10",
+      "extraction_section": null,
+      "extracted_value": 0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "(2 + 8 + 0) % 10",
+        "expression_code": "result = (2 + 8 + 0) % 10\nprint(result)",
+        "referenced_stops": [
+          1,
+          3,
+          9
+        ]
+      },
+      "reasoning": "Compute stop: (2 + 8 + 0) % 10 = 0",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1,
+        3,
+        9
+      ]
+    }
+  ],
+  "passcode": 0,
+  "difficulty": {
+    "level": "hard",
+    "depth": 23,
+    "tool_stop_count": 10,
+    "reason_stop_count": 4,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Unearth the gateway to paradise where sea meets sky, known for its flights. What elevation does this airstrip proudly claim, resting above the blue waters?\n\n2. If you seek the height at which this point touches the heavens, consult a mapping tool to find the elevation of this tropical airport.\n\n3. Nearby this transport hub, how many hospitals lend a hand to those in need? Seek the answer hidden in a local search.\n\n4. Now, blend the elevation from clue 2 with the number of hospitals from clue 3. What total do you reach in this merger of numbers? \n\n5. Ponder on the sum of the distinct prime factors of the height you just discovered in clue 1. What do these prime whispers reveal?\n\n6. Find the isle that cradles a small village known for its charm. This page holds a figure crucial to your journey — the inhabitants, or how many homes fill the lanes?\n\n7. Like a treasure map leading to a hidden spot, what is the height at the coordinates that point toward this village’s core?\n\n8. Contemplate once more on the sum of the distinct prime factors of the elevation found in clue 7. What does this journey through numbers yield? \n\n9. In a tale of misfortune, discover the year in which an ill-fated aircraft was produced. Seek knowledge in the chronicles of this tragic event.\n\n10. If you wish to know how high the skies were where the fateful flight occurred, examine the elevation surrounding this incident.\n\n11. Nearby this memorial, how many museums echo the stories of ages past? Gather this count from a search in the vicinity.\n\n12. Combine the altitude from clue 10 and the museum count in clue 11. What new number surfaces from this addition?\n\n13. Now, towards the air carrier serving lost skies, how many crafts dance in Conviasa's fleet? This page holds the number that takes flight.\n\n14. Investigation leads to a deeper realm; how many small nations exist without public domestic runways? Seek this obscure detail on a page dedicated to such terminals.\n\n15. When winter breathes its chilly air, what is the Fahrenheit conversion of a mere 3 degrees Celsius? Bring this cool transformation to light.\n\n16. Reflect upon the number of 1s that rise in the binary representation of the value you derived in clue 15. What does this binary vision reveal?\n\n17. There lies a grand expanse where the mountains greet the clouds. What elevation does this vast country flaunt as it reaches towards the heavens?\n\n18. Seek out the realm where definitions of position are carved in theory. In what range do the longitudes of our celestial neighbors fall?\n\n19. The spatial reference system you are nearing encompasses how many integral components, from ellipsoids to projections? This count is essential.\n\n20. Reign supreme by finding the largest prime factor from the number you've garnered in clue 19. What is the greatest in this numerical realm? \n\n21. Know that within the framework of another essential model, how many parts compose the grand structure of GRS80? This answer lies in the opening whispers of its description.\n\n22. When traveling a distance of 3 kilometers, how many miles does it correlate to? Convert this earthly measure with the precision of math.\n\n23. Compute the final insight: Take the sum of the values from clues 2, 4, and 10, and apply the modulus of 10 to unlock a single digit revealing the answer of your quest. \n\nYour adventure through knowledge has led you to a final riddle, which holds a singular number between 0 and 9. What is it?",
+  "metadata": {
+    "theme": "From island airstrip to the reference frames that make navigation possible — an exploratory trail linking Los Roques Airport, the local islands and incidents, airlines and airport types, and the geodetic concepts & reference ellipsoids that underpin aerial navigation.",
+    "difficulty": "hard",
+    "sample_id": "sample_022",
+    "pages_crawled": 153
+  },
+  "generated_at": "2026-03-16T05:34:37.779228+00:00"
+}

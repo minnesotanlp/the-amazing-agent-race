@@ -1,0 +1,396 @@
+{
+  "trail_id": "trail_b5fbbb6b",
+  "seed_url": "https://en.wikipedia.org/wiki/Waterfield_Library",
+  "seed_title": "Waterfield Library",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Waterfield_Library",
+      "extraction_target": "the coordinates of Waterfield Library as listed",
+      "extraction_section": null,
+      "extracted_value": "36°36′49″N 88°19′17″W﻿ / ﻿36.6135°N 88.3215°W﻿ / 36.6135; -88.3215",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Murray_State_University",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start at the campus information hub where research begins — extract the library's location to anchor subsequent geospatial queries.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Waterfield_Library",
+      "extraction_target": "Look up the elevation of Waterfield Library",
+      "extraction_section": null,
+      "extracted_value": 166.8489837646484,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Waterfield Library"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Waterfield Library) from https://en.wikipedia.org/wiki/Waterfield_Library",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Waterfield_Library",
+      "extraction_target": "Look up the count of universities near Waterfield Library",
+      "extraction_section": null,
+      "extracted_value": 1.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "universities near Waterfield Library"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of universities near Waterfield Library) from https://en.wikipedia.org/wiki/Waterfield_Library",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Waterfield_Library",
+      "extraction_target": "Combine the elevation of Waterfield Library and the count of universities near Waterfield Library: abs(166 - 1)",
+      "extraction_section": null,
+      "extracted_value": 165,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(166.8489837646484) - int(1.0))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Waterfield Library abs_diff count of universities near Waterfield Library",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1,
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Murray_State_University",
+      "extraction_target": "Get the driving duration in minutes from Murray State University to Waterfield Library",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_directions",
+            "arguments": {
+              "origin": "Murray State University",
+              "destination": "Waterfield Library",
+              "mode": "driving"
+            },
+            "expected_output": null,
+            "output_key": "duration"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: directions duration Murray State University to Waterfield Library",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Melanesian_mythology",
+      "extraction_target": "the number of archipelagos/island areas named in the opening paragraph as encompassed by Melanesia",
+      "extraction_section": null,
+      "extracted_value": 6,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Melanesian_mythology",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A cultural research target — studying Melanesian myths highlights a regional focus for comparative cultural work starting from the library.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Melanesian_mythology",
+      "extraction_target": "Reason: the largest prime factor of that figure",
+      "extraction_section": null,
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (largest_prime_factor) on stop 2 value",
+      "reason_transform": "largest_prime_factor",
+      "reason_source_stop": 5,
+      "reason_code": "def largest_prime_factor(n):\n    n = abs(int(n))\n    if n <= 1: return n\n    d = 2\n    while d * d <= n:\n        while n % d == 0: n //= d\n        d += 1\n    return n\nresult = largest_prime_factor(6)\nprint(result)",
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Judeo-Tat",
+      "extraction_target": "the number of native speakers given in the infobox",
+      "extraction_section": null,
+      "extracted_value": 80000,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Judeo-Tat",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Shift to linguistic research: Judeo-Tat exemplifies a minority language and diaspora data useful for comparative cultural analysis.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Judeo-Tat",
+      "extraction_target": "Reason: the digital root (iterated digit sum until single digit)",
+      "extraction_section": null,
+      "extracted_value": 8,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digital_root) on stop 3 value",
+      "reason_transform": "digital_root",
+      "reason_source_stop": 7,
+      "reason_code": "n = abs(int(80000))\nresult = n if n == 0 else ((n - 1) % 9) + 1\nprint(result)",
+      "depends_on": [
+        7
+      ]
+    },
+    {
+      "index": 9,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/British_soul",
+      "extraction_target": "the number of stylistic origins listed in the infobox",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Murray State Racers wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Murray_State_Racers",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Add a musical/cultural strand — British soul shows another dimension of cultural diffusion a researcher might explore from the library.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        8
+      ]
+    },
+    {
+      "index": 10,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Murray_State_Racers",
+      "extraction_target": "Count the number of restaurants near Murray",
+      "extraction_section": null,
+      "extracted_value": 20,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "restaurants near Murray"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: count restaurants near Murray",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        9
+      ]
+    },
+    {
+      "index": 11,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: digital_root(166 + 1 + 4)",
+      "extraction_section": null,
+      "extracted_value": 9,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "digital_root(166 + 1 + 4)",
+        "expression_code": "def digital_root(n):\n    n = abs(int(n))\n    return n if n == 0 else ((n - 1) % 9) + 1\nresult = digital_root(166 + 1 + 4)\nprint(result)",
+        "referenced_stops": [
+          1,
+          2,
+          9
+        ]
+      },
+      "reasoning": "Compute stop: digital_root(166 + 1 + 4) = 9",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1,
+        2,
+        9
+      ]
+    }
+  ],
+  "passcode": 9,
+  "difficulty": {
+    "level": "medium",
+    "depth": 12,
+    "tool_stop_count": 5,
+    "reason_stop_count": 2,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Seek the abode of knowledge tucked within a university; uncover the precise coordinates of this learning haven.\n\n2. With those coordinates in mind, how high does this scholarly refuge rise above sea level?\n\n3. Explore the academic environment surrounding your first discovery. How many institutions of higher learning thrive in proximity to this library?\n\n4. By combining the elevation you just determined with the number of nearby universities, what is the absolute difference when you subtract one from your elevation?\n\n5. Journey to the educational center known for nurturing athletes; how many minutes would it take to drive from this campus to the library?\n\n6. A many-islanded region dwells in the Pacific, its name resonates with tales of ancient beliefs. How many archipelagos does the sun-kissed landscape encompass in its description?\n\n7. From the count you just unearthed, what is the largest prime factor that composes that number?\n\n8. A language rich with history boasts a small community of native speakers. Can you find out how many voices contribute to this linguistic legacy?\n\n9. From that figure, distill its essence into a single number by computing its digital root. What do you obtain?\n\n10. There exists a page where soulful sounds meet their heritage — how many stylistic roots are celebrated within its descriptions?\n\n11. Now, turn your attention back to that vibrant locale; how many eateries can you find nestled around the campus in question?\n\n12. Finally, to conclude your scavenger's journey, compute the digital root of the sum of the elevation from clue 2, the number of nearby universities from clue 3, and the stylistic origins from clue 10. Remember, this answer is a single digit (0-9).",
+  "metadata": {
+    "theme": "A librarian's research trail: starting at a campus library and branching into comparative cultural studies—measuring travel between campuses, comparing populations, mapping language geographies, and checking local resources.",
+    "difficulty": "medium",
+    "sample_id": "sample_105",
+    "pages_crawled": 5904
+  },
+  "generated_at": "2026-03-16T21:10:51.928808+00:00"
+}

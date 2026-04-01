@@ -1,0 +1,153 @@
+{
+  "trail_id": "trail_9acfa29d",
+  "seed_url": "https://en.wikipedia.org/wiki/Mark_Nadler",
+  "seed_title": "Mark Nadler",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Mark_Nadler",
+      "extraction_target": "year Nadler and his partner hosted a Bark Mitzvah for their dog",
+      "extraction_section": "Personal life",
+      "extracted_value": "2004",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Patter_song",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start with Mark Nadler to establish the trail's protagonist — an American cabaret pianist/singer whose repertoire and performance style motivate the musical-theme exploration.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Patter_song",
+      "extraction_target": "the number of 'best-known examples' listed in the Origins section",
+      "extraction_section": "Origins",
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "American Conservatory Theater wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/American_Conservatory_Theater",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Patter songs are a key element of the comic, rapid-fire repertoire often performed in cabaret and musical theatre — linking Nadler's performance style to a historical song form.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/American_Conservatory_Theater",
+      "extraction_target": "Calculate the number of days between 2004-01-01 and 2026-03-15",
+      "extraction_section": null,
+      "extracted_value": 8109,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "from datetime import date\nd1 = date.fromisoformat('2004-01-01')\nd2 = date.fromisoformat('2026-03-15')\nresult = abs((d2 - d1).days)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "days"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: date computation 2004-01-01 to 2026-03-15 (pinned)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 3,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/American_Conservatory_Theater",
+      "extraction_target": "Reason: the number of divisors of that figure",
+      "extraction_section": null,
+      "extracted_value": 12,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (num_divisors) on stop 2 value",
+      "reason_transform": "num_divisors",
+      "reason_source_stop": 2,
+      "reason_code": "n = abs(int(8109))\ncount = sum(1 for i in range(1, n+1) if n % i == 0) if n > 0 else 0\nresult = count\nprint(result)"
+    },
+    {
+      "index": 4,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: abs(2004 - 3) % 10",
+      "extraction_section": null,
+      "extracted_value": 1,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "abs(2004 - 3) % 10",
+        "expression_code": "result = abs(2004 - 3) % 10\nprint(result)",
+        "referenced_stops": [
+          0,
+          1,
+          3
+        ]
+      },
+      "reasoning": "Compute stop: abs(2004 - 3) % 10 = 1",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 1,
+  "difficulty": {
+    "level": "easy",
+    "depth": 5,
+    "tool_stop_count": 1,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "Here is the riddle with the corrected clues:\n\n1. Seek the cabaret pianist known for his lively performances and engaging personality: in the paragraph about his private life, discover the year he and his partner held a Bark Mitzvah for their dog.\n\n2. There exists a Wikipedia entry for the rapid‑fire comic song form linked from that page; read the passage tracing its beginnings and report how many items are listed as its “best‑known examples.”\n\n3. Which San Francisco conservatory theatre (the company famed for actor training, often abbreviated A.C.T.) does a quick search bring up; on that company’s page, calculate how many days elapse between 2004‑01‑01 and 2026‑03‑15.\n\n4. If you have the day‑count from clue 3, find how many positive whole divisors that integer possesses.\n\n5. In the end, compute the absolute difference between clue 1 and clue 2, then take that result modulo 10 — explicitly: compute abs(clue 1 - clue 2) % 10 — your final answer should be a single digit between 0 and 9.",
+  "metadata": {
+    "theme": "From cabaret performer to patter-song tradition — and a glimpse at the logistics of cross‑country performances",
+    "difficulty": "easy",
+    "sample_id": "sample_076",
+    "pages_crawled": 3107,
+    "source": "trail_puzzles_v2"
+  },
+  "generated_at": "2026-03-15T17:02:08.563277+00:00"
+}

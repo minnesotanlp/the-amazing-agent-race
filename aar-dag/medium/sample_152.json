@@ -1,0 +1,500 @@
+{
+  "trail_id": "trail_f09af341",
+  "seed_url": "https://en.wikipedia.org/wiki/PepsiCo",
+  "seed_title": "PepsiCo",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/PepsiCo",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Founded')",
+      "extraction_section": "infobox",
+      "extracted_value": 28,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/PepsiCo",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start at PepsiCo — the seed company whose corporate footprint and brands motivate this trail.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/PepsiCo",
+      "extraction_target": "Reason: the number you get by reversing its digits",
+      "extraction_section": null,
+      "extracted_value": 82,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_reversal) on stop 0 value",
+      "reason_transform": "digit_reversal",
+      "reason_source_stop": 0,
+      "reason_code": "result = int(str(abs(int(28)))[::-1])\nprint(result)",
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Food_industry",
+      "extraction_target": "the number of languages the article is available in (as shown under the title)",
+      "extraction_section": null,
+      "extracted_value": 56,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Taco Bell wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Taco_Bell",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Zoom out to the food industry to place PepsiCo within the broader sector and identify common competitors, supply chains and market drivers.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Taco_Bell",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Founded')",
+      "extraction_section": "infobox",
+      "extracted_value": 21,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "San Diego, California wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/San_Diego,_California",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Enter the quick‑service restaurant world — Taco Bell is a major fast‑food brand that intersects with PepsiCo (beverage and snack partnerships) and illustrates brand relationships.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/San_Diego,_California",
+      "extraction_target": "Count the number of stadiums near 32.71500",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "stadiums near 32.71500"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: count stadiums near 32.71500",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/San_Diego,_California",
+      "extraction_target": "Reason: the next prime number after that figure",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (next_prime) on stop 3 value",
+      "reason_transform": "next_prime",
+      "reason_source_stop": 4,
+      "reason_code": "def next_prime(n):\n    n = abs(int(n))\n    if n < 2: return 2\n    candidate = n + 1\n    while True:\n        if all(candidate % i != 0 for i in range(2, int(candidate**0.5)+1)):\n            return candidate\n        candidate += 1\nresult = next_prime(4)\nprint(result)",
+      "depends_on": [
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Pizza_Hut",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Founded')",
+      "extraction_section": "infobox",
+      "extracted_value": 31,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/KFC",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Another major quick‑service brand (Pizza Hut) showing the global franchise model and additional PepsiCo partnerships or competitive channels.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/KFC",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Founded')",
+      "extraction_section": "infobox",
+      "extracted_value": 20,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Latin America wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Latin_America",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "KFC is another global quick‑service chain; comparing founding and ownership histories helps trace consolidation in the food and beverage ecosystem.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Latin_America",
+      "extraction_target": "the area listed in the infobox (field: 'Area')",
+      "extraction_section": "infobox",
+      "extracted_value": 20111457,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "American Civil War wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/American_Civil_War",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Shift to international markets: Latin America is a key growth region for food and beverage multinationals including PepsiCo—use this to discuss market expansion and regional strategies.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        7
+      ]
+    },
+    {
+      "index": 9,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Latin_America",
+      "extraction_target": "Look up the elevation of Latin America",
+      "extraction_section": null,
+      "extracted_value": 50.1087532043457,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Latin America"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Latin America) from https://en.wikipedia.org/wiki/Latin_America",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        8
+      ]
+    },
+    {
+      "index": 10,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Latin_America",
+      "extraction_target": "Look up the count of restaurants near Latin America",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "restaurants near Latin America"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of restaurants near Latin America) from https://en.wikipedia.org/wiki/Latin_America",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        8
+      ]
+    },
+    {
+      "index": 11,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Latin_America",
+      "extraction_target": "Combine the elevation of Latin America and the count of restaurants near Latin America: (50 + 20)",
+      "extraction_section": null,
+      "extracted_value": 70,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(50.1087532043457) + int(20.0)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Latin America add count of restaurants near Latin America",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        9,
+        10
+      ]
+    },
+    {
+      "index": 12,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/American_Civil_War",
+      "extraction_target": "Convert 31 km to miles",
+      "extraction_section": null,
+      "extracted_value": 19,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "# Convert km to miles\nvalue = 31.0\nconverted = value * 0.621371\nresult = int(converted)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "converted"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: convert 31 km to miles",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        11
+      ]
+    },
+    {
+      "index": 13,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/American_Civil_War",
+      "extraction_target": "Reason: the next prime number after that figure",
+      "extraction_section": null,
+      "extracted_value": 23,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (next_prime) on stop 7 value",
+      "reason_transform": "next_prime",
+      "reason_source_stop": 12,
+      "reason_code": "def next_prime(n):\n    n = abs(int(n))\n    if n < 2: return 2\n    candidate = n + 1\n    while True:\n        if all(candidate % i != 0 for i in range(2, int(candidate**0.5)+1)):\n            return candidate\n        candidate += 1\nresult = next_prime(19)\nprint(result)",
+      "depends_on": [
+        12
+      ]
+    },
+    {
+      "index": 14,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Brooklyn,_New_York",
+      "extraction_target": "the elevation listed in the infobox (field: 'Highest elevation [[2]](#cite_note-2)')",
+      "extraction_section": "infobox",
+      "extracted_value": 220,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Brooklyn,_New_York",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Finish in Brooklyn — a dense urban market in New York City that exemplifies high‑volume retail environments where PepsiCo and its quick‑service partners compete and distribute products.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        13
+      ]
+    },
+    {
+      "index": 15,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: (82 + 20111457 + 50 + 19) % 10",
+      "extraction_section": null,
+      "extracted_value": 8,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "(82 + 20111457 + 50 + 19) % 10",
+        "expression_code": "result = (82 + 20111457 + 50 + 19) % 10\nprint(result)",
+        "referenced_stops": [
+          1,
+          8,
+          9,
+          12
+        ]
+      },
+      "reasoning": "Compute stop: (82 + 20111457 + 50 + 19) % 10 = 8",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1,
+        8,
+        9,
+        12
+      ]
+    }
+  ],
+  "passcode": 8,
+  "difficulty": {
+    "level": "medium",
+    "depth": 16,
+    "tool_stop_count": 5,
+    "reason_stop_count": 3,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Unearth the birthplace of a carbonated caper that began in 1898 — when did this global refresher first bubble to life?\n\n2. Reverse the digits of your founding year — what number do you unveil?\n\n3. A realm of nourishment that fuels the appetites of many; how many languages give voice to this culinary domain?\n\n4. Seek the establishment in the fast-food world known for its tacos — what year saw its inception rise?\n\n5. In the sunniest of cities, how many stadiums gather under the skies of this coastal paradise, specifically near the latitude of 32.71500?\n\n6. After your counts of sporting venues, find the next prime number — what new figure emerges from this exploration?\n\n7. The home of a pie-generating establishment is next on this culinary journey — in what year was this pizza phenomenon born?\n\n8. Transition now to the place that's famous for its crispy fried chickens — how many years ago did it crop up as an establishment?\n\n9. A sprawling region rich in culture and resources, this land's size is noteworthy; what number aligns with its sprawling expanse?\n\n10. From the heights of this vibrant region, how high does the ground rise above sea level?\n\n11. The aroma of food tickles the senses in this geographical wonder — how many eateries tempt diners near this area?\n\n12. Combine the elevation you found in clue 10 with the count of restaurants from clue 11; how many do you total?\n\n13. In the historical annals, there’s a transformative conflict with a distance of 31 kilometers — convert this measure into miles.\n\n14. Following the distance converted, uncover the next prime number; what figure do you find hiding there?\n\n15. The borough known for its bridge and diverse culture invites you to explore its peaks — what is the highest elevation recorded here?\n\n16. Gather your numbers! Sum the insights you’ve gathered: (clue 2 + clue 9 + clue 10 + clue 13), then compute the total modulo 10. What single digit surfaces from this arithmetic adventure?",
+  "metadata": {
+    "theme": "A corporate road‑trip: from PepsiCo's headquarters into the food industry, its quick‑service competitors and markets, with economic and geographic checks along the way.",
+    "difficulty": "medium",
+    "sample_id": "sample_152",
+    "pages_crawled": 9593
+  },
+  "generated_at": "2026-03-17T13:40:20.441182+00:00"
+}

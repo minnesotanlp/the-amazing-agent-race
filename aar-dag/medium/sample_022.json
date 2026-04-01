@@ -1,0 +1,499 @@
+{
+  "trail_id": "trail_299e188b",
+  "seed_url": "https://en.wikipedia.org/wiki/Ralph_E._Tyson",
+  "seed_title": "Ralph E. Tyson",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Ralph_E._Tyson",
+      "extraction_target": "age at death (as given in the article)",
+      "extraction_section": null,
+      "extracted_value": 62,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Ralph_E._Tyson",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start at Ralph E. Tyson — the trail's anchor, an African-American federal judge whose service in Louisiana frames this walk through district and appellate courts.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Ralph_E._Tyson",
+      "extraction_target": "Reason: the sum of its distinct prime factors",
+      "extraction_section": null,
+      "extracted_value": 33,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (sum_prime_factors) on stop 0 value",
+      "reason_transform": "sum_prime_factors",
+      "reason_source_stop": 0,
+      "reason_code": "def prime_factors(n):\n    n = abs(int(n))\n    factors = []\n    d = 2\n    while d * d <= n:\n        while n % d == 0:\n            factors.append(d)\n            n //= d\n        d += 1\n    if n > 1: factors.append(n)\n    return factors\nresult = sum(set(prime_factors(62)))\nprint(result)",
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/United_States_District_Court_for_the_Western_District_of_Louisiana",
+      "extraction_target": "the number of judges",
+      "extraction_section": null,
+      "extracted_value": 7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/United_States_District_Court_for_the_Western_District_of_Louisiana",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "The Western District is the district where Tyson served; examine its organization and seats to understand his courtroom geography.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/United_States_District_Court_for_the_Western_District_of_Louisiana",
+      "extraction_target": "Reason: the sum of its digits",
+      "extraction_section": null,
+      "extracted_value": 7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_sum) on stop 1 value",
+      "reason_transform": "digit_sum",
+      "reason_source_stop": 2,
+      "reason_code": "result = sum(int(d) for d in str(abs(int(7))))\nprint(result)",
+      "depends_on": [
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/United_States_District_Court_for_the_Eastern_District_of_Louisiana",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Established')",
+      "extraction_section": "infobox",
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "WGS 84 wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/WGS_84",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Contrast the Eastern District's seat(s) with the Western District to see how Louisiana's federal caseload and courthouses are distributed.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/United_States_District_Court_for_the_Eastern_District_of_Louisiana",
+      "extraction_target": "Look up the elevation of United States District Court for the Eastern District of Louisiana",
+      "extraction_section": null,
+      "extracted_value": 2.114920616149902,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "United States District Court for the Eastern District of Louisiana"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of United States District Court for the Eastern District of Louisiana) from https://en.wikipedia.org/wiki/United_States_District_Court_for_the_Eastern_District_of_Louisiana",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/United_States_District_Court_for_the_Eastern_District_of_Louisiana",
+      "extraction_target": "Look up the Google rating of United States District Court for the Eastern District of Louisiana",
+      "extraction_section": null,
+      "extracted_value": 4.8,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "United States District Court for the Eastern District of Louisiana"
+            },
+            "expected_output": null,
+            "output_key": "place_rating"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (Google rating of United States District Court for the Eastern District of Louisiana) from https://en.wikipedia.org/wiki/United_States_District_Court_for_the_Eastern_District_of_Louisiana",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        4
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/United_States_District_Court_for_the_Eastern_District_of_Louisiana",
+      "extraction_target": "Combine the elevation of United States District Court for the Eastern District of Louisiana and the Google rating of United States District Court for the Eastern District of Louisiana: abs(2 - 4)",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(2.114920616149902) - int(4.8))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of United States District Court for the Eastern District of Louisiana abs_diff Google rating of United States District Court for the Eastern District of Louisiana",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5,
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/WGS_84",
+      "extraction_target": "Convert 62 meters to yards",
+      "extraction_section": null,
+      "extracted_value": 67,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "# Convert meters to yards\nvalue = 62.0\nconverted = value * 1.09361\nresult = int(converted)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "converted"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: convert 62 meters to yards",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        7
+      ]
+    },
+    {
+      "index": 9,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/WGS_84",
+      "extraction_target": "Reason: the largest prime factor of that figure",
+      "extraction_section": null,
+      "extracted_value": 67,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (largest_prime_factor) on stop 3 value",
+      "reason_transform": "largest_prime_factor",
+      "reason_source_stop": 8,
+      "reason_code": "def largest_prime_factor(n):\n    n = abs(int(n))\n    if n <= 1: return n\n    d = 2\n    while d * d <= n:\n        while n % d == 0: n //= d\n        d += 1\n    return n\nresult = largest_prime_factor(67)\nprint(result)",
+      "depends_on": [
+        8
+      ]
+    },
+    {
+      "index": 10,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/United_States_Court_of_Appeals_for_the_Fifth_Circuit",
+      "extraction_target": "the number of federal judicial districts the court has appellate jurisdiction over",
+      "extraction_section": null,
+      "extracted_value": 9,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Frank_Minis_Johnson",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Move up to the Fifth Circuit — the appellate court overseeing Louisiana's districts and the broader legal context for major rulings and judicial careers.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        9
+      ]
+    },
+    {
+      "index": 11,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Frank_Minis_Johnson",
+      "extraction_target": "Convert 3 meters to feet",
+      "extraction_section": null,
+      "extracted_value": 9,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "# Convert meters to feet\nvalue = 3.0\nconverted = value * 3.28084\nresult = int(converted)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "converted"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: convert 3 meters to feet",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        10
+      ]
+    },
+    {
+      "index": 12,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/United_States_District_Court_for_the_District_of_Louisiana",
+      "extraction_target": "the date the District of Alabama was subdivided into Northern and Southern Districts",
+      "extraction_section": "Alabama",
+      "extracted_value": "March 10, 1824",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/United_States_Court_of_Appeals_for_the_Federal_Circuit",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Visit the historical District of Louisiana to trace how the state's federal court structure evolved into the modern Eastern/Western districts.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        11
+      ]
+    },
+    {
+      "index": 13,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/United_States_Court_of_Appeals_for_the_Federal_Circuit",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Established')",
+      "extraction_section": "infobox",
+      "extracted_value": 1,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Morehouse College wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Morehouse_College",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Bring in the Federal Circuit as a structural contrast — a different model of specialized federal appellate jurisdiction to compare with the geographically based Fifth Circuit.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        12
+      ]
+    },
+    {
+      "index": 14,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Morehouse_College",
+      "extraction_target": "the year Morehouse College was established",
+      "extraction_section": null,
+      "extracted_value": "1867",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Morehouse_College",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "End by highlighting Morehouse College as representative of the educational pipeline that has produced many African-American legal professionals and leaders in the judiciary, closing the loop from education to the federal bench.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        13
+      ]
+    },
+    {
+      "index": 15,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: digital_root(33 + 7 + 4)",
+      "extraction_section": null,
+      "extracted_value": 8,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "digital_root(33 + 7 + 4)",
+        "expression_code": "def digital_root(n):\n    n = abs(int(n))\n    return n if n == 0 else ((n - 1) % 9) + 1\nresult = digital_root(33 + 7 + 4)\nprint(result)",
+        "referenced_stops": [
+          1,
+          3,
+          6
+        ]
+      },
+      "reasoning": "Compute stop: digital_root(33 + 7 + 4) = 8",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1,
+        3,
+        6
+      ]
+    }
+  ],
+  "passcode": 8,
+  "difficulty": {
+    "level": "medium",
+    "depth": 16,
+    "tool_stop_count": 5,
+    "reason_stop_count": 3,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Seek the entry about a jurist who contributed his wisdom to Louisiana's bench, gone at an age that you must unveil.\n\n2. What is the sum of the distinct prime factors of the number you just uncovered in the previous clue?\n\n3. A pivotal institution exists in the realm of law within Louisiana's judicial system. Count the number of judges represented there.\n\n4. What is the sum of the digits in the previously counted number of judges? \n\n5. Another court emerged on the horizon of justice in this state. In which year did its mission begin? \n\n6. Elevate your quest to the ground beneath the establishment you just discovered: what is its height above sea level in meters?\n\n7. As you tread further, what rating do patrons bestow upon this establishment? \n\n8. Take the elevation you calculated in clue 6, and combine it with the rating you found in clue 7 by calculating the absolute difference.\n\n9. Among mathematical conversions, what is 62 meters transformed into in terms of yards?\n\n10. Seek the largest prime factor of the converted yardage from the preceding clue.\n\n11. This court operates within the tapestry of judicial districts. How many districts does it have under its appellate jurisdiction?\n\n12. From the realm of height, convert 3 meters into its equivalent amount in feet.\n\n13.  Journey to the article chronicling a court's evolution: what date heralded the subdivision of Alabama's districts?\n\n14. This circuit holds an establishment date—what year marked its inception?\n\n15. At last, delve into the legacy of an academic institution: what year marked the founding of this revered college?\n\n16. With the discoveries you’ve made, compute the digital root of the sum of clues 2, 4, and 7. The final answer shall be a singular digit.",
+  "metadata": {
+    "theme": "From bench to bench: tracing Ralph E. Tyson's place in the federal court system of Louisiana, the Fifth Circuit's judicial history, and the geographic & temporal context that shaped that judiciary.",
+    "difficulty": "medium",
+    "sample_id": "sample_022",
+    "pages_crawled": 2712,
+    "source": "trail_puzzles_v2"
+  },
+  "generated_at": "2026-03-15T17:46:22.033284+00:00"
+}

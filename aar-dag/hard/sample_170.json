@@ -1,0 +1,761 @@
+{
+  "trail_id": "trail_13d58e50",
+  "seed_url": "https://en.wikipedia.org/wiki/Pinduoduo",
+  "seed_title": "Pinduoduo",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Pinduoduo",
+      "extraction_target": "the city and country listed as Pinduoduo's headquarters",
+      "extraction_section": null,
+      "extracted_value": "Shanghai, China",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Pinduoduo",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Seed: Pinduoduo is a major Chinese mobile-first e‑commerce platform — starting point for exploring mobile app distribution, media influence, and global market reach.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Pinduoduo",
+      "extraction_target": "Look up the elevation of Shanghai, China",
+      "extraction_section": null,
+      "extracted_value": 16.13778877258301,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Shanghai, China"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Shanghai, China) from https://en.wikipedia.org/wiki/Pinduoduo",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Pinduoduo",
+      "extraction_target": "Look up the count of stadiums near Shanghai, China",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "stadiums near Shanghai, China"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of stadiums near Shanghai, China) from https://en.wikipedia.org/wiki/Pinduoduo",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Pinduoduo",
+      "extraction_target": "Combine the elevation of Shanghai, China and the count of stadiums near Shanghai, China: abs(16 - 20)",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(16.13778877258301) - int(20.0))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Shanghai, China abs_diff count of stadiums near Shanghai, China",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1,
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Pinduoduo",
+      "extraction_target": "Reason: the number of vowels in that name",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (vowel_count) on stop 0 value",
+      "reason_transform": "vowel_count",
+      "reason_source_stop": 0,
+      "reason_code": "result = sum(1 for c in \"Shanghai, China\".lower() if c in 'aeiou')\nprint(result)",
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Play_Store",
+      "extraction_target": "the number of languages displayed near the top of the article",
+      "extraction_section": null,
+      "extracted_value": 87,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Play Store wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Play_Store",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "App distribution channel: Pinduoduo's mobile presence depends on app stores like Google's Play Store; this stop anchors the technical distribution layer.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Play_Store",
+      "extraction_target": "Reason: the digital root (iterated digit sum until single digit)",
+      "extraction_section": null,
+      "extracted_value": 6,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digital_root) on stop 1 value",
+      "reason_transform": "digital_root",
+      "reason_source_stop": 5,
+      "reason_code": "n = abs(int(87))\nresult = n if n == 0 else ((n - 1) % 9) + 1\nprint(result)",
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Google_Calendar",
+      "extraction_target": "the beta initial release date",
+      "extraction_section": null,
+      "extracted_value": "April 13, 2006",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "New Year's Day wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/New_Year%27s_Day",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Platform services: Google Calendar represents how platform-level services integrate with mobile ecosystems and user habits that support commerce (scheduling, notifications, events).",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/New_Year%27s_Day",
+      "extraction_target": "Calculate the number of days between 2006-04-13 and 2026-03-18",
+      "extraction_section": null,
+      "extracted_value": 7279,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "from datetime import date\nd1 = date.fromisoformat('2006-04-13')\nd2 = date.fromisoformat('2026-03-18')\nresult = abs((d2 - d1).days)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "days"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: date computation 2006-04-13 to 2026-03-18 (pinned)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        7
+      ]
+    },
+    {
+      "index": 9,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Gmail",
+      "extraction_target": "the number of languages listed at the top of the page",
+      "extraction_section": null,
+      "extracted_value": 99,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Gmail",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "User account infrastructure: Gmail exemplifies large-scale user identity and notification systems that underpin app user acquisition and retention for marketplaces.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        8
+      ]
+    },
+    {
+      "index": 10,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Gmail",
+      "extraction_target": "Reason: the number you get by reversing its digits",
+      "extraction_section": null,
+      "extracted_value": 99,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_reversal) on stop 4 value",
+      "reason_transform": "digit_reversal",
+      "reason_source_stop": 9,
+      "reason_code": "result = int(str(abs(int(99)))[::-1])\nprint(result)",
+      "depends_on": [
+        9
+      ]
+    },
+    {
+      "index": 11,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Chromecast",
+      "extraction_target": "the release date of the 2nd gen and Audio Chromecast",
+      "extraction_section": null,
+      "extracted_value": "September 29, 2015",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Apple_TV_(device)",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Device ecosystem: streaming and companion devices (Chromecast) show how digital commerce ties into media consumption and cross-device experiences.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        10
+      ]
+    },
+    {
+      "index": 12,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Apple_TV_(device)",
+      "extraction_target": "the release date of the 1st generation Apple TV shown in the infobox",
+      "extraction_section": null,
+      "extracted_value": "January 9, 2007",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Mass media in China wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Mass_media_in_China",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Companion hardware: Apple TV is another consumer device illustrating multi-vendor device ecosystems that influence content distribution and advertising channels for marketplaces.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        11
+      ]
+    },
+    {
+      "index": 13,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Mass_media_in_China",
+      "extraction_target": "the number of language links shown at the top of the article",
+      "extraction_section": null,
+      "extracted_value": 9,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "COVID-19 lockdown in China wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/COVID-19_lockdown_in_China",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Media & regulation: understanding Chinese mass media and its regulation helps explain market access, advertising, and information flows that affect platforms like Pinduoduo.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        12
+      ]
+    },
+    {
+      "index": 14,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Mass_media_in_China",
+      "extraction_target": "Look up the elevation of Mass media in China",
+      "extraction_section": null,
+      "extracted_value": 1840.539428710938,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Mass media in China"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Mass media in China) from https://en.wikipedia.org/wiki/Mass_media_in_China",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        13
+      ]
+    },
+    {
+      "index": 15,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Mass_media_in_China",
+      "extraction_target": "Look up the Google rating of Mass media in China",
+      "extraction_section": null,
+      "extracted_value": 3.3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "Mass media in China"
+            },
+            "expected_output": null,
+            "output_key": "place_rating"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (Google rating of Mass media in China) from https://en.wikipedia.org/wiki/Mass_media_in_China",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        13
+      ]
+    },
+    {
+      "index": 16,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Mass_media_in_China",
+      "extraction_target": "Combine the elevation of Mass media in China and the Google rating of Mass media in China: abs(1840 - 3)",
+      "extraction_section": null,
+      "extracted_value": 1837,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(1840.539428710938) - int(3.3))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Mass media in China abs_diff Google rating of Mass media in China",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        14,
+        15
+      ]
+    },
+    {
+      "index": 17,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Mass_media_in_China",
+      "extraction_target": "Count libraries near Mass media in China",
+      "extraction_section": null,
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "libraries near Mass media in China"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (nearby_poi) derived from https://en.wikipedia.org/wiki/Mass_media_in_China",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        16
+      ]
+    },
+    {
+      "index": 18,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/COVID-19_lockdown_in_China",
+      "extraction_target": "number of people affected in fifteen other Hubei cities",
+      "extraction_section": null,
+      "extracted_value": 57000000,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Verizon wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Verizon",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Pandemic impact: COVID lockdowns in China affected consumer behavior, supply chains, and accelerated online commerce — directly relevant to Pinduoduo's growth context.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        17
+      ]
+    },
+    {
+      "index": 19,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Verizon",
+      "extraction_target": "Look up the closing price of VZ on 2007-01-09",
+      "extraction_section": null,
+      "extracted_value": 12.99,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "stock_historical_price",
+            "arguments": {
+              "ticker": "VZ",
+              "date": "2007-01-09"
+            },
+            "expected_output": null,
+            "output_key": "stock_price"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: stock price VZ on 2007-01-09",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        18
+      ]
+    },
+    {
+      "index": 20,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Edmonton",
+      "extraction_target": "Count the number of churches near 53.53444",
+      "extraction_section": null,
+      "extracted_value": 15,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "churches near 53.53444"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: count churches near 53.53444",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        19
+      ]
+    },
+    {
+      "index": 21,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Edmonton",
+      "extraction_target": "Reason: the number of characters when written as a Roman numeral",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (roman_numeral_letter_count) on stop 10 value",
+      "reason_transform": "roman_numeral_letter_count",
+      "reason_source_stop": 20,
+      "reason_code": "def to_roman(n):\n    n = abs(int(n))\n    vals = [(1000,'M'),(900,'CM'),(500,'D'),(400,'CD'),(100,'C'),\n            (90,'XC'),(50,'L'),(40,'XL'),(10,'X'),(9,'IX'),(5,'V'),(4,'IV'),(1,'I')]\n    r = ''\n    for v, s in vals:\n        while n >= v:\n            r += s; n -= v\n    return r\nresult = len(to_roman(15))\nprint(result)",
+      "depends_on": [
+        20
+      ]
+    },
+    {
+      "index": 22,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/St_Petersburg",
+      "extraction_target": "the coordinates listed in the infobox (field: 'Coordinates')",
+      "extraction_section": "infobox",
+      "extracted_value": "59.93750, 30.30861",
+      "extracted_value_type": "coords",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/St_Petersburg",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Global endpoint: finishing at a major global city (St Petersburg) emphasizes the international footprint of platforms, media, devices and their overlapping physical markets.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        21
+      ]
+    },
+    {
+      "index": 23,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: abs(99 - 57000000) % 10",
+      "extraction_section": null,
+      "extracted_value": 1,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "abs(99 - 57000000) % 10",
+        "expression_code": "result = abs(99 - 57000000) % 10\nprint(result)",
+        "referenced_stops": [
+          9,
+          18,
+          19
+        ]
+      },
+      "reasoning": "Compute stop: abs(99 - 57000000) % 10 = 1",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        9,
+        18,
+        19
+      ]
+    }
+  ],
+  "passcode": 1,
+  "difficulty": {
+    "level": "hard",
+    "depth": 24,
+    "tool_stop_count": 10,
+    "reason_stop_count": 4,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. A digital marketplace with roots in the East, find the city where its heart beats, nestled within the nation's embrace. What is the name of this urban hub in its homeland?\n\n2. Look up the altitude of this thriving metropolis, where commerce flourishes and innovation reigns. What height does it rise to above the ocean's blue?\n\n3. Nearby, spectators gather in excitement. How many arenas do you find, places of sport and gathering, within this bustling region?\n\n4. With the answers from your previous discoveries, subtract the count of stadiums from the city's elevation. What is the absolute value of this difference?\n\n5. The name of the digital pioneer brings tunes to ears. Count the vowels in that name; how many harmonies do you uncover within it?\n\n6. Some applications speak many tongues. Discover how many languages are listed at the beginning of the article on a certain application distribution platform.\n\n7. Take the digital path a step further; from the language number revealed, what is the digital root? Iterate the sum of its digits until a single number remains.\n\n8. A calendar that marks time's passage has its birth documented. Seek the date when its beta version first graced the world, considering the event that starts the new year.\n\n9. In the timeline stretching from one date to another, find how many days bridge the gap between mid-April of 2006 and March in 2026.\n\n10. Probe the number of languages displayed at the summit of the email service article. A communication tool has many forms— what count do you find?\n\n11. Now, reverse the digits of your previous discovery. How does this reflection manifest itself as a new value?\n\n12. Seek out the release of a certain streaming device. When did its second generation and audio counterpart first appear on the scene?\n\n13. The first in another line of devices made waves when it launched. Find the date marked as the launching day of this initial model, celebrated in an article about a specific media device.\n\n14. Turn your gaze to another article that discusses a country's communication landscape. How many languages can be spotted at the start of this entry?\n\n15. To grasp the height from which media ascends, check the elevation of a topic related to media in the same country. What is this promising figure?\n\n16. Investigate the evaluations of this media page; what score do visitors assign to it in their impressions?\n\n17. The essence of facts gathered awaits you; combine the elevation of media's landscape with its Google rating. What is the absolute number formed by their difference?\n\n18. Libraries echo knowledge. Count how many near the center of media dwell in proximity. What is their number?\n\n19. An outbreak rippled through cities in Hubei, causing distress. How many lives were affected across fifteen such locales?\n\n20. Another realm of telecommunications offers insight; seek the closing stock price of a specific entity on a fateful day in early 2007— what was the final figure?\n\n21. A city known for its vastness, check the communities of faith nearby specific coordinates. Here lies the number of churches gathered around an important part of its address.\n\n22. What unique count arises when the figure of churches is transformed into a Roman numeral? Reflect this transformation.\n\n23. Now, discover the geographic coordinates recorded for a certain historical city of grandeur. What digits compose its defined location?\n\n24. Combine all your prior findings: subtract the total number affected in Hubei (from clue 19) from the number of languages found in the email service page (from clue 10), and then the stock price (from clue 20). Seal this with a modulus of 10. What single digit does this computation yield?",
+  "metadata": {
+    "theme": "Tracing Pinduoduo's path from a Chinese mobile marketplace into the global digital ecosystem — app distribution, platform services, media & pandemic effects, telecom infrastructure, and real-world market geography.",
+    "difficulty": "hard",
+    "sample_id": "sample_170",
+    "pages_crawled": 18978
+  },
+  "generated_at": "2026-03-18T10:38:50.904791+00:00"
+}

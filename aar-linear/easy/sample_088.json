@@ -1,0 +1,152 @@
+{
+  "trail_id": "trail_4ddb4a8a",
+  "seed_url": "https://en.wikipedia.org/wiki/Shooting_at_the_2005_Mediterranean_Games",
+  "seed_title": "Shooting at the 2005 Mediterranean Games",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Shooting_at_the_2005_Mediterranean_Games",
+      "extraction_target": "number of men's events listed in the Men's competition section",
+      "extraction_section": "Men's competition",
+      "extracted_value": 7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "1997 Australian Open wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/1997_Australian_Open",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start here: the seed event anchors the trail in 2005 and gives the host city/venue to use as a reference point for travel and environmental comparisons.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/1997_Australian_Open",
+      "extraction_target": "Calculate the number of days between 1997-01-26 and 2026-03-15",
+      "extraction_section": null,
+      "extracted_value": 10640,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "from datetime import date\nd1 = date.fromisoformat('1997-01-26')\nd2 = date.fromisoformat('2026-03-15')\nresult = abs((d2 - d1).days)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "days"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: date computation 1997-01-26 to 2026-03-15 (pinned)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/1997_Australian_Open",
+      "extraction_target": "Reason: the number of 1-bits in its binary representation",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (binary_1bit_count) on stop 1 value",
+      "reason_transform": "binary_1bit_count",
+      "reason_source_stop": 1,
+      "reason_code": "result = bin(abs(int(10640))).count('1')\nprint(result)"
+    },
+    {
+      "index": 3,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/2005_NBA_draft",
+      "extraction_target": "the date listed in the infobox (field: 'Date')",
+      "extraction_section": "infobox",
+      "extracted_value": "June 28, 2005",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/2005_NBA_draft",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A contemporaneous 2005 sports milestone showing athlete career progression (amateur-to-pro). Extracting venue/date ties another 2005 event into the narrative and provides a second geographic anchor.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 4,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: (7 + 10640) % 10",
+      "extraction_section": null,
+      "extracted_value": 7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "(7 + 10640) % 10",
+        "expression_code": "result = (7 + 10640) % 10\nprint(result)",
+        "referenced_stops": [
+          0,
+          1
+        ]
+      },
+      "reasoning": "Compute stop: (7 + 10640) % 10 = 7",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 7,
+  "difficulty": {
+    "level": "easy",
+    "depth": 5,
+    "tool_stop_count": 1,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "Here is the revised riddle:\n\n1. Seek the page that details the events held during the Mediterranean Games of 2005, particularly in the discipline involving firearms; how many distinct men's shooting events are recorded there?\n\n2. How many days lie between 26 January 1997 (the tournament's opening in Australia) and 15 March 2026 — compute the span in days from 1997-01-26 to 2026-03-15.\n\n3. If you convert the day-count you obtained in clue 2 into binary, how many 1-bits appear in that binary representation?\n\n4. The article whose opening line recounts the 2005 professional basketball draft hides a single calendar entry for that event; read the page and note the date given for the draft (you will only need to have seen it to verify context).\n\n5. In the end, perform this arithmetic with the numbers you uncovered earlier: compute (clue 1 + clue 2) modulo 10 and report the result — your final answer should be a single digit between 0 and 9.",
+  "metadata": {
+    "theme": "A small investigative trail through international sporting events: starting at the 2005 Mediterranean Games shooting competition, then comparing travel burdens and historical weather that shape athletes' performances and career opportunities.",
+    "difficulty": "easy",
+    "sample_id": "sample_088",
+    "pages_crawled": 3511,
+    "source": "trail_puzzles_v2"
+  },
+  "generated_at": "2026-03-15T18:12:40.706969+00:00"
+}

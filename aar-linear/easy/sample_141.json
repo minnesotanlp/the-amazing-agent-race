@@ -1,0 +1,152 @@
+{
+  "trail_id": "trail_e2635d17",
+  "seed_url": "https://en.wikipedia.org/wiki/Cisco",
+  "seed_title": "Cisco",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Cisco",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Founded')",
+      "extraction_section": "infobox",
+      "extracted_value": 10,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Integrated circuit wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Integrated_circuit",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start at Cisco — a canonical networking company whose products depend on semiconductor technology; extract its HQ/founding info to anchor the trail geographically and historically.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Integrated_circuit",
+      "extraction_target": "the number of languages listed at the top of the article",
+      "extraction_section": null,
+      "extracted_value": 92,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Integrated_circuit",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Move to the integrated circuit page to explain the essential hardware building block that enables networking equipment like Cisco's routers and switches.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Integrated_circuit",
+      "extraction_target": "Count libraries near Integrated circuit",
+      "extraction_section": null,
+      "extracted_value": 8,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "libraries near Integrated circuit"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (nearby_poi) derived from https://en.wikipedia.org/wiki/Integrated_circuit",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 3,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Integrated_circuit",
+      "extraction_target": "Reason: the next prime number after that figure",
+      "extraction_section": null,
+      "extracted_value": 97,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (next_prime) on stop 1 value",
+      "reason_transform": "next_prime",
+      "reason_source_stop": 1,
+      "reason_code": "def next_prime(n):\n    n = abs(int(n))\n    if n < 2: return 2\n    candidate = n + 1\n    while True:\n        if all(candidate % i != 0 for i in range(2, int(candidate**0.5)+1)):\n            return candidate\n        candidate += 1\nresult = next_prime(92)\nprint(result)"
+    },
+    {
+      "index": 4,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: digital_root(10 + 92 + 97)",
+      "extraction_section": null,
+      "extracted_value": 1,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "digital_root(10 + 92 + 97)",
+        "expression_code": "def digital_root(n):\n    n = abs(int(n))\n    return n if n == 0 else ((n - 1) % 9) + 1\nresult = digital_root(10 + 92 + 97)\nprint(result)",
+        "referenced_stops": [
+          0,
+          1,
+          3
+        ]
+      },
+      "reasoning": "Compute stop: digital_root(10 + 92 + 97) = 1",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 1,
+  "difficulty": {
+    "level": "easy",
+    "depth": 5,
+    "tool_stop_count": 1,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Seek the American technology giant known for transforming networking through its innovative solutions. In what year did this influential company come into existence? \n\n2. What electronic marvel is described as a tiny circuit formed on a small, flat piece of semiconductor material? How many languages grace this article?\n\n3. Tread further to discover the nearby repositories of knowledge and ideas that abound near this tiny technology. How many such libraries can you find in proximity?\n\n4. If the previous figure got your mind racing, ponder anew: what is the next prime number after that count? \n\n5. Now, gather all your discoveries. Compute the digital root of (clue 1 + clue 2 + clue 4). What single digit emerges from this summation? Remember, your answer must lie between 0 and 9.",
+  "metadata": {
+    "theme": "From networking infrastructure to the silicon that powers it — trace Cisco (networking) to the fundamental integrated circuit technology, then check a major chip designer's market value.",
+    "difficulty": "easy",
+    "sample_id": "sample_141",
+    "pages_crawled": 1550
+  },
+  "generated_at": "2026-03-17T08:30:02.246732+00:00"
+}

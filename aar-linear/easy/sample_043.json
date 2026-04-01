@@ -1,0 +1,176 @@
+{
+  "trail_id": "trail_801b7656",
+  "seed_url": "https://en.wikipedia.org/wiki/The_Persistence_of_Memory_(novel)",
+  "seed_title": "The Persistence of Memory (novel)",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/The_Persistence_of_Memory_(novel)",
+      "extraction_target": "the publication date listed in the infobox",
+      "extraction_section": null,
+      "extracted_value": "June 2004",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Public art wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Public_art",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start with the novel whose title evokes a famous visual image of memory; establishes the literary framing of 'memory' that the trail will follow into the public realm.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Public_art",
+      "extraction_target": "the number of subsections listed under 'Characteristics of public art' in the table of contents",
+      "extraction_section": "Characteristics of public art",
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Women's Rights Pioneers Monument wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Women%27s_Rights_Pioneers_Monument",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Moves from literary memory to the concept of public art — the mechanisms by which societies externalize and preserve collective memory in shared spaces.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Women%27s_Rights_Pioneers_Monument",
+      "extraction_target": "the installation date of the Women's Rights Pioneers Monument",
+      "extraction_section": null,
+      "extracted_value": "August 26, 2020",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Saint Anthony Falls wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Saint_Anthony_Falls",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A concrete case study: a modern monument that literally materializes memory (women's history) in the urban landscape, showing how new public art reshapes collective remembrance.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Saint_Anthony_Falls",
+      "extraction_target": "Count the number of churches near Mississippi River into the Mississippi River Gorge in Minneapolis",
+      "extraction_section": null,
+      "extracted_value": 20,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "churches near Mississippi River into the Mississippi River Gorge in Minneapolis"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: count churches near Mississippi River into the Mississippi River Gorge in Minneapolis",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 4,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Saint_Anthony_Falls",
+      "extraction_target": "Reason: the number you get by reversing its digits",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_reversal) on stop 3 value",
+      "reason_transform": "digit_reversal",
+      "reason_source_stop": 3,
+      "reason_code": "result = int(str(abs(int(20)))[::-1])\nprint(result)"
+    },
+    {
+      "index": 5,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: digital_root(3 + 20 + 2)",
+      "extraction_section": null,
+      "extracted_value": 7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "digital_root(3 + 20 + 2)",
+        "expression_code": "def digital_root(n):\n    n = abs(int(n))\n    return n if n == 0 else ((n - 1) % 9) + 1\nresult = digital_root(3 + 20 + 2)\nprint(result)",
+        "referenced_stops": [
+          1,
+          3,
+          4
+        ]
+      },
+      "reasoning": "Compute stop: digital_root(3 + 20 + 2) = 7",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 7,
+  "difficulty": {
+    "level": "easy",
+    "depth": 6,
+    "tool_stop_count": 1,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "Here is the revised riddle:\n\n1. Seek the seed page that explores a literary work known for its surreal depiction of time and dreams, and note the date the book first appeared in print as shown near the top of that entry.\n\n2. There exists a companion page that surveys how communities fix memory in stone and steel; on that survey, count the number of subheadings nested beneath the section which lists the traits common to works sited in public space.\n\n3. Which modern monument honoring early women’s-rights activists is discussed nearby, and on its page record the date when the sculpture was installed or unveiled.\n\n4. If you follow the current of memory to the river that carves a gorge beneath Minneapolis, count how many churches stand along the stretch where the Mississippi drops into that gorge.\n\n5. The number you will carry onward is simply the digits of that church-count read backwards; reverse the sequence of digits you obtained in the previous step to create this next value.\n\n6. In the end, compute the digital root of (clue 2 + clue 4 + clue 5) and report that single digit between 0 and 9 as your final answer.",
+  "metadata": {
+    "theme": "Memory in material culture — tracing how literary memory (a novel titled after a famous image) connects to public art and monuments that fix collective memory in place",
+    "difficulty": "easy",
+    "sample_id": "sample_043",
+    "pages_crawled": 1871,
+    "source": "trail_puzzles_v2"
+  },
+  "generated_at": "2026-03-15T13:52:02.735341+00:00"
+}

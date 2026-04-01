@@ -1,0 +1,175 @@
+{
+  "trail_id": "trail_0ad93dfb",
+  "seed_url": "https://en.wikipedia.org/wiki/Mastercard",
+  "seed_title": "Mastercard",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Mastercard",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Founded')",
+      "extraction_section": "infobox",
+      "extracted_value": 1966,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Mastercard",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start at Mastercard — the seed company whose stock ticker and headquarters will anchor comparisons and location-based checks across the trail.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Mastercard",
+      "extraction_target": "Look up the Google rating of Mastercard",
+      "extraction_section": null,
+      "extracted_value": 5.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "Mastercard"
+            },
+            "expected_output": null,
+            "output_key": "place_rating"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (place_rating) derived from https://en.wikipedia.org/wiki/Mastercard",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Mastercard",
+      "extraction_target": "Reason: the day of the week for January 1st of that year (1=Mon, 7=Sun)",
+      "extraction_section": null,
+      "extracted_value": 6,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (day_of_week) on stop 0 value",
+      "reason_transform": "day_of_week",
+      "reason_source_stop": 0,
+      "reason_code": "from datetime import date\nresult = date(abs(int(1966)), 1, 1).isoweekday()\nprint(result)"
+    },
+    {
+      "index": 3,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/London",
+      "extraction_target": "the population listed in the infobox (field: '• [Urban](/wiki/Urban_area \"Urban area\") (2011)[[3]](#cite_note-urbanpopulation-4)')",
+      "extraction_section": "infobox",
+      "extracted_value": 9787428,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Federal Reserve wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Federal_Reserve",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Visit London as a leading global financial centre to illustrate Mastercard's international market presence and adoption in major cities.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 4,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Federal_Reserve",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Established')",
+      "extraction_section": "infobox",
+      "extracted_value": 23,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Federal_Reserve",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Conclude with the Federal Reserve to provide regulatory and monetary-policy context that shapes payment networks and corporate behaviour.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 5,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: abs(1966 - 9787428) % 10",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "abs(1966 - 9787428) % 10",
+        "expression_code": "result = abs(1966 - 9787428) % 10\nprint(result)",
+        "referenced_stops": [
+          0,
+          3,
+          4
+        ]
+      },
+      "reasoning": "Compute stop: abs(1966 - 9787428) % 10 = 2",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 2,
+  "difficulty": {
+    "level": "easy",
+    "depth": 6,
+    "tool_stop_count": 1,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Unearth the multinational entity known for its financial services — in what year did it first open its doors to the world?\n\n2. Within the digital marketplace, what star rating do patrons bestow upon this renowned payment giant?\n\n3. Imagine the calendar of its founding — what day of the week dawned on January 1st of that year? (Think of 1 as Monday and 7 as Sunday.)\n\n4. A bustling metropolis awaits you — can you reveal the number of inhabitants living in this capital city of England?\n\n5. The heart of American finance beats steadily — ascertain the year when this vital institution was established.\n\n6. To complete your quest, calculate the absolute difference between the year founded from clue 1 and the population from clue 4, followed by finding the remainder when divided by 10. Your answer is a single digit between 0 and 9: abs(clue 1 - clue 4) % 10.",
+  "metadata": {
+    "theme": "Tracing Mastercard's place in the global payments ecosystem: corporate footprint, tech partnerships, major financial centres, and regulatory context",
+    "difficulty": "easy",
+    "sample_id": "sample_154",
+    "pages_crawled": 2200
+  },
+  "generated_at": "2026-03-17T09:21:59.880694+00:00"
+}

@@ -1,0 +1,325 @@
+{
+  "trail_id": "trail_17699ed0",
+  "seed_url": "https://en.wikipedia.org/wiki/Meredith_Bergmann",
+  "seed_title": "Meredith Bergmann",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Meredith_Bergmann",
+      "extraction_target": "the year Bergmann's statue of Marian Anderson was unveiled",
+      "extraction_section": "Education and career",
+      "extracted_value": "2006",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Women%27s_Rights_Pioneers_Monument",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start with Meredith Bergmann herself — identify her signature public sculptures and background to anchor the trail's focus on monuments.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Women%27s_Rights_Pioneers_Monument",
+      "extraction_target": "the location listed in the infobox (field: 'Location')",
+      "extraction_section": "infobox",
+      "extracted_value": "New York City, New York \"New York (state)\"), U.S.",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Chrysler Museum of Art wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Chrysler_Museum_of_Art",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Follow to Bergmann's high-profile public work (the Women's Rights Pioneers Monument) to get the specific site and date that exemplify her monument work.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Women%27s_Rights_Pioneers_Monument",
+      "extraction_target": "Look up the elevation of New York City, New York \"New York (state)\"), U.S.",
+      "extraction_section": null,
+      "extracted_value": 13.36520862579346,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "New York City, New York \"New York (state)\"), U.S."
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of New York City, New York \"New York (state)\"), U.S.) from https://en.wikipedia.org/wiki/Women%27s_Rights_Pioneers_Monument",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Women%27s_Rights_Pioneers_Monument",
+      "extraction_target": "Look up the count of libraries near New York City, New York \"New York (state)\"), U.S.",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "libraries near New York City, New York \"New York (state)\"), U.S."
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of libraries near New York City, New York \"New York (state)\"), U.S.) from https://en.wikipedia.org/wiki/Women%27s_Rights_Pioneers_Monument",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Women%27s_Rights_Pioneers_Monument",
+      "extraction_target": "Combine the elevation of New York City, New York \"New York (state)\"), U.S. and the count of libraries near New York City, New York \"New York (state)\"), U.S.: (13 + 20)",
+      "extraction_section": null,
+      "extracted_value": 33,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(13.36520862579346) + int(20.0)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of New York City, New York \"New York (state)\"), U.S. add count of libraries near New York City, New York \"New York (state)\"), U.S.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2,
+        3
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Chrysler_Museum_of_Art",
+      "extraction_target": "Look up the elevation at Chrysler Museum of Art",
+      "extraction_section": null,
+      "extracted_value": 2.566356897354126,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Chrysler Museum of Art"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for Chrysler Museum of Art",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Commonwealth_Avenue_(Boston)",
+      "extraction_target": "Calculate the number of days between 2006-01-01 and 2026-03-15",
+      "extraction_section": null,
+      "extracted_value": 7378,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "from datetime import date\nd1 = date.fromisoformat('2006-01-01')\nd2 = date.fromisoformat('2026-03-15')\nresult = abs((d2 - d1).days)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "days"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: date computation 2006-01-01 to 2026-03-15 (pinned)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Commonwealth_Avenue_(Boston)",
+      "extraction_target": "Reason: the sum of its digits",
+      "extraction_section": null,
+      "extracted_value": 25,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_sum) on stop 3 value",
+      "reason_transform": "digit_sum",
+      "reason_source_stop": 6,
+      "reason_code": "result = sum(int(d) for d in str(abs(int(7378))))\nprint(result)",
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: abs(2006 - 33) % 10",
+      "extraction_section": null,
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "abs(2006 - 33) % 10",
+        "expression_code": "result = abs(2006 - 33) % 10\nprint(result)",
+        "referenced_stops": [
+          0,
+          4,
+          7
+        ]
+      },
+      "reasoning": "Compute stop: abs(2006 - 33) % 10 = 3",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0,
+        4,
+        7
+      ]
+    }
+  ],
+  "passcode": 3,
+  "difficulty": {
+    "level": "easy",
+    "depth": 9,
+    "tool_stop_count": 5,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. In a world where artistry breathes life into granite and bronze, discover the year when Meredith Bergmann unveiled her tribute to a songbird of history. \n\n2. A magnificent commemoration of women's achievements now stands proudly in a park where history whispers. Can you identify the city where this notable sculpture resides?\n\n3. Seek the lofty heights of a bustling metropolis where dreams reach for the sky. What is the elevation above sea level in this vibrant urban center?\n\n4. Within the heart of this cultural hub, libraries abound where knowledge flourishes. Count how many of these repositories of wisdom are within reach.\n\n5. Add the altitude you uncovered in clue 3 to the total of libraries you just found in clue 4. What new number emerges from this union?\n\n6. Turn your gaze toward a renowned museum devoted to art and culture. What is the height above the ground at this esteemed location?\n\n7. In a 20-year span, numerous waves of change can be marked by days that pass uncounted. How many days lie between January 1, 2006, and March 15, 2026?\n\n8. The multitude of days you counted in clue 7 holds a secret within its digits. What is the sum of those digits?\n\n9. To finish your journey, let’s weave together the insights from your clues. Compute the absolute difference between the year recorded in clue 1 and the sum from clue 5, then reduce that total by the knowledge gathered in clue 8, wrapping all together with a modulo of 10. What single digit does this calculation yield?",
+  "metadata": {
+    "theme": "Tracing a sculptor's public art: from the artist (Meredith Bergmann) to her monument, then situating public sculpture in urban places (museum site elevation and public-art density on a major avenue).",
+    "difficulty": "easy",
+    "sample_id": "sample_039",
+    "pages_crawled": 1786,
+    "source": "trail_puzzles_v2"
+  },
+  "generated_at": "2026-03-15T13:32:17.757629+00:00"
+}

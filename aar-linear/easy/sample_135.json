@@ -1,0 +1,151 @@
+{
+  "trail_id": "trail_6d8e8406",
+  "seed_url": "https://en.wikipedia.org/wiki/Nvidia",
+  "seed_title": "Nvidia",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Nvidia",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Founded')",
+      "extraction_section": "infobox",
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/AMD",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Seed: Nvidia is the GPU and AI-hardware leader that anchors this trail — extracting its HQ and core products locates the company in Silicon Valley and frames the industrial focus.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/AMD",
+      "extraction_target": "the number of subsections listed under the CPUs and APUs section (2.1.1–2.1.6)",
+      "extraction_section": "CPUs and APUs",
+      "extracted_value": 6,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/AMD",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Visit AMD as a major competitor/partner in CPUs and GPUs; extracting its ticker and product focus lets us compare market positioning and product overlap with Nvidia and Arm.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/AMD",
+      "extraction_target": "Reason: the number of characters when written as a Roman numeral",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (roman_numeral_letter_count) on stop 1 value",
+      "reason_transform": "roman_numeral_letter_count",
+      "reason_source_stop": 1,
+      "reason_code": "def to_roman(n):\n    n = abs(int(n))\n    vals = [(1000,'M'),(900,'CM'),(500,'D'),(400,'CD'),(100,'C'),\n            (90,'XC'),(50,'L'),(40,'XL'),(10,'X'),(9,'IX'),(5,'V'),(4,'IV'),(1,'I')]\n    r = ''\n    for v, s in vals:\n        while n >= v:\n            r += s; n -= v\n    return r\nresult = len(to_roman(6))\nprint(result)"
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Sunnyvale,_California",
+      "extraction_target": "Count the number of temples near 37.37111",
+      "extraction_section": null,
+      "extracted_value": 10,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "temples near 37.37111"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: count temples near 37.37111",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 4,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: (6 + 10) % 10",
+      "extraction_section": null,
+      "extracted_value": 6,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "(6 + 10) % 10",
+        "expression_code": "result = (6 + 10) % 10\nprint(result)",
+        "referenced_stops": [
+          1,
+          3
+        ]
+      },
+      "reasoning": "Compute stop: (6 + 10) % 10 = 6",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 6,
+  "difficulty": {
+    "level": "easy",
+    "depth": 5,
+    "tool_stop_count": 1,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "direct_link"
+  },
+  "riddle": "Here is the revised riddle:\n\n1. Seek the page named after a pioneering American company known for its graphics processing units and artificial intelligence technologies; what year does its founding date record? After you note that year, follow the in-page link that leads to its three-letter chipmaking rival.\n\n2. There exists a page whose \"CPUs and APUs\" section splinters into several sub-subsections; count how many such numbered subsections (those labeled in the 2.1.1–2.1.6 style) appear there.\n\n3. What is the length, in characters, of the Roman‑numeral form of the number you just uncovered in clue 2? Convert that count into Roman numerals and then report how many letters long that Roman representation is.\n\n4. If you drop a pin at latitude 37.37111 in the Silicon Valley city associated with that coordinate, how many temples turn up when you search for nearby places of worship labeled as temples? Use that search result count as your value here.\n\n5. The single digit you seek is obtained by a simple modular sum: compute (clue 2 + clue 4) modulo 10, and present that result as a single digit between 0 and 9.",
+  "metadata": {
+    "theme": "Tracing the modern semiconductor ecosystem: start at GPU leader Nvidia, check market signals for a core chip IP company, inspect a major direct competitor, and then ground the story in Silicon Valley's local tech density.",
+    "difficulty": "easy",
+    "sample_id": "sample_135",
+    "pages_crawled": 1200
+  },
+  "generated_at": "2026-03-17T08:01:00.239425+00:00"
+}

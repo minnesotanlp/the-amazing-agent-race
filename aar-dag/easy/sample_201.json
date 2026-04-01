@@ -1,0 +1,141 @@
+{
+  "trail_id": "trail_f2ff4018",
+  "seed_url": "https://en.wikipedia.org/wiki/Paul_Celan",
+  "seed_title": "Paul Celan",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Paul_Celan",
+      "extraction_target": "The age of Paul Celan at the time of his death",
+      "extraction_section": null,
+      "extracted_value": "49",
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Paul_Celan",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Paul Celan was a German-speaking poet of Romanian origin known for his work that reflects the trauma and experiences as a Holocaust survivor.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Paul_Celan",
+      "extraction_target": "Reason: the digital root (iterated digit sum until single digit)",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digital_root) on stop 0 value",
+      "reason_transform": "digital_root",
+      "reason_source_stop": 0,
+      "reason_code": "n = abs(int(49))\nresult = n if n == 0 else ((n - 1) % 9) + 1\nprint(result)",
+      "depends_on": []
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Romania_in_World_War_II",
+      "extraction_target": "Look up the elevation at Romania in World War II",
+      "extraction_section": null,
+      "extracted_value": 627.357421875,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Romania in World War II"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for Romania in World War II",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 3,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: abs(49 - 4) % 10",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "abs(49 - 4) % 10",
+        "expression_code": "result = abs(49 - 4) % 10\nprint(result)",
+        "referenced_stops": [
+          0,
+          1,
+          2
+        ]
+      },
+      "reasoning": "Compute stop: abs(49 - 4) % 10 = 5",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    }
+  ],
+  "passcode": 5,
+  "difficulty": {
+    "level": "easy",
+    "depth": 4,
+    "tool_stop_count": 1,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "direct_link"
+  },
+  "riddle": "1. Begin your quest with a German-language poet, a soul who penned verses while the shadows of history loomed large, and survived the darkest chapters of the 20th century. How many years did this voice from Romania echo into the world before falling silent?\n\n2. With the number from the previous quest, engage in an ancient mystery of numbers—what remains when you strip it down to its essence, iteratively summing digits until only one remains?\n\n3. Seek now the historical chapter when neutrality turned to conflict for a certain Eastern European kingdom. Ascend to the heights where this land stands—what is its measure above the sea?\n\n4. The final enigma draws near. With precision, take the absolute difference between the age uncovered in your first finding and your numeric revelation in the second quest. Then dance within the realms of tens, concluding your journey with a final calculation: \\( \\text{abs(result from clue 1 - result from clue 2)} \\mod 10 \\).\n\nYour final discovery awaits, a single digit offering clarity among the shadows.",
+  "metadata": {
+    "theme": "Tracing the Shadows of World War II and Poetry",
+    "difficulty": "easy",
+    "sample_id": "sample_201",
+    "pages_crawled": 105
+  },
+  "generated_at": "2026-03-27T06:48:21.752391+00:00"
+}

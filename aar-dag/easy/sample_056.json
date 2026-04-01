@@ -1,0 +1,334 @@
+{
+  "trail_id": "trail_f33e51a6",
+  "seed_url": "https://en.wikipedia.org/wiki/Belteyevka",
+  "seed_title": "Belteyevka",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Belteyevka",
+      "extraction_target": "the population of Belteyevka as of 2010",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Belteyevka",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start at a small rural locality to frame the question: how do people in remote places receive broadcast media?",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Belteyevka",
+      "extraction_target": "Look up the elevation of Belteyevka",
+      "extraction_section": null,
+      "extracted_value": 166.3036651611328,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Belteyevka"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Belteyevka) from https://en.wikipedia.org/wiki/Belteyevka",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Belteyevka",
+      "extraction_target": "Look up the count of temples near Belteyevka",
+      "extraction_section": null,
+      "extracted_value": 1.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "temples near Belteyevka"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of temples near Belteyevka) from https://en.wikipedia.org/wiki/Belteyevka",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Belteyevka",
+      "extraction_target": "Combine the elevation of Belteyevka and the count of temples near Belteyevka: abs(166 - 1)",
+      "extraction_section": null,
+      "extracted_value": 165,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(166.3036651611328) - int(1.0))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Belteyevka abs_diff count of temples near Belteyevka",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1,
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Belteyevka",
+      "extraction_target": "Reason: the number of 1-bits in its binary representation",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (binary_1bit_count) on stop 0 value",
+      "reason_transform": "binary_1bit_count",
+      "reason_source_stop": 0,
+      "reason_code": "result = bin(abs(int(5))).count('1')\nprint(result)",
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Sentech",
+      "extraction_target": "year from which Sentech covers many areas of the country by Digital Terrestrial Television or Direct-to-Home platform",
+      "extraction_section": "Background",
+      "extracted_value": "2021",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/M-Net",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Sentech is a national signal distributor — use it to illustrate the role of transmission infrastructure that gets signals into rural areas.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/M-Net",
+      "extraction_target": "the number of languages listed in the infobox",
+      "extraction_section": null,
+      "extracted_value": 8,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/DStv",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "M-Net is a major content broadcaster in South Africa; this stop shows the content side that relies on distribution networks.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/DStv",
+      "extraction_target": "the number of audio channels provided by the DMX service at launch",
+      "extraction_section": "History",
+      "extracted_value": 40,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Naspers",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "DStv is the satellite/pay-TV platform delivering channels (including M-Net) to subscribers — a practical example of reaching dispersed populations.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Naspers",
+      "extraction_target": "Look up the population of South Africa",
+      "extraction_section": null,
+      "extracted_value": 63100945,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "countries_population",
+            "arguments": {
+              "country": "South Africa"
+            },
+            "expected_output": null,
+            "output_key": "population"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: population of South Africa",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        7
+      ]
+    },
+    {
+      "index": 9,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: digital_root(1 + 165 + 63100945)",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "digital_root(1 + 165 + 63100945)",
+        "expression_code": "def digital_root(n):\n    n = abs(int(n))\n    return n if n == 0 else ((n - 1) % 9) + 1\nresult = digital_root(1 + 165 + 63100945)\nprint(result)",
+        "referenced_stops": [
+          2,
+          3,
+          8
+        ]
+      },
+      "reasoning": "Compute stop: digital_root(1 + 165 + 63100945) = 5",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2,
+        3,
+        8
+      ]
+    }
+  ],
+  "passcode": 5,
+  "difficulty": {
+    "level": "easy",
+    "depth": 10,
+    "tool_stop_count": 4,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "direct_link"
+  },
+  "riddle": "1. A quaint village tucked away in the vastness of Russia, this locality held a certain number of residents in the year 2010. Can you uncover its total population?\n\n2. Ascend to the height where nature meets the sky in this rural setting. How tall does this community rise above sea level?\n\n3. Nearby, structures of worship dot the landscape. How many temples can you find nestled around this serene hamlet?\n\n4. Your next task intertwines your two previous discoveries: subtract the count of temples in clue 3 from the elevation you calculated in clue 2. What is the absolute difference?\n\n5. The soul count of the village you explored provides another layer of meaning. Transform it into binary and uncover how many 1-bits illuminate its digital form.\n\n6. In a realm of modern broadcasting, a company began to spread its wings, providing coverage across vast regions through digital means. In which year did this endeavor take flight? \n\n7. Hurdling through the realms of communication, seek the page where a specific media entity operates in multiple tongues. What is the count of languages it embraces?\n\n8. The channel provider known for bringing entertainment into homes offers a delightful array of audio experiences. At its launch, how many audio channels did the DMX service provide?\n\n9. In the heart of southern Africa lies a nation, rich in diversity. Can you figure out the total population of this land of contrasts?\n\n10. As you wrap your journey, meld the discoveries from clues 3, 4, and 9 into a single computation: find the digital root of (1 + the count from clue 3 + the absolute difference from clue 4 + the population from clue 9). Your answer must be a single digit.",
+  "metadata": {
+    "theme": "From a small rural locality to the reach of modern broadcasters — tracing how broadcast infrastructure and corporate ownership deliver media to remote communities.",
+    "difficulty": "easy",
+    "sample_id": "sample_056",
+    "pages_crawled": 2307,
+    "source": "trail_puzzles_v2"
+  },
+  "generated_at": "2026-03-15T14:59:12.763370+00:00"
+}

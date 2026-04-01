@@ -1,0 +1,208 @@
+{
+  "trail_id": "trail_68e4058d",
+  "seed_url": "https://en.wikipedia.org/wiki/No_Sleep_'till_Bedtime",
+  "seed_title": "No Sleep 'till Bedtime",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/No_Sleep_'till_Bedtime",
+      "extraction_target": "the release date of the album",
+      "extraction_section": null,
+      "extracted_value": "June 15, 1998",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Project Mercury wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Project_Mercury",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Seed: the trail opens with the entertainment title that frames our theme of sleeplessness and late-night culture.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Project_Mercury",
+      "extraction_target": "Calculate the number of days between 1998-06-15 and 2026-03-20",
+      "extraction_section": null,
+      "extracted_value": 10140,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "from datetime import date\nd1 = date.fromisoformat('1998-06-15')\nd2 = date.fromisoformat('2026-03-20')\nresult = abs((d2 - d1).days)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "days"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: date computation 1998-06-15 to 2026-03-20 (pinned)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Project_Mercury",
+      "extraction_target": "Reason: the sum of its digits",
+      "extraction_section": null,
+      "extracted_value": 6,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_sum) on stop 1 value",
+      "reason_transform": "digit_sum",
+      "reason_source_stop": 1,
+      "reason_code": "result = sum(int(d) for d in str(abs(int(10140))))\nprint(result)"
+    },
+    {
+      "index": 3,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Caffeine",
+      "extraction_target": "the number of languages the article is available in (displayed near the top)",
+      "extraction_section": null,
+      "extracted_value": 93,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Food wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Food",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Biology stop: caffeine is the archetypal legal stimulant that links cultural sleeplessness (coffee, energy drinks) to measurable doses.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 4,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Food",
+      "extraction_target": "Convert 93 meters to yards",
+      "extraction_section": null,
+      "extracted_value": 101,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "# Convert meters to yards\nvalue = 93.0\nconverted = value * 1.09361\nresult = int(converted)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "converted"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: convert 93 meters to yards",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 5,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/New_Orleans",
+      "extraction_target": "the coordinates listed in the infobox (field: 'Coordinates')",
+      "extraction_section": "infobox",
+      "extracted_value": "29.9761, -90.0783",
+      "extracted_value_type": "coords",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/New_Orleans",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Cultural geography stop: New Orleans is a nightlife and music city that exemplifies the social, cultural side of 'no sleep' nights.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 6,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: abs(10140 - 6) % 10",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "abs(10140 - 6) % 10",
+        "expression_code": "result = abs(10140 - 6) % 10\nprint(result)",
+        "referenced_stops": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "reasoning": "Compute stop: abs(10140 - 6) % 10 = 4",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 4,
+  "difficulty": {
+    "level": "easy",
+    "depth": 7,
+    "tool_stop_count": 2,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "Here is the revised riddle:\n\n1. Seek the album page known for its energetic homage to the nocturnal theme, featuring a title that hints at both a well-known phrase from the world of music and a time to rest; when you have that date, follow the link to the entry about the United States' earliest crewed spaceflight programme (the one active 1958–1963).\n\n2. How many full days separate the release date you just found and the date 20 March 2026 — compute the total days between those two calendar dates.\n\n3. If you take the numeric day count from clue 2, perform a small tidy trick: add together each digit of that number to produce a single summed figure.\n\n4. The article whose opening line describes a central nervous system stimulant conceals your next quantity near the top; determine how many distinct language editions that page appears in.\n\n5. In a short measurement vignette: convert a length of 93 metres into yards and report the whole yards (discard any fractional remainder, i.e., round down).\n\n6. The city famous for jazz and Mardi Gras has its wiki page marked with a map pin; read the pair of numbers given for that pin near the top of the article to capture its coordinates.\n\n7. Finally, compute the absolute difference between clue 2 and clue 3, then take that result modulo 10 (that is, abs(clue 2 - clue 3) % 10); the outcome is a single digit (0–9).",
+  "metadata": {
+    "theme": "A short, wakeful trail: from a sleepless pop-culture title through the biology of stimulants to the cities and nightlife that keep people awake",
+    "difficulty": "easy",
+    "sample_id": "sample_220",
+    "pages_crawled": 5554
+  },
+  "generated_at": "2026-03-21T04:15:24.217513+00:00"
+}

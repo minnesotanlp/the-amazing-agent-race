@@ -1,0 +1,282 @@
+{
+  "trail_id": "trail_d86c3e7d",
+  "seed_url": "https://en.wikipedia.org/wiki/Moscow_Heat",
+  "seed_title": "Moscow Heat",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Moscow_Heat",
+      "extraction_target": "the country of origin listed in the infobox",
+      "extraction_section": null,
+      "extracted_value": "Russia",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Gennadi_Vengerov",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start with the seed film to anchor the trail: its release date and production countries establish the transnational context for the people who worked on it.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Moscow_Heat",
+      "extraction_target": "Look up the elevation of Russia",
+      "extraction_section": null,
+      "extracted_value": 389.0949096679688,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Russia"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Russia) from https://en.wikipedia.org/wiki/Moscow_Heat",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Moscow_Heat",
+      "extraction_target": "Look up the count of museums near Russia",
+      "extraction_section": null,
+      "extracted_value": 18.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "museums near Russia"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of museums near Russia) from https://en.wikipedia.org/wiki/Moscow_Heat",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Moscow_Heat",
+      "extraction_target": "Combine the elevation of Russia and the count of museums near Russia: (389 + 18)",
+      "extraction_section": null,
+      "extracted_value": 407,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(389.0949096679688) + int(18.0)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Russia add count of museums near Russia",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1,
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Moscow_Heat",
+      "extraction_target": "Count churches near Russia",
+      "extraction_section": null,
+      "extracted_value": 20,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "churches near Russia"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (nearby_poi) derived from https://en.wikipedia.org/wiki/Moscow_Heat",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Gennadi_Vengerov",
+      "extraction_target": "the age of the subject at death as listed in the infobox",
+      "extraction_section": null,
+      "extracted_value": 55,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Gennadi_Vengerov",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Follow to a principal actor of Russian origin who appears in international productions — his birth date and nationality illustrate the film's Russian casting contribution.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Gennadi_Vengerov",
+      "extraction_target": "Reason: the number of 1-bits in its binary representation",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (binary_1bit_count) on stop 1 value",
+      "reason_transform": "binary_1bit_count",
+      "reason_source_stop": 5,
+      "reason_code": "result = bin(abs(int(55))).count('1')\nprint(result)",
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: abs(389 - 18) % 10",
+      "extraction_section": null,
+      "extracted_value": 1,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "abs(389 - 18) % 10",
+        "expression_code": "result = abs(389 - 18) % 10\nprint(result)",
+        "referenced_stops": [
+          1,
+          2,
+          3
+        ]
+      },
+      "reasoning": "Compute stop: abs(389 - 18) % 10 = 1",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1,
+        2,
+        3
+      ]
+    }
+  ],
+  "passcode": 1,
+  "difficulty": {
+    "level": "easy",
+    "depth": 8,
+    "tool_stop_count": 4,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "direct_link"
+  },
+  "riddle": "1. A cinematic gem born from the collaboration of nations — what is the country that nurtured this film's creation?\n\n2. Journey to the vast northern expanse. How high does the ground rise in this land, known for its resilience and complexity?\n\n3. A cultural tapestry unfurls within its borders. Discover how many institutions dedicated to art and history lie in the vicinity of this nation.\n\n4. Gather the values from your previous discoveries: add together the elevation you uncovered in clue 2 and the count of museums you found in clue 3.\n\n5. Many sacred spaces grace this territory. How many houses of worship can be found nearby, echoing faith through the ages?\n\n6. Seek the illustrious figure whose art defined a generation in this international masterpiece. How many years had he graced the world by the time he left it?\n\n7. Within the echo of his legacy lies a binary secret. How many ones adorn the binary representation of the age from clue 6?\n\n8. Cast aside a number found in your past: compute the absolute difference between what you’ve gathered about the heights and the cultural institutions from clues 2 and 3, then reduce it through modulo ten. \n\n  The final answer resolves from the values of clues 2, 3, and 4: compute abs(clue 2 - clue 3) % 10. Your answer will reveal a single digit, from 0 to 9.",
+  "metadata": {
+    "theme": "Moscow Heat as an example of transnational film production — examine the film's release, a lead actor from the Russian side, and compute a crew member's age at release to highlight international collaboration.",
+    "difficulty": "easy",
+    "sample_id": "sample_011",
+    "pages_crawled": 521,
+    "source": "trail_puzzles_v2"
+  },
+  "generated_at": "2026-03-15T10:49:25.077145+00:00"
+}

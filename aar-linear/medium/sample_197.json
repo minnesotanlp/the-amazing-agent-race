@@ -1,0 +1,354 @@
+{
+  "trail_id": "trail_d2647186",
+  "seed_url": "https://en.wikipedia.org/wiki/Activision_Blizzard",
+  "seed_title": "Activision Blizzard",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Activision_Blizzard",
+      "extraction_target": "the company's founding date",
+      "extraction_section": null,
+      "extracted_value": "July 9, 2008",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Video game company wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Video_game_company",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Seed: Activision Blizzard is the starting corporate anchor — a major video game publisher whose history and structure frame the trail.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Video_game_company",
+      "extraction_target": "the month and year shown in the lead-section maintenance template",
+      "extraction_section": null,
+      "extracted_value": "January 2018",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Esports",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Grounding concept: explains what a video game company is and how firms like the seed operate within the entertainment ecosystem.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Esports",
+      "extraction_target": "the number of subsections under Leagues and tournaments",
+      "extraction_section": "Leagues and tournaments",
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Gamescom wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Gamescom",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Shows the competitive and spectator-facing evolution of games — a major channel through which publishers extend cultural reach.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Gamescom",
+      "extraction_target": "Count the number of restaurants near Koelnmesse",
+      "extraction_section": null,
+      "extracted_value": 20,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "restaurants near Koelnmesse"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: count restaurants near Koelnmesse",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 4,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Kingdom_Hearts",
+      "extraction_target": "the number of languages listed at the top of the article",
+      "extraction_section": null,
+      "extracted_value": 33,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Kingdom_Hearts",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "An example of a cross-media video-game franchise (games + licensed media) that illustrates how gaming IP can bridge into broader entertainment.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 5,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Kingdom_Hearts",
+      "extraction_target": "Reason: the number of characters when written as a Roman numeral",
+      "extraction_section": null,
+      "extracted_value": 6,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (roman_numeral_letter_count) on stop 4 value",
+      "reason_transform": "roman_numeral_letter_count",
+      "reason_source_stop": 4,
+      "reason_code": "def to_roman(n):\n    n = abs(int(n))\n    vals = [(1000,'M'),(900,'CM'),(500,'D'),(400,'CD'),(100,'C'),\n            (90,'XC'),(50,'L'),(40,'XL'),(10,'X'),(9,'IX'),(5,'V'),(4,'IV'),(1,'I')]\n    r = ''\n    for v, s in vals:\n        while n >= v:\n            r += s; n -= v\n    return r\nresult = len(to_roman(33))\nprint(result)"
+    },
+    {
+      "index": 6,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Warner_Bros._Pictures_Animation",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Founded')",
+      "extraction_section": "infobox",
+      "extracted_value": 7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Warner_Bros._Pictures_Animation",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Represents the animation/film side of entertainment — useful to show how game IP and film/animation firms sit in the same corporate-media landscape.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 7,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Warner_Bros._Pictures_Animation",
+      "extraction_target": "Reason: the largest prime factor of that figure",
+      "extraction_section": null,
+      "extracted_value": 7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (largest_prime_factor) on stop 5 value",
+      "reason_transform": "largest_prime_factor",
+      "reason_source_stop": 6,
+      "reason_code": "def largest_prime_factor(n):\n    n = abs(int(n))\n    if n <= 1: return n\n    d = 2\n    while d * d <= n:\n        while n % d == 0: n //= d\n        d += 1\n    return n\nresult = largest_prime_factor(7)\nprint(result)"
+    },
+    {
+      "index": 8,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Sega",
+      "extraction_target": "the number of languages the article is available in",
+      "extraction_section": null,
+      "extracted_value": 70,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Sega",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Longstanding developer/publisher that demonstrates the international roots of game companies (Japan) and historic transitions from hardware to software and media.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 9,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Sega",
+      "extraction_target": "Reason: the number of 1-bits in its binary representation",
+      "extraction_section": null,
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (binary_1bit_count) on stop 6 value",
+      "reason_transform": "binary_1bit_count",
+      "reason_source_stop": 8,
+      "reason_code": "result = bin(abs(int(70))).count('1')\nprint(result)"
+    },
+    {
+      "index": 10,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Apple_(company)",
+      "extraction_target": "Look up the closing price of AAPL on 2008-07-09",
+      "extraction_section": null,
+      "extracted_value": 5.22,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "stock_historical_price",
+            "arguments": {
+              "ticker": "AAPL",
+              "date": "2008-07-09"
+            },
+            "expected_output": null,
+            "output_key": "stock_price"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: stock price AAPL on 2008-07-09",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 11,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/German_Empire",
+      "extraction_target": "Convert 7 meters to feet",
+      "extraction_section": null,
+      "extracted_value": 22,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "# Convert meters to feet\nvalue = 7.0\nconverted = value * 3.28084\nresult = int(converted)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "converted"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: convert 7 meters to feet",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 12,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: digital_root(5 + 7)",
+      "extraction_section": null,
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "digital_root(5 + 7)",
+        "expression_code": "def digital_root(n):\n    n = abs(int(n))\n    return n if n == 0 else ((n - 1) % 9) + 1\nresult = digital_root(5 + 7)\nprint(result)",
+        "referenced_stops": [
+          2,
+          7
+        ]
+      },
+      "reasoning": "Compute stop: digital_root(5 + 7) = 3",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 3,
+  "difficulty": {
+    "level": "medium",
+    "depth": 13,
+    "tool_stop_count": 3,
+    "reason_stop_count": 3,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "Here is the revised riddle with the indicated clue rewritten:\n\n1. Seek the Wikipedia entry for the well-known publisher-holding firm known for its popular franchises and influential in the gaming industry; read its opening: what date marks the company's founding?  \n\n2. There exists a general article describing firms that produce electronic games; on that page, inspect the maintenance notice anchored to the lead and report the month and year shown there.  \n\n3. How many subsections appear beneath the section dedicated to organized competitions and events on the page about competitive video gaming?  \n\n4. If you checked a mapping search for eateries surrounding the Koelnmesse exhibition centre, how many restaurants would be returned in that vicinity?  \n\n5. The article about the crossover action-RPG franchise that pairs Disney worlds with Square Enix characters displays links to other language editions—count how many language editions are listed.  \n\n6. In ancient numerals (Roman style), the tally you just recorded would be written using a certain number of characters; convert that count into Roman numerals and tell me how many characters long that representation is.  \n\n7. The entry for the American theatrical animation studio owned by a major movie company shows a year for when it began; which year is recorded as its founding?  \n\n8. One algebraic aside: take the founding year you just uncovered and factor it—what is the largest prime factor of that year?  \n\n9. Peruse the page about the long-established Japanese developer/publisher and state how many language editions its article is available in.  \n\n10. Now take the number from the previous clue, express it in base two, and count how many '1' digits appear in that binary representation.  \n\n11. Seek a historical market quote for the tech giant behind the iPhone (ticker AAPL): what was its closing share price on 2008-07-09?  \n\n12. Approximately how many feet correspond to seven metres (round or truncate to the integer feet value as appropriate)?  \n\n13. At last: compute the digital root of (clue 3 + clue 8) and report that single digit (the final answer should be a single digit from 0–9).",
+  "metadata": {
+    "theme": "From game publisher to global entertainment: trace how a video-game giant connects to competitive play, trade shows, cross-media franchises, animation studios and the wider corporate — and geographic — landscape.",
+    "difficulty": "medium",
+    "sample_id": "sample_197",
+    "pages_crawled": 13293
+  },
+  "generated_at": "2026-03-17T23:44:57.345940+00:00"
+}

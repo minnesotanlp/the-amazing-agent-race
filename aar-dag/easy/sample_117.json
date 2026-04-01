@@ -1,0 +1,317 @@
+{
+  "trail_id": "trail_63c74298",
+  "seed_url": "https://en.wikipedia.org/wiki/Cyril_Vincent",
+  "seed_title": "Cyril Vincent",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Cyril_Vincent",
+      "extraction_target": "the number of Test matches he played",
+      "extraction_section": null,
+      "extracted_value": 25,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Cyril_Vincent",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start at the seed biography to extract the subject's role and origin — a personal starting point for a music-tour themed trail.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Cyril_Vincent",
+      "extraction_target": "Reason: the digital root (iterated digit sum until single digit)",
+      "extraction_section": null,
+      "extracted_value": 7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digital_root) on stop 0 value",
+      "reason_transform": "digital_root",
+      "reason_source_stop": 0,
+      "reason_code": "n = abs(int(25))\nresult = n if n == 0 else ((n - 1) % 9) + 1\nprint(result)",
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Australian_rock",
+      "extraction_target": "the number of distinct \"waves\" of Australian rock from 1955 to 1975",
+      "extraction_section": null,
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Hunters_%26_Collectors",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Ground the trail in the genre: this page gives context about Australian rock's origins, major scenes and how bands from the region tour and perform.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Australian_rock",
+      "extraction_target": "Look up the elevation of Australian rock",
+      "extraction_section": null,
+      "extracted_value": 399.4469604492188,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Australian rock"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Australian rock) from https://en.wikipedia.org/wiki/Australian_rock",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Australian_rock",
+      "extraction_target": "Look up the Google rating of Australian rock",
+      "extraction_section": null,
+      "extracted_value": 4.7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "Australian rock"
+            },
+            "expected_output": null,
+            "output_key": "place_rating"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (Google rating of Australian rock) from https://en.wikipedia.org/wiki/Australian_rock",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Australian_rock",
+      "extraction_target": "Combine the elevation of Australian rock and the Google rating of Australian rock: abs(399 - 4)",
+      "extraction_section": null,
+      "extracted_value": 395,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(399.4469604492188) - int(4.7))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Australian rock abs_diff Google rating of Australian rock",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3,
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Australian_rock",
+      "extraction_target": "Look up the elevation of Australian rock",
+      "extraction_section": null,
+      "extracted_value": 399.4469604492188,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Australian rock"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (elevation) derived from https://en.wikipedia.org/wiki/Australian_rock",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Hunters_%26_Collectors",
+      "extraction_target": "the number of founding mainstays",
+      "extraction_section": "1978–1980: Formation",
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Hunters_%26_Collectors",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A representative Australian rock band to illustrate a typical artist's career, touring base and home-city ties that inform logistics and scheduling.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: abs(399 - 4) % 10",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "abs(399 - 4) % 10",
+        "expression_code": "result = abs(399 - 4) % 10\nprint(result)",
+        "referenced_stops": [
+          3,
+          4,
+          5
+        ]
+      },
+      "reasoning": "Compute stop: abs(399 - 4) % 10 = 5",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3,
+        4,
+        5
+      ]
+    }
+  ],
+  "passcode": 5,
+  "difficulty": {
+    "level": "easy",
+    "depth": 9,
+    "tool_stop_count": 4,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "direct_link"
+  },
+  "riddle": "1. Unearth the career of the cricketer whose name echoes through the annals of Australian sports. How many Test matches adorned his legacy?\n\n2. To continue your journey, distill your previous number down to its essence. What does the digital root reveal when you sum its digits repeatedly until a single digit remains?\n\n3. A rich genre arose beneath the Southern Cross — find the count of distinct musical \"waves\" that made their mark from 1955 to 1975 in this sunburnt land.\n\n4. How high does this celebrated formation rise above the sea level? Seek the elevation that defines the heights of this cultural landmark.\n\n5. Explore the travelers' judgment of this geological wonder. What star rating does it receive from those who have journeyed to its embrace?\n\n6. With your combined wisdom from the previous clues, calculate the absolute difference between the elevation you discovered in clue 4 and the star rating from clue 5.\n\n7. In the spirit of thoroughness, retrieve the elevation of the celebrated landmark once again — how high does it soar above sea level?\n\n8. Whose melodies captured the hearts of many? Journey to the ensemble whose founding figures crafted their sound in the late '70s. How many core members emerged to shape this iconic band?\n\n9. With the knowledge acquired, compute the absolute difference between the elevation found in clue 4 and the star rating in clue 5. What remains when you take that number modulo 10? \n\nRemember, your final answer will be a single digit between 0 and 9, crafted through the wisdom gleaned from clues 4, 5, and 6.",
+  "metadata": {
+    "theme": "Mapping an Australian rock mini-tour: from a starting biography to genre, a flagship band, then logistics and climate for outdoor shows",
+    "difficulty": "easy",
+    "sample_id": "sample_117",
+    "pages_crawled": 297,
+    "source": "trail_puzzles_v2",
+    "reverbalized": true
+  },
+  "generated_at": "2026-03-15T10:24:29.327603+00:00"
+}

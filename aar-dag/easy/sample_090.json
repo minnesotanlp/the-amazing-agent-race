@@ -1,0 +1,321 @@
+{
+  "trail_id": "trail_e0cd7fa0",
+  "seed_url": "https://en.wikipedia.org/wiki/José_María_Reina_Andrade",
+  "seed_title": "José María Reina Andrade",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Jos%C3%A9_Mar%C3%ADa_Reina_Andrade",
+      "extraction_target": "start date of Reina Andrade's term as First Vice President of Guatemala",
+      "extraction_section": null,
+      "extracted_value": "26 June 1902",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Constituencies of the Parliament of the United Kingdom wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Constituencies_of_the_Parliament_of_the_United_Kingdom",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Begin at Reina Andrade, a brief acting president of Guatemala — his short tenure frames a story about succession and legislative power.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Constituencies_of_the_Parliament_of_the_United_Kingdom",
+      "extraction_target": "Calculate the number of days between 1902-06-26 and 2026-03-15",
+      "extraction_section": null,
+      "extracted_value": 45188,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "from datetime import date\nd1 = date.fromisoformat('1902-06-26')\nd2 = date.fromisoformat('2026-03-15')\nresult = abs((d2 - d1).days)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "days"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: date computation 1902-06-26 to 2026-03-15 (pinned)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Constituencies_of_the_Parliament_of_the_United_Kingdom",
+      "extraction_target": "Reason: the number of 1-bits in its binary representation",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (binary_1bit_count) on stop 1 value",
+      "reason_transform": "binary_1bit_count",
+      "reason_source_stop": 1,
+      "reason_code": "result = bin(abs(int(45188))).count('1')\nprint(result)",
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Congress_of_Guatemala",
+      "extraction_target": "the number of languages listed at the top of the article",
+      "extraction_section": null,
+      "extracted_value": 13,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Sheridan-Kalorama Historic District wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Sheridan-Kalorama_Historic_District",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Visit Guatemala's national legislature to see the body that interacts with (and legitimizes) presidents — extracting seat and membership shows domestic representation and where power is physically located.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Congress_of_Guatemala",
+      "extraction_target": "Look up the elevation of Congress of Guatemala",
+      "extraction_section": null,
+      "extracted_value": 374.1132507324219,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Congress of Guatemala"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Congress of Guatemala) from https://en.wikipedia.org/wiki/Congress_of_Guatemala",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Congress_of_Guatemala",
+      "extraction_target": "Look up the Google rating of Congress of Guatemala",
+      "extraction_section": null,
+      "extracted_value": 3.7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "Congress of Guatemala"
+            },
+            "expected_output": null,
+            "output_key": "place_rating"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (Google rating of Congress of Guatemala) from https://en.wikipedia.org/wiki/Congress_of_Guatemala",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Congress_of_Guatemala",
+      "extraction_target": "Combine the elevation of Congress of Guatemala and the Google rating of Congress of Guatemala: abs(374 - 3)",
+      "extraction_section": null,
+      "extracted_value": 371,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(374.1132507324219) - int(3.7))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Congress of Guatemala abs_diff Google rating of Congress of Guatemala",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        4,
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Sheridan-Kalorama_Historic_District",
+      "extraction_target": "Get the driving duration in minutes from Roughly bounded by Rock Creek Park to Congress of Guatemala",
+      "extraction_section": null,
+      "extracted_value": 3085,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_directions",
+            "arguments": {
+              "origin": "Roughly bounded by Rock Creek Park",
+              "destination": "Congress of Guatemala",
+              "mode": "driving"
+            },
+            "expected_output": null,
+            "output_key": "duration"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: directions duration Roughly bounded by Rock Creek Park to Congress of Guatemala",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: digital_root(5 + 374 + 371 + 3085)",
+      "extraction_section": null,
+      "extracted_value": 1,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "digital_root(5 + 374 + 371 + 3085)",
+        "expression_code": "def digital_root(n):\n    n = abs(int(n))\n    return n if n == 0 else ((n - 1) % 9) + 1\nresult = digital_root(5 + 374 + 371 + 3085)\nprint(result)",
+        "referenced_stops": [
+          2,
+          4,
+          6,
+          7
+        ]
+      },
+      "reasoning": "Compute stop: digital_root(5 + 374 + 371 + 3085) = 1",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2,
+        4,
+        6,
+        7
+      ]
+    }
+  ],
+  "passcode": 1,
+  "difficulty": {
+    "level": "easy",
+    "depth": 9,
+    "tool_stop_count": 5,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Unearth the legacy of a fleeting vice as you seek the date when José María Reina Andrade first stepped into power in Guatemala.\n\n2. They say history is measured in days; calculate the passage of time from June 26, 1902, to March 15, 2026. What number of days does that reveal?\n\n3. In the realm of binary whispers, how many 1-bits illuminate the figure you uncovered in clue 2?\n\n4. Within the heart of Guatemalan governance lies a page that speaks of diverse tongues; how many languages are represented there?\n\n5. Seek the elevation upon which this congress stands — how high does it rise above sea level?\n\n6. What rating do the travelers bestow upon this seat of power? Search for their verdict on its quality.\n\n7. From the heights of clue 5, take the absolute difference between that value and the opinion from clue 6. What result emerges?\n\n8. If you were to traverse the landscape from a park enveloping Rock Creek to the Guatemalan legislative abode, how many minutes would your journey take by car?\n\n9. To find the final piece, add the values from clues 3, 5, 7, plus the travel time from clue 8, and combine those with 5. Then, compute the digital root of your total — what single digit do you obtain?",
+  "metadata": {
+    "theme": "Short-lived power and legislative context in Guatemala — start with an acting president, compare population/representation internationally, then locate the Guatemalan legislature and the diplomatic distance to Washington, D.C.",
+    "difficulty": "easy",
+    "sample_id": "sample_090",
+    "pages_crawled": 3533,
+    "source": "trail_puzzles_v2"
+  },
+  "generated_at": "2026-03-15T18:18:15.483314+00:00"
+}

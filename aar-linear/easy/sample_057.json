@@ -1,0 +1,138 @@
+{
+  "trail_id": "trail_11c059db",
+  "seed_url": "https://en.wikipedia.org/wiki/Barbary_Coast_(film)",
+  "seed_title": "Barbary Coast (film)",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Barbary_Coast_(film)",
+      "extraction_target": "the running time listed in the infobox (minutes)",
+      "extraction_section": null,
+      "extracted_value": 90,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Barbary_Coast,_San_Francisco",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start with the film to confirm that its story is set in San Francisco's historic Barbary Coast district — the seed establishes the cinematic depiction we want to ground in the real place.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Barbary_Coast,_San_Francisco",
+      "extraction_target": "Look up the elevation at Barbary Coast, San Francisco",
+      "extraction_section": null,
+      "extracted_value": 10.14242076873779,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Barbary Coast, San Francisco"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for Barbary Coast, San Francisco",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Barbary_Coast,_San_Francisco",
+      "extraction_target": "Reason: the largest prime factor of that figure",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (largest_prime_factor) on stop 1 value",
+      "reason_transform": "largest_prime_factor",
+      "reason_source_stop": 1,
+      "reason_code": "def largest_prime_factor(n):\n    n = abs(int(n))\n    if n <= 1: return n\n    d = 2\n    while d * d <= n:\n        while n % d == 0: n //= d\n        d += 1\n    return n\nresult = largest_prime_factor(10)\nprint(result)"
+    },
+    {
+      "index": 3,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: digital_root(90 + 10 + 5)",
+      "extraction_section": null,
+      "extracted_value": 6,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "digital_root(90 + 10 + 5)",
+        "expression_code": "def digital_root(n):\n    n = abs(int(n))\n    return n if n == 0 else ((n - 1) % 9) + 1\nresult = digital_root(90 + 10 + 5)\nprint(result)",
+        "referenced_stops": [
+          0,
+          1,
+          2
+        ]
+      },
+      "reasoning": "Compute stop: digital_root(90 + 10 + 5) = 6",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 6,
+  "difficulty": {
+    "level": "easy",
+    "depth": 4,
+    "tool_stop_count": 1,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "direct_link"
+  },
+  "riddle": "Here is the revised riddle:\n\n1. Seek the 1935 Hollywood melodrama known for its portrayal of a historic area in the bustling city by the bay; record the film’s running time in minutes as shown among the production details, then follow the link that describes the area along the waterfront known for its gambling and lively entertainment in the early 1900s.\n\n2. There exists a page about that old San Francisco neighborhood once famed for saloons and dance halls — determine how many meters above sea level the ground there sits.\n\n3. What is the largest prime factor of the elevation number you just recorded from clue 2?\n\n4. If you now combine your three discoveries, compute the digital root of (clue 1 + clue 2 + clue 3); the final answer should be a single digit between 0 and 9.",
+  "metadata": {
+    "theme": "Tracing a movie's setting from screen to street — connect the 1935 film Barbary Coast to the real San Francisco neighborhood it depicts.",
+    "difficulty": "easy",
+    "sample_id": "sample_057",
+    "pages_crawled": 2392,
+    "source": "trail_puzzles_v2"
+  },
+  "generated_at": "2026-03-15T15:12:57.245046+00:00"
+}

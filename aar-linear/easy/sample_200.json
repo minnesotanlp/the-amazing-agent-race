@@ -1,0 +1,279 @@
+{
+  "trail_id": "trail_ef424adb",
+  "seed_url": "https://en.wikipedia.org/wiki/Oleg_Karavaev",
+  "seed_title": "Oleg Karavaev",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Oleg_Karavaev",
+      "extraction_target": "the height listed in the infobox (field: 'Height')",
+      "extraction_section": "infobox",
+      "extracted_value": 161,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Oleg_Karavaev",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Seed: introduces Oleg Karavaev (Soviet wrestler), his origins and which international competitions he contested — the starting point for a career-focused trail.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Oleg_Karavaev",
+      "extraction_target": "Reason: the next prime number after that figure",
+      "extraction_section": null,
+      "extracted_value": 163,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (next_prime) on stop 0 value",
+      "reason_transform": "next_prime",
+      "reason_source_stop": 0,
+      "reason_code": "def next_prime(n):\n    n = abs(int(n))\n    if n < 2: return 2\n    candidate = n + 1\n    while True:\n        if all(candidate % i != 0 for i in range(2, int(candidate**0.5)+1)):\n            return candidate\n        candidate += 1\nresult = next_prime(161)\nprint(result)"
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Belarus",
+      "extraction_target": "Look up the elevation at Belarus",
+      "extraction_section": null,
+      "extracted_value": 192.8483734130859,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Belarus"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for Belarus",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Church_of_Saints_Simon_and_Helena",
+      "extraction_target": "Count the number of universities near Minsk",
+      "extraction_section": null,
+      "extracted_value": 20,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "universities near Minsk"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: count universities near Minsk",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 4,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Church_of_Saints_Simon_and_Helena",
+      "extraction_target": "Reason: the digital root (iterated digit sum until single digit)",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digital_root) on stop 2 value",
+      "reason_transform": "digital_root",
+      "reason_source_stop": 3,
+      "reason_code": "n = abs(int(20))\nresult = n if n == 0 else ((n - 1) % 9) + 1\nprint(result)"
+    },
+    {
+      "index": 5,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Wrestling_at_the_1960_Summer_Olympics_%E2%80%93_Men%27s_Greco-Roman_bantamweight",
+      "extraction_target": "dates of the competition",
+      "extraction_section": null,
+      "extracted_value": "26–31 August 1960",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "1961 World Wrestling Championships wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/1961_World_Wrestling_Championships",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Key career stop: the specific Olympic event Karavaev contested — extract the event date and location to tie his biography to a concrete competition.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 6,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/1961_World_Wrestling_Championships",
+      "extraction_target": "Convert 161°C to a Fahrenheit-scale offset",
+      "extraction_section": null,
+      "extracted_value": 289,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "# Convert celsius to fahrenheit_offset\nvalue = 161.0\nconverted = value * 1.8\nresult = int(converted)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "converted"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: convert 161 celsius to fahrenheit_offset",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 7,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/1958_World_Wrestling_Championships",
+      "extraction_target": "Convert 161°C to a Fahrenheit-scale offset",
+      "extraction_section": null,
+      "extracted_value": 289,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "# Convert celsius to fahrenheit_offset\nvalue = 161.0\nconverted = value * 1.8\nresult = int(converted)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "converted"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: convert 161 celsius to fahrenheit_offset",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 8,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: digital_root(163 + 192 + 289)",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "digital_root(163 + 192 + 289)",
+        "expression_code": "def digital_root(n):\n    n = abs(int(n))\n    return n if n == 0 else ((n - 1) % 9) + 1\nresult = digital_root(163 + 192 + 289)\nprint(result)",
+        "referenced_stops": [
+          1,
+          2,
+          7
+        ]
+      },
+      "reasoning": "Compute stop: digital_root(163 + 192 + 289) = 5",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 5,
+  "difficulty": {
+    "level": "medium",
+    "depth": 9,
+    "tool_stop_count": 4,
+    "reason_stop_count": 2,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Seek the Wikipedia biography of the Soviet wrestler born in 1936 and passed in 1978; from that article’s infobox, take the athlete’s recorded height (as a plain number).\n\n2. There exists a tidy arithmetic twist next: from the number you obtained in clue 1, determine the very next prime number that comes after it.\n\n3. What is the elevation above sea level for the Eastern European country whose capital is Minsk? Visit that country's page and record the elevation figure given by geographical data.\n\n4. If you locate the red-brick Roman Catholic landmark in Minsk (often nicknamed the “Red Church”) and open its article, then perform a search for “universities near Minsk” and count how many institutions are returned.\n\n5. The article mentioning that red-brick church gave you a quantity; reduce that quantity by iterated digit-summing (keep summing digits until a single digit remains) to produce a single-digit result.\n\n6. In 1960 a Greco-Roman bantamweight competition was contested at the Summer Games; read the event’s Wikipedia entry and note the dates on which the matches occurred.\n\n7. Like converting an oven recipe from Celsius to a different scale, take 161 degrees Celsius and convert it into the corresponding Fahrenheit-scale offset by multiplying by 1.8, then take the integer part of the product — that integer is the value to record.\n\n8. One detail on the 1958 world Greco-Roman championship page (the event held in Budapest in July 1958) requests the same temperature-to-offset conversion as above: again multiply 161 by 1.8 and take the integer portion.\n\n9. Final task: compute the digital root of (clue 2 + clue 3 + clue 8) — that single-digit result (0–9) is the answer you must produce.",
+  "metadata": {
+    "theme": "Following Soviet wrestler Oleg Karavaev from his biography to the places and events that shaped his career — examining his national context, hometown geography and landmarks, major championships he contested, and environmental/travel details around those events.",
+    "difficulty": "medium",
+    "sample_id": "sample_200",
+    "pages_crawled": 184
+  },
+  "generated_at": "2026-03-20T00:20:03.135544+00:00"
+}

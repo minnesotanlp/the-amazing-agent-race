@@ -1,0 +1,648 @@
+{
+  "trail_id": "trail_2b3101ac",
+  "seed_url": "https://en.wikipedia.org/wiki/Rolls-Royce_Holdings",
+  "seed_title": "Rolls-Royce Holdings",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Rolls-Royce_Holdings",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Founded')",
+      "extraction_section": "infobox",
+      "extracted_value": 23,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Rolls-Royce_Holdings",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Seed: the British engineering firm whose aero and defence work links industry, national policy and global security.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Rolls-Royce_Holdings",
+      "extraction_target": "Reason: the next prime number after that figure",
+      "extraction_section": null,
+      "extracted_value": 29,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (next_prime) on stop 0 value",
+      "reason_transform": "next_prime",
+      "reason_source_stop": 0,
+      "reason_code": "def next_prime(n):\n    n = abs(int(n))\n    if n < 2: return 2\n    candidate = n + 1\n    while True:\n        if all(candidate % i != 0 for i in range(2, int(candidate**0.5)+1)):\n            return candidate\n        candidate += 1\nresult = next_prime(23)\nprint(result)",
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Derby",
+      "extraction_target": "the coordinates listed in the infobox (field: 'Coordinates')",
+      "extraction_section": "infobox",
+      "extracted_value": "52.9247, -1.4780",
+      "extracted_value_type": "coords",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "General Dynamics F-16 Fighting Falcon wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/General_Dynamics_F-16_Fighting_Falcon",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Rolls‑Royce's historic UK manufacturing base — a place anchor for measuring global reach of British industry.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Derby",
+      "extraction_target": "Look up the elevation of Derby",
+      "extraction_section": null,
+      "extracted_value": 47.88568878173828,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Derby"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Derby) from https://en.wikipedia.org/wiki/Derby",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Derby",
+      "extraction_target": "Look up the count of hotels near Derby",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "hotels near Derby"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of hotels near Derby) from https://en.wikipedia.org/wiki/Derby",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Derby",
+      "extraction_target": "Combine the elevation of Derby and the count of hotels near Derby: abs(47 - 20)",
+      "extraction_section": null,
+      "extracted_value": 27,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(47.88568878173828) - int(20.0))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Derby abs_diff count of hotels near Derby",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3,
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/General_Dynamics_F-16_Fighting_Falcon",
+      "extraction_target": "the number of languages the article is available in (\"80 languages\")",
+      "extraction_section": null,
+      "extracted_value": 80,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/General_Dynamics_F-16_Fighting_Falcon",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "An emblematic modern combat aircraft — shows the platforms powered by large aerospace supply chains and engines.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/General_Dynamics_F-16_Fighting_Falcon",
+      "extraction_target": "Reason: the next prime number after that figure",
+      "extraction_section": null,
+      "extracted_value": 83,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (next_prime) on stop 2 value",
+      "reason_transform": "next_prime",
+      "reason_source_stop": 6,
+      "reason_code": "def next_prime(n):\n    n = abs(int(n))\n    if n < 2: return 2\n    candidate = n + 1\n    while True:\n        if all(candidate % i != 0 for i in range(2, int(candidate**0.5)+1)):\n            return candidate\n        candidate += 1\nresult = next_prime(80)\nprint(result)",
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Armoured_fighting_vehicle",
+      "extraction_target": "the number of immediate subsections under 'Modern classification by type and role'",
+      "extraction_section": "Modern classification by type and role",
+      "extracted_value": 9,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Armoured_fighting_vehicle",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Ground counterpart to combat aircraft — illustrates the broader defence manufacturing ecosystem served by engineering firms.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        7
+      ]
+    },
+    {
+      "index": 9,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Armoured_fighting_vehicle",
+      "extraction_target": "Reason: the digital root (iterated digit sum until single digit)",
+      "extraction_section": null,
+      "extracted_value": 9,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digital_root) on stop 3 value",
+      "reason_transform": "digital_root",
+      "reason_source_stop": 8,
+      "reason_code": "n = abs(int(9))\nresult = n if n == 0 else ((n - 1) % 9) + 1\nprint(result)",
+      "depends_on": [
+        8
+      ]
+    },
+    {
+      "index": 10,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Missile_defense",
+      "extraction_target": "the number of common types of decoys listed under 2.1.1 in the Contents",
+      "extraction_section": "Contents",
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Gulf_War",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Modern defence priorities that drive advanced engineering, R&D and cross‑border cooperation in weapons and sensors.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        9
+      ]
+    },
+    {
+      "index": 11,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Missile_defense",
+      "extraction_target": "Count stadiums near Missile defense",
+      "extraction_section": null,
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "stadiums near Missile defense"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (nearby_poi) derived from https://en.wikipedia.org/wiki/Missile_defense",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        10
+      ]
+    },
+    {
+      "index": 12,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Gulf_War",
+      "extraction_target": "Look up the population of United Kingdom",
+      "extraction_section": null,
+      "extracted_value": 69281437,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "countries_population",
+            "arguments": {
+              "country": "United Kingdom"
+            },
+            "expected_output": null,
+            "output_key": "population"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: population of United Kingdom",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        11
+      ]
+    },
+    {
+      "index": 13,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Gulf_War",
+      "extraction_target": "Reason: the largest prime factor of that figure",
+      "extraction_section": null,
+      "extracted_value": 69281437,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (largest_prime_factor) on stop 5 value",
+      "reason_transform": "largest_prime_factor",
+      "reason_source_stop": 12,
+      "reason_code": "def largest_prime_factor(n):\n    n = abs(int(n))\n    if n <= 1: return n\n    d = 2\n    while d * d <= n:\n        while n % d == 0: n //= d\n        d += 1\n    return n\nresult = largest_prime_factor(69281437)\nprint(result)",
+      "depends_on": [
+        12
+      ]
+    },
+    {
+      "index": 14,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/War_on_terror",
+      "extraction_target": "the start year given for the Current phase: Islamic State, Iran, and focus on narcoterrorism section",
+      "extraction_section": "Current phase: Islamic State, Iran, and focus on narcoterrorism (2021–present)",
+      "extracted_value": 2021,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Five_Eyes",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "The prolonged post‑9/11 security environment that reshaped defence spending, procurement priorities and industrial strategy.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        13
+      ]
+    },
+    {
+      "index": 15,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Five_Eyes",
+      "extraction_target": "the number of member states in the Five Eyes alliance",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Government_of_the_United_Kingdom",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "An intelligence alliance illustrating the geopolitical networks that influence defence collaboration and technology sharing.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        14
+      ]
+    },
+    {
+      "index": 16,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Government_of_the_United_Kingdom",
+      "extraction_target": "the number of languages listed in the language links box",
+      "extraction_section": null,
+      "extracted_value": 50,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Margaret Thatcher wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Margaret_Thatcher",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Shows how national policy and government institutions (UK) interact with and regulate major domestic industries like Rolls‑Royce.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        15
+      ]
+    },
+    {
+      "index": 17,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Margaret_Thatcher",
+      "extraction_target": "the number of subsections listed under Early life and education",
+      "extraction_section": "Early life and education",
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Memphis, Tennessee wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Memphis,_Tennessee",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Thatcher-era economic policy shaped UK industry and privatization trends that affected major engineering firms and defence contractors.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        16
+      ]
+    },
+    {
+      "index": 18,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Memphis,_Tennessee",
+      "extraction_target": "Count the number of parks near 35.14611",
+      "extraction_section": null,
+      "extracted_value": 20,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "parks near 35.14611"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: count parks near 35.14611",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        17
+      ]
+    },
+    {
+      "index": 19,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Pound_sterling",
+      "extraction_target": "Convert 23 meters to yards",
+      "extraction_section": null,
+      "extracted_value": 25,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "# Convert meters to yards\nvalue = 23.0\nconverted = value * 1.09361\nresult = int(converted)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "converted"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: convert 23 meters to yards",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        18
+      ]
+    },
+    {
+      "index": 20,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: digital_root(3 + 3 + 69281437 + 69281437)",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "digital_root(3 + 3 + 69281437 + 69281437)",
+        "expression_code": "def digital_root(n):\n    n = abs(int(n))\n    return n if n == 0 else ((n - 1) % 9) + 1\nresult = digital_root(3 + 3 + 69281437 + 69281437)\nprint(result)",
+        "referenced_stops": [
+          10,
+          11,
+          12,
+          13
+        ]
+      },
+      "reasoning": "Compute stop: digital_root(3 + 3 + 69281437 + 69281437) = 5",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        10,
+        11,
+        12,
+        13
+      ]
+    }
+  ],
+  "passcode": 5,
+  "difficulty": {
+    "level": "hard",
+    "depth": 21,
+    "tool_stop_count": 7,
+    "reason_stop_count": 4,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Seek the industrial titan whose name is synonymous with luxury and engineering excellence. In which year did this powerhouse come into being?\n\n2. If you were to step into a realm of prime numbers, what would be the next prime after that founding year you just uncovered?\n\n3. A city known for its engineering heritage lies on the banks of the River Derwent. Which place is it that also housed a famous manufacturer of jet engines?\n\n4. What number marks the altitude of this city above sea level?\n\n5. In the vicinity of this city of innovation, how many places accommodate weary travelers under the category of hotels?\n\n6. To advance your pursuit, subtract the count of hotels you just uncovered from the elevation of this city. What absolute difference have you found?\n\n7. Seek the article about a celebrated multi-role combat aircraft known for its agility. How many languages can you find its details presented in?\n\n8. What prime number succeeds the figure of languages you just counted?\n\n9. A category that sorts military vehicles by type contains how many immediate subsections for modern classifications?\n\n10. What single-digit result arises if you reduce the number of subsections you just found to its digital root?\n\n11. Where can you find a military defense strategy mentioned, listing types of countermeasures? How many common types of decoys is reported in this section?\n\n12. What is the number of stadiums that stand nearby this military defensive concept – forgotten battlegrounds for sports?\n\n13. On a different battlefield, what is the estimated number of people living in the United Kingdom, counted in millions?\n\n14. From that population figure, what is the largest prime factor that represents an underpinning of its demographics?\n\n15. When did the current conflict phase, focusing on various terror threats, begin its assault on stability?\n\n16. An intelligence alliance of five nations operates under the same banner. How many members comprise this group known for their surveillance efforts?\n\n17. Dip into the governmental structure from where many policies are launched; how many languages can be found featured in the language links of its information page? \n\n18. Seek insights into a notable leader's history. How many subsections chart the early life and education of the Iron Lady?\n\n19. Count the green spaces that surround the city named for a musical origin, particularly regarding parks near its coordinates.\n\n20. The chord struck between meters and yards creates a melody. What is the conversion result for a distance measured at 23 meters?\n\n21. Perform this final summation: Take 3, then add 3, and include the results from clues 11, 12, 13, and 14. What’s the digital root of this sum, polished down to a single digit?",
+  "metadata": {
+    "theme": "From British engineering to global security and markets — tracing how Rolls‑Royce's industrial power ties into aviation and defense, major conflicts, allied intelligence, government policy, and the economic forces that sustain them.",
+    "difficulty": "hard",
+    "sample_id": "sample_167",
+    "pages_crawled": 18678
+  },
+  "generated_at": "2026-03-18T09:42:09.859349+00:00"
+}

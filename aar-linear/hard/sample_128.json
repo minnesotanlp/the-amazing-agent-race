@@ -1,0 +1,480 @@
+{
+  "trail_id": "trail_27bce330",
+  "seed_url": "https://en.wikipedia.org/wiki/Snowflake_Inc.",
+  "seed_title": "Snowflake Inc.",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Snowflake_Inc.",
+      "extraction_target": "the company's founding date",
+      "extraction_section": null,
+      "extracted_value": "2012-07-23",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Google_Cloud_Platform",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Seed: Snowflake is the cloud data company we’ll trace — extract its HQ coordinates to tie geography into later distance/POI checks.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Google_Cloud_Platform",
+      "extraction_target": "the number of languages listed at the top of the article",
+      "extraction_section": null,
+      "extracted_value": 28,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Google_Cloud_Platform",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Snowflake operates atop major cloud providers; Google Cloud Platform represents one of the cloud infrastructures Snowflake integrates with.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Google_Cloud_Platform",
+      "extraction_target": "Reason: the sum of its digits",
+      "extraction_section": null,
+      "extracted_value": 10,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_sum) on stop 1 value",
+      "reason_transform": "digit_sum",
+      "reason_source_stop": 1,
+      "reason_code": "result = sum(int(d) for d in str(abs(int(28))))\nprint(result)"
+    },
+    {
+      "index": 3,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Looker_(company)",
+      "extraction_target": "the parent company of Looker",
+      "extraction_section": null,
+      "extracted_value": "Google",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "GitHub wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/GitHub",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Looker illustrates how BI and analytics tooling tie into cloud data platforms (Looker is part of Google Cloud), linking data storage to visualization.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 4,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Looker_(company)",
+      "extraction_target": "Count libraries near Google",
+      "extraction_section": null,
+      "extracted_value": 20,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "libraries near Google"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (nearby_poi) derived from https://en.wikipedia.org/wiki/Looker_(company)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 5,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/GitHub",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Founded')",
+      "extraction_section": "infobox",
+      "extracted_value": 8,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Generative artificial intelligence wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Generative_artificial_intelligence",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Developer workflows and integrations (CI/CD, connectors) are central to cloud data adoption; GitHub is the developer hub that helps glue these systems together.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 6,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Generative_artificial_intelligence",
+      "extraction_target": "the number of sub-subsections listed under 'Generative models and training techniques' (3.1.1, 3.1.2, 3.1.3)",
+      "extraction_section": "Generative models and training techniques",
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Demis Hassabis wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Demis_Hassabis",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Generative AI is a major new workload driving demand for large-scale cloud data and analytics platforms like Snowflake.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 7,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Demis_Hassabis",
+      "extraction_target": "the number of languages the article is available in (shown near the top)",
+      "extraction_section": null,
+      "extracted_value": 53,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Palantir wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Palantir",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Profile of an AI leader (DeepMind) to humanize the AI boom that feeds demand for data infrastructure and compute.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 8,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Palantir",
+      "extraction_target": "the number of subsections under the Products section",
+      "extraction_section": "Products",
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Dot-com bubble wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Dot-com_bubble",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Palantir is a data‑analytics company with a different business model; comparing such firms highlights varied commercial paths for data platforms.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 9,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Palantir",
+      "extraction_target": "Count temples near Palantir",
+      "extraction_section": null,
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "temples near Palantir"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (nearby_poi) derived from https://en.wikipedia.org/wiki/Palantir",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 10,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Dot-com_bubble",
+      "extraction_target": "the percentage the Nasdaq Composite rose between 1995 and its peak in March 2000",
+      "extraction_section": null,
+      "extracted_value": "600%",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "New York Stock Exchange Building wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/New_York_Stock_Exchange_Building",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Historical context on tech market cycles and IPO hype — useful background when we later check contemporary stock/volume signals.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 11,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/New_York_Stock_Exchange_Building",
+      "extraction_target": "the number of stories in the 11 Wall Street annex",
+      "extraction_section": null,
+      "extracted_value": 23,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Mergers and acquisitions wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Mergers_and_acquisitions",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "The NYSE building symbolizes public markets where tech companies list — ties the product story back to investor signals we'll query.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 12,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Mergers_and_acquisitions",
+      "extraction_target": "the number of languages in which this article is available",
+      "extraction_section": null,
+      "extracted_value": 34,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Mergers_and_acquisitions",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "M&A is a central growth/exit strategy in tech; it complements organic growth and IPO-driven narratives for companies like Snowflake and peers.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 13,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Mergers_and_acquisitions",
+      "extraction_target": "Reason: the sum of its digits",
+      "extraction_section": null,
+      "extracted_value": 7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_sum) on stop 9 value",
+      "reason_transform": "digit_sum",
+      "reason_source_stop": 12,
+      "reason_code": "result = sum(int(d) for d in str(abs(int(34))))\nprint(result)"
+    },
+    {
+      "index": 14,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Tesla,_Inc.",
+      "extraction_target": "Look up the trading volume of TSLA on 2012-07-23",
+      "extraction_section": null,
+      "extracted_value": 20802000,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "stock_volume",
+            "arguments": {
+              "ticker": "TSLA",
+              "date": "2012-07-23"
+            },
+            "expected_output": null,
+            "output_key": "stock_volume"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: stock volume TSLA on 2012-07-23",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 15,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Tesla,_Inc.",
+      "extraction_target": "Reason: the number of divisors of that figure",
+      "extraction_section": null,
+      "extracted_value": 80,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (num_divisors) on stop 10 value",
+      "reason_transform": "num_divisors",
+      "reason_source_stop": 14,
+      "reason_code": "n = abs(int(20802000))\ncount = sum(1 for i in range(1, n+1) if n % i == 0) if n > 0 else 0\nresult = count\nprint(result)"
+    },
+    {
+      "index": 16,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/San_Mateo,_California",
+      "extraction_target": "Count the number of restaurants near 37.55417",
+      "extraction_section": null,
+      "extracted_value": 19,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "restaurants near 37.55417"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: count restaurants near 37.55417",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 17,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: digital_root(3 + 23 + 20802000 + 80)",
+      "extraction_section": null,
+      "extracted_value": 1,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "digital_root(3 + 23 + 20802000 + 80)",
+        "expression_code": "def digital_root(n):\n    n = abs(int(n))\n    return n if n == 0 else ((n - 1) % 9) + 1\nresult = digital_root(3 + 23 + 20802000 + 80)\nprint(result)",
+        "referenced_stops": [
+          9,
+          11,
+          14,
+          15
+        ]
+      },
+      "reasoning": "Compute stop: digital_root(3 + 23 + 20802000 + 80) = 1",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 1,
+  "difficulty": {
+    "level": "hard",
+    "depth": 18,
+    "tool_stop_count": 4,
+    "reason_stop_count": 3,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "Here is the riddle with the corrections applied:\n\n1. Unearth the cloud-based data warehousing marvel that transformed how we store and manage data. In what year did it first emerge into the tech world?\n\n2. Next, track down the vast platform that provides cloud-based services and infrastructure with a myriad of tools. How many programming languages are showcased at the top of this site?\n\n3. Now, take the count of languages you just discovered and find the sum of its digits. \n\n4. At this stage, discover the name of the parent company overseeing a popular data analytics platform, often mentioned in discussions about business intelligence.\n\n5. How many libraries can you find surrounding the tech giant's headquarters, revealing a world of knowledge nearby? Look to the maps for your answer.\n\n6. Shift your focus to a platform revolutionizing software development collaboration. In what year did this online hub take its initial steps into existence?\n\n7. Attend to the subset of artificial intelligence that thrives on generative models. Among its teachings, how many sub-subsections discussing training techniques can you uncover?\n\n8. Within the page of a prominent British AI researcher, how many languages give voice to his story? \n\n9. What is the count of subsections found under the Products section of the company known for its data analytics products that assist organizations in decision-making?\n\n10. Using the maps once more, discover how many temples are located near the tech firm renowned for its impressive data solutions.\n\n11. Reflect on the tech stock boom that defined the late 90s. How much did the stock market index surge, represented as a percentage, by March of the year 2000?\n\n12. Explore the iconic structure in Manhattan known for trading — how many stories does the annexed building at 11 Wall Street boast?\n\n13. The dynamics of control in businesses often change. What is the total number of languages used to express the intricate processes involved in corporate restructuring and involvement among companies?\n\n14. Again, turn your attention to the previous hint and sum the digits of the language count, as revealed in your last discovery.\n\n15. Gaze upon the company indulging in electric vehicles and clean energy. What was the trading volume of its stock on a notable day in July 2012?\n\n16. Next, bring forth the count of divisors from the trading volume you unearthed. \n\n17. As your journey nears its end, how many dining establishments are located near the geographical coordinates of a city in California known for its proximity to tech innovation?\n\n18. To complete this undertaking, compute the digital root of the sum formed by adding together the answers from clues 10, 12, 15, and 16. What single digit emerges from this combination?",
+  "metadata": {
+    "theme": "Follow Snowflake Inc. from its headquarters into the cloud-data ecosystem, developer tooling and AI leadership, then outward to market and geographic signals (tech stocks, crypto, and Silicon Valley locations).",
+    "difficulty": "hard",
+    "sample_id": "sample_128",
+    "pages_crawled": 11828
+  },
+  "generated_at": "2026-03-17T10:06:23.235368+00:00"
+}

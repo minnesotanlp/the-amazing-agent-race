@@ -1,0 +1,183 @@
+{
+  "trail_id": "trail_5803f1e5",
+  "seed_url": "https://en.wikipedia.org/wiki/Eli_Lilly_and_Company",
+  "seed_title": "Eli Lilly and Company",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Pharmaceutical_industry",
+      "extraction_target": "the number of languages in which the article is available (as shown)",
+      "extraction_section": null,
+      "extracted_value": 38,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Poland wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Poland",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Situates Eli Lilly within the broader pharmaceutical industry — market size, R&D pressures, and commercial dynamics that shape drug development and pricing.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Poland",
+      "extraction_target": "Look up the elevation at Poland",
+      "extraction_section": null,
+      "extracted_value": 138.0327453613281,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Poland"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for Poland",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Nirmatrelvir/ritonavir",
+      "extraction_target": "the trade name under which nirmatrelvir/ritonavir is sold",
+      "extraction_section": null,
+      "extracted_value": "Paxlovid",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Nirmatrelvir/ritonavir",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Examine a recent, high-profile antiviral product (Paxlovid) to connect industry-level forces to a concrete medicine and to highlight Eli Lilly/peer-company roles in therapeutics.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 3,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Nirmatrelvir/ritonavir",
+      "extraction_target": "Reason: the alphabetical position of its first letter (A=1, B=2, ...)",
+      "extraction_section": null,
+      "extracted_value": 16,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (alpha_position_first_letter) on stop 2 value",
+      "reason_transform": "alpha_position_first_letter",
+      "reason_source_stop": 2,
+      "reason_code": "first = \"Paxlovid\"[0].upper()\nresult = ord(first) - ord('A') + 1 if first.isalpha() else 0\nprint(result)"
+    },
+    {
+      "index": 4,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/US_Senate",
+      "extraction_target": "the capacity listed in the infobox (field: 'Seats')",
+      "extraction_section": "infobox",
+      "extracted_value": 100,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/US_Senate",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "End the trail in the policy arena: the U.S. Senate (committees and legislation) where drug-pricing and industry regulation decisions are debated and made.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 5,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: digital_root(38 + 138 + 100)",
+      "extraction_section": null,
+      "extracted_value": 6,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "digital_root(38 + 138 + 100)",
+        "expression_code": "def digital_root(n):\n    n = abs(int(n))\n    return n if n == 0 else ((n - 1) % 9) + 1\nresult = digital_root(38 + 138 + 100)\nprint(result)",
+        "referenced_stops": [
+          0,
+          1,
+          4
+        ]
+      },
+      "reasoning": "Compute stop: digital_root(38 + 138 + 100) = 6",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 6,
+  "difficulty": {
+    "level": "easy",
+    "depth": 6,
+    "tool_stop_count": 1,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "Here is the revised riddle:\n\n1. Seek the Wikipedia page that discusses the sector responsible for the development and marketing of medications; note how many languages that article is available in; afterwards, use that number and then look up the Central European country whose capital is Warsaw.\n\n2. There exists a page for that Central European nation — once you have it, discover how high above sea level the land of that country lies (report the elevation in meters).\n\n3. Which brand name is used to market the oral antiviral combination made of a protease inhibitor paired with a pharmacokinetic booster; find the article about that combination medication and record the trade name under which it is sold.\n\n4. If you have the trade name from clue 3, take its initial letter and convert it to its position in the alphabet (A = 1, B = 2, and so on); that resulting number is your answer for this clue.\n\n5. The article whose opening line identifies it as the upper chamber of the United States Congress contains an infobox that lists its capacity — read that infobox and write down how many seats are shown.\n\n6. The arithmetic oracle now demands a single-digit talisman: compute the digital root of (clue 1 + clue 2 + clue 5). State that final single digit (0–9).",
+  "metadata": {
+    "theme": "Tracing Eli Lilly from markets to medicines to policy: company value, industry context, a flagship antiviral, the city's geography that houses its HQ, and the legislative arena shaping drug policy.",
+    "difficulty": "easy",
+    "sample_id": "sample_164",
+    "pages_crawled": 2719
+  },
+  "generated_at": "2026-03-17T09:56:17.683064+00:00"
+}

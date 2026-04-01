@@ -1,0 +1,884 @@
+{
+  "trail_id": "trail_3d2b29d0",
+  "seed_url": "https://en.wikipedia.org/wiki/Stéphanie_Plante",
+  "seed_title": "Stéphanie Plante",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/St%C3%A9phanie_Plante",
+      "extraction_target": "Stéphanie Plante's birth month and year",
+      "extraction_section": null,
+      "extracted_value": "July 1979",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Sandy Hill, Ottawa wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Sandy_Hill,_Ottawa",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start with the seed: a contemporary local civic leader to anchor the trail in municipal politics and community advocacy.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Sandy_Hill,_Ottawa",
+      "extraction_target": "the population of Sandy Hill according to the 2011 Canadian Census",
+      "extraction_section": null,
+      "extracted_value": 12490,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Sandy_Hill,_Ottawa",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A representative urban neighbourhood to explore how local communities are organized and represented; useful for comparing constituency scale.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Sandy_Hill,_Ottawa",
+      "extraction_target": "Look up the elevation of Sandy Hill, Ottawa",
+      "extraction_section": null,
+      "extracted_value": 70.214111328125,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Sandy Hill, Ottawa"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Sandy Hill, Ottawa) from https://en.wikipedia.org/wiki/Sandy_Hill,_Ottawa",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Sandy_Hill,_Ottawa",
+      "extraction_target": "Look up the count of hotels near Sandy Hill, Ottawa",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "hotels near Sandy Hill, Ottawa"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of hotels near Sandy Hill, Ottawa) from https://en.wikipedia.org/wiki/Sandy_Hill,_Ottawa",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Sandy_Hill,_Ottawa",
+      "extraction_target": "Combine the elevation of Sandy Hill, Ottawa and the count of hotels near Sandy Hill, Ottawa: (70 + 20)",
+      "extraction_section": null,
+      "extracted_value": 90,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(70.214111328125) + int(20.0)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Sandy Hill, Ottawa add count of hotels near Sandy Hill, Ottawa",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2,
+        3
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Sandy_Hill,_Ottawa",
+      "extraction_target": "Reason: the sum of its digits",
+      "extraction_section": null,
+      "extracted_value": 16,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_sum) on stop 1 value",
+      "reason_transform": "digit_sum",
+      "reason_source_stop": 1,
+      "reason_code": "result = sum(int(d) for d in str(abs(int(12490))))\nprint(result)",
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/City_Hall,_London_(Newham)",
+      "extraction_target": "the coordinates listed in the infobox (field: '[Coordinates](/wiki/Geographic_coordinate_system \"Geographic coordinate system\")')",
+      "extraction_section": "infobox",
+      "extracted_value": "51°30′27″N 0°0′58″E﻿ / ﻿51.50750°N 0.01611°E﻿ / 51.50750; 0.01611&params=51_30_27_N_0_0_58_E_region:GB_type:landmark)",
+      "extracted_value_type": "coords",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Electorates of the Australian House of Representatives wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Electorates_of_the_Australian_House_of_Representatives",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A contrasting city-hall example in London showing how municipal buildings symbolize local government and civic administration.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Electorates_of_the_Australian_House_of_Representatives",
+      "extraction_target": "the number of federal electorates",
+      "extraction_section": null,
+      "extracted_value": 150,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "E postcode area wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/E_postcode_area",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A look at electoral geography and how representation is apportioned — complements the municipal examples with a national electoral scheme.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Electorates_of_the_Australian_House_of_Representatives",
+      "extraction_target": "Look up the elevation of Electorates of the Australian House of Representatives",
+      "extraction_section": null,
+      "extracted_value": 399.4469604492188,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Electorates of the Australian House of Representatives"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (elevation) derived from https://en.wikipedia.org/wiki/Electorates_of_the_Australian_House_of_Representatives",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        7
+      ]
+    },
+    {
+      "index": 9,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/E_postcode_area",
+      "extraction_target": "the number of postcode districts in the E postcode area",
+      "extraction_section": null,
+      "extracted_value": 22,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Surrey Heath wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Surrey_Heath",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Postal/geographic divisions overlap with political boundaries — useful for understanding how services and identity map onto city space.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        8
+      ]
+    },
+    {
+      "index": 10,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Surrey_Heath",
+      "extraction_target": "the area rank of Surrey Heath (rank and total) as given",
+      "extraction_section": null,
+      "extracted_value": "202nd (of 296)",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Local government in Australia wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Local_government_in_Australia",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "An example of a local government district to compare scale, responsibilities and demographics with the urban boroughs previously visited.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        9
+      ]
+    },
+    {
+      "index": 11,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Local_government_in_Australia",
+      "extraction_target": "the number of toggle subsections under 'Types of local government'",
+      "extraction_section": "Types of local government",
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Sri Lanka at the 2018 Asian Games wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Sri_Lanka_at_the_2018_Asian_Games",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Provides an international comparison of municipal structures, reinforcing the theme of how local governance is organized differently across countries.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        10
+      ]
+    },
+    {
+      "index": 12,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Local_government_in_Australia",
+      "extraction_target": "Look up the elevation of Local government in Australia",
+      "extraction_section": null,
+      "extracted_value": 399.4469604492188,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Local government in Australia"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Local government in Australia) from https://en.wikipedia.org/wiki/Local_government_in_Australia",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        11
+      ]
+    },
+    {
+      "index": 13,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Local_government_in_Australia",
+      "extraction_target": "Look up the count of temples near Local government in Australia",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "temples near Local government in Australia"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of temples near Local government in Australia) from https://en.wikipedia.org/wiki/Local_government_in_Australia",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        11
+      ]
+    },
+    {
+      "index": 14,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Local_government_in_Australia",
+      "extraction_target": "Combine the elevation of Local government in Australia and the count of temples near Local government in Australia: abs(399 - 20)",
+      "extraction_section": null,
+      "extracted_value": 379,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(399.4469604492188) - int(20.0))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Local government in Australia abs_diff count of temples near Local government in Australia",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        12,
+        13
+      ]
+    },
+    {
+      "index": 15,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Sri_Lanka_at_the_2018_Asian_Games",
+      "extraction_target": "Look up the population of United Kingdom",
+      "extraction_section": null,
+      "extracted_value": 69281437,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "countries_population",
+            "arguments": {
+              "country": "United Kingdom"
+            },
+            "expected_output": null,
+            "output_key": "population"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: population of United Kingdom",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        14
+      ]
+    },
+    {
+      "index": 16,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Sri_Lanka_at_the_2018_Asian_Games",
+      "extraction_target": "Reason: the sum of its distinct prime factors",
+      "extraction_section": null,
+      "extracted_value": 69281437,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (sum_prime_factors) on stop 7 value",
+      "reason_transform": "sum_prime_factors",
+      "reason_source_stop": 15,
+      "reason_code": "def prime_factors(n):\n    n = abs(int(n))\n    factors = []\n    d = 2\n    while d * d <= n:\n        while n % d == 0:\n            factors.append(d)\n            n //= d\n        d += 1\n    if n > 1: factors.append(n)\n    return factors\nresult = sum(set(prime_factors(69281437)))\nprint(result)",
+      "depends_on": [
+        15
+      ]
+    },
+    {
+      "index": 17,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Religion_in_England",
+      "extraction_target": "the percentage of people identifying as Hinduism in the 2021 census",
+      "extraction_section": null,
+      "extracted_value": 1.8,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Shopping mall wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Shopping_mall",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Community composition and social services are closely tied to religious and cultural demographics — this stop highlights diversity within an English urban context.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        16
+      ]
+    },
+    {
+      "index": 18,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Religion_in_England",
+      "extraction_target": "Look up the elevation of Religion in England",
+      "extraction_section": null,
+      "extracted_value": 95.00697326660156,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Religion in England"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Religion in England) from https://en.wikipedia.org/wiki/Religion_in_England",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        17
+      ]
+    },
+    {
+      "index": 19,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Religion_in_England",
+      "extraction_target": "Look up the count of libraries near Religion in England",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "libraries near Religion in England"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of libraries near Religion in England) from https://en.wikipedia.org/wiki/Religion_in_England",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        17
+      ]
+    },
+    {
+      "index": 20,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Religion_in_England",
+      "extraction_target": "Combine the elevation of Religion in England and the count of libraries near Religion in England: (95 + 20)",
+      "extraction_section": null,
+      "extracted_value": 115,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(95.00697326660156) + int(20.0)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Religion in England add count of libraries near Religion in England",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        18,
+        19
+      ]
+    },
+    {
+      "index": 21,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Shopping_mall",
+      "extraction_target": "the number of languages listed in the language sidebar",
+      "extraction_section": null,
+      "extracted_value": 16,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Shopping_mall",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Public commercial spaces are focal points of urban life; a conceptual stop to link civic planning with places where people gather.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        20
+      ]
+    },
+    {
+      "index": 22,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Shopping_mall",
+      "extraction_target": "Reason: the digital root (iterated digit sum until single digit)",
+      "extraction_section": null,
+      "extracted_value": 7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digital_root) on stop 9 value",
+      "reason_transform": "digital_root",
+      "reason_source_stop": 21,
+      "reason_code": "n = abs(int(16))\nresult = n if n == 0 else ((n - 1) % 9) + 1\nprint(result)",
+      "depends_on": [
+        21
+      ]
+    },
+    {
+      "index": 23,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Eslite_Bookstore",
+      "extraction_target": "Count the number of churches near Xinyi District",
+      "extraction_section": null,
+      "extracted_value": 20,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "churches near Xinyi District"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: count churches near Xinyi District",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        22
+      ]
+    },
+    {
+      "index": 24,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Eslite_Bookstore",
+      "extraction_target": "Reason: the sum of its distinct prime factors",
+      "extraction_section": null,
+      "extracted_value": 7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (sum_prime_factors) on stop 10 value",
+      "reason_transform": "sum_prime_factors",
+      "reason_source_stop": 23,
+      "reason_code": "def prime_factors(n):\n    n = abs(int(n))\n    factors = []\n    d = 2\n    while d * d <= n:\n        while n % d == 0:\n            factors.append(d)\n            n //= d\n        d += 1\n    if n > 1: factors.append(n)\n    return factors\nresult = sum(set(prime_factors(20)))\nprint(result)",
+      "depends_on": [
+        23
+      ]
+    },
+    {
+      "index": 25,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/1956_French_legislative_election",
+      "extraction_target": "Calculate the number of days between 1979-01-01 and 2026-03-16",
+      "extraction_section": null,
+      "extracted_value": 17241,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "from datetime import date\nd1 = date.fromisoformat('1979-01-01')\nd2 = date.fromisoformat('2026-03-16')\nresult = abs((d2 - d1).days)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "days"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: date computation 1979-01-01 to 2026-03-16 (pinned)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        24
+      ]
+    },
+    {
+      "index": 26,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: digital_root(70 + 399 + 379 + 115)",
+      "extraction_section": null,
+      "extracted_value": 9,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "digital_root(70 + 399 + 379 + 115)",
+        "expression_code": "def digital_root(n):\n    n = abs(int(n))\n    return n if n == 0 else ((n - 1) % 9) + 1\nresult = digital_root(70 + 399 + 379 + 115)\nprint(result)",
+        "referenced_stops": [
+          2,
+          12,
+          14,
+          20
+        ]
+      },
+      "reasoning": "Compute stop: digital_root(70 + 399 + 379 + 115) = 9",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2,
+        12,
+        14,
+        20
+      ]
+    }
+  ],
+  "passcode": 9,
+  "difficulty": {
+    "level": "hard",
+    "depth": 27,
+    "tool_stop_count": 13,
+    "reason_stop_count": 4,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Unearth the story of the local leader of a Canadian capital city whose journey began in a particular month and year. What month and year brought Stéphanie Plante into the world?\n\n2. Discover a neighborhood near the heart of Ottawa known for its historical charm. According to the 2011 Canadian Census, how many inhabitants call this area home?\n\n3. Consult the maps to find just how high above sea level this charming neighborhood resides. What elevation does it boast in meters?\n\n4. Seek out where travelers can find rest nearby — how many hotels stand within a stone's throw of the neighborhood unearthed in clue 2?\n\n5. Combine the meters from clue 3 with the number of hotels discovered in clue 4. What new number will you possess?\n\n6. Summon the digits of the population you found in clue 2; what is their sum? \n\n7. A government building stands tall in Newham's London. What coordinates do you uncover that pinpoint its location?\n\n8. The land down under has many electoral divisions. How many federal electorates can you find mentioned in this geographical exploration?\n\n9. Use the maps once more to discern the height above sea level of Australia’s electoral divisions. What elevation do they reach?\n\n10. Next, shift focus to the land of postcodes — how many districts does the E postcode area encompass?\n\n11. Among the rolling hills of Surrey, one district rises above the rest. What area rank does this district hold out of the total number of councils?\n\n12. In the land of kangaroos, there are different types of local governance. Count how many categories are mentioned under 'Types of local government.'\n\n13. High above the sprawling local governance, what elevation is noted when looking into this topic?\n\n14. Search for places of worship nearby this governance; how many temples can you find around the vicinity?\n\n15. Take the elevation gathered in clue 13 and the number of temples from clue 14. What is their absolute difference?\n\n16. Flip to a nation’s status in the realm of sports—what is the population of the United Kingdom, as revealed in the latest census?\n\n17. Reflect upon the distinct prime factors of this population number from clue 16. What is their sum?\n\n18. Dive into a realm of faiths within England — according to the recent census, what percentage of people identify as Hindu?\n\n19. Delve into the heights of belief. Using maps, what elevation does the religious context of England sit at?\n\n20. Consulting the maps again, how many libraries found their home near the realm of religion in England?\n\n21. Combine the elevation obtained in clue 19 with the count of libraries in clue 20. What new figure emerges from this union?\n\n22. Within bustling commercial centers, how many languages can you discover on the sidebar of a page dedicated to a mall?\n\n23. Seek the essence of your findings from clue 22, distilling it down to its digital root. What single digit do you uncover?\n\n24. Explore the literary world in the Xinyi District; how many churches can be noted in the vicinity?\n\n25. Moving back to the spiritual realm, what is the sum of the distinct prime factors of your new inquiry from clue 24?\n\n26. Delve into the days that fly by, calculating the time from 1979-01-01 to 2026-03-16. How many days are encompassed in this duration?\n\n27. Finally, reflect on the traveling numbers: compute the digital root of the sum derived from clues 3, 13, 15, and 21. What single digit do you reveal?",
+  "metadata": {
+    "theme": "From a local civic actor to the urban systems that shape everyday life — a comparative tour of neighbourhoods, city halls, transit and public space, using geographic and demographic tools to connect local governance to wider regional and global contexts.",
+    "difficulty": "hard",
+    "sample_id": "sample_034",
+    "pages_crawled": 2598
+  },
+  "generated_at": "2026-03-16T09:36:35.236579+00:00"
+}

@@ -1,0 +1,153 @@
+{
+  "trail_id": "trail_d7984d71",
+  "seed_url": "https://en.wikipedia.org/wiki/St._Elizabeth_Health_Services",
+  "seed_title": "St. Elizabeth Health Services",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/St._Elizabeth_Health_Services",
+      "extraction_target": "the location city and state of St. Elizabeth Health Services",
+      "extraction_section": null,
+      "extracted_value": "Baker City, Oregon, United States",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/St._Elizabeth_Health_Services",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start at the local rural hospital (seed). Extract its location and emergency capability to anchor the trail in eastern Oregon.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/St._Elizabeth_Health_Services",
+      "extraction_target": "Reason: the alphabetical position of its first letter (A=1, B=2, ...)",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (alpha_position_first_letter) on stop 0 value",
+      "reason_transform": "alpha_position_first_letter",
+      "reason_source_stop": 0,
+      "reason_code": "first = \"Baker City, Oregon, United States\"[0].upper()\nresult = ord(first) - ord('A') + 1 if first.isalpha() else 0\nprint(result)"
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/St._Anthony_Hospital_(Pendleton,_Oregon)",
+      "extraction_target": "Get the driving duration in minutes from Pendleton to Baker City, Oregon, United States",
+      "extraction_section": null,
+      "extracted_value": 97,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_directions",
+            "arguments": {
+              "origin": "Pendleton",
+              "destination": "Baker City, Oregon, United States",
+              "mode": "driving"
+            },
+            "expected_output": null,
+            "output_key": "duration"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: directions duration Pendleton to Baker City, Oregon, United States",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 3,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Trauma_center",
+      "extraction_target": "the number of specialist medical and nursing areas explicitly listed as available at the highest levels of trauma centers",
+      "extraction_section": null,
+      "extracted_value": 8,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Trauma_center",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "End on the trauma-center article to interpret the clinical implications of travel time and regional resources: which level of care a critically ill patient from a rural hospital might need to reach.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 4,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: (2 + 8) % 10",
+      "extraction_section": null,
+      "extracted_value": 0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "(2 + 8) % 10",
+        "expression_code": "result = (2 + 8) % 10\nprint(result)",
+        "referenced_stops": [
+          1,
+          3
+        ]
+      },
+      "reasoning": "Compute stop: (2 + 8) % 10 = 0",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 0,
+  "difficulty": {
+    "level": "easy",
+    "depth": 5,
+    "tool_stop_count": 1,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "direct_link"
+  },
+  "riddle": "1. Seek the hospital page that opened this trail; from that seed entry, note the city and state where the facility sits, then follow the in-page link labeled \"Article\" to continue onward.\n\n2. There exists a small conversion task: take the hospital name you uncovered in clue 1, look at its first letter, and convert that letter to its place in the alphabet (A = 1, B = 2, and so on); keep the resulting number for later.\n\n3. How many minutes by road separate Pendleton from Baker City? Land on the Pendleton hospital’s page reached via the link and determine the driving duration between those two Oregon towns, expressed in minutes.\n\n4. If you consult the article that explains regional care for the most seriously injured patients, count how many specialist medical and nursing areas are explicitly listed as available at the highest levels of trauma care; that count becomes your next numeric clue.\n\n5. In the final act, perform this arithmetic using only the numeric answers you obtained earlier: compute (clue 2 + clue 4) % 10 and report the single digit (0–9) that results.",
+  "metadata": {
+    "theme": "Tracing emergency-care access in rural eastern Oregon: from a local hospital to regional trauma resources",
+    "difficulty": "easy",
+    "sample_id": "sample_203",
+    "pages_crawled": 220
+  },
+  "generated_at": "2026-03-20T00:20:57.689475+00:00"
+}

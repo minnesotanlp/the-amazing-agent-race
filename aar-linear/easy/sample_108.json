@@ -1,0 +1,131 @@
+{
+  "trail_id": "trail_a5067bdc",
+  "seed_url": "https://en.wikipedia.org/wiki/Jonathan_Sprague_House",
+  "seed_title": "Jonathan Sprague House",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Jonathan_Sprague_House",
+      "extraction_target": "the coordinates listed in the infobox (field: 'Coordinates')",
+      "extraction_section": "infobox",
+      "extracted_value": "39°33′34″N 81°34′13″W﻿ / ﻿39.55944°N 81.57028°W﻿ / 39.55944; -81.57028",
+      "extracted_value_type": "coords",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Mason_House_(Coal_Run,_Ohio)",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "The seed: a Federal-period historic house in Waterford/Washington County that anchors the local historic-architecture theme and provides coordinates for mapping.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Mason_House_(Coal_Run,_Ohio)",
+      "extraction_target": "Get the driving duration in minutes from Township Road 393 to 39°33′34″N 81°34′13″W﻿ / ﻿39.55944°N 81.57028°W﻿ / 39.55944; -81.57028",
+      "extraction_section": null,
+      "extracted_value": 1466,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_directions",
+            "arguments": {
+              "origin": "Township Road 393",
+              "destination": "39°33′34″N 81°34′13″W﻿ / ﻿39.55944°N 81.57028°W﻿ / 39.55944; -81.57028",
+              "mode": "driving"
+            },
+            "expected_output": null,
+            "output_key": "duration"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: directions duration Township Road 393 to 39°33′34″N 81°34′13″W﻿ / ﻿39.55944°N 81.57028°W﻿ / 39.55944; -81.57028",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Mason_House_(Coal_Run,_Ohio)",
+      "extraction_target": "Reason: the number of characters when written as a Roman numeral",
+      "extraction_section": null,
+      "extracted_value": 7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (roman_numeral_letter_count) on stop 1 value",
+      "reason_transform": "roman_numeral_letter_count",
+      "reason_source_stop": 1,
+      "reason_code": "def to_roman(n):\n    n = abs(int(n))\n    vals = [(1000,'M'),(900,'CM'),(500,'D'),(400,'CD'),(100,'C'),\n            (90,'XC'),(50,'L'),(40,'XL'),(10,'X'),(9,'IX'),(5,'V'),(4,'IV'),(1,'I')]\n    r = ''\n    for v, s in vals:\n        while n >= v:\n            r += s; n -= v\n    return r\nresult = len(to_roman(1466))\nprint(result)"
+    },
+    {
+      "index": 3,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: (1466 + 7) % 10",
+      "extraction_section": null,
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "(1466 + 7) % 10",
+        "expression_code": "result = (1466 + 7) % 10\nprint(result)",
+        "referenced_stops": [
+          1,
+          2
+        ]
+      },
+      "reasoning": "Compute stop: (1466 + 7) % 10 = 3",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 3,
+  "difficulty": {
+    "level": "easy",
+    "depth": 4,
+    "tool_stop_count": 1,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "direct_link"
+  },
+  "riddle": "Here is the riddle with the specified changes:\n\n1. Seek the abode once owned by an early 20th-century local historic figure known for his role in agriculture; what geographic coordinates are recorded on that entry, and follow the link labeled for a home associated with the central figure of the local Coal Run community to continue.\n\n2. There exists a nearby historic dwelling reached by that link: on its page, imagine driving from Township Road 393 to the spot whose coordinates you noted — how many minutes would that drive take by car?\n\n3. How many characters long is the Roman-numeral form of the minute count you just found in clue 2?\n\n4. As the hunt's final cipher, compute the remainder when the sum of clue 2 and clue 3 is divided by 10, i.e. (clue 2 + clue 3) % 10; your answer should be a single digit between 0 and 9.",
+  "metadata": {
+    "theme": "A short micro-trail through historic Washington County, Ohio: start at the Jonathan Sprague House and link nearby historic homes and the Coal Run Historic District while measuring travel time and local points of interest.",
+    "difficulty": "easy",
+    "sample_id": "sample_108",
+    "pages_crawled": 100,
+    "source": "trail_puzzles_v3"
+  },
+  "generated_at": "2026-03-15T22:35:50.401323+00:00"
+}

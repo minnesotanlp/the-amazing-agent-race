@@ -1,0 +1,1197 @@
+{
+  "trail_id": "trail_6bd3c255",
+  "seed_url": "https://en.wikipedia.org/wiki/Jabhat_Ansar_al-Islam",
+  "seed_title": "Jabhat Ansar al-Islam",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Jabhat_Ansar_al-Islam",
+      "extraction_target": "the number of governorates listed under Active regions",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Jabhat_Ansar_al-Islam",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start at the seed group — a local Syrian rebel faction — to anchor the trail in a specific organization active early in the conflict.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Jabhat_Ansar_al-Islam",
+      "extraction_target": "Reason: the sum of its distinct prime factors",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (sum_prime_factors) on stop 0 value",
+      "reason_transform": "sum_prime_factors",
+      "reason_source_stop": 0,
+      "reason_code": "def prime_factors(n):\n    n = abs(int(n))\n    factors = []\n    d = 2\n    while d * d <= n:\n        while n % d == 0:\n            factors.append(d)\n            n //= d\n        d += 1\n    if n > 1: factors.append(n)\n    return factors\nresult = sum(set(prime_factors(4)))\nprint(result)",
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Background_and_causes_of_the_Syrian_revolution",
+      "extraction_target": "the month and year given in the maintenance template indicating when additional citations were noted",
+      "extraction_section": null,
+      "extracted_value": "March 2023",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Early_insurgency_phase_of_the_Syrian_civil_war",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Contextualizes the political, social and economic causes that produced the insurgency and created groups like the seed.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Background_and_causes_of_the_Syrian_revolution",
+      "extraction_target": "Look up the elevation of Background and causes of the Syrian revolution",
+      "extraction_section": null,
+      "extracted_value": 445.2398376464844,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Background and causes of the Syrian revolution"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Background and causes of the Syrian revolution) from https://en.wikipedia.org/wiki/Background_and_causes_of_the_Syrian_revolution",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Background_and_causes_of_the_Syrian_revolution",
+      "extraction_target": "Look up the count of museums near Background and causes of the Syrian revolution",
+      "extraction_section": null,
+      "extracted_value": 18.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "museums near Background and causes of the Syrian revolution"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of museums near Background and causes of the Syrian revolution) from https://en.wikipedia.org/wiki/Background_and_causes_of_the_Syrian_revolution",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Background_and_causes_of_the_Syrian_revolution",
+      "extraction_target": "Combine the elevation of Background and causes of the Syrian revolution and the count of museums near Background and causes of the Syrian revolution: (445 + 18)",
+      "extraction_section": null,
+      "extracted_value": 463,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(445.2398376464844) + int(18.0)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Background and causes of the Syrian revolution add count of museums near Background and causes of the Syrian revolution",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3,
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Early_insurgency_phase_of_the_Syrian_civil_war",
+      "extraction_target": "the date range of the early insurgency phase as given in the infobox",
+      "extraction_section": null,
+      "extracted_value": "29 July 2011 – 20 April 2012 (8 months, 3 weeks and 1 day)",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Battle_of_Idlib_(2012)",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Follows the narrative into the early armed phase, showing how protest dynamics translated into armed insurgency and where local brigades emerged.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Early_insurgency_phase_of_the_Syrian_civil_war",
+      "extraction_target": "Look up the elevation of Early insurgency phase of the Syrian civil war",
+      "extraction_section": null,
+      "extracted_value": 445.2398376464844,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Early insurgency phase of the Syrian civil war"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Early insurgency phase of the Syrian civil war) from https://en.wikipedia.org/wiki/Early_insurgency_phase_of_the_Syrian_civil_war",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Early_insurgency_phase_of_the_Syrian_civil_war",
+      "extraction_target": "Look up the count of temples near Early insurgency phase of the Syrian civil war",
+      "extraction_section": null,
+      "extracted_value": 1.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "temples near Early insurgency phase of the Syrian civil war"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of temples near Early insurgency phase of the Syrian civil war) from https://en.wikipedia.org/wiki/Early_insurgency_phase_of_the_Syrian_civil_war",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 9,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Early_insurgency_phase_of_the_Syrian_civil_war",
+      "extraction_target": "Combine the elevation of Early insurgency phase of the Syrian civil war and the count of temples near Early insurgency phase of the Syrian civil war: abs(445 - 1)",
+      "extraction_section": null,
+      "extracted_value": 444,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(445.2398376464844) - int(1.0))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Early insurgency phase of the Syrian civil war abs_diff count of temples near Early insurgency phase of the Syrian civil war",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        7,
+        8
+      ]
+    },
+    {
+      "index": 10,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Battle_of_Idlib_(2012)",
+      "extraction_target": "the duration of the battle in days as given in the infobox",
+      "extraction_section": null,
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/2012_Homs_offensive",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A pivotal 2012 battle in northwest Syria that highlights insurgent advances and the tactical importance of Idlib province to groups like the seed.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        9
+      ]
+    },
+    {
+      "index": 11,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Battle_of_Idlib_(2012)",
+      "extraction_target": "Look up the elevation of Battle of Idlib",
+      "extraction_section": null,
+      "extracted_value": 418.275634765625,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Battle of Idlib"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Battle of Idlib) from https://en.wikipedia.org/wiki/Battle_of_Idlib_(2012)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        10
+      ]
+    },
+    {
+      "index": 12,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Battle_of_Idlib_(2012)",
+      "extraction_target": "Look up the count of libraries near Battle of Idlib",
+      "extraction_section": null,
+      "extracted_value": 1.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "libraries near Battle of Idlib"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of libraries near Battle of Idlib) from https://en.wikipedia.org/wiki/Battle_of_Idlib_(2012)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        10
+      ]
+    },
+    {
+      "index": 13,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Battle_of_Idlib_(2012)",
+      "extraction_target": "Combine the elevation of Battle of Idlib and the count of libraries near Battle of Idlib: (418 + 1)",
+      "extraction_section": null,
+      "extracted_value": 419,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(418.275634765625) + int(1.0)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Battle of Idlib add count of libraries near Battle of Idlib",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        11,
+        12
+      ]
+    },
+    {
+      "index": 14,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/2012_Homs_offensive",
+      "extraction_target": "the estimated total civilians and rebels killed overall (per H.R.W. and the opposition)",
+      "extraction_section": null,
+      "extracted_value": 700,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Siege_of_Hama_(2011)",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Homs was an early and bloody focal point; this offensive demonstrates urban siege warfare that recurred across the conflict.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        13
+      ]
+    },
+    {
+      "index": 15,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/2012_Homs_offensive",
+      "extraction_target": "Look up the elevation of 2012 Homs offensive",
+      "extraction_section": null,
+      "extracted_value": 493.3243713378906,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "2012 Homs offensive"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (elevation) derived from https://en.wikipedia.org/wiki/2012_Homs_offensive",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        14
+      ]
+    },
+    {
+      "index": 16,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Siege_of_Hama_(2011)",
+      "extraction_target": "the reported number of protestors in Hama on 1 July",
+      "extraction_section": null,
+      "extracted_value": 400000,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Siege_of_Daraa",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "An early siege showing regime responses to unrest in provincial cities — important to understand patterns repeated elsewhere.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        15
+      ]
+    },
+    {
+      "index": 17,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Siege_of_Hama_(2011)",
+      "extraction_target": "Look up the elevation of Siege of Hama",
+      "extraction_section": null,
+      "extracted_value": 283.8811340332031,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Siege of Hama"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Siege of Hama) from https://en.wikipedia.org/wiki/Siege_of_Hama_(2011)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        16
+      ]
+    },
+    {
+      "index": 18,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Siege_of_Hama_(2011)",
+      "extraction_target": "Look up the count of universities near Siege of Hama",
+      "extraction_section": null,
+      "extracted_value": 2.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "universities near Siege of Hama"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of universities near Siege of Hama) from https://en.wikipedia.org/wiki/Siege_of_Hama_(2011)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        16
+      ]
+    },
+    {
+      "index": 19,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Siege_of_Hama_(2011)",
+      "extraction_target": "Combine the elevation of Siege of Hama and the count of universities near Siege of Hama: (283 + 2)",
+      "extraction_section": null,
+      "extracted_value": 285,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(283.8811340332031) + int(2.0)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Siege of Hama add count of universities near Siege of Hama",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        17,
+        18
+      ]
+    },
+    {
+      "index": 20,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Siege_of_Daraa",
+      "extraction_target": "number of people arrested (stated as \"More than ...\") in the opening paragraph",
+      "extraction_section": null,
+      "extracted_value": "More than 1,000",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Siege_of_Daraa",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Daraa's siege connects back to the revolution's flashpoint and shows how local uprisings were militarized.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        19
+      ]
+    },
+    {
+      "index": 21,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Siege_of_Daraa",
+      "extraction_target": "Reason: the alphabetical position of its first letter (A=1, B=2, ...)",
+      "extraction_section": null,
+      "extracted_value": 13,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (alpha_position_first_letter) on stop 6 value",
+      "reason_transform": "alpha_position_first_letter",
+      "reason_source_stop": 20,
+      "reason_code": "first = \"More than 1,000\"[0].upper()\nresult = ord(first) - ord('A') + 1 if first.isalpha() else 0\nprint(result)",
+      "depends_on": [
+        20
+      ]
+    },
+    {
+      "index": 22,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Siege_of_Latakia_(2011)",
+      "extraction_target": "the number of tanks and APCs reported to have rolled into Latakia on 13 August 2011 according to the SOHR",
+      "extraction_section": "Escalation",
+      "extracted_value": "More than 20",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Siege_of_Baniyas",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Latakia demonstrates the conflict's geographic and sectarian dimensions along the coast and how terrain and population centers shaped campaigns.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        21
+      ]
+    },
+    {
+      "index": 23,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Siege_of_Baniyas",
+      "extraction_target": "the number of protestors killed as listed in the infobox",
+      "extraction_section": null,
+      "extracted_value": 10,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Army_of_Free_Tribes",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Another coastal siege that underscores patterns of urban containment and communal friction in the civil war.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        22
+      ]
+    },
+    {
+      "index": 24,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Siege_of_Baniyas",
+      "extraction_target": "Look up the elevation of Siege of Baniyas",
+      "extraction_section": null,
+      "extracted_value": 10.84386539459229,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Siege of Baniyas"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (elevation) derived from https://en.wikipedia.org/wiki/Siege_of_Baniyas",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        23
+      ]
+    },
+    {
+      "index": 25,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Army_of_Free_Tribes",
+      "extraction_target": "Count the number of libraries near Army of Free Tribes",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "libraries near Army of Free Tribes"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: count libraries near Army of Free Tribes",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        24
+      ]
+    },
+    {
+      "index": 26,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Battle_of_Saraqib",
+      "extraction_target": "the number of Syrian soldiers killed (casualties listed in the infobox)",
+      "extraction_section": null,
+      "extracted_value": 28,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Battle_of_Saraqib",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Saraqib sits at key road junctions — capturing it shows how transport geography determined strategic targets for rebel and regime forces.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        25
+      ]
+    },
+    {
+      "index": 27,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Battle_of_Saraqib",
+      "extraction_target": "Reason: the number of divisors of that figure",
+      "extraction_section": null,
+      "extracted_value": 6,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (num_divisors) on stop 10 value",
+      "reason_transform": "num_divisors",
+      "reason_source_stop": 26,
+      "reason_code": "n = abs(int(28))\ncount = sum(1 for i in range(1, n+1) if n % i == 0) if n > 0 else 0\nresult = count\nprint(result)",
+      "depends_on": [
+        26
+      ]
+    },
+    {
+      "index": 28,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Siege_of_Rastan_and_Talbiseh",
+      "extraction_target": "the number of demonstrators allegedly shot and killed by Military Intelligence (29 April)",
+      "extraction_section": "Background",
+      "extracted_value": 17,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Siege_of_Rastan_and_Talbiseh",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Rastan/Talbiseh operations illustrate rural-to-urban campaign dynamics and the consolidation of rebel-held belts.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        27
+      ]
+    },
+    {
+      "index": 29,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Siege_of_Rastan_and_Talbiseh",
+      "extraction_target": "Reason: the number of 1-bits in its binary representation",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (binary_1bit_count) on stop 11 value",
+      "reason_transform": "binary_1bit_count",
+      "reason_source_stop": 28,
+      "reason_code": "result = bin(abs(int(17))).count('1')\nprint(result)",
+      "depends_on": [
+        28
+      ]
+    },
+    {
+      "index": 30,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Syrian_Revolutionary_Command_Council",
+      "extraction_target": "Convert 17 km to miles",
+      "extraction_section": null,
+      "extracted_value": 10,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "# Convert km to miles\nvalue = 17.0\nconverted = value * 0.621371\nresult = int(converted)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "converted"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: convert 17 km to miles",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        29
+      ]
+    },
+    {
+      "index": 31,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Siege_of_Talkalakh_(May_2011)",
+      "extraction_target": "the number of tanks and APCs reported as used",
+      "extraction_section": null,
+      "extracted_value": 74,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Siege_of_Talkalakh_(May_2011)",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Talkalakh highlights border-proximate operations and how geography facilitated cross-border flows of fighters and refugees.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        30
+      ]
+    },
+    {
+      "index": 32,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Siege_of_Talkalakh_(May_2011)",
+      "extraction_target": "Reason: the sum of its digits",
+      "extraction_section": null,
+      "extracted_value": 11,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_sum) on stop 13 value",
+      "reason_transform": "digit_sum",
+      "reason_source_stop": 31,
+      "reason_code": "result = sum(int(d) for d in str(abs(int(74))))\nprint(result)",
+      "depends_on": [
+        31
+      ]
+    },
+    {
+      "index": 33,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Southern_Front_(Syrian_rebel_group)",
+      "extraction_target": "start date of operation (from the infobox)",
+      "extraction_section": null,
+      "extracted_value": "13 February 2014",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Control_of_cities_during_the_Syrian_civil_war",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Profiles a major, relatively moderate rebel coalition in the south — useful to contrast northern/central dynamics and alliances.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        32
+      ]
+    },
+    {
+      "index": 34,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Control_of_cities_during_the_Syrian_civil_war",
+      "extraction_target": "Convert 17 meters to yards",
+      "extraction_section": null,
+      "extracted_value": 18,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "# Convert meters to yards\nvalue = 17.0\nconverted = value * 1.09361\nresult = int(converted)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "converted"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: convert 17 meters to yards",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        33
+      ]
+    },
+    {
+      "index": 35,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/National_Front_for_the_Liberation_of_Syria",
+      "extraction_target": "the date the National Front for the Liberation of Syria was formed",
+      "extraction_section": null,
+      "extracted_value": "22 July 2017",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/National_Front_for_the_Liberation_of_Syria",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "End the trail with a larger coalition formation that reflects how many smaller groups and battles aggregated into broader alliances.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        34
+      ]
+    },
+    {
+      "index": 36,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: digital_root(444 + 418 + 4 + 28)",
+      "extraction_section": null,
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "digital_root(444 + 418 + 4 + 28)",
+        "expression_code": "def digital_root(n):\n    n = abs(int(n))\n    return n if n == 0 else ((n - 1) % 9) + 1\nresult = digital_root(444 + 418 + 4 + 28)\nprint(result)",
+        "referenced_stops": [
+          9,
+          11,
+          25,
+          26
+        ]
+      },
+      "reasoning": "Compute stop: digital_root(444 + 418 + 4 + 28) = 3",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        9,
+        11,
+        25,
+        26
+      ]
+    }
+  ],
+  "passcode": 3,
+  "difficulty": {
+    "level": "extreme",
+    "depth": 37,
+    "tool_stop_count": 17,
+    "reason_stop_count": 5,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "direct_link"
+  },
+  "riddle": "1. Seek the page that details the group active across multiple regions, known for its involvement in the Syrian conflict. How many governorates are mentioned under its active regions?\n\n2. With the number you've just discovered, what do you get when you sum the distinct prime factors of that number?\n\n3. From the insights of the turmoil, what month and year were highlighted for needing further citations? This detail lies beneath the surface of a page about the origins and causes of the civil unrest.\n\n4. Delve deeper into the narrative of strife: how high above sea level does the setting of that page rest?\n\n5. Count the cultural treasures nearby. How many museums can be found in the vicinity of the place mentioned in your previous clue?\n\n6. Combine your elevation from clue 4 with the number of museums from clue 5. What is the total?\n\n7. What span of time did the early days of insurrection cover, as indicated by the documented range on the page that narrates that chaotic phase of rebellion?\n\n8. Ascend to the heights — what is the elevation noted for the early insurgency phase in Syria?\n\n9. Nearby the aforementioned phase, how many temples stand as silent witnesses to history?\n\n10. Subtract the temple count you just gathered in clue 9 from the elevation found in clue 8. How do these figures interact?\n\n11. The fierce clash in 2012 left its mark. What was the duration of the Battle in Idlib in days, according to its account?\n\n12. What elevation marks the battle site of Idlib in the pages of history?\n\n13. How many libraries can be discovered around the area where the Battle of Idlib unfolded?\n\n14. Aggregate the elevation from clue 12 with the library count from clue 13. What do you find?\n\n15. During a fierce offensive, estimates surfaced about losses. What was the total number of civilians and rebels reported as killed throughout the events documented in your next stop?\n\n16. What is the elevation reported for the site of this major offensive in 2012?\n\n17. Turning to Hama, which historic protest on July 1 was attended by a recorded number of demonstrators? \n\n18. What elevation does the historic area of Hama reach, as noted in the records?\n\n19. As knowledge seekers, how many universities are situated in the vicinity of Hama?\n\n20. Add the elevation from clue 18 to the count of universities from clue 19. What total do you reach?\n\n21. In a moment of unrest in Daraa, how many individuals were mentioned as arrested in the opening of the article detailing that episode?\n\n22. What is the alphabetical position of the first letter from the total number you've unearthed in clue 21?\n\n23. Daring to examine Latakia, what was the count of tanks and APCs reported to have rolled into the city on a notable date in August 2011?\n\n24. Moving onward to Baniyas, how many protestors lost their lives per the data described in its infobox?\n\n25. Elevate your understanding by considering the height of the area in Baniyas. What does the elevation measure?\n\n26. How many libraries might you stumble upon near the group known as the Army of Free Tribes? \n\n27. Returning to a moment of fierce conflict, how many Syrian soldiers were recorded as casualties during the Battle of Saraqib? \n\n28. Count the divisors of the number of soldiers found from clue 27. What does that tally represent? \n\n29. The Siege of Rastan and Talbiseh recorded lament. How many demonstrators faced the fury and were shot on April 29?\n\n30. In pondering this unfortunate event, what is the number of 1-bits in the binary representation of the figure you just unearthed in clue 29?\n\n31. To understand the distance in movement, 17 kilometers beckon to be converted into miles. What value emerges from this transformation?\n\n32. Encounter tanks and APCs reported in the siege of Talkalakh. What number stands there in the chronicles?\n\n33. Sum the digits of the count you obtained in the previous clue. What total arises from this calculation?\n\n34. The Southern Front emerged — when did its operations officially commence? Seek the date marked in its brief history. \n\n35. Just as distances matter, convert 17 meters into yards. What number do you uncover?\n\n36. What date marks the formation of the National Front for the Liberation of Syria? \n\n37. Take the digital root of the summation formed by the results of clues 10, 12, 26, and 27. What is the single-digit outcome of that computation?",
+  "metadata": {
+    "theme": "Tracing a geographic and organizational trail through the Syrian civil war: from the origins and causes, to local insurgent groups, key battles and sieges, and the geographic/logistic factors that shaped them.",
+    "difficulty": "extreme",
+    "sample_id": "sample_026",
+    "pages_crawled": 4005
+  },
+  "generated_at": "2026-03-16T14:18:26.292623+00:00"
+}

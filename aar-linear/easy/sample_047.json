@@ -1,0 +1,153 @@
+{
+  "trail_id": "trail_a4bf255c",
+  "seed_url": "https://en.wikipedia.org/wiki/The_Fall_of_Math",
+  "seed_title": "The Fall of Math",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/The_Fall_of_Math",
+      "extraction_target": "the album release date",
+      "extraction_section": null,
+      "extracted_value": "September 20, 2004",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Math_rock",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start at the seed single to anchor the trail in a specific track and its release context before exploring the broader genre.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Math_rock",
+      "extraction_target": "the number of stylistic origins listed in the infobox",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Kojonup, Western Australia wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Kojonup,_Western_Australia",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Move to the 'Math rock' genre page to explain the musical style and origins that inform the seed track.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Kojonup,_Western_Australia",
+      "extraction_target": "Count the number of museums near -33.84",
+      "extraction_section": null,
+      "extracted_value": 20,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "museums near -33.84"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: count museums near -33.84",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 3,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Kojonup,_Western_Australia",
+      "extraction_target": "Reason: the number of 1-bits in its binary representation",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (binary_1bit_count) on stop 2 value",
+      "reason_transform": "binary_1bit_count",
+      "reason_source_stop": 2,
+      "reason_code": "result = bin(abs(int(20))).count('1')\nprint(result)"
+    },
+    {
+      "index": 4,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: digital_root(5 + 20 + 2)",
+      "extraction_section": null,
+      "extracted_value": 9,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "digital_root(5 + 20 + 2)",
+        "expression_code": "def digital_root(n):\n    n = abs(int(n))\n    return n if n == 0 else ((n - 1) % 9) + 1\nresult = digital_root(5 + 20 + 2)\nprint(result)",
+        "referenced_stops": [
+          1,
+          2,
+          3
+        ]
+      },
+      "reasoning": "Compute stop: digital_root(5 + 20 + 2) = 9",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 9,
+  "difficulty": {
+    "level": "easy",
+    "depth": 5,
+    "tool_stop_count": 1,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "Here is the riddle with the corrected clue:\n\n1. Seek the album known for its exploration of intricate themes and mathematical concepts; from the page about its initial release, follow the link to the angular, time‑twisting rock subgenre mentioned in the write‑up to continue.\n\n2. There exists a page that defines that subgenre; on that genre's entry, how many distinct musical roots are credited in the summary box at the top?\n\n3. How many museums can you find near latitude −33.84 when you shift the hunt from the UK/indie scene to rural Western Australia: locate the Wikipedia entry for the small Wheatbelt town around that latitude and, using a map, count the nearby museums.\n\n4. If you convert the museum‑count obtained in clue 3 into base two, how many ones does that binary representation contain?\n\n5. The final calculation, whose inputs are three earlier discoveries, asks you to compute the digital root of (clue 2 + clue 3 + clue 4); perform that arithmetic and report the single digit result (0–9).",
+  "metadata": {
+    "theme": "Trace from the single 'The Fall of Math' into the math‑rock genre, then contrast that UK/indie scene with small-town Australian rock settings by inspecting rural Western Australia towns (venues and elevation) that shape local music scenes.",
+    "difficulty": "easy",
+    "sample_id": "sample_047",
+    "pages_crawled": 1996,
+    "source": "trail_puzzles_v2"
+  },
+  "generated_at": "2026-03-15T14:17:14.519867+00:00"
+}

@@ -1,0 +1,654 @@
+{
+  "trail_id": "trail_cb56d408",
+  "seed_url": "https://en.wikipedia.org/wiki/Freeport-McMoRan",
+  "seed_title": "Freeport-McMoRan",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Freeport-McMoRan",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Founded')",
+      "extraction_section": "infobox",
+      "extracted_value": 1912,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Uranium wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Uranium",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start at the miner — Freeport-McMoRan's production and HQ anchor the trail from raw mineral output to global trade.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Freeport-McMoRan",
+      "extraction_target": "Count churches near Freeport-McMoRan",
+      "extraction_section": null,
+      "extracted_value": 9,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "churches near Freeport-McMoRan"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (nearby_poi) derived from https://en.wikipedia.org/wiki/Freeport-McMoRan",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Uranium",
+      "extraction_target": "Convert 1912 km to miles",
+      "extraction_section": null,
+      "extracted_value": 1188,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "# Convert km to miles\nvalue = 1912.0\nconverted = value * 0.621371\nresult = int(converted)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "converted"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: convert 1912 km to miles",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Gold",
+      "extraction_target": "the number of language links shown under the article title",
+      "extraction_section": null,
+      "extracted_value": 234,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Gold",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Contrast base metals (copper) with precious metals (gold) to show different market roles for mined products.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Gold",
+      "extraction_target": "Reason: the number of characters when written as a Roman numeral",
+      "extraction_section": null,
+      "extracted_value": 7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (roman_numeral_letter_count) on stop 2 value",
+      "reason_transform": "roman_numeral_letter_count",
+      "reason_source_stop": 3,
+      "reason_code": "def to_roman(n):\n    n = abs(int(n))\n    vals = [(1000,'M'),(900,'CM'),(500,'D'),(400,'CD'),(100,'C'),\n            (90,'XC'),(50,'L'),(40,'XL'),(10,'X'),(9,'IX'),(5,'V'),(4,'IV'),(1,'I')]\n    r = ''\n    for v, s in vals:\n        while n >= v:\n            r += s; n -= v\n    return r\nresult = len(to_roman(234))\nprint(result)",
+      "depends_on": [
+        3
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Rio_Tinto_(corporation)",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Founded')",
+      "extraction_section": "infobox",
+      "extracted_value": 29,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/BP",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A peer mining conglomerate (Rio Tinto) provides perspective on global mining scale, product mix, and geographic footprint.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/BP",
+      "extraction_target": "the number of main subsections under Violations and accidents in the table of contents",
+      "extraction_section": "Violations and accidents",
+      "extracted_value": 8,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "US wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/US",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tie mining to the broader energy sector: BP represents oil & gas actors that sit alongside miners in global commodity systems.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/US",
+      "extraction_target": "Look up the elevation at Washington",
+      "extraction_section": null,
+      "extracted_value": 22.09991455078125,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Washington"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for Washington",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/US",
+      "extraction_target": "Reason: the number you get by reversing its digits",
+      "extraction_section": null,
+      "extracted_value": 22,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_reversal) on stop 5 value",
+      "reason_transform": "digit_reversal",
+      "reason_source_stop": 7,
+      "reason_code": "result = int(str(abs(int(22)))[::-1])\nprint(result)",
+      "depends_on": [
+        7
+      ]
+    },
+    {
+      "index": 9,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Caspian_Sea",
+      "extraction_target": "the number of subsections under the Border countries subsection",
+      "extraction_section": "Border countries",
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Dalian wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Dalian",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Shift to a resource-rich region (Caspian) that links extraction (oil and gas) to shipping and geopolitics.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        8
+      ]
+    },
+    {
+      "index": 10,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Dalian",
+      "extraction_target": "Count the number of museums near Dalian",
+      "extraction_section": null,
+      "extracted_value": 20,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "museums near Dalian"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: count museums near Dalian",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        9
+      ]
+    },
+    {
+      "index": 11,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Dalian",
+      "extraction_target": "Reason: the number of 1-bits in its binary representation",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (binary_1bit_count) on stop 7 value",
+      "reason_transform": "binary_1bit_count",
+      "reason_source_stop": 10,
+      "reason_code": "result = bin(abs(int(20))).count('1')\nprint(result)",
+      "depends_on": [
+        10
+      ]
+    },
+    {
+      "index": 12,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Libya",
+      "extraction_target": "the years given in the 'Italian colonisation and Allied occupation' subsection heading",
+      "extraction_section": "Italian colonisation and Allied occupation (1911–1951)",
+      "extracted_value": "1911–1951",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Energy development wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Energy_development",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Libya is an example of a hydrocarbon-producing country whose output affects global energy flows and trade routes tied to mining/energy sectors.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        11
+      ]
+    },
+    {
+      "index": 13,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Libya",
+      "extraction_target": "Look up the elevation of Libya",
+      "extraction_section": null,
+      "extracted_value": 552.4244384765625,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Libya"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Libya) from https://en.wikipedia.org/wiki/Libya",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        12
+      ]
+    },
+    {
+      "index": 14,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Libya",
+      "extraction_target": "Look up the count of temples near Libya",
+      "extraction_section": null,
+      "extracted_value": 6.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "temples near Libya"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of temples near Libya) from https://en.wikipedia.org/wiki/Libya",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        12
+      ]
+    },
+    {
+      "index": 15,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Libya",
+      "extraction_target": "Combine the elevation of Libya and the count of temples near Libya: abs(552 - 6)",
+      "extraction_section": null,
+      "extracted_value": 546,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(552.4244384765625) - int(6.0))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Libya abs_diff count of temples near Libya",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        13,
+        14
+      ]
+    },
+    {
+      "index": 16,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Energy_development",
+      "extraction_target": "the number of languages the article is available in (listed at the top)",
+      "extraction_section": null,
+      "extracted_value": 14,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Gulf Coast wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Gulf_Coast",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Contextualize extraction technologies and development choices that shape how mined commodities are produced and transported.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        15
+      ]
+    },
+    {
+      "index": 17,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Gulf_Coast",
+      "extraction_target": "the number of U.S. states listed as having a shoreline on the Gulf of Mexico",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Gulf Coast wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Gulf_Coast",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "The Gulf Coast is a major refining/export region — connecting producers to global markets and illustrating the downstream infrastructure for mined and hydrocarbon commodities.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        16
+      ]
+    },
+    {
+      "index": 18,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Gulf_Coast",
+      "extraction_target": "Reason: the number of divisors of that figure",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (num_divisors) on stop 10 value",
+      "reason_transform": "num_divisors",
+      "reason_source_stop": 17,
+      "reason_code": "n = abs(int(5))\ncount = sum(1 for i in range(1, n+1) if n % i == 0) if n > 0 else 0\nresult = count\nprint(result)",
+      "depends_on": [
+        17
+      ]
+    },
+    {
+      "index": 19,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Houston,_Texas",
+      "extraction_target": "the coordinates listed in the infobox (field: 'Coordinates')",
+      "extraction_section": "infobox",
+      "extracted_value": "29.76278, -95.38306",
+      "extracted_value_type": "coords",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Houston,_Texas",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "End the page trail at Houston, a logistics and energy finance hub, closing the loop from mine (Freeport) to market and transport nodes.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        18
+      ]
+    },
+    {
+      "index": 20,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: abs(7 - 20) % 10",
+      "extraction_section": null,
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "abs(7 - 20) % 10",
+        "expression_code": "result = abs(7 - 20) % 10\nprint(result)",
+        "referenced_stops": [
+          4,
+          10,
+          11
+        ]
+      },
+      "reasoning": "Compute stop: abs(7 - 20) % 10 = 3",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        4,
+        10,
+        11
+      ]
+    }
+  ],
+  "passcode": 3,
+  "difficulty": {
+    "level": "hard",
+    "depth": 21,
+    "tool_stop_count": 7,
+    "reason_stop_count": 4,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. A giant in the copper and gold game was born in a year starting with one and followed by two other digits. Seek its founding year.\n\n2. Nearby, there lies a community of worship. Count the houses of faith that stand close to the giant's roots.\n\n3. Venture onward to a radioactive element. How far, in miles, does this miracle of nature stretch, when converted from its original 1912 kilometers?\n\n4. Journey to a precious metal known to glimmer — how many languages can speak its name under the title of its Wikipedia entry?\n\n5. The figure uncovered in the previous clue, when transformed to a Roman numeral, yields a new set of characters. Count how many letters comprise this illustrious numeral.\n\n6. Find a mining rival founded in a year between the first and the second great wars. What year did its creators join the corporate fray?\n\n7. In a city known for black gold's role in history, discover how many sections lay beneath the Violations and Accidents chapter.\n\n8. Travel to the nation's capital — what is the elevation that marks the height of this pivotal city?\n\n9. Flip the digits of the elevation you just discovered. What number emerges from this transformation?\n\n10. Visit a great body of water nestled between nations. How many subsections exist beneath the Border countries heading in its article?\n\n11. Here, in a coastal metropolis rich in culture, how many institutions dedicated to art and education survey the museums nearby?\n\n12. The result from the previous excitement deserves further analysis. Determine the count of 1-bits found in the binary representation of that number.\n\n13. Turn your attention to a land of shifting sands and rich history. Within the span of several decades marked by occupation, uncover the years found in the wrinkled folds of its past.\n\n14. Beneath the sky of this diverse land, how high does the ground rise to meet it? Investigate the altitude of this expansive region.\n\n15. In a realm known for its ancient temples, count those sacred structures dotting its landscape.\n\n16. Combine the figures from the previous two clues and take the absolute difference: between the elevation you just found and the number of temples near it. What remains?\n\n17. Discover the world of alternative energies — how many languages weave through the fabric of knowledge on this topic?\n\n18. A region defined by shallow waters and sandy shores has states that bask in the sun. How many states claim a shore along this sparkling expanse?\n\n19. The number reflected in the heart of our sun-kissed region isn't just singular; uncover how many divisors can divide that value evenly.\n\n20. A vibrant city at the crossroads of commerce lies before you. Retrieve the geographical coordinates that declare its place on Earth.\n\n21. Finally, bring together the truths emerging from previous clues. Take the absolute difference between the outputs of clues 5 and 11, then apply modulo 10 to find a single-digit answer that completes your quest.",
+  "metadata": {
+    "theme": "Mine-to-market: tracing how a major mining company (Freeport-McMoRan) connects to global commodities, energy infrastructure, and markets",
+    "difficulty": "hard",
+    "sample_id": "sample_164",
+    "pages_crawled": 18028
+  },
+  "generated_at": "2026-03-18T07:27:04.946981+00:00"
+}

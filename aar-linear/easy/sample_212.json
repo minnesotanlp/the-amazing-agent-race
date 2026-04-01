@@ -1,0 +1,175 @@
+{
+  "trail_id": "trail_4637ad28",
+  "seed_url": "https://en.wikipedia.org/wiki/Rigor_mortis",
+  "seed_title": "Rigor mortis",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Rigor_mortis",
+      "extraction_target": "the stage number of rigor mortis in the stages of human death list",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Edwin Stanton wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Edwin_Stanton",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start with the physiological clock (rigor mortis) that forensic investigators use to estimate time of death.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Edwin_Stanton",
+      "extraction_target": "death year of Edwin Stanton as listed in the article header",
+      "extraction_section": null,
+      "extracted_value": 1869,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Assassination_of_Abraham_Lincoln",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Introduce a principal figure who managed the official response and investigation after the high-profile death.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Assassination_of_Abraham_Lincoln",
+      "extraction_target": "Calculate the number of days between 1865-04-14 and 2026-03-20",
+      "extraction_section": null,
+      "extracted_value": 58779,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "from datetime import date\nd1 = date.fromisoformat('1865-04-14')\nd2 = date.fromisoformat('2026-03-20')\nresult = abs((d2 - d1).days)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "days"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: date computation 1865-04-14 to 2026-03-20 (pinned)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 3,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Assassination_of_Abraham_Lincoln",
+      "extraction_target": "Reason: the number of divisors of that figure",
+      "extraction_section": null,
+      "extracted_value": 16,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (num_divisors) on stop 2 value",
+      "reason_transform": "num_divisors",
+      "reason_source_stop": 2,
+      "reason_code": "n = abs(int(58779))\ncount = sum(1 for i in range(1, n+1) if n % i == 0) if n > 0 else 0\nresult = count\nprint(result)"
+    },
+    {
+      "index": 4,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/District_of_Columbia",
+      "extraction_target": "the number of language editions listed for the article",
+      "extraction_section": null,
+      "extracted_value": 247,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/District_of_Columbia",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Place the event geographically — where the death occurred and where postmortem changes (rigor) would have begun.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 5,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: abs(4 - 58779) % 10",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "abs(4 - 58779) % 10",
+        "expression_code": "result = abs(4 - 58779) % 10\nprint(result)",
+        "referenced_stops": [
+          0,
+          2,
+          3
+        ]
+      },
+      "reasoning": "Compute stop: abs(4 - 58779) % 10 = 5",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 5,
+  "difficulty": {
+    "level": "easy",
+    "depth": 6,
+    "tool_stop_count": 1,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "Here is the revised riddle with the specified clue corrected:\n\n1. Seek the page associated with the state of muscle stiffness that occurs after death and read its opening: in the canonical list of stages after death, which stage number is this phenomenon?\n\n2. There exists a Wikipedia article about the 19th-century American lawyer and politician who served as Lincoln’s Secretary of War; on that page, note the year given for his death, and then follow the link on that page which points to the 1865 murder of a U.S. president in Washington, D.C.\n\n3. How many days have elapsed between the fatal date 1865-04-14 and 2026-03-20? Use the linked article about the 1865 event to confirm the starting date, then record the day-count.\n\n4. The article whose opening line mentions the 1865 tragedy invites a numerical curiosity: take the day-count you just found and determine how many positive divisors that integer has.\n\n5. In a brief historical aside, the capital’s entry (the article that redirects from the federal district’s formal name) shows how many language editions host that page; discover and record that language-count shown in the sidebar.\n\n6. (Final ledger) Compute the absolute difference between clue 1 and clue 3, then take that result modulo 10 — explicitly: compute abs(clue 1 - clue 3) % 10 — your final answer should be a single digit (0–9).",
+  "metadata": {
+    "theme": "A short forensic-historical trail: from the postmortem timeline (rigor mortis) to a famous historical death, its investigators, location, and the journey to burial.",
+    "difficulty": "easy",
+    "sample_id": "sample_212",
+    "pages_crawled": 5220
+  },
+  "generated_at": "2026-03-21T03:09:11.028818+00:00"
+}

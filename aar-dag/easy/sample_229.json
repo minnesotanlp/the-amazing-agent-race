@@ -1,0 +1,141 @@
+{
+  "trail_id": "trail_b9f560ab",
+  "seed_url": "https://en.wikipedia.org/wiki/Unearthed_(Fringe)",
+  "seed_title": "Unearthed (Fringe)",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Unearthed_(Fringe)",
+      "extraction_target": "the number of viewers who tuned into the episode 'Unearthed'",
+      "extraction_section": "Reception",
+      "extracted_value": 7.79,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Unearthed_(Fringe)",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "The 'Fringe' episode 'Unearthed' is a fictional representation reflecting on mysterious occurrences, which ties to the broader theme of exploration and inquiry.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Unearthed_(Fringe)",
+      "extraction_target": "Reason: the next prime number after that figure",
+      "extraction_section": null,
+      "extracted_value": 11,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (next_prime) on stop 0 value",
+      "reason_transform": "next_prime",
+      "reason_source_stop": 0,
+      "reason_code": "def next_prime(n):\n    n = abs(int(n))\n    if n < 2: return 2\n    candidate = n + 1\n    while True:\n        if all(candidate % i != 0 for i in range(2, int(candidate**0.5)+1)):\n            return candidate\n        candidate += 1\nresult = next_prime(7)\nprint(result)",
+      "depends_on": []
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/NBC",
+      "extraction_target": "Look up the elevation at 30 Rockefeller Plaza",
+      "extraction_section": null,
+      "extracted_value": 21.66104125976562,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "30 Rockefeller Plaza"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for 30 Rockefeller Plaza",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 3,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: abs(7 - 11) % 10",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "abs(7 - 11) % 10",
+        "expression_code": "result = abs(7 - 11) % 10\nprint(result)",
+        "referenced_stops": [
+          0,
+          1,
+          2
+        ]
+      },
+      "reasoning": "Compute stop: abs(7 - 11) % 10 = 4",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    }
+  ],
+  "passcode": 4,
+  "difficulty": {
+    "level": "easy",
+    "depth": 4,
+    "tool_stop_count": 1,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "direct_link"
+  },
+  "riddle": "1. Begin with the 11th episode of the second season of \"Fringe,\" where strange events unfold, revealing the number of enthralled viewers. This figure lies within the 'Reception' discussion.\n\n2. Unearth the hidden pattern that numbers follow: what's the next prime that rises beyond the audience count you discovered before?\n\n3. A towering symbol of American broadcasting resides at 30 Rockefeller Plaza. What altitude does this famed location achieve above sea level?\n\n4. Ponder now this numerical enigma: take the absolute difference between seven and eleven; leave the result with the remainder when divided by ten. Which secret number possesses this fate?\n\nTo solve this riddle, engage each clue's findings, combine your efforts, and seek the final truth within the walls of these directives.",
+  "metadata": {
+    "theme": "Exploring Contrasts in Broadcasting and Population Centers",
+    "difficulty": "easy",
+    "sample_id": "sample_229",
+    "pages_crawled": 1251
+  },
+  "generated_at": "2026-03-27T07:58:41.204497+00:00"
+}

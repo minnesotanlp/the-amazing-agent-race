@@ -1,0 +1,794 @@
+{
+  "trail_id": "trail_bddf971a",
+  "seed_url": "https://en.wikipedia.org/wiki/Earle,_Northumberland",
+  "seed_title": "Earle, Northumberland",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Earle,_Northumberland",
+      "extraction_target": "the coordinates in degrees, minutes and seconds as shown on the page",
+      "extraction_section": null,
+      "extracted_value": "55°31′55″N 2°01′30″W",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Northumberland County Council wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Northumberland_County_Council",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start at the seed village to ground the trail in a specific Northumberland place and its basic administrative identity.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Earle,_Northumberland",
+      "extraction_target": "Look up the elevation of Earle, Northumberland",
+      "extraction_section": null,
+      "extracted_value": 458.0546875,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Earle, Northumberland"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Earle, Northumberland) from https://en.wikipedia.org/wiki/Earle,_Northumberland",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Earle,_Northumberland",
+      "extraction_target": "Look up the count of restaurants near Earle, Northumberland",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "restaurants near Earle, Northumberland"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of restaurants near Earle, Northumberland) from https://en.wikipedia.org/wiki/Earle,_Northumberland",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Earle,_Northumberland",
+      "extraction_target": "Combine the elevation of Earle, Northumberland and the count of restaurants near Earle, Northumberland: (458 + 20)",
+      "extraction_section": null,
+      "extracted_value": 478,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(458.0546875) + int(20.0)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Earle, Northumberland add count of restaurants near Earle, Northumberland",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1,
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Northumberland_County_Council",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Founded')",
+      "extraction_section": "infobox",
+      "extracted_value": 1,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "County town wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/County_town",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Move out to the county-level government that administers places like Earle and explains modern local governance in the region.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/County_town",
+      "extraction_target": "the number of languages listed at the top of the article",
+      "extraction_section": null,
+      "extracted_value": 14,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Shire wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Shire",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Introduce the concept of a county town — the historic and administrative centers that organize county affairs, linking villages to county seats.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Shire",
+      "extraction_target": "the number of counties in England that bear the \"-shire\" suffix",
+      "extraction_section": null,
+      "extracted_value": 23,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Lanarkshire",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Describe the historic shire as the root administrative unit from which modern counties and county towns emerged.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Lanarkshire",
+      "extraction_target": "Get the driving duration in minutes from Lanarkshire to Earle, Northumberland",
+      "extraction_section": null,
+      "extracted_value": 136,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_directions",
+            "arguments": {
+              "origin": "Lanarkshire",
+              "destination": "Earle, Northumberland",
+              "mode": "driving"
+            },
+            "expected_output": null,
+            "output_key": "duration"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: directions duration Lanarkshire to Earle, Northumberland",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Lanarkshire",
+      "extraction_target": "Reason: the sum of its digits",
+      "extraction_section": null,
+      "extracted_value": 10,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_sum) on stop 4 value",
+      "reason_transform": "digit_sum",
+      "reason_source_stop": 7,
+      "reason_code": "result = sum(int(d) for d in str(abs(int(136))))\nprint(result)",
+      "depends_on": [
+        7
+      ]
+    },
+    {
+      "index": 9,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Peel_tower",
+      "extraction_target": "the number of named regions/counties listed where peels were built",
+      "extraction_section": "History",
+      "extracted_value": 7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Musa Qala District wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Musa_Qala_District",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Examine peel towers as local defensive architecture that ties settlement patterns to border security and local authority in northern England and Scotland.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        8
+      ]
+    },
+    {
+      "index": 10,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Musa_Qala_District",
+      "extraction_target": "Count the number of hospitals near 32.47000",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "hospitals near 32.47000"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: count hospitals near 32.47000",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        9
+      ]
+    },
+    {
+      "index": 11,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Earconwald",
+      "extraction_target": "year Earconwald was installed as Bishop of London",
+      "extraction_section": null,
+      "extracted_value": "675",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Cantref wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Cantref",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Bring in an early medieval ecclesiastical founder to show how church establishments influenced settlement and local administration in early medieval England.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        10
+      ]
+    },
+    {
+      "index": 12,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Cantref",
+      "extraction_target": "the number of languages listed in the interlanguage links at the top of the page",
+      "extraction_section": null,
+      "extracted_value": 15,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Cantref",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Shift to medieval Welsh administration (cantref) to compare medieval territorial units across the British Isles.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        11
+      ]
+    },
+    {
+      "index": 13,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Cantref",
+      "extraction_target": "Reason: the next prime number after that figure",
+      "extraction_section": null,
+      "extracted_value": 17,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (next_prime) on stop 8 value",
+      "reason_transform": "next_prime",
+      "reason_source_stop": 12,
+      "reason_code": "def next_prime(n):\n    n = abs(int(n))\n    if n < 2: return 2\n    candidate = n + 1\n    while True:\n        if all(candidate % i != 0 for i in range(2, int(candidate**0.5)+1)):\n            return candidate\n        candidate += 1\nresult = next_prime(15)\nprint(result)",
+      "depends_on": [
+        12
+      ]
+    },
+    {
+      "index": 14,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Commote",
+      "extraction_target": "the number of trefi that made up a cantref according to the article",
+      "extraction_section": null,
+      "extracted_value": 100,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Commote",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Drill down to the commote as the sub-unit of the cantref, illustrating nested medieval governance structures that echo later parish/civil divisions.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        13
+      ]
+    },
+    {
+      "index": 15,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Commote",
+      "extraction_target": "Reason: the number of divisors of that figure",
+      "extraction_section": null,
+      "extracted_value": 9,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (num_divisors) on stop 9 value",
+      "reason_transform": "num_divisors",
+      "reason_source_stop": 14,
+      "reason_code": "n = abs(int(100))\ncount = sum(1 for i in range(1, n+1) if n % i == 0) if n > 0 else 0\nresult = count\nprint(result)",
+      "depends_on": [
+        14
+      ]
+    },
+    {
+      "index": 16,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/North_Riding_of_Yorkshire",
+      "extraction_target": "Look up the elevation at North Riding of Yorkshire",
+      "extraction_section": null,
+      "extracted_value": 14.47940063476562,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "North Riding of Yorkshire"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for North Riding of Yorkshire",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        15
+      ]
+    },
+    {
+      "index": 17,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Principal_areas_of_Wales",
+      "extraction_target": "the date the principal areas of Wales were created",
+      "extraction_section": null,
+      "extracted_value": "1 April 1996",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Counties and county boroughs of Wales wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Counties_and_county_boroughs_of_Wales",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Contrast how Wales organizes local government today (principal areas) compared with historic Welsh divisions and English shires.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        16
+      ]
+    },
+    {
+      "index": 18,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Counties_and_county_boroughs_of_Wales",
+      "extraction_target": "the number of principal areas of Wales",
+      "extraction_section": null,
+      "extracted_value": 22,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Uganda Protectorate wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Uganda_Protectorate",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Follow up with Wales's county and county borough framework to illustrate mid-20th/late-20th century administrative reform trends across the UK.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        17
+      ]
+    },
+    {
+      "index": 19,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Counties_and_county_boroughs_of_Wales",
+      "extraction_target": "Look up the elevation of Counties and county boroughs of Wales",
+      "extraction_section": null,
+      "extracted_value": 397.3585205078125,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Counties and county boroughs of Wales"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Counties and county boroughs of Wales) from https://en.wikipedia.org/wiki/Counties_and_county_boroughs_of_Wales",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        18
+      ]
+    },
+    {
+      "index": 20,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Counties_and_county_boroughs_of_Wales",
+      "extraction_target": "Look up the count of universities near Counties and county boroughs of Wales",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "universities near Counties and county boroughs of Wales"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of universities near Counties and county boroughs of Wales) from https://en.wikipedia.org/wiki/Counties_and_county_boroughs_of_Wales",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        18
+      ]
+    },
+    {
+      "index": 21,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Counties_and_county_boroughs_of_Wales",
+      "extraction_target": "Combine the elevation of Counties and county boroughs of Wales and the count of universities near Counties and county boroughs of Wales: (397 + 20)",
+      "extraction_section": null,
+      "extracted_value": 417,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(397.3585205078125) + int(20.0)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Counties and county boroughs of Wales add count of universities near Counties and county boroughs of Wales",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        19,
+        20
+      ]
+    },
+    {
+      "index": 22,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Uganda_Protectorate",
+      "extraction_target": "Convert 100 meters to feet",
+      "extraction_section": null,
+      "extracted_value": 328,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "# Convert meters to feet\nvalue = 100.0\nconverted = value * 3.28084\nresult = int(converted)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "converted"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: convert 100 meters to feet",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        21
+      ]
+    },
+    {
+      "index": 23,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Local_government_in_Scotland",
+      "extraction_target": "the number of languages listed near the top of the article",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Local_government_in_Scotland",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Finish by surveying Scotland's system of local government to round out the comparison of administrative models across the British Isles.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        22
+      ]
+    },
+    {
+      "index": 24,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: (100 + 328) % 10",
+      "extraction_section": null,
+      "extracted_value": 8,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "(100 + 328) % 10",
+        "expression_code": "result = (100 + 328) % 10\nprint(result)",
+        "referenced_stops": [
+          14,
+          22
+        ]
+      },
+      "reasoning": "Compute stop: (100 + 328) % 10 = 8",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        14,
+        22
+      ]
+    }
+  ],
+  "passcode": 8,
+  "difficulty": {
+    "level": "hard",
+    "depth": 25,
+    "tool_stop_count": 10,
+    "reason_stop_count": 3,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Seek the humble hamlet that bears witness to the passage of time — find its latitude and longitude, marked by degrees, minutes, and seconds.\n\n2. In this quaint hamlet, how high does the ground rise above the sea — seek the elevation to continue your journey?\n\n3. Nearby, how many tables are set at eateries that beckon with culinary delight? Count the restaurants and prepare for the next clue.\n\n4. Combine the height gathered in your second clue with the delicious count from the previous one — what is their total?\n\n5. There exists a page where regional governance evolves under the authority in charge. Discover the year this governing council first came to be.\n\n6. A pivotal place is marked by its multiple tongues. At the top of its page, how many languages are noted?\n\n7. Exploring divisions further, what number of counties in England carry the \"-shire\" in their name? \n\n8. Track down the time it would take to traverse from the land of a bidding community to the humble hamlet — how many minutes is the drive?\n\n9. From the previous timepiece, extract the soul of the figure: what is the sum of its digits?\n\n10. A tower dedicated to history holds tales of regions where mighty structures once stood. How many of these counties and regions are listed?\n\n11. In a district marked by conflict, how many healing places surround the coordinates 32.47000? Search for the number of hospitals nearby.\n\n12. Long ago, a future bishop took his place in the sacred seat of London. What year marks his ascension?\n\n13. The realm where poetry and community flourished also bears linguistic differences. How many languages are recorded in the interlanguage links at the top of its page?\n\n14. Seek the next prime number after the count you uncovered in the last clue — this is your next key.\n\n15. Within the tale of territories, what number of trefi constituted the larger division known as a cantref?\n\n16. For the value you found in the previous step, discover how many numbers can divide it evenly. \n\n17. Up above in Yorkshire’s embrace, what is the elevation of the North Riding, rising towards the skies?\n\n18. A significant date marks the creation of governmental areas in Wales — uncover this important year.\n\n19. How many principal areas shape the Welsh landscape today? Count them to proceed.\n\n20. Ascend to the heights once more and find the elevation of the Welsh regions — how high do they stand?\n\n21. In the vicinity of these areas, how many centers of higher learning can be found? Seek universities that enrich the landscape.\n\n22. Now, amalgamate the height from the last elevation clue with the count of academic institutions near the Welsh regions. This number is pivotal for your advance.\n\n23. Named in honor of a distant protectorate, convert the measure of 100 meters into feet — what value emerges?\n\n24. A page dedicated to Scotland speaks of its multi-lingual nature. How many languages are noted near its beginning?\n\n25. Finally, compute the result of adding the values from the clues regarding the trefi and the conversion to feet: whatever sum you find, reduce it to the remainder when divided by 10. What single digit emerges from your calculations?",
+  "metadata": {
+    "theme": "From a Northumberland hamlet to historical and modern local administration — tracing how places, defensive structures and medieval divisions evolved into today's county and regional governance across the British Isles (with a global comparison).",
+    "difficulty": "hard",
+    "sample_id": "sample_103",
+    "pages_crawled": 7229
+  },
+  "generated_at": "2026-03-16T18:14:00.757871+00:00"
+}

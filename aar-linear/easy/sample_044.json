@@ -1,0 +1,129 @@
+{
+  "trail_id": "trail_059b0fc8",
+  "seed_url": "https://en.wikipedia.org/wiki/György_Szebeny",
+  "seed_title": "György Szebeny",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Gy%C3%B6rgy_Szebeny",
+      "extraction_target": "the event György Szebeny competed in at the 1912 Summer Olympics",
+      "extraction_section": null,
+      "extracted_value": "men's eight",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Rowing_at_the_1912_Summer_Olympics_%E2%80%93_Men%27s_eight",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start at György Szebeny's page to extract his date of birth and confirm that he competed in the 1912 Men's eight rowing event — the personal anchor for the trail.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Rowing_at_the_1912_Summer_Olympics_%E2%80%93_Men%27s_eight",
+      "extraction_target": "Calculate the number of days between 1912-07-17 and 2026-03-15",
+      "extraction_section": null,
+      "extracted_value": 41514,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "from datetime import date\nd1 = date.fromisoformat('1912-07-17')\nd2 = date.fromisoformat('2026-03-15')\nresult = abs((d2 - d1).days)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "days"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: date computation 1912-07-17 to 2026-03-15 (pinned)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Rowing_at_the_1912_Summer_Olympics_%E2%80%93_Men%27s_eight",
+      "extraction_target": "Reason: the largest prime factor of that figure",
+      "extraction_section": null,
+      "extracted_value": 37,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (largest_prime_factor) on stop 1 value",
+      "reason_transform": "largest_prime_factor",
+      "reason_source_stop": 1,
+      "reason_code": "def largest_prime_factor(n):\n    n = abs(int(n))\n    if n <= 1: return n\n    d = 2\n    while d * d <= n:\n        while n % d == 0: n //= d\n        d += 1\n    return n\nresult = largest_prime_factor(41514)\nprint(result)"
+    },
+    {
+      "index": 3,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: (41514 + 37) % 10",
+      "extraction_section": null,
+      "extracted_value": 1,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "(41514 + 37) % 10",
+        "expression_code": "result = (41514 + 37) % 10\nprint(result)",
+        "referenced_stops": [
+          1,
+          2
+        ]
+      },
+      "reasoning": "Compute stop: (41514 + 37) % 10 = 1",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 1,
+  "difficulty": {
+    "level": "easy",
+    "depth": 4,
+    "tool_stop_count": 1,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "direct_link"
+  },
+  "riddle": "Here is the revised riddle:\n\n1. Seek the page for a Hungarian rower known for his participation in the early 20th century Olympic Games; on that page identify the rowing event he took part in at the 1912 Summer Olympics and follow the event link to continue the trail.\n\n2. Which article for that rowing contest records 17 July 1912 as a competition date, and from that page answer this: how many days have elapsed between 17 July 1912 and 15 March 2026?\n\n3. If you now hold the days-count from clue 2, find the largest prime factor of that number — that prime becomes your next numeric clue.\n\n4. At last, perform the final arithmetic: compute (clue 2 + clue 3) % 10 and report the result; the treasure lock expects a single digit (0–9).",
+  "metadata": {
+    "theme": "Tracing György Szebeny's Olympic moment — from his personal record to the 1912 Men's eight event, and computing his age at competition",
+    "difficulty": "easy",
+    "sample_id": "sample_044",
+    "pages_crawled": 1883,
+    "source": "trail_puzzles_v2"
+  },
+  "generated_at": "2026-03-15T13:54:19.668754+00:00"
+}

@@ -1,0 +1,130 @@
+{
+  "trail_id": "trail_f5095716",
+  "seed_url": "https://en.wikipedia.org/wiki/International_Festival_of_University_Choirs",
+  "seed_title": "International Festival of University Choirs",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/International_Festival_of_University_Choirs",
+      "extraction_target": "the number of organising bodies named in the article (Adam Mickiewicz University, the AMU Chamber Choir, and the Association of Friends of the AMU Chamber Choir)",
+      "extraction_section": null,
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Peabody Institute wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Peabody_Institute",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Begin at the International Festival of University Choirs to anchor the trail in the world of university choral performance and identify where (which city/country) this international gathering takes place.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Peabody_Institute",
+      "extraction_target": "Convert 3 meters to feet",
+      "extraction_section": null,
+      "extracted_value": 9,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "# Convert meters to feet\nvalue = 3.0\nconverted = value * 3.28084\nresult = int(converted)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "converted"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: convert 3 meters to feet",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Peabody_Institute",
+      "extraction_target": "Reason: the sum of its distinct prime factors",
+      "extraction_section": null,
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (sum_prime_factors) on stop 1 value",
+      "reason_transform": "sum_prime_factors",
+      "reason_source_stop": 1,
+      "reason_code": "def prime_factors(n):\n    n = abs(int(n))\n    factors = []\n    d = 2\n    while d * d <= n:\n        while n % d == 0:\n            factors.append(d)\n            n //= d\n        d += 1\n    if n > 1: factors.append(n)\n    return factors\nresult = sum(set(prime_factors(9)))\nprint(result)"
+    },
+    {
+      "index": 3,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: digital_root(3 + 9 + 3)",
+      "extraction_section": null,
+      "extracted_value": 6,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "digital_root(3 + 9 + 3)",
+        "expression_code": "def digital_root(n):\n    n = abs(int(n))\n    return n if n == 0 else ((n - 1) % 9) + 1\nresult = digital_root(3 + 9 + 3)\nprint(result)",
+        "referenced_stops": [
+          0,
+          1,
+          2
+        ]
+      },
+      "reasoning": "Compute stop: digital_root(3 + 9 + 3) = 6",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 6,
+  "difficulty": {
+    "level": "easy",
+    "depth": 4,
+    "tool_stop_count": 1,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "Here is the riddle with the corrected clue:\n\n1. Seek the seed page describing a global gathering that celebrates choral music among universities, and count how many organising bodies are named in that article; once tallied, move on toward a famed American conservatory whose benefactor's surname is often attached to a music school in Baltimore.\n\n2. What whole-number result do you get when you convert three metres into feet — perform that conversion while consulting the Baltimore conservatory's article and take the integer part as your value for clue 2. \n\n3. If you factor the integer found in clue 2 into primes, then add each distinct prime once, that sum becomes your value for clue 3. \n\n4. In the final step, compute the digital root of (clue1 + clue2 + clue3) and report that single digit (0–9) as the treasure.",
+  "metadata": {
+    "theme": "From festival stage to training ground: following university choral music from an international choir festival to a major conservatory and its local performance ecosystem.",
+    "difficulty": "easy",
+    "sample_id": "sample_023",
+    "pages_crawled": 1042,
+    "source": "trail_puzzles_v2"
+  },
+  "generated_at": "2026-03-15T12:11:35.542424+00:00"
+}

@@ -1,0 +1,281 @@
+{
+  "trail_id": "trail_fbfde620",
+  "seed_url": "https://en.wikipedia.org/wiki/Boone,_Iowa",
+  "seed_title": "Boone, Iowa",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Boone,_Iowa",
+      "extraction_target": "the total population of Boone, Iowa according to the 2020 census",
+      "extraction_section": null,
+      "extracted_value": "12,460",
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Iowa",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Boone, Iowa serves as the starting point of our journey, representing a typical small town in America with local cultural elements.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Boone,_Iowa",
+      "extraction_target": "Look up the elevation of Boone, Iowa",
+      "extraction_section": null,
+      "extracted_value": 344.4646911621094,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Boone, Iowa"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Boone, Iowa) from https://en.wikipedia.org/wiki/Boone,_Iowa",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Boone,_Iowa",
+      "extraction_target": "Look up the count of restaurants near Boone, Iowa",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "restaurants near Boone, Iowa"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of restaurants near Boone, Iowa) from https://en.wikipedia.org/wiki/Boone,_Iowa",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Boone,_Iowa",
+      "extraction_target": "Combine the elevation of Boone, Iowa and the count of restaurants near Boone, Iowa: (344 + 20)",
+      "extraction_section": null,
+      "extracted_value": 364,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(344.4646911621094) + int(20.0)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Boone, Iowa add count of restaurants near Boone, Iowa",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1,
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Iowa",
+      "extraction_target": "Look up the area in km² of United States",
+      "extraction_section": null,
+      "extracted_value": 347.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "countries_area",
+            "arguments": {
+              "country": "United States"
+            },
+            "expected_output": null,
+            "output_key": "area_km2"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: area of United States",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Saint_Joseph",
+      "extraction_target": "the number of sections listed in the Contents table",
+      "extraction_section": null,
+      "extracted_value": 12,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Saint_Joseph",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "The page on Saint Joseph allows exploration of religious influences that permeate American towns, reflecting on how international religious figures have local cultural significance.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Saint_Joseph",
+      "extraction_target": "Reason: the sum of its digits",
+      "extraction_section": null,
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_sum) on stop 2 value",
+      "reason_transform": "digit_sum",
+      "reason_source_stop": 5,
+      "reason_code": "result = sum(int(d) for d in str(abs(int(12))))\nprint(result)",
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: abs(344 - 364) % 10",
+      "extraction_section": null,
+      "extracted_value": 0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "abs(344 - 364) % 10",
+        "expression_code": "result = abs(344 - 364) % 10\nprint(result)",
+        "referenced_stops": [
+          1,
+          3,
+          5
+        ]
+      },
+      "reasoning": "Compute stop: abs(344 - 364) % 10 = 0",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1,
+        3,
+        5
+      ]
+    }
+  ],
+  "passcode": 0,
+  "difficulty": {
+    "level": "easy",
+    "depth": 8,
+    "tool_stop_count": 4,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "direct_link"
+  },
+  "riddle": "1. In the heartland, trace your steps to a Midwestern town, known by the surname of an iconic American pioneer. From its Wikipedia page, tally the number of inhabitants as of the year that saw a leap in decimal places.\n\n2. To reach new heights, uncover how far above the oceans the soil stands in this same land of pioneers. Determine its position from a bird's eye view.\n\n3. Hungry adventurers would seek out local eateries. Quantify these culinary choices you might find scattered across this Midwest settlement.\n\n4. Take the lofty figure you previously unearthed and blend it with your recent culinary tally. What sum do these figures compose?\n\n5. Venturing north of this town, explore a broader entity of politics and plains. This sprawling state's dimensions are quantified in thousands of square kilometers—seek this number.\n\n6. From a page devoted to a biblical figure of paternal lineage and divine acceptance, count the distinct sections that divide the tale.\n\n7. The numerical beauty lies in simplicity — from the sections you just counted, distill it down by gathering all singular digits into a harmonious sum.\n\n8. Now a challenge of absolute measure awaits. Using values from the heights of the pioneer land and the sum you just concocted, subtract and prepare for a modern digit dance. Compute the absolute remainder when crisscrossed paths are distilled through ten.\n\nIn this exploration, you are tasked to compute using the values from clues 2, 4, and 6. What single numeral emerges from your calculations?",
+  "metadata": {
+    "theme": "Exploring Connections from Boone, Iowa to International Cultural Influences",
+    "difficulty": "easy",
+    "sample_id": "sample_217",
+    "pages_crawled": 780
+  },
+  "generated_at": "2026-03-27T07:11:14.389750+00:00"
+}

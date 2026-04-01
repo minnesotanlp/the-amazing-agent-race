@@ -1,0 +1,130 @@
+{
+  "trail_id": "trail_448c6a3a",
+  "seed_url": "https://en.wikipedia.org/wiki/Lanesville_Township,_Sangamon_County,_Illinois",
+  "seed_title": "Lanesville Township, Sangamon County, Illinois",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Lanesville_Township,_Sangamon_County,_Illinois",
+      "extraction_target": "year the township was established",
+      "extraction_section": null,
+      "extracted_value": "1875",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "John A. Logan wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/John_A._Logan",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Begin at Lanesville Township in Sangamon County to anchor the trail in a specific Illinois locality (demographics and founding date provide a local baseline for comparison with state political events).",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/John_A._Logan",
+      "extraction_target": "Calculate the number of days between 1875-01-01 and 2026-03-15",
+      "extraction_section": null,
+      "extracted_value": 55225,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "from datetime import date\nd1 = date.fromisoformat('1875-01-01')\nd2 = date.fromisoformat('2026-03-15')\nresult = abs((d2 - d1).days)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "days"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: date computation 1875-01-01 to 2026-03-15 (pinned)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/John_A._Logan",
+      "extraction_target": "Reason: the next prime number after that figure",
+      "extraction_section": null,
+      "extracted_value": 55229,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (next_prime) on stop 1 value",
+      "reason_transform": "next_prime",
+      "reason_source_stop": 1,
+      "reason_code": "def next_prime(n):\n    n = abs(int(n))\n    if n < 2: return 2\n    candidate = n + 1\n    while True:\n        if all(candidate % i != 0 for i in range(2, int(candidate**0.5)+1)):\n            return candidate\n        candidate += 1\nresult = next_prime(55225)\nprint(result)"
+    },
+    {
+      "index": 3,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: digital_root(1875 + 55225 + 55229)",
+      "extraction_section": null,
+      "extracted_value": 9,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "digital_root(1875 + 55225 + 55229)",
+        "expression_code": "def digital_root(n):\n    n = abs(int(n))\n    return n if n == 0 else ((n - 1) % 9) + 1\nresult = digital_root(1875 + 55225 + 55229)\nprint(result)",
+        "referenced_stops": [
+          0,
+          1,
+          2
+        ]
+      },
+      "reasoning": "Compute stop: digital_root(1875 + 55225 + 55229) = 9",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 9,
+  "difficulty": {
+    "level": "easy",
+    "depth": 4,
+    "tool_stop_count": 1,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "Here is the rewritten riddle:\n\n1. Seek the page about a small township located in Sangamon County, Illinois, known for its historical roots; read its opening: in what year was this township established?\n\n2. There exists a page about an Illinois Civil War general who later served in the United States Senate — consult that biography and calculate how many days lie between 1875-01-01 and 2026-03-15.\n\n3. Which prime number comes immediately after the days-count you just calculated in clue 2; use that successor prime as your next numeric token.\n\n4. In this final act compute the digital root of (clue 1 + clue 2 + clue 3) and give the resulting single digit (0–9) as your answer.",
+  "metadata": {
+    "theme": "Connecting a Sangamon County township to the Reconstruction-era political leaders of Illinois — a local-to-state historical trail linking place, people, and dates.",
+    "difficulty": "easy",
+    "sample_id": "sample_019",
+    "pages_crawled": 862,
+    "source": "trail_puzzles_v2"
+  },
+  "generated_at": "2026-03-15T11:40:26.020095+00:00"
+}

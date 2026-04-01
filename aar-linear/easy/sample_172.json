@@ -1,0 +1,151 @@
+{
+  "trail_id": "trail_0fe5f388",
+  "seed_url": "https://en.wikipedia.org/wiki/Procter_%26_Gamble",
+  "seed_title": "Procter & Gamble",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Procter_%26_Gamble",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Founded')",
+      "extraction_section": "infobox",
+      "extracted_value": 31,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Procter_%26_Gamble",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start at Procter & Gamble — a global consumer-goods manufacturer whose headquarters will anchor the geographic leg of the trail.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Procter_%26_Gamble",
+      "extraction_target": "Reason: the largest prime factor of that figure",
+      "extraction_section": null,
+      "extracted_value": 31,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (largest_prime_factor) on stop 0 value",
+      "reason_transform": "largest_prime_factor",
+      "reason_source_stop": 0,
+      "reason_code": "def largest_prime_factor(n):\n    n = abs(int(n))\n    if n <= 1: return n\n    d = 2\n    while d * d <= n:\n        while n % d == 0: n //= d\n        d += 1\n    return n\nresult = largest_prime_factor(31)\nprint(result)"
+    },
+    {
+      "index": 2,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Starbucks",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Founded')",
+      "extraction_section": "infobox",
+      "extracted_value": 30,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Starbucks",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Visit Starbucks as a major retail/foodservice partner in the consumer ecosystem; extracting its HQ city ties the logistics leg (directions duration) to a concrete retail destination.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Starbucks",
+      "extraction_target": "Count libraries near Starbucks",
+      "extraction_section": null,
+      "extracted_value": 20,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "libraries near Starbucks"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (nearby_poi) derived from https://en.wikipedia.org/wiki/Starbucks",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 4,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: (31 + 20) % 10",
+      "extraction_section": null,
+      "extracted_value": 1,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "(31 + 20) % 10",
+        "expression_code": "result = (31 + 20) % 10\nprint(result)",
+        "referenced_stops": [
+          1,
+          3
+        ]
+      },
+      "reasoning": "Compute stop: (31 + 20) % 10 = 1",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 1,
+  "difficulty": {
+    "level": "easy",
+    "depth": 5,
+    "tool_stop_count": 1,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "direct_link"
+  },
+  "riddle": "1. Begin your quest at the page of an American titan in household essentials, established in the year when the world was emerging from a great conflict. What year was the foundation of this multinational corporation?\n\n2. In a numerical twist, discover the largest prime factor lurking within the year you just uncovered. What is it?\n\n3. Shift your focus to a celebrated coffee haven, renowned for brewing more than just beverages. When did this chain first open its doors?\n\n4. A curious inquiry awaits! How many libraries can be found in close proximity to this coffee sanctuary? Seek out that number.\n\n5. With your findings from clues 2 and 4, embark on a calculation: what remains when you sum those figures, 31 and 20, and then reduce the total by dividing by 10? Your answer is a single digit, like the pages of a well-loved book.",
+  "metadata": {
+    "theme": "Tracing the consumer goods supply chain and market footprint — from Procter & Gamble's HQ to major retailers and their market value",
+    "difficulty": "easy",
+    "sample_id": "sample_172",
+    "pages_crawled": 3419
+  },
+  "generated_at": "2026-03-17T11:01:33.675592+00:00"
+}

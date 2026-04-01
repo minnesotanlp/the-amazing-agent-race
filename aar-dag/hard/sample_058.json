@@ -1,0 +1,947 @@
+{
+  "trail_id": "trail_a33ab424",
+  "seed_url": "https://en.wikipedia.org/wiki/Jer_Collison",
+  "seed_title": "Jer Collison",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Jer_Collison",
+      "extraction_target": "county represented at inter-county level",
+      "extraction_section": null,
+      "extracted_value": "Tipperary",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Jer_Collison",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start with Jer Collison — the local Irish athlete who anchors this trail in the world of hurling and community sport.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Jer_Collison",
+      "extraction_target": "Look up the elevation of Tipperary",
+      "extraction_section": null,
+      "extracted_value": 95.02528381347656,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Tipperary"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Tipperary) from https://en.wikipedia.org/wiki/Jer_Collison",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Jer_Collison",
+      "extraction_target": "Look up the count of restaurants near Tipperary",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "restaurants near Tipperary"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of restaurants near Tipperary) from https://en.wikipedia.org/wiki/Jer_Collison",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Jer_Collison",
+      "extraction_target": "Combine the elevation of Tipperary and the count of restaurants near Tipperary: (95 + 20)",
+      "extraction_section": null,
+      "extracted_value": 115,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(95.02528381347656) + int(20.0)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Tipperary add count of restaurants near Tipperary",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1,
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Jer_Collison",
+      "extraction_target": "Reason: the number of vowels in that name",
+      "extraction_section": null,
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (vowel_count) on stop 0 value",
+      "reason_transform": "vowel_count",
+      "reason_source_stop": 0,
+      "reason_code": "result = sum(1 for c in \"Tipperary\".lower() if c in 'aeiou')\nprint(result)",
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Kilkenny_county_hurling_team",
+      "extraction_target": "Kilkenny's home ground",
+      "extraction_section": null,
+      "extracted_value": "Nowlan Park",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Tipperary_county_hurling_team",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Kilkenny is one of the great hurling counties; understanding its base and honours gives context to Collison's competitive landscape.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Kilkenny_county_hurling_team",
+      "extraction_target": "Look up the elevation of Nowlan Park",
+      "extraction_section": null,
+      "extracted_value": 54.46136856079102,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Nowlan Park"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Nowlan Park) from https://en.wikipedia.org/wiki/Kilkenny_county_hurling_team",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Kilkenny_county_hurling_team",
+      "extraction_target": "Look up the Google rating of Nowlan Park",
+      "extraction_section": null,
+      "extracted_value": 4.4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "Nowlan Park"
+            },
+            "expected_output": null,
+            "output_key": "place_rating"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (Google rating of Nowlan Park) from https://en.wikipedia.org/wiki/Kilkenny_county_hurling_team",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Kilkenny_county_hurling_team",
+      "extraction_target": "Combine the elevation of Nowlan Park and the Google rating of Nowlan Park: (54 + 4)",
+      "extraction_section": null,
+      "extracted_value": 58,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(54.46136856079102) + int(4.4)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Nowlan Park add Google rating of Nowlan Park",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6,
+        7
+      ]
+    },
+    {
+      "index": 9,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Tipperary_county_hurling_team",
+      "extraction_target": "name of Tipperary's home ground",
+      "extraction_section": null,
+      "extracted_value": "Semple Stadium, Thurles",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Munster_Senior_Hurling_Championship",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tipperary is another powerhouse county — a natural rival and foil in Munster and national hurling narratives.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        8
+      ]
+    },
+    {
+      "index": 10,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Tipperary_county_hurling_team",
+      "extraction_target": "Look up the elevation of Semple Stadium, Thurles",
+      "extraction_section": null,
+      "extracted_value": 107.0498962402344,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Semple Stadium, Thurles"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Semple Stadium, Thurles) from https://en.wikipedia.org/wiki/Tipperary_county_hurling_team",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        9
+      ]
+    },
+    {
+      "index": 11,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Tipperary_county_hurling_team",
+      "extraction_target": "Look up the count of temples near Semple Stadium, Thurles",
+      "extraction_section": null,
+      "extracted_value": 4.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "temples near Semple Stadium, Thurles"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of temples near Semple Stadium, Thurles) from https://en.wikipedia.org/wiki/Tipperary_county_hurling_team",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        9
+      ]
+    },
+    {
+      "index": 12,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Tipperary_county_hurling_team",
+      "extraction_target": "Combine the elevation of Semple Stadium, Thurles and the count of temples near Semple Stadium, Thurles: (107 + 4)",
+      "extraction_section": null,
+      "extracted_value": 111,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(107.0498962402344) + int(4.0)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Semple Stadium, Thurles add count of temples near Semple Stadium, Thurles",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        10,
+        11
+      ]
+    },
+    {
+      "index": 13,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Munster_Senior_Hurling_Championship",
+      "extraction_target": "number of Munster counties that have won the Munster Championship at least once",
+      "extraction_section": null,
+      "extracted_value": 6,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "2007 Super 14 season wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/2007_Super_14_season",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "The Munster Championship is the regional competition that frames many inter-county rivalries and explains seasonal stakes.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        12
+      ]
+    },
+    {
+      "index": 14,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/2007_Super_14_season",
+      "extraction_target": "the number of matches played in the 2007 Super 14 season",
+      "extraction_section": null,
+      "extracted_value": 94,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/2007_Super_14_season",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Shift out to another field-based code (rugby union) to compare competition formats and seasons across sports.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        13
+      ]
+    },
+    {
+      "index": 15,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/2007_Super_14_season",
+      "extraction_target": "Reason: the sum of its digits",
+      "extraction_section": null,
+      "extracted_value": 13,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_sum) on stop 4 value",
+      "reason_transform": "digit_sum",
+      "reason_source_stop": 14,
+      "reason_code": "result = sum(int(d) for d in str(abs(int(94))))\nprint(result)",
+      "depends_on": [
+        14
+      ]
+    },
+    {
+      "index": 16,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Canberra_Raiders",
+      "extraction_target": "Convert 6 meters to feet",
+      "extraction_section": null,
+      "extracted_value": 19,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "# Convert meters to feet\nvalue = 6.0\nconverted = value * 3.28084\nresult = int(converted)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "converted"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: convert 6 meters to feet",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        15
+      ]
+    },
+    {
+      "index": 17,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/2005_NFL_draft",
+      "extraction_target": "the total number of selections in the draft",
+      "extraction_section": null,
+      "extracted_value": 255,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "European Tour wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/European_Tour",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Move to a different code and level — the NFL draft exemplifies how talent is organized and redistributed in professional sport.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        16
+      ]
+    },
+    {
+      "index": 18,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/European_Tour",
+      "extraction_target": "Convert 255°C to a Fahrenheit-scale offset",
+      "extraction_section": null,
+      "extracted_value": 459,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "# Convert celsius to fahrenheit_offset\nvalue = 255.0\nconverted = value * 1.8\nresult = int(converted)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "converted"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: convert 255 celsius to fahrenheit_offset",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        17
+      ]
+    },
+    {
+      "index": 19,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/San_Diego_Chargers",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Founded')",
+      "extraction_section": "infobox",
+      "extracted_value": 1961,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/San_Diego_Chargers",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "An example of an American professional franchise — useful to contrast stadium sizes, commercial models and geographical identity with Irish county teams.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        18
+      ]
+    },
+    {
+      "index": 20,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/San_Diego_Chargers",
+      "extraction_target": "Reason: the sum of its distinct prime factors",
+      "extraction_section": null,
+      "extracted_value": 90,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (sum_prime_factors) on stop 8 value",
+      "reason_transform": "sum_prime_factors",
+      "reason_source_stop": 19,
+      "reason_code": "def prime_factors(n):\n    n = abs(int(n))\n    factors = []\n    d = 2\n    while d * d <= n:\n        while n % d == 0:\n            factors.append(d)\n            n //= d\n        d += 1\n    if n > 1: factors.append(n)\n    return factors\nresult = sum(set(prime_factors(1961)))\nprint(result)",
+      "depends_on": [
+        19
+      ]
+    },
+    {
+      "index": 21,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Albany_Patroons",
+      "extraction_target": "Get the driving duration in minutes from Albany to Jacob K. Javits Convention Center in New York City",
+      "extraction_section": null,
+      "extracted_value": 145,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_directions",
+            "arguments": {
+              "origin": "Albany",
+              "destination": "Jacob K. Javits Convention Center in New York City",
+              "mode": "driving"
+            },
+            "expected_output": null,
+            "output_key": "duration"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: directions duration Albany to Jacob K. Javits Convention Center in New York City",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        20
+      ]
+    },
+    {
+      "index": 22,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/2005_NFL_season",
+      "extraction_target": "the duration of the regular season",
+      "extraction_section": null,
+      "extracted_value": "September 8, 2005 – January 1, 2006",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Maryland Terrapins football wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Maryland_Terrapins_football",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Understanding a full professional season's outcome helps compare season structure and peak events across sports.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        21
+      ]
+    },
+    {
+      "index": 23,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Maryland_Terrapins_football",
+      "extraction_target": "the team's location (city and state)",
+      "extraction_section": null,
+      "extracted_value": "College Park, Maryland",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Rochester Razorsharks wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Rochester_Razorsharks",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "College football demonstrates another athlete-development and fandom model — compare college systems with Irish amateur county structures.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        22
+      ]
+    },
+    {
+      "index": 24,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Rochester_Razorsharks",
+      "extraction_target": "Count the number of parks near Rochester",
+      "extraction_section": null,
+      "extracted_value": 20,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "parks near Rochester"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: count parks near Rochester",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        23
+      ]
+    },
+    {
+      "index": 25,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/WGC_Match_Play",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Established')",
+      "extraction_section": "infobox",
+      "extracted_value": 1999,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/WGC_Match_Play",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A high-profile individual-event competition (golf) contrasts with team-based championships and highlights different competition formats and prestige.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        24
+      ]
+    },
+    {
+      "index": 26,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/WGC_Match_Play",
+      "extraction_target": "Reason: the number of divisors of that figure",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (num_divisors) on stop 13 value",
+      "reason_transform": "num_divisors",
+      "reason_source_stop": 25,
+      "reason_code": "n = abs(int(1999))\ncount = sum(1 for i in range(1, n+1) if n % i == 0) if n > 0 else 0\nresult = count\nprint(result)",
+      "depends_on": [
+        25
+      ]
+    },
+    {
+      "index": 27,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Senate_of_Bangladesh",
+      "extraction_target": "Look up the elevation at Senate of Bangladesh",
+      "extraction_section": null,
+      "extracted_value": 5.13073205947876,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Senate of Bangladesh"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for Senate of Bangladesh",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        26
+      ]
+    },
+    {
+      "index": 28,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: digital_root(4 + 94 + 145 + 1999)",
+      "extraction_section": null,
+      "extracted_value": 1,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "digital_root(4 + 94 + 145 + 1999)",
+        "expression_code": "def digital_root(n):\n    n = abs(int(n))\n    return n if n == 0 else ((n - 1) % 9) + 1\nresult = digital_root(4 + 94 + 145 + 1999)\nprint(result)",
+        "referenced_stops": [
+          7,
+          14,
+          21,
+          25
+        ]
+      },
+      "reasoning": "Compute stop: digital_root(4 + 94 + 145 + 1999) = 1",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        7,
+        14,
+        21,
+        25
+      ]
+    }
+  ],
+  "passcode": 1,
+  "difficulty": {
+    "level": "hard",
+    "depth": 29,
+    "tool_stop_count": 14,
+    "reason_stop_count": 4,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Track down the page of the hurler who proudly represented the county known for its lush green hills and storied turf battles. What county did he call home during his inter-county career?\n\n2. How high does the land rise in the heart of this famed county, where the sweet taste of hurling glory flourishes?\n\n3. In what bustling town can one find an array of culinary spots gracing this county, perfect for fueling champions?\n\n4. Combine the height you extracted from clue 2 with the count of restaurants from clue 3 to unearth a new number that embodies their sum.\n\n5. The name of the athlete you previously uncovered holds a melodious secret. What is the total number of vowels within that name?\n\n6. A key location for the sport resides where the Storm and the Cats clash. What is the name of the ground that hosts the fierce Kilkenny hurlers?\n\n7. Seek out the rise of this ground nestled within the county of Kilkenny. What is its elevation above sea level?\n\n8. Travelers have cast their votes for a beloved venue. What rating do they give the hallowed grounds of this famous park?\n\n9. Unite the elevation you found in clue 7 with the Google rating from clue 8 to determine an essential sum for your journey.\n\n10. What name does Tipperary's establishment claim as their place of pride on the hurling field?\n\n11. Ascend to the heights of Semple Stadium located in Thurles — how tall is it nestled within the landscape?\n\n12. Just outside the stadium, how many places of worship can be discerned in the vicinity?\n\n13. Add your findings from clue 11 and clue 12 together to arrive at a noteworthy figure.\n\n14. In the tradition of rivalry, how many counties from the southern province have tasted victory in the illustrious championship?\n\n15. In the thrilling 2007 season of another sport, how many matches were contested?\n\n16. For the number you just uncovered, summarize its digits into a single elegant value — what do you find?\n\n17. A mere 6 meters can elevate any average player. Convert that height into feet — what does it become?\n\n18. Venture to the world of American football — how many total selections graced the draft in the year 2005?\n\n19. In the realm of golf, convert an impressive temperature of 255°C into a Fahrenheit-scale offset. What is the result?\n\n20. Journey to an iconic football team — what year did they begin their legacy upon the gridiron?\n\n21. Now, for the year you've discovered, calculate the sum of its distinct prime factors. What total emerges?\n\n22. How many minutes does one require to drive from Albany to the gathering place known as Jacob K. Javits Convention Center in New York City?\n\n23. In the world of American football, how long did the regular season of 2005 endure?\n\n24. Explore the territory of the Terps — what city and state do these spirited players call home?\n\n25. In the dynamic town of Rochester, how many parks are scattered in the nearby area?\n\n26. Discover the inception year of a prestigious golf event — what year did it first come to life?\n\n27. For that founding year, determine the number of divisors present within it. What figure do you discover?\n\n28. As you traverse the tale, find the elevation at the Senate of Bangladesh — how high does it stand?\n\n29. Finally, compute the digital root of the sum formed by combining digits: (4 + 94 + 145 + 1999). The answer shall be a single digit, waiting to be revealed.",
+  "metadata": {
+    "theme": "From a local hurler to global sport: trace how an Irish athlete's world (Jer Collison) connects to teams, championships and the logistics and numbers that shape modern sport across codes and continents.",
+    "difficulty": "hard",
+    "sample_id": "sample_058",
+    "pages_crawled": 8271
+  },
+  "generated_at": "2026-03-16T20:17:37.797234+00:00"
+}

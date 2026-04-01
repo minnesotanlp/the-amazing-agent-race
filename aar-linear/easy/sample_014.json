@@ -1,0 +1,131 @@
+{
+  "trail_id": "trail_4d4eabf7",
+  "seed_url": "https://en.wikipedia.org/wiki/Mackey_International",
+  "seed_title": "Mackey International",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Mackey_International",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Founded')",
+      "extraction_section": "infobox",
+      "extracted_value": 11,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/The_Miami_News",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Begin at the airline's Wikipedia page to extract the official headquarters location/coordinates needed as the origin for a local travel/time calculation.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/The_Miami_News",
+      "extraction_target": "Get the driving duration in minutes from Miami News Tower \"Freedom Tower (Miami)\") (1925–57) * One Herald Plaza (1973–88) to Fort Lauderdale",
+      "extraction_section": null,
+      "extracted_value": 37,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_directions",
+            "arguments": {
+              "origin": "Miami News Tower \"Freedom Tower (Miami)\") (1925–57) * One Herald Plaza (1973–88)",
+              "destination": "Fort Lauderdale",
+              "mode": "driving"
+            },
+            "expected_output": null,
+            "output_key": "duration"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: directions duration Miami News Tower \"Freedom Tower (Miami)\") (1925–57) * One Herald Plaza (1973–88) to Fort Lauderdale",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/The_Miami_News",
+      "extraction_target": "Reason: the number you get by reversing its digits",
+      "extraction_section": null,
+      "extracted_value": 73,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_reversal) on stop 1 value",
+      "reason_transform": "digit_reversal",
+      "reason_source_stop": 1,
+      "reason_code": "result = int(str(abs(int(37)))[::-1])\nprint(result)"
+    },
+    {
+      "index": 3,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: digital_root(11 + 73)",
+      "extraction_section": null,
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "digital_root(11 + 73)",
+        "expression_code": "def digital_root(n):\n    n = abs(int(n))\n    return n if n == 0 else ((n - 1) % 9) + 1\nresult = digital_root(11 + 73)\nprint(result)",
+        "referenced_stops": [
+          0,
+          2
+        ]
+      },
+      "reasoning": "Compute stop: digital_root(11 + 73) = 3",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 3,
+  "difficulty": {
+    "level": "easy",
+    "depth": 4,
+    "tool_stop_count": 1,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "direct_link"
+  },
+  "riddle": "Here is the revised riddle:\n\n1. Seek the airline known for its name that suggests a creature of the sea (the seed page); on its entry, what year was this carrier founded, and then follow the link on that page to the city's long-running daily newspaper.  \n2. A certain article chronicles that metropolitan paper; determine the driving time in minutes between its former headquarters—the historic Freedom Tower era (circa 1925–57) and the later Herald Plaza site (circa 1973–88)—and the city of Fort Lauderdale.  \n3. What number do you get if you reverse the order of the digits of the minute-count you just recorded in clue 2?  \n4. If you now compute the digital root of (clue 1 + clue 3), what single digit (0–9) do you obtain?",
+  "metadata": {
+    "theme": "Locating a small airline's home and measuring its local reach — start at Mackey International and compute travel time from its headquarters to a nearby media landmark.",
+    "difficulty": "easy",
+    "sample_id": "sample_014",
+    "pages_crawled": 724,
+    "source": "trail_puzzles_v2"
+  },
+  "generated_at": "2026-03-15T11:20:40.564025+00:00"
+}

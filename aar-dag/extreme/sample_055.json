@@ -1,0 +1,959 @@
+{
+  "trail_id": "trail_1041a248",
+  "seed_url": "https://en.wikipedia.org/wiki/Alphonse_Pénaud",
+  "seed_title": "Alphonse Pénaud",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Alphonse_P%C3%A9naud",
+      "extraction_target": "Alphonse Pénaud's age at death (as given)",
+      "extraction_section": null,
+      "extracted_value": 30,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Alphonse_P%C3%A9naud",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Seed: Pénaud is a 19th‑century pioneer of model aeroplanes whose experimental approach seeded aerodynamic thinking that underpins later aircraft, vehicle and space engineering.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Alphonse_P%C3%A9naud",
+      "extraction_target": "Reason: the number you get by reversing its digits",
+      "extraction_section": null,
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_reversal) on stop 0 value",
+      "reason_transform": "digit_reversal",
+      "reason_source_stop": 0,
+      "reason_code": "result = int(str(abs(int(30)))[::-1])\nprint(result)",
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/3D_displays",
+      "extraction_target": "the number of offset images presented separately to the left and right eye in stereoscopic displays",
+      "extraction_section": "Two-view stereoscopic displays",
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Seiko Epson wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Seiko_Epson",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Visualization and pilot/crew interfaces evolved from simple models to advanced 3D displays used in modern cockpits and simulators — a step in how humans interact with flight systems.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/3D_displays",
+      "extraction_target": "Look up the elevation of 3D displays",
+      "extraction_section": null,
+      "extracted_value": 6.020437240600586,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "3D displays"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of 3D displays) from https://en.wikipedia.org/wiki/3D_displays",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/3D_displays",
+      "extraction_target": "Look up the Google rating of 3D displays",
+      "extraction_section": null,
+      "extracted_value": 5.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "3D displays"
+            },
+            "expected_output": null,
+            "output_key": "place_rating"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (Google rating of 3D displays) from https://en.wikipedia.org/wiki/3D_displays",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/3D_displays",
+      "extraction_target": "Combine the elevation of 3D displays and the Google rating of 3D displays: (6 + 5)",
+      "extraction_section": null,
+      "extracted_value": 11,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(6.020437240600586) + int(5.0)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of 3D displays add Google rating of 3D displays",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3,
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/3D_displays",
+      "extraction_target": "Look up the elevation of 3D displays",
+      "extraction_section": null,
+      "extracted_value": 6.020437240600586,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "3D displays"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (elevation) derived from https://en.wikipedia.org/wiki/3D_displays",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Seiko_Epson",
+      "extraction_target": "the number of employees",
+      "extraction_section": null,
+      "extracted_value": 75352,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "TRW Inc. wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/TRW_Inc.",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Precision manufacturing and timing (printers, sensors, timepieces) support avionics and navigation instrumentation critical to flight and spacecraft systems.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/TRW_Inc.",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Founded')",
+      "extraction_section": "infobox",
+      "extracted_value": 1901,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Sir Robert McAlpine wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Sir_Robert_McAlpine",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "TRW bridged automotive and aerospace systems as a supplier of control, navigation and safety components — an example of cross-domain engineering in mobility.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        7
+      ]
+    },
+    {
+      "index": 9,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Sir_Robert_McAlpine",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Founded')",
+      "extraction_section": "infobox",
+      "extracted_value": 1869,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Sir_Robert_McAlpine",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Large civil engineering firms built the infrastructure (airfields, shipyards, launch facilities) that enabled aviation and later space operations.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        8
+      ]
+    },
+    {
+      "index": 10,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Sir_Robert_McAlpine",
+      "extraction_target": "Reason: the day of the week for January 1st of that year (1=Mon, 7=Sun)",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (day_of_week) on stop 4 value",
+      "reason_transform": "day_of_week",
+      "reason_source_stop": 9,
+      "reason_code": "from datetime import date\nresult = date(abs(int(1869)), 1, 1).isoweekday()\nprint(result)",
+      "depends_on": [
+        9
+      ]
+    },
+    {
+      "index": 11,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Escort_carrier",
+      "extraction_target": "the enemy threat escort carriers protected convoys against in the Battle of the Atlantic",
+      "extraction_section": null,
+      "extracted_value": "U-boats",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "U.S. Marine Corps Reserve wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/U.S._Marine_Corps_Reserve",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Naval aviation (escort carriers) demonstrates adaptation of aircraft technology to sea operations — a step in extending flight capability beyond land.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        10
+      ]
+    },
+    {
+      "index": 12,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Escort_carrier",
+      "extraction_target": "Look up the Google rating of U-boats",
+      "extraction_section": null,
+      "extracted_value": 4.9,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "U-boats"
+            },
+            "expected_output": null,
+            "output_key": "place_rating"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (place_rating) derived from https://en.wikipedia.org/wiki/Escort_carrier",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        11
+      ]
+    },
+    {
+      "index": 13,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/U.S._Marine_Corps_Reserve",
+      "extraction_target": "the number of drilling Selected Reserve Marines stated in the Role section",
+      "extraction_section": "Role",
+      "extracted_value": 40000,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "King's Royal Rifle Corps wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/King%27s_Royal_Rifle_Corps",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Military reserve forces illustrate operational demands (logistics, deployment of aircraft/transport) that shaped aircraft and vehicle design.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        12
+      ]
+    },
+    {
+      "index": 14,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/King%27s_Royal_Rifle_Corps",
+      "extraction_target": "the role of the King's Royal Rifle Corps (as listed)",
+      "extraction_section": null,
+      "extracted_value": "Light infantry",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/King%27s_Royal_Rifle_Corps",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A historical military unit to anchor the trail's thread on how military needs historically drove advances in transport and engineering.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        13
+      ]
+    },
+    {
+      "index": 15,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/King%27s_Royal_Rifle_Corps",
+      "extraction_target": "Reason: the number of vowels in that name",
+      "extraction_section": null,
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (vowel_count) on stop 7 value",
+      "reason_transform": "vowel_count",
+      "reason_source_stop": 14,
+      "reason_code": "result = sum(1 for c in \"Light infantry\".lower() if c in 'aeiou')\nprint(result)",
+      "depends_on": [
+        14
+      ]
+    },
+    {
+      "index": 16,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Rover_Group",
+      "extraction_target": "the nominal price for which MG and Rover were sold to Phoenix Venture Holdings",
+      "extraction_section": null,
+      "extracted_value": 10,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/British_Motor_Holdings",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Automotive engineering is a sibling technology to aerospace; Rover Group exemplifies British vehicle manufacturing evolution and industrial know‑how.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        15
+      ]
+    },
+    {
+      "index": 17,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/British_Motor_Holdings",
+      "extraction_target": "the number of cars, commercial vehicles and tractors delivered to world markets (exported) reported in the 1967 annual statement",
+      "extraction_section": "Jaguar",
+      "extracted_value": 313790,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/British_Motor_Holdings",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "An earlier consolidator in UK vehicle manufacture, showing the industrial backdrop that fed later mobility technologies.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        16
+      ]
+    },
+    {
+      "index": 18,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/British_Motor_Holdings",
+      "extraction_target": "Reason: the number of 1-bits in its binary representation",
+      "extraction_section": null,
+      "extracted_value": 11,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (binary_1bit_count) on stop 9 value",
+      "reason_transform": "binary_1bit_count",
+      "reason_source_stop": 17,
+      "reason_code": "result = bin(abs(int(313790))).count('1')\nprint(result)",
+      "depends_on": [
+        17
+      ]
+    },
+    {
+      "index": 19,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Leyland_Trucks",
+      "extraction_target": "the year T Coulthard and Co was taken over and the combined company named Leyland Motors Limited",
+      "extraction_section": "Timeline",
+      "extracted_value": "1907",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Leyland_DAF",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Commercial and heavy vehicle makers (Leyland Trucks) illustrate how engineering scaled from light vehicles to heavy transport, supporting logistics for aviation and industry.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        18
+      ]
+    },
+    {
+      "index": 20,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Leyland_Trucks",
+      "extraction_target": "Look up the elevation of Leyland Trucks",
+      "extraction_section": null,
+      "extracted_value": 36.52119827270508,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Leyland Trucks"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Leyland Trucks) from https://en.wikipedia.org/wiki/Leyland_Trucks",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        19
+      ]
+    },
+    {
+      "index": 21,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Leyland_Trucks",
+      "extraction_target": "Look up the count of parks near Leyland Trucks",
+      "extraction_section": null,
+      "extracted_value": 8.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "parks near Leyland Trucks"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of parks near Leyland Trucks) from https://en.wikipedia.org/wiki/Leyland_Trucks",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        19
+      ]
+    },
+    {
+      "index": 22,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Leyland_Trucks",
+      "extraction_target": "Combine the elevation of Leyland Trucks and the count of parks near Leyland Trucks: abs(36 - 8)",
+      "extraction_section": null,
+      "extracted_value": 28,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(36.52119827270508) - int(8.0))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Leyland Trucks abs_diff count of parks near Leyland Trucks",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        20,
+        21
+      ]
+    },
+    {
+      "index": 23,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Leyland_DAF",
+      "extraction_target": "the founding month and year of Leyland DAF",
+      "extraction_section": null,
+      "extracted_value": "February 1987",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/LDV_Group",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Mergers and industrial restructuring (Leyland DAF) show how manufacturing capacity and supply chains evolved — important for large transport systems.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        22
+      ]
+    },
+    {
+      "index": 24,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/LDV_Group",
+      "extraction_target": "the month and year LDV was founded",
+      "extraction_section": null,
+      "extracted_value": "April 1993",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Soyuz MS-28 wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Soyuz_MS-28",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Light commercial vehicle manufacturers like LDV provided the practical vehicles that support airfields, factories and logistics in the mobility ecosystem.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        23
+      ]
+    },
+    {
+      "index": 25,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Soyuz_MS-28",
+      "extraction_target": "the launch date and time (UTC)",
+      "extraction_section": null,
+      "extracted_value": "27 November 2025, 09:27:57 UTC",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Uruguayans wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Uruguayans",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Culmination of the trail: modern crewed space missions (Soyuz) show where centuries of aerodynamic, instrumentation and systems engineering ultimately lead.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        24
+      ]
+    },
+    {
+      "index": 26,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Uruguayans",
+      "extraction_target": "Look up the population of United Kingdom",
+      "extraction_section": null,
+      "extracted_value": 69281437,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "countries_population",
+            "arguments": {
+              "country": "United Kingdom"
+            },
+            "expected_output": null,
+            "output_key": "population"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: population of United Kingdom",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        25
+      ]
+    },
+    {
+      "index": 27,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Pueblo_of_San_Jos%C3%A9",
+      "extraction_target": "Count the number of temples near San Jose",
+      "extraction_section": null,
+      "extracted_value": 20,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "temples near San Jose"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: count temples near San Jose",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        26
+      ]
+    },
+    {
+      "index": 28,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/1970_NBA_draft",
+      "extraction_target": "Convert 40000 km to miles",
+      "extraction_section": null,
+      "extracted_value": 24854,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "# Convert km to miles\nvalue = 40000.0\nconverted = value * 0.621371\nresult = int(converted)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "converted"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: convert 40000 km to miles",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        27
+      ]
+    },
+    {
+      "index": 29,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/1970_NBA_draft",
+      "extraction_target": "Reason: the next prime number after that figure",
+      "extraction_section": null,
+      "extracted_value": 24859,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (next_prime) on stop 16 value",
+      "reason_transform": "next_prime",
+      "reason_source_stop": 28,
+      "reason_code": "def next_prime(n):\n    n = abs(int(n))\n    if n < 2: return 2\n    candidate = n + 1\n    while True:\n        if all(candidate % i != 0 for i in range(2, int(candidate**0.5)+1)):\n            return candidate\n        candidate += 1\nresult = next_prime(24854)\nprint(result)",
+      "depends_on": [
+        28
+      ]
+    },
+    {
+      "index": 30,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: (3 + 6 + 75352) % 10",
+      "extraction_section": null,
+      "extracted_value": 1,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "(3 + 6 + 75352) % 10",
+        "expression_code": "result = (3 + 6 + 75352) % 10\nprint(result)",
+        "referenced_stops": [
+          1,
+          3,
+          7
+        ]
+      },
+      "reasoning": "Compute stop: (3 + 6 + 75352) % 10 = 1",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1,
+        3,
+        7
+      ]
+    }
+  ],
+  "passcode": 1,
+  "difficulty": {
+    "level": "extreme",
+    "depth": 31,
+    "tool_stop_count": 11,
+    "reason_stop_count": 5,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Seek the visionary engineer who first took to the skies with a mechanical marvel that could fly. What was his age when he departed this world?\n\n2. Now reverse the digits of that age — what number do you find hidden within?\n\n3. This destination displays imagery that mimics human vision — how many separate images does your left eye and right eye receive in a classic stereoscopic setup?\n\n4. Find out how high these images sit above sea level — what elevation do they claim?\n\n5. As you gaze upon this optical marvel, what rating do travelers bestow upon it in their esteemed reviews?\n\n6. Combine the heights of your optical wonder with the score from those travelers. What summation emerges from these two figures?\n\n7. Seek once more the elevation of this visual experience, adding depth to your discoveries.\n\n8. In a land filled with technology, a brand known for innovation employs a vast number of people — how many contribute their talents to this enterprise?\n\n9. What year marked the birth of an automotive giant, the inception of a name that would stand the test of time?\n\n10. Turn your attention to a notable contractor, whose foundations laid across years; when did this establishment come to be?\n\n11. What day graced the first of January in that pivotal year — can you name it, with 1 for Monday and 7 for Sunday?\n\n12. Explore the waters where swift vessels once adapted to defeat the lurking threats of dark seas — what enemy did they shield against during that storied battle?\n\n13. Meanwhile, as these vessels navigate peril, what star rating do travelers assign to these lurking behemoths of the depths?\n\n14. Delve into the ranks of another military branch — how many dedicated members stand ready in that outfit today?\n\n15. This unit carried a storied history; what role did they fulfill amidst national conflicts?\n\n16. Count the vowels mingling within that title — how many do you uncover?\n\n17. A famous car manufacturer once sold its pieces to a new owner — what price did MG and Rover fetch in that deal?\n\n18. This automotive conglomerate also exported a massive fleet — how many vehicles were documented in their 1967 report?\n\n19. Backtrack through the previous number: how many binary 1-bits constitute its digital representation?\n\n20. In a significant acquisition, which year marked the merger of T Coulthard and Co into Leyland Motors? \n\n21. Next, how far above sea level does the establishment known for trucks claim its height?\n\n22. How many parks can you find whose green spaces are within reach of this site?\n\n23. Calculate the absolute difference between the elevation from clue 21 and the nearby parks from clue 22.\n\n24. The foundations of another vehicle manufacturer were laid in a certain month and year — what do you uncover as you explore?\n\n25. Cross-reference another company's origins — when was LDV brought to life, down to the month and year?\n\n26. Leaving land for the stars, what was the precise moment when this spacecraft launched into the void? \n\n27. Shift your focus back down to Earth; what is the population of that nation ruled by the monarchy?\n\n28. Within the regions near San José, how many temples rise to meet the skies in devotion? \n\n29. In a noteworthy draft year for basketball, convert a long distance measured in kilometers to miles — what number represents the conversion?\n\n30. Finally, seek the next prime number that follows closely after that value you just derived.\n\n31. To conclude your journey, calculate: (clue 2 + clue 4 + clue 8) % 10. What final single digit do you unveil?",
+  "metadata": {
+    "theme": "From the earliest model aeroplane experiments to modern mobility and spaceflight — a short engineering trail tracing innovations in flight, instrumentation, manufacturing and infrastructure across land, sea and space.",
+    "difficulty": "extreme",
+    "sample_id": "sample_055",
+    "pages_crawled": 9045
+  },
+  "generated_at": "2026-03-17T02:51:47.539685+00:00"
+}

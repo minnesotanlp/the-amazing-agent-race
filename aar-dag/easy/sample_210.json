@@ -1,0 +1,197 @@
+{
+  "trail_id": "trail_589e2c69",
+  "seed_url": "https://en.wikipedia.org/wiki/Idris_Assani",
+  "seed_title": "Idris Assani",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Idris_Assani",
+      "extraction_target": "The number of languages Idris Assani's Wikipedia article is available in",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Cold War wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Cold_War",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Idris Assani is a mathematician whose work and achievements serve as the foundation for exploring broader historical and political changes influenced by academic thought.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Cold_War",
+      "extraction_target": "the number of years between the beginning and end of the Cold War",
+      "extraction_section": null,
+      "extracted_value": "44",
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Cold_War",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "The Cold War provides a backdrop to the geopolitical tensions and ideological battles that influenced global politics and cultures during Idris Assani’s early academic years.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 2,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Cold_War",
+      "extraction_target": "Reason: the sum of its distinct prime factors",
+      "extraction_section": null,
+      "extracted_value": 13,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (sum_prime_factors) on stop 1 value",
+      "reason_transform": "sum_prime_factors",
+      "reason_source_stop": 1,
+      "reason_code": "def prime_factors(n):\n    n = abs(int(n))\n    factors = []\n    d = 2\n    while d * d <= n:\n        while n % d == 0:\n            factors.append(d)\n            n //= d\n        d += 1\n    if n > 1: factors.append(n)\n    return factors\nresult = sum(set(prime_factors(44)))\nprint(result)",
+      "depends_on": []
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Soviet_Union",
+      "extraction_target": "Convert 4 meters to yards",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "# Convert meters to yards\nvalue = 4.0\nconverted = value * 1.09361\nresult = int(converted)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "converted"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: convert 4 meters to yards",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 4,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Hungarian_Revolution_of_1956",
+      "extraction_target": "Look up the elevation at Hungarian Revolution of 1956",
+      "extraction_section": null,
+      "extracted_value": 129.3714904785156,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Hungarian Revolution of 1956"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for Hungarian Revolution of 1956",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 5,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: (4 + 129) % 10",
+      "extraction_section": null,
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "(4 + 129) % 10",
+        "expression_code": "result = (4 + 129) % 10\nprint(result)",
+        "referenced_stops": [
+          0,
+          4
+        ]
+      },
+      "reasoning": "Compute stop: (4 + 129) % 10 = 3",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    }
+  ],
+  "passcode": 3,
+  "difficulty": {
+    "level": "easy",
+    "depth": 6,
+    "tool_stop_count": 2,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Begin with an individual renowned for his contributions to the realm of mathematics, Idris Assani. His Wikipedia page reflects how widely his story is shared across cultures. Count the tongues in which his life is told on this platform.\n\n2. Once you've gathered that number, set your sights on a period of profound tension, defined by a rivalry between two superpowers across four decades. How many years spanned the globe's icy standoff during this era?\n\n3. Reflect on the conclusion of the previous conflict. Consider the numeric answer you just found: break it down to its essence by finding the sum of its unique prime elements.\n\n4. Now turn to a vast entity, no longer on the modern map. Imagine transforming a modest height, a mere four meters, into a length understood by a different imperial standard. What would this conversion yield?\n\n5. Picture a nation's uprising, a statement against the prevailing order in the mid-20th century. Ascend to the height where voices echoed strongly during this monumental event — what elevation does this land hold?\n\n6. To resolve the final enigma, compute a playful mixture of elegance and simplicity. Take the initial clue’s revelation and integrate it with the height from the fifth stop, applying a touch of arithmetic magic: [(clue 1) + (clue 5)] % 10.\n\nLet each clue guide you to your final discovery, a single digit that completes this journey through traces of political history and growth.",
+  "metadata": {
+    "theme": "Traces of Political History and Growth",
+    "difficulty": "easy",
+    "sample_id": "sample_210",
+    "pages_crawled": 514
+  },
+  "generated_at": "2026-03-27T07:02:03.954402+00:00"
+}

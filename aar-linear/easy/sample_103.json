@@ -1,0 +1,129 @@
+{
+  "trail_id": "trail_23f55930",
+  "seed_url": "https://en.wikipedia.org/wiki/Masquerade:_The_Baubles_of_Doom",
+  "seed_title": "Masquerade: The Baubles of Doom",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Masquerade:_The_Baubles_of_Doom",
+      "extraction_target": "the release date of the game",
+      "extraction_section": null,
+      "extracted_value": "April 20, 2016",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Epsom Derby wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Epsom_Derby",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "The seed is a comic explicitly themed around a 'masquerade' and 'baubles' (costume accessories); extract its publication date to anchor the timeline.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Epsom_Derby",
+      "extraction_target": "Calculate the number of days between 2016-04-20 and 2026-03-15",
+      "extraction_section": null,
+      "extracted_value": 3616,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "from datetime import date\nd1 = date.fromisoformat('2016-04-20')\nd2 = date.fromisoformat('2026-03-15')\nresult = abs((d2 - d1).days)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "days"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: date computation 2016-04-20 to 2026-03-15 (pinned)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Epsom_Derby",
+      "extraction_target": "Reason: the number of 1-bits in its binary representation",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (binary_1bit_count) on stop 1 value",
+      "reason_transform": "binary_1bit_count",
+      "reason_source_stop": 1,
+      "reason_code": "result = bin(abs(int(3616))).count('1')\nprint(result)"
+    },
+    {
+      "index": 3,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: abs(3616 - 4) % 10",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "abs(3616 - 4) % 10",
+        "expression_code": "result = abs(3616 - 4) % 10\nprint(result)",
+        "referenced_stops": [
+          1,
+          2
+        ]
+      },
+      "reasoning": "Compute stop: abs(3616 - 4) % 10 = 2",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 2,
+  "difficulty": {
+    "level": "easy",
+    "depth": 4,
+    "tool_stop_count": 1,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "Here is the riddle with the corrected clue:\n\n1. Seek the page that discusses a counterintuitive quest involving a hidden treasure and a series of intricate riddles — on what calendar date did this game first reach players?\n\n2. There exists a page about the famous Derby run at Epsom Downs; using the release date you just found and the date March 15, 2026, how many days lie between them?\n\n3. What is the count of 1-bits when you write the days-count from the previous clue in binary?\n\n4. If you take the absolute difference between clue 2 and clue 3, then reduce that result modulo 10, what single digit remains; explicitly compute abs(clue 2 - clue 3) % 10 (answer: one digit 0–9).",
+  "metadata": {
+    "theme": "Costume and pageantry across time — linking a comic titled Masquerade (baubles and dress-up) with a long-standing public event known for its fashion, then measuring the years between them.",
+    "difficulty": "easy",
+    "sample_id": "sample_103",
+    "pages_crawled": 4201,
+    "source": "trail_puzzles_v2"
+  },
+  "generated_at": "2026-03-15T19:47:01.211124+00:00"
+}

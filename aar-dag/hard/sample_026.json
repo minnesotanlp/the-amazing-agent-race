@@ -1,0 +1,673 @@
+{
+  "trail_id": "trail_51d42c30",
+  "seed_url": "https://en.wikipedia.org/wiki/Amparo_Rivelles",
+  "seed_title": "Amparo Rivelles",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Amparo_Rivelles",
+      "extraction_target": "the age at death shown in the article",
+      "extraction_section": null,
+      "extracted_value": 88,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Amparo_Rivelles",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Seed: Amparo Rivelles is the Spanish actress whose career anchors this trail through Spanish cinema and its international connections.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Amparo_Rivelles",
+      "extraction_target": "Reason: the number of 1-bits in its binary representation",
+      "extraction_section": null,
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (binary_1bit_count) on stop 0 value",
+      "reason_transform": "binary_1bit_count",
+      "reason_source_stop": 0,
+      "reason_code": "result = bin(abs(int(88))).count('1')\nprint(result)",
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Spanish_cinema",
+      "extraction_target": "the number of screens in Spain (2023)",
+      "extraction_section": null,
+      "extracted_value": 3609,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "La mujer dorada wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/La_mujer_dorada",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Provides the cultural and historical context for Rivelles' career — the movement and eras of Spanish film that shaped her work.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/La_mujer_dorada",
+      "extraction_target": "number of cast members listed in the Cast section",
+      "extraction_section": "Cast",
+      "extracted_value": 10,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/La_mujer_dorada",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A specific film entry to tie Rivelles' filmography into concrete titles and dates, anchoring the narrative in a particular work.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/La_mujer_dorada",
+      "extraction_target": "Reason: the number of divisors of that figure",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (num_divisors) on stop 2 value",
+      "reason_transform": "num_divisors",
+      "reason_source_stop": 3,
+      "reason_code": "n = abs(int(10))\ncount = sum(1 for i in range(1, n+1) if n % i == 0) if n > 0 else 0\nresult = count\nprint(result)",
+      "depends_on": [
+        3
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Hetch_Hetchy_Reservoir",
+      "extraction_target": "Look up the elevation at Yosemite National Park",
+      "extraction_section": null,
+      "extracted_value": 2618.5078125,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Yosemite National Park"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for Yosemite National Park",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Mr._Arkadin",
+      "extraction_target": "year the film was released",
+      "extraction_section": null,
+      "extracted_value": 1955,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "La cruz de Marisa Cruces wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/La_cruz_de_Marisa_Cruces",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "An internationally-produced film (Orson Welles) with European connections — shows how Spanish/European locations and film talent intersect with global cinema.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/La_cruz_de_Marisa_Cruces",
+      "extraction_target": "the release year listed in the infobox",
+      "extraction_section": null,
+      "extracted_value": "1970",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "PaleyFest wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/PaleyFest",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Another Spanish-language film entry to deepen the trail's look at Spanish-language cinematic works and their creators.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/PaleyFest",
+      "extraction_target": "the gift amount William S. Paley provided to found the original Museum of Broadcasting (in US dollars)",
+      "extraction_section": "New York",
+      "extracted_value": 2000000,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "USC School of Cinematic Arts wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/USC_School_of_Cinematic_Arts",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Bridges film and television exhibition: PaleyFest is a modern festival celebrating screen work, useful for contrasting historical cinema exhibition with contemporary festival culture.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        7
+      ]
+    },
+    {
+      "index": 9,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/USC_School_of_Cinematic_Arts",
+      "extraction_target": "the number of languages listed for the article near the top",
+      "extraction_section": null,
+      "extracted_value": 13,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Talibon wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Talibon",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Represents American film education and the transatlantic training ground that shapes filmmakers who bring European/Spanish influences into modern cinema.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        8
+      ]
+    },
+    {
+      "index": 10,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/USC_School_of_Cinematic_Arts",
+      "extraction_target": "Look up the elevation of USC School of Cinematic Arts",
+      "extraction_section": null,
+      "extracted_value": 56.65058898925781,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "USC School of Cinematic Arts"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of USC School of Cinematic Arts) from https://en.wikipedia.org/wiki/USC_School_of_Cinematic_Arts",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        9
+      ]
+    },
+    {
+      "index": 11,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/USC_School_of_Cinematic_Arts",
+      "extraction_target": "Look up the Google rating of USC School of Cinematic Arts",
+      "extraction_section": null,
+      "extracted_value": 4.8,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "USC School of Cinematic Arts"
+            },
+            "expected_output": null,
+            "output_key": "place_rating"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (Google rating of USC School of Cinematic Arts) from https://en.wikipedia.org/wiki/USC_School_of_Cinematic_Arts",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        9
+      ]
+    },
+    {
+      "index": 12,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/USC_School_of_Cinematic_Arts",
+      "extraction_target": "Combine the elevation of USC School of Cinematic Arts and the Google rating of USC School of Cinematic Arts: (56 + 4)",
+      "extraction_section": null,
+      "extracted_value": 60,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(56.65058898925781) + int(4.8)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of USC School of Cinematic Arts add Google rating of USC School of Cinematic Arts",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        10,
+        11
+      ]
+    },
+    {
+      "index": 13,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Talibon",
+      "extraction_target": "Look up the elevation at Talibon",
+      "extraction_section": null,
+      "extracted_value": 9.470732688903809,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Talibon"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for Talibon",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        12
+      ]
+    },
+    {
+      "index": 14,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Bay_station",
+      "extraction_target": "Count the number of parks near 1240 Bay Street Toronto",
+      "extraction_section": null,
+      "extracted_value": 20,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "parks near 1240 Bay Street Toronto"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: count parks near 1240 Bay Street Toronto",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        13
+      ]
+    },
+    {
+      "index": 15,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Trallong",
+      "extraction_target": "Find the sunshine duration (seconds) at Trallong on 1970-01-01",
+      "extraction_section": null,
+      "extracted_value": 25059.21,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Trallong"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "weather_historical",
+            "arguments": {
+              "__from_previous": "coords",
+              "start_date": "1970-01-01",
+              "end_date": "1970-01-01",
+              "select": [
+                "daily.sunshine_duration[0]"
+              ]
+            },
+            "expected_output": null,
+            "output_key": "sunshine"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: sunshine duration at Trallong on 1970-01-01",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        14
+      ]
+    },
+    {
+      "index": 16,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Trallong",
+      "extraction_target": "Reason: the number of divisors of that figure",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (num_divisors) on stop 10 value",
+      "reason_transform": "num_divisors",
+      "reason_source_stop": 15,
+      "reason_code": "n = abs(int(25059))\ncount = sum(1 for i in range(1, n+1) if n % i == 0) if n > 0 else 0\nresult = count\nprint(result)",
+      "depends_on": [
+        15
+      ]
+    },
+    {
+      "index": 17,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Anita_de_Montemar",
+      "extraction_target": "the number of cast members listed in the Cast section",
+      "extraction_section": "Cast",
+      "extracted_value": 15,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Anita_de_Montemar",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Highlights another figure in Spanish-language screen culture to show networks of performers and collaborators linked to Rivelles' era and beyond.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        16
+      ]
+    },
+    {
+      "index": 18,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Anita_de_Montemar",
+      "extraction_target": "Reason: the largest prime factor of that figure",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (largest_prime_factor) on stop 11 value",
+      "reason_transform": "largest_prime_factor",
+      "reason_source_stop": 17,
+      "reason_code": "def largest_prime_factor(n):\n    n = abs(int(n))\n    if n <= 1: return n\n    d = 2\n    while d * d <= n:\n        while n % d == 0: n //= d\n        d += 1\n    return n\nresult = largest_prime_factor(15)\nprint(result)",
+      "depends_on": [
+        17
+      ]
+    },
+    {
+      "index": 19,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/I_Love_You,_California",
+      "extraction_target": "the year the song was published",
+      "extraction_section": null,
+      "extracted_value": 1913,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/I_Love_You,_California",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A cultural touchstone that ties California (a key modern exhibition region and film hub) back into the narrative, contrasting Spanish cinematic roots with Californian film culture where many festivals and institutions operate.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        18
+      ]
+    },
+    {
+      "index": 20,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: (3609 + 20) % 10",
+      "extraction_section": null,
+      "extracted_value": 9,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "(3609 + 20) % 10",
+        "expression_code": "result = (3609 + 20) % 10\nprint(result)",
+        "referenced_stops": [
+          2,
+          14
+        ]
+      },
+      "reasoning": "Compute stop: (3609 + 20) % 10 = 9",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2,
+        14
+      ]
+    }
+  ],
+  "passcode": 9,
+  "difficulty": {
+    "level": "hard",
+    "depth": 21,
+    "tool_stop_count": 7,
+    "reason_stop_count": 4,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. In the golden era of film, a talented actress captivated audiences; discover the age at which she departed this world. \n\n2. What interesting binary representation do you unveil with your answer from the previous clue? Count the 1-bits within that figure.\n\n3. A land of creativity flaunts its silver screens — how many can be found in this country as of the year 2023?\n\n4. Delve into a cinematic tale where the glow of gold is captured. From this narrative, how many performers bring the characters to life in the Cast section?\n\n5. Consider the figure you unearthed in your last discovery. What is the total number of its divisors? \n\n6. Scale new heights! Ascend to the elevation of famed parkland, where granite cliffs touch the sky. What is the altitude under your feet in meters?\n\n7. In what year was a mysterious noir film featuring a man of questionable dealings first released to the public gaze? \n\n8. Seek the entry that chronicles a tale of love marked by a crucifix — what year does this story call its own?\n\n9. This gathering of television and media enthusiasts was sparked by a generous gift. How much did the benefactor of this event contribute in US dollars to establish the original Museum of Broadcasting?\n\n10. A school dedicated to the magic of film offers education in a multitude of languages. How many tongues are noted on its informative page?\n\n11. Find the elevation of the institution that nurtures countless cinematic dreams. How high does it rise above sea level?\n\n12. What rating do visitors bestow upon the same institution, reflecting their experiences in numbers?\n\n13. Now, unify your findings from clues 11 and 12. What do you get when you sum them together?\n\n14. Discover the altitude at a coastal town known for its vibrant culture — what is its elevation in meters? \n\n15. A bustling urban center has numerous green spaces — how many parks exist in proximity to a defined address in Toronto? \n\n16. Referencing a historical weather snapshot, investigate the amount of sunshine measured in Trallong on a noteworthy date. How many seconds basked in golden rays?\n\n17. The figure you just collected from Trallong holds a mathematical secret. What is the total number of its divisors? \n\n18. Among renowned actors, a captivating drama features a talented cast. How many members are listed in their roster? \n\n19. The answer unearthed regarding the cast members contains a hidden treasure. Identify the largest prime factor of that figure.\n\n20. When was a beloved song dedicated to the state embraced by the sea and mountains first published? \n\n21. To conclude your adventure, compute the result of (clue 3 + clue 15) modulo 10. What single digit does that calculation reveal?",
+  "metadata": {
+    "theme": "From Amparo Rivelles and the Golden Age of Spanish cinema to modern festival stages and global film venues — a storyteller's trail that links classic Spanish film, specific films/people, and contemporary exhibition sites, using geographic and data tools to locate, compare and contextualize those places.",
+    "difficulty": "hard",
+    "sample_id": "sample_026",
+    "pages_crawled": 1205
+  },
+  "generated_at": "2026-03-16T07:13:48.442605+00:00"
+}

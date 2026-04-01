@@ -1,0 +1,161 @@
+{
+  "trail_id": "trail_a828eaba",
+  "seed_url": "https://en.wikipedia.org/wiki/Carolina_Cosse",
+  "seed_title": "Carolina Cosse",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Carolina_Cosse",
+      "extraction_target": "date she assumed office as Vice President of Uruguay",
+      "extraction_section": null,
+      "extracted_value": "1 March 2025",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Claro_(company)",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start with Carolina Cosse — an engineer and prominent Uruguayan public official whose roles frame government oversight of infrastructure and communications policy.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Claro_(company)",
+      "extraction_target": "the number of countries listed in the opening paragraph as being served by Claro",
+      "extraction_section": null,
+      "extracted_value": 17,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Ministry of Foreign Relations (Uruguay) wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Ministry_of_Foreign_Relations_(Uruguay)",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Move to a major telecom operator in Latin America (Claro) to represent the private-sector counterpart to government policy on communications and infrastructure.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Ministry_of_Foreign_Relations_(Uruguay)",
+      "extraction_target": "Look up the elevation at Montevideo",
+      "extraction_section": null,
+      "extracted_value": 45.0064582824707,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Montevideo"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for Montevideo",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 3,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Ministry_of_Foreign_Relations_(Uruguay)",
+      "extraction_target": "Reason: the largest prime factor of that figure",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (largest_prime_factor) on stop 2 value",
+      "reason_transform": "largest_prime_factor",
+      "reason_source_stop": 2,
+      "reason_code": "def largest_prime_factor(n):\n    n = abs(int(n))\n    if n <= 1: return n\n    d = 2\n    while d * d <= n:\n        while n % d == 0: n //= d\n        d += 1\n    return n\nresult = largest_prime_factor(45)\nprint(result)"
+    },
+    {
+      "index": 4,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: abs(17 - 45) % 10",
+      "extraction_section": null,
+      "extracted_value": 8,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "abs(17 - 45) % 10",
+        "expression_code": "result = abs(17 - 45) % 10\nprint(result)",
+        "referenced_stops": [
+          1,
+          2,
+          3
+        ]
+      },
+      "reasoning": "Compute stop: abs(17 - 45) % 10 = 8",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 8,
+  "difficulty": {
+    "level": "easy",
+    "depth": 5,
+    "tool_stop_count": 1,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "Here is the revised riddle:\n\n1. Seek the seed page of a prominent Uruguayan politician who made history as the nation's first female Vice President; from its opening, record the exact date on which she assumed the office of Vice President of Uruguay.\n\n2. If you follow the corporate link embedded on that leader's page, you will arrive at a major Latin American telephone operator — how many countries does the lead paragraph of that company's article say it serves?\n\n3. The article whose opening identifies the nation's foreign ministry refers to the capital city; what elevation above sea level is given for Montevideo?\n\n4. Imagine that altitude as a number to be factored: take the elevation you found in clue 3 and determine its largest prime factor.\n\n5. One last (parenthetical) arithmetic step — compute abs(clue 2 - clue 3) % 10 and report the single-digit result (0–9).",
+  "metadata": {
+    "theme": "From a Uruguayan civic leader to the telecommunication companies she regulates: a short policy-to-industry trail showing the office, a major regional operator, and the national scale of the population served.",
+    "difficulty": "easy",
+    "sample_id": "sample_051",
+    "pages_crawled": 2111,
+    "source": "trail_puzzles_v2"
+  },
+  "generated_at": "2026-03-15T14:31:58.543803+00:00"
+}

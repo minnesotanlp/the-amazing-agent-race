@@ -1,0 +1,183 @@
+{
+  "trail_id": "trail_4d929495",
+  "seed_url": "https://en.wikipedia.org/wiki/China_Area_Fleet",
+  "seed_title": "China Area Fleet",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/China_Area_Fleet",
+      "extraction_target": "the date the China Area Fleet became active",
+      "extraction_section": null,
+      "extracted_value": "20 October 1937",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Djong (ship) wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Djong_(ship)",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start with the China Area Fleet to anchor the trail in the region's naval organization and its primary ports of operation.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Djong_(ship)",
+      "extraction_target": "the latest century before which most trade between China and Southeast Asia was carried in Southeast Asian vessels (as stated)",
+      "extraction_section": "Etymology",
+      "extracted_value": "12th century",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "French ship Astrolabe (1811) wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/French_ship_Astrolabe_(1811)",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Move to the indigenous 'djong' (jong) to show the regional shipbuilding traditions and local vessel types that predated/parallel formal navies.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/French_ship_Astrolabe_(1811)",
+      "extraction_target": "the length listed in the infobox (field: 'Length')",
+      "extraction_section": "infobox",
+      "extracted_value": 31.57,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Japanese cruiser Izumo wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Japanese_cruiser_Izumo",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Introduce a Western exploratory/mission vessel that operated in the wider Indo-Pacific, illustrating foreign naval contact and surveys affecting East Asian waters.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Japanese_cruiser_Izumo",
+      "extraction_target": "Look up the elevation at Japanese cruiser Izumo",
+      "extraction_section": null,
+      "extracted_value": 8.874571800231934,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Japanese cruiser Izumo"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for Japanese cruiser Izumo",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 4,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Japanese_cruiser_Izumo",
+      "extraction_target": "Reason: the digital root (iterated digit sum until single digit)",
+      "extraction_section": null,
+      "extracted_value": 8,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digital_root) on stop 3 value",
+      "reason_transform": "digital_root",
+      "reason_source_stop": 3,
+      "reason_code": "n = abs(int(8))\nresult = n if n == 0 else ((n - 1) % 9) + 1\nprint(result)"
+    },
+    {
+      "index": 5,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: abs(8 - 8) % 10",
+      "extraction_section": null,
+      "extracted_value": 0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "abs(8 - 8) % 10",
+        "expression_code": "result = abs(8 - 8) % 10\nprint(result)",
+        "referenced_stops": [
+          3,
+          4
+        ]
+      },
+      "reasoning": "Compute stop: abs(8 - 8) % 10 = 0",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 0,
+  "difficulty": {
+    "level": "easy",
+    "depth": 6,
+    "tool_stop_count": 1,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "Here is the riddle with the corrected clue:\n\n1. Seek the page that details a naval force which once operated from the late 19th to the mid-20th century in a vast Far Eastern nation, and record the date when that fleet first became active as reported there; once you've noted that activation date, sail onward toward Southeast Asian shipcraft.\n\n2. There exists a page about a massive Southeast Asian trading hull (a vessel type often written as a short, single-word name) whose etymology claims that most trade between China and Southeast Asia was carried in such native vessels until a particular century — state that latest century named.\n\n3. Which length is given on the article for the French exploration vessel launched in 1811 and named for a navigational instrument (the ship whose name echoes the astrolabe)? Report the ship’s listed length as presented on the page.\n\n4. If you consult a map for the berth or location of the warship bearing the name Izumo, what elevation above sea level does that coordinate return? Treat the map reading as your source of a numeric elevation in metres.\n\n5. The value whose source was that map lookup — reduce it by repeatedly summing its digits until only a single digit remains; that single-digit result (the iterative digital root) becomes the number for this clue.\n\n6. (Finally) Compute the absolute difference between clue 4 and clue 5, then take that result modulo 10 (explicitly: compute abs(clue 4 - clue 5) % 10); the outcome is a single digit between 0 and 9, which is your final answer.",
+  "metadata": {
+    "theme": "East Asian maritime power and vessels — tracing regional naval forces, indigenous ship design, and foreign exploratory/contact vessels that shaped naval activity in Asia",
+    "difficulty": "easy",
+    "sample_id": "sample_064",
+    "pages_crawled": 2684,
+    "source": "trail_puzzles_v2"
+  },
+  "generated_at": "2026-03-15T15:52:59.863369+00:00"
+}

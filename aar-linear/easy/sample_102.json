@@ -1,0 +1,160 @@
+{
+  "trail_id": "trail_c59c24e8",
+  "seed_url": "https://en.wikipedia.org/wiki/Eva_de_Braose",
+  "seed_title": "Eva de Braose",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Eva_de_Braose",
+      "extraction_target": "year William de Braose was hanged by Llywelyn the Great",
+      "extraction_section": "Family",
+      "extracted_value": 1230,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/English_feudal_barony",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start with Eva de Braose as the personal anchor — a medieval heiress whose family and marriages tied into feudal landholding practices. Extracting her affiliations frames the human origin of the trail.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/English_feudal_barony",
+      "extraction_target": "the approximate number of knight's fees above which an estate was termed an 'honour'",
+      "extraction_section": null,
+      "extracted_value": 20,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/English_feudal_barony",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Zoom out to the institutional level: this page explains the feudal barony structure that organized holdings like those connected to the de Braose family, and points to concrete examples such as Totnes.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/English_feudal_barony",
+      "extraction_target": "Reason: the largest prime factor of that figure",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (largest_prime_factor) on stop 1 value",
+      "reason_transform": "largest_prime_factor",
+      "reason_source_stop": 1,
+      "reason_code": "def largest_prime_factor(n):\n    n = abs(int(n))\n    if n <= 1: return n\n    d = 2\n    while d * d <= n:\n        while n % d == 0: n //= d\n        d += 1\n    return n\nresult = largest_prime_factor(20)\nprint(result)"
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Totnes",
+      "extraction_target": "Look up the elevation at Totnes",
+      "extraction_section": null,
+      "extracted_value": 4.427546977996826,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Totnes"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for Totnes",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 4,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: digital_root(1230 + 4)",
+      "extraction_section": null,
+      "extracted_value": 1,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "digital_root(1230 + 4)",
+        "expression_code": "def digital_root(n):\n    n = abs(int(n))\n    return n if n == 0 else ((n - 1) % 9) + 1\nresult = digital_root(1230 + 4)\nprint(result)",
+        "referenced_stops": [
+          0,
+          3
+        ]
+      },
+      "reasoning": "Compute stop: digital_root(1230 + 4) = 1",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 1,
+  "difficulty": {
+    "level": "easy",
+    "depth": 5,
+    "tool_stop_count": 1,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "direct_link"
+  },
+  "riddle": "Here is the revised riddle:\n\n1. Seek the Wikipedia page for the noblewoman known as the wife of William de Braose, who played a role in medieval Welsh conflicts; in the Family section, discover the year in which her husband was executed by Llywelyn the Great — that year will be your first number.  \n\n2. There exists an article explaining medieval English territorial units and ranks; on it, note the approximate number of knight's fees above which an estate was called an \"honour\" — record that figure for the next step.  \n\n3. What is the largest prime factor of the knight-fee threshold you just uncovered? Factor that number and take its greatest prime as your third value.  \n\n4. If you follow the path to the Devon market town that historically served as a caput for such a barony (a place with a castle overlooking the River Dart), determine the town's elevation above sea level in metres — that elevation is your fourth number.  \n\n5. In the ledger's final reckoning, compute the digital root of (clue 1 + clue 4) and give the single-digit result (0–9). Report that digital root as the treasure's final digit.",
+  "metadata": {
+    "theme": "Tracing feudal landholding from a medieval heiress (Eva de Braose) to the institution of English feudal baronies and a real barony town (Totnes), then measuring the landscape and geographic reach (including a transatlantic comparison with a colonial estate).",
+    "difficulty": "easy",
+    "sample_id": "sample_102",
+    "pages_crawled": 4162,
+    "source": "trail_puzzles_v2"
+  },
+  "generated_at": "2026-03-15T19:35:34.081755+00:00"
+}

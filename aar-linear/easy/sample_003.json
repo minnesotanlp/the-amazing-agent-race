@@ -1,0 +1,207 @@
+{
+  "trail_id": "trail_8961db22",
+  "seed_url": "https://en.wikipedia.org/wiki/Jamiat_Ulama-e-Islam_Nazryati",
+  "seed_title": "Jamiat Ulama-e-Islam Nazryati",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Jamiat_Ulama-e-Islam_Nazryati",
+      "extraction_target": "the year the party was founded",
+      "extraction_section": null,
+      "extracted_value": "2007",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Jamiat_Ulema-e-Islam",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start here — the seed is the Nazryati splinter of Jamiat Ulema-e-Islam; extracting founding details shows when and by whom the faction formed.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Jamiat_Ulema-e-Islam",
+      "extraction_target": "the date the party was founded",
+      "extraction_section": null,
+      "extracted_value": "26 October 1945",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Elections_in_Pakistan",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Move to the parent party to compare leadership, ideology and organisational history that the Nazryati faction branched from.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Elections_in_Pakistan",
+      "extraction_target": "the number of subsections under 'History of elections in Pakistan' listed in the Contents",
+      "extraction_section": "History of elections in Pakistan",
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Provincial_Assembly_of_Balochistan",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Contextualize how parties like JUI and its splinters compete — the national electoral rules determine representation and incentives for splits.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 3,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Provincial_Assembly_of_Balochistan",
+      "extraction_target": "total number of seats in the Provincial Assembly of Balochistan",
+      "extraction_section": null,
+      "extracted_value": 65,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Provincial_Assembly_of_Balochistan",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A regional stop: Balochistan is a province where religious parties have contested seats; extracting seat counts shows the scale of provincial contests.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 4,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Provincial_Assembly_of_Balochistan",
+      "extraction_target": "Reason: the largest prime factor of that figure",
+      "extraction_section": null,
+      "extracted_value": 13,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (largest_prime_factor) on stop 3 value",
+      "reason_transform": "largest_prime_factor",
+      "reason_source_stop": 3,
+      "reason_code": "def largest_prime_factor(n):\n    n = abs(int(n))\n    if n <= 1: return n\n    d = 2\n    while d * d <= n:\n        while n % d == 0: n //= d\n        d += 1\n    return n\nresult = largest_prime_factor(65)\nprint(result)"
+    },
+    {
+      "index": 5,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Pakistan",
+      "extraction_target": "Look up the elevation at Pakistan",
+      "extraction_section": null,
+      "extracted_value": 1372.254150390625,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Pakistan"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for Pakistan",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 6,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: digital_root(2007 + 3 + 65)",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "digital_root(2007 + 3 + 65)",
+        "expression_code": "def digital_root(n):\n    n = abs(int(n))\n    return n if n == 0 else ((n - 1) % 9) + 1\nresult = digital_root(2007 + 3 + 65)\nprint(result)",
+        "referenced_stops": [
+          0,
+          2,
+          3
+        ]
+      },
+      "reasoning": "Compute stop: digital_root(2007 + 3 + 65) = 5",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 5,
+  "difficulty": {
+    "level": "easy",
+    "depth": 7,
+    "tool_stop_count": 1,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "direct_link"
+  },
+  "riddle": "Here is the revised riddle:\n\n1. Narrative: On the page of a clerical party founded as a splinter from a significant ulema movement — the one tracing back to the establishment of a notable Islamic political presence in the region of the Indus River — record the year in which that party was founded, then follow the link to its parent ulema movement (the older, larger group to which it traces its origins).\n\n2. Imperative: Seek the parent movement's article you were led to; from its opening material note the date when that party itself was founded, and then click the link that points you toward the national article about elections to continue.\n\n3. Interrogative: In the national elections article you have opened, how many subheadings appear under the Contents entry titled along the lines of \"History of elections\" — count only the subsections listed there — then follow the link to the southwestern province of the South Asian country whose capital is Islamabad and whose national flag bears a white crescent and star on a green field (the province borders the Arabian Sea) to proceed.\n\n4. Relative clause: The article whose opening line names the provincial legislature of that southwestern province contains the current total number of seats in that assembly; extract that total and then follow the link that takes you to the country's main national page.\n\n5. Aside (one arithmetic nudge): Now, take the total seats from clue 4 and compute its largest prime factor — that single prime is your next numeric clue.\n\n6. Conditional: If you consult the national page you were sent to, determine the elevation above sea level (in metres) cited for that country (use the geographic/elevation figure given on that page).\n\n7. Declarative: Finally, compute the digital root of (clue 1 + clue 3 + clue 4) — that is, repeatedly sum the digits of the total until a single digit remains; the result should be a single digit between 0 and 9.",
+  "metadata": {
+    "theme": "Tracing a splinter religious party (Jamiat Ulama-e-Islam Nazryati) back to its parent movement and situating its electoral role within Pakistan's electoral system and provincial politics, with national population context.",
+    "difficulty": "easy",
+    "sample_id": "sample_003",
+    "pages_crawled": 84,
+    "source": "trail_puzzles_v2"
+  },
+  "generated_at": "2026-03-15T09:54:29.015813+00:00"
+}

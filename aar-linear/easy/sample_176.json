@@ -1,0 +1,171 @@
+{
+  "trail_id": "trail_791663f2",
+  "seed_url": "https://en.wikipedia.org/wiki/Lockheed_Martin",
+  "seed_title": "Lockheed Martin",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Lockheed_Martin",
+      "extraction_target": "the article title as displayed at the top of the page",
+      "extraction_section": null,
+      "extracted_value": "Lockheed Martin",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/The_Pentagon",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Seed: Lockheed Martin is the defence prime contractor anchoring the trail; extracting its headquarters lets us map its physical relationship to the Pentagon and the broader defence ecosystem.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/The_Pentagon",
+      "extraction_target": "Get the driving duration in minutes from Richmond Hwy./SR 110 at I-395 \"Interstate 395 (Virginia–District of Columbia)\") to Bethesda",
+      "extraction_section": null,
+      "extracted_value": 31,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_directions",
+            "arguments": {
+              "origin": "Richmond Hwy./SR 110 at I-395 \"Interstate 395 (Virginia–District of Columbia)\")",
+              "destination": "Bethesda",
+              "mode": "driving"
+            },
+            "expected_output": null,
+            "output_key": "duration"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: directions duration Richmond Hwy./SR 110 at I-395 \"Interstate 395 (Virginia–District of Columbia)\") to Bethesda",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Partial_Nuclear_Test_Ban_Treaty",
+      "extraction_target": "Look up the elevation at Moscow",
+      "extraction_section": null,
+      "extracted_value": 141.7627258300781,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Moscow"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for Moscow",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 3,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Partial_Nuclear_Test_Ban_Treaty",
+      "extraction_target": "Reason: the number of divisors of that figure",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (num_divisors) on stop 2 value",
+      "reason_transform": "num_divisors",
+      "reason_source_stop": 2,
+      "reason_code": "n = abs(int(141))\ncount = sum(1 for i in range(1, n+1) if n % i == 0) if n > 0 else 0\nresult = count\nprint(result)"
+    },
+    {
+      "index": 4,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: digital_root(31 + 141 + 4)",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "digital_root(31 + 141 + 4)",
+        "expression_code": "def digital_root(n):\n    n = abs(int(n))\n    return n if n == 0 else ((n - 1) % 9) + 1\nresult = digital_root(31 + 141 + 4)\nprint(result)",
+        "referenced_stops": [
+          1,
+          2,
+          3
+        ]
+      },
+      "reasoning": "Compute stop: digital_root(31 + 141 + 4) = 5",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 5,
+  "difficulty": {
+    "level": "easy",
+    "depth": 5,
+    "tool_stop_count": 2,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "direct_link"
+  },
+  "riddle": "Here is the riddle with the corrections made:\n\n1. Seek the corporate page known for its role in aerospace and defense, prominently involved in military technology; read the page title as displayed and then follow the embedded link that goes to the United States Department of Defense's headquarters article.\n\n2. How many minutes would a car journey take if you drove from Richmond Hwy./SR 110 at I-395 to Bethesda — find the driving duration in minutes from that headquarters entry.\n\n3. The article whose opening line references a 1963 international arms-control agreement now guides you: consult that page and discover how many meters above sea level Moscow sits.\n\n4. If you take the elevation value you just uncovered, work out how many positive integer divisors that elevation has — the number of divisors of the figure from clue 3 is your next numeric answer.\n\n5. In this final reckoning, compute the digital root of (clue 2 + clue 3 + clue 4) and give that single digit (0–9) as the solution.",
+  "metadata": {
+    "theme": "Follow Lockheed Martin from its corporate headquarters into the heart of U.S. defence: measure its physical link to the Pentagon, compare industrial-market context, and reflect on historical arms-control milestones.",
+    "difficulty": "easy",
+    "sample_id": "sample_176",
+    "pages_crawled": 3619
+  },
+  "generated_at": "2026-03-17T11:28:13.178121+00:00"
+}

@@ -1,0 +1,175 @@
+{
+  "trail_id": "trail_2264f4db",
+  "seed_url": "https://en.wikipedia.org/wiki/Hosta,_Škofja_Loka",
+  "seed_title": "Hosta, Škofja Loka",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Hosta,_Škofja_Loka",
+      "extraction_target": "the elevation listed in the infobox (field: 'Elevation')",
+      "extraction_section": "infobox",
+      "extracted_value": 347,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Sora_River",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start at the seed: the small Slovenian settlement whose elevation and location anchor the trail in the Sora River valley.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Sora_River",
+      "extraction_target": "the length of the Sora as given in the infobox (in kilometres)",
+      "extraction_section": null,
+      "extracted_value": 9,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Cooper River (South Carolina) wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Cooper_River_(South_Carolina)",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Follow the local watercourse that defines the landscape around Hosta — extracting basic river metrics to connect place and hydrology.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Cooper_River_(South_Carolina)",
+      "extraction_target": "Look up the population of Slovenia",
+      "extraction_section": null,
+      "extracted_value": 2130638,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "countries_population",
+            "arguments": {
+              "country": "Slovenia"
+            },
+            "expected_output": null,
+            "output_key": "population"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: population of Slovenia",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 3,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Cooper_River_(South_Carolina)",
+      "extraction_target": "Reason: the number you get by reversing its digits",
+      "extraction_section": null,
+      "extracted_value": 8360312,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_reversal) on stop 2 value",
+      "reason_transform": "digit_reversal",
+      "reason_source_stop": 2,
+      "reason_code": "result = int(str(abs(int(2130638)))[::-1])\nprint(result)"
+    },
+    {
+      "index": 4,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Joseph_Smagorinsky",
+      "extraction_target": "The number of degrees (B.S., M.S., Ph.D.) Smagorinsky earned at New York University",
+      "extraction_section": "Education and early career",
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Joseph_Smagorinsky",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Bring in a key figure in meteorology whose work links local geographic measurements (like elevation, river data) to atmospheric modeling and climate research.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 5,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: (347 + 2130638) % 10",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "(347 + 2130638) % 10",
+        "expression_code": "result = (347 + 2130638) % 10\nprint(result)",
+        "referenced_stops": [
+          0,
+          2
+        ]
+      },
+      "reasoning": "Compute stop: (347 + 2130638) % 10 = 5",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 5,
+  "difficulty": {
+    "level": "easy",
+    "depth": 6,
+    "tool_stop_count": 1,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "Here is the revised riddle:\n\n1. Seek the seed page of a plant known for its large, lush leaves, found in a village in Slovenia called \"the Bishop's Town\"; on that village’s entry, how many metres above sea level does it sit? After noting that height, follow the internal link on the page to the river that runs through its valley for your next stop.\n\n2. There exists a river page where the stream’s total length is recorded in kilometres; read that entry and record the length given for the river you reached from the village page, then turn your attention to an American watercourse — look up the river named after a famous American signatory of the Declaration of Independence that flows in South Carolina to continue the trail.\n\n3. What number of inhabitants does the European country of Slovenia report (the whole-country population figure)?\n\n4. If you reverse the digits of the population figure you just uncovered, what new number do you obtain?\n\n5. The article about the pioneering American meteorologist associated with early numerical weather prediction contains an “Education and early career” style passage; in that passage, how many academic degrees from New York University are listed for him (count B.S., M.S., Ph.D.)?\n\n6. In the end, perform this arithmetic and give a single digit: compute (clue 1 + clue 3) modulo 10 — that is, add the numeric value you found in clue 1 to the numeric value from clue 3, then take the remainder when divided by 10; the result is a single digit between 0 and 9.",
+  "metadata": {
+    "theme": "From a Slovenian village to rivers and meteorology — a short trail linking local geography (village and river) to atmospheric science and comparative environmental data.",
+    "difficulty": "easy",
+    "sample_id": "sample_013",
+    "pages_crawled": 591,
+    "source": "trail_puzzles_v2"
+  },
+  "generated_at": "2026-03-15T11:06:13.847307+00:00"
+}

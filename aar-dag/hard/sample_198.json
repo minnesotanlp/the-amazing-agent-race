@@ -1,0 +1,768 @@
+{
+  "trail_id": "trail_f9bc8a13",
+  "seed_url": "https://en.wikipedia.org/wiki/Broadcom_Inc.",
+  "seed_title": "Broadcom Inc.",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Broadcom_Inc.",
+      "extraction_target": "the headquarters location listed in the infobox",
+      "extraction_section": null,
+      "extracted_value": "Stanford Research Park, Palo Alto, California, U.S.",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Broadcom Inc. wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Broadcom_Inc.",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start at the seed: Broadcom is a modern technology conglomerate whose corporate reach and headquarters provide a contemporary anchor for exploring corporate, media and geopolitical influence.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Broadcom_Inc.",
+      "extraction_target": "Look up the elevation of Stanford Research Park, Palo Alto, California, U.S.",
+      "extraction_section": null,
+      "extracted_value": 49.66788482666016,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Stanford Research Park, Palo Alto, California, U.S."
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Stanford Research Park, Palo Alto, California, U.S.) from https://en.wikipedia.org/wiki/Broadcom_Inc.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Broadcom_Inc.",
+      "extraction_target": "Look up the count of museums near Stanford Research Park, Palo Alto, California, U.S.",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "museums near Stanford Research Park, Palo Alto, California, U.S."
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of museums near Stanford Research Park, Palo Alto, California, U.S.) from https://en.wikipedia.org/wiki/Broadcom_Inc.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Broadcom_Inc.",
+      "extraction_target": "Combine the elevation of Stanford Research Park, Palo Alto, California, U.S. and the count of museums near Stanford Research Park, Palo Alto, California, U.S.: abs(49 - 20)",
+      "extraction_section": null,
+      "extracted_value": 29,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(49.66788482666016) - int(20.0))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Stanford Research Park, Palo Alto, California, U.S. abs_diff count of museums near Stanford Research Park, Palo Alto, California, U.S.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1,
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Broadcom_Inc.",
+      "extraction_target": "Reason: the alphabetical position of its first letter (A=1, B=2, ...)",
+      "extraction_section": null,
+      "extracted_value": 19,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (alpha_position_first_letter) on stop 0 value",
+      "reason_transform": "alpha_position_first_letter",
+      "reason_source_stop": 0,
+      "reason_code": "first = \"Stanford Research Park, Palo Alto, California, U.S.\"[0].upper()\nresult = ord(first) - ord('A') + 1 if first.isalpha() else 0\nprint(result)",
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Sinclair_Broadcast_Group",
+      "extraction_target": "the company's founding date",
+      "extraction_section": null,
+      "extracted_value": "April 11, 1971",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Hillary_Clinton",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Sinclair exemplifies how media companies extend corporate influence into local politics and public opinion — a natural next step from a large tech company to media power.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Hillary_Clinton",
+      "extraction_target": "the number of subsections under 'Early life and education'",
+      "extraction_section": "Early life and education",
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Hirohito wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Hirohito",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Move from corporate/media influence into electoral politics and public office — Hillary Clinton is a prominent figure at that intersection.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Hirohito",
+      "extraction_target": "Calculate the number of days between 1971-04-11 and 2026-03-19",
+      "extraction_section": null,
+      "extracted_value": 20066,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "from datetime import date\nd1 = date.fromisoformat('1971-04-11')\nd2 = date.fromisoformat('2026-03-19')\nresult = abs((d2 - d1).days)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "days"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: date computation 1971-04-11 to 2026-03-19 (pinned)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Hirohito",
+      "extraction_target": "Reason: the number of divisors of that figure",
+      "extraction_section": null,
+      "extracted_value": 8,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (num_divisors) on stop 3 value",
+      "reason_transform": "num_divisors",
+      "reason_source_stop": 7,
+      "reason_code": "n = abs(int(20066))\ncount = sum(1 for i in range(1, n+1) if n % i == 0) if n > 0 else 0\nresult = count\nprint(result)",
+      "depends_on": [
+        7
+      ]
+    },
+    {
+      "index": 9,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Slavery",
+      "extraction_target": "the number of languages listed at the top of the article",
+      "extraction_section": null,
+      "extracted_value": 161,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Apartheid",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Introduce historical systems of ownership and coercion to contrast institutional power across eras and societies.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        8
+      ]
+    },
+    {
+      "index": 10,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Slavery",
+      "extraction_target": "Count museums near Slavery",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "museums near Slavery"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (nearby_poi) derived from https://en.wikipedia.org/wiki/Slavery",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        9
+      ]
+    },
+    {
+      "index": 11,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Apartheid",
+      "extraction_target": "the number of subsections under 'Institution and development' listed in the Contents",
+      "extraction_section": "Institution and development",
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Apartheid",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Apartheid is a 20th-century example of institutionalized domination — it links the theme of systemic power and its societal effects explored after Slavery.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        10
+      ]
+    },
+    {
+      "index": 12,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Apartheid",
+      "extraction_target": "Reason: the sum of its distinct prime factors",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (sum_prime_factors) on stop 5 value",
+      "reason_transform": "sum_prime_factors",
+      "reason_source_stop": 11,
+      "reason_code": "def prime_factors(n):\n    n = abs(int(n))\n    factors = []\n    d = 2\n    while d * d <= n:\n        while n % d == 0:\n            factors.append(d)\n            n //= d\n        d += 1\n    if n > 1: factors.append(n)\n    return factors\nresult = sum(set(prime_factors(4)))\nprint(result)",
+      "depends_on": [
+        11
+      ]
+    },
+    {
+      "index": 13,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Holocaust",
+      "extraction_target": "the number of subsections listed under 'Aftermath and legacy' in the table of contents",
+      "extraction_section": "Contents",
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Jews",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "The Holocaust is a pivotal example of extreme state power and genocide; including it underscores the stakes when political and state power are abused.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        12
+      ]
+    },
+    {
+      "index": 14,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Jews",
+      "extraction_target": "the number of sub-subsections listed under 6.3 Population centers in the Contents",
+      "extraction_section": "Contents",
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Zhanjiang wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Zhanjiang",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Focus on the people most affected in the Holocaust and the broader history of a diasporic community — this connects historical injustice to cultural and geographic identity.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        13
+      ]
+    },
+    {
+      "index": 15,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Zhanjiang",
+      "extraction_target": "Look up the elevation at Zhanjiang",
+      "extraction_section": null,
+      "extracted_value": 7.895936965942383,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Zhanjiang"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for Zhanjiang",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        14
+      ]
+    },
+    {
+      "index": 16,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Jerusalem",
+      "extraction_target": "the number of subsections under 'Etymology and names' listed in the Contents",
+      "extraction_section": "Etymology and names",
+      "extracted_value": 8,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Hampton Roads wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Hampton_Roads",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Jerusalem ties religion, politics and history together — a crossroads of global influence and contested sovereignty that connects many earlier themes (identity, state power, media framing).",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        15
+      ]
+    },
+    {
+      "index": 17,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Hampton_Roads",
+      "extraction_target": "Count the number of temples near 36.950",
+      "extraction_section": null,
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "temples near 36.950"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: count temples near 36.950",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        16
+      ]
+    },
+    {
+      "index": 18,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Miami_metropolitan_area",
+      "extraction_target": "coordinates of the Miami metropolitan area in degrees and minutes as shown in the article",
+      "extraction_section": null,
+      "extracted_value": "26°8′N 80°12′W",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Changchun wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Changchun",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Conclude the page sequence with a contemporary metropolitan area that demonstrates cultural and economic concentration — a modern locus of influence, migration and media markets that echoes the trail’s opening corporate themes.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        17
+      ]
+    },
+    {
+      "index": 19,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Miami_metropolitan_area",
+      "extraction_target": "Look up the elevation of Miami metropolitan area",
+      "extraction_section": null,
+      "extracted_value": 3.40205717086792,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Miami metropolitan area"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Miami metropolitan area) from https://en.wikipedia.org/wiki/Miami_metropolitan_area",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        18
+      ]
+    },
+    {
+      "index": 20,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Miami_metropolitan_area",
+      "extraction_target": "Look up the count of museums near Miami metropolitan area",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "museums near Miami metropolitan area"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of museums near Miami metropolitan area) from https://en.wikipedia.org/wiki/Miami_metropolitan_area",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        18
+      ]
+    },
+    {
+      "index": 21,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Miami_metropolitan_area",
+      "extraction_target": "Combine the elevation of Miami metropolitan area and the count of museums near Miami metropolitan area: (3 + 20)",
+      "extraction_section": null,
+      "extracted_value": 23,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(3.40205717086792) + int(20.0)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Miami metropolitan area add count of museums near Miami metropolitan area",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        19,
+        20
+      ]
+    },
+    {
+      "index": 22,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Changchun",
+      "extraction_target": "the coordinates listed in the infobox (field: 'Coordinates (Jilin People's Government)')",
+      "extraction_section": "infobox",
+      "extracted_value": "43.897, 125.326",
+      "extracted_value_type": "coords",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Changchun",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Finish with Changchun to emphasize the global sweep of the trail — from a US tech HQ to varied political, cultural and geographic nodes around the world.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        21
+      ]
+    },
+    {
+      "index": 23,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: digital_root(7 + 3 + 3)",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "digital_root(7 + 3 + 3)",
+        "expression_code": "def digital_root(n):\n    n = abs(int(n))\n    return n if n == 0 else ((n - 1) % 9) + 1\nresult = digital_root(7 + 3 + 3)\nprint(result)",
+        "referenced_stops": [
+          15,
+          17,
+          19
+        ]
+      },
+      "reasoning": "Compute stop: digital_root(7 + 3 + 3) = 4",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        15,
+        17,
+        19
+      ]
+    }
+  ],
+  "passcode": 4,
+  "difficulty": {
+    "level": "hard",
+    "depth": 24,
+    "tool_stop_count": 10,
+    "reason_stop_count": 3,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Seek the semiconductor behemoth whose headquarters lies within a famed research park. Where does its influence first take root?\n\n2. What's the height at which ideas flourish in this creative hub in Palo Alto — how high is it in meters above sea level?\n\n3. From this innovative sanctuary, how many museums can you discover nearby? Count those portals of knowledge.\n\n4. Combine the elevation found in clue 2 with your museum count from clue 3 — what difference resides between them?\n\n5. A letter signifies this giant's name; find it and unveil its alphabetic position (A=1, B=2…). What number emerges from this quest?\n\n6. A media titan rose alongside political vigor; can you uncover the year it was founded? \n\n7. Who among the political sphere forged paths to new heights, and how many subsections detail their early roots and education?\n\n8. In the annals where an emperor's reign took a pivotal turn, calculate the number of days that stretch from April 11, 1971, to March 19, 2026.\n\n9. Within that figure, what is the count of distinct divisors? Seek them out and reveal your answer. \n\n10. From tribulations past, discover how many languages share their story in the opening lines of this historical account.\n\n11. Surrounding this narrative of struggle, how many museums stand tall in its vicinity? Your explorations might yield surprising discoveries.\n\n12. Another struggle has ensued; unravel how many subsections lie beneath the title 'Institution and development' in the recorded history.\n\n13. Discerning the depth of that subsection count, should you sum its unique prime factors, what number does it reveal?\n\n14. As a history unfolds, a chilling chapter waits — assess how many subsections lie under 'Aftermath and legacy' in this article’s contents.\n\n15. Delving deeper, reveal how many sub-subsections rest beneath the 6.3 mark concerning population centers.\n\n16. Travel to the coastal city known for its vibrant trade and ask, what elevation does this place rest at above the sea?\n\n17. In the hallowed corridors of a city named for peace, how many subsections reveal its names and origins?\n\n18. Close to where waters meet the skies, how many temples rise nearby this coastal haven? \n\n19. In a cultural melting pot, what are the geographic coordinates that mark the heart of its urban life?\n\n20. Nowhere near the sea, yet crucial to its lore, what’s the height at which this urban area sits?\n\n21. As you assess the landscape, how many museums lie in proximity to this bustling urban sprawl? Count wisely!\n\n22. Combine the elevation found in clue 20 with the museum tally from clue 21 — what sum reveals itself amidst your calculations?\n\n23. Unravel the coordinates from an article detailing a city once a hub in a significant region. What are those coordinates?\n\n24. Lastly, compute the digital root of the sum formed by the results from clues 16, 18, and 20 — what single digit emerges?",
+  "metadata": {
+    "theme": "Power and influence — tracing a path from a modern semiconductor giant through media and politics to historical struggles and global places, using a mix of data tools to measure corporate, temporal and geographic reach.",
+    "difficulty": "hard",
+    "sample_id": "sample_198",
+    "pages_crawled": 26478
+  },
+  "generated_at": "2026-03-19T10:55:15.880959+00:00"
+}

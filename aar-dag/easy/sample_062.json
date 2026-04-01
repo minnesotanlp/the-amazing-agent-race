@@ -1,0 +1,335 @@
+{
+  "trail_id": "trail_eddbf382",
+  "seed_url": "https://en.wikipedia.org/wiki/Ranjit_Sitaram_Pandit",
+  "seed_title": "Ranjit Sitaram Pandit",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Ranjit_Sitaram_Pandit",
+      "extraction_target": "year he was Secretary of the Peshawar Enquiry Committee",
+      "extraction_section": null,
+      "extracted_value": "1930",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Naspers wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Naspers",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start with Ranjit Sitaram Pandit — an Indian jurist and scholar whose life sits at the intersection of law, culture and diplomacy; his biography provides the historical anchor for the trail.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Naspers",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Founded')",
+      "extraction_section": "infobox",
+      "extracted_value": 12,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Naspers",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Naspers began as a colonial-era publisher and evolved into a global media conglomerate; its institutional history links colonial-era public discourse to modern mass media distribution.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Naspers",
+      "extraction_target": "Reason: the number of characters when written as a Roman numeral",
+      "extraction_section": null,
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (roman_numeral_letter_count) on stop 1 value",
+      "reason_transform": "roman_numeral_letter_count",
+      "reason_source_stop": 1,
+      "reason_code": "def to_roman(n):\n    n = abs(int(n))\n    vals = [(1000,'M'),(900,'CM'),(500,'D'),(400,'CD'),(100,'C'),\n            (90,'XC'),(50,'L'),(40,'XL'),(10,'X'),(9,'IX'),(5,'V'),(4,'IV'),(1,'I')]\n    r = ''\n    for v, s in vals:\n        while n >= v:\n            r += s; n -= v\n    return r\nresult = len(to_roman(12))\nprint(result)",
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/DStv",
+      "extraction_target": "Count the number of temples near Randburg",
+      "extraction_section": null,
+      "extracted_value": 20,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "temples near Randburg"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: count temples near Randburg",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/M-Net",
+      "extraction_target": "the country listed in the infobox (field: 'Country')",
+      "extraction_section": "infobox",
+      "extracted_value": "South Africa",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "History of the Jews in South Africa wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/History_of_the_Jews_in_South_Africa",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "M-Net is a flagship television channel launched under the Naspers umbrella; extracting its launch and ownership details shows how content and corporate strategy evolved from print to television.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/M-Net",
+      "extraction_target": "Look up the population of South Africa",
+      "extraction_section": null,
+      "extracted_value": 63100945.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "countries_population",
+            "arguments": {
+              "country": "South Africa"
+            },
+            "expected_output": null,
+            "output_key": "population"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (population of South Africa) from https://en.wikipedia.org/wiki/M-Net",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/M-Net",
+      "extraction_target": "Look up the area of South Africa in km²",
+      "extraction_section": null,
+      "extracted_value": 1221037.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "countries_area",
+            "arguments": {
+              "country": "South Africa"
+            },
+            "expected_output": null,
+            "output_key": "area_km2"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (area of South Africa in km²) from https://en.wikipedia.org/wiki/M-Net",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        4
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/M-Net",
+      "extraction_target": "Combine the population of South Africa and the area of South Africa in km²: (63100945 + 1221037)",
+      "extraction_section": null,
+      "extracted_value": 64321982,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(63100945.0) + int(1221037.0)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: population of South Africa add area of South Africa in km²",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5,
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/History_of_the_Jews_in_South_Africa",
+      "extraction_target": "Look up the population of South Africa",
+      "extraction_section": null,
+      "extracted_value": 63100945,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "countries_population",
+            "arguments": {
+              "country": "South Africa"
+            },
+            "expected_output": null,
+            "output_key": "population"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: population of South Africa",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        7
+      ]
+    },
+    {
+      "index": 9,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: abs(12 - 3) % 10",
+      "extraction_section": null,
+      "extracted_value": 9,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "abs(12 - 3) % 10",
+        "expression_code": "result = abs(12 - 3) % 10\nprint(result)",
+        "referenced_stops": [
+          1,
+          2,
+          3
+        ]
+      },
+      "reasoning": "Compute stop: abs(12 - 3) % 10 = 9",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1,
+        2,
+        3
+      ]
+    }
+  ],
+  "passcode": 9,
+  "difficulty": {
+    "level": "easy",
+    "depth": 10,
+    "tool_stop_count": 5,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Pinpoint the year that echoed through the halls of justice, as Ranjit Sitaram Pandit took on the role of Secretary during an important inquiry in Peshawar.\n\n2. Seek the media conglomerate rooted in South Africa, founded in a year that foreshadowed the dawn of a new era in publishing. Can you unravel this date?\n\n3. As you reflect on the establishment year from the last clue, transform its digits into the ancient form of letters that the Romans used. Count how many characters emerge from this conversion.\n\n4. What sacred structures flourish near Randburg? Count how many temples stand in their serene spaces as you traverse the digital landscape.\n\n5. There exists a broadcasting company which has made waves across the nation. Discover the name of the country it calls home, a land known for its vibrant cultures.\n\n6. How many citizens inhabit the land famed for its diverse heritage? Uncover the current population of this nation and keep it close as you continue your quest.\n\n7. What expanse stretches across this beautiful land? Seek the area of this country measured in square kilometers to continue your journey.\n\n8. Combine the population you unearthed in clue 6 with the area you found in clue 7. What total do they create when united in harmonious numbers?\n\n9. Venture into the chronicles of South Africa and find how many souls owe their residence to this diverse land.\n\n10. Now it's time for some mental gymnastics. Compute the absolute difference between the results from clues 2 and 3, and clue 4. Reduce this to a single digit by applying the modulo operation with 10. What single digit do you unveil?",
+  "metadata": {
+    "theme": "From a colonial-era Indian intellectual to modern South African media — tracing how historical actors and institutions connect to 20th/21st-century broadcasting and its audience",
+    "difficulty": "easy",
+    "sample_id": "sample_062",
+    "pages_crawled": 2597,
+    "source": "trail_puzzles_v2"
+  },
+  "generated_at": "2026-03-15T15:41:36.944418+00:00"
+}

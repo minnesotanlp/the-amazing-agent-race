@@ -1,0 +1,317 @@
+{
+  "trail_id": "trail_ee357120",
+  "seed_url": "https://en.wikipedia.org/wiki/Meta_Platforms",
+  "seed_title": "Meta Platforms",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Meta_Platforms",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Founded')",
+      "extraction_section": "infobox",
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Facebook",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start at Meta Platforms to extract its corporate HQ (origin point) and anchor the trail in the company that owns Facebook, Instagram and WhatsApp.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Facebook",
+      "extraction_target": "the number of languages the article is available in (displayed at the top)",
+      "extraction_section": null,
+      "extracted_value": 225,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Facebook",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Visit Facebook (a core Meta product) to extract its founding date and user scale, tying company HQ and reach to the platform that drives much of Meta's business.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Facebook",
+      "extraction_target": "Reason: the next prime number after that figure",
+      "extraction_section": null,
+      "extracted_value": 227,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (next_prime) on stop 1 value",
+      "reason_transform": "next_prime",
+      "reason_source_stop": 1,
+      "reason_code": "def next_prime(n):\n    n = abs(int(n))\n    if n < 2: return 2\n    candidate = n + 1\n    while True:\n        if all(candidate % i != 0 for i in range(2, int(candidate**0.5)+1)):\n            return candidate\n        candidate += 1\nresult = next_prime(225)\nprint(result)",
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/U.S._Department_of_Justice",
+      "extraction_target": "the number of languages listed at the top of the article",
+      "extraction_section": null,
+      "extracted_value": 49,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Russia wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Russia",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Bring in the US Department of Justice to represent regulatory and antitrust scrutiny of large tech platforms—context for how companies like Meta are governed and litigated against.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/U.S._Department_of_Justice",
+      "extraction_target": "Look up the elevation of U.S. Department of Justice",
+      "extraction_section": null,
+      "extracted_value": 3236.2353515625,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "U.S. Department of Justice"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of U.S. Department of Justice) from https://en.wikipedia.org/wiki/U.S._Department_of_Justice",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/U.S._Department_of_Justice",
+      "extraction_target": "Look up the Google rating of U.S. Department of Justice",
+      "extraction_section": null,
+      "extracted_value": 3.4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "U.S. Department of Justice"
+            },
+            "expected_output": null,
+            "output_key": "place_rating"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (Google rating of U.S. Department of Justice) from https://en.wikipedia.org/wiki/U.S._Department_of_Justice",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/U.S._Department_of_Justice",
+      "extraction_target": "Combine the elevation of U.S. Department of Justice and the Google rating of U.S. Department of Justice: (3236 + 3)",
+      "extraction_section": null,
+      "extracted_value": 3239,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(3236.2353515625) + int(3.4)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of U.S. Department of Justice add Google rating of U.S. Department of Justice",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        4,
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Russia",
+      "extraction_target": "Look up the elevation at Russia",
+      "extraction_section": null,
+      "extracted_value": 389.0949096679688,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Russia"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for Russia",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: digital_root(4 + 227 + 3236 + 3)",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "digital_root(4 + 227 + 3236 + 3)",
+        "expression_code": "def digital_root(n):\n    n = abs(int(n))\n    return n if n == 0 else ((n - 1) % 9) + 1\nresult = digital_root(4 + 227 + 3236 + 3)\nprint(result)",
+        "referenced_stops": [
+          0,
+          2,
+          4,
+          5
+        ]
+      },
+      "reasoning": "Compute stop: digital_root(4 + 227 + 3236 + 3) = 5",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0,
+        2,
+        4,
+        5
+      ]
+    }
+  ],
+  "passcode": 5,
+  "difficulty": {
+    "level": "easy",
+    "depth": 9,
+    "tool_stop_count": 4,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Unearth the page detailing the origins of a tech giant, founded in a year when the world was introduced to a new platform for connection. What year did it begin its journey?\n\n2. A social network grew from this foundation, transcending borders and languages. How many languages can this platform's narrative be read in?\n\n3. In a realm of numbers, seek the next prime beyond the total of that linguistic tapestry. What is this elusive prime?\n\n4. Now shift your focus to the guardians of legal might, where justice resides in the heart of a nation. How many languages does their page list?\n\n5. In search of topographical truth, discover how high above sea level the stronghold of legality stands. What is its elevation?\n\n6. While you're there, gather opinions of the masses; what star rating do they confer upon the seat of justice?\n\n7. Combine the knowledge of height from clue 5 with the appraisal from clue 6. What sum emerges from this confluence of values?\n\n8. Journey now to the land of vast horizons where history intertwines with power. Find the elevation claimed by this prominent country.\n\n9. As you wrap up your quest, calculate the digital root of the sum of your findings: (clue 1 + clue 3 + clue 5 + clue 6). What single-digit value emerges from this union, revealing the essence of your exploration?",
+  "metadata": {
+    "theme": "Tracing Meta's corporate footprint and influence: from its headquarters to social platforms, big-tech market power, and the international political backdrop",
+    "difficulty": "easy",
+    "sample_id": "sample_133",
+    "pages_crawled": 1100
+  },
+  "generated_at": "2026-03-17T07:49:11.565087+00:00"
+}

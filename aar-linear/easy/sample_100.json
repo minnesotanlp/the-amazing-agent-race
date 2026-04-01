@@ -1,0 +1,175 @@
+{
+  "trail_id": "trail_51b75574",
+  "seed_url": "https://en.wikipedia.org/wiki/Perfect_Couples",
+  "seed_title": "Perfect Couples",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Perfect_Couples",
+      "extraction_target": "the number of seasons",
+      "extraction_section": null,
+      "extracted_value": 1,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Universal_Television",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start with the seed sitcom 'Perfect Couples' to anchor the trail in a specific show and its premiere context.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Universal_Television",
+      "extraction_target": "the year Universal Television was founded",
+      "extraction_section": null,
+      "extracted_value": "2004",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Transparent (TV series) wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Transparent_(TV_series)",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Move to a major production company to examine who makes and distributes sitcoms and how production history connects to individual shows.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Transparent_(TV_series)",
+      "extraction_target": "Calculate the number of days between 2004-01-01 and 2026-03-15",
+      "extraction_section": null,
+      "extracted_value": 8109,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "from datetime import date\nd1 = date.fromisoformat('2004-01-01')\nd2 = date.fromisoformat('2026-03-15')\nresult = abs((d2 - d1).days)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "days"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: date computation 2004-01-01 to 2026-03-15 (pinned)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 3,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Transparent_(TV_series)",
+      "extraction_target": "Reason: the sum of its distinct prime factors",
+      "extraction_section": null,
+      "extracted_value": 73,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (sum_prime_factors) on stop 2 value",
+      "reason_transform": "sum_prime_factors",
+      "reason_source_stop": 2,
+      "reason_code": "def prime_factors(n):\n    n = abs(int(n))\n    factors = []\n    d = 2\n    while d * d <= n:\n        while n % d == 0:\n            factors.append(d)\n            n //= d\n        d += 1\n    if n > 1: factors.append(n)\n    return factors\nresult = sum(set(prime_factors(8109)))\nprint(result)"
+    },
+    {
+      "index": 4,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/TV_Guide",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Founded')",
+      "extraction_section": "infobox",
+      "extracted_value": 1948,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/TV_Guide",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Conclude with TV Guide to capture how shows are presented to audiences and how media coverage and listings shaped public reception of television programming.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 5,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: digital_root(1 + 2004)",
+      "extraction_section": null,
+      "extracted_value": 7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "digital_root(1 + 2004)",
+        "expression_code": "def digital_root(n):\n    n = abs(int(n))\n    return n if n == 0 else ((n - 1) % 9) + 1\nresult = digital_root(1 + 2004)\nprint(result)",
+        "referenced_stops": [
+          0,
+          1
+        ]
+      },
+      "reasoning": "Compute stop: digital_root(1 + 2004) = 7",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 7,
+  "difficulty": {
+    "level": "easy",
+    "depth": 6,
+    "tool_stop_count": 1,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "Here is the riddle with the corrected clues:\n\n1. Seek the Wikipedia page about a sitcom focused on romantic partnerships, and tell me how many seasons that show ran; once noted, follow the studio link on that page (the anchor begins with the word Universal and points to the show's production company) to proceed.\n\n2. There exists a page for that studio; consult it and record the year in which the company was founded, then search for the streaming drama about a Los Angeles family whose patriarch comes out as transgender to reach the next stop.\n\n3. What is the number of days between 1 January 2004 and 15 March 2026 — compute this value while you are on the page for that streaming series.\n\n4. If you take the day-count from clue 3, reduce it by replacing the number with the sum of its distinct prime factors; that sum is your new numeric result for this clue.\n\n5. The article whose opening line mentions a weekly television listings magazine contains your next datum: discover the year that magazine was established and record it as a number.\n\n6. Narrative: in the final ledger of clues, compute the digital root of the sum of clue 1 and clue 2 by performing the operation digital_root(clue 1 + clue 2); report that single digit (0–9) as the treasure at journey's end.",
+  "metadata": {
+    "theme": "Tracing an American TV sitcom from its premiere through the production and cultural ecosystem that shaped and covered television programming.",
+    "difficulty": "easy",
+    "sample_id": "sample_100",
+    "pages_crawled": 3998,
+    "source": "trail_puzzles_v2"
+  },
+  "generated_at": "2026-03-15T19:26:08.004440+00:00"
+}

@@ -1,0 +1,501 @@
+{
+  "trail_id": "trail_0739d539",
+  "seed_url": "https://en.wikipedia.org/wiki/Procter_%26_Gamble",
+  "seed_title": "Procter & Gamble",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Procter_%26_Gamble",
+      "extraction_target": "the number of subsections listed under Misinformation and conspiracies in the table of contents",
+      "extraction_section": "Contents",
+      "extracted_value": 1,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Cincinnati",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Seed: P&G is an archetypal consumer‑goods giant; extracting its headquarters points the trail to the company's regional base and supply network.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Cincinnati",
+      "extraction_target": "the number of subsections listed under Arts and culture in the table of contents",
+      "extraction_section": "Arts and culture",
+      "extracted_value": 7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Cincinnati",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "P&G's Cincinnati HQ anchors the local industrial geography and distribution networks that moved consumer goods through the Midwest.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Cincinnati",
+      "extraction_target": "Reason: the sum of its distinct prime factors",
+      "extraction_section": null,
+      "extracted_value": 7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (sum_prime_factors) on stop 1 value",
+      "reason_transform": "sum_prime_factors",
+      "reason_source_stop": 1,
+      "reason_code": "def prime_factors(n):\n    n = abs(int(n))\n    factors = []\n    d = 2\n    while d * d <= n:\n        while n % d == 0:\n            factors.append(d)\n            n //= d\n        d += 1\n    if n > 1: factors.append(n)\n    return factors\nresult = sum(set(prime_factors(7)))\nprint(result)"
+    },
+    {
+      "index": 3,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Chicago,_Illinois",
+      "extraction_target": "the coordinates listed in the infobox (field: 'Coordinates')",
+      "extraction_section": "infobox",
+      "extracted_value": "41.88194, -87.62778",
+      "extracted_value_type": "coords",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/St._Louis",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Chicago is a major logistics and distribution center for Midwestern goods — useful context for how consumer products travel regionally.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 4,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/St._Louis",
+      "extraction_target": "Count the number of restaurants near 38.62722",
+      "extraction_section": null,
+      "extracted_value": 18,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "restaurants near 38.62722"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: count restaurants near 38.62722",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 5,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/St._Louis",
+      "extraction_target": "Reason: the digital root (iterated digit sum until single digit)",
+      "extraction_section": null,
+      "extracted_value": 9,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digital_root) on stop 3 value",
+      "reason_transform": "digital_root",
+      "reason_source_stop": 4,
+      "reason_code": "n = abs(int(18))\nresult = n if n == 0 else ((n - 1) % 9) + 1\nprint(result)"
+    },
+    {
+      "index": 6,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Midwest",
+      "extraction_target": "the number of language editions listed at the top of the article",
+      "extraction_section": null,
+      "extracted_value": 60,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Coca-Cola wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Coca-Cola",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Bring the regional scale into view — the Midwest as the manufacturing and agricultural backbone for many consumer‑product supply chains.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 7,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Midwest",
+      "extraction_target": "Count universities near Midwest",
+      "extraction_section": null,
+      "extracted_value": 20,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "universities near Midwest"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (nearby_poi) derived from https://en.wikipedia.org/wiki/Midwest",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 8,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Coca-Cola",
+      "extraction_target": "the number of languages the article is available in (stated near the title)",
+      "extraction_section": null,
+      "extracted_value": 139,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Coca",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Contrast P&G with another beverage titan whose history ties into botanical ingredients (coca) and global consumer markets.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 9,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Coca",
+      "extraction_target": "the number of cultivated plants in the family Erythroxylaceae referred to as 'Coca' in the opening sentence",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Cocaine",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Trace an ingredient’s origin — the coca plant — to connect global agricultural sources with processed consumer products and their histories.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 10,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Cocaine",
+      "extraction_target": "the number of language links shown at the top of the article",
+      "extraction_section": null,
+      "extracted_value": 100,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Cocaine",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Follow the coca plant to its potent alkaloid (cocaine) to explore how stimulant chemistry intersects with law, medicine and public health.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 11,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Cocaine",
+      "extraction_target": "Reason: the next prime number after that figure",
+      "extraction_section": null,
+      "extracted_value": 101,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (next_prime) on stop 7 value",
+      "reason_transform": "next_prime",
+      "reason_source_stop": 10,
+      "reason_code": "def next_prime(n):\n    n = abs(int(n))\n    if n < 2: return 2\n    candidate = n + 1\n    while True:\n        if all(candidate % i != 0 for i in range(2, int(candidate**0.5)+1)):\n            return candidate\n        candidate += 1\nresult = next_prime(100)\nprint(result)"
+    },
+    {
+      "index": 12,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Stimulants",
+      "extraction_target": "the number of languages listed at the top of the article",
+      "extraction_section": null,
+      "extracted_value": 50,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Caffeine",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Broaden to the stimulant class (caffeine, cocaine, amphetamines) to compare legal everyday stimulants and controlled substances.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 13,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Caffeine",
+      "extraction_target": "the number of main (top-level) sections listed in the table of contents",
+      "extraction_section": "Contents",
+      "extracted_value": 18,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Morphine",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A common, legal stimulant central to beverages; extract typical doses to later compare quantities and conversions relevant to public health messaging.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 14,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Morphine",
+      "extraction_target": "Convert 4°C to a Fahrenheit-scale offset",
+      "extraction_section": null,
+      "extracted_value": 7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "# Convert celsius to fahrenheit_offset\nvalue = 4.0\nconverted = value * 1.8\nresult = int(converted)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "converted"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: convert 4 celsius to fahrenheit_offset",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 15,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Morphine",
+      "extraction_target": "Reason: the largest prime factor of that figure",
+      "extraction_section": null,
+      "extracted_value": 7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (largest_prime_factor) on stop 10 value",
+      "reason_transform": "largest_prime_factor",
+      "reason_source_stop": 14,
+      "reason_code": "def largest_prime_factor(n):\n    n = abs(int(n))\n    if n <= 1: return n\n    d = 2\n    while d * d <= n:\n        while n % d == 0: n //= d\n        d += 1\n    return n\nresult = largest_prime_factor(7)\nprint(result)"
+    },
+    {
+      "index": 16,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/United_States_Justice_Department",
+      "extraction_target": "the number of top-level sections listed in the Contents",
+      "extraction_section": "Contents",
+      "extracted_value": 9,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/United_States_Justice_Department",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tie the scientific and commercial threads back to enforcement and regulation — the Justice Department's role in overseeing controlled substances and corporate legal issues.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 17,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/United_States_Justice_Department",
+      "extraction_target": "Count universities near United States Justice Department",
+      "extraction_section": null,
+      "extracted_value": 20,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "universities near United States Justice Department"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (nearby_poi) derived from https://en.wikipedia.org/wiki/United_States_Justice_Department",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 18,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: abs(9 - 101) % 10",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "abs(9 - 101) % 10",
+        "expression_code": "result = abs(9 - 101) % 10\nprint(result)",
+        "referenced_stops": [
+          5,
+          11,
+          12
+        ]
+      },
+      "reasoning": "Compute stop: abs(9 - 101) % 10 = 2",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 2,
+  "difficulty": {
+    "level": "hard",
+    "depth": 19,
+    "tool_stop_count": 4,
+    "reason_stop_count": 4,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Seek the heart of American consumer goods, a titan based in Ohio's river city. Count the subsections addressing the swirling tales of falsehoods and conspiracies.\n\n2. There exists a page where the arts and culture of a Midwestern metropolis are celebrated — how many subsections give voice to this vibrant scene?\n\n3. Among the numeric treasures you've gathered, find the sum of unique prime factors from your previous count. This will guide your path ahead.\n\n4. In a renowned city known for its deep-dish pies, discover the latitude and longitude that reveal its position on the map. \n\n5. A thriving independent city nestled in a neighboring state awaits — how many eateries entice visitors near the coordinates you uncovered?\n\n6. From your culinary discoveries, derive a single-digit answer by calculating the digital root of your previous find. \n\n7. Where the heartland meets language, how many editions can be found at the top of this geographical article? \n\n8. Nearby this collection of universities, count how many institutions of higher learning reside in the region referenced. \n\n9. An already famous beverage captures the attention of millions; determine how many languages the page discussing it is available in. \n\n10. This article illuminates a plant embraced for its stimulating compounds — how many distinct cultivated varieties in its family are mentioned in the introduction?\n\n11. The stimulant drug portrayed here has connections that reach far and wide; how many languages are linked at the top of its article?\n\n12. As you review this famed chemical compound, discover the next prime number greater than your previous count of languages. \n\n13. Seek knowledge on a broad category of substances affecting our senses — how many languages are listed at the beginning of this informative page?\n\n14. This central nervous system stimulant shares its name with a popular morning ritual; how many key sections outline its nature in the content?\n\n15. The pain relief derived from a specific opiate comes with other connotations — convert 4 degrees Celsius to a Fahrenheit-scale offset and take note of the value.\n\n16. Analyze your last finding; identify the largest prime factor of that figure to reveal a hidden numeric clue.\n\n17. A powerful governmental entity works to uphold laws. Investigate how many primary sections are noted in this agency's contents.\n\n18. As you wander near this enforcement body, how many universities can be found in close proximity, fostering education and awareness?\n\n19. In your quest, solve this puzzle: compute the absolute difference between clues 6 and 12, modulating the result by 10. The solution yields a single digit (0-9) that completes your journey.",
+  "metadata": {
+    "theme": "From household consumer goods to the ingredients, companies and regulation that shape them — a Midwest-rooted trek linking Procter & Gamble's Cincinnati HQ to beverage giants, stimulant chemistry, corporate markets and public‑health enforcement.",
+    "difficulty": "hard",
+    "sample_id": "sample_139",
+    "pages_crawled": 13478
+  },
+  "generated_at": "2026-03-17T14:59:54.620631+00:00"
+}

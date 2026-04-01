@@ -1,0 +1,170 @@
+{
+  "trail_id": "trail_c201e3e2",
+  "seed_url": "https://en.wikipedia.org/wiki/Ali_Farokhmanesh",
+  "seed_title": "Ali Farokhmanesh",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Ali_Farokhmanesh",
+      "extraction_target": "date of birth",
+      "extraction_section": null,
+      "extracted_value": "April 16, 1988",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Iowa_Hawkeyes",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start with Ali Farokhmanesh — the player whose college career (and famous NCAA moment) anchors this trail and establishes the Midwestern college-basketball theme.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Iowa_Hawkeyes",
+      "extraction_target": "Look up the elevation at Iowa City",
+      "extraction_section": null,
+      "extracted_value": 210.4424285888672,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Iowa City"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for Iowa City",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Iowa_Hawkeyes",
+      "extraction_target": "Reason: the sum of its digits",
+      "extraction_section": null,
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_sum) on stop 1 value",
+      "reason_transform": "digit_sum",
+      "reason_source_stop": 1,
+      "reason_code": "result = sum(int(d) for d in str(abs(int(210))))\nprint(result)"
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Macalester_College",
+      "extraction_target": "Calculate the number of days between 1988-04-16 and 2026-03-15",
+      "extraction_section": null,
+      "extracted_value": 13847,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "from datetime import date\nd1 = date.fromisoformat('1988-04-16')\nd2 = date.fromisoformat('2026-03-15')\nresult = abs((d2 - d1).days)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "days"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: date computation 1988-04-16 to 2026-03-15 (pinned)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 4,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: abs(210 - 3) % 10",
+      "extraction_section": null,
+      "extracted_value": 7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "abs(210 - 3) % 10",
+        "expression_code": "result = abs(210 - 3) % 10\nprint(result)",
+        "referenced_stops": [
+          1,
+          2,
+          3
+        ]
+      },
+      "reasoning": "Compute stop: abs(210 - 3) % 10 = 7",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 7,
+  "difficulty": {
+    "level": "easy",
+    "depth": 5,
+    "tool_stop_count": 2,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "direct_link"
+  },
+  "riddle": "Here is the revised riddle:\n\n1. Seek the page for a distinctive player connected to the memorable upset in the 2010 NCAA basketball tournament (the seed); on that biography, what date marks his coming into the world, and from that article follow the link to the state flagship's hawk‑nicknamed athletic program.\n\n2. There exists a page describing that university's athletic program; once there, learn how high above sea level the college town of Iowa City sits — in other words, how many meters (or feet) up is the ground beneath that campus?\n\n3. What single number results when you take the elevation you just uncovered and add together each of its digits (sum those digits to produce a new value)?\n\n4. If you consult the article about the small liberal‑arts college in Saint Paul with a strong international bent, perform this interval count: how many days elapse between 1988‑04‑16 and 2026‑03‑15?\n\n5. As the final buzzer sounds, compute this single‑digit result: abs(clue2 - clue3) % 10. Present that one final digit (0–9) as your answer.",
+  "metadata": {
+    "theme": "Midwestern college basketball and the campuses that shaped (and hosted) memorable underdog moments — from a player's alma mater to nearby campus geography.",
+    "difficulty": "easy",
+    "sample_id": "sample_055",
+    "pages_crawled": 2301,
+    "source": "trail_puzzles_v2"
+  },
+  "generated_at": "2026-03-15T14:54:17.173193+00:00"
+}

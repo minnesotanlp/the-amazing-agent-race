@@ -1,0 +1,1101 @@
+{
+  "trail_id": "trail_4144eb48",
+  "seed_url": "https://en.wikipedia.org/wiki/858_El_Djezaïr",
+  "seed_title": "858 El Djezaïr",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/858_El_Djeza%C3%AFr",
+      "extraction_target": "the name the object is named after",
+      "extraction_section": null,
+      "extracted_value": "Algiers (Arabic name)",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/858_El_Djeza%C3%AFr",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Seed: the asteroid's name (El Djezaïr) ties the trail immediately to Algiers/Algeria and establishes the Mediterranean / North African anchor.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/858_El_Djeza%C3%AFr",
+      "extraction_target": "Reason: the number of vowels in that name",
+      "extraction_section": null,
+      "extracted_value": 8,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (vowel_count) on stop 0 value",
+      "reason_transform": "vowel_count",
+      "reason_source_stop": 0,
+      "reason_code": "result = sum(1 for c in \"Algiers (Arabic name)\".lower() if c in 'aeiou')\nprint(result)",
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Algeria",
+      "extraction_target": "Look up the elevation at Algeria",
+      "extraction_section": null,
+      "extracted_value": 546.9978637695312,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Algeria"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for Algeria",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Algeria",
+      "extraction_target": "Reason: the largest prime factor of that figure",
+      "extraction_section": null,
+      "extracted_value": 13,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (largest_prime_factor) on stop 1 value",
+      "reason_transform": "largest_prime_factor",
+      "reason_source_stop": 2,
+      "reason_code": "def largest_prime_factor(n):\n    n = abs(int(n))\n    if n <= 1: return n\n    d = 2\n    while d * d <= n:\n        while n % d == 0: n //= d\n        d += 1\n    return n\nresult = largest_prime_factor(546)\nprint(result)",
+      "depends_on": [
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Byzantine_Empire",
+      "extraction_target": "the number of languages the article is available in",
+      "extraction_section": null,
+      "extracted_value": 172,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Nicholas II wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Nicholas_II",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Shift west-east across the Mediterranean: the Byzantine Empire frames the long historical layer of Mediterranean geopolitics that includes North Africa and Greece.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Nicholas_II",
+      "extraction_target": "the number of subsections under 'Titles, styles, honours and arms' in the table of contents",
+      "extraction_section": "Titles, styles, honours and arms",
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Russian_Civil_War",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Move north into the imperial era of Europe — Nicholas II's reign connects to the larger story of early 20th‑century empire collapses that reshaped the region.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Russian_Civil_War",
+      "extraction_target": "the number of languages listed at the top of the page",
+      "extraction_section": null,
+      "extracted_value": 96,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Axis powers wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Axis_powers",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "An example of imperial collapse and civil conflict that illustrates the global upheavals which also affected Mediterranean power dynamics.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Axis_powers",
+      "extraction_target": "the number of languages the article is available in (as shown near the top of the page)",
+      "extraction_section": null,
+      "extracted_value": 99,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Benito_Mussolini",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Transition into the WWII era — Axis powers tied together European ambitions that touched North Africa and the Mediterranean theatre.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Benito_Mussolini",
+      "extraction_target": "the number of language links shown at the top of the article",
+      "extraction_section": null,
+      "extracted_value": 153,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Hirohito wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Hirohito",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Italy under Mussolini directly influenced Mediterranean geopolitics and colonial ventures toward North Africa; a key 20th‑century connector on the trail.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        7
+      ]
+    },
+    {
+      "index": 9,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Hirohito",
+      "extraction_target": "the number of subsections under 'Early reign and World War II' (section 4)",
+      "extraction_section": "Early reign and World War II",
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Hirohito",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Broadening the WWII story to the Pacific: Hirohito and Japan show the global reach of the era that altered imperial maps worldwide.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        8
+      ]
+    },
+    {
+      "index": 10,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Hirohito",
+      "extraction_target": "Reason: the number of characters when written as a Roman numeral",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (roman_numeral_letter_count) on stop 7 value",
+      "reason_transform": "roman_numeral_letter_count",
+      "reason_source_stop": 9,
+      "reason_code": "def to_roman(n):\n    n = abs(int(n))\n    vals = [(1000,'M'),(900,'CM'),(500,'D'),(400,'CD'),(100,'C'),\n            (90,'XC'),(50,'L'),(40,'XL'),(10,'X'),(9,'IX'),(5,'V'),(4,'IV'),(1,'I')]\n    r = ''\n    for v, s in vals:\n        while n >= v:\n            r += s; n -= v\n    return r\nresult = len(to_roman(4))\nprint(result)",
+      "depends_on": [
+        9
+      ]
+    },
+    {
+      "index": 11,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Manchukuo",
+      "extraction_target": "the founding/establishment year in the infobox (field: '• Established')",
+      "extraction_section": "infobox",
+      "extracted_value": 1,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Martin Scorsese wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Martin_Scorsese",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A 20th‑century puppet state example that mirrors how empires and wartime politics reshaped territories — a counterpart to colonial/imperial rearrangements in other regions.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        10
+      ]
+    },
+    {
+      "index": 12,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Manchukuo",
+      "extraction_target": "Look up the Google rating of Manchukuo",
+      "extraction_section": null,
+      "extracted_value": 4.5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "Manchukuo"
+            },
+            "expected_output": null,
+            "output_key": "place_rating"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (place_rating) derived from https://en.wikipedia.org/wiki/Manchukuo",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        11
+      ]
+    },
+    {
+      "index": 13,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Martin_Scorsese",
+      "extraction_target": "the number of languages listed at the top of the article",
+      "extraction_section": null,
+      "extracted_value": 97,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "CIA wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/CIA",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Culture and storytelling: Scorsese represents how modern media and film interpret and disseminate historical narratives — a thematic shift from raw geopolitics to cultural influence.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        12
+      ]
+    },
+    {
+      "index": 14,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/CIA",
+      "extraction_target": "the number of languages the article is available in (as shown at the top of the article)",
+      "extraction_section": null,
+      "extracted_value": 116,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Eleanor Roosevelt wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Eleanor_Roosevelt",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Intelligence agencies like the CIA played significant roles in Cold War and postwar geopolitics that affected Mediterranean and global power balances; this ties back to political influence in the modern era.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        13
+      ]
+    },
+    {
+      "index": 15,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Eleanor_Roosevelt",
+      "extraction_target": "the year range shown in the section title for Eleanor Roosevelt's First Lady role",
+      "extraction_section": "First Lady of the United States (1933–1945)",
+      "extracted_value": "1933–1945",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Gamal Nasser wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Gamal_Nasser",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diplomacy and human rights after WWII: Roosevelt connects the political aftermath of conflict to international institutions and norms that shaped the modern world.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        14
+      ]
+    },
+    {
+      "index": 16,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Gamal_Nasser",
+      "extraction_target": "the number of languages listed at the top of the article",
+      "extraction_section": null,
+      "extracted_value": 109,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Gamal Nasser wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Gamal_Nasser",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Return to the Arab Mediterranean: Nasser represents mid‑20th‑century North African / Middle Eastern leadership and nationalism closely tied to Algeria's regional context.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        15
+      ]
+    },
+    {
+      "index": 17,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Gamal_Nasser",
+      "extraction_target": "Reason: the number of 1-bits in its binary representation",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (binary_1bit_count) on stop 12 value",
+      "reason_transform": "binary_1bit_count",
+      "reason_source_stop": 16,
+      "reason_code": "result = bin(abs(int(109))).count('1')\nprint(result)",
+      "depends_on": [
+        16
+      ]
+    },
+    {
+      "index": 18,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Manchester",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Founded')",
+      "extraction_section": "infobox",
+      "extracted_value": 1,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Moscow wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Moscow",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "An archetypal industrial city: Manchester lets the trail reflect on the industrial forces that later shaped global corporations and mobility patterns referenced earlier.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        17
+      ]
+    },
+    {
+      "index": 19,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Manchester",
+      "extraction_target": "Look up the elevation of Manchester",
+      "extraction_section": null,
+      "extracted_value": 58.93083190917969,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Manchester"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Manchester) from https://en.wikipedia.org/wiki/Manchester",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        18
+      ]
+    },
+    {
+      "index": 20,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Manchester",
+      "extraction_target": "Look up the count of parks near Manchester",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "parks near Manchester"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of parks near Manchester) from https://en.wikipedia.org/wiki/Manchester",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        18
+      ]
+    },
+    {
+      "index": 21,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Manchester",
+      "extraction_target": "Combine the elevation of Manchester and the count of parks near Manchester: abs(58 - 20)",
+      "extraction_section": null,
+      "extracted_value": 38,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(58.93083190917969) - int(20.0))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Manchester abs_diff count of parks near Manchester",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        19,
+        20
+      ]
+    },
+    {
+      "index": 22,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Manchester",
+      "extraction_target": "Count museums near Manchester",
+      "extraction_section": null,
+      "extracted_value": 16,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "museums near Manchester"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (nearby_poi) derived from https://en.wikipedia.org/wiki/Manchester",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        21
+      ]
+    },
+    {
+      "index": 23,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Moscow",
+      "extraction_target": "the elevation listed in the infobox (field: 'Elevation')",
+      "extraction_section": "infobox",
+      "extracted_value": 114,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Ethiopia wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Ethiopia",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A major Eurasian capital tying back to the earlier Russian/European nodes (Nicholas II, Russian Civil War) — shows scale and urban power across the map.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        22
+      ]
+    },
+    {
+      "index": 24,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Moscow",
+      "extraction_target": "Look up the elevation of Moscow",
+      "extraction_section": null,
+      "extracted_value": 141.7627258300781,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Moscow"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Moscow) from https://en.wikipedia.org/wiki/Moscow",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        23
+      ]
+    },
+    {
+      "index": 25,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Moscow",
+      "extraction_target": "Look up the count of libraries near Moscow",
+      "extraction_section": null,
+      "extracted_value": 9.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "libraries near Moscow"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of libraries near Moscow) from https://en.wikipedia.org/wiki/Moscow",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        23
+      ]
+    },
+    {
+      "index": 26,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Moscow",
+      "extraction_target": "Combine the elevation of Moscow and the count of libraries near Moscow: abs(141 - 9)",
+      "extraction_section": null,
+      "extracted_value": 132,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(141.7627258300781) - int(9.0))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Moscow abs_diff count of libraries near Moscow",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        24,
+        25
+      ]
+    },
+    {
+      "index": 27,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Moscow",
+      "extraction_target": "Count libraries near Moscow",
+      "extraction_section": null,
+      "extracted_value": 10,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "libraries near Moscow"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (nearby_poi) derived from https://en.wikipedia.org/wiki/Moscow",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        26
+      ]
+    },
+    {
+      "index": 28,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Ethiopia",
+      "extraction_target": "the number of language editions listed at the top of the Ethiopia page",
+      "extraction_section": null,
+      "extracted_value": 283,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Ethiopia",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Close the regional loop by visiting another significant African nation on the southern flank of the Mediterranean's broader neighborhood — echoes of empire, independence, and regional politics.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        27
+      ]
+    },
+    {
+      "index": 29,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Ethiopia",
+      "extraction_target": "Look up the elevation of Ethiopia",
+      "extraction_section": null,
+      "extracted_value": 1355.773681640625,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Ethiopia"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Ethiopia) from https://en.wikipedia.org/wiki/Ethiopia",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        28
+      ]
+    },
+    {
+      "index": 30,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Ethiopia",
+      "extraction_target": "Look up the count of universities near Ethiopia",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "universities near Ethiopia"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of universities near Ethiopia) from https://en.wikipedia.org/wiki/Ethiopia",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        28
+      ]
+    },
+    {
+      "index": 31,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Ethiopia",
+      "extraction_target": "Combine the elevation of Ethiopia and the count of universities near Ethiopia: (1355 + 20)",
+      "extraction_section": null,
+      "extracted_value": 1375,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(1355.773681640625) + int(20.0)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Ethiopia add count of universities near Ethiopia",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        29,
+        30
+      ]
+    },
+    {
+      "index": 32,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Ethiopia",
+      "extraction_target": "Reason: the next prime number after that figure",
+      "extraction_section": null,
+      "extracted_value": 293,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (next_prime) on stop 15 value",
+      "reason_transform": "next_prime",
+      "reason_source_stop": 28,
+      "reason_code": "def next_prime(n):\n    n = abs(int(n))\n    if n < 2: return 2\n    candidate = n + 1\n    while True:\n        if all(candidate % i != 0 for i in range(2, int(candidate**0.5)+1)):\n            return candidate\n        candidate += 1\nresult = next_prime(283)\nprint(result)",
+      "depends_on": [
+        28
+      ]
+    },
+    {
+      "index": 33,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Lombardy",
+      "extraction_target": "Convert 153 km to miles",
+      "extraction_section": null,
+      "extracted_value": 95,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "# Convert km to miles\nvalue = 153.0\nconverted = value * 0.621371\nresult = int(converted)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "converted"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: convert 153 km to miles",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        32
+      ]
+    },
+    {
+      "index": 34,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: (153 + 5 + 58 + 9) % 10",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "(153 + 5 + 58 + 9) % 10",
+        "expression_code": "result = (153 + 5 + 58 + 9) % 10\nprint(result)",
+        "referenced_stops": [
+          8,
+          17,
+          19,
+          25
+        ]
+      },
+      "reasoning": "Compute stop: (153 + 5 + 58 + 9) % 10 = 5",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        8,
+        17,
+        19,
+        25
+      ]
+    }
+  ],
+  "passcode": 5,
+  "difficulty": {
+    "level": "extreme",
+    "depth": 35,
+    "tool_stop_count": 14,
+    "reason_stop_count": 5,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Seek the celestial body named after a populous capital that has witnessed great change and revolution. What is its namesake?\n\n2. Within that namesake, uncover the number of vowels residing in this title, and carry that number forward with you.\n\n3. If you venture to the land whose history includes revolutionary sentiments and rich culture, how high above sea level does this land lie?\n\n4. Dig deeper into the elevation you just uncovered: what is the largest prime factor of that figure? \n\n5. A time long past, ruled by emperors in splendid cities, marks a chapter of human civilization. How many languages can you find spoken in the article depicting this grand era?\n\n6. Onward to royalty; search the page of a monarch who met a fate sealed in turmoil. From 'Titles, styles, honours and arms', how many subsections are laid out in the contents?\n\n7. Find yourself amidst a civil conflict that tore a nation apart. How many languages dance at the top of this article on discord?\n\n8. Seek the coalition of nations that opposed the Allies in World War II; how many languages does its page offer?\n\n9. A notorious leader in a mustachioed guise influenced a nation’s fate. Count the number of language links displayed atop his biography.\n\n10. Rewind to the era of a king whose reign spanned two world events. In the section on 'Early reign and World War II', how many subsections tell his story?\n\n11. Contemplate the figure you calculated in clue 10: convert it to Roman numerals and count how many characters compose this representation.\n\n12. A land of fleeting empires and foreign intrigue, founded in a time of collusion—what year marks the beginning of this historical region?\n\n13. Seek the elusive rating for this land that speaks of its glory. What is the star rating bestowed upon it by those who have wandered its ground?\n\n14. Film and storytelling meet history; how many languages does the legend of this cinema icon grace?\n\n15. The orchestrators of intelligence and strategy dwell within a particular agency. At how many languages does this page stand?\n\n16. A prominent figure in human rights navigated the complexities of her nation. In the section detailing her First Lady years, what range of years is noted?\n\n17. The mighty leader promised unity amid turmoil—how many languages are connected to his account?\n\n18. Reflect on that number from clue 17 and find the count of 1-bits in its binary form. \n\n19. Seek the industrial birthplace of the modern era, known for its storied past. What year marks the establishment of this vibrant city?\n\n20. Ascend to a city with a rich tapestry of history—what is its elevation known to be?\n\n21. In this bustling metropolis, how many parks can be found under the guise of green?\n\n22. Now, calculate the absolute difference between the elevation you found in clue 20 and the total count of nearby parks from clue 21.\n\n23. Encountering culture and history, count the museums that stand proudly near this industrious city.\n\n24. Travel east to a city that stands tall upon history's canvas: what is the elevation listed in the corner of its article?\n\n25. As you wander through this majestic capital, how high does it rise above the sea?\n\n26. In your exploration, discover how many libraries quietly rest within reach of this city’s heart.\n\n27. Take the absolute difference between the elevation you learned in clue 25 and the count of libraries from clue 26.\n\n28. Peering into literature's embrace, how many libraries can you find in proximity to this grand metropolis?\n\n29. A land recognized for its resilient spirit, how many language editions share its story at the top?\n\n30. Ascend once more into the vastness of geography: what is the elevation of this resilient place?\n\n31. Education flourishes in this land; how many universities fill the realm around it?\n\n32. Combine the elevation you found in clue 30 with the count of universities from clue 31 to discover a new figure.\n\n33. What is the next prime number that follows the total derived from clue 29? \n\n34. As you traverse the Italian landscape, convert 153 km into its miles equivalent; how many miles does that represent?\n\n35. Conclude your journey by calculating: what result do you obtain from the expression (153 + clue 9 + clue 18 + clue 20) % 10?",
+  "metadata": {
+    "theme": "From an asteroid named for Algiers to the human map of power — a Mediterranean-centered trail that moves from celestial naming through countries and cities, historical empires and 20th‑century politics, into modern industry and measurable place data.",
+    "difficulty": "extreme",
+    "sample_id": "sample_209",
+    "pages_crawled": 27940
+  },
+  "generated_at": "2026-03-20T09:08:10.899984+00:00"
+}

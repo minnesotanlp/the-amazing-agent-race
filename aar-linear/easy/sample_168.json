@@ -1,0 +1,175 @@
+{
+  "trail_id": "trail_cf4ef237",
+  "seed_url": "https://en.wikipedia.org/wiki/Gilead_Sciences",
+  "seed_title": "Gilead Sciences",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Gilead_Sciences",
+      "extraction_target": "the city of the company's headquarters",
+      "extraction_section": null,
+      "extracted_value": "Foster City, California",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Gilead_Sciences",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start at Gilead Sciences (seed) as an example of an antiviral-focused pharmaceutical company whose work (remdesivir) was central to early COVID-19 treatment conversations.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Gilead_Sciences",
+      "extraction_target": "Reason: the alphabetical position of its first letter (A=1, B=2, ...)",
+      "extraction_section": null,
+      "extracted_value": 6,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (alpha_position_first_letter) on stop 0 value",
+      "reason_transform": "alpha_position_first_letter",
+      "reason_source_stop": 0,
+      "reason_code": "first = \"Foster City, California\"[0].upper()\nresult = ord(first) - ord('A') + 1 if first.isalpha() else 0\nprint(result)"
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/GSK_plc",
+      "extraction_target": "Look up the closing price of GSK on 2000-12-27",
+      "extraction_section": null,
+      "extracted_value": 17.55,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "stock_historical_price",
+            "arguments": {
+              "ticker": "GSK",
+              "date": "2000-12-27"
+            },
+            "expected_output": null,
+            "output_key": "stock_price"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: stock price GSK on 2000-12-27",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 3,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Operation_Warp_Speed",
+      "extraction_target": "the number of language links shown at the top of the article",
+      "extraction_section": null,
+      "extracted_value": 13,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/MRNA_vaccine",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Operation Warp Speed links government policy and private industry to accelerate vaccine development and distribution—bridging company activity and large-scale public health efforts.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 4,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/MRNA_vaccine",
+      "extraction_target": "the number of subsections under the Advantages section listed in the Contents",
+      "extraction_section": "Advantages",
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/MRNA_vaccine",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Conclude with the mRNA vaccine technology page to explain the scientific foundation that made rapid vaccine design possible and to tie together the roles of companies, markets, and policy in the pandemic response.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 5,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: digital_root(13 + 2)",
+      "extraction_section": null,
+      "extracted_value": 6,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "digital_root(13 + 2)",
+        "expression_code": "def digital_root(n):\n    n = abs(int(n))\n    return n if n == 0 else ((n - 1) % 9) + 1\nresult = digital_root(13 + 2)\nprint(result)",
+        "referenced_stops": [
+          3,
+          4
+        ]
+      },
+      "reasoning": "Compute stop: digital_root(13 + 2) = 6",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 6,
+  "difficulty": {
+    "level": "easy",
+    "depth": 6,
+    "tool_stop_count": 1,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "direct_link"
+  },
+  "riddle": "1. Seek the American pharmaceutical company profiled on Wikipedia whose headquarters are in a well-known Bay Area city; note which city is named as its head office, and then click the link on that page labeled \"Article\" to proceed.\n\n2. There exists a page you just visited again; take the city you wrote down and convert its first letter into its place in the alphabet (A=1, B=2, etc.) — that numeric position becomes clue 2.\n\n3. What was the closing share price on 27 December 2000 for the long-established British pharmaceutical and biotechnology company traded under the ticker GSK? Record that closing price as clue 3.\n\n4. If you land on the United States program entry that was created to speed COVID-19 vaccine development, count how many language versions are shown at the very top of that article — that count is clue 4 — then follow the link on that page labeled \"mRNA\" to continue.\n\n5. The article whose lead graphic shows a schematic of messenger RNA contains a Contents box; within it, how many subsections are listed under the heading that reads \"Advantages\"? That number is clue 5.\n\n6. In the end, compute the digital root of (clue 4 + clue 5) and report that single digit as your final treasure; the answer must be a single digit between 0 and 9.",
+  "metadata": {
+    "theme": "From antiviral drugs to vaccine technology and policy: tracing how pharmaceutical companies, government programs, and mRNA technology shaped the COVID-19 response",
+    "difficulty": "easy",
+    "sample_id": "sample_168",
+    "pages_crawled": 2969
+  },
+  "generated_at": "2026-03-17T10:12:35.062896+00:00"
+}

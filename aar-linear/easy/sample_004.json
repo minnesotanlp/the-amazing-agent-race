@@ -1,0 +1,176 @@
+{
+  "trail_id": "trail_b174de6f",
+  "seed_url": "https://en.wikipedia.org/wiki/Jim_Higgins_(boxer)",
+  "seed_title": "Jim Higgins (boxer)",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Jim_Higgins_(boxer)",
+      "extraction_target": "weight categories listed for Jim Higgins",
+      "extraction_section": null,
+      "extracted_value": "bantam/featherweight",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Bantamweight",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start at the boxer himself: Jim Higgins is the seed — extracting his birthplace, weight class (bantamweight) and career dates anchors the personal starting point for a trail about a fighter and his context.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Bantamweight",
+      "extraction_target": "the weight limit for the division at the time of the first gloved world title fight (in pounds)",
+      "extraction_section": "Boxing",
+      "extracted_value": 110,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Bantamweight",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Move from the individual to the division: the bantamweight page explains the weight limits and history of the class in which Higgins fought, linking his career to the sport's structure.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Bantamweight",
+      "extraction_target": "Reason: the sum of its digits",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_sum) on stop 1 value",
+      "reason_transform": "digit_sum",
+      "reason_source_stop": 1,
+      "reason_code": "result = sum(int(d) for d in str(abs(int(110))))\nprint(result)"
+    },
+    {
+      "index": 3,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/British_Boxing_Board_of_Control",
+      "extraction_target": "the month and year the tribunal overturned Jane Couch's licence refusal",
+      "extraction_section": "History",
+      "extracted_value": "March 1998",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/National_Sporting_Club",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Examine the governing body: the British Boxing Board of Control sets rules and titles for boxers like Higgins; extracting its founding and HQ ties the athlete and division into the institutional framework of British boxing.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 4,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/National_Sporting_Club",
+      "extraction_target": "Count the number of stadiums near London",
+      "extraction_section": null,
+      "extracted_value": 20,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "stadiums near London"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: count stadiums near London",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 5,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: abs(110 - 2) % 10",
+      "extraction_section": null,
+      "extracted_value": 8,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "abs(110 - 2) % 10",
+        "expression_code": "result = abs(110 - 2) % 10\nprint(result)",
+        "referenced_stops": [
+          1,
+          2,
+          4
+        ]
+      },
+      "reasoning": "Compute stop: abs(110 - 2) % 10 = 8",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 8,
+  "difficulty": {
+    "level": "easy",
+    "depth": 6,
+    "tool_stop_count": 1,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "direct_link"
+  },
+  "riddle": "Here is the revised riddle:\n\n1. Seek the page about a Scottish boxer known for his achievements in the sport; note the fighting weight categories attributed to him who competed in the division above flyweight and below featherweight, and follow the small link labelled with the name given to that division to continue.\n\n2. There exists an article about the division between flyweight and featherweight; on it, record the weight limit (in pounds) that applied at the time of the first gloved world-title fight.\n\n3. What is the sum of the digits of the number you just discovered in clue 2? (Compute the digit-sum of that pound figure before moving on.)\n\n4. If you consult the entry for the body that governs professional boxing in Britain, identify the month and year when its tribunal overturned the refusal to license Jane Couch.\n\n5. The article that mentions the London club based in Covent Garden which promoted professional boxing and introduced the Lonsdale Belt invites a geographic check: count how many stadiums can be found near London.\n\n6. The old ringkeeper asks you to finish with this arithmetic using only the numeric values you've gathered: compute abs(clue 2 - clue 3 + clue 5 - clue 5) % 10 and report the single digit result (0–9).",
+  "metadata": {
+    "theme": "Tracing a Scottish bantamweight's journey into the institutions and venues that shaped British boxing",
+    "difficulty": "easy",
+    "sample_id": "sample_004",
+    "pages_crawled": 179,
+    "source": "trail_puzzles_v2"
+  },
+  "generated_at": "2026-03-15T10:07:15.161782+00:00"
+}

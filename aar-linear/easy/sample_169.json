@@ -1,0 +1,175 @@
+{
+  "trail_id": "trail_58e94911",
+  "seed_url": "https://en.wikipedia.org/wiki/Bristol-Myers_Squibb",
+  "seed_title": "Bristol-Myers Squibb",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Bristol-Myers_Squibb",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Founded')",
+      "extraction_section": "infobox",
+      "extracted_value": 1887,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Bristol-Myers Squibb wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Bristol-Myers_Squibb",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Seed: Bristol-Myers Squibb is a major pharmaceutical company — start here to anchor the trail in a drug developer and extract its HQ/founding facts to connect industry, local sites, and timelines.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Bristol-Myers_Squibb",
+      "extraction_target": "Reason: the number you get by reversing its digits",
+      "extraction_section": null,
+      "extracted_value": 7881,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_reversal) on stop 0 value",
+      "reason_transform": "digit_reversal",
+      "reason_source_stop": 0,
+      "reason_code": "result = int(str(abs(int(1887)))[::-1])\nprint(result)"
+    },
+    {
+      "index": 2,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Pharmaceutical_company",
+      "extraction_target": "the number of subsections listed under Research and development (2.x)",
+      "extraction_section": "Research and development",
+      "extracted_value": 1,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "New Brunswick, New Jersey wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/New_Brunswick,_New_Jersey",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Context: explain the industry role (research, regulatory approvals, manufacturing, distribution) so subsequent stops (vaccine timeline and logistics) fit into a coherent pipeline.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Pharmaceutical_company",
+      "extraction_target": "Count libraries near Pharmaceutical company",
+      "extraction_section": null,
+      "extracted_value": 20,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "libraries near Pharmaceutical company"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (nearby_poi) derived from https://en.wikipedia.org/wiki/Pharmaceutical_company",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 4,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/New_Brunswick,_New_Jersey",
+      "extraction_target": "the coordinates listed in the infobox (field: 'Coordinates')",
+      "extraction_section": "infobox",
+      "extracted_value": "40.486678, -74.444414",
+      "extracted_value_type": "coords",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/New_Brunswick,_New_Jersey",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Place: New Brunswick is a New Jersey city with a concentration of pharma/biotech activity — use its location info to ground the corporate HQ or research sites in physical space for supply-chain discussion.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 5,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: abs(1887 - 7881) % 10",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "abs(1887 - 7881) % 10",
+        "expression_code": "result = abs(1887 - 7881) % 10\nprint(result)",
+        "referenced_stops": [
+          0,
+          1,
+          3
+        ]
+      },
+      "reasoning": "Compute stop: abs(1887 - 7881) % 10 = 4",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 4,
+  "difficulty": {
+    "level": "easy",
+    "depth": 6,
+    "tool_stop_count": 1,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Unearth the name of the pharmaceutical giant established in the late 19th century, whose journey began in the city famous for its diverse healthcare innovations.\n\n2. If you take the year you uncovered and reverse its digits, what new number emerges to light? \n\n3. Within the document discussing enterprises that develop medicines, how many subdivisions can be found under the realm of Research and Development? \n\n4. Seek out the places where knowledge resides nearby the institutions that create and cultivate health solutions. How many libraries stand in proximity to these companies? \n\n5. A city, nestled in Middlesex County and known for its vibrant medical community, features prominently in history. Look up its coordinates — can you find the answer hidden there? \n\n6. Now, take the year from clue 1 and subtract the number found by reversing its digits in clue 2. What is the absolute difference of that result, taken modulo 10, when combined with the library count from clue 4? The answer will be a single digit, waiting to be discovered.",
+  "metadata": {
+    "theme": "From drug developer to delivery: tracing pharmaceutical industry, vaccine timelines, and the logistics market that moves medicines",
+    "difficulty": "easy",
+    "sample_id": "sample_169",
+    "pages_crawled": 3019
+  },
+  "generated_at": "2026-03-17T10:17:58.290567+00:00"
+}

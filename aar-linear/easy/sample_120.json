@@ -1,0 +1,128 @@
+{
+  "trail_id": "trail_f0dcb818",
+  "seed_url": "https://en.wikipedia.org/wiki/Apple_Inc.",
+  "seed_title": "Apple Inc.",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Apple_Inc.",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Founded')",
+      "extraction_section": "infobox",
+      "extracted_value": 1,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Apple_Park",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Begin at the company page to identify Apple’s official headquarters so we can visit the campus next.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Apple_Park",
+      "extraction_target": "Count the number of hotels near 1 Apple Park Way[[1]](#cite_note-1)",
+      "extraction_section": null,
+      "extracted_value": 20,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "hotels near 1 Apple Park Way"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: count hotels near 1 Apple Park Way[[1]](#cite_note-1)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Apple_Park",
+      "extraction_target": "Reason: the digital root (iterated digit sum until single digit)",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digital_root) on stop 1 value",
+      "reason_transform": "digital_root",
+      "reason_source_stop": 1,
+      "reason_code": "n = abs(int(20))\nresult = n if n == 0 else ((n - 1) % 9) + 1\nprint(result)"
+    },
+    {
+      "index": 3,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: (1 + 20) % 10",
+      "extraction_section": null,
+      "extracted_value": 1,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "(1 + 20) % 10",
+        "expression_code": "result = (1 + 20) % 10\nprint(result)",
+        "referenced_stops": [
+          0,
+          1
+        ]
+      },
+      "reasoning": "Compute stop: (1 + 20) % 10 = 1",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 1,
+  "difficulty": {
+    "level": "easy",
+    "depth": 4,
+    "tool_stop_count": 1,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "direct_link"
+  },
+  "riddle": "Here is the revised riddle:\n\n1. Seek the page about the American technology firm known for its smartphones and computers and read its summary; in what year was this company established, and then follow the link to the firm's ring-shaped Cupertino campus page.  \n2. There exists a page describing that circular California headquarters; on it, determine how many hotels are listed as being nearby its official street address.  \n3. What single-digit number do you get if you take the hotel count from clue 2 and iteratively sum its digits until only one digit remains (the digital root)?  \n4. If you now compute (clue 1 + clue 2) % 10, what single digit (0–9) is the result?",
+  "metadata": {
+    "theme": "Tracing Apple from company to campus to market: start at Apple Inc., visit its headquarters, then check its standing on the Nasdaq-100.",
+    "difficulty": "easy",
+    "sample_id": "sample_120",
+    "pages_crawled": 50
+  },
+  "generated_at": "2026-03-17T06:43:03.855378+00:00"
+}

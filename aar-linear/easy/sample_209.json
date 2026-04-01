@@ -1,0 +1,128 @@
+{
+  "trail_id": "trail_8adc9266",
+  "seed_url": "https://en.wikipedia.org/wiki/Impeachment_of_Andrew_Johnson",
+  "seed_title": "Impeachment of Andrew Johnson",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Impeachment_of_Andrew_Johnson",
+      "extraction_target": "date range of the impeachment proceedings",
+      "extraction_section": null,
+      "extracted_value": "February 24, 1868 (1868-02-24) to May 26, 1868 (1868-05-26)",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Reconstruction_era",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Seed page — anchors the trail in the central political event (Andrew Johnson's 1868 impeachment) whose timing we will compare and whose location we will place on a map.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Reconstruction_era",
+      "extraction_target": "Calculate the number of days between 1868-02-24 and 2026-03-20",
+      "extraction_section": null,
+      "extracted_value": 57733,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "from datetime import date\nd1 = date.fromisoformat('1868-02-24')\nd2 = date.fromisoformat('2026-03-20')\nresult = abs((d2 - d1).days)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "days"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: date computation 1868-02-24 to 2026-03-20 (pinned)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Reconstruction_era",
+      "extraction_target": "Reason: the next prime number after that figure",
+      "extraction_section": null,
+      "extracted_value": 57737,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (next_prime) on stop 1 value",
+      "reason_transform": "next_prime",
+      "reason_source_stop": 1,
+      "reason_code": "def next_prime(n):\n    n = abs(int(n))\n    if n < 2: return 2\n    candidate = n + 1\n    while True:\n        if all(candidate % i != 0 for i in range(2, int(candidate**0.5)+1)):\n            return candidate\n        candidate += 1\nresult = next_prime(57733)\nprint(result)"
+    },
+    {
+      "index": 3,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: abs(57733 - 57737) % 10",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "abs(57733 - 57737) % 10",
+        "expression_code": "result = abs(57733 - 57737) % 10\nprint(result)",
+        "referenced_stops": [
+          1,
+          2
+        ]
+      },
+      "reasoning": "Compute stop: abs(57733 - 57737) % 10 = 4",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 4,
+  "difficulty": {
+    "level": "easy",
+    "depth": 4,
+    "tool_stop_count": 1,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "direct_link"
+  },
+  "riddle": "Here is the revised riddle:\n\n1. Seek the Wikipedia page dedicated to the political drama surrounding the nineteenth president of the United States and the tumultuous period following the Civil War; read its opening carefully, note the range of dates given for the impeachment proceedings, and then follow the in-text link labeled \"Reconstruction\" to proceed.\n\n2. There exists a page whose opening frames the post–Civil War years between 1865 and 1877; on that page answer this calendar question — how many days elapsed between 24 February 1868 and 20 March 2026?\n\n3. What prime number comes immediately after the total you just calculated in clue 2; in short, find the next prime greater than that day count before moving on.\n\n4. If you now combine those two discoveries, compute abs(clue 2 - clue 3) % 10 and supply the result; the final answer must be a single digit (0–9).",
+  "metadata": {
+    "theme": "Tracing the rapid shift from Civil War to presidential crisis: timeline and geography from the end of the war through Andrew Johnson's impeachment",
+    "difficulty": "easy",
+    "sample_id": "sample_209",
+    "pages_crawled": 5047
+  },
+  "generated_at": "2026-03-21T02:52:20.408003+00:00"
+}

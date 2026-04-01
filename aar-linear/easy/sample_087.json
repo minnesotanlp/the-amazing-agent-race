@@ -1,0 +1,153 @@
+{
+  "trail_id": "trail_e84d9814",
+  "seed_url": "https://en.wikipedia.org/wiki/Gmina_Korycin",
+  "seed_title": "Gmina Korycin",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Gmina_Korycin",
+      "extraction_target": "the total area of the gmina in square kilometres",
+      "extraction_section": null,
+      "extracted_value": 117.32,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Mass (liturgy) wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Mass_(liturgy)",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start at the local level — Gmina Korycin is the rural municipality whose population and size set the scale for parish life and communal worship.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Mass_(liturgy)",
+      "extraction_target": "Look up the population of Poland",
+      "extraction_section": null,
+      "extracted_value": 37392000,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "countries_population",
+            "arguments": {
+              "country": "Poland"
+            },
+            "expected_output": null,
+            "output_key": "population"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: population of Poland",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Mass_(liturgy)",
+      "extraction_target": "Reason: the sum of its distinct prime factors",
+      "extraction_section": null,
+      "extracted_value": 70,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (sum_prime_factors) on stop 1 value",
+      "reason_transform": "sum_prime_factors",
+      "reason_source_stop": 1,
+      "reason_code": "def prime_factors(n):\n    n = abs(int(n))\n    factors = []\n    d = 2\n    while d * d <= n:\n        while n % d == 0:\n            factors.append(d)\n            n //= d\n        d += 1\n    if n > 1: factors.append(n)\n    return factors\nresult = sum(set(prime_factors(37392000)))\nprint(result)"
+    },
+    {
+      "index": 3,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Parish_(Catholic_Church)",
+      "extraction_target": "the end year of the 'Jus antiquum' period as given",
+      "extraction_section": null,
+      "extracted_value": 1140,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Parish_(Catholic_Church)",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Finish at the parish-level article to show how the local church structure (parish and its priest) organizes worship and community events like Mass on feast days in a place such as Gmina Korycin.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 4,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: (117 + 37392000 + 70) % 10",
+      "extraction_section": null,
+      "extracted_value": 7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "(117 + 37392000 + 70) % 10",
+        "expression_code": "result = (117 + 37392000 + 70) % 10\nprint(result)",
+        "referenced_stops": [
+          0,
+          1,
+          2
+        ]
+      },
+      "reasoning": "Compute stop: (117 + 37392000 + 70) % 10 = 7",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 7,
+  "difficulty": {
+    "level": "easy",
+    "depth": 5,
+    "tool_stop_count": 1,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "Here is the revised riddle:\n\n1. Seek the page for a rural commune located in the Podlaskie Voivodeship, known for its picturesque landscapes and small population; what is the total area of this rural commune, expressed in square kilometres?\n\n2. There exists an article describing the principal liturgical celebration of many Christian churches — having noted the commune's extent, visit that entry and record how many people live in Poland today.\n\n3. What is the sum of the distinct prime factors of the population number you obtained in clue 2; take that population and add together each different prime that divides it.\n\n4. If you consult the article about the ecclesiastical division that serves as the basic local unit for Catholic worship and community life, which year is given there as the end of the period called \"Jus antiquum\"?\n\n5. In the ledger of the hunt's final reckoning, compute the remainder when (clue 1 + clue 2 + clue 3) is divided by 10 and report that single digit (0–9).",
+  "metadata": {
+    "theme": "From local community to liturgy: exploring a Polish rural commune, the parish that anchors community worship, and calculating the next major feast day (Easter) that a parish would celebrate.",
+    "difficulty": "easy",
+    "sample_id": "sample_087",
+    "pages_crawled": 3480,
+    "source": "trail_puzzles_v2"
+  },
+  "generated_at": "2026-03-15T18:10:11.637150+00:00"
+}

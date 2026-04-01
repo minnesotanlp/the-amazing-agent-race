@@ -1,0 +1,1286 @@
+{
+  "trail_id": "trail_271f9865",
+  "seed_url": "https://en.wikipedia.org/wiki/Stellar_(payment_network)",
+  "seed_title": "Stellar (payment network)",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Stellar_(payment_network)",
+      "extraction_target": "the initial release date of Stellar",
+      "extraction_section": null,
+      "extracted_value": "July 31, 2014",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "US dollar wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/US_dollar",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Seed: introduce Stellar as a decentralized payment network and anchor the trail in crypto-era payments.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/US_dollar",
+      "extraction_target": "the number of subsections listed under 'International use as reserve currency' in the table of contents",
+      "extraction_section": "International use as reserve currency",
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "US wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/US",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Contextualize the dominant fiat benchmark that stablecoins and cross-border payment systems often reference or compete with.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/US_dollar",
+      "extraction_target": "Look up the elevation of US dollar",
+      "extraction_section": null,
+      "extracted_value": 3236.2353515625,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "US dollar"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of US dollar) from https://en.wikipedia.org/wiki/US_dollar",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/US_dollar",
+      "extraction_target": "Look up the count of museums near US dollar",
+      "extraction_section": null,
+      "extracted_value": 12.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "museums near US dollar"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of museums near US dollar) from https://en.wikipedia.org/wiki/US_dollar",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/US_dollar",
+      "extraction_target": "Combine the elevation of US dollar and the count of museums near US dollar: (3236 + 12)",
+      "extraction_section": null,
+      "extracted_value": 3248,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(3236.2353515625) + int(12.0)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of US dollar add count of museums near US dollar",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2,
+        3
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/US",
+      "extraction_target": "Look up the elevation at Washington",
+      "extraction_section": null,
+      "extracted_value": 22.09991455078125,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Washington"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for Washington",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Pound_sterling",
+      "extraction_target": "the number of subsections listed under 'Subdivisions and other units' in the Contents",
+      "extraction_section": "Contents",
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Libya wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Libya",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Compare another long-standing reserve/international currency to illustrate monetary lineage that crypto networks enter into.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Pound_sterling",
+      "extraction_target": "Count restaurants near Pound sterling",
+      "extraction_section": null,
+      "extracted_value": 20,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "restaurants near Pound sterling"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (nearby_poi) derived from https://en.wikipedia.org/wiki/Pound_sterling",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Libya",
+      "extraction_target": "Look up the elevation at Libya",
+      "extraction_section": null,
+      "extracted_value": 552.4244384765625,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Libya"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for Libya",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        7
+      ]
+    },
+    {
+      "index": 9,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/BNP_Paribas",
+      "extraction_target": "the number of language links shown at the top of the article",
+      "extraction_section": null,
+      "extracted_value": 44,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "J.P. Morgan Asset Management wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/J.P._Morgan_Asset_Management",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Bring in a major European bank to represent incumbent financial institutions interacting with new payment rails.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        8
+      ]
+    },
+    {
+      "index": 10,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/J.P._Morgan_Asset_Management",
+      "extraction_target": "the number of sub-subsections listed under Recent history in the History section",
+      "extraction_section": "History",
+      "extracted_value": 12,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/J.P._Morgan_Asset_Management",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Represent asset managers and institutional capital that shape liquidity and adoption of payment methods.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        9
+      ]
+    },
+    {
+      "index": 11,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/J.P._Morgan_Asset_Management",
+      "extraction_target": "Reason: the sum of its digits",
+      "extraction_section": null,
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_sum) on stop 6 value",
+      "reason_transform": "digit_sum",
+      "reason_source_stop": 10,
+      "reason_code": "result = sum(int(d) for d in str(abs(int(12))))\nprint(result)",
+      "depends_on": [
+        10
+      ]
+    },
+    {
+      "index": 12,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Harley-Davidson",
+      "extraction_target": "Look up the trading volume of HOG on 2014-07-31",
+      "extraction_section": null,
+      "extracted_value": 2256100,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "stock_volume",
+            "arguments": {
+              "ticker": "HOG",
+              "date": "2014-07-31"
+            },
+            "expected_output": null,
+            "output_key": "stock_volume"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: stock volume HOG on 2014-07-31",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        11
+      ]
+    },
+    {
+      "index": 13,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/National_Stock_Exchange_of_India",
+      "extraction_target": "the location listed in the infobox (field: 'Location')",
+      "extraction_section": "infobox",
+      "extracted_value": "Mumbai, Maharashtra, India",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/National_Stock_Exchange_of_India",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Introduce an emerging-market exchange to show the global breadth of markets that cross-border payment systems must connect to.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        12
+      ]
+    },
+    {
+      "index": 14,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/National_Stock_Exchange_of_India",
+      "extraction_target": "Look up the elevation of Mumbai, Maharashtra, India",
+      "extraction_section": null,
+      "extracted_value": 26.31913185119629,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Mumbai, Maharashtra, India"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Mumbai, Maharashtra, India) from https://en.wikipedia.org/wiki/National_Stock_Exchange_of_India",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        13
+      ]
+    },
+    {
+      "index": 15,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/National_Stock_Exchange_of_India",
+      "extraction_target": "Look up the count of hotels near Mumbai, Maharashtra, India",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "hotels near Mumbai, Maharashtra, India"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of hotels near Mumbai, Maharashtra, India) from https://en.wikipedia.org/wiki/National_Stock_Exchange_of_India",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        13
+      ]
+    },
+    {
+      "index": 16,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/National_Stock_Exchange_of_India",
+      "extraction_target": "Combine the elevation of Mumbai, Maharashtra, India and the count of hotels near Mumbai, Maharashtra, India: (26 + 20)",
+      "extraction_section": null,
+      "extracted_value": 46,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(26.31913185119629) + int(20.0)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Mumbai, Maharashtra, India add count of hotels near Mumbai, Maharashtra, India",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        14,
+        15
+      ]
+    },
+    {
+      "index": 17,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/National_Stock_Exchange_of_India",
+      "extraction_target": "Reason: the number of vowels in that name",
+      "extraction_section": null,
+      "extracted_value": 10,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (vowel_count) on stop 8 value",
+      "reason_transform": "vowel_count",
+      "reason_source_stop": 13,
+      "reason_code": "result = sum(1 for c in \"Mumbai, Maharashtra, India\".lower() if c in 'aeiou')\nprint(result)",
+      "depends_on": [
+        13
+      ]
+    },
+    {
+      "index": 18,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/1997_Asian_financial_crisis",
+      "extraction_target": "the number of subsections listed under Countries/Regions affected in the table of contents",
+      "extraction_section": "Countries/Regions affected",
+      "extracted_value": 11,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "New Bedford, Massachusetts wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/New_Bedford,_Massachusetts",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Historic market shock that illustrates systemic risk in global finance which payment networks and stable assets aim to mitigate or must contend with.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        17
+      ]
+    },
+    {
+      "index": 19,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/1997_Asian_financial_crisis",
+      "extraction_target": "Look up the elevation of 1997 Asian financial crisis",
+      "extraction_section": null,
+      "extracted_value": 4458.54736328125,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "1997 Asian financial crisis"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of 1997 Asian financial crisis) from https://en.wikipedia.org/wiki/1997_Asian_financial_crisis",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        18
+      ]
+    },
+    {
+      "index": 20,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/1997_Asian_financial_crisis",
+      "extraction_target": "Look up the count of churches near 1997 Asian financial crisis",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "churches near 1997 Asian financial crisis"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of churches near 1997 Asian financial crisis) from https://en.wikipedia.org/wiki/1997_Asian_financial_crisis",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        18
+      ]
+    },
+    {
+      "index": 21,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/1997_Asian_financial_crisis",
+      "extraction_target": "Combine the elevation of 1997 Asian financial crisis and the count of churches near 1997 Asian financial crisis: (4458 + 20)",
+      "extraction_section": null,
+      "extracted_value": 4478,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(4458.54736328125) + int(20.0)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of 1997 Asian financial crisis add count of churches near 1997 Asian financial crisis",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        19,
+        20
+      ]
+    },
+    {
+      "index": 22,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/New_Bedford,_Massachusetts",
+      "extraction_target": "Count the number of stadiums near 41.63611",
+      "extraction_section": null,
+      "extracted_value": 15,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "stadiums near 41.63611"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: count stadiums near 41.63611",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        21
+      ]
+    },
+    {
+      "index": 23,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Great_Recession",
+      "extraction_target": "the number of languages listed at the top of the article",
+      "extraction_section": null,
+      "extracted_value": 51,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "FTSE 100 Index wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/FTSE_100_Index",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Another systemic crisis linking credit, markets and payments — sets up the policy and infrastructure motivations for alternative payment rails.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        22
+      ]
+    },
+    {
+      "index": 24,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/FTSE_100_Index",
+      "extraction_target": "the number of constituents of the FTSE 100 Index as given in the infobox",
+      "extraction_section": null,
+      "extracted_value": 100,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/FTSE_100_Index",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Introduce a major equity index as a measure of market breadth and how institutional flows (which payment networks may settle) are benchmarked.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        23
+      ]
+    },
+    {
+      "index": 25,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/FTSE_100_Index",
+      "extraction_target": "Reason: the number of divisors of that figure",
+      "extraction_section": null,
+      "extracted_value": 9,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (num_divisors) on stop 12 value",
+      "reason_transform": "num_divisors",
+      "reason_source_stop": 24,
+      "reason_code": "n = abs(int(100))\ncount = sum(1 for i in range(1, n+1) if n % i == 0) if n > 0 else 0\nresult = count\nprint(result)",
+      "depends_on": [
+        24
+      ]
+    },
+    {
+      "index": 26,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/The_United_Kingdom",
+      "extraction_target": "the area listed in the infobox (field: '• Total[[f]](#cite_note-ONSArea-17)')",
+      "extraction_section": "infobox",
+      "extracted_value": 244376,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Anchorage, Alaska wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Anchorage,_Alaska",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Bring the UK/London into focus as a historic and contemporary global finance center interacting with currency markets and payment rails.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        25
+      ]
+    },
+    {
+      "index": 27,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Anchorage,_Alaska",
+      "extraction_target": "the elevation listed in the infobox (field: 'Elevation')",
+      "extraction_section": "infobox",
+      "extracted_value": 102,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Anchorage,_Alaska",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Consider a geographically remote but resource-linked city to show how diverse places factor into broader economic and payment networks.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        26
+      ]
+    },
+    {
+      "index": 28,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Anchorage,_Alaska",
+      "extraction_target": "Look up the elevation of Anchorage, Alaska",
+      "extraction_section": null,
+      "extracted_value": 28.5595645904541,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Anchorage, Alaska"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Anchorage, Alaska) from https://en.wikipedia.org/wiki/Anchorage,_Alaska",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        27
+      ]
+    },
+    {
+      "index": 29,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Anchorage,_Alaska",
+      "extraction_target": "Look up the count of hospitals near Anchorage, Alaska",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "hospitals near Anchorage, Alaska"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of hospitals near Anchorage, Alaska) from https://en.wikipedia.org/wiki/Anchorage,_Alaska",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        27
+      ]
+    },
+    {
+      "index": 30,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Anchorage,_Alaska",
+      "extraction_target": "Combine the elevation of Anchorage, Alaska and the count of hospitals near Anchorage, Alaska: abs(28 - 20)",
+      "extraction_section": null,
+      "extracted_value": 8,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(28.5595645904541) - int(20.0))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Anchorage, Alaska abs_diff count of hospitals near Anchorage, Alaska",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        28,
+        29
+      ]
+    },
+    {
+      "index": 31,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Anchorage,_Alaska",
+      "extraction_target": "Reason: the number of 1-bits in its binary representation",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (binary_1bit_count) on stop 14 value",
+      "reason_transform": "binary_1bit_count",
+      "reason_source_stop": 27,
+      "reason_code": "result = bin(abs(int(102))).count('1')\nprint(result)",
+      "depends_on": [
+        27
+      ]
+    },
+    {
+      "index": 32,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Phoenix,_Arizona",
+      "extraction_target": "the elevation listed in the infobox (field: 'Elevation [[2]](#cite_note-2)')",
+      "extraction_section": "infobox",
+      "extracted_value": 1086,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Phoenix,_Arizona",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Highlight a major U.S. metropolitan economy to round out the map of cities where payments, commerce and finance operate.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        31
+      ]
+    },
+    {
+      "index": 33,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Phoenix,_Arizona",
+      "extraction_target": "Look up the elevation of Phoenix, Arizona",
+      "extraction_section": null,
+      "extracted_value": 331.73974609375,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Phoenix, Arizona"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Phoenix, Arizona) from https://en.wikipedia.org/wiki/Phoenix,_Arizona",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        32
+      ]
+    },
+    {
+      "index": 34,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Phoenix,_Arizona",
+      "extraction_target": "Look up the count of restaurants near Phoenix, Arizona",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "restaurants near Phoenix, Arizona"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of restaurants near Phoenix, Arizona) from https://en.wikipedia.org/wiki/Phoenix,_Arizona",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        32
+      ]
+    },
+    {
+      "index": 35,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Phoenix,_Arizona",
+      "extraction_target": "Combine the elevation of Phoenix, Arizona and the count of restaurants near Phoenix, Arizona: abs(331 - 20)",
+      "extraction_section": null,
+      "extracted_value": 311,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(331.73974609375) - int(20.0))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Phoenix, Arizona abs_diff count of restaurants near Phoenix, Arizona",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        33,
+        34
+      ]
+    },
+    {
+      "index": 36,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Phoenix,_Arizona",
+      "extraction_target": "Reason: the sum of its digits",
+      "extraction_section": null,
+      "extracted_value": 15,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_sum) on stop 15 value",
+      "reason_transform": "digit_sum",
+      "reason_source_stop": 32,
+      "reason_code": "result = sum(int(d) for d in str(abs(int(1086))))\nprint(result)",
+      "depends_on": [
+        32
+      ]
+    },
+    {
+      "index": 37,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/New_Year%27s_Day",
+      "extraction_target": "the number of subsections under 'Traditional and modern celebrations and customs' (section 3)",
+      "extraction_section": "Traditional and modern celebrations and customs",
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/New_Year%27s_Day",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "End on a date-oriented cultural marker: seasonal and calendar effects influence payment volumes, settlement windows and market schedules.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        36
+      ]
+    },
+    {
+      "index": 38,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: digital_root(4478 + 9 + 244376 + 102)",
+      "extraction_section": null,
+      "extracted_value": 7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "digital_root(4478 + 9 + 244376 + 102)",
+        "expression_code": "def digital_root(n):\n    n = abs(int(n))\n    return n if n == 0 else ((n - 1) % 9) + 1\nresult = digital_root(4478 + 9 + 244376 + 102)\nprint(result)",
+        "referenced_stops": [
+          21,
+          25,
+          26,
+          27
+        ]
+      },
+      "reasoning": "Compute stop: digital_root(4478 + 9 + 244376 + 102) = 7",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        21,
+        25,
+        26,
+        27
+      ]
+    }
+  ],
+  "passcode": 7,
+  "difficulty": {
+    "level": "extreme",
+    "depth": 39,
+    "tool_stop_count": 20,
+    "reason_stop_count": 5,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Track down the network that aims to provide global financial access, birthed in July of 2014. Discover its initial release date.\n\n2. Number the parts in the article focusing on this greenback, particularly its role in international reserves. How many subsections illustrate its extensive use?\n\n3. What height does this currency reach above sea level? Seek out the elevation of its representation.\n\n4. Uncover the number of establishments dedicated to public learning that exist in close proximity to this currency's presence.\n\n5. Add together the elevation you found previously with the count of museums nearby, and see what total emerges from this sum.\n\n6. If you venture to a place known for its iconic structure in the capital's name, what elevation can you discover there? Seek the height of this notable location.\n\n7. In the realm of currency, a different pound has its own divisions. How many subsections detail this information?\n\n8. Count the places where one can enjoy a meal in the vicinity of this other pound’s presence.\n\n9. This nation in North Africa has fascinating facts. What elevation do you encounter as you explore this country's profile? \n\n10. Explore a renowned French bank that plays pivotal roles in various financial markets. How many language options adorn the top of its entry?\n\n11. Delve into the asset management section of a bank, and uncover how many distinct segments describe its historical context.\n\n12. Now, find the digital sum of all the digits present in the number from your last clue.\n\n13. In the world of motorbikes, what trading volume did the iconic HOG have on the last day of July in 2014? \n\n14. This prominent stock exchange shares its location with a bustling metropolitan area. What is listed as its geographical home?\n\n15. Ascertain the elevation found in the heart of this thriving Indian city, often bustling with commerce and finance.\n\n16. Catalog the number of luxurious accommodations that lie near this metropolis of trade.\n\n17. By combining the elevation of the Indian city with the number of hotels surrounding it, what total do you get when you add these two results together?\n\n18. Reason about the name of the stock exchange you found. How many vowels are present in its title?\n\n19. Delve into the timelines of economic distress and count the sections that highlight affected areas during a significant crisis of recent history.\n\n20. Seek the elevation tied to this monumental financial collapse. What number do you uncover?\n\n21. Explore the places of worship that stand nearby this significant economic turning point. What is their count?\n\n22. Combine the elevation determined in clue 20 with the number of churches identified in clue 21, presenting what total emerges when these figures are added.\n\n23. Seek out a coastal city that harbors many thrills; how many sports venues can you find just a short distance away from its coordinates?\n\n24. A major economic downturn shook the world. Count how many languages are present at the beginning of its article.\n\n25. Discover the index that represents the performance of top companies in the UK; how many constituents are noted in the overview?\n\n26. Think about how many ways the number you uncovered in the previous clue can be evenly divided; what is that count?\n\n27. A kingdom across the sea carries a vast area. What numerical figure reflects its total size?\n\n28. In the last frontier, what altitude do the records show for the city that sits upon rugged terrain?\n\n29. Ascertain the elevation over the bustling space of Anchorage, where wilderness meets urban life.\n\n30. What medical facilities can you find close to Anchorage? How many hospitals are in the area?\n\n31. Determine the absolute difference between the elevation of Anchorage and the count of its hospitals. What new number appears from this calculation?\n\n32. Contemplate the height from clue 28; how many bits hold a one in its binary depiction? \n\n33. Locate the altitude that the sun rises to in a desert city known for its warmth and hospitality. What is that figure?\n\n34. Next, explore the height of this warm area and seek how many dining establishments are available nearby.\n\n35. From the elevation you gathered in clue 33 and the eateries' count from the previous clue, what absolute difference do you arrive at?\n\n36. As a reasoning exercise, sum the digits of the number you acquired in clue 33.\n\n37. Investigate the traditional festivities that recognize the start of every new year. How many divisions are celebrated in the customs revealed?\n\n38. Finally, compute the digital root of the combined figures from clues 22, 26, 27, and 28. What single-digit answer do you find?",
+  "metadata": {
+    "theme": "From decentralized payments to global finance: tracing how a crypto payment network (Stellar) connects to currencies, banks, markets, crises and the cities that move value.",
+    "difficulty": "extreme",
+    "sample_id": "sample_164",
+    "pages_crawled": 17730
+  },
+  "generated_at": "2026-03-18T12:18:13.540976+00:00"
+}

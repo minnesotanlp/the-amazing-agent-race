@@ -1,0 +1,936 @@
+{
+  "trail_id": "trail_60b8b56b",
+  "seed_url": "https://en.wikipedia.org/wiki/Cooperite_(mineral)",
+  "seed_title": "Cooperite (mineral)",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Cooperite_(mineral)",
+      "extraction_target": "the chemical formula listed in the infobox",
+      "extraction_section": null,
+      "extracted_value": "PtS (also PdS, NiS)",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "South Deep mine wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/South_Deep_mine",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Seed: introduces cooperite, a platinum-group mineral that begins the trail linking raw PGE resources to industry and geopolitics.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/South_Deep_mine",
+      "extraction_target": "the product produced by the South Deep mine",
+      "extraction_section": null,
+      "extracted_value": "Gold",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Economic impact of the COVID-19 pandemic wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Economic_impact_of_the_COVID-19_pandemic",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A real-world deep mine in South Africa that exemplifies where platinum-group minerals and related metals are extracted, tying the mineral to mining operations.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Economic_impact_of_the_COVID-19_pandemic",
+      "extraction_target": "the number of languages the article is available in",
+      "extraction_section": null,
+      "extracted_value": 12,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Economic_impact_of_the_COVID-19_pandemic",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Shows how a global shock disrupted mining and manufacturing supply chains that supply PGE-dependent industries (e.g., auto catalytic converters).",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Economic_impact_of_the_COVID-19_pandemic",
+      "extraction_target": "Reason: the sum of its distinct prime factors",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (sum_prime_factors) on stop 2 value",
+      "reason_transform": "sum_prime_factors",
+      "reason_source_stop": 2,
+      "reason_code": "def prime_factors(n):\n    n = abs(int(n))\n    factors = []\n    d = 2\n    while d * d <= n:\n        while n % d == 0:\n            factors.append(d)\n            n //= d\n        d += 1\n    if n > 1: factors.append(n)\n    return factors\nresult = sum(set(prime_factors(12)))\nprint(result)",
+      "depends_on": [
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Cummins",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Founded')",
+      "extraction_section": "infobox",
+      "extracted_value": 1919,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/CNH_Industrial",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Heavy-engine maker whose products connect to emission-control systems that rely on platinum-group metals, illustrating industrial demand.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Cummins",
+      "extraction_target": "Look up the Google rating of Cummins",
+      "extraction_section": null,
+      "extracted_value": 3.1,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "Cummins"
+            },
+            "expected_output": null,
+            "output_key": "place_rating"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (place_rating) derived from https://en.wikipedia.org/wiki/Cummins",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/CNH_Industrial",
+      "extraction_target": "the company type as listed in the infobox",
+      "extraction_section": null,
+      "extracted_value": "Public",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "New Haven, Connecticut wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/New_Haven,_Connecticut",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Multinational maker of heavy equipment; represents industrial and agricultural demand for metals and the global supply-chain players affected by mineral availability.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/New_Haven,_Connecticut",
+      "extraction_target": "Count the number of libraries near 41.3083",
+      "extraction_section": null,
+      "extracted_value": 10,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "libraries near 41.3083"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: count libraries near 41.3083",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Suzhou",
+      "extraction_target": "Look up the elevation at Suzhou",
+      "extraction_section": null,
+      "extracted_value": 3.537636995315552,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Suzhou"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for Suzhou",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        7
+      ]
+    },
+    {
+      "index": 9,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Nebraska",
+      "extraction_target": "Look up the population of United States",
+      "extraction_section": null,
+      "extracted_value": 87146,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "countries_population",
+            "arguments": {
+              "country": "United States"
+            },
+            "expected_output": null,
+            "output_key": "population"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: population of United States",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        8
+      ]
+    },
+    {
+      "index": 10,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Palermo",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Founded')",
+      "extraction_section": "infobox",
+      "extracted_value": 736,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Washington (State) wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Washington_(State)",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A historic trade city representing how resource flows and trade routes shape regional economies and cultural responses to industrial demand.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        9
+      ]
+    },
+    {
+      "index": 11,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Palermo",
+      "extraction_target": "Look up the elevation of Palermo",
+      "extraction_section": null,
+      "extracted_value": 16.72978782653809,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Palermo"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Palermo) from https://en.wikipedia.org/wiki/Palermo",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        10
+      ]
+    },
+    {
+      "index": 12,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Palermo",
+      "extraction_target": "Look up the count of stadiums near Palermo",
+      "extraction_section": null,
+      "extracted_value": 19.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "stadiums near Palermo"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of stadiums near Palermo) from https://en.wikipedia.org/wiki/Palermo",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        10
+      ]
+    },
+    {
+      "index": 13,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Palermo",
+      "extraction_target": "Combine the elevation of Palermo and the count of stadiums near Palermo: (16 + 19)",
+      "extraction_section": null,
+      "extracted_value": 35,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(16.72978782653809) + int(19.0)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Palermo add count of stadiums near Palermo",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        11,
+        12
+      ]
+    },
+    {
+      "index": 14,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Washington_(State)",
+      "extraction_target": "the elevation listed in the infobox (field: 'Elevation')",
+      "extraction_section": "infobox",
+      "extracted_value": 1710,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Washington (State) wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Washington_(State)",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A U.S. state with major ports and tech/manufacturing presence — ties to global trade, imports/exports, and the logistics side of mineral-dependent industries.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        13
+      ]
+    },
+    {
+      "index": 15,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Washington_(State)",
+      "extraction_target": "Look up the elevation of Washington",
+      "extraction_section": null,
+      "extracted_value": 22.09991455078125,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Washington"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Washington) from https://en.wikipedia.org/wiki/Washington_(State)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        14
+      ]
+    },
+    {
+      "index": 16,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Washington_(State)",
+      "extraction_target": "Look up the count of museums near Washington",
+      "extraction_section": null,
+      "extracted_value": 19.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "museums near Washington"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of museums near Washington) from https://en.wikipedia.org/wiki/Washington_(State)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        14
+      ]
+    },
+    {
+      "index": 17,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Washington_(State)",
+      "extraction_target": "Combine the elevation of Washington and the count of museums near Washington: abs(22 - 19)",
+      "extraction_section": null,
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(22.09991455078125) - int(19.0))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Washington abs_diff count of museums near Washington",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        15,
+        16
+      ]
+    },
+    {
+      "index": 18,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Washington_(State)",
+      "extraction_target": "Reason: the sum of its distinct prime factors",
+      "extraction_section": null,
+      "extracted_value": 29,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (sum_prime_factors) on stop 9 value",
+      "reason_transform": "sum_prime_factors",
+      "reason_source_stop": 14,
+      "reason_code": "def prime_factors(n):\n    n = abs(int(n))\n    factors = []\n    d = 2\n    while d * d <= n:\n        while n % d == 0:\n            factors.append(d)\n            n //= d\n        d += 1\n    if n > 1: factors.append(n)\n    return factors\nresult = sum(set(prime_factors(1710)))\nprint(result)",
+      "depends_on": [
+        14
+      ]
+    },
+    {
+      "index": 19,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Foreign_policy_of_the_United_States",
+      "extraction_target": "the number of languages listed at the top of the article",
+      "extraction_section": null,
+      "extracted_value": 20,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Foreign_policy_of_the_United_States",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Shifts the trail from industry to policy: how major consuming states shape resource-security policies affecting mining and trade in strategic metals.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        18
+      ]
+    },
+    {
+      "index": 20,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Foreign_policy_of_the_United_States",
+      "extraction_target": "Look up the elevation of Foreign policy of the United States",
+      "extraction_section": null,
+      "extracted_value": 3236.2353515625,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Foreign policy of the United States"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Foreign policy of the United States) from https://en.wikipedia.org/wiki/Foreign_policy_of_the_United_States",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        19
+      ]
+    },
+    {
+      "index": 21,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Foreign_policy_of_the_United_States",
+      "extraction_target": "Look up the count of universities near Foreign policy of the United States",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "universities near Foreign policy of the United States"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of universities near Foreign policy of the United States) from https://en.wikipedia.org/wiki/Foreign_policy_of_the_United_States",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        19
+      ]
+    },
+    {
+      "index": 22,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Foreign_policy_of_the_United_States",
+      "extraction_target": "Combine the elevation of Foreign policy of the United States and the count of universities near Foreign policy of the United States: abs(3236 - 20)",
+      "extraction_section": null,
+      "extracted_value": 3216,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(3236.2353515625) - int(20.0))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Foreign policy of the United States abs_diff count of universities near Foreign policy of the United States",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        20,
+        21
+      ]
+    },
+    {
+      "index": 23,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Foreign_policy_of_the_United_States",
+      "extraction_target": "Reason: the next prime number after that figure",
+      "extraction_section": null,
+      "extracted_value": 23,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (next_prime) on stop 10 value",
+      "reason_transform": "next_prime",
+      "reason_source_stop": 19,
+      "reason_code": "def next_prime(n):\n    n = abs(int(n))\n    if n < 2: return 2\n    candidate = n + 1\n    while True:\n        if all(candidate % i != 0 for i in range(2, int(candidate**0.5)+1)):\n            return candidate\n        candidate += 1\nresult = next_prime(20)\nprint(result)",
+      "depends_on": [
+        19
+      ]
+    },
+    {
+      "index": 24,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Russo-Ukrainian_War",
+      "extraction_target": "the number of languages listed at the top of the article",
+      "extraction_section": null,
+      "extracted_value": 102,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Russo-Ukrainian_War",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "An example of a geopolitical crisis that disrupted commodity markets and provoked sanctions — demonstrating how conflict reshapes supply of strategic materials.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        23
+      ]
+    },
+    {
+      "index": 25,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Russo-Ukrainian_War",
+      "extraction_target": "Reason: the number of 1-bits in its binary representation",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (binary_1bit_count) on stop 11 value",
+      "reason_transform": "binary_1bit_count",
+      "reason_source_stop": 24,
+      "reason_code": "result = bin(abs(int(102))).count('1')\nprint(result)",
+      "depends_on": [
+        24
+      ]
+    },
+    {
+      "index": 26,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Vladimir_Putin",
+      "extraction_target": "the number of subsections listed under Foreign policy",
+      "extraction_section": "Foreign policy",
+      "extracted_value": 6,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Lists of United Nations Security Council resolutions wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Lists_of_United_Nations_Security_Council_resolutions",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Profiles a leader whose actions impact resource geopolitics and international relations — connecting individual agency to global resource flows.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        25
+      ]
+    },
+    {
+      "index": 27,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Lists_of_United_Nations_Security_Council_resolutions",
+      "extraction_target": "the number of languages listed at the top of the page",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Lists_of_United_Nations_Security_Council_resolutions",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Concludes with mechanisms (UN Security Council resolutions) used by the international community to respond to crises that affect resource trade and security.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        26
+      ]
+    },
+    {
+      "index": 28,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: abs(87146 - 29) % 10",
+      "extraction_section": null,
+      "extracted_value": 7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "abs(87146 - 29) % 10",
+        "expression_code": "result = abs(87146 - 29) % 10\nprint(result)",
+        "referenced_stops": [
+          9,
+          18,
+          20,
+          25
+        ]
+      },
+      "reasoning": "Compute stop: abs(87146 - 29) % 10 = 7",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        9,
+        18,
+        20,
+        25
+      ]
+    }
+  ],
+  "passcode": 7,
+  "difficulty": {
+    "level": "hard",
+    "depth": 29,
+    "tool_stop_count": 13,
+    "reason_stop_count": 4,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Seek the mineral known for its rare composition, containing both platinum and palladium — what is its chemical formula?\n\n2. A vital resource emerges from deep subterranean chambers, cherished for advancing industries — what do they produce there?\n\n3. This tumultuous event reshaped economies worldwide in 2020; how many languages tell its tale on Wikipedia?\n\n4. Among the numbers revealed, seek the sum of the distinct prime factors of your previous count — what do they amount to?\n\n5. A powerhouse in engine manufacturing stands proud since a specific year; which year marks its establishment?\n\n6. Travelers speak of it highly — how many stars do they award this industrious company? \n\n7. With the precision of farming machines in mind, identify the corporate category for a conglomerate at the intersection of agriculture and construction.\n\n8. Navigate to a city where an Ivy League institution often honors history — how many libraries can you find encircling this famous place?\n\n9. Lush waters and ancient history flow through a city known for silk — what sits beneath its surface, elevation-wise?\n\n10. The land of corn and cattle hides its populous heart — what figure reflects the number of people in this vast nation?\n\n11. Step back in time to a city with ancient roots; find out when it was first established.\n\n12. Among hilltops and coastlines lies a city known for its foundations; what height from sea level does it possess?\n\n13. Count the open arenas that gather crowds, found in the heart of this historic city — how many stand near its vibrant culture?\n\n14. Now, combine the elevation you obtained previously with the number of stadiums, revealing a new total.\n\n15. The west coast boasts its own marvels; what elevation is given within the infobox of this thriving region?\n\n16. Look around at the peaks and valleys — how high does this state reach above the sea?\n\n17. Museums beckon culture seekers; find out how many lie in the proximity of this remarkable state.\n\n18. Take the elevation from clue 16 and the count from clue 17, then unveil their absolute difference.\n\n19. For the number derived from clue 15, what is the sum of its distinct prime factors — reveal the outcome!\n\n20. This realm of diplomacy presents numerous languages; how many does its introduction mention?\n\n21. In the vein of international strategies, climb the heights — what elevation does this topic boast?\n\n22. Examine the educational establishments nearby; how many universities can be found within reach of this concept?\n\n23. Combine the elevation and university count to unveil a story of difference in heights and access to knowledge.\n\n24. Seeking advancement, push for the next prime number that follows the figure found in clue 20.\n\n25. A conflict echoes through history and bids its diffusion; how many language interpretations are noted at the entrance?\n\n26. With the count from clue 25, uncover the number of 1-bits that dance in its binary form — what is the total?\n\n27. One individual remains at the focus of controversy; check how many subsections illuminate the realm of their foreign tactics.\n\n28. The world’s leading decision forum in resolve has been recorded; what is the count of languages that adorn its top?\n\n29. Finally, compute the absolute difference of 87146 from the number in clue 29, reduced to a single digit by modulo 10.",
+  "metadata": {
+    "theme": "From a platinum-group mineral to the global systems it fuels: following cooperite from geology into mines, manufacturing (automotive & heavy industry), supply-chain shocks, and the geopolitical responses that shape resource security.",
+    "difficulty": "hard",
+    "sample_id": "sample_210",
+    "pages_crawled": 29396
+  },
+  "generated_at": "2026-03-20T08:25:27.073219+00:00"
+}

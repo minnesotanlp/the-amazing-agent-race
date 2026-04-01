@@ -1,0 +1,152 @@
+{
+  "trail_id": "trail_c4c80612",
+  "seed_url": "https://en.wikipedia.org/wiki/Gugsa_Welle",
+  "seed_title": "Gugsa Welle",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Gugsa_Welle",
+      "extraction_target": "the year Gugsa was released and allowed to live with Zewditu",
+      "extraction_section": "Biography",
+      "extracted_value": "1915",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Gugsa_Wale%27s_rebellion",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start at Gugsa Welle's biography to establish the rebel leader's rank, base region, and the date of his death — the personal anchor for the rebellion trail.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Gugsa_Wale%27s_rebellion",
+      "extraction_target": "Calculate the number of days between 1915-01-01 and 2026-03-15",
+      "extraction_section": null,
+      "extracted_value": 40616,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "from datetime import date\nd1 = date.fromisoformat('1915-01-01')\nd2 = date.fromisoformat('2026-03-15')\nresult = abs((d2 - d1).days)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "days"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: date computation 1915-01-01 to 2026-03-15 (pinned)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Gugsa_Wale%27s_rebellion",
+      "extraction_target": "Reason: the largest prime factor of that figure",
+      "extraction_section": null,
+      "extracted_value": 5077,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (largest_prime_factor) on stop 1 value",
+      "reason_transform": "largest_prime_factor",
+      "reason_source_stop": 1,
+      "reason_code": "def largest_prime_factor(n):\n    n = abs(int(n))\n    if n <= 1: return n\n    d = 2\n    while d * d <= n:\n        while n % d == 0: n //= d\n        d += 1\n    return n\nresult = largest_prime_factor(40616)\nprint(result)"
+    },
+    {
+      "index": 3,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Battle_of_Anchem",
+      "extraction_target": "the date of the Battle of Anchem",
+      "extraction_section": null,
+      "extracted_value": "31 March 1930",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Battle_of_Anchem",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "End at the Battle of Anchem — the decisive clash connected to Gugsa Welle's rebellion — to extract the battle date and location that conclude the narrative.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 4,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: (40616 + 5077) % 10",
+      "extraction_section": null,
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "(40616 + 5077) % 10",
+        "expression_code": "result = (40616 + 5077) % 10\nprint(result)",
+        "referenced_stops": [
+          1,
+          2
+        ]
+      },
+      "reasoning": "Compute stop: (40616 + 5077) % 10 = 3",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 3,
+  "difficulty": {
+    "level": "easy",
+    "depth": 5,
+    "tool_stop_count": 1,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "direct_link"
+  },
+  "riddle": "Here is the revised riddle:\n\n1. Seek the page that details a prominent Ethiopian military leader involved in a conflict during the early 20th century; read the Biography section carefully; in which year was he released and allowed to live with Empress Zewditu?\n\n2. How many days lie between 1915‑01‑01 and 2026‑03‑15? (Follow the link on the previous page to the article about his rebellion and compute that span as a day count.)\n\n3. A mathematical detour awaits: take the day-count you just computed and extract its largest prime factor — that largest prime is your next numeric clue.\n\n4. The article whose opening line recounts the decisive clash at Anchem holds a calendar entry for that encounter; when did that battle take place? (Navigate there from the rebellion article to find the recorded date.)\n\n5. In the end, when all figures have been gathered and the smoke clears, perform this final arithmetic and report a single digit: compute (clue 2 + clue 3) modulo 10 — the result must be a single digit between 0 and 9.",
+  "metadata": {
+    "theme": "Tracing Ras Gugsa Welle's 1930 uprising in northern Ethiopia — the man, the places, and the timeline of the rebellion.",
+    "difficulty": "easy",
+    "sample_id": "sample_113",
+    "pages_crawled": 292,
+    "source": "trail_puzzles_v3"
+  },
+  "generated_at": "2026-03-15T22:57:55.678948+00:00"
+}

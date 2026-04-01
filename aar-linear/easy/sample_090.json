@@ -1,0 +1,186 @@
+{
+  "trail_id": "trail_e0cd7fa0",
+  "seed_url": "https://en.wikipedia.org/wiki/José_María_Reina_Andrade",
+  "seed_title": "José María Reina Andrade",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Jos%C3%A9_Mar%C3%ADa_Reina_Andrade",
+      "extraction_target": "start date of Reina Andrade's term as First Vice President of Guatemala",
+      "extraction_section": null,
+      "extracted_value": "26 June 1902",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Constituencies of the Parliament of the United Kingdom wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Constituencies_of_the_Parliament_of_the_United_Kingdom",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Begin at Reina Andrade, a brief acting president of Guatemala — his short tenure frames a story about succession and legislative power.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Constituencies_of_the_Parliament_of_the_United_Kingdom",
+      "extraction_target": "Calculate the number of days between 1902-06-26 and 2026-03-15",
+      "extraction_section": null,
+      "extracted_value": 45188,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "from datetime import date\nd1 = date.fromisoformat('1902-06-26')\nd2 = date.fromisoformat('2026-03-15')\nresult = abs((d2 - d1).days)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "days"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: date computation 1902-06-26 to 2026-03-15 (pinned)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Constituencies_of_the_Parliament_of_the_United_Kingdom",
+      "extraction_target": "Reason: the number of 1-bits in its binary representation",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (binary_1bit_count) on stop 1 value",
+      "reason_transform": "binary_1bit_count",
+      "reason_source_stop": 1,
+      "reason_code": "result = bin(abs(int(45188))).count('1')\nprint(result)"
+    },
+    {
+      "index": 3,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Congress_of_Guatemala",
+      "extraction_target": "the number of languages listed at the top of the article",
+      "extraction_section": null,
+      "extracted_value": 13,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Sheridan-Kalorama Historic District wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Sheridan-Kalorama_Historic_District",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Visit Guatemala's national legislature to see the body that interacts with (and legitimizes) presidents — extracting seat and membership shows domestic representation and where power is physically located.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 4,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Sheridan-Kalorama_Historic_District",
+      "extraction_target": "Get the driving duration in minutes from Roughly bounded by Rock Creek Park to Congress of Guatemala",
+      "extraction_section": null,
+      "extracted_value": 3085,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_directions",
+            "arguments": {
+              "origin": "Roughly bounded by Rock Creek Park",
+              "destination": "Congress of Guatemala",
+              "mode": "driving"
+            },
+            "expected_output": null,
+            "output_key": "duration"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: directions duration Roughly bounded by Rock Creek Park to Congress of Guatemala",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 5,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: (5 + 3085) % 10",
+      "extraction_section": null,
+      "extracted_value": 0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "(5 + 3085) % 10",
+        "expression_code": "result = (5 + 3085) % 10\nprint(result)",
+        "referenced_stops": [
+          2,
+          4
+        ]
+      },
+      "reasoning": "Compute stop: (5 + 3085) % 10 = 0",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 0,
+  "difficulty": {
+    "level": "easy",
+    "depth": 6,
+    "tool_stop_count": 2,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "Here is the riddle with the corrected clue:\n\n1. Seek the page for a prominent Guatemalan politician who served as the First Vice President and note the date on which his service officially began.\n\n2. There exists a page that catalogs the United Kingdom’s electoral districts; while there, compute how many days elapsed between 26 June 1902 and 15 March 2026.\n\n3. If you write the day-count you just obtained (from clue 2) in base two, how many ones appear in that binary representation?\n\n4. The article whose opening describes Guatemala’s national legislature hides a small metadata clue at the top: count how many different language links are shown there.\n\n5. In Washington, the embassy-lined district roughly bounded by Rock Creek Park has its own entry; from that page determine the driving duration, in minutes, for a route from \"Roughly bounded by Rock Creek Park\" to the building that houses Guatemala’s legislature.\n\n6. (One last arithmetic step.) Compute (clue 3 + clue 5) % 10 and give the single-digit result (0–9).",
+  "metadata": {
+    "theme": "Short-lived power and legislative context in Guatemala — start with an acting president, compare population/representation internationally, then locate the Guatemalan legislature and the diplomatic distance to Washington, D.C.",
+    "difficulty": "easy",
+    "sample_id": "sample_090",
+    "pages_crawled": 3533,
+    "source": "trail_puzzles_v2"
+  },
+  "generated_at": "2026-03-15T18:18:15.483314+00:00"
+}

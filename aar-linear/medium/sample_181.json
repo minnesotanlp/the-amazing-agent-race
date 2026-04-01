@@ -1,0 +1,262 @@
+{
+  "trail_id": "trail_5189e015",
+  "seed_url": "https://en.wikipedia.org/wiki/Nasdaq",
+  "seed_title": "Nasdaq",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Nasdaq",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Founded')",
+      "extraction_section": "infobox",
+      "extracted_value": 8,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Nasdaq",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Seed: Nasdaq is the public-market venue that lists the tech and semiconductor companies we'll follow; extract its HQ (New York) and founding date to anchor later distance and timeline checks.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Nasdaq",
+      "extraction_target": "Reason: the sum of its digits",
+      "extraction_section": null,
+      "extracted_value": 8,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_sum) on stop 0 value",
+      "reason_transform": "digit_sum",
+      "reason_source_stop": 0,
+      "reason_code": "result = sum(int(d) for d in str(abs(int(8))))\nprint(result)"
+    },
+    {
+      "index": 2,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Semiconductor_company",
+      "extraction_target": "the amount Bell Labs licensed the technology for",
+      "extraction_section": null,
+      "extracted_value": 25000,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Chinese yuan wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Chinese_yuan",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Context: explain the industry that includes Intel and other Nasdaq-listed tech firms; extract notable companies to guide further investigatory stops.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Chinese_yuan",
+      "extraction_target": "Look up the elevation at Chinese yuan",
+      "extraction_section": null,
+      "extracted_value": 1840.539428710938,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Chinese yuan"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for Chinese yuan",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 4,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Yale_University",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Established')",
+      "extraction_section": "infobox",
+      "extracted_value": 9,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Summit, New Jersey wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Summit,_New_Jersey",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Talent & research hub: universities like Yale feed talent and innovation into tech ecosystems that ultimately list on exchanges like Nasdaq.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 5,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Summit,_New_Jersey",
+      "extraction_target": "Count the number of temples near 40.715622",
+      "extraction_section": null,
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "temples near 40.715622"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: count temples near 40.715622",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 6,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Market_economy",
+      "extraction_target": "the number of languages listed at the top of the article",
+      "extraction_section": null,
+      "extracted_value": 72,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Market_economy",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Broader frame: describe how market economies and exchanges (like Nasdaq) allocate capital to firms in semiconductors and tech.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 7,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Market_economy",
+      "extraction_target": "Reason: the number you get by reversing its digits",
+      "extraction_section": null,
+      "extracted_value": 27,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_reversal) on stop 5 value",
+      "reason_transform": "digit_reversal",
+      "reason_source_stop": 6,
+      "reason_code": "result = int(str(abs(int(72)))[::-1])\nprint(result)"
+    },
+    {
+      "index": 8,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: digital_root(8 + 1840 + 9 + 27)",
+      "extraction_section": null,
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "digital_root(8 + 1840 + 9 + 27)",
+        "expression_code": "def digital_root(n):\n    n = abs(int(n))\n    return n if n == 0 else ((n - 1) % 9) + 1\nresult = digital_root(8 + 1840 + 9 + 27)\nprint(result)",
+        "referenced_stops": [
+          0,
+          3,
+          4,
+          7
+        ]
+      },
+      "reasoning": "Compute stop: digital_root(8 + 1840 + 9 + 27) = 3",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 3,
+  "difficulty": {
+    "level": "medium",
+    "depth": 9,
+    "tool_stop_count": 2,
+    "reason_stop_count": 2,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Seek the American stock exchange best known for listing technology firms; on that page, read the infobox and note the year the exchange was founded.\n\n2. There exists a simple way to shrink the year you just found: add together all of its digits and write down that sum.\n\n3. Which Wikipedia article about firms that manufacture integrated circuits mentions a specific fee paid to Bell Laboratories for a license; find and record the monetary amount given there.\n\n4. If you visit the article about China’s official currency, treat that page title as a query to a mapping/geocoding service and ask: what elevation in meters does the map report for the geocode of that phrase?\n\n5. The article whose opening line identifies a private university in New Haven, Connecticut contains an establishment year in its infobox — locate and record that year.\n\n6. In a Jersey city located in Union County (use latitude 40.715622 as the center), run a nearby-place search for entries labeled as temples and count how many such results appear.\n\n7. The Wikipedia entry describing the economic system organized by supply and demand shows small language links at the top; determine how many different languages are listed there.\n\n8. (As a twist, take the number you obtained in clue 7 and reverse its digits; record the new number that results from that reversal.)\n\n9. Finally, compute the digital root of the sum (clue 1 + clue 4 + clue 5 + clue 8); the digital root yields a single digit between 0 and 9 — that single digit is your final answer.",
+  "metadata": {
+    "theme": "From market to map: tracing how the Nasdaq-listed tech and semiconductor economy connects to places, populations, and key events that shape markets.",
+    "difficulty": "medium",
+    "sample_id": "sample_181",
+    "pages_crawled": 11793
+  },
+  "generated_at": "2026-03-17T19:57:34.845850+00:00"
+}

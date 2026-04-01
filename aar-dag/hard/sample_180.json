@@ -1,0 +1,891 @@
+{
+  "trail_id": "trail_c51c8a5c",
+  "seed_url": "https://en.wikipedia.org/wiki/First_Solar",
+  "seed_title": "First Solar",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/First_Solar",
+      "extraction_target": "the date Mark Widmar succeeded James Hughes as CEO",
+      "extraction_section": null,
+      "extracted_value": "July 1, 2016",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Industry 4.0 wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Industry_4.0",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start at First Solar — the seed — to anchor the trail in a major PV manufacturer (its HQ and founding give a geographic and temporal starting point for the route).",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Industry_4.0",
+      "extraction_target": "the redirect title that points to this article",
+      "extraction_section": null,
+      "extracted_value": "Industry 4.0",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "ConocoPhillips wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/ConocoPhillips",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Explore Industry 4.0 to understand the manufacturing technologies (automation, smart factories) that influence modern solar-panel production.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/ConocoPhillips",
+      "extraction_target": "Look up the closing price of COP on 2016-07-01",
+      "extraction_section": null,
+      "extracted_value": 32.2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "stock_historical_price",
+            "arguments": {
+              "ticker": "COP",
+              "date": "2016-07-01"
+            },
+            "expected_output": null,
+            "output_key": "stock_price"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: stock price COP on 2016-07-01",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/ConocoPhillips",
+      "extraction_target": "Reason: the number of divisors of that figure",
+      "extraction_section": null,
+      "extracted_value": 6,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (num_divisors) on stop 2 value",
+      "reason_transform": "num_divisors",
+      "reason_source_stop": 2,
+      "reason_code": "n = abs(int(32))\ncount = sum(1 for i in range(1, n+1) if n % i == 0) if n > 0 else 0\nresult = count\nprint(result)",
+      "depends_on": [
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/JSE_Limited",
+      "extraction_target": "the location (suburb and city) of the JSE",
+      "extraction_section": null,
+      "extracted_value": "Sandton, Johannesburg, South Africa",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "UAE wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/UAE",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Move to global capital markets — JSE Limited represents financial infrastructure in a major emerging-market economy, showing how energy firms access capital worldwide.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/JSE_Limited",
+      "extraction_target": "Look up the elevation of Sandton, Johannesburg, South Africa",
+      "extraction_section": null,
+      "extracted_value": 1590.254516601562,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Sandton, Johannesburg, South Africa"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Sandton, Johannesburg, South Africa) from https://en.wikipedia.org/wiki/JSE_Limited",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/JSE_Limited",
+      "extraction_target": "Look up the count of stadiums near Sandton, Johannesburg, South Africa",
+      "extraction_section": null,
+      "extracted_value": 8.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "stadiums near Sandton, Johannesburg, South Africa"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of stadiums near Sandton, Johannesburg, South Africa) from https://en.wikipedia.org/wiki/JSE_Limited",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        4
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/JSE_Limited",
+      "extraction_target": "Combine the elevation of Sandton, Johannesburg, South Africa and the count of stadiums near Sandton, Johannesburg, South Africa: (1590 + 8)",
+      "extraction_section": null,
+      "extracted_value": 1598,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(1590.254516601562) + int(8.0)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Sandton, Johannesburg, South Africa add count of stadiums near Sandton, Johannesburg, South Africa",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5,
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/UAE",
+      "extraction_target": "Look up the elevation at Abu Dhabi 24°28′N 54°22′E﻿ / ﻿24.467°N 54.367°E﻿ / 24.467; 54.367",
+      "extraction_section": null,
+      "extracted_value": 1.62217128276825,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Abu Dhabi 24°28′N 54°22′E﻿ / ﻿24.467°N 54.367°E﻿ / 24.467; 54.367"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for Abu Dhabi 24°28′N 54°22′E﻿ / ﻿24.467°N 54.367°E﻿ / 24.467; 54.367",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        7
+      ]
+    },
+    {
+      "index": 9,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/The_Netherlands",
+      "extraction_target": "the elevation listed in the infobox (field: 'Highest elevation ([Mount Scenery](/wiki/Mount_Scenery \"Mount Scenery\"))')",
+      "extraction_section": "infobox",
+      "extracted_value": 870,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "The Netherlands wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/The_Netherlands",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "The Netherlands illustrates a densely populated, policy-forward European market where solar adoption and grid integration are important topics.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        8
+      ]
+    },
+    {
+      "index": 10,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/The_Netherlands",
+      "extraction_target": "Look up the elevation of The Netherlands",
+      "extraction_section": null,
+      "extracted_value": 37.34151840209961,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "The Netherlands"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of The Netherlands) from https://en.wikipedia.org/wiki/The_Netherlands",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        9
+      ]
+    },
+    {
+      "index": 11,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/The_Netherlands",
+      "extraction_target": "Look up the count of museums near The Netherlands",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "museums near The Netherlands"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of museums near The Netherlands) from https://en.wikipedia.org/wiki/The_Netherlands",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        9
+      ]
+    },
+    {
+      "index": 12,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/The_Netherlands",
+      "extraction_target": "Combine the elevation of The Netherlands and the count of museums near The Netherlands: abs(37 - 20)",
+      "extraction_section": null,
+      "extracted_value": 17,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(37.34151840209961) - int(20.0))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of The Netherlands abs_diff count of museums near The Netherlands",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        10,
+        11
+      ]
+    },
+    {
+      "index": 13,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/The_Netherlands",
+      "extraction_target": "Reason: the number of divisors of that figure",
+      "extraction_section": null,
+      "extracted_value": 16,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (num_divisors) on stop 5 value",
+      "reason_transform": "num_divisors",
+      "reason_source_stop": 9,
+      "reason_code": "n = abs(int(870))\ncount = sum(1 for i in range(1, n+1) if n % i == 0) if n > 0 else 0\nresult = count\nprint(result)",
+      "depends_on": [
+        9
+      ]
+    },
+    {
+      "index": 14,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Oslo",
+      "extraction_target": "the number of subsections listed under Name and seal in the table of contents",
+      "extraction_section": "Contents",
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Long Beach, California wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Long_Beach,_California",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Visit a European capital (Oslo) to consider urban renewable strategies, incentives, and how city-scale factors influence solar deployment.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        13
+      ]
+    },
+    {
+      "index": 15,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Long_Beach,_California",
+      "extraction_target": "the coordinates listed in the infobox (field: 'Coordinates')",
+      "extraction_section": "infobox",
+      "extracted_value": "33.76833, -118.19556",
+      "extracted_value_type": "coords",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Wilmington, Delaware wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Wilmington,_Delaware",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Long Beach is a major US port city where large rooftops and brownfield sites are often repurposed for solar — an urban deployment case study.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        14
+      ]
+    },
+    {
+      "index": 16,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Long_Beach,_California",
+      "extraction_target": "Look up the elevation of Long Beach, California",
+      "extraction_section": null,
+      "extracted_value": 9.218381881713867,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Long Beach, California"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (elevation) derived from https://en.wikipedia.org/wiki/Long_Beach,_California",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        15
+      ]
+    },
+    {
+      "index": 17,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Wilmington,_Delaware",
+      "extraction_target": "Count the number of museums near 39.74583",
+      "extraction_section": null,
+      "extracted_value": 1,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "museums near 39.74583"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: count museums near 39.74583",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        16
+      ]
+    },
+    {
+      "index": 18,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Saint_Paul,_Minnesota",
+      "extraction_target": "the coordinates listed in the infobox (field: 'Coordinates')",
+      "extraction_section": "infobox",
+      "extracted_value": "44.94778, -93.10389",
+      "extracted_value_type": "coords",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/San_Antonio",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Saint Paul offers a cold-climate, northern-US perspective — examining how climate and seasonality affect solar yields compared with sunnier cities.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        17
+      ]
+    },
+    {
+      "index": 19,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/San_Antonio",
+      "extraction_target": "the elevation listed in the infobox (field: 'Elevation [[11]](#cite_note-gnis-11)')",
+      "extraction_section": "infobox",
+      "extracted_value": 722,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/San_Antonio",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "San Antonio is an example of a large US city with municipal energy initiatives; it helps tie corporate manufacturing and national policy to local implementation.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        18
+      ]
+    },
+    {
+      "index": 20,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/San_Antonio",
+      "extraction_target": "Look up the elevation of San Antonio",
+      "extraction_section": null,
+      "extracted_value": 198.86962890625,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "San Antonio"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of San Antonio) from https://en.wikipedia.org/wiki/San_Antonio",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        19
+      ]
+    },
+    {
+      "index": 21,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/San_Antonio",
+      "extraction_target": "Look up the count of parks near San Antonio",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "parks near San Antonio"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of parks near San Antonio) from https://en.wikipedia.org/wiki/San_Antonio",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        19
+      ]
+    },
+    {
+      "index": 22,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/San_Antonio",
+      "extraction_target": "Combine the elevation of San Antonio and the count of parks near San Antonio: abs(198 - 20)",
+      "extraction_section": null,
+      "extracted_value": 178,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(198.86962890625) - int(20.0))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of San Antonio abs_diff count of parks near San Antonio",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        20,
+        21
+      ]
+    },
+    {
+      "index": 23,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/San_Antonio",
+      "extraction_target": "Reason: the sum of its digits",
+      "extraction_section": null,
+      "extracted_value": 11,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_sum) on stop 10 value",
+      "reason_transform": "digit_sum",
+      "reason_source_stop": 19,
+      "reason_code": "result = sum(int(d) for d in str(abs(int(722))))\nprint(result)",
+      "depends_on": [
+        19
+      ]
+    },
+    {
+      "index": 24,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Chrysler_Building",
+      "extraction_target": "the opening year listed in the infobox (field: 'Opened')",
+      "extraction_section": "infobox",
+      "extracted_value": 27,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Chrysler_Building",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "End the page-tour at an urban landmark (Chrysler Building) to reflect on retrofitting iconic buildings and the visible impact of renewables on city skylines.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        23
+      ]
+    },
+    {
+      "index": 25,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Chrysler_Building",
+      "extraction_target": "Reason: the sum of its distinct prime factors",
+      "extraction_section": null,
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (sum_prime_factors) on stop 11 value",
+      "reason_transform": "sum_prime_factors",
+      "reason_source_stop": 24,
+      "reason_code": "def prime_factors(n):\n    n = abs(int(n))\n    factors = []\n    d = 2\n    while d * d <= n:\n        while n % d == 0:\n            factors.append(d)\n            n //= d\n        d += 1\n    if n > 1: factors.append(n)\n    return factors\nresult = sum(set(prime_factors(27)))\nprint(result)",
+      "depends_on": [
+        24
+      ]
+    },
+    {
+      "index": 26,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: (8 + 178 + 27) % 10",
+      "extraction_section": null,
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "(8 + 178 + 27) % 10",
+        "expression_code": "result = (8 + 178 + 27) % 10\nprint(result)",
+        "referenced_stops": [
+          6,
+          22,
+          24
+        ]
+      },
+      "reasoning": "Compute stop: (8 + 178 + 27) % 10 = 3",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6,
+        22,
+        24
+      ]
+    }
+  ],
+  "passcode": 3,
+  "difficulty": {
+    "level": "hard",
+    "depth": 27,
+    "tool_stop_count": 13,
+    "reason_stop_count": 4,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Seek the page detailing the solar vision that changed the game—when did Mark Widmar take the helm as CEO of this pioneering company?\n\n2. There exists an article that redirects to modern manufacturing processes driven by smart technology—what is its title?\n\n3. Among oil and gas giants, one company stands out; look for the one with its roots stretching back to the last century. What was its share price on the first of July in 2016?\n\n4. Consider the number of different ways you could express that closing stock price—how many divisors does that figure have?\n\n5. A hub of financial trade in Africa lies within which suburb and city? Track down the location of the exchange known for its stock transactions.\n\n6. Ascend to new heights by finding how far in meters above sea level Sandton, Johannesburg rests.\n\n7. Look around this bustling area; how many stadiums can be found in the vicinity of Sandton?\n\n8. Combine the altitude you discovered in clue 6 with the number of stadiums from clue 7; what total do you get?\n\n9. Under the sun-kissed skies of the Middle East lies a city rising above sea level—what is its elevation near the coordinates 24°28′N 54°22′E?\n\n10. Seek the page that outlines a nation known for its low elevation compared to sea level; how high is its highest peak found in its page?\n\n11. What is the general altitude of the regions comprising this nation known for windmills and tulips?\n\n12. Nearby this lowland kingdom, how many museums can you visit?\n\n13. Take the absolute difference between the elevation of that lowland kingdom (from clue 10) and the count of museums you found in clue 12.\n\n14. Reflect on the number of ways you could find that highest elevation—how many divisors can be derived from that number you discovered in clue 10?\n\n15. In the land of the midnight sun, how many subsections fall under the section detailing the name and emblem?\n\n16. What city on the western coast of California is famous for its harbor and suburban life, now search for its coordinate values presented in the article?\n\n17. How high above sea level does this Californian coastal city stand?\n\n18. In a neighboring city to a historic port, how many museums exist near the coordinates 39.74583?\n\n19. Now journey to the place known for snow, history, and its river convergence; what coordinates can be found in its profile?\n\n20. In what year was the iconic structure located in New York City, known for its art-deco design, opened?\n\n21. How elevated is the region surrounding this majestic skyscraper found in its article?\n\n22. Check how many parks can be enjoyed nearby this grand city of culture and history.\n\n23. Combine the elevation you sourced from clue 21 with the park count derived from clue 22—what is your new value?\n\n24. What insight can you gather from the digits of the year that iconic structure was opened in clue 20? Calculate the sum of its digits.\n\n25. Finally, compute the expression: (8 + the number from clue 7 + the number from clue 23) modulo 10. The answer is a single digit, waiting for your discovery.",
+  "metadata": {
+    "theme": "From photovoltaic manufacturing to global energy markets and urban deployment — a short investigative trail linking First Solar's technology and HQ to manufacturing trends, energy finance, country scale, and city-level suitability for solar projects.",
+    "difficulty": "hard",
+    "sample_id": "sample_180",
+    "pages_crawled": 21628
+  },
+  "generated_at": "2026-03-18T20:46:38.535690+00:00"
+}

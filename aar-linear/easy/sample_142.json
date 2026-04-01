@@ -1,0 +1,136 @@
+{
+  "trail_id": "trail_d3fa8517",
+  "seed_url": "https://en.wikipedia.org/wiki/IBM",
+  "seed_title": "IBM",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/IBM",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Founded')",
+      "extraction_section": "infobox",
+      "extracted_value": 16,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "China wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/China",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start at IBM — the archetypal enterprise computing company that anchors the historical timeline of the tech industry.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/China",
+      "extraction_target": "Look up the elevation at Beijing 39°55′N 116°23′E﻿ / ﻿39.917°N 116.383°E﻿ / 39.917; 116.383_region:CN-BJ)",
+      "extraction_section": null,
+      "extracted_value": 45.24945449829102,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Beijing 39°55′N 116°23′E﻿ / ﻿39.917°N 116.383°E﻿ / 39.917; 116.383_region:CN-BJ)"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for Beijing 39°55′N 116°23′E﻿ / ﻿39.917°N 116.383°E﻿ / 39.917; 116.383_region:CN-BJ)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/China",
+      "extraction_target": "Reason: the number you get by reversing its digits",
+      "extraction_section": null,
+      "extracted_value": 54,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_reversal) on stop 1 value",
+      "reason_transform": "digit_reversal",
+      "reason_source_stop": 1,
+      "reason_code": "result = int(str(abs(int(45)))[::-1])\nprint(result)"
+    },
+    {
+      "index": 3,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: (45 + 54) % 10",
+      "extraction_section": null,
+      "extracted_value": 9,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "(45 + 54) % 10",
+        "expression_code": "result = (45 + 54) % 10\nprint(result)",
+        "referenced_stops": [
+          1,
+          2
+        ]
+      },
+      "reasoning": "Compute stop: (45 + 54) % 10 = 9",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 9,
+  "difficulty": {
+    "level": "easy",
+    "depth": 4,
+    "tool_stop_count": 1,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Seek the page titled IBM and, on that article, note the year this American multinational first opened its doors; after recording that founding year, use the page to search Wikipedia for the large East Asian nation whose capital is Beijing.  \n2. There exists a Wikipedia article for that East Asian country; within it, report how many meters above sea level the ground is at the capital city's coordinates 39.917°N, 116.383°E.  \n3. What number do you obtain by taking the elevation you found in clue 2 and reversing its digits to form a new integer?  \n4. If you now take the elevation number from clue 2 and the digit-reversed number from clue 3, compute (clue 2 + clue 3) % 10 — that computation yields a single digit (0–9).",
+  "metadata": {
+    "theme": "From enterprise computing origins to modern consumer tech and the global market that powers it",
+    "difficulty": "easy",
+    "sample_id": "sample_142",
+    "pages_crawled": 1600
+  },
+  "generated_at": "2026-03-17T08:35:19.227895+00:00"
+}

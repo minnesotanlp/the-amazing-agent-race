@@ -1,0 +1,811 @@
+{
+  "trail_id": "trail_8f2df934",
+  "seed_url": "https://en.wikipedia.org/wiki/Falbrav",
+  "seed_title": "Falbrav",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Falbrav",
+      "extraction_target": "the total number of races in Falbrav's record",
+      "extraction_section": null,
+      "extracted_value": 26,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Genoa wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Genoa",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Seed: Falbrav is the champion racehorse that anchors this trail — an Italian-bred athlete whose origins set us on a geographic and temporal route of fame and movement.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Genoa",
+      "extraction_target": "the elevation listed in the infobox (field: 'Elevation')",
+      "extraction_section": "infobox",
+      "extracted_value": 20,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Genoa",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Genoa — an Italian port city that links Falbrav's Italian roots to maritime trade and historical routes that project local fame outward.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Genoa",
+      "extraction_target": "Look up the elevation of Genoa",
+      "extraction_section": null,
+      "extracted_value": 26.36834335327148,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Genoa"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Genoa) from https://en.wikipedia.org/wiki/Genoa",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Genoa",
+      "extraction_target": "Look up the count of libraries near Genoa",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "libraries near Genoa"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of libraries near Genoa) from https://en.wikipedia.org/wiki/Genoa",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Genoa",
+      "extraction_target": "Combine the elevation of Genoa and the count of libraries near Genoa: abs(26 - 20)",
+      "extraction_section": null,
+      "extracted_value": 6,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(26.36834335327148) - int(20.0))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Genoa abs_diff count of libraries near Genoa",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2,
+        3
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Genoa",
+      "extraction_target": "Reason: the number you get by reversing its digits",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_reversal) on stop 1 value",
+      "reason_transform": "digit_reversal",
+      "reason_source_stop": 1,
+      "reason_code": "result = int(str(abs(int(20)))[::-1])\nprint(result)",
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Elton_John",
+      "extraction_target": "the number of language editions listed for the article",
+      "extraction_section": null,
+      "extracted_value": 97,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Beyonce wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Beyonce",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Elton John represents the global touring musician: a cultural figure whose career echoes the international circuits (venues, cities) that also carry sporting fame.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Elton_John",
+      "extraction_target": "Look up the Google rating of Elton John",
+      "extraction_section": null,
+      "extracted_value": 2.8,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "Elton John"
+            },
+            "expected_output": null,
+            "output_key": "place_rating"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (place_rating) derived from https://en.wikipedia.org/wiki/Elton_John",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Beyonce",
+      "extraction_target": "the number of languages listed next to the article title",
+      "extraction_section": null,
+      "extracted_value": 154,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Avenue of the Americas wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Avenue_of_the_Americas",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Beyoncé is a modern global superstar; her tours and media presence exemplify how cultural fame is distributed across places and platforms.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        7
+      ]
+    },
+    {
+      "index": 9,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Avenue_of_the_Americas",
+      "extraction_target": "Count the number of museums near Manhattan",
+      "extraction_section": null,
+      "extracted_value": 20,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "museums near Manhattan"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: count museums near Manhattan",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        8
+      ]
+    },
+    {
+      "index": 10,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Avenue_of_the_Americas",
+      "extraction_target": "Reason: the next prime number after that figure",
+      "extraction_section": null,
+      "extracted_value": 23,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (next_prime) on stop 4 value",
+      "reason_transform": "next_prime",
+      "reason_source_stop": 9,
+      "reason_code": "def next_prime(n):\n    n = abs(int(n))\n    if n < 2: return 2\n    candidate = n + 1\n    while True:\n        if all(candidate % i != 0 for i in range(2, int(candidate**0.5)+1)):\n            return candidate\n        candidate += 1\nresult = next_prime(20)\nprint(result)",
+      "depends_on": [
+        9
+      ]
+    },
+    {
+      "index": 11,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Jay-Z",
+      "extraction_target": "the number of languages the article is available in",
+      "extraction_section": null,
+      "extracted_value": 76,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Rihanna",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Jay‑Z connects music, business and media — a figure who demonstrates the intersection of cultural capital and commercial power.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        10
+      ]
+    },
+    {
+      "index": 12,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Rihanna",
+      "extraction_target": "the number of languages the article is available in (as shown at top)",
+      "extraction_section": null,
+      "extracted_value": 138,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "CBS Building wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/CBS_Building",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Rihanna brings a transnational origin (Barbados) into the story — illustrating how fame crosses countries and creates global brands.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        11
+      ]
+    },
+    {
+      "index": 13,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/CBS_Building",
+      "extraction_target": "Look up the Google Maps rating of 51 West 52nd Street \"52nd Street (Manhattan)\") Manhattan",
+      "extraction_section": null,
+      "extracted_value": 3.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "51 West 52nd Street \"52nd Street (Manhattan)\") Manhattan"
+            },
+            "expected_output": null,
+            "output_key": "place_rating"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: Google rating of 51 West 52nd Street \"52nd Street (Manhattan)\") Manhattan",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        12
+      ]
+    },
+    {
+      "index": 14,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Justin_Timberlake",
+      "extraction_target": "the number of languages the article is available in (as shown at the top)",
+      "extraction_section": null,
+      "extracted_value": 96,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Bruce_Springsteen",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Justin Timberlake is another example of a performer whose tours and media appearances illustrate the circuits that carry cultural influence.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        13
+      ]
+    },
+    {
+      "index": 15,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Bruce_Springsteen",
+      "extraction_target": "the number of languages the article is available in",
+      "extraction_section": null,
+      "extracted_value": 90,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Harry_Styles",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Springsteen evokes regional roots (American heartland) and long-running careers — a contrast to global pop superstars and a tie back toward cities and regions.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        14
+      ]
+    },
+    {
+      "index": 16,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Harry_Styles",
+      "extraction_target": "the number of languages listed at the top of the article",
+      "extraction_section": null,
+      "extracted_value": 73,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Harry_Styles",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Harry Styles represents recent-era global pop stardom and stadium touring that ties back to places and venues visited on the trail.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        15
+      ]
+    },
+    {
+      "index": 17,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Harry_Styles",
+      "extraction_target": "Reason: the sum of its distinct prime factors",
+      "extraction_section": null,
+      "extracted_value": 73,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (sum_prime_factors) on stop 10 value",
+      "reason_transform": "sum_prime_factors",
+      "reason_source_stop": 16,
+      "reason_code": "def prime_factors(n):\n    n = abs(int(n))\n    factors = []\n    d = 2\n    while d * d <= n:\n        while n % d == 0:\n            factors.append(d)\n            n //= d\n        d += 1\n    if n > 1: factors.append(n)\n    return factors\nresult = sum(set(prime_factors(73)))\nprint(result)",
+      "depends_on": [
+        16
+      ]
+    },
+    {
+      "index": 18,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Central_Intelligence_Agency",
+      "extraction_target": "the number of languages the article is available in (displayed under the title)",
+      "extraction_section": null,
+      "extracted_value": 116,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Central_Intelligence_Agency",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "The CIA represents state power and the flow of information — connecting to how narratives about fame, events and institutions circulate internationally.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        17
+      ]
+    },
+    {
+      "index": 19,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Central_Intelligence_Agency",
+      "extraction_target": "Reason: the number you get by reversing its digits",
+      "extraction_section": null,
+      "extracted_value": 611,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_reversal) on stop 11 value",
+      "reason_transform": "digit_reversal",
+      "reason_source_stop": 18,
+      "reason_code": "result = int(str(abs(int(116)))[::-1])\nprint(result)",
+      "depends_on": [
+        18
+      ]
+    },
+    {
+      "index": 20,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Republican_Party_presidential_primaries,_2016",
+      "extraction_target": "Look up the population of Italy",
+      "extraction_section": null,
+      "extracted_value": 58927633,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "countries_population",
+            "arguments": {
+              "country": "Italy"
+            },
+            "expected_output": null,
+            "output_key": "population"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: population of Italy",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        19
+      ]
+    },
+    {
+      "index": 21,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Republican_Party_presidential_primaries,_2016",
+      "extraction_target": "Reason: the number you get by reversing its digits",
+      "extraction_section": null,
+      "extracted_value": 33672985,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_reversal) on stop 12 value",
+      "reason_transform": "digit_reversal",
+      "reason_source_stop": 20,
+      "reason_code": "result = int(str(abs(int(58927633)))[::-1])\nprint(result)",
+      "depends_on": [
+        20
+      ]
+    },
+    {
+      "index": 22,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Xi_Jinping",
+      "extraction_target": "the number of languages listed at the top of the article",
+      "extraction_section": null,
+      "extracted_value": 155,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Mumbai wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Mumbai",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Xi Jinping exemplifies political leadership whose policies influence global institutions — a counterpoint to cultural power and to markets covered earlier.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        21
+      ]
+    },
+    {
+      "index": 23,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Mumbai",
+      "extraction_target": "Look up the population of Ireland",
+      "extraction_section": null,
+      "extracted_value": 69281437,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "countries_population",
+            "arguments": {
+              "country": "Ireland"
+            },
+            "expected_output": null,
+            "output_key": "population"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: population of Ireland",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        22
+      ]
+    },
+    {
+      "index": 24,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/The_Wall_Street_Journal",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Founded')",
+      "extraction_section": "infobox",
+      "extracted_value": 8,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Columbus, Ohio wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Columbus,_Ohio",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "The Wall Street Journal ties together markets, companies, and how stories about fame and power are reported — closing the loop between culture and commerce.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        23
+      ]
+    },
+    {
+      "index": 25,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Columbus,_Ohio",
+      "extraction_target": "the elevation listed in the infobox (field: 'Elevation [[3]](#cite_note-gnis-3)')",
+      "extraction_section": "infobox",
+      "extracted_value": 791,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Columbus,_Ohio",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Finish in an American regional capital (Columbus) to reflect the domestic circuits (venues, audiences, media markets) that support global fame and echo back to the seed, the racehorse's circuit-based career.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        24
+      ]
+    },
+    {
+      "index": 26,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: (26 + 20 + 138) % 10",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "(26 + 20 + 138) % 10",
+        "expression_code": "result = (26 + 20 + 138) % 10\nprint(result)",
+        "referenced_stops": [
+          2,
+          3,
+          12
+        ]
+      },
+      "reasoning": "Compute stop: (26 + 20 + 138) % 10 = 4",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2,
+        3,
+        12
+      ]
+    }
+  ],
+  "passcode": 4,
+  "difficulty": {
+    "level": "extreme",
+    "depth": 27,
+    "tool_stop_count": 8,
+    "reason_stop_count": 5,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Unearth the champion of the track, a thoroughbred named after a celestial call in Italian lore — how many races did this steed conquer?\n\n2. Amid the hills that cradle this Italian coastal gem, what is the height above sea level that it boasts?\n\n3. When the dust settles, how far does this place rise into the air, numbers drawn from the earth under your feet?\n\n4. As you explore the richness nearby, how many libraries can be found in close proximity to this storied locale?\n\n5. Your next step awaits: take the mountain height from the previous clue and the count of libraries; compute their absolute difference.\n\n6. From the figure you've just calculated, consider the beauty of its digits — what do you obtain when you reverse that number?\n\n7. Seek out the musical legend who filled the airwaves, his article reveals how many languages he shares his discourse in — can you find that number?\n\n8. How do fans perceive the musical maestro’s presence? Investigate the star rating given to him by the world.\n\n9. Now, cast your gaze to the queen of pop — how many languages are attributed to her Wikipedia entry?\n\n10. Within a vibrant city that pulsates with culture, what is the count of museums dotting the area around a famed thoroughfare named for the Americas?\n\n11. A riddle to ponder: what is the next prime number following the exploration of museums?\n\n12. As your journey continues, find another musical artist, noted for his many contributions — how many languages is his article present in?\n\n13. Next, travel to the siren of the stage whose name echoes through the ages — once more, how many languages can her article be found in?\n\n14. Now, approach the crown of iconic architecture found on the street synonymous with news — what’s the rating bestowed upon this renowned structure?\n\n15. Further along the path, another musical influencer awaits — which languages lend voice to the story of this entertainer?\n\n16. The next chapter lies with a rock icon admired far and wide — how many languages grace his article’s presence?\n\n17. Another cultural figure beckons; count the number of language editions heralded in the tale of this modern-day troubadour.\n\n18. Reflect on the distinct prime factors of the last count; what is their sum?\n\n19. In the shadows of authority lies a name known worldwide — how many languages serve as vessels for this powerful agency's article?\n\n20. With one last twist, reverse the digits of your latest discovery — what new number emerges?\n\n21. Venturing back to not just the headlines but the heart of the European land, what is the populace residing in this Mediterranean nation?\n\n22. As you explore further, twist the digits of Italy's population to unveil their hidden counterpart.\n\n23. In the realm of political lore, another significant figure awaits your inquiry — how many languages accompany his profile?\n\n24. Now, shift to an urban jewel in the east — how many call this emerald isle home?\n\n25. Finally, as you reflect on the journal that captures the pulse of finance, what year saw its very inception?\n\n26. Consider again the height from clue 2 as you contemplate this last city — how high does it stand?\n\n27. Compute the conclusion with these figures: (clue 3 + clue 4 + clue 13) mod 10. What single digit does your journey reveal?",
+  "metadata": {
+    "theme": "From racetracks to global stages — start with the Italian champion Falbrav and follow a trail that traces how places, people, media and markets carry fame and power around the world.",
+    "difficulty": "extreme",
+    "sample_id": "sample_208",
+    "pages_crawled": 27734
+  },
+  "generated_at": "2026-03-20T08:14:31.095457+00:00"
+}

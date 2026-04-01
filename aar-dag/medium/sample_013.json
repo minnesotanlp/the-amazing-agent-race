@@ -1,0 +1,549 @@
+{
+  "trail_id": "trail_c7df7f5a",
+  "seed_url": "https://en.wikipedia.org/wiki/Southern_Rhodesia_Liberal_Party",
+  "seed_title": "Southern Rhodesia Liberal Party",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Southern_Rhodesia_Liberal_Party",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Founded')",
+      "extraction_section": "infobox",
+      "extracted_value": 1943,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Southern_Rhodesia_Liberal_Party",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Seed: a small Rhodesian party that helps locate the local political actors and timeframe that feed into later institutional shifts.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Southern_Rhodesia_Liberal_Party",
+      "extraction_target": "Reason: the count of leap years between that year and 2000",
+      "extraction_section": null,
+      "extracted_value": 15,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (leap_years_to_2000) on stop 0 value",
+      "reason_transform": "leap_years_to_2000",
+      "reason_source_stop": 0,
+      "reason_code": "import calendar\ny = abs(int(1943))\nlo, hi = min(y, 2000), max(y, 2000)\nresult = sum(1 for yr in range(lo, hi+1) if calendar.isleap(yr))\nprint(result)",
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Political_history_of_Zimbabwe",
+      "extraction_target": "the number of top-level sections shown in the Contents",
+      "extraction_section": "Contents",
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Merger (politics) wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Merger_(politics)",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Provides the broad timeline and major events that contextualize party activity, unilateral declarations, and constitutional change.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Political_history_of_Zimbabwe",
+      "extraction_target": "Look up the elevation of Political history of Zimbabwe",
+      "extraction_section": null,
+      "extracted_value": 1243.324096679688,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Political history of Zimbabwe"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Political history of Zimbabwe) from https://en.wikipedia.org/wiki/Political_history_of_Zimbabwe",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Political_history_of_Zimbabwe",
+      "extraction_target": "Look up the Google rating of Political history of Zimbabwe",
+      "extraction_section": null,
+      "extracted_value": 4.5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "Political history of Zimbabwe"
+            },
+            "expected_output": null,
+            "output_key": "place_rating"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (Google rating of Political history of Zimbabwe) from https://en.wikipedia.org/wiki/Political_history_of_Zimbabwe",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Political_history_of_Zimbabwe",
+      "extraction_target": "Combine the elevation of Political history of Zimbabwe and the Google rating of Political history of Zimbabwe: abs(1243 - 4)",
+      "extraction_section": null,
+      "extracted_value": 1239,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(1243.324096679688) - int(4.5))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Political history of Zimbabwe abs_diff Google rating of Political history of Zimbabwe",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3,
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Merger_(politics)",
+      "extraction_target": "the number of provincial subsections listed under Canada in the Notable municipal mergers subsection",
+      "extraction_section": "Contents",
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Prime Minister of Rhodesia wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Prime_Minister_of_Rhodesia",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Explains how parties and political groupings combine or dissolve — a mechanism relevant to the fate of Rhodesian parties and alliances.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Prime_Minister_of_Rhodesia",
+      "extraction_target": "formation date of the office of Prime Minister of Rhodesia",
+      "extraction_section": null,
+      "extracted_value": "1 October 1923",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Governor_of_Southern_Rhodesia",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "The prime ministership was central to Rhodesia's self-government and later assertions of independence; extract office dates and occupants to map political power.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Governor_of_Southern_Rhodesia",
+      "extraction_target": "Calculate the number of days between 1923-10-01 and 2026-03-15",
+      "extraction_section": null,
+      "extracted_value": 37421,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "from datetime import date\nd1 = date.fromisoformat('1923-10-01')\nd2 = date.fromisoformat('2026-03-15')\nresult = abs((d2 - d1).days)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "days"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: date computation 1923-10-01 to 2026-03-15 (pinned)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        7
+      ]
+    },
+    {
+      "index": 9,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Queen_of_Rhodesia",
+      "extraction_target": "formation date of the title 'Queen of Rhodesia' as given in the infobox",
+      "extraction_section": null,
+      "extracted_value": "11 November 1965",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/President_of_Rhodesia",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Shows the symbolic link to the Crown and how that title was used (or contested) during periods of constitutional ambiguity.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        8
+      ]
+    },
+    {
+      "index": 10,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/President_of_Rhodesia",
+      "extraction_target": "Convert 1943°C to a Fahrenheit-scale offset",
+      "extraction_section": null,
+      "extracted_value": 3497,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "# Convert celsius to fahrenheit_offset\nvalue = 1943.0\nconverted = value * 1.8\nresult = int(converted)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "converted"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: convert 1943 celsius to fahrenheit_offset",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        9
+      ]
+    },
+    {
+      "index": 11,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/President_of_Rhodesia",
+      "extraction_target": "Reason: the largest prime factor of that figure",
+      "extraction_section": null,
+      "extracted_value": 269,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (largest_prime_factor) on stop 6 value",
+      "reason_transform": "largest_prime_factor",
+      "reason_source_stop": 10,
+      "reason_code": "def largest_prime_factor(n):\n    n = abs(int(n))\n    if n <= 1: return n\n    d = 2\n    while d * d <= n:\n        while n % d == 0: n //= d\n        d += 1\n    return n\nresult = largest_prime_factor(3497)\nprint(result)",
+      "depends_on": [
+        10
+      ]
+    },
+    {
+      "index": 12,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Interrex",
+      "extraction_target": "the duration in days of rule for each interrex",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Interrex",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Introduces the idea of temporary holders of power in transitions — a comparative concept for Rhodesian interim arrangements.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        11
+      ]
+    },
+    {
+      "index": 13,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Interrex",
+      "extraction_target": "Reason: the sum of its digits",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_sum) on stop 7 value",
+      "reason_transform": "digit_sum",
+      "reason_source_stop": 12,
+      "reason_code": "result = sum(int(d) for d in str(abs(int(5))))\nprint(result)",
+      "depends_on": [
+        12
+      ]
+    },
+    {
+      "index": 14,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Princeps_senatus",
+      "extraction_target": "the date range shown for the Roman Republic in the infobox",
+      "extraction_section": null,
+      "extracted_value": "509 – 27 BC",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Promagistrate",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A classical example of a titular/ceremonial senior office used to compare how titles can be leveraged in constitutional moments.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        13
+      ]
+    },
+    {
+      "index": 15,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Promagistrate",
+      "extraction_target": "the number of languages listed at the top of the article",
+      "extraction_section": null,
+      "extracted_value": 23,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Derogation wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Derogation",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Another comparative institutional form (delegated/regent-like authority) relevant when studying how Rhodesian executives claimed or delegated powers.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        14
+      ]
+    },
+    {
+      "index": 16,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Derogation",
+      "extraction_target": "the English meaning given for the legal maxim 'lex posterior derogat priori'",
+      "extraction_section": "Definitions",
+      "extracted_value": "a subsequent law derogates the previous one",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Derogation",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Explains the legal concept of setting aside or modifying laws — useful for understanding the constitutional maneuvers (e.g., UDI) that underpinned Rhodesia's break with Britain.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        15
+      ]
+    },
+    {
+      "index": 17,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: abs(269 - 5) % 10",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "abs(269 - 5) % 10",
+        "expression_code": "result = abs(269 - 5) % 10\nprint(result)",
+        "referenced_stops": [
+          11,
+          13
+        ]
+      },
+      "reasoning": "Compute stop: abs(269 - 5) % 10 = 4",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        11,
+        13
+      ]
+    }
+  ],
+  "passcode": 4,
+  "difficulty": {
+    "level": "medium",
+    "depth": 18,
+    "tool_stop_count": 5,
+    "reason_stop_count": 3,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Unearth the political entity born in the early years of the 20th century; when did this liberal faction come into existence? \n\n2. As you traverse time, count how many leap years occurred from its founding until the turn of the millennium — what total do you reach? \n\n3. Journey to a place where the chronicles of governance in the nation of Zimbabwe unfold; how many major sections are organized in its contents? \n\n4. Seek the height above sea level for that same place where political past beckons — how many meters does it rise? \n\n5. Discover what ratings visitors give to that historical account; what number reflects their collective judgment? \n\n6. Combine the elevation you uncovered in clue 4 with the Google rating from clue 5; what is the absolute difference between the two? \n\n7. Navigate to a page that discusses the joining of political entities, specifically looking under Canada — how many provincial subdivisions are detailed therein? \n\n8. Track the historical formation date of an office that commanded leadership over Rhodesia; when was this position officially inaugurated? \n\n9. In your delving into governance, compute the number of days between the date this office was formed and another significant date, March 15, 2026. \n\n10. Delve into the lineage of a title once held in Rhodesia; when did the designation of Queen find its inception in official records? \n\n11. Transform the year specified by an earlier clue into a different scale; what is its value when converted from Celsius to Fahrenheit? \n\n12. Now, identify the largest prime factor of the number you discovered in clue 11; what is that integer? \n\n13. Continue your quest to a realm governed by temporary rulers; how long did each interrex reign in days? \n\n14. Reflect on the digits of your finding; what is the sum of the digits in the response from clue 13? \n\n15. Unravel the historical date range for a prominent title of the Roman Republic; what years does this span? \n\n16. Traverse to the page where bureaucratic titles abound; how many languages are referenced at the top of the article? \n\n17. Encounter the phrase 'lex posterior derogat priori'— what is its English interpretation revealed in the annals of law? \n\n18. Finally, compute the absolute difference between the values from clues 12 and 14, then take the result's modulo 10; what does this yield? The result is a single digit (0-9).",
+  "metadata": {
+    "theme": "From colonial party politics to contested offices: tracing Rhodesia's shifting governance (party, crown, governor, prime minister, republic) and the legal/constitutional concepts that framed those transitions.",
+    "difficulty": "medium",
+    "sample_id": "sample_013",
+    "pages_crawled": 1589,
+    "source": "trail_puzzles_v2"
+  },
+  "generated_at": "2026-03-15T14:19:16.487419+00:00"
+}

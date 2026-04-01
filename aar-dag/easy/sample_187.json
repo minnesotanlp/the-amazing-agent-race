@@ -1,0 +1,305 @@
+{
+  "trail_id": "trail_ee356166",
+  "seed_url": "https://en.wikipedia.org/wiki/LVMH",
+  "seed_title": "LVMH",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/LVMH",
+      "extraction_target": "the headquarters address given in the infobox",
+      "extraction_section": null,
+      "extracted_value": "22 Avenue Montaigne Paris, France",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/LVMH",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Seed: LVMH is the luxury conglomerate whose headquarters and corporate identity set the trail's starting point.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/LVMH",
+      "extraction_target": "Look up the elevation of 22 Avenue Montaigne Paris, France",
+      "extraction_section": null,
+      "extracted_value": 32.81186294555664,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "22 Avenue Montaigne Paris, France"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of 22 Avenue Montaigne Paris, France) from https://en.wikipedia.org/wiki/LVMH",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/LVMH",
+      "extraction_target": "Look up the count of museums near 22 Avenue Montaigne Paris, France",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "museums near 22 Avenue Montaigne Paris, France"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of museums near 22 Avenue Montaigne Paris, France) from https://en.wikipedia.org/wiki/LVMH",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/LVMH",
+      "extraction_target": "Combine the elevation of 22 Avenue Montaigne Paris, France and the count of museums near 22 Avenue Montaigne Paris, France: abs(32 - 20)",
+      "extraction_section": null,
+      "extracted_value": 12,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(32.81186294555664) - int(20.0))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of 22 Avenue Montaigne Paris, France abs_diff count of museums near 22 Avenue Montaigne Paris, France",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1,
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/LVMH",
+      "extraction_target": "Count stadiums near 22 Avenue Montaigne Paris, France",
+      "extraction_section": null,
+      "extracted_value": 11,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "stadiums near 22 Avenue Montaigne Paris, France"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (nearby_poi) derived from https://en.wikipedia.org/wiki/LVMH",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/LVMH",
+      "extraction_target": "Reason: the number of vowels in that name",
+      "extraction_section": null,
+      "extracted_value": 12,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (vowel_count) on stop 0 value",
+      "reason_transform": "vowel_count",
+      "reason_source_stop": 0,
+      "reason_code": "result = sum(1 for c in \"22 Avenue Montaigne Paris, France\".lower() if c in 'aeiou')\nprint(result)",
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Jewellery",
+      "extraction_target": "the number of subsections listed under 'Materials and methods' in the Contents",
+      "extraction_section": "Materials and methods",
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Milan wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Milan",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Craft stop: luxury jewellery represents a core product category for LVMH brands and illustrates the artisanal side of the business.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Milan",
+      "extraction_target": "the population listed in the infobox (field: '• [Metro](/wiki/Metropolitan_area \"Metropolitan area\") [[3]](#cite_note-CityPopulation.de-3)')",
+      "extraction_section": "infobox",
+      "extracted_value": 6150000,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Milan",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Fashion-capital stop: Milan is a major European center for fashion where LVMH brands operate and show collections.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: (12 + 3) % 10",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "(12 + 3) % 10",
+        "expression_code": "result = (12 + 3) % 10\nprint(result)",
+        "referenced_stops": [
+          5,
+          6
+        ]
+      },
+      "reasoning": "Compute stop: (12 + 3) % 10 = 5",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5,
+        6
+      ]
+    }
+  ],
+  "passcode": 5,
+  "difficulty": {
+    "level": "easy",
+    "depth": 9,
+    "tool_stop_count": 4,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Track down the empire of luxury goods that began its ascent in France — where does its heart currently reside?\n\n2. How high does the ground rise at the address where elegance meets the Avenue, standing tall in Paris?\n\n3. Count the number of museums that fill the cultural landscape surrounding the emblem of opulence on that renowned Avenue.\n\n4. What is the absolute difference between the height you determined at the prestigious address and the number of museums just counted?\n\n5. Seek the count of stadiums that lie in proximity to this influential spot at the heart of fashion.\n\n6. If you uncover the number of vowels found in the name of the luxury behemoth, what will that be?\n\n7. A page dedicated to adornments shares insights — how many subsections does it possess under the 'Materials and methods' heading found in its table of contents?\n\n8. This city, known for its design and fashion, boasts a lively population; can you discover how many inhabit its metropolitan area?\n\n9. To conclude, combine the results from clues 6 and 7, and compute the sum modulo 10 — what single digit emerges from this elegant equation?",
+  "metadata": {
+    "theme": "Following LVMH from its corporate origins through the craft and capitals of luxury to its global markets and a market comparator — linking headquarters, craftsmanship, fashion hubs, travel reach, and stock context.",
+    "difficulty": "easy",
+    "sample_id": "sample_187",
+    "pages_crawled": 4219
+  },
+  "generated_at": "2026-03-17T12:32:46.102930+00:00"
+}

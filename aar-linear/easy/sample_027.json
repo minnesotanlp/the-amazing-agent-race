@@ -1,0 +1,130 @@
+{
+  "trail_id": "trail_d4854a68",
+  "seed_url": "https://en.wikipedia.org/wiki/Francisco_Pardo",
+  "seed_title": "Francisco Pardo",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Francisco_Pardo",
+      "extraction_target": "ordinal number indicating which Secretary of State for Defence Francisco Pardo was",
+      "extraction_section": null,
+      "extracted_value": 8,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Stalwarts (politics) wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Stalwarts_(politics)",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start with Francisco Pardo (a modern politician) to anchor the trail in a contemporary political career; his birth date will serve as a reference point for timeline comparisons with 19th‑century U.S. political machines.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Stalwarts_(politics)",
+      "extraction_target": "Convert 8 meters to yards",
+      "extraction_section": null,
+      "extracted_value": 8,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "# Convert meters to yards\nvalue = 8.0\nconverted = value * 1.09361\nresult = int(converted)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "converted"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: convert 8 meters to yards",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Stalwarts_(politics)",
+      "extraction_target": "Reason: the sum of its distinct prime factors",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (sum_prime_factors) on stop 1 value",
+      "reason_transform": "sum_prime_factors",
+      "reason_source_stop": 1,
+      "reason_code": "def prime_factors(n):\n    n = abs(int(n))\n    factors = []\n    d = 2\n    while d * d <= n:\n        while n % d == 0:\n            factors.append(d)\n            n //= d\n        d += 1\n    if n > 1: factors.append(n)\n    return factors\nresult = sum(set(prime_factors(8)))\nprint(result)"
+    },
+    {
+      "index": 3,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: abs(8 - 8) % 10",
+      "extraction_section": null,
+      "extracted_value": 0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "abs(8 - 8) % 10",
+        "expression_code": "result = abs(8 - 8) % 10\nprint(result)",
+        "referenced_stops": [
+          0,
+          1,
+          2
+        ]
+      },
+      "reasoning": "Compute stop: abs(8 - 8) % 10 = 0",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 0,
+  "difficulty": {
+    "level": "easy",
+    "depth": 4,
+    "tool_stop_count": 1,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "Here is the riddle with the corrected clue:\n\n1. There exists a page about a political figure who served as a prominent Spanish military officer and held a high office in government; on that article, which ordinal number marks his position among the holders of the office translated as Secretary of State for Defence?\n\n2. Seek the Gilded‑Age faction of a dominant party famed for defending patronage and machine rule; on that page, if you convert eight metres into yards, what whole number of yards do you get?\n\n3. What is the sum of the distinct prime factors of the whole number you obtained in clue 2?\n\n4. In the end, compute the absolute difference between clue 1 and clue 2, then take that result modulo 10; the result you report should be a single digit (0–9).",
+  "metadata": {
+    "theme": "Tracing political patronage and reform: from a contemporary regional politician (Francisco Pardo) back to 19th‑century U.S. patronage debates (the Spoils System and the Stalwart faction). The trail compares dates and durations to show how debates about appointments and party machines span eras and geographies.",
+    "difficulty": "easy",
+    "sample_id": "sample_027",
+    "pages_crawled": 1270,
+    "source": "trail_puzzles_v2"
+  },
+  "generated_at": "2026-03-15T12:28:22.765027+00:00"
+}

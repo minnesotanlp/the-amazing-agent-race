@@ -1,0 +1,151 @@
+{
+  "trail_id": "trail_3e7b3dec",
+  "seed_url": "https://en.wikipedia.org/wiki/Book_TV",
+  "seed_title": "Book TV",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Book_TV",
+      "extraction_target": "the time Book TV airs each week (start and end times)",
+      "extraction_section": null,
+      "extracted_value": "8 a.m. Eastern Time Sunday to 8 a.m. Eastern Time Monday",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Television wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Television",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Seed: Book TV is a C-SPAN program devoted to long-form nonfiction author interviews — the starting point for exploring television book programming and where it fits in the media landscape.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Television",
+      "extraction_target": "the number of languages in which the article is available",
+      "extraction_section": null,
+      "extracted_value": 207,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Yale University wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Yale_University",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Context: the Television article explains the medium's history and reach — providing context for why televised book programs like Book TV exist and how TV shapes audience size.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Yale_University",
+      "extraction_target": "Count the number of parks near New Haven",
+      "extraction_section": null,
+      "extracted_value": 20,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "parks near New Haven"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: count parks near New Haven",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 3,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Yale_University",
+      "extraction_target": "Reason: the next prime number after that figure",
+      "extraction_section": null,
+      "extracted_value": 23,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (next_prime) on stop 2 value",
+      "reason_transform": "next_prime",
+      "reason_source_stop": 2,
+      "reason_code": "def next_prime(n):\n    n = abs(int(n))\n    if n < 2: return 2\n    candidate = n + 1\n    while True:\n        if all(candidate % i != 0 for i in range(2, int(candidate**0.5)+1)):\n            return candidate\n        candidate += 1\nresult = next_prime(20)\nprint(result)"
+    },
+    {
+      "index": 4,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: digital_root(20 + 23)",
+      "extraction_section": null,
+      "extracted_value": 7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "digital_root(20 + 23)",
+        "expression_code": "def digital_root(n):\n    n = abs(int(n))\n    return n if n == 0 else ((n - 1) % 9) + 1\nresult = digital_root(20 + 23)\nprint(result)",
+        "referenced_stops": [
+          2,
+          3
+        ]
+      },
+      "reasoning": "Compute stop: digital_root(20 + 23) = 7",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 7,
+  "difficulty": {
+    "level": "easy",
+    "depth": 5,
+    "tool_stop_count": 1,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Seek the page titled Book TV and note the weekly block when the program runs; record the start and end times the article gives for that Saturday–Sunday airing. This time window anchors the public-broadcasting side of our trail.\n\n2. There exists an article whose opening line defines the subject as \"a medium for transmitting moving images and sound;\" on that entry, discover how many language editions present the page and write down that count. That figure gestures at the global reach of mass media compared with niche cultural programming.\n\n3. How many parks can you find near the coastal Connecticut city that hosts the private university described earlier, as revealed by counting nearby parks in a local places search? Tally the parks to capture one measure of the town’s cultural green-space density around its campus.\n\n4. If you take the park count obtained above, determine the next prime number greater than that count; use that prime as the transformed result for the university-town leg of the hunt. This step converts raw local quantity into a more enigmatic number to carry forward.\n\n5. The final calculation, which combines the numeric discoveries from the last two clues, is explicit: compute the digital root of (clue 3 + clue 4). Perform that arithmetic using the numeric values you obtained for clue 3 and clue 4, and report the single-digit result (0–9) as the treasure at the end of the trail.",
+  "metadata": {
+    "theme": "Tracing Book TV from its program roots into the media ecosystem and the local cultural places that host book events — comparing nonprofit programming, corporate media scale, and the cultural density of university towns.",
+    "difficulty": "easy",
+    "sample_id": "sample_219",
+    "pages_crawled": 5517
+  },
+  "generated_at": "2026-03-21T04:10:24.368779+00:00"
+}

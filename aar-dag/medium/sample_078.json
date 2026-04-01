@@ -1,0 +1,396 @@
+{
+  "trail_id": "trail_e764a836",
+  "seed_url": "https://en.wikipedia.org/wiki/Line_11_(Tianjin_Metro)",
+  "seed_title": "Line 11 (Tianjin Metro)",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Line_11_(Tianjin_Metro)",
+      "extraction_target": "the number of stations in operation",
+      "extraction_section": null,
+      "extracted_value": 21,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Line_11_(Tianjin_Metro)",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Seed stop — Line 11 anchors the trail in Tianjin's metro network and gives the local technical/operational baseline.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Line_11_(Tianjin_Metro)",
+      "extraction_target": "Reason: the next prime number after that figure",
+      "extraction_section": null,
+      "extracted_value": 23,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (next_prime) on stop 0 value",
+      "reason_transform": "next_prime",
+      "reason_source_stop": 0,
+      "reason_code": "def next_prime(n):\n    n = abs(int(n))\n    if n < 2: return 2\n    candidate = n + 1\n    while True:\n        if all(candidate % i != 0 for i in range(2, int(candidate**0.5)+1)):\n            return candidate\n        candidate += 1\nresult = next_prime(21)\nprint(result)",
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Tianjin_railway_station",
+      "extraction_target": "the year Tianjin railway station was opened",
+      "extraction_section": null,
+      "extracted_value": "1888",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Rapid transit track gauge wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Rapid_transit_track_gauge",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Shows Tianjin's main rail hub and spatial relationship to the metro — useful for comparing urban rail connectivity.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Tianjin_railway_station",
+      "extraction_target": "Look up the elevation of Tianjin railway station",
+      "extraction_section": null,
+      "extracted_value": 3.699331521987915,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Tianjin railway station"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Tianjin railway station) from https://en.wikipedia.org/wiki/Tianjin_railway_station",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Tianjin_railway_station",
+      "extraction_target": "Look up the Google rating of Tianjin railway station",
+      "extraction_section": null,
+      "extracted_value": 4.6,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "Tianjin railway station"
+            },
+            "expected_output": null,
+            "output_key": "place_rating"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (Google rating of Tianjin railway station) from https://en.wikipedia.org/wiki/Tianjin_railway_station",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Tianjin_railway_station",
+      "extraction_target": "Combine the elevation of Tianjin railway station and the Google rating of Tianjin railway station: (3 + 4)",
+      "extraction_section": null,
+      "extracted_value": 7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(3.699331521987915) + int(4.6)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Tianjin railway station add Google rating of Tianjin railway station",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3,
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Rapid_transit_track_gauge",
+      "extraction_target": "the track gauge used by the vast majority of rapid transit systems",
+      "extraction_section": null,
+      "extracted_value": "1,435 mm (4 ft 8+1⁄2 in) standard gauge",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/4_ft_6_in_gauge_railway",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Technical stop explaining which track gauges metros use — connects Line 11 to broader engineering standards.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/4_ft_6_in_gauge_railway",
+      "extraction_target": "Convert 21 meters to yards",
+      "extraction_section": null,
+      "extracted_value": 22,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "# Convert meters to yards\nvalue = 21.0\nconverted = value * 1.09361\nresult = int(converted)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "converted"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: convert 21 meters to yards",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/4_ft_6_in_gauge_railway",
+      "extraction_target": "Reason: the next prime number after that figure",
+      "extraction_section": null,
+      "extracted_value": 23,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (next_prime) on stop 3 value",
+      "reason_transform": "next_prime",
+      "reason_source_stop": 7,
+      "reason_code": "def next_prime(n):\n    n = abs(int(n))\n    if n < 2: return 2\n    candidate = n + 1\n    while True:\n        if all(candidate % i != 0 for i in range(2, int(candidate**0.5)+1)):\n            return candidate\n        candidate += 1\nresult = next_prime(22)\nprint(result)",
+      "depends_on": [
+        7
+      ]
+    },
+    {
+      "index": 9,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/3_ft_6_in_gauge_railways",
+      "extraction_target": "the railway track gauge value shown in the article header (in centimetres)",
+      "extraction_section": null,
+      "extracted_value": 106.7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Niçard wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Ni%C3%A7ard",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "An example of a widely used narrow gauge — provides international case studies to contrast with standard metro gauges.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        8
+      ]
+    },
+    {
+      "index": 10,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Ni%C3%A7ard",
+      "extraction_target": "Count the number of parks near Niçard",
+      "extraction_section": null,
+      "extracted_value": 20,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "parks near Niçard"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: count parks near Niçard",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        9
+      ]
+    },
+    {
+      "index": 11,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: abs(23 - 4) % 10",
+      "extraction_section": null,
+      "extracted_value": 9,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "abs(23 - 4) % 10",
+        "expression_code": "result = abs(23 - 4) % 10\nprint(result)",
+        "referenced_stops": [
+          1,
+          4,
+          7,
+          9
+        ]
+      },
+      "reasoning": "Compute stop: abs(23 - 4) % 10 = 9",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1,
+        4,
+        7,
+        9
+      ]
+    }
+  ],
+  "passcode": 9,
+  "difficulty": {
+    "level": "medium",
+    "depth": 12,
+    "tool_stop_count": 5,
+    "reason_stop_count": 2,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Seek the urban transit that spans across the bustling city of Tianjin; how many stations operate along this line, connecting its denizens to their destinations?\n\n2. From the number you just uncovered, identify the next prime sentinel that stands in waiting.\n\n3. A hub of journeys awaits at a certain railway nexus in Tianjin. In what year did this gateway to travel first welcome its passengers?\n\n4. What is the height, in meters, of the ground beneath the major railway node you just explored?\n\n5. Seek the approval rating travelers have for this transportation hub; what star rating do they bestow upon it?\n\n6. Combine the altitude you found in clue 4 with the star rating from clue 5. What total emerges from this union?\n\n7. Seek the article that discusses the tracks which allow most rapid urban transit to glide smoothly; what gauge do these trails commonly share?\n\n8. Transform 21 meters into yards for an enlightening conversion; what figure do you arrive at?\n\n9. After converting, can you find the next prime number which follows the value you have just derived?\n\n10. In the text mentioning the narrow gauge tracks, there lies a value in centimeters at the header of the article; what is this measurement?\n\n11. Just beyond this described location, there are hidden green spaces; how many parks can be found near the place known for its Niçard naming?\n\n12. Now, compute the absolute difference between the values you've gathered: take the result from clue 2, subtract that from the one found in clue 10, and apply modulo 10 to your answer. What single digit emerges from this calculation?",
+  "metadata": {
+    "theme": "From a single Tianjin metro line to the global story of rail gauges and urban transport: trace Line 11 in its local context, then compare technical track gauges and examples worldwide using geographic and conversion tools.",
+    "difficulty": "medium",
+    "sample_id": "sample_078",
+    "pages_crawled": 3547
+  },
+  "generated_at": "2026-03-16T14:16:16.143497+00:00"
+}

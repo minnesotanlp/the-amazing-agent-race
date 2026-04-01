@@ -1,0 +1,948 @@
+{
+  "trail_id": "trail_c26ad110",
+  "seed_url": "https://en.wikipedia.org/wiki/Pennsylvania_House_of_Representatives,_District_22",
+  "seed_title": "Pennsylvania House of Representatives, District 22",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Pennsylvania_House_of_Representatives,_District_22",
+      "extraction_target": "number of Allentown wards (full or part) included in the district as listed",
+      "extraction_section": "District profile",
+      "extracted_value": 11,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/2022_Pennsylvania_House_of_Representatives_election",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start at the local level: District 22 is our anchor — the constituency whose politics and outcomes we'll follow outward.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/2022_Pennsylvania_House_of_Representatives_election",
+      "extraction_target": "the number of seats held by Democrats after the election",
+      "extraction_section": null,
+      "extracted_value": 102,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/2024_Pennsylvania_House_of_Representatives_election",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Recent state-level election context helps explain the district's recent political shifts and party control.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/2022_Pennsylvania_House_of_Representatives_election",
+      "extraction_target": "Look up the elevation of 2022 Pennsylvania House of Representatives election",
+      "extraction_section": null,
+      "extracted_value": 176.6181335449219,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "2022 Pennsylvania House of Representatives election"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (elevation) derived from https://en.wikipedia.org/wiki/2022_Pennsylvania_House_of_Representatives_election",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/2024_Pennsylvania_House_of_Representatives_election",
+      "extraction_target": "Convert 102 meters to yards",
+      "extraction_section": null,
+      "extracted_value": 111,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "# Convert meters to yards\nvalue = 102.0\nconverted = value * 1.09361\nresult = int(converted)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "converted"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: convert 102 meters to yards",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/2024_Pennsylvania_House_of_Representatives_election",
+      "extraction_target": "Reason: the number of 1-bits in its binary representation",
+      "extraction_section": null,
+      "extracted_value": 6,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (binary_1bit_count) on stop 2 value",
+      "reason_transform": "binary_1bit_count",
+      "reason_source_stop": 3,
+      "reason_code": "result = bin(abs(int(111))).count('1')\nprint(result)",
+      "depends_on": [
+        3
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Republican_Party_(US)",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Founded')",
+      "extraction_section": "infobox",
+      "extracted_value": 20,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Democratic Party (US) wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Democratic_Party_(US)",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "One of the major parties competing in the district — understanding party positions and organization frames local campaigns.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Democratic_Party_(US)",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Founded')",
+      "extraction_section": "infobox",
+      "extracted_value": 8,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Elections_in_the_United_States",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "The opposing major party — contrasting platforms and structure helps explain campaign priorities in the district.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Elections_in_the_United_States",
+      "extraction_target": "the number of subsections listed under Criticism and concerns in the table of contents",
+      "extraction_section": "Criticism and concerns",
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Elections_in_the_United_States",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Places the district contest within the broader mechanics of U.S. and state elections (timing, rules, cycles).",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Elections_in_the_United_States",
+      "extraction_target": "Look up the elevation of Elections in the United States",
+      "extraction_section": null,
+      "extracted_value": 3236.2353515625,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Elections in the United States"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Elections in the United States) from https://en.wikipedia.org/wiki/Elections_in_the_United_States",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        7
+      ]
+    },
+    {
+      "index": 9,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Elections_in_the_United_States",
+      "extraction_target": "Look up the count of universities near Elections in the United States",
+      "extraction_section": null,
+      "extracted_value": 18.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "universities near Elections in the United States"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of universities near Elections in the United States) from https://en.wikipedia.org/wiki/Elections_in_the_United_States",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        7
+      ]
+    },
+    {
+      "index": 10,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Elections_in_the_United_States",
+      "extraction_target": "Combine the elevation of Elections in the United States and the count of universities near Elections in the United States: abs(3236 - 18)",
+      "extraction_section": null,
+      "extracted_value": 3218,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(3236.2353515625) - int(18.0))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Elections in the United States abs_diff count of universities near Elections in the United States",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        8,
+        9
+      ]
+    },
+    {
+      "index": 11,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Elections_in_the_United_States",
+      "extraction_target": "Reason: the sum of its distinct prime factors",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (sum_prime_factors) on stop 5 value",
+      "reason_transform": "sum_prime_factors",
+      "reason_source_stop": 7,
+      "reason_code": "def prime_factors(n):\n    n = abs(int(n))\n    factors = []\n    d = 2\n    while d * d <= n:\n        while n % d == 0:\n            factors.append(d)\n            n //= d\n        d += 1\n    if n > 1: factors.append(n)\n    return factors\nresult = sum(set(prime_factors(4)))\nprint(result)",
+      "depends_on": [
+        7
+      ]
+    },
+    {
+      "index": 12,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Southeastern_Pennsylvania",
+      "extraction_target": "the geographic coordinates listed for the Philadelphia metropolitan area (degrees and decimals)",
+      "extraction_section": null,
+      "extracted_value": "39°52′37″N 75°19′23″W / 39.877°N 75.323°W",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Delaware Valley wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Delaware_Valley",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "District 22 sits in the broader southeastern Pennsylvania region — regional demographics and economics shape local politics.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        11
+      ]
+    },
+    {
+      "index": 13,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Delaware_Valley",
+      "extraction_target": "the area listed in the infobox (field: '• [Urban](/wiki/Urban_area \"Urban area\")')",
+      "extraction_section": "infobox",
+      "extracted_value": 5441567,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Pittsburgh Steelers wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Pittsburgh_Steelers",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "The Delaware Valley (Greater Philadelphia region) overlaps Southeastern PA; its urban-suburban makeup influences voting patterns and policy concerns.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        12
+      ]
+    },
+    {
+      "index": 14,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Delaware_Valley",
+      "extraction_target": "Look up the elevation of Delaware Valley",
+      "extraction_section": null,
+      "extracted_value": 14.22876834869385,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Delaware Valley"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Delaware Valley) from https://en.wikipedia.org/wiki/Delaware_Valley",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        13
+      ]
+    },
+    {
+      "index": 15,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Delaware_Valley",
+      "extraction_target": "Look up the count of hospitals near Delaware Valley",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "hospitals near Delaware Valley"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of hospitals near Delaware Valley) from https://en.wikipedia.org/wiki/Delaware_Valley",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        13
+      ]
+    },
+    {
+      "index": 16,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Delaware_Valley",
+      "extraction_target": "Combine the elevation of Delaware Valley and the count of hospitals near Delaware Valley: (14 + 20)",
+      "extraction_section": null,
+      "extracted_value": 34,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(14.22876834869385) + int(20.0)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Delaware Valley add count of hospitals near Delaware Valley",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        14,
+        15
+      ]
+    },
+    {
+      "index": 17,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Pittsburgh_Steelers",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Founded')",
+      "extraction_section": "infobox",
+      "extracted_value": 8,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Pittsburgh_Steelers",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Sports franchises are cultural and economic anchors in Pennsylvania; they illustrate regional identity and economic activity that feed into politics.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        16
+      ]
+    },
+    {
+      "index": 18,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Pittsburgh_Steelers",
+      "extraction_target": "Reason: the sum of its distinct prime factors",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (sum_prime_factors) on stop 8 value",
+      "reason_transform": "sum_prime_factors",
+      "reason_source_stop": 17,
+      "reason_code": "def prime_factors(n):\n    n = abs(int(n))\n    factors = []\n    d = 2\n    while d * d <= n:\n        while n % d == 0:\n            factors.append(d)\n            n //= d\n        d += 1\n    if n > 1: factors.append(n)\n    return factors\nresult = sum(set(prime_factors(8)))\nprint(result)",
+      "depends_on": [
+        17
+      ]
+    },
+    {
+      "index": 19,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Appalachia",
+      "extraction_target": "the number of counties or county-equivalents in Appalachia",
+      "extraction_section": null,
+      "extracted_value": 420,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/German_Americans",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Parts of Pennsylvania fall within the Appalachian region — the area's economic challenges and cultural traits are important background for state-level politics.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        18
+      ]
+    },
+    {
+      "index": 20,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Appalachia",
+      "extraction_target": "Look up the elevation of Appalachia",
+      "extraction_section": null,
+      "extracted_value": 503.6890258789062,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Appalachia"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Appalachia) from https://en.wikipedia.org/wiki/Appalachia",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        19
+      ]
+    },
+    {
+      "index": 21,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Appalachia",
+      "extraction_target": "Look up the count of stadiums near Appalachia",
+      "extraction_section": null,
+      "extracted_value": 11.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "stadiums near Appalachia"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of stadiums near Appalachia) from https://en.wikipedia.org/wiki/Appalachia",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        19
+      ]
+    },
+    {
+      "index": 22,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Appalachia",
+      "extraction_target": "Combine the elevation of Appalachia and the count of stadiums near Appalachia: abs(503 - 11)",
+      "extraction_section": null,
+      "extracted_value": 492,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(503.6890258789062) - int(11.0))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Appalachia abs_diff count of stadiums near Appalachia",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        20,
+        21
+      ]
+    },
+    {
+      "index": 23,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Appalachia",
+      "extraction_target": "Look up the elevation of Appalachia",
+      "extraction_section": null,
+      "extracted_value": 503.6890258789062,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Appalachia"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (elevation) derived from https://en.wikipedia.org/wiki/Appalachia",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        22
+      ]
+    },
+    {
+      "index": 24,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/German_Americans",
+      "extraction_target": "the number of top-level sections listed in the table of contents",
+      "extraction_section": null,
+      "extracted_value": 12,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/German_Americans",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Ethnic and ancestral composition (e.g., German Americans) informs cultural, electoral, and policy preferences in many Pennsylvania communities.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        23
+      ]
+    },
+    {
+      "index": 25,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/German_Americans",
+      "extraction_target": "Reason: the number of 1-bits in its binary representation",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (binary_1bit_count) on stop 10 value",
+      "reason_transform": "binary_1bit_count",
+      "reason_source_stop": 24,
+      "reason_code": "result = bin(abs(int(12))).count('1')\nprint(result)",
+      "depends_on": [
+        24
+      ]
+    },
+    {
+      "index": 26,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Household_income_in_the_United_States",
+      "extraction_target": "U.S. real median household income amount reached in January 2019",
+      "extraction_section": null,
+      "extracted_value": 63688,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Household_income_in_the_United_States",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Economic measures like household income help explain voter priorities and the socio-economic profile of the district's electorate.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        25
+      ]
+    },
+    {
+      "index": 27,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Household_income_in_the_United_States",
+      "extraction_target": "Look up the elevation of Household income in the United States",
+      "extraction_section": null,
+      "extracted_value": 3236.2353515625,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Household income in the United States"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (elevation) derived from https://en.wikipedia.org/wiki/Household_income_in_the_United_States",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        26
+      ]
+    },
+    {
+      "index": 28,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: (11 + 3236) % 10",
+      "extraction_section": null,
+      "extracted_value": 7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "(11 + 3236) % 10",
+        "expression_code": "result = (11 + 3236) % 10\nprint(result)",
+        "referenced_stops": [
+          0,
+          8
+        ]
+      },
+      "reasoning": "Compute stop: (11 + 3236) % 10 = 7",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0,
+        8
+      ]
+    }
+  ],
+  "passcode": 7,
+  "difficulty": {
+    "level": "hard",
+    "depth": 29,
+    "tool_stop_count": 13,
+    "reason_stop_count": 4,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Unearth the number of wards, full or part, from a city that sits along the Lehigh River, nestled within a specific legislative district — what do you find?\n\n2. Track down how many seats the left-leaning faction held after the pivotal contest of 2022.\n\n3. What altitude marks the heights relevant to the election event you just uncovered? Discover the elevation above sea level.\n\n4. Convert the height of 102 meters into a different stretch and find how many yards that amounts to.\n\n5. Before proceeding, consider the binary form of the number you derived in the previous step: how many ones dance in its representation?\n\n6. A political faction, known since its early days shaping the nation, was founded in a particular year. What is that year?\n\n7. The rival group in the political arena also has a founding year; can you find this establishment's date from their description?\n\n8. Seek the number of subsections under criticisms and concerns listed in the contents of a page focusing on voting practices across America.\n\n9. What is the elevation of the electoral chapter that covers governing practices of a nation? Determine its height above sea level.\n\n10. How many institutions of higher learning can be found near the elections context? Seek their count in proximity.\n\n11. Combine the elevation you found in clue 9 with the number of universities you just uncovered: what is the absolute difference between these values?\n\n12. As a final requirement from clue 8, sum the distinct prime factors of the number of sections you counted — what total do you reach?\n\n13. A region encompassing a vibrant city and its surroundings beckons — what are the geographic coordinates defining the area surrounding it?\n\n14. A dense urban area within this region has a certain measurement. Can you discover its extent listed on a page about a well-known valley?\n\n15. What lies beneath in terms of elevation for the valley you just explored? Ascertain how high it rests above the sea.\n\n16. How many healthcare facilities can you locate in the vicinity of this valley? Uncover their number.\n\n17. Add together the elevation found in clue 15 and the hospital count from clue 16 — what total does this yield?\n\n18. Known for its notable football legacy, this team has a year of establishment worth noting — what is it?\n\n19. Reflecting on clue 18, calculate the sum of distinct prime factors of the founding year for the team you just identified.\n\n20. In a mountainous expanse, how many counties inhabit the land known colloquially as the mountain region of Appalachia?\n\n21. Discover what elevation defines these highlands on the page dedicated to this land — where does it lie above sea level?\n\n22. Turn your attention to sports facilities; how many stadiums are registered near the Appalachian region?\n\n23. The elevation you noted in clue 21 combined with the stadium count from clue 22 produces a value — what is their absolute difference?\n\n24. Again, consider the height of the Appalachians above sea level — how elevated are these ranges?\n\n25. A cultural heritage from one of the largest immigrant groups graces America; how many main sections appear in the contents of their page?\n\n26. Reflect on your prior finding: how many 1-bits occupy the binary representation of the total section count you discovered?\n\n27. A financial marker was set in January of 2019 for households across the nation — what was the median income reported at that time?\n\n28. Investigate the altitude associated with this financial landscape — how elevated is it compared to sea level?\n\n29. Combine the total of wards from clue 1 with the elevation from clue 9, then find the result modulo 10 — what single digit do you achieve?",
+  "metadata": {
+    "theme": "From a single Pennsylvania legislative district outward — tracing the 2024 legislative contest, the parties and election mechanics that shape it, the regional places and demographics of southeastern Pennsylvania, and the economic actors (companies) that influence local life.",
+    "difficulty": "hard",
+    "sample_id": "sample_218",
+    "pages_crawled": 30885
+  },
+  "generated_at": "2026-03-20T13:00:43.691986+00:00"
+}

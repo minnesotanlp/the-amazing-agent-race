@@ -1,0 +1,176 @@
+{
+  "trail_id": "trail_ee356166",
+  "seed_url": "https://en.wikipedia.org/wiki/LVMH",
+  "seed_title": "LVMH",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/LVMH",
+      "extraction_target": "the headquarters address given in the infobox",
+      "extraction_section": null,
+      "extracted_value": "22 Avenue Montaigne Paris, France",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/LVMH",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Seed: LVMH is the luxury conglomerate whose headquarters and corporate identity set the trail's starting point.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/LVMH",
+      "extraction_target": "Count stadiums near 22 Avenue Montaigne Paris, France",
+      "extraction_section": null,
+      "extracted_value": 11,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "stadiums near 22 Avenue Montaigne Paris, France"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (nearby_poi) derived from https://en.wikipedia.org/wiki/LVMH",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/LVMH",
+      "extraction_target": "Reason: the number of vowels in that name",
+      "extraction_section": null,
+      "extracted_value": 12,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (vowel_count) on stop 0 value",
+      "reason_transform": "vowel_count",
+      "reason_source_stop": 0,
+      "reason_code": "result = sum(1 for c in \"22 Avenue Montaigne Paris, France\".lower() if c in 'aeiou')\nprint(result)"
+    },
+    {
+      "index": 3,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Jewellery",
+      "extraction_target": "the number of subsections listed under 'Materials and methods' in the Contents",
+      "extraction_section": "Materials and methods",
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Milan wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Milan",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Craft stop: luxury jewellery represents a core product category for LVMH brands and illustrates the artisanal side of the business.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 4,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Milan",
+      "extraction_target": "the population listed in the infobox (field: '• [Metro](/wiki/Metropolitan_area \"Metropolitan area\") [[3]](#cite_note-CityPopulation.de-3)')",
+      "extraction_section": "infobox",
+      "extracted_value": 6150000,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Milan",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Fashion-capital stop: Milan is a major European center for fashion where LVMH brands operate and show collections.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 5,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: (11 + 12 + 3 + 6150000) % 10",
+      "extraction_section": null,
+      "extracted_value": 6,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "(11 + 12 + 3 + 6150000) % 10",
+        "expression_code": "result = (11 + 12 + 3 + 6150000) % 10\nprint(result)",
+        "referenced_stops": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "reasoning": "Compute stop: (11 + 12 + 3 + 6150000) % 10 = 6",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 6,
+  "difficulty": {
+    "level": "easy",
+    "depth": 6,
+    "tool_stop_count": 1,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Seek the grand emblem of opulence that hails from France; its foundation stems from a unique address — where does this beacon sit?\n\n2. At the location you've unearthed, how many venues for sporting spectacle can one find close by—count the coliseums within the vicinity of this luxurious abode?\n\n3. In the name of the illustrious brand you just revealed, how many vowels dance within? Let that count pave your way onward.\n\n4. A craft synonymous with beauty calls your attention — it adorns its patrons with grace. How many segments detail the craftsmanship and materials in this shimmering domain?\n\n5. A city of fashion and ingenuity awaits you; within its urban splendor lies a significant number of inhabitants. What figure represents the populace of this Italian metropolis?\n\n6. Now, stitch together your findings: take the count of stadiums from clue 2, plus the vowels from clue 3, add the segments from clue 4, and finally sum it with the population from clue 5. What remains when you reduce that total modulo 10?",
+  "metadata": {
+    "theme": "Following LVMH from its corporate origins through the craft and capitals of luxury to its global markets and a market comparator — linking headquarters, craftsmanship, fashion hubs, travel reach, and stock context.",
+    "difficulty": "easy",
+    "sample_id": "sample_187",
+    "pages_crawled": 4219
+  },
+  "generated_at": "2026-03-17T12:32:46.102930+00:00"
+}

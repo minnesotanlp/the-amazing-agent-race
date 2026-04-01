@@ -1,0 +1,301 @@
+{
+  "trail_id": "trail_bf172946",
+  "seed_url": "https://en.wikipedia.org/wiki/UnitedHealth_Group",
+  "seed_title": "UnitedHealth Group",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/UnitedHealth_Group",
+      "extraction_target": "the headquarters location of UnitedHealth Group",
+      "extraction_section": null,
+      "extracted_value": "Eden Prairie, Minnesota, United States",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/SmithKline_Beecham",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start at UnitedHealth Group to extract its headquarters location (the geographic anchor) and set the trail's focus on the insurer's local footprint and market context.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/UnitedHealth_Group",
+      "extraction_target": "Look up the elevation of Eden Prairie, Minnesota, United States",
+      "extraction_section": null,
+      "extracted_value": 270.0517272949219,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Eden Prairie, Minnesota, United States"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Eden Prairie, Minnesota, United States) from https://en.wikipedia.org/wiki/UnitedHealth_Group",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/UnitedHealth_Group",
+      "extraction_target": "Look up the count of churches near Eden Prairie, Minnesota, United States",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "churches near Eden Prairie, Minnesota, United States"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of churches near Eden Prairie, Minnesota, United States) from https://en.wikipedia.org/wiki/UnitedHealth_Group",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/UnitedHealth_Group",
+      "extraction_target": "Combine the elevation of Eden Prairie, Minnesota, United States and the count of churches near Eden Prairie, Minnesota, United States: (270 + 20)",
+      "extraction_section": null,
+      "extracted_value": 290,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(270.0517272949219) + int(20.0)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Eden Prairie, Minnesota, United States add count of churches near Eden Prairie, Minnesota, United States",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1,
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/SmithKline_Beecham",
+      "extraction_target": "Look up the closing price of GSK on 2000-12-27",
+      "extraction_section": null,
+      "extracted_value": 17.55,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "stock_historical_price",
+            "arguments": {
+              "ticker": "GSK",
+              "date": "2000-12-27"
+            },
+            "expected_output": null,
+            "output_key": "stock_price"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: stock price GSK on 2000-12-27",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/SmithKline_Beecham",
+      "extraction_target": "Reason: the next prime number after that figure",
+      "extraction_section": null,
+      "extracted_value": 19,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (next_prime) on stop 1 value",
+      "reason_transform": "next_prime",
+      "reason_source_stop": 4,
+      "reason_code": "def next_prime(n):\n    n = abs(int(n))\n    if n < 2: return 2\n    candidate = n + 1\n    while True:\n        if all(candidate % i != 0 for i in range(2, int(candidate**0.5)+1)):\n            return candidate\n        candidate += 1\nresult = next_prime(17)\nprint(result)",
+      "depends_on": [
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Health_insurance_in_the_United_States",
+      "extraction_target": "Look up the elevation at Health insurance in the United States",
+      "extraction_section": null,
+      "extracted_value": 3236.2353515625,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Health insurance in the United States"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for Health insurance in the United States",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: digital_root(270 + 20 + 290 + 17)",
+      "extraction_section": null,
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "digital_root(270 + 20 + 290 + 17)",
+        "expression_code": "def digital_root(n):\n    n = abs(int(n))\n    return n if n == 0 else ((n - 1) % 9) + 1\nresult = digital_root(270 + 20 + 290 + 17)\nprint(result)",
+        "referenced_stops": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "reasoning": "Compute stop: digital_root(270 + 20 + 290 + 17) = 3",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1,
+        2,
+        3,
+        4
+      ]
+    }
+  ],
+  "passcode": 3,
+  "difficulty": {
+    "level": "easy",
+    "depth": 8,
+    "tool_stop_count": 5,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "direct_link"
+  },
+  "riddle": "1. Seek the organization known for shaping health access across the nation, and unveil the city where its main offices reside. Where does this path begin?\n\n2. Ascend to the heights of the founder's realm; what elevation does this prairie town in Minnesota boast, measured in meters?\n\n3. Venture now to the sacred spaces surrounding this locale. Count the houses of worship that grace the area near the previous clue — how many dwellings of faith can you find?\n\n4. Combine the heights of the glades with the sacred counts you've discovered. What sum emerges from merging the elevation and the quantity of churches near Eden Prairie?\n\n5. Explore the realm of pharma giants, specifically one which traces its roots to a notable merger. What was the closing price per share for this entity on the date when the year 2000 concluded?\n\n6. After uncovering the market price, seek the next prime number that follows this financial figure — what unique integer reveals itself?\n\n7. Dive into the depths of a page that canvases a nation's approach to health coverage. Can you find the elevation that corresponds to this topic, similarly measured above the sea in meters?\n\n8. Calculate something special now: take the digital root of the total formed by adding the numbers from clues 2, 3, 4, and 5. What single digit is revealed through your exploration?",
+  "metadata": {
+    "theme": "Framing UnitedHealth Group's footprint: from the insurer's headquarters to local access, pharmaceutical market pressures, and the population scale of the US health-insurance market.",
+    "difficulty": "easy",
+    "sample_id": "sample_163",
+    "pages_crawled": 2669
+  },
+  "generated_at": "2026-03-17T09:52:35.825363+00:00"
+}

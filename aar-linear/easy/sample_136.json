@@ -1,0 +1,137 @@
+{
+  "trail_id": "trail_77c2220a",
+  "seed_url": "https://en.wikipedia.org/wiki/Intel",
+  "seed_title": "Intel",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Intel",
+      "extraction_target": "the number of subsections listed under 'Products and markets' in the Contents",
+      "extraction_section": "Products and markets",
+      "extracted_value": 11,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "China–United States relations wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/China%E2%80%93United_States_relations",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Seed: Intel is a major US semiconductor manufacturer and the starting point for a trail exploring industry competition and geopolitical influences.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/China%E2%80%93United_States_relations",
+      "extraction_target": "Look up the elevation at China–United States relations",
+      "extraction_section": null,
+      "extracted_value": 3236.2353515625,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "China–United States relations"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for China–United States relations",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/China%E2%80%93United_States_relations",
+      "extraction_target": "Reason: the digital root (iterated digit sum until single digit)",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digital_root) on stop 1 value",
+      "reason_transform": "digital_root",
+      "reason_source_stop": 1,
+      "reason_code": "n = abs(int(3236))\nresult = n if n == 0 else ((n - 1) % 9) + 1\nprint(result)"
+    },
+    {
+      "index": 3,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: (11 + 3236 + 5) % 10",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "(11 + 3236 + 5) % 10",
+        "expression_code": "result = (11 + 3236 + 5) % 10\nprint(result)",
+        "referenced_stops": [
+          0,
+          1,
+          2
+        ]
+      },
+      "reasoning": "Compute stop: (11 + 3236 + 5) % 10 = 2",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 2,
+  "difficulty": {
+    "level": "easy",
+    "depth": 4,
+    "tool_stop_count": 1,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Seek the Intel page on Wikipedia; within its Contents locate the entry that describes what the company sells and where it sells it — how many subheadings sit beneath that entry?\n\n2. What elevation in meters would a geographic query report if you treated the encyclopedia article that chronicles diplomatic, economic, and security ties between the People's Republic of China and the United States as a place on a map?\n\n3. The elevation number you just obtained, when reduced by repeatedly summing its digits until a single digit remains (the digital root), is the value for this clue — compute it.\n\n4. In the end, compute (clue 1 + clue 2 + clue 3) % 10 and report that single-digit result (0–9).",
+  "metadata": {
+    "theme": "Semiconductors and geopolitics — tracing the industry from a leading chipmaker to its market competitor and the international relations that shape supply, trade, and regulation.",
+    "difficulty": "easy",
+    "sample_id": "sample_136",
+    "pages_crawled": 1250
+  },
+  "generated_at": "2026-03-17T08:04:08.644597+00:00"
+}

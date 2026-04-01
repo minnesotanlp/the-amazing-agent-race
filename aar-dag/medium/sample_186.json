@@ -1,0 +1,422 @@
+{
+  "trail_id": "trail_5ca448a0",
+  "seed_url": "https://en.wikipedia.org/wiki/Intuit",
+  "seed_title": "Intuit",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Intuit",
+      "extraction_target": "the city and state where Intuit is headquartered",
+      "extraction_section": null,
+      "extracted_value": "Mountain View, California, U.S.",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Independent_contractor",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Seed: Intuit is a leading tax and accounting software company whose products and lobbying intersect with classification of workers, taxation, and corporate policy.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Intuit",
+      "extraction_target": "Look up the elevation of Mountain View, California, U.S.",
+      "extraction_section": null,
+      "extracted_value": 26.98346710205078,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Mountain View, California, U.S."
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Mountain View, California, U.S.) from https://en.wikipedia.org/wiki/Intuit",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Intuit",
+      "extraction_target": "Look up the count of churches near Mountain View, California, U.S.",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "churches near Mountain View, California, U.S."
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of churches near Mountain View, California, U.S.) from https://en.wikipedia.org/wiki/Intuit",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Intuit",
+      "extraction_target": "Combine the elevation of Mountain View, California, U.S. and the count of churches near Mountain View, California, U.S.: (26 + 20)",
+      "extraction_section": null,
+      "extracted_value": 46,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(26.98346710205078) + int(20.0)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Mountain View, California, U.S. add count of churches near Mountain View, California, U.S.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1,
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Independent_contractor",
+      "extraction_target": "the number of main sections listed in the Contents",
+      "extraction_section": "Contents",
+      "extracted_value": 17,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Independent_contractor",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Shows the legal category (independent contractor) central to how Intuit's tax products and reporting interact with the gig economy and worker classification debates.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Independent_contractor",
+      "extraction_target": "Reason: the sum of its distinct prime factors",
+      "extraction_section": null,
+      "extracted_value": 17,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (sum_prime_factors) on stop 1 value",
+      "reason_transform": "sum_prime_factors",
+      "reason_source_stop": 4,
+      "reason_code": "def prime_factors(n):\n    n = abs(int(n))\n    factors = []\n    d = 2\n    while d * d <= n:\n        while n % d == 0:\n            factors.append(d)\n            n //= d\n        d += 1\n    if n > 1: factors.append(n)\n    return factors\nresult = sum(set(prime_factors(17)))\nprint(result)",
+      "depends_on": [
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/U.S._Department_of_Justice",
+      "extraction_target": "the number of main sections listed in the Contents (numbered 1–9)",
+      "extraction_section": "Contents",
+      "extracted_value": 9,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "U.S. Department of Justice wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/U.S._Department_of_Justice",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "The DOJ enforces federal laws affecting corporations (antitrust, fraud, etc.), linking legal accountability to corporate practices around tax, classification, and competition.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/U.S._Department_of_Justice",
+      "extraction_target": "Reason: the number of characters when written as a Roman numeral",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (roman_numeral_letter_count) on stop 2 value",
+      "reason_transform": "roman_numeral_letter_count",
+      "reason_source_stop": 6,
+      "reason_code": "def to_roman(n):\n    n = abs(int(n))\n    vals = [(1000,'M'),(900,'CM'),(500,'D'),(400,'CD'),(100,'C'),\n            (90,'XC'),(50,'L'),(40,'XL'),(10,'X'),(9,'IX'),(5,'V'),(4,'IV'),(1,'I')]\n    r = ''\n    for v, s in vals:\n        while n >= v:\n            r += s; n -= v\n    return r\nresult = len(to_roman(9))\nprint(result)",
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Ronald_Reagan",
+      "extraction_target": "the number of top-level sections listed in the Contents",
+      "extraction_section": "Contents",
+      "extracted_value": 12,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Libertarian wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Libertarian",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Reagan-era policies and political shifts toward deregulation and market solutions shaped the modern corporate regulatory environment companies like Intuit operate within.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        7
+      ]
+    },
+    {
+      "index": 9,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Libertarian",
+      "extraction_target": "the number of languages listed at the top of the article",
+      "extraction_section": null,
+      "extracted_value": 81,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Ottawa wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Ottawa",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Libertarian ideas provide ideological context for deregulatory trends and corporate approaches to taxation and labor policy.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        8
+      ]
+    },
+    {
+      "index": 10,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Libertarian",
+      "extraction_target": "Count hospitals near Libertarian",
+      "extraction_section": null,
+      "extracted_value": 7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "hospitals near Libertarian"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (nearby_poi) derived from https://en.wikipedia.org/wiki/Libertarian",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        9
+      ]
+    },
+    {
+      "index": 11,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Ottawa",
+      "extraction_target": "Look up the population of Canada",
+      "extraction_section": null,
+      "extracted_value": 41651653,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "countries_population",
+            "arguments": {
+              "country": "Canada"
+            },
+            "expected_output": null,
+            "output_key": "population"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: population of Canada",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        10
+      ]
+    },
+    {
+      "index": 12,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: abs(17 - 9) % 10",
+      "extraction_section": null,
+      "extracted_value": 8,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "abs(17 - 9) % 10",
+        "expression_code": "result = abs(17 - 9) % 10\nprint(result)",
+        "referenced_stops": [
+          4,
+          6,
+          8,
+          10
+        ]
+      },
+      "reasoning": "Compute stop: abs(17 - 9) % 10 = 8",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        4,
+        6,
+        8,
+        10
+      ]
+    }
+  ],
+  "passcode": 8,
+  "difficulty": {
+    "level": "medium",
+    "depth": 13,
+    "tool_stop_count": 5,
+    "reason_stop_count": 2,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Seek the page that details the software giant established in 1983, which began its journey in a Californian city known for views of the mountains — what city and state is home to its headquarters?\n\n2. Upon discovering the answer from Clue 1, how high does this headquarters soar above sea level in meters?\n\n3. Various congregations call this region home. What number of churches can you find near the heart of this Californian city?\n\n4. Combine the elevation you've uncovered with the count of nearby churches. What is the resulting sum of these two distinct figures?\n\n5. A document exists that explains the role of individuals working for themselves. How many main segments does this article delineate in its table of contents?\n\n6. Among the sections you just counted, find the sum of the distinct prime factors present within that number. What do you discover?\n\n7. Turning to the legal enforcers, how many sections are listed in the contents of the article that details the organization responsible for upholding the law in the United States?\n\n8. When expressed in Roman numerals, how many characters are used to represent the number of sections from clue 7? What is that count?\n\n9. A significant figure in American history, often viewed through a political lens, is detailed in the subsequent chapter. How many primary divisions does his legacy boast in the contents?\n\n10. The philosophy espoused by a movement has a wonderfully diverse representation — how many languages does its corresponding article acknowledge at the top?\n\n11. Hospitals are crucial in any community. How many health care facilities can be found in proximity to the ideology you learned about in Clue 10?\n\n12. Seek the population statistics for the land of maple syrup and hockey: what is the count of residents in this vast northern territory?\n\n13. Now, from clues 5 and 7, merge your findings to compute the absolute difference between their results, subtract 9, and then take that answer modulo 10. What single digit emerges from your calculation?",
+  "metadata": {
+    "theme": "From tax software to corporate power: following Intuit into the gig-economy tax issues, legal enforcement, political philosophy that shaped deregulation, and the market scale of major tech corporations.",
+    "difficulty": "medium",
+    "sample_id": "sample_186",
+    "pages_crawled": 12293
+  },
+  "generated_at": "2026-03-17T21:10:10.261887+00:00"
+}

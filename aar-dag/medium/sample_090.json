@@ -1,0 +1,581 @@
+{
+  "trail_id": "trail_1676c637",
+  "seed_url": "https://en.wikipedia.org/wiki/Jenny_Durkan",
+  "seed_title": "Jenny Durkan",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Jenny_Durkan",
+      "extraction_target": "the start date of her term as Mayor of Seattle",
+      "extraction_section": null,
+      "extracted_value": "November 28, 2017",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/2017_Seattle_mayoral_election",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Seed: Jenny Durkan is the central figure — former U.S. Attorney and Mayor of Seattle — anchoring the trail in municipal leadership and legal oversight.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/2017_Seattle_mayoral_election",
+      "extraction_target": "the popular vote count for Jenny Durkan",
+      "extraction_section": null,
+      "extracted_value": 122442,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/2017_Seattle_mayoral_election",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Contextual stop: the 2017 election that elected Durkan; extracting election facts explains the political mandate and civic geography behind her mayoralty.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/2017_Seattle_mayoral_election",
+      "extraction_target": "Look up the elevation of 2017 Seattle mayoral election",
+      "extraction_section": null,
+      "extracted_value": 47.50299072265625,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "2017 Seattle mayoral election"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of 2017 Seattle mayoral election) from https://en.wikipedia.org/wiki/2017_Seattle_mayoral_election",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/2017_Seattle_mayoral_election",
+      "extraction_target": "Look up the count of universities near 2017 Seattle mayoral election",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "universities near 2017 Seattle mayoral election"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of universities near 2017 Seattle mayoral election) from https://en.wikipedia.org/wiki/2017_Seattle_mayoral_election",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/2017_Seattle_mayoral_election",
+      "extraction_target": "Combine the elevation of 2017 Seattle mayoral election and the count of universities near 2017 Seattle mayoral election: abs(47 - 20)",
+      "extraction_section": null,
+      "extracted_value": 27,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(47.50299072265625) - int(20.0))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of 2017 Seattle mayoral election abs_diff count of universities near 2017 Seattle mayoral election",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2,
+        3
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/2017_Seattle_mayoral_election",
+      "extraction_target": "Reason: the number of 1-bits in its binary representation",
+      "extraction_section": null,
+      "extracted_value": 10,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (binary_1bit_count) on stop 1 value",
+      "reason_transform": "binary_1bit_count",
+      "reason_source_stop": 1,
+      "reason_code": "result = bin(abs(int(122442))).count('1')\nprint(result)",
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/United_States_District_Court_for_the_Western_District_of_Washington",
+      "extraction_target": "the number of counties in the court's jurisdiction",
+      "extraction_section": null,
+      "extracted_value": 19,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "George Floyd protests in Washington (state) wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/George_Floyd_protests_in_Washington_(state)",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Legal stop: the federal court in the same region ties municipal decisions to legal accountability and high-profile litigation that can follow protests and policy decisions.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/United_States_District_Court_for_the_Western_District_of_Washington",
+      "extraction_target": "Look up the elevation of United States District Court for the Western District of Washington",
+      "extraction_section": null,
+      "extracted_value": 614.4945678710938,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "United States District Court for the Western District of Washington"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of United States District Court for the Western District of Washington) from https://en.wikipedia.org/wiki/United_States_District_Court_for_the_Western_District_of_Washington",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/United_States_District_Court_for_the_Western_District_of_Washington",
+      "extraction_target": "Look up the count of temples near United States District Court for the Western District of Washington",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "temples near United States District Court for the Western District of Washington"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of temples near United States District Court for the Western District of Washington) from https://en.wikipedia.org/wiki/United_States_District_Court_for_the_Western_District_of_Washington",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 9,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/United_States_District_Court_for_the_Western_District_of_Washington",
+      "extraction_target": "Combine the elevation of United States District Court for the Western District of Washington and the count of temples near United States District Court for the Western District of Washington: abs(614 - 20)",
+      "extraction_section": null,
+      "extracted_value": 594,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(614.4945678710938) - int(20.0))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of United States District Court for the Western District of Washington abs_diff count of temples near United States District Court for the Western District of Washington",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        7,
+        8
+      ]
+    },
+    {
+      "index": 10,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/George_Floyd_protests_in_Washington_(state)",
+      "extraction_target": "Calculate the driving distance between Washington \"Washington (state)\") and 2017 Seattle mayoral election",
+      "extraction_section": null,
+      "extracted_value": 165.063,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Washington \"Washington (state)\")"
+            },
+            "expected_output": null,
+            "output_key": "coords_a"
+          },
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "2017 Seattle mayoral election"
+            },
+            "expected_output": null,
+            "output_key": "coords_b"
+          },
+          {
+            "tool_name": "maps_distance_matrix",
+            "arguments": {
+              "__from_previous_as_origins_destinations": [
+                "coords_a",
+                "coords_b"
+              ]
+            },
+            "expected_output": null,
+            "output_key": "distance_km"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: distance between Washington \"Washington (state)\") and 2017 Seattle mayoral election",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        9
+      ]
+    },
+    {
+      "index": 11,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Hollywood_and_Vine",
+      "extraction_target": "Get the driving duration in minutes from Hollywood and Vine to United States Courthouse \"United States Courthouse (Seattle)\") (Seattle)  *More locations*  * Union Station \"Union Station (Tacoma",
+      "extraction_section": null,
+      "extracted_value": 2716,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_directions",
+            "arguments": {
+              "origin": "Hollywood and Vine",
+              "destination": "United States Courthouse \"United States Courthouse (Seattle)\") (Seattle)  *More locations*  * Union Station \"Union Station (Tacoma",
+              "mode": "driving"
+            },
+            "expected_output": null,
+            "output_key": "duration"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: directions duration Hollywood and Vine to United States Courthouse \"United States Courthouse (Seattle)\") (Seattle)  *More locations*  * Union Station \"Union Station (Tacoma",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        10
+      ]
+    },
+    {
+      "index": 12,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Hollywood_and_Vine",
+      "extraction_target": "Reason: the largest prime factor of that figure",
+      "extraction_section": null,
+      "extracted_value": 97,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (largest_prime_factor) on stop 4 value",
+      "reason_transform": "largest_prime_factor",
+      "reason_source_stop": 11,
+      "reason_code": "def largest_prime_factor(n):\n    n = abs(int(n))\n    if n <= 1: return n\n    d = 2\n    while d * d <= n:\n        while n % d == 0: n //= d\n        d += 1\n    return n\nresult = largest_prime_factor(2716)\nprint(result)",
+      "depends_on": [
+        11
+      ]
+    },
+    {
+      "index": 13,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Karnataka_Legislative_Assembly",
+      "extraction_target": "Look up the elevation at Karnataka Legislative Assembly",
+      "extraction_section": null,
+      "extracted_value": 673.0191650390625,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Karnataka Legislative Assembly"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for Karnataka Legislative Assembly",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        12
+      ]
+    },
+    {
+      "index": 14,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Avalon_Hollywood",
+      "extraction_target": "Count the number of universities near Hollywood",
+      "extraction_section": null,
+      "extracted_value": 20,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "universities near Hollywood"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: count universities near Hollywood",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        13
+      ]
+    },
+    {
+      "index": 15,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: abs(165 - 2716) % 10",
+      "extraction_section": null,
+      "extracted_value": 1,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "abs(165 - 2716) % 10",
+        "expression_code": "result = abs(165 - 2716) % 10\nprint(result)",
+        "referenced_stops": [
+          10,
+          11,
+          13
+        ]
+      },
+      "reasoning": "Compute stop: abs(165 - 2716) % 10 = 1",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        10,
+        11,
+        13
+      ]
+    }
+  ],
+  "passcode": 1,
+  "difficulty": {
+    "level": "medium",
+    "depth": 16,
+    "tool_stop_count": 10,
+    "reason_stop_count": 2,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Seek the leader who took charge of Seattle's bustling corridors in the fall of 2017. What day did her governance begin?\n\n2. A significant contest determined the future of the Emerald City. What was the total count of ballots cast in support of this mayoral candidate?\n\n3. Ascend in thought: what elevation is reached by the site of the civic contest held in 2017?\n\n4. This vibrant city is home to many centers of learning. How many universities can be found near the site of the pivotal election?\n\n5. Combine the height from clue 3 with the number of institutions discovered in clue 4. What is the absolute difference between these two results?\n\n6. The count from clue 2 reveals more than just a number. In its binary form, how many '1' bits exist within its representation?\n\n7. Among the realm of justice, this court oversees multiple counties in the northwest. How many counties fall under this jurisdiction?\n\n8. Delve into the elevations of legal edifices: what is the height above sea level at the seat of this district court?\n\n9. Within the vicinity of this legal landmark, how many temples stand? \n\n10. Now, merge the elevation noted in clue 8 with the number of places of worship from clue 9. What result do you find when calculating their absolute difference?\n\n11. Traverse to the cry for justice that resonated through the Pacific Northwest. What driving distance separates a prominent center of influence in Washington from the site of the earlier electoral battle?\n\n12. Consider a famous intersection in Los Angeles. How long would it take in minutes to travel from there to the courthouse seated in Seattle?\n\n13. Look closer at the figure from clue 12: what is the largest prime factor that contributes to this number?\n\n14. In a distant land, where law is made, find the height at the legislative assembly. How high does it stand, in meters?\n\n15. Ascertain how many institutes of higher education are located near the intersection of dreams in Hollywood.\n\n16. Finally, take the absolute difference between the distance from clue 11 and the travel time from clue 12, then reduce this by the height recorded in clue 14 using modulo 10. What single digit results from your computation?",
+  "metadata": {
+    "theme": "From city hall to the streets and the courthouse — a short investigative trail through Seattle's municipal leadership (Jenny Durkan), the 2017 mayoral contest that brought her to power, and the civic unrest that tested urban governance, using geospatial, population and weather tools to compare urban contexts.",
+    "difficulty": "medium",
+    "sample_id": "sample_090",
+    "pages_crawled": 4815
+  },
+  "generated_at": "2026-03-16T18:30:56.347697+00:00"
+}

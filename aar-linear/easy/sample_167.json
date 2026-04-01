@@ -1,0 +1,175 @@
+{
+  "trail_id": "trail_f9dd76a9",
+  "seed_url": "https://en.wikipedia.org/wiki/Amgen",
+  "seed_title": "Amgen",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Amgen",
+      "extraction_target": "the city of the company's headquarters",
+      "extraction_section": null,
+      "extracted_value": "Thousand Oaks, California",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Amgen",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Seed: Amgen is a major biotech company — starting point for a trail about life-science innovation and how it links to research institutions and tech powerhouses.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Amgen",
+      "extraction_target": "Reason: the number of vowels in that name",
+      "extraction_section": null,
+      "extracted_value": 10,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (vowel_count) on stop 0 value",
+      "reason_transform": "vowel_count",
+      "reason_source_stop": 0,
+      "reason_code": "result = sum(1 for c in \"Thousand Oaks, California\".lower() if c in 'aeiou')\nprint(result)"
+    },
+    {
+      "index": 2,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Calico_(company)",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Founded')",
+      "extraction_section": "infobox",
+      "extracted_value": 18,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "MIT wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/MIT",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Calico is another life‑science research company (Alphabet-backed) that shows how large tech firms invest directly in biotech research — a thematic bridge between biotech and tech.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 3,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/MIT",
+      "extraction_target": "the location listed in the infobox (field: 'Location')",
+      "extraction_section": "infobox",
+      "extracted_value": "Cambridge, Massachusetts , United States  42°21′35″N 71°05′31″W﻿ / ﻿42.3597°N 71.0919°W﻿ / 42.3597; -71.0919",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "San Diego, California wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/San_Diego,_California",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Research institutions like MIT supply talent, techniques and partnerships that underpin both biotech companies (Amgen/Calico) and tech firms — highlighting the R&D ecosystem.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 4,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/San_Diego,_California",
+      "extraction_target": "Count the number of museums near 32.71500",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "museums near 32.71500"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: count museums near 32.71500",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 5,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: digital_root(10 + 18 + 2)",
+      "extraction_section": null,
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "digital_root(10 + 18 + 2)",
+        "expression_code": "def digital_root(n):\n    n = abs(int(n))\n    return n if n == 0 else ((n - 1) % 9) + 1\nresult = digital_root(10 + 18 + 2)\nprint(result)",
+        "referenced_stops": [
+          1,
+          2,
+          4
+        ]
+      },
+      "reasoning": "Compute stop: digital_root(10 + 18 + 2) = 3",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 3,
+  "difficulty": {
+    "level": "easy",
+    "depth": 6,
+    "tool_stop_count": 1,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Seek the seed page that introduces an American multinational biopharmaceutical company; identify the city that hosts its corporate headquarters.\n\n2. There exists on that same page a city-name you just extracted; count the number of vowels in that city's name and record that count as your next value.\n\n3. Which year does the linked biotech profile list as its founding—follow the link labeled \"Article\" from the previous entry to reach this firm's page and read the year given in its summary box?\n\n4. The article whose opening line redirects from the acronym of a famed Cambridge, Massachusetts institute contains a quick-facts panel—what place is shown there as the institute's location?\n\n5. In the sunny coastal city located at approximately 32.71500°N, tally the museums found near that latitude; how many museums do you discover?\n\n6. The final oracle (and your arithmetic test) asks you to combine three discoveries: compute the digital root of (clue 2 + clue 3 + clue 5) and report that single digit as your answer (a number from 0–9).",
+  "metadata": {
+    "theme": "Tracing innovation from biotech roots through research institutions to major tech hubs — a short tour of companies, labs and the California ecosystem that connects them.",
+    "difficulty": "easy",
+    "sample_id": "sample_167",
+    "pages_crawled": 2869
+  },
+  "generated_at": "2026-03-17T10:06:39.417487+00:00"
+}

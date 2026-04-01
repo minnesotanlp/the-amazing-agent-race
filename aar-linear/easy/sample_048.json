@@ -1,0 +1,129 @@
+{
+  "trail_id": "trail_9ffa2c61",
+  "seed_url": "https://en.wikipedia.org/wiki/Lo_Haré_Por_Ti",
+  "seed_title": "Lo Haré Por Ti",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Lo_Har%C3%A9_Por_Ti",
+      "extraction_target": "release date of the single \"Lo Haré Por Ti\"",
+      "extraction_section": null,
+      "extracted_value": "January 11, 2000",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Universal_Music_Latin_Entertainment",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start at the song page to identify the performing artist, the record label that released the track, and its release date—these facts link the track to the broader business of Latin music distribution.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Universal_Music_Latin_Entertainment",
+      "extraction_target": "Calculate the number of days between 2008-01-01 and 2026-03-15",
+      "extraction_section": null,
+      "extracted_value": 6648,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "from datetime import date\nd1 = date.fromisoformat('2008-01-01')\nd2 = date.fromisoformat('2026-03-15')\nresult = abs((d2 - d1).days)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "days"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: date computation 2008-01-01 to 2026-03-15 (pinned)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Universal_Music_Latin_Entertainment",
+      "extraction_target": "Reason: the number you get by reversing its digits",
+      "extraction_section": null,
+      "extracted_value": 8466,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_reversal) on stop 1 value",
+      "reason_transform": "digit_reversal",
+      "reason_source_stop": 1,
+      "reason_code": "result = int(str(abs(int(6648)))[::-1])\nprint(result)"
+    },
+    {
+      "index": 3,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: (6648 + 8466) % 10",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "(6648 + 8466) % 10",
+        "expression_code": "result = (6648 + 8466) % 10\nprint(result)",
+        "referenced_stops": [
+          1,
+          2
+        ]
+      },
+      "reasoning": "Compute stop: (6648 + 8466) % 10 = 4",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 4,
+  "difficulty": {
+    "level": "easy",
+    "depth": 4,
+    "tool_stop_count": 1,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "direct_link"
+  },
+  "riddle": "Here is the revised riddle:\n\n1. Seek the seed page that features a well-known Spanish-language single about commitment: what is the single's release date on that article, and then follow the link to the Latin arm of the global music conglomerate mentioned there.  \n2. There exists a page for that Latin division you arrived at — on it, compute how many days elapsed from 2008-01-01 up to 2026-03-15.  \n3. If you take the numeric result found in clue 2, reverse its digits to form a new number; report that reversed number.  \n4. At the end of this trail, perform the arithmetic (clue 2 + clue 3) modulo 10 and give the single-digit result (0–9).",
+  "metadata": {
+    "theme": "Tracing a Spanish-language pop song to the major Latin label that distributes music — from a single track to the company's age and legacy",
+    "difficulty": "easy",
+    "sample_id": "sample_048",
+    "pages_crawled": 2028,
+    "source": "trail_puzzles_v2"
+  },
+  "generated_at": "2026-03-15T14:20:02.932055+00:00"
+}

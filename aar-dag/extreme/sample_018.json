@@ -1,0 +1,1092 @@
+{
+  "trail_id": "trail_41d3d2d4",
+  "seed_url": "https://en.wikipedia.org/wiki/Ontwa_Township,_Michigan",
+  "seed_title": "Ontwa Township, Michigan",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Ontwa_Township,_Michigan",
+      "extraction_target": "the population at the 2020 census",
+      "extraction_section": null,
+      "extracted_value": 6904,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Survey township wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Survey_township",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Seed: a concrete U.S. township to ground the trail — extract its coordinates/population to compare local place metrics with larger systems.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Ontwa_Township,_Michigan",
+      "extraction_target": "Look up the elevation of Ontwa Township, Michigan",
+      "extraction_section": null,
+      "extracted_value": 249.1198577880859,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Ontwa Township, Michigan"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Ontwa Township, Michigan) from https://en.wikipedia.org/wiki/Ontwa_Township,_Michigan",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Ontwa_Township,_Michigan",
+      "extraction_target": "Look up the count of hospitals near Ontwa Township, Michigan",
+      "extraction_section": null,
+      "extracted_value": 10.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "hospitals near Ontwa Township, Michigan"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of hospitals near Ontwa Township, Michigan) from https://en.wikipedia.org/wiki/Ontwa_Township,_Michigan",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Ontwa_Township,_Michigan",
+      "extraction_target": "Combine the elevation of Ontwa Township, Michigan and the count of hospitals near Ontwa Township, Michigan: abs(249 - 10)",
+      "extraction_section": null,
+      "extracted_value": 239,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(249.1198577880859) - int(10.0))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Ontwa Township, Michigan abs_diff count of hospitals near Ontwa Township, Michigan",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1,
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Survey_township",
+      "extraction_target": "the nominal side length of a survey township as stated in the opening paragraph",
+      "extraction_section": null,
+      "extracted_value": "six survey miles (about 9.66 km)",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Counties of Prince Edward Island wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Counties_of_Prince_Edward_Island",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Introduce the survey township concept (how land is divided in much of the U.S.) to contrast informal and formal units of place.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Counties_of_Prince_Edward_Island",
+      "extraction_target": "Look up the elevation at Province of Prince Edward Island",
+      "extraction_section": null,
+      "extracted_value": 34.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Province of Prince Edward Island"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for Province of Prince Edward Island",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Counties_of_Prince_Edward_Island",
+      "extraction_target": "Reason: the number of characters when written as a Roman numeral",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (roman_numeral_letter_count) on stop 2 value",
+      "reason_transform": "roman_numeral_letter_count",
+      "reason_source_stop": 5,
+      "reason_code": "def to_roman(n):\n    n = abs(int(n))\n    vals = [(1000,'M'),(900,'CM'),(500,'D'),(400,'CD'),(100,'C'),\n            (90,'XC'),(50,'L'),(40,'XL'),(10,'X'),(9,'IX'),(5,'V'),(4,'IV'),(1,'I')]\n    r = ''\n    for v, s in vals:\n        while n >= v:\n            r += s; n -= v\n    return r\nresult = len(to_roman(34))\nprint(result)",
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/WGS84",
+      "extraction_target": "the year associated with GRS 80 (Geodetic Reference System) in the Geodesy standards list",
+      "extraction_section": null,
+      "extracted_value": "1980",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "What3words wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/What3words",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Switch to the global coordinate reference system that underpins modern mapping and GPS positioning used to locate places like Ontwa Township.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/What3words",
+      "extraction_target": "the month and year the service was launched",
+      "extraction_section": "History",
+      "extracted_value": "July 2013",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Quasi-Zenith Satellite System wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Quasi-Zenith_Satellite_System",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Show a modern, human-friendly addressing layer built on coordinates — an alternative way to reference any parcel or point.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        7
+      ]
+    },
+    {
+      "index": 9,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Quasi-Zenith_Satellite_System",
+      "extraction_target": "nominal satellites (constellation size) listed in the infobox",
+      "extraction_section": null,
+      "extracted_value": 8,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Quasi-Zenith_Satellite_System",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Introduce GNSS augmentation (regional satellite systems) that improve positioning accuracy — relevant to precise surveying and modern addressing.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        8
+      ]
+    },
+    {
+      "index": 10,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Quasi-Zenith_Satellite_System",
+      "extraction_target": "Reason: the sum of its digits",
+      "extraction_section": null,
+      "extracted_value": 8,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_sum) on stop 5 value",
+      "reason_transform": "digit_sum",
+      "reason_source_stop": 9,
+      "reason_code": "result = sum(int(d) for d in str(abs(int(8))))\nprint(result)",
+      "depends_on": [
+        9
+      ]
+    },
+    {
+      "index": 11,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Earth_tide",
+      "extraction_target": "which astronomical body provides the larger periodic gravitational force for tides",
+      "extraction_section": "Tide raising force",
+      "extracted_value": "Moon",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Ruhnu Parish wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Ruhnu_Parish",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Highlight geophysical effects (earth tides) that can influence high-precision surveying and positioning efforts.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        10
+      ]
+    },
+    {
+      "index": 12,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Ruhnu_Parish",
+      "extraction_target": "Convert 8 meters to feet",
+      "extraction_section": null,
+      "extracted_value": 26,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "# Convert meters to feet\nvalue = 8.0\nconverted = value * 3.28084\nresult = int(converted)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "converted"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: convert 8 meters to feet",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        11
+      ]
+    },
+    {
+      "index": 13,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Ruhnu_Parish",
+      "extraction_target": "Reason: the number of divisors of that figure",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (num_divisors) on stop 7 value",
+      "reason_transform": "num_divisors",
+      "reason_source_stop": 12,
+      "reason_code": "n = abs(int(26))\ncount = sum(1 for i in range(1, n+1) if n % i == 0) if n > 0 else 0\nresult = count\nprint(result)",
+      "depends_on": [
+        12
+      ]
+    },
+    {
+      "index": 14,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Municipal_corporation",
+      "extraction_target": "the types of local governing bodies included by the opening definition of 'Municipal corporation'",
+      "extraction_section": null,
+      "extracted_value": "cities, counties, towns, townships, charter townships, villages, and boroughs",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Municipal_corporation",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Move to forms of local government: how municipal corporations define the governance of places, complementing physical land divisions.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        13
+      ]
+    },
+    {
+      "index": 15,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Municipal_corporation",
+      "extraction_target": "Reason: the alphabetical position of its first letter (A=1, B=2, ...)",
+      "extraction_section": null,
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (alpha_position_first_letter) on stop 8 value",
+      "reason_transform": "alpha_position_first_letter",
+      "reason_source_stop": 14,
+      "reason_code": "first = \"cities, counties, towns, townships, charter townships, villages, and boroughs\"[0].upper()\nresult = ord(first) - ord('A') + 1 if first.isalpha() else 0\nprint(result)",
+      "depends_on": [
+        14
+      ]
+    },
+    {
+      "index": 16,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Regional_municipality",
+      "extraction_target": "the number of entities amalgamated to form the Regional Municipality of Wood Buffalo",
+      "extraction_section": "Alberta",
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Meadowbank, Prince Edward Island wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Meadowbank,_Prince_Edward_Island",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Contrast municipal and regional governance models to show different scales of administration over the same mapped land.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        15
+      ]
+    },
+    {
+      "index": 17,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Meadowbank,_Prince_Edward_Island",
+      "extraction_target": "Count the number of churches near 46.200",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "churches near 46.200"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: count churches near 46.200",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        16
+      ]
+    },
+    {
+      "index": 18,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Rancheria",
+      "extraction_target": "the location given in the image caption for the Wayuu rancheria (peninsula and country)",
+      "extraction_section": null,
+      "extracted_value": "Guajira Peninsula, Colombia",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Federally_recognized_tribe",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Introduce land categories specific to indigenous peoples in the U.S., illustrating parallel systems of land tenure and administration.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        17
+      ]
+    },
+    {
+      "index": 19,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Rancheria",
+      "extraction_target": "Look up the elevation of Guajira Peninsula, Colombia",
+      "extraction_section": null,
+      "extracted_value": 93.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Guajira Peninsula, Colombia"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Guajira Peninsula, Colombia) from https://en.wikipedia.org/wiki/Rancheria",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        18
+      ]
+    },
+    {
+      "index": 20,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Rancheria",
+      "extraction_target": "Look up the Google rating of Guajira Peninsula, Colombia",
+      "extraction_section": null,
+      "extracted_value": 4.1,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "Guajira Peninsula, Colombia"
+            },
+            "expected_output": null,
+            "output_key": "place_rating"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (Google rating of Guajira Peninsula, Colombia) from https://en.wikipedia.org/wiki/Rancheria",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        18
+      ]
+    },
+    {
+      "index": 21,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Rancheria",
+      "extraction_target": "Combine the elevation of Guajira Peninsula, Colombia and the Google rating of Guajira Peninsula, Colombia: abs(93 - 4)",
+      "extraction_section": null,
+      "extracted_value": 89,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(93.0) - int(4.1))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Guajira Peninsula, Colombia abs_diff Google rating of Guajira Peninsula, Colombia",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        19,
+        20
+      ]
+    },
+    {
+      "index": 22,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Federally_recognized_tribe",
+      "extraction_target": "the number of federally recognized tribes listed in the infobox",
+      "extraction_section": null,
+      "extracted_value": 575,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Hawaiian_home_land",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Explore the federal recognition status that determines governance and land relationships for indigenous communities — another key layer over mapped land.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        21
+      ]
+    },
+    {
+      "index": 23,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Hawaiian_home_land",
+      "extraction_target": "the approximate number of acres set aside in 1921",
+      "extraction_section": "History",
+      "extracted_value": 200000,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Atlanta Bread Company wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Atlanta_Bread_Company",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Provide a case study of a statutory land-allocation program (Hawaiian Home Lands) demonstrating how law, land and mapping intersect.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        22
+      ]
+    },
+    {
+      "index": 24,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Hawaiian_home_land",
+      "extraction_target": "Look up the elevation of Hawaiian home land",
+      "extraction_section": null,
+      "extracted_value": 18.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Hawaiian home land"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Hawaiian home land) from https://en.wikipedia.org/wiki/Hawaiian_home_land",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        23
+      ]
+    },
+    {
+      "index": 25,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Hawaiian_home_land",
+      "extraction_target": "Look up the count of universities near Hawaiian home land",
+      "extraction_section": null,
+      "extracted_value": 6.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "universities near Hawaiian home land"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of universities near Hawaiian home land) from https://en.wikipedia.org/wiki/Hawaiian_home_land",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        23
+      ]
+    },
+    {
+      "index": 26,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Hawaiian_home_land",
+      "extraction_target": "Combine the elevation of Hawaiian home land and the count of universities near Hawaiian home land: abs(18 - 6)",
+      "extraction_section": null,
+      "extracted_value": 12,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(18.0) - int(6.0))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Hawaiian home land abs_diff count of universities near Hawaiian home land",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        24,
+        25
+      ]
+    },
+    {
+      "index": 27,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Atlanta_Bread_Company",
+      "extraction_target": "Look up the Google Maps rating of Smyrna",
+      "extraction_section": null,
+      "extracted_value": 0.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "Smyrna"
+            },
+            "expected_output": null,
+            "output_key": "place_rating"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: Google rating of Smyrna",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        26
+      ]
+    },
+    {
+      "index": 28,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Plympton",
+      "extraction_target": "Look up the elevation at Plympton",
+      "extraction_section": null,
+      "extracted_value": 29.34770965576172,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Plympton"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for Plympton",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        27
+      ]
+    },
+    {
+      "index": 29,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Plympton",
+      "extraction_target": "Reason: the number you get by reversing its digits",
+      "extraction_section": null,
+      "extracted_value": 92,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_reversal) on stop 15 value",
+      "reason_transform": "digit_reversal",
+      "reason_source_stop": 28,
+      "reason_code": "result = int(str(abs(int(29)))[::-1])\nprint(result)",
+      "depends_on": [
+        28
+      ]
+    },
+    {
+      "index": 30,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Independent_city_(United_States)",
+      "extraction_target": "the number of languages the article is available in (as listed at the top)",
+      "extraction_section": null,
+      "extracted_value": 15,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Independent_city_(United_States)",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Highlight an administrative exception — independent cities — to show how mapping and governance sometimes diverge from typical county/township hierarchies.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        29
+      ]
+    },
+    {
+      "index": 31,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Independent_city_(United_States)",
+      "extraction_target": "Reason: the largest prime factor of that figure",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (largest_prime_factor) on stop 16 value",
+      "reason_transform": "largest_prime_factor",
+      "reason_source_stop": 30,
+      "reason_code": "def largest_prime_factor(n):\n    n = abs(int(n))\n    if n <= 1: return n\n    d = 2\n    while d * d <= n:\n        while n % d == 0: n //= d\n        d += 1\n    return n\nresult = largest_prime_factor(15)\nprint(result)",
+      "depends_on": [
+        30
+      ]
+    },
+    {
+      "index": 32,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/2011_Canadian_census",
+      "extraction_target": "Look up the population of Canada",
+      "extraction_section": null,
+      "extracted_value": 41651653,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "countries_population",
+            "arguments": {
+              "country": "Canada"
+            },
+            "expected_output": null,
+            "output_key": "population"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: population of Canada",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        31
+      ]
+    },
+    {
+      "index": 33,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: abs(239 - 26) % 10",
+      "extraction_section": null,
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "abs(239 - 26) % 10",
+        "expression_code": "result = abs(239 - 26) % 10\nprint(result)",
+        "referenced_stops": [
+          3,
+          12,
+          27,
+          29
+        ]
+      },
+      "reasoning": "Compute stop: abs(239 - 26) % 10 = 3",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3,
+        12,
+        27,
+        29
+      ]
+    }
+  ],
+  "passcode": 3,
+  "difficulty": {
+    "level": "extreme",
+    "depth": 34,
+    "tool_stop_count": 15,
+    "reason_stop_count": 6,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. In a quiet corner of Michigan lies a township, home to a community of just a few souls — what number represents their population as counted in the year 2020?\n\n2. Seek the elevation high above this township, defined by its geographic contour — how many meters does the ground rise here?\n\n3. Nearby, the dedicated healers can be found. How many hospitals serve within the vicinity of the township you just contemplated?\n\n4. Now, combine the elevation you discovered in clue 2 with the number of hospitals from clue 3. What is the absolute difference between these two figures?\n\n5. There exists a notion of land division used for surveying — what is the indicated length of each side of this designated parcel, as noted in the initial description of such land entities?\n\n6. Beneath the emerald skies of a certain Canadian province, find its height above sea level. What is the elevation at this location?\n\n7. Transform that elevation into a Roman numeral; how many characters does it require when written in that ancient system?\n\n8. A standard for geodetic measurement was created, the GRS 80. Whence it is derived, in what year was this standard established?\n\n9. The innovative service that partitions the globe into three-word segments came into existence in a specific month and year — what is that date?\n\n10. To coordinate a celestial dance, a new satellite system emerged, boasting how many units in its constellation?\n\n11. Now consider that figure from clue 10; what is the sum of its digits?\n\n12. For celestial bodies influencing the tides, one greater force emerges above all others. Which dominant astronomical body is known to raise the ocean’s tide?\n\n13. Traverse to the lands of a quaint parish — if you convert 8 meters to feet, what does that number yield?\n\n14. Reflect on the value from clue 13 — how many divisors can be found for this converted figure?\n\n15. In the realm of governance, the types of local authorities vary widely. What classifications can be found in the definition of a certain local governing structure?\n\n16. Contemplating the first letter of the description above, what is its alphabetical position (A=1, B=2, ...)?\n\n17. In a province named Alberta, an amalgamation took place. How many distinct entities joined forces to form the Regional Municipality of Wood Buffalo?\n\n18. Near the latitude of 46.200 degrees, how many churches rise to accommodate the spiritual needs of the locality?\n\n19. Among vast indigenous lands, which rancheria is noted for its unique positioning on a specific peninsula? Identify this locale including its country of origin.\n\n20. Ascend to the heights of Guajira Peninsula, Colombia — what elevation does this land command?\n\n21. Seek the resonance of public opinion; what Google rating does this Guajira Peninsula hold in its embrace?\n\n22. Combine the elevation of Guajira Peninsula from clue 20 with the rating from clue 21. What is the absolute difference between these two values?\n\n23. A certain number of tribes are recognized federally in a given count — how many such tribes are listed?\n\n24. In an effort to ensure justice for native peoples, a sweeping act in 1921 designated a vast amount of land. What was the approximate acreage allocated back then?\n\n25. Ascend again, this time to find the elevation of the place devoted to Hawaiian heritage. What is its height above sea level?\n\n26. Nearby institutions of higher learning beckon — how many universities can be found in proximity to Hawaiian home land?\n\n27. Now, compare the elevation you recorded in clue 25 with the number of universities from clue 26; what is their absolute difference?\n\n28. Close by, a bakery chain flourishes. What Google Maps rating does the location in Smyrna received from visitors?\n\n29. Turn your gaze to the heights around Plympton — what is the elevation at this locale?\n\n30. Reflect on the number from clue 29; if you reverse its digits, what value does it create?\n\n31. Within the vast bounds of the United States, how many languages can you find available on the page describing independent cities?\n\n32. Among those languages, determine the largest prime factor — which number stands as the greatest divisor of that quantity?\n\n33. As of the latest census, how many souls inhabit the land of Canada? Seek that number.\n\n34. Lastly, take the result of clue 4 together with clue 13’s value, and add that to clue 28 and clue 30’s results: compute the absolute difference between 239 and 26, then take it modulo 10. What single digit does this process yield?",
+  "metadata": {
+    "theme": "From a single Michigan township to global systems of surveying, addressing and administration — tracing how places are measured, governed and located (PLSS townships, coordinate systems, satellite positioning, indigenous land categories and place-based services).",
+    "difficulty": "extreme",
+    "sample_id": "sample_018",
+    "pages_crawled": 1559
+  },
+  "generated_at": "2026-03-16T08:32:07.838642+00:00"
+}

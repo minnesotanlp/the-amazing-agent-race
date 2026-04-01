@@ -1,0 +1,1063 @@
+{
+  "trail_id": "trail_818b1165",
+  "seed_url": "https://en.wikipedia.org/wiki/Anglo_American_plc",
+  "seed_title": "Anglo American plc",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Anglo_American_plc",
+      "extraction_target": "the headquarters city",
+      "extraction_section": null,
+      "extracted_value": "London",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Anglo_American_plc",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Seed: Anglo American is a major global mining company — the starting point for a supply-chain journey from mines to markets.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Anglo_American_plc",
+      "extraction_target": "Look up the elevation of London",
+      "extraction_section": null,
+      "extracted_value": 7.165058612823486,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "London"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of London) from https://en.wikipedia.org/wiki/Anglo_American_plc",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Anglo_American_plc",
+      "extraction_target": "Look up the count of universities near London",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "universities near London"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of universities near London) from https://en.wikipedia.org/wiki/Anglo_American_plc",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Anglo_American_plc",
+      "extraction_target": "Combine the elevation of London and the count of universities near London: abs(7 - 20)",
+      "extraction_section": null,
+      "extracted_value": 13,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(7.165058612823486) - int(20.0))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of London abs_diff count of universities near London",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1,
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Anglo_American_plc",
+      "extraction_target": "Reason: the alphabetical position of its first letter (A=1, B=2, ...)",
+      "extraction_section": null,
+      "extracted_value": 12,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (alpha_position_first_letter) on stop 0 value",
+      "reason_transform": "alpha_position_first_letter",
+      "reason_source_stop": 0,
+      "reason_code": "first = \"London\"[0].upper()\nresult = ord(first) - ord('A') + 1 if first.isalpha() else 0\nprint(result)",
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/British_people",
+      "extraction_target": "the number of languages listed at the top of the article (interlanguage links)",
+      "extraction_section": null,
+      "extracted_value": 54,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/British_people",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Anglo American's British roots and corporate identity connect the company to British industrial history and capital markets.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/British_people",
+      "extraction_target": "Look up the elevation of British people",
+      "extraction_section": null,
+      "extracted_value": 371.4067077636719,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "British people"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of British people) from https://en.wikipedia.org/wiki/British_people",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/British_people",
+      "extraction_target": "Look up the count of museums near British people",
+      "extraction_section": null,
+      "extracted_value": 11.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "museums near British people"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of museums near British people) from https://en.wikipedia.org/wiki/British_people",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/British_people",
+      "extraction_target": "Combine the elevation of British people and the count of museums near British people: abs(371 - 11)",
+      "extraction_section": null,
+      "extracted_value": 360,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(371.4067077636719) - int(11.0))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of British people abs_diff count of museums near British people",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6,
+        7
+      ]
+    },
+    {
+      "index": 9,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/British_people",
+      "extraction_target": "Reason: the number of characters when written as a Roman numeral",
+      "extraction_section": null,
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (roman_numeral_letter_count) on stop 1 value",
+      "reason_transform": "roman_numeral_letter_count",
+      "reason_source_stop": 5,
+      "reason_code": "def to_roman(n):\n    n = abs(int(n))\n    vals = [(1000,'M'),(900,'CM'),(500,'D'),(400,'CD'),(100,'C'),\n            (90,'XC'),(50,'L'),(40,'XL'),(10,'X'),(9,'IX'),(5,'V'),(4,'IV'),(1,'I')]\n    r = ''\n    for v, s in vals:\n        while n >= v:\n            r += s; n -= v\n    return r\nresult = len(to_roman(54))\nprint(result)",
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 10,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Minas_Gerais",
+      "extraction_target": "the number of languages the article is available in (displayed under the title)",
+      "extraction_section": null,
+      "extracted_value": 105,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Minas_Gerais",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Minas Gerais is one of Brazil's principal mining states — a regional example of where global miners operate.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        9
+      ]
+    },
+    {
+      "index": 11,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Minas_Gerais",
+      "extraction_target": "Reason: the number of characters when written as a Roman numeral",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (roman_numeral_letter_count) on stop 2 value",
+      "reason_transform": "roman_numeral_letter_count",
+      "reason_source_stop": 10,
+      "reason_code": "def to_roman(n):\n    n = abs(int(n))\n    vals = [(1000,'M'),(900,'CM'),(500,'D'),(400,'CD'),(100,'C'),\n            (90,'XC'),(50,'L'),(40,'XL'),(10,'X'),(9,'IX'),(5,'V'),(4,'IV'),(1,'I')]\n    r = ''\n    for v, s in vals:\n        while n >= v:\n            r += s; n -= v\n    return r\nresult = len(to_roman(105))\nprint(result)",
+      "depends_on": [
+        10
+      ]
+    },
+    {
+      "index": 12,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Bioprospecting",
+      "extraction_target": "the number of subsections listed under 'Bioprospecting-derived resources and products' in the table of contents",
+      "extraction_section": "Bioprospecting-derived resources and products",
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Ammonia wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Ammonia",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Shows modern exploration approaches (including biological/ecosystem surveys) that relate to discovering new mineral deposits.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        11
+      ]
+    },
+    {
+      "index": 13,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Bioprospecting",
+      "extraction_target": "Count temples near Bioprospecting",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "temples near Bioprospecting"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (nearby_poi) derived from https://en.wikipedia.org/wiki/Bioprospecting",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        12
+      ]
+    },
+    {
+      "index": 14,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Ammonia",
+      "extraction_target": "number of language links shown at the top of the article",
+      "extraction_section": null,
+      "extracted_value": 114,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Soybean wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Soybean",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Industrial chemicals like ammonia play roles in processing ores and supporting agricultural land-use competing with mining.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        13
+      ]
+    },
+    {
+      "index": 15,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Soybean",
+      "extraction_target": "the number of languages listed at the top of the article",
+      "extraction_section": null,
+      "extracted_value": 139,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Vegetable oil wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Vegetable_oil",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Agricultural commodities illustrate competing land and economic pressures in regions where mining expands.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        14
+      ]
+    },
+    {
+      "index": 16,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Vegetable_oil",
+      "extraction_target": "number of subsections under the Uses section",
+      "extraction_section": "Uses",
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "CNH Industrial wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/CNH_Industrial",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Another commodity example to contrast agricultural supply chains with minerals and to discuss global commodity markets.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        15
+      ]
+    },
+    {
+      "index": 17,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/CNH_Industrial",
+      "extraction_target": "the number of research and development centers CNH Industrial had in 2019",
+      "extraction_section": null,
+      "extracted_value": 56,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Mercedes-Benz",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Equipment manufacturers supply the heavy machinery used in mining and agriculture — an industrial link from mines to markets.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        16
+      ]
+    },
+    {
+      "index": 18,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Mercedes-Benz",
+      "extraction_target": "the number of subsections under 'Subsidiaries and alliances' listed in the table of contents",
+      "extraction_section": "Contents",
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Nissan wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Nissan",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Major automakers illustrate end-demand for metals (steel, aluminium, rare metals) mined by companies like Anglo American.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        17
+      ]
+    },
+    {
+      "index": 19,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Mercedes-Benz",
+      "extraction_target": "Look up the elevation of Mercedes-Benz",
+      "extraction_section": null,
+      "extracted_value": 13.78631973266602,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Mercedes-Benz"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Mercedes-Benz) from https://en.wikipedia.org/wiki/Mercedes-Benz",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        18
+      ]
+    },
+    {
+      "index": 20,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Mercedes-Benz",
+      "extraction_target": "Look up the Google rating of Mercedes-Benz",
+      "extraction_section": null,
+      "extracted_value": 4.2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "Mercedes-Benz"
+            },
+            "expected_output": null,
+            "output_key": "place_rating"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (Google rating of Mercedes-Benz) from https://en.wikipedia.org/wiki/Mercedes-Benz",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        18
+      ]
+    },
+    {
+      "index": 21,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Mercedes-Benz",
+      "extraction_target": "Combine the elevation of Mercedes-Benz and the Google rating of Mercedes-Benz: abs(13 - 4)",
+      "extraction_section": null,
+      "extracted_value": 9,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(13.78631973266602) - int(4.2))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Mercedes-Benz abs_diff Google rating of Mercedes-Benz",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        19,
+        20
+      ]
+    },
+    {
+      "index": 22,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Nissan",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Founded')",
+      "extraction_section": "infobox",
+      "extracted_value": 26,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Honda_Motor_Company",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Nissan represents global OEM demand for raw materials, including shifting demand from ICE to EV components.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        21
+      ]
+    },
+    {
+      "index": 23,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Honda_Motor_Company",
+      "extraction_target": "number of subsections listed under 'Corporate profile and divisions' in the Contents",
+      "extraction_section": "Contents",
+      "extracted_value": 1,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Plastic wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Plastic",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Honda is another large automaker whose transitions affect demand for battery metals and other mined commodities.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        22
+      ]
+    },
+    {
+      "index": 24,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Plastic",
+      "extraction_target": "the section number assigned to History in the Contents",
+      "extraction_section": "Contents",
+      "extracted_value": 10,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Plutonium wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Plutonium",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Plastics show how extracted hydrocarbons are transformed into industrial materials, intersecting with mining and manufacturing supply chains.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        23
+      ]
+    },
+    {
+      "index": 25,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Plastic",
+      "extraction_target": "Count churches near Plastic",
+      "extraction_section": null,
+      "extracted_value": 20,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "churches near Plastic"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (nearby_poi) derived from https://en.wikipedia.org/wiki/Plastic",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        24
+      ]
+    },
+    {
+      "index": 26,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Plutonium",
+      "extraction_target": "the number of languages the article is available in (stated at top of the page)",
+      "extraction_section": null,
+      "extracted_value": 144,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Apartheid wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Apartheid",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "An example of a strategic material requiring specialized mining/processing — underscores environmental and regulatory complexity around certain extracted materials.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        25
+      ]
+    },
+    {
+      "index": 27,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Apartheid",
+      "extraction_target": "the number of subsections under 'Institution and development' shown in the Table of Contents",
+      "extraction_section": "Contents",
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Apartheid",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "South African mining history is inseparable from apartheid-era policies; this stop frames the social and political consequences of mining.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        26
+      ]
+    },
+    {
+      "index": 28,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Apartheid",
+      "extraction_target": "Reason: the sum of its distinct prime factors",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (sum_prime_factors) on stop 13 value",
+      "reason_transform": "sum_prime_factors",
+      "reason_source_stop": 27,
+      "reason_code": "def prime_factors(n):\n    n = abs(int(n))\n    factors = []\n    d = 2\n    while d * d <= n:\n        while n % d == 0:\n            factors.append(d)\n            n //= d\n        d += 1\n    if n > 1: factors.append(n)\n    return factors\nresult = sum(set(prime_factors(4)))\nprint(result)",
+      "depends_on": [
+        27
+      ]
+    },
+    {
+      "index": 29,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Cape_Town",
+      "extraction_target": "Count the number of parks near -33.92528",
+      "extraction_section": null,
+      "extracted_value": 20,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "parks near -33.92528"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: count parks near -33.92528",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        28
+      ]
+    },
+    {
+      "index": 30,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Democratic_Republic_of_Congo",
+      "extraction_target": "Look up the population of Germany",
+      "extraction_section": null,
+      "extracted_value": 83491249,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "countries_population",
+            "arguments": {
+              "country": "Germany"
+            },
+            "expected_output": null,
+            "output_key": "population"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: population of Germany",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        29
+      ]
+    },
+    {
+      "index": 31,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/French_Revolution",
+      "extraction_target": "Calculate the number of days between 1789-05-05 and 2026-03-19",
+      "extraction_section": null,
+      "extracted_value": 86515,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "from datetime import date\nd1 = date.fromisoformat('1789-05-05')\nd2 = date.fromisoformat('2026-03-19')\nresult = abs((d2 - d1).days)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "days"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: date computation 1789-05-05 to 2026-03-19 (pinned)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        30
+      ]
+    },
+    {
+      "index": 32,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/French_Revolution",
+      "extraction_target": "Reason: the number of 1-bits in its binary representation",
+      "extraction_section": null,
+      "extracted_value": 10,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (binary_1bit_count) on stop 16 value",
+      "reason_transform": "binary_1bit_count",
+      "reason_source_stop": 31,
+      "reason_code": "result = bin(abs(int(86515))).count('1')\nprint(result)",
+      "depends_on": [
+        31
+      ]
+    },
+    {
+      "index": 33,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: (3 + 114) % 10",
+      "extraction_section": null,
+      "extracted_value": 7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "(3 + 114) % 10",
+        "expression_code": "result = (3 + 114) % 10\nprint(result)",
+        "referenced_stops": [
+          9,
+          14
+        ]
+      },
+      "reasoning": "Compute stop: (3 + 114) % 10 = 7",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        9,
+        14
+      ]
+    }
+  ],
+  "passcode": 7,
+  "difficulty": {
+    "level": "extreme",
+    "depth": 34,
+    "tool_stop_count": 14,
+    "reason_stop_count": 5,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. There exists a page where a conglomerate shapes the world's metal trade. In which city does this enterprise hold its headquarters?\n\n2. What is the height above sea level of the city you have uncovered?\n\n3. Count how many institutions of higher learning can be found in proximity to this metropolitan hub.\n\n4. Take the elevation from clue 2 and merge it with the count from clue 3 to find the absolute difference.\n\n5. The name of the company you found begins with a letter that holds a specific place in the English alphabet. What position does it occupy?\n\n6. Seek a page that details the people hailing from a land steeped in history. How many languages can you find anchor links for at its top?\n\n7. What lies above sea level for these individuals, if you were to seek its elevation?\n\n8. Find the count of cultural repositories located around the people discussed in clue 6.\n\n9. Combine the elevation from clue 7 and the number of cultural centers from clue 8 by calculating the absolute difference.\n\n10. The textual representation of the number from clue 6 can be transformed into Roman numerals. How many characters compose that numeral?\n\n11. Within the vast expanse of the Brazilian state, known for its mineral wealth, how many languages is the article accessible in?\n\n12. When converting the number from clue 11 into Roman numerals, how many characters would you tally?\n\n13. Shifting to a different subject, look for a page that explains organisms used in new resource discovery. Can you count the subsections under 'Bioprospecting-derived resources and products'?\n\n14. Search nearby this resourceful subject—how many places of worship can be found near the concept of resourcefulness?\n\n15. Venture to an article that elucidates a compound essential to life. How many languages does its page list at the top?\n\n16. In the realm of agriculture, find an entry about a crop widely used for oil production. How many languages are noted there?\n\n17. This oil can be used in various ways. How many subsections detail its applications in the page you just uncovered?\n\n18. Research an industrial company that manufactures agricultural machinery. In 2019, how many research and development centers did it operate?\n\n19. Discover a renowned automotive brand that has created impact across nations. How many subsections regarding its subsidiaries and alliances appear in the table of contents of its page?\n\n20. What height above sea level characterizes the headquarters of this automotive giant?\n\n21. Seek the rating travelers give to this iconic brand—what score do they bestow upon it?\n\n22. Compute the absolute difference between the elevation from clue 20 and the Google rating from clue 21.\n\n23. The founding date of a well-known automobile maker is essential. What year does this page state for its establishment?\n\n24. A prolific manufacturer stands notable for its organizational layout. How many sections can you find under 'Corporate profile and divisions' in its article’s table of contents?\n\n25. Within an article discussing a versatile material, how does the section for its history rank in the contents?\n\n26. Look for places of worship nearby the article about this versatile material. How many churches can you count?\n\n27. Move on to the entry that talks about the radioactive element also used in nuclear technology. How many languages is that article available in?\n\n28. Delve into a page that dismantles racial segregation. How many subsections can you find under 'Institution and development'?\n\n29. Discover the distinct prime factors of the number mentioned in clue 28. What is their sum?\n\n30. If you were to seek green spaces near the coordinates -33.92528, how many parks would you discover in that locale?\n\n31. Now, look for the number of people residing in a noteworthy European nation. What does that figure reveal?\n\n32. From a historical perspective, calculate the span of days from the commencement of a major revolution to a specified future date.\n\n33. Examine the binary representation of the day count from clue 32. How many 1-bits populate that representation?\n\n34. Combine the numeral derived from clue 10 with that from clue 15, and then compute the result of (3 + 114) modulo 10—what single digit emerges when you perform this arithmetic?",
+  "metadata": {
+    "theme": "From mine to market: trace Anglo American's global footprint — the geology and towns that supply metals, the countries and histories that shape mining, and the industrial demand (automakers, chemicals, equipment) that drives extraction.",
+    "difficulty": "extreme",
+    "sample_id": "sample_195",
+    "pages_crawled": 24980
+  },
+  "generated_at": "2026-03-19T17:58:31.801479+00:00"
+}

@@ -1,0 +1,151 @@
+{
+  "trail_id": "trail_f766db4c",
+  "seed_url": "https://en.wikipedia.org/wiki/Pfizer",
+  "seed_title": "Pfizer",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Pfizer%E2%80%93BioNTech_COVID-19_vaccine",
+      "extraction_target": "the number of languages the article is available in",
+      "extraction_section": null,
+      "extracted_value": 55,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/COVID-19_pandemic",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "The Pfizer–BioNTech vaccine is the product linking Pfizer's corporate activity to the global COVID‑19 response; extract its initial authorization date to anchor the timeline.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/COVID-19_pandemic",
+      "extraction_target": "Calculate the number of days between 2020-03-11 and 2026-03-17",
+      "extraction_section": null,
+      "extracted_value": 2197,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "from datetime import date\nd1 = date.fromisoformat('2020-03-11')\nd2 = date.fromisoformat('2026-03-17')\nresult = abs((d2 - d1).days)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "days"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: date computation 2020-03-11 to 2026-03-17 (pinned)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/COVID-19_pandemic",
+      "extraction_target": "Reason: the number of characters when written as a Roman numeral",
+      "extraction_section": null,
+      "extracted_value": 8,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (roman_numeral_letter_count) on stop 1 value",
+      "reason_transform": "roman_numeral_letter_count",
+      "reason_source_stop": 1,
+      "reason_code": "def to_roman(n):\n    n = abs(int(n))\n    vals = [(1000,'M'),(900,'CM'),(500,'D'),(400,'CD'),(100,'C'),\n            (90,'XC'),(50,'L'),(40,'XL'),(10,'X'),(9,'IX'),(5,'V'),(4,'IV'),(1,'I')]\n    r = ''\n    for v, s in vals:\n        while n >= v:\n            r += s; n -= v\n    return r\nresult = len(to_roman(2197))\nprint(result)"
+    },
+    {
+      "index": 3,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Joe_Biden",
+      "extraction_target": "the start year in the 'Post-presidency' section title",
+      "extraction_section": "Post-presidency (2025–present)",
+      "extracted_value": "2025",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Joe_Biden",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Conclude with U.S. leadership: Joe Biden's administration influenced vaccine distribution and policy, tying the corporate, scientific, and political threads together.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 4,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: digital_root(8 + 2025)",
+      "extraction_section": null,
+      "extracted_value": 8,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "digital_root(8 + 2025)",
+        "expression_code": "def digital_root(n):\n    n = abs(int(n))\n    return n if n == 0 else ((n - 1) % 9) + 1\nresult = digital_root(8 + 2025)\nprint(result)",
+        "referenced_stops": [
+          2,
+          3
+        ]
+      },
+      "reasoning": "Compute stop: digital_root(8 + 2025) = 8",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 8,
+  "difficulty": {
+    "level": "easy",
+    "depth": 5,
+    "tool_stop_count": 1,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "direct_link"
+  },
+  "riddle": "Here is the riddle with the specified clues rewritten:\n\n1. Seek the page about the pharmaceutical company that developed an mRNA vaccine in collaboration with a German partner to combat a global pandemic; on that article, discover how many languages it appears in, then click the link that takes you to the entry about the global outbreak caused by SARS‑CoV‑2.\n\n2. How many days passed between 11 March 2020 and 17 March 2026 — compute the absolute number of days (you may use the linked article about the global outbreak for context, but the arithmetic is the key)?\n\n3. If you take that day-count from the previous clue and express it as a Roman numeral, how many characters long is the result; in other words, convert the number to Roman form and report the length of that numeral.\n\n4. In 2021 a new U.S. leader assumed the presidency; visit the article about the person who served as President of the United States from 2021 to 2025, then read the heading that addresses life after leaving office — what year begins that post‑presidential heading?\n\n5. The calculation that finishes this trail asks you to compute the digital root of (clue 3 + clue 4); perform the digital-root operation on the sum of the numeric answers from clue 3 and clue 4 and give the single digit (0–9) that results.",
+  "metadata": {
+    "theme": "Tracing Pfizer from market performance to its COVID‑19 vaccine and the pandemic timeline — ending with U.S. leadership that shaped vaccine policy.",
+    "difficulty": "easy",
+    "sample_id": "sample_161",
+    "pages_crawled": 2569
+  },
+  "generated_at": "2026-03-17T09:46:33.250898+00:00"
+}

@@ -1,0 +1,815 @@
+{
+  "trail_id": "trail_f4c2f8f6",
+  "seed_url": "https://en.wikipedia.org/wiki/Moody%27s_Corporation",
+  "seed_title": "Moody's Corporation",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Moody%27s_Corporation",
+      "extraction_target": "the NYSE ticker symbol for Moody's Corporation",
+      "extraction_section": null,
+      "extracted_value": "MCO",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Moody%27s_Corporation",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Seed: Moody's is the credit-ratings firm anchoring the trail — start by extracting its ticker and HQ to orient the financial narrative.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Moody%27s_Corporation",
+      "extraction_target": "Look up the Google rating of MCO",
+      "extraction_section": null,
+      "extracted_value": 4.1,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "MCO"
+            },
+            "expected_output": null,
+            "output_key": "place_rating"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (place_rating) derived from https://en.wikipedia.org/wiki/Moody%27s_Corporation",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Moody%27s_Corporation",
+      "extraction_target": "Reason: the alphabetical position of its first letter (A=1, B=2, ...)",
+      "extraction_section": null,
+      "extracted_value": 13,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (alpha_position_first_letter) on stop 0 value",
+      "reason_transform": "alpha_position_first_letter",
+      "reason_source_stop": 0,
+      "reason_code": "first = \"MCO\"[0].upper()\nresult = ord(first) - ord('A') + 1 if first.isalpha() else 0\nprint(result)",
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Federal_Reserve_System",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Established')",
+      "extraction_section": "infobox",
+      "extracted_value": 23,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Central_bank",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Monetary policy: the Fed's actions influence credit conditions and ratings that Moody's publishes.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Central_bank",
+      "extraction_target": "the number of languages the article is available in (displayed near the top)",
+      "extraction_section": null,
+      "extracted_value": 91,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Central_bank",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Concept: situate the Fed within the broader concept of central banks that steer national monetary policy and market liquidity.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Central_bank",
+      "extraction_target": "Reason: the sum of its distinct prime factors",
+      "extraction_section": null,
+      "extracted_value": 20,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (sum_prime_factors) on stop 2 value",
+      "reason_transform": "sum_prime_factors",
+      "reason_source_stop": 4,
+      "reason_code": "def prime_factors(n):\n    n = abs(int(n))\n    factors = []\n    d = 2\n    while d * d <= n:\n        while n % d == 0:\n            factors.append(d)\n            n //= d\n        d += 1\n    if n > 1: factors.append(n)\n    return factors\nresult = sum(set(prime_factors(91)))\nprint(result)",
+      "depends_on": [
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Great_Recession_in_the_United_States",
+      "extraction_target": "the month and year of the 34th G8 summit listed in the infobox",
+      "extraction_section": null,
+      "extracted_value": "July 2008",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Russell 1000 Index wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Russell_1000_Index",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Crisis context: examine a major event where credit ratings, central banks and market indices all interacted dramatically.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Great_Recession_in_the_United_States",
+      "extraction_target": "Look up the elevation of Great Recession in the United States",
+      "extraction_section": null,
+      "extracted_value": 3236.2353515625,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Great Recession in the United States"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Great Recession in the United States) from https://en.wikipedia.org/wiki/Great_Recession_in_the_United_States",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Great_Recession_in_the_United_States",
+      "extraction_target": "Look up the count of churches near Great Recession in the United States",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "churches near Great Recession in the United States"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of churches near Great Recession in the United States) from https://en.wikipedia.org/wiki/Great_Recession_in_the_United_States",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 9,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Great_Recession_in_the_United_States",
+      "extraction_target": "Combine the elevation of Great Recession in the United States and the count of churches near Great Recession in the United States: (3236 + 20)",
+      "extraction_section": null,
+      "extracted_value": 3256,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(3236.2353515625) + int(20.0)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Great Recession in the United States add count of churches near Great Recession in the United States",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        7,
+        8
+      ]
+    },
+    {
+      "index": 10,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Russell_1000_Index",
+      "extraction_target": "the number of constituents of the Russell 1000 Index (approximate)",
+      "extraction_section": null,
+      "extracted_value": 1000,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Hasbro",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Market lens: a large-cap index showing how corporates (and thus credit risk) are aggregated in market benchmarks.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        9
+      ]
+    },
+    {
+      "index": 11,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Hasbro",
+      "extraction_target": "Look up the closing price of HAS on 2008-01-01",
+      "extraction_section": null,
+      "extracted_value": 14.37,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "stock_historical_price",
+            "arguments": {
+              "ticker": "HAS",
+              "date": "2008-01-01"
+            },
+            "expected_output": null,
+            "output_key": "stock_price"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: stock price HAS on 2008-01-01",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        10
+      ]
+    },
+    {
+      "index": 12,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Hasbro",
+      "extraction_target": "Reason: the number of characters when written as a Roman numeral",
+      "extraction_section": null,
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (roman_numeral_letter_count) on stop 5 value",
+      "reason_transform": "roman_numeral_letter_count",
+      "reason_source_stop": 11,
+      "reason_code": "def to_roman(n):\n    n = abs(int(n))\n    vals = [(1000,'M'),(900,'CM'),(500,'D'),(400,'CD'),(100,'C'),\n            (90,'XC'),(50,'L'),(40,'XL'),(10,'X'),(9,'IX'),(5,'V'),(4,'IV'),(1,'I')]\n    r = ''\n    for v, s in vals:\n        while n >= v:\n            r += s; n -= v\n    return r\nresult = len(to_roman(14))\nprint(result)",
+      "depends_on": [
+        11
+      ]
+    },
+    {
+      "index": 13,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Johannesburg_Stock_Exchange",
+      "extraction_target": "the location listed in the infobox (field: 'Location')",
+      "extraction_section": "infobox",
+      "extracted_value": "Sandton, Johannesburg, South Africa",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Nelson Mandela wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Nelson_Mandela",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Global reach: move to an important emerging-market exchange to show Moody's and market linkages beyond the U.S.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        12
+      ]
+    },
+    {
+      "index": 14,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Nelson_Mandela",
+      "extraction_target": "the height listed in the infobox (field: 'Height')",
+      "extraction_section": "infobox",
+      "extracted_value": 1.93,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Northern Ireland, United Kingdom wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Northern_Ireland,_United_Kingdom",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Political-economic context: Nelson Mandela's role helps explain South Africa's political transition that shaped market development and investor confidence.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        13
+      ]
+    },
+    {
+      "index": 15,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Northern_Ireland,_United_Kingdom",
+      "extraction_target": "Convert 1000 km to miles",
+      "extraction_section": null,
+      "extracted_value": 621,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "# Convert km to miles\nvalue = 1000.0\nconverted = value * 0.621371\nresult = int(converted)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "converted"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: convert 1000 km to miles",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        14
+      ]
+    },
+    {
+      "index": 16,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Asian_Financial_Crisis",
+      "extraction_target": "the number of languages the article is available in",
+      "extraction_section": null,
+      "extracted_value": 53,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Economic_liberalisation_in_India",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Shock episode: another major crisis illustrating how sovereign and corporate credit risk rapidly transmitted through markets.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        15
+      ]
+    },
+    {
+      "index": 17,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Economic_liberalisation_in_India",
+      "extraction_target": "the number of sub-sub-subsections listed under 'Impact on domestic monetary and fiscal policies' in the Contents",
+      "extraction_section": "Impact on domestic monetary and fiscal policies",
+      "extracted_value": 1,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Metropolitan Life Insurance Company Tower wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Metropolitan_Life_Insurance_Company_Tower",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Policy response: show how structural reforms and liberalisation influence domestic markets and creditworthiness over the long run.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        16
+      ]
+    },
+    {
+      "index": 18,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Metropolitan_Life_Insurance_Company_Tower",
+      "extraction_target": "the location listed in the infobox (field: 'Location')",
+      "extraction_section": "infobox",
+      "extracted_value": "1 Madison Avenue Manhattan, New York, U.S.",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "US Dollar wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/US_Dollar",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Financial landmarks: the tower anchors New York's financial geography — useful for visualizing where firms like Moody's operate.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        17
+      ]
+    },
+    {
+      "index": 19,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Metropolitan_Life_Insurance_Company_Tower",
+      "extraction_target": "Look up the elevation of 1 Madison Avenue Manhattan, New York, U.S.",
+      "extraction_section": null,
+      "extracted_value": 11.15756320953369,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "1 Madison Avenue Manhattan, New York, U.S."
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of 1 Madison Avenue Manhattan, New York, U.S.) from https://en.wikipedia.org/wiki/Metropolitan_Life_Insurance_Company_Tower",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        18
+      ]
+    },
+    {
+      "index": 20,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Metropolitan_Life_Insurance_Company_Tower",
+      "extraction_target": "Look up the count of hospitals near 1 Madison Avenue Manhattan, New York, U.S.",
+      "extraction_section": null,
+      "extracted_value": 13.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "hospitals near 1 Madison Avenue Manhattan, New York, U.S."
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of hospitals near 1 Madison Avenue Manhattan, New York, U.S.) from https://en.wikipedia.org/wiki/Metropolitan_Life_Insurance_Company_Tower",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        18
+      ]
+    },
+    {
+      "index": 21,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Metropolitan_Life_Insurance_Company_Tower",
+      "extraction_target": "Combine the elevation of 1 Madison Avenue Manhattan, New York, U.S. and the count of hospitals near 1 Madison Avenue Manhattan, New York, U.S.: (11 + 13)",
+      "extraction_section": null,
+      "extracted_value": 24,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(11.15756320953369) + int(13.0)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of 1 Madison Avenue Manhattan, New York, U.S. add count of hospitals near 1 Madison Avenue Manhattan, New York, U.S.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        19,
+        20
+      ]
+    },
+    {
+      "index": 22,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/US_Dollar",
+      "extraction_target": "the number of subsections in the International use as reserve currency section (7.x)",
+      "extraction_section": "Contents",
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Russian Revolution (1917) wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Russian_Revolution_(1917)",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Currency backbone: the dollar's centrality underpins global credit markets and ratings dynamics that Moody's monitors.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        21
+      ]
+    },
+    {
+      "index": 23,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Russian_Revolution_(1917)",
+      "extraction_target": "Calculate the number of days between 2008-01-01 and 2026-03-18",
+      "extraction_section": null,
+      "extracted_value": 6651,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "from datetime import date\nd1 = date.fromisoformat('2008-01-01')\nd2 = date.fromisoformat('2026-03-18')\nresult = abs((d2 - d1).days)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "days"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: date computation 2008-01-01 to 2026-03-18 (pinned)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        22
+      ]
+    },
+    {
+      "index": 24,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Russian_Revolution_(1917)",
+      "extraction_target": "Reason: the sum of its digits",
+      "extraction_section": null,
+      "extracted_value": 18,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_sum) on stop 13 value",
+      "reason_transform": "digit_sum",
+      "reason_source_stop": 23,
+      "reason_code": "result = sum(int(d) for d in str(abs(int(6651))))\nprint(result)",
+      "depends_on": [
+        23
+      ]
+    },
+    {
+      "index": 25,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: abs(4 - 20) % 10",
+      "extraction_section": null,
+      "extracted_value": 6,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "abs(4 - 20) % 10",
+        "expression_code": "result = abs(4 - 20) % 10\nprint(result)",
+        "referenced_stops": [
+          1,
+          5,
+          9,
+          14
+        ]
+      },
+      "reasoning": "Compute stop: abs(4 - 20) % 10 = 6",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1,
+        5,
+        9,
+        14
+      ]
+    }
+  ],
+  "passcode": 6,
+  "difficulty": {
+    "level": "hard",
+    "depth": 26,
+    "tool_stop_count": 10,
+    "reason_stop_count": 4,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Unearth the financial titan whose analytical prowess begins with an 'M' and resides on Wall Street — what's the ticker that represents this giant?\n\n2. In the realm of public sentiment, what star rating do patrons give to our previous find?\n\n3. Should you decode the first letter of your discovery's name how high does it stand in the alphabet? \n\n4. A revolutionary institution was born in the United States to oversee monetary policy — in which year did this pivotal entity come into existence?\n\n5. For those who navigate the realms of currency, how many languages can this article be read in across the globe?\n\n6. Reflect on clue 5: if the value you found has prime factors, what is their total when summed together?\n\n7. During an economic crisis that reshaped a nation, what was the month and year of a momentous G8 gathering that transpired?\n\n8. If you measure the depth of challenges from economic downturns, what is the elevation that marked the ‘Great Recession’ in its homeland?\n\n9. Counting places of worship, how many churches stand sentinel near the economic memories of the downturn?\n\n10. Combine the height you gleaned from clue 8 with the spiritual count from clue 9 — what total do you reach?\n\n11. As you continue to uncover the financial landscape, find how many companies make up a certain index that tracks the performance of large-cap U.S. equities.\n\n12. In the world of entertainment, seek out the closing price of a notable toy and game company on the first day of 2008 — what was its last trading value?\n\n13. Remember the financial firm? Transform clue 12's value into its Roman numeral form; how many characters does this representation contain?\n\n14. The trading hub which influences much of Africa has a position noted in history — where is this place located?\n\n15. The legacy of a freedom fighter stretches globally; what height is attributed to him in the infobox of his biography?\n\n16. Imagine a distance traveled across nations; convert 1000 kilometers into its equivalent in miles — what figure does this journey yield?\n\n17. Seek the article that discusses a turbulent financial period — in how many languages is this narrative accessible?\n\n18. As economic reforms unfolded in a populous nation, how many sub-sub-subsections do you find in the narrative regarding 'Impact on domestic monetary and fiscal policies'?\n\n19. In a landmark observation, what city is the home of a towering insurance structure — where does it stand?\n\n20. If you stand at 1 Madison Avenue, New York, what elevation do you measure from the ground up?\n\n21. Look for healing homes nearby; how many hospitals exist within proximity of this iconic building?\n\n22. To move forward, merge the height from clue 20 with the count of health facilities from clue 21 — what total emerges?\n\n23. The greenback: stemming from its importance on a global scale, how many Sections delve into its role as the reserve currency?\n\n24. Reflecting on a pivotal historical event, calculate the total days spanning from the start of 2008 to a notable date in 2026 — what is the final tally?\n\n25. Now, from this timeframe, reveal the sum of its digits — what number emerges from your calculations?\n\n26. Finally, compute: take the absolute difference between the star rating from clue 2 and the total from clue 6, then apply modulo 10. What single digit do you discover?",
+  "metadata": {
+    "theme": "From credit ratings to global markets: trace how Moody's credit analysis connects to central banking, market indices, major corporations, regional exchanges and economic crises that shape capital flows worldwide.",
+    "difficulty": "hard",
+    "sample_id": "sample_183",
+    "pages_crawled": 22078
+  },
+  "generated_at": "2026-03-18T22:16:52.778323+00:00"
+}

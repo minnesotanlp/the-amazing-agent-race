@@ -1,0 +1,1258 @@
+{
+  "trail_id": "trail_81f3c560",
+  "seed_url": "https://en.wikipedia.org/wiki/Stephen_Collins_House",
+  "seed_title": "Stephen Collins House",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Stephen_Collins_House",
+      "extraction_target": "the coordinates listed in the infobox (field: 'Coordinates')",
+      "extraction_section": "infobox",
+      "extracted_value": "45°16′19″N 75°42′19″W﻿ / ﻿45.27195°N 75.70517°W﻿ / 45.27195; -75.70517",
+      "extracted_value_type": "coords",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Rideau Hall wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Rideau_Hall",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Seed: a local historic house as our starting 'house' — anchors the trail in a built place and local governance history.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Rideau_Hall",
+      "extraction_target": "the geographic coordinates as given",
+      "extraction_section": null,
+      "extracted_value": "45°26′38″N 75°41′08″W﻿ / ﻿45.443753°N 75.685641°W﻿ / 45.443753; -75.685641",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Centre_Block",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Shift from a private historic house to a national residence — shows how houses can embody political authority (Canada's official residence).",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Centre_Block",
+      "extraction_target": "the coordinates listed in the infobox (field: '[Coordinates](/wiki/Geographic_coordinate_system \"Geographic coordinate system\")')",
+      "extraction_section": "infobox",
+      "extracted_value": "45°25′30″N 75°42′00″W﻿ / ﻿45.425°N 75.700°W﻿ / 45.425; -75.700",
+      "extracted_value_type": "coords",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Legislative Assembly of Alberta wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Legislative_Assembly_of_Alberta",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Canada's parliamentary building — the civic 'house' of legislature, following Rideau Hall in the national governance landscape.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Legislative_Assembly_of_Alberta",
+      "extraction_target": "Get the driving duration in minutes from Legislative Assembly of Alberta to 3436 Prince of Wales Drive",
+      "extraction_section": null,
+      "extracted_value": 2303,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_directions",
+            "arguments": {
+              "origin": "Legislative Assembly of Alberta",
+              "destination": "3436 Prince of Wales Drive",
+              "mode": "driving"
+            },
+            "expected_output": null,
+            "output_key": "duration"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: directions duration Legislative Assembly of Alberta to 3436 Prince of Wales Drive",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Legislative_Assembly_of_Alberta",
+      "extraction_target": "Reason: the number of characters when written as a Roman numeral",
+      "extraction_section": null,
+      "extracted_value": 8,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (roman_numeral_letter_count) on stop 3 value",
+      "reason_transform": "roman_numeral_letter_count",
+      "reason_source_stop": 3,
+      "reason_code": "def to_roman(n):\n    n = abs(int(n))\n    vals = [(1000,'M'),(900,'CM'),(500,'D'),(400,'CD'),(100,'C'),\n            (90,'XC'),(50,'L'),(40,'XL'),(10,'X'),(9,'IX'),(5,'V'),(4,'IV'),(1,'I')]\n    r = ''\n    for v, s in vals:\n        while n >= v:\n            r += s; n -= v\n    return r\nresult = len(to_roman(2303))\nprint(result)",
+      "depends_on": [
+        3
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/7th_Parliament_of_Great_Britain",
+      "extraction_target": "the number of MPs elected in the 1727 British general election",
+      "extraction_section": null,
+      "extracted_value": 558,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Reagan Era wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Reagan_Era",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Begin a historical sweep of parliamentary evolution — the 7th Parliament as an example of early modern parliamentary sessions.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Reagan_Era",
+      "extraction_target": "Look up the elevation at United States",
+      "extraction_section": null,
+      "extracted_value": 3236.2353515625,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "United States"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for United States",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Reagan_Era",
+      "extraction_target": "Reason: the sum of its distinct prime factors",
+      "extraction_section": null,
+      "extracted_value": 811,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (sum_prime_factors) on stop 5 value",
+      "reason_transform": "sum_prime_factors",
+      "reason_source_stop": 6,
+      "reason_code": "def prime_factors(n):\n    n = abs(int(n))\n    factors = []\n    d = 2\n    while d * d <= n:\n        while n % d == 0:\n            factors.append(d)\n            n //= d\n        d += 1\n    if n > 1: factors.append(n)\n    return factors\nresult = sum(set(prime_factors(3236)))\nprint(result)",
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/8th_Parliament_of_Great_Britain",
+      "extraction_target": "the number of MPs elected in 1734",
+      "extraction_section": null,
+      "extracted_value": 558,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "8th Parliament of Great Britain wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/8th_Parliament_of_Great_Britain",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Continue through successive parliaments to trace institutional continuity and change in legislative 'houses'.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        7
+      ]
+    },
+    {
+      "index": 9,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/8th_Parliament_of_Great_Britain",
+      "extraction_target": "Look up the elevation of 8th Parliament of Great Britain",
+      "extraction_section": null,
+      "extracted_value": 371.4067077636719,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "8th Parliament of Great Britain"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of 8th Parliament of Great Britain) from https://en.wikipedia.org/wiki/8th_Parliament_of_Great_Britain",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        8
+      ]
+    },
+    {
+      "index": 10,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/8th_Parliament_of_Great_Britain",
+      "extraction_target": "Look up the count of museums near 8th Parliament of Great Britain",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "museums near 8th Parliament of Great Britain"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of museums near 8th Parliament of Great Britain) from https://en.wikipedia.org/wiki/8th_Parliament_of_Great_Britain",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        8
+      ]
+    },
+    {
+      "index": 11,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/8th_Parliament_of_Great_Britain",
+      "extraction_target": "Combine the elevation of 8th Parliament of Great Britain and the count of museums near 8th Parliament of Great Britain: (371 + 20)",
+      "extraction_section": null,
+      "extracted_value": 391,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(371.4067077636719) + int(20.0)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of 8th Parliament of Great Britain add count of museums near 8th Parliament of Great Britain",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        9,
+        10
+      ]
+    },
+    {
+      "index": 12,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/8th_Parliament_of_Great_Britain",
+      "extraction_target": "Reason: the number of divisors of that figure",
+      "extraction_section": null,
+      "extracted_value": 12,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (num_divisors) on stop 6 value",
+      "reason_transform": "num_divisors",
+      "reason_source_stop": 8,
+      "reason_code": "n = abs(int(558))\ncount = sum(1 for i in range(1, n+1) if n % i == 0) if n > 0 else 0\nresult = count\nprint(result)",
+      "depends_on": [
+        8
+      ]
+    },
+    {
+      "index": 13,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/9th_Parliament_of_Great_Britain",
+      "extraction_target": "the number of MPs elected to the 9th Parliament of Great Britain",
+      "extraction_section": null,
+      "extracted_value": 558,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "9th Parliament of Great Britain wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/9th_Parliament_of_Great_Britain",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Another step in parliamentary succession — shows rhythm of legislatures and political stability/turnover.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        12
+      ]
+    },
+    {
+      "index": 14,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/9th_Parliament_of_Great_Britain",
+      "extraction_target": "Reason: the number of divisors of that figure",
+      "extraction_section": null,
+      "extracted_value": 12,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (num_divisors) on stop 7 value",
+      "reason_transform": "num_divisors",
+      "reason_source_stop": 13,
+      "reason_code": "n = abs(int(558))\ncount = sum(1 for i in range(1, n+1) if n % i == 0) if n > 0 else 0\nresult = count\nprint(result)",
+      "depends_on": [
+        13
+      ]
+    },
+    {
+      "index": 15,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/18th_Parliament_of_Great_Britain",
+      "extraction_target": "the number of MPs elected in the 1796 British general election",
+      "extraction_section": null,
+      "extracted_value": 558,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Qalay-I-Zal District wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Qalay-I-Zal_District",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Jump ahead to a later numbered parliament to highlight long-term institutional continuity and historical layering of the same governance house.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        14
+      ]
+    },
+    {
+      "index": 16,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/18th_Parliament_of_Great_Britain",
+      "extraction_target": "Look up the elevation of 18th Parliament of Great Britain",
+      "extraction_section": null,
+      "extracted_value": 371.4067077636719,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "18th Parliament of Great Britain"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of 18th Parliament of Great Britain) from https://en.wikipedia.org/wiki/18th_Parliament_of_Great_Britain",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        15
+      ]
+    },
+    {
+      "index": 17,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/18th_Parliament_of_Great_Britain",
+      "extraction_target": "Look up the count of universities near 18th Parliament of Great Britain",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "universities near 18th Parliament of Great Britain"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of universities near 18th Parliament of Great Britain) from https://en.wikipedia.org/wiki/18th_Parliament_of_Great_Britain",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        15
+      ]
+    },
+    {
+      "index": 18,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/18th_Parliament_of_Great_Britain",
+      "extraction_target": "Combine the elevation of 18th Parliament of Great Britain and the count of universities near 18th Parliament of Great Britain: (371 + 20)",
+      "extraction_section": null,
+      "extracted_value": 391,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(371.4067077636719) + int(20.0)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of 18th Parliament of Great Britain add count of universities near 18th Parliament of Great Britain",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        16,
+        17
+      ]
+    },
+    {
+      "index": 19,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Qalay-I-Zal_District",
+      "extraction_target": "Look up the area in km² of Afghanistan",
+      "extraction_section": null,
+      "extracted_value": 652230.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "countries_area",
+            "arguments": {
+              "country": "Afghanistan"
+            },
+            "expected_output": null,
+            "output_key": "area_km2"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: area of Afghanistan",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        18
+      ]
+    },
+    {
+      "index": 20,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Qalay-I-Zal_District",
+      "extraction_target": "Reason: the next prime number after that figure",
+      "extraction_section": null,
+      "extracted_value": 652237,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (next_prime) on stop 9 value",
+      "reason_transform": "next_prime",
+      "reason_source_stop": 19,
+      "reason_code": "def next_prime(n):\n    n = abs(int(n))\n    if n < 2: return 2\n    candidate = n + 1\n    while True:\n        if all(candidate % i != 0 for i in range(2, int(candidate**0.5)+1)):\n            return candidate\n        candidate += 1\nresult = next_prime(652230)\nprint(result)",
+      "depends_on": [
+        19
+      ]
+    },
+    {
+      "index": 21,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/King-in-Council",
+      "extraction_target": "the number of languages listed under the article title",
+      "extraction_section": null,
+      "extracted_value": 10,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Lord Speaker wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Lord_Speaker",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Shift from parliaments to the royal/constitutional executive — another form of the 'house' of governance (the monarch in council).",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        20
+      ]
+    },
+    {
+      "index": 22,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Lord_Speaker",
+      "extraction_target": "term length in years for the Lord Speaker",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Kuran wa Munjan District wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Kuran_wa_Munjan_District",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Focus on the office that presides in a legislative house — the Lord Speaker as an example of parliamentary officers who shape procedure and decorum.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        21
+      ]
+    },
+    {
+      "index": 23,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Kuran_wa_Munjan_District",
+      "extraction_target": "Look up the elevation at Kuran wa Munjan District",
+      "extraction_section": null,
+      "extracted_value": 4200.00439453125,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Kuran wa Munjan District"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for Kuran wa Munjan District",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        22
+      ]
+    },
+    {
+      "index": 24,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Statute_Law_Revision_Act_1867",
+      "extraction_target": "the number of Acts listed under 'Amended by' in the infobox",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Statute Law Revision Act 1888 wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Statute_Law_Revision_Act_1888",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Introduce legal housekeeping: statute law revision acts show how the legal 'house' updates and prunes past laws — institutional maintenance of governance.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        23
+      ]
+    },
+    {
+      "index": 25,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Statute_Law_Revision_Act_1888",
+      "extraction_target": "the number of items listed in the 'Relates to' list in the infobox",
+      "extraction_section": null,
+      "extracted_value": 31,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Statute_Law_Revision_Act_1888",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A later statute law revision act — demonstrates ongoing legal reform across decades, a legislative housekeeping through the ages.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        24
+      ]
+    },
+    {
+      "index": 26,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Statute_Law_Revision_Act_1888",
+      "extraction_target": "Reason: the digital root (iterated digit sum until single digit)",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digital_root) on stop 14 value",
+      "reason_transform": "digital_root",
+      "reason_source_stop": 25,
+      "reason_code": "n = abs(int(31))\nresult = n if n == 0 else ((n - 1) % 9) + 1\nprint(result)",
+      "depends_on": [
+        25
+      ]
+    },
+    {
+      "index": 27,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Bakhsh_(administrative_division)",
+      "extraction_target": "the number of counties that constitute Sistan and Baluchestan province",
+      "extraction_section": null,
+      "extracted_value": 26,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Bon Accord F.C. wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Bon_Accord_F.C.",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Zoom out to the concept of an administrative subunit — how territories are divided into 'houses' of local government (bakhsh) across countries.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        26
+      ]
+    },
+    {
+      "index": 28,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Bon_Accord_F.C.",
+      "extraction_target": "Convert 10 meters to yards",
+      "extraction_section": null,
+      "extracted_value": 10,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "# Convert meters to yards\nvalue = 10.0\nconverted = value * 1.09361\nresult = int(converted)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "converted"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: convert 10 meters to yards",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        27
+      ]
+    },
+    {
+      "index": 29,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Ishkashim_District",
+      "extraction_target": "the total population of Ishkashim District (2021)",
+      "extraction_section": null,
+      "extracted_value": 15951,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Ragh District wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Ragh_District",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "An example district in Afghanistan — concrete local administrative unit showing population and geographic scale of governance on the ground.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        28
+      ]
+    },
+    {
+      "index": 30,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Ishkashim_District",
+      "extraction_target": "Look up the elevation of Ishkashim District",
+      "extraction_section": null,
+      "extracted_value": 4650.3955078125,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Ishkashim District"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Ishkashim District) from https://en.wikipedia.org/wiki/Ishkashim_District",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        29
+      ]
+    },
+    {
+      "index": 31,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Ishkashim_District",
+      "extraction_target": "Look up the count of hotels near Ishkashim District",
+      "extraction_section": null,
+      "extracted_value": 4.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "hotels near Ishkashim District"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of hotels near Ishkashim District) from https://en.wikipedia.org/wiki/Ishkashim_District",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        29
+      ]
+    },
+    {
+      "index": 32,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Ishkashim_District",
+      "extraction_target": "Combine the elevation of Ishkashim District and the count of hotels near Ishkashim District: (4650 + 4)",
+      "extraction_section": null,
+      "extracted_value": 4654,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(4650.3955078125) + int(4.0)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Ishkashim District add count of hotels near Ishkashim District",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        30,
+        31
+      ]
+    },
+    {
+      "index": 33,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Ragh_District",
+      "extraction_target": "the population total listed for 2012",
+      "extraction_section": null,
+      "extracted_value": 37800,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "St. Leger Stakes wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/St._Leger_Stakes",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Another Afghan district to compare administrative scale and reinforce how terrain and population shape local governance.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        32
+      ]
+    },
+    {
+      "index": 34,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Ragh_District",
+      "extraction_target": "Look up the elevation of Ragh District",
+      "extraction_section": null,
+      "extracted_value": 3085.5986328125,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Ragh District"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Ragh District) from https://en.wikipedia.org/wiki/Ragh_District",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        33
+      ]
+    },
+    {
+      "index": 35,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Ragh_District",
+      "extraction_target": "Look up the count of stadiums near Ragh District",
+      "extraction_section": null,
+      "extracted_value": 2.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "stadiums near Ragh District"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of stadiums near Ragh District) from https://en.wikipedia.org/wiki/Ragh_District",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        33
+      ]
+    },
+    {
+      "index": 36,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Ragh_District",
+      "extraction_target": "Combine the elevation of Ragh District and the count of stadiums near Ragh District: abs(3085 - 2)",
+      "extraction_section": null,
+      "extracted_value": 3083,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(3085.5986328125) - int(2.0))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Ragh District abs_diff count of stadiums near Ragh District",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        34,
+        35
+      ]
+    },
+    {
+      "index": 37,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/St._Leger_Stakes",
+      "extraction_target": "Convert 5 km to miles",
+      "extraction_section": null,
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "# Convert km to miles\nvalue = 5.0\nconverted = value * 0.621371\nresult = int(converted)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "converted"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: convert 5 km to miles",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        36
+      ]
+    },
+    {
+      "index": 38,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: abs(12 - 558) % 10",
+      "extraction_section": null,
+      "extracted_value": 6,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "abs(12 - 558) % 10",
+        "expression_code": "result = abs(12 - 558) % 10\nprint(result)",
+        "referenced_stops": [
+          12,
+          15,
+          22
+        ]
+      },
+      "reasoning": "Compute stop: abs(12 - 558) % 10 = 6",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        12,
+        15,
+        22
+      ]
+    }
+  ],
+  "passcode": 6,
+  "difficulty": {
+    "level": "extreme",
+    "depth": 39,
+    "tool_stop_count": 18,
+    "reason_stop_count": 6,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Seek the historic abode that belonged to a prominent American politician whose name is echoed in the streets of the capital. What coordinates define its location? \n\n2. A regal residence in Canada serves as the Governor General's official dwelling. What precise latitude and longitude pin down this stately home?\n\n3. Find the seat of Canada's national assembly, noted for its stunning architecture. What geographical pointers are etched upon its page?\n\n4. If one ventures from the legislative heart of Alberta to a residence numbered 3436 Prince of Wales Drive, how many minutes must they travel by car?\n\n5. Transform your answer from the previous inquiry into a Roman numeral. How many characters does this ancient form require to be written?\n\n6. Discover the assembly in Britain from 1727 that was composed of Members of Parliament. How many individuals were elected in that pivotal year?\n\n7. When surveying the vast landscape of the United States, what elevation do you uncover as you probe into its geography?\n\n8. Find the sum of the distinct prime factors of the height recorded for the United States. \n\n9. What was the total of MPs chosen in the British parliamentary election of 1734, often associated with developing new policies? \n\n10. Ascend to new heights and discover the elevation of the assembly's chamber from clue 9 — in meters, what value do you find?\n\n11. Within the proximity of the 8th Parliament of Great Britain, how many museums share their cultural riches?\n\n12. Combine the elevation from clue 10 with the count of museums found in the previous clue. What new figure emerges?\n\n13. Examine the number of MPs recorded in the election for the 9th Parliament of Great Britain. From this figure, how many divisors can you identify?\n\n14. Tread the path to the assembly elected in 1796, the 18th in line for Britain. What was the headcount of its elected members?\n\n15. In seeking the elevation of the 18th Parliament, what height does this significant site stand at?\n\n16. How many institutions of higher learning can be identified near the 18th Parliament? \n\n17. Employ the elevation found in clue 15 and the number of nearby universities from clue 16 to create a combined total. What is your total figure? \n\n18. Hunt for the total area measured in square kilometers of a region named after an Afghan district. What does this figure reflect?\n\n19. From the area you just uncovered, identify the next prime number that follows. What mathematical value stands proud after this exploration?\n\n20. In a ruling body where the king deliberates in tandem with a council, how many languages can be found referenced in the article?\n\n21. A figure of years grants authority to the Lord Speaker. What span of time in years is allocated for their term of service?\n\n22. Venture into a district that lies within Afghanistan, named after its geographical characteristics. What elevation do you find residing in this district?\n\n23. As you scour the landscape, note how many stadiums claim proximity to the place you just explored.\n\n24. Take the elevation from clue 22 and subtract the count of stadiums from clue 23. What figure remains?\n\n25. Investigate the racing event known as the St. Leger Stakes; how many miles does it cover when converted from a distance expressed in kilometers?\n\n26. Finally, compute the result of the expression: abs(clue 13 - clue 14) % 10. What single digit emerges from this final calculation?",
+  "metadata": {
+    "theme": "Houses of power and the structures that govern them — a cross-century trail from a historic American house to national seats, the evolution of parliaments and legal reform, and how administrative geography shapes governance (with data checks along the way).",
+    "difficulty": "extreme",
+    "sample_id": "sample_060",
+    "pages_crawled": 9814
+  },
+  "generated_at": "2026-03-17T05:27:45.228790+00:00"
+}

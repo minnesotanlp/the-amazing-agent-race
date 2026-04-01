@@ -1,0 +1,348 @@
+{
+  "trail_id": "trail_cf6b345a",
+  "seed_url": "https://en.wikipedia.org/wiki/Nike,_Inc.",
+  "seed_title": "Nike, Inc.",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Nike,_Inc.",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Founded')",
+      "extraction_section": "infobox",
+      "extracted_value": 25,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Indonesia wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Indonesia",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start at Nike's company page to anchor the trail: identify its HQ (Beaverton/Portland area) and origin before branching outward to manufacturing countries, retail cities, and market peers.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Indonesia",
+      "extraction_target": "Look up the elevation at Indonesia",
+      "extraction_section": null,
+      "extracted_value": 100.3525619506836,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Indonesia"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for Indonesia",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Portland,_Oregon",
+      "extraction_target": "the coordinates listed in the infobox (field: 'Coordinates')",
+      "extraction_section": "infobox",
+      "extracted_value": "45.52000, -122.68194",
+      "extracted_value_type": "coords",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Los_Angeles",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Portland (and the Portland metro) frames Nike's regional headquarters and local ecosystem — extract its population/coordinates to connect corporate HQ to the city scale.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Portland,_Oregon",
+      "extraction_target": "Look up the elevation of Portland, Oregon",
+      "extraction_section": null,
+      "extracted_value": 20.75681686401367,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Portland, Oregon"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Portland, Oregon) from https://en.wikipedia.org/wiki/Portland,_Oregon",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Portland,_Oregon",
+      "extraction_target": "Look up the count of restaurants near Portland, Oregon",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "restaurants near Portland, Oregon"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of restaurants near Portland, Oregon) from https://en.wikipedia.org/wiki/Portland,_Oregon",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Portland,_Oregon",
+      "extraction_target": "Combine the elevation of Portland, Oregon and the count of restaurants near Portland, Oregon: (20 + 20)",
+      "extraction_section": null,
+      "extracted_value": 40,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(20.75681686401367) + int(20.0)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Portland, Oregon add count of restaurants near Portland, Oregon",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3,
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Los_Angeles",
+      "extraction_target": "Count the number of museums near 34.050",
+      "extraction_section": null,
+      "extracted_value": 20,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "museums near 34.050"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: count museums near 34.050",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Los_Angeles",
+      "extraction_target": "Reason: the number of characters when written as a Roman numeral",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (roman_numeral_letter_count) on stop 3 value",
+      "reason_transform": "roman_numeral_letter_count",
+      "reason_source_stop": 6,
+      "reason_code": "def to_roman(n):\n    n = abs(int(n))\n    vals = [(1000,'M'),(900,'CM'),(500,'D'),(400,'CD'),(100,'C'),\n            (90,'XC'),(50,'L'),(40,'XL'),(10,'X'),(9,'IX'),(5,'V'),(4,'IV'),(1,'I')]\n    r = ''\n    for v, s in vals:\n        while n >= v:\n            r += s; n -= v\n    return r\nresult = len(to_roman(20))\nprint(result)",
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Apple_Computer",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Founded')",
+      "extraction_section": "infobox",
+      "extracted_value": 1,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Apple_Computer",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Branch to another major consumer brand headquartered in the U.S.; extract Apple’s ticker to highlight how consumer brands participate in public markets and compare corporate scale.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        7
+      ]
+    },
+    {
+      "index": 9,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: (25 + 20) % 10",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "(25 + 20) % 10",
+        "expression_code": "result = (25 + 20) % 10\nprint(result)",
+        "referenced_stops": [
+          0,
+          3
+        ]
+      },
+      "reasoning": "Compute stop: (25 + 20) % 10 = 5",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0,
+        3
+      ]
+    }
+  ],
+  "passcode": 5,
+  "difficulty": {
+    "level": "easy",
+    "depth": 10,
+    "tool_stop_count": 5,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Unearth the beginnings of a brand that soared from a basketball shoe to global prominence; in what year did this athletic giant take its first steps?\n\n2. What land, known for its lush rainforests and vibrant culture, boasts a name that signifies 'the island' in its most common tongue? Seek the height at which the ground sits above the sea.\n\n3. A city in the Pacific Northwest prides itself on its coffee culture and vibrant art scene. What are the coordinates in degrees of this urban hub that serves as the birthplace of the footwear titan?\n\n4. A curious elevation waits in the heart of the aforementioned city; how tall does the ground rise? Discover this height above sea level.\n\n5. Nearby, countless eateries satisfy the appetites of locals and travelers alike. Track down the number of restaurants that line the streets of this culinary haven.\n\n6. Combine the elevation you found in clue 4 with the count of eateries from clue 5. What new number emerges from their union?\n\n7. Southward lies a sprawling metropolis known for its film industry and iconic landmarks. How many museums decorate the vicinity around latitude 34.050?\n\n8. Transform the number of institutions discovered in clue 7 into a Roman numeral. How many characters does it take to express this symbolically?\n\n9. Seek the tale of a tech giant, born in a garage, who changed the way we interface with technology. What year marked the inception of this innovative company?\n\n10. Lastly, reveal the absolute difference when you add the year from clue 1 to the elevation from clue 4, and take that total modulo 10: compute (clue 1 + clue 4) % 10. The answer lies within a single digit, waiting to be uncovered.",
+  "metadata": {
+    "theme": "Tracing Nike's global ecosystem — from its headquarters to manufacturing countries, major U.S. retail metros, and public-market peers to see how a sports brand fits into global production and commerce.",
+    "difficulty": "easy",
+    "sample_id": "sample_170",
+    "pages_crawled": 3219
+  },
+  "generated_at": "2026-03-17T10:32:30.148576+00:00"
+}

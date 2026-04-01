@@ -1,0 +1,418 @@
+{
+  "trail_id": "trail_cbf0156a",
+  "seed_url": "https://en.wikipedia.org/wiki/Saint_Vincent_and_the_Grenadines_at_the_2011_Pan_American_Games",
+  "seed_title": "Saint Vincent and the Grenadines at the 2011 Pan American Games",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Saint_Vincent_and_the_Grenadines_at_the_2011_Pan_American_Games",
+      "extraction_target": "the number of competitors Saint Vincent and the Grenadines sent",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "France at the 2004 Summer Paralympics wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/France_at_the_2004_Summer_Paralympics",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Seed: introduces the small Saint Vincent and the Grenadines delegation at a major regional multi-sport event and frames the 'small nation' perspective for the trail.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/France_at_the_2004_Summer_Paralympics",
+      "extraction_target": "Look up the elevation at France at the 2004 Summer Paralympics",
+      "extraction_section": null,
+      "extracted_value": 423.1949462890625,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "France at the 2004 Summer Paralympics"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for France at the 2004 Summer Paralympics",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Athletics_at_the_2011_Pan_American_Games",
+      "extraction_target": "the host city of the athletics competitions",
+      "extraction_section": null,
+      "extracted_value": "Guadalajara, Mexico",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Athletics_at_the_2011_Pan_American_Games",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Zooms into the athletics program at the same Games — situating where the track and field competition took place and connecting the seed delegation to specific events.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 3,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Athletics_at_the_2011_Pan_American_Games",
+      "extraction_target": "Reason: the alphabetical position of its first letter (A=1, B=2, ...)",
+      "extraction_section": null,
+      "extracted_value": 7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (alpha_position_first_letter) on stop 2 value",
+      "reason_transform": "alpha_position_first_letter",
+      "reason_source_stop": 2,
+      "reason_code": "first = \"Guadalajara, Mexico\"[0].upper()\nresult = ord(first) - ord('A') + 1 if first.isalpha() else 0\nprint(result)"
+    },
+    {
+      "index": 4,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Steeplechase_(athletics)",
+      "extraction_target": "the distance in miles covered by the winner Mr. C. Meynell in the 1796 race",
+      "extraction_section": "History",
+      "extracted_value": 9,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/1000_metres",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Focuses on a distinctive track event many Pan Am athletes contest, illustrating the specific demands (distance, obstacles) smaller-team athletes may prepare for.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 5,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/1000_metres",
+      "extraction_target": "Convert 9°C to a Fahrenheit-scale offset",
+      "extraction_section": null,
+      "extracted_value": 16,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "# Convert celsius to fahrenheit_offset\nvalue = 9.0\nconverted = value * 1.8\nresult = int(converted)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "converted"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: convert 9 celsius to fahrenheit_offset",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 6,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/College_soccer_in_the_United_States",
+      "extraction_target": "the number of governing bodies listed in the infobox",
+      "extraction_section": null,
+      "extracted_value": 8,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/College_soccer_in_the_United_States",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Shows a major development route where Caribbean and international athletes often go to continue development — linking international competition to college opportunities.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 7,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/College_soccer_in_the_United_States",
+      "extraction_target": "Reason: the next prime number after that figure",
+      "extraction_section": null,
+      "extracted_value": 11,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (next_prime) on stop 5 value",
+      "reason_transform": "next_prime",
+      "reason_source_stop": 6,
+      "reason_code": "def next_prime(n):\n    n = abs(int(n))\n    if n < 2: return 2\n    candidate = n + 1\n    while True:\n        if all(candidate % i != 0 for i in range(2, int(candidate**0.5)+1)):\n            return candidate\n        candidate += 1\nresult = next_prime(8)\nprint(result)"
+    },
+    {
+      "index": 8,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Portland_Timbers_U23s",
+      "extraction_target": "Get the driving duration in minutes from John Chambers Field at CFC Complex Salem to College soccer in the United States",
+      "extraction_section": null,
+      "extracted_value": 1176,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_directions",
+            "arguments": {
+              "origin": "John Chambers Field at CFC Complex Salem",
+              "destination": "College soccer in the United States",
+              "mode": "driving"
+            },
+            "expected_output": null,
+            "output_key": "duration"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: directions duration John Chambers Field at CFC Complex Salem to College soccer in the United States",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 9,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Premier_Development_League",
+      "extraction_target": "number of divisions in the league",
+      "extraction_section": "Competition format",
+      "extracted_value": 19,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/United_Soccer_League",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Covers the (former) US summer development league many college players join — a concrete step between college soccer and professional ranks.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 10,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/United_Soccer_League",
+      "extraction_target": "the year the United Soccer League was founded",
+      "extraction_section": null,
+      "extracted_value": "1986",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Orange_County_SC",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Describes the professional league structure that ambitious development-league players aim to reach — linking grassroots/college to pro opportunities.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 11,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Orange_County_SC",
+      "extraction_target": "the name of the stadium where the team plays its home games",
+      "extraction_section": null,
+      "extracted_value": "Championship Soccer Stadium",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Rosewood Hotels & Resorts wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Rosewood_Hotels_%26_Resorts",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A concrete club example in the Southern California development/professional scene where international players (including from the Caribbean) may play and train.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 12,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Rosewood_Hotels_%26_Resorts",
+      "extraction_target": "Count the number of temples near Hong Kong[[1]](#cite_note-1)",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "temples near Hong Kong"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: count temples near Hong Kong[[1]](#cite_note-1)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 13,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Rosewood_Hotels_%26_Resorts",
+      "extraction_target": "Reason: the next prime number after that figure",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (next_prime) on stop 10 value",
+      "reason_transform": "next_prime",
+      "reason_source_stop": 12,
+      "reason_code": "def next_prime(n):\n    n = abs(int(n))\n    if n < 2: return 2\n    candidate = n + 1\n    while True:\n        if all(candidate % i != 0 for i in range(2, int(candidate**0.5)+1)):\n            return candidate\n        candidate += 1\nresult = next_prime(4)\nprint(result)"
+    },
+    {
+      "index": 14,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: digital_root(4 + 8)",
+      "extraction_section": null,
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "digital_root(4 + 8)",
+        "expression_code": "def digital_root(n):\n    n = abs(int(n))\n    return n if n == 0 else ((n - 1) % 9) + 1\nresult = digital_root(4 + 8)\nprint(result)",
+        "referenced_stops": [
+          0,
+          6
+        ]
+      },
+      "reasoning": "Compute stop: digital_root(4 + 8) = 3",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 3,
+  "difficulty": {
+    "level": "medium",
+    "depth": 15,
+    "tool_stop_count": 4,
+    "reason_stop_count": 3,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "Here is the revised riddle:\n\n1. Seek the page that details the performance of the small Caribbean nation at the 2011 Pan American Games and tell me: how many competitors did that tiny delegation send?\n\n2. There exists a Wikipedia entry describing France's participation at the 2004 Summer Paralympics; on that page, estimate how high above sea level the ground sits at the location associated with that entry (report the elevation in whole metres).\n\n3. Which metropolis hosted the track-and-field programme of the 2011 Pan American Games — find the athletics page for those Games and name the host city.\n\n4. If you take the city you found in clue 3, convert its initial letter into its alphabetical position (A = 1, B = 2, and so on); what number does that give you?\n\n5. The article that recounts the early history of a running event in which hurdles are featured (look in its History section) mentions Mr. C. Meynell's 1796 victory — what distance in miles did he cover to win?\n\n6. As if consulting a conversion table on the page about the one‑kilometre track distance, multiply 9 °C by 1.8 then take the integer part; what number do you obtain?\n\n7. Inspect the Wikipedia page for university-level soccer in the United States: how many governing bodies are listed in the infobox?\n\n8. Now storywise, take the figure you obtained in clue 7 and seek the next prime number strictly greater than it; what prime is that?\n\n9. Estimate the driving duration, in minutes, from John Chambers Field at the CFC Complex in Salem to the location representing collegiate soccer in the United States; how many minutes does the route take?\n\n10. Examine the article about the U.S. summer development league for aspiring professionals (the one with many U23 sides): according to its competition format, how many divisions does the league have?\n\n11. Discover the founding year of the national organisation commonly abbreviated USL by reading its page; in which year was that league founded?\n\n12. Name the stadium where the Orange County professional club plays its home matches, as given on that club's Wikipedia entry.\n\n13. On the page about a global luxury hotel brand, a footnote lists temples near Hong Kong; count how many temples that cited note mentions.\n\n14. Take the temple-count from clue 13 and advance to the next prime number after it; what is that prime?\n\n15. (Aside) Compute the digital root of (clue 1 + clue 7) — that is, apply digital_root(clue 1 + clue 7); your final answer should be a single digit from 0–9.",
+  "metadata": {
+    "theme": "From a tiny Caribbean Pan American delegation to athletic pathways: following how athletes from small nations travel, train and progress through events, distances, college soccer and development leagues to professional clubs.",
+    "difficulty": "medium",
+    "sample_id": "sample_087",
+    "pages_crawled": 4500
+  },
+  "generated_at": "2026-03-16T17:01:14.418453+00:00"
+}

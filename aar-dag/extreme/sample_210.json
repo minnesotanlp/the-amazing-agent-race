@@ -1,0 +1,1352 @@
+{
+  "trail_id": "trail_73425cd2",
+  "seed_url": "https://en.wikipedia.org/wiki/El_Disco",
+  "seed_title": "El Disco",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/El_Disco",
+      "extraction_target": "the release date of El Disco",
+      "extraction_section": null,
+      "extracted_value": "5 April 2019",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "MTV wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/MTV",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start with the seed album El Disco — the cultural artifact that launches this journey through music, places, platforms, and politics.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/El_Disco",
+      "extraction_target": "Look up the elevation of El Disco",
+      "extraction_section": null,
+      "extracted_value": 22.56672668457031,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "El Disco"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of El Disco) from https://en.wikipedia.org/wiki/El_Disco",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/El_Disco",
+      "extraction_target": "Look up the Google rating of El Disco",
+      "extraction_section": null,
+      "extracted_value": 4.5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "El Disco"
+            },
+            "expected_output": null,
+            "output_key": "place_rating"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (Google rating of El Disco) from https://en.wikipedia.org/wiki/El_Disco",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/El_Disco",
+      "extraction_target": "Combine the elevation of El Disco and the Google rating of El Disco: abs(22 - 4)",
+      "extraction_section": null,
+      "extracted_value": 18,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(22.56672668457031) - int(4.5))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of El Disco abs_diff Google rating of El Disco",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1,
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/MTV",
+      "extraction_target": "the number of subsections under Influence and controversies listed in the Contents",
+      "extraction_section": "Influence and controversies",
+      "extracted_value": 10,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/MTV",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "MTV transformed how albums and artists reached mass audiences; it connects recorded music to mass-media distribution.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/MTV",
+      "extraction_target": "Reason: the sum of its distinct prime factors",
+      "extraction_section": null,
+      "extracted_value": 7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (sum_prime_factors) on stop 1 value",
+      "reason_transform": "sum_prime_factors",
+      "reason_source_stop": 4,
+      "reason_code": "def prime_factors(n):\n    n = abs(int(n))\n    factors = []\n    d = 2\n    while d * d <= n:\n        while n % d == 0:\n            factors.append(d)\n            n //= d\n        d += 1\n    if n > 1: factors.append(n)\n    return factors\nresult = sum(set(prime_factors(10)))\nprint(result)",
+      "depends_on": [
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Rave",
+      "extraction_target": "the number of languages listed at the top of the article",
+      "extraction_section": null,
+      "extracted_value": 39,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Rave",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Rave culture represents another live, youth-centered outlet for music dissemination and subcultural identity — a contrast to TV and albums.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Rave",
+      "extraction_target": "Look up the Google rating of Rave",
+      "extraction_section": null,
+      "extracted_value": 3.9,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "Rave"
+            },
+            "expected_output": null,
+            "output_key": "place_rating"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (place_rating) derived from https://en.wikipedia.org/wiki/Rave",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Rave",
+      "extraction_target": "Reason: the number of divisors of that figure",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (num_divisors) on stop 2 value",
+      "reason_transform": "num_divisors",
+      "reason_source_stop": 6,
+      "reason_code": "n = abs(int(39))\ncount = sum(1 for i in range(1, n+1) if n % i == 0) if n > 0 else 0\nresult = count\nprint(result)",
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 9,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Orlando,_Florida",
+      "extraction_target": "the elevation listed in the infobox (field: 'Elevation [[4]](#cite_note-gnis-4)')",
+      "extraction_section": "infobox",
+      "extracted_value": 89,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Orlando,_Florida",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Orlando is a major U.S. entertainment hub (tourism, concerts, Spring Break culture) showing how cities host music experiences.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        8
+      ]
+    },
+    {
+      "index": 10,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Orlando,_Florida",
+      "extraction_target": "Look up the elevation of Orlando, Florida",
+      "extraction_section": null,
+      "extracted_value": 31.1263256072998,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Orlando, Florida"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Orlando, Florida) from https://en.wikipedia.org/wiki/Orlando,_Florida",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        9
+      ]
+    },
+    {
+      "index": 11,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Orlando,_Florida",
+      "extraction_target": "Look up the count of stadiums near Orlando, Florida",
+      "extraction_section": null,
+      "extracted_value": 18.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "stadiums near Orlando, Florida"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of stadiums near Orlando, Florida) from https://en.wikipedia.org/wiki/Orlando,_Florida",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        9
+      ]
+    },
+    {
+      "index": 12,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Orlando,_Florida",
+      "extraction_target": "Combine the elevation of Orlando, Florida and the count of stadiums near Orlando, Florida: abs(31 - 18)",
+      "extraction_section": null,
+      "extracted_value": 13,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(31.1263256072998) - int(18.0))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Orlando, Florida abs_diff count of stadiums near Orlando, Florida",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        10,
+        11
+      ]
+    },
+    {
+      "index": 13,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Orlando,_Florida",
+      "extraction_target": "Reason: the largest prime factor of that figure",
+      "extraction_section": null,
+      "extracted_value": 89,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (largest_prime_factor) on stop 3 value",
+      "reason_transform": "largest_prime_factor",
+      "reason_source_stop": 9,
+      "reason_code": "def largest_prime_factor(n):\n    n = abs(int(n))\n    if n <= 1: return n\n    d = 2\n    while d * d <= n:\n        while n % d == 0: n //= d\n        d += 1\n    return n\nresult = largest_prime_factor(89)\nprint(result)",
+      "depends_on": [
+        9
+      ]
+    },
+    {
+      "index": 14,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Greater_Los_Angeles",
+      "extraction_target": "the population listed in the infobox (field: 'Population (2023)[[2]](#cite_note-auto-2)')",
+      "extraction_section": "infobox",
+      "extracted_value": 12799100,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Googleplex wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Googleplex",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Greater Los Angeles is the global entertainment and music-industry hub where albums, labels, and media conglomerates concentrate.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        13
+      ]
+    },
+    {
+      "index": 15,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Greater_Los_Angeles",
+      "extraction_target": "Look up the elevation of Greater Los Angeles",
+      "extraction_section": null,
+      "extracted_value": 9.21862506866455,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Greater Los Angeles"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Greater Los Angeles) from https://en.wikipedia.org/wiki/Greater_Los_Angeles",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        14
+      ]
+    },
+    {
+      "index": 16,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Greater_Los_Angeles",
+      "extraction_target": "Look up the count of libraries near Greater Los Angeles",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "libraries near Greater Los Angeles"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of libraries near Greater Los Angeles) from https://en.wikipedia.org/wiki/Greater_Los_Angeles",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        14
+      ]
+    },
+    {
+      "index": 17,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Greater_Los_Angeles",
+      "extraction_target": "Combine the elevation of Greater Los Angeles and the count of libraries near Greater Los Angeles: (9 + 20)",
+      "extraction_section": null,
+      "extracted_value": 29,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(9.21862506866455) + int(20.0)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Greater Los Angeles add count of libraries near Greater Los Angeles",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        15,
+        16
+      ]
+    },
+    {
+      "index": 18,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Googleplex",
+      "extraction_target": "the location listed in the infobox (field: 'Location')",
+      "extraction_section": "infobox",
+      "extracted_value": "Mountain View, California, United States",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Googleplex",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "The Googleplex represents big-tech influence on media distribution, advertising, and discovery — a tech counterpart to traditional music media.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        17
+      ]
+    },
+    {
+      "index": 19,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Googleplex",
+      "extraction_target": "Look up the elevation of Mountain View, California, United States",
+      "extraction_section": null,
+      "extracted_value": 26.98346710205078,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Mountain View, California, United States"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Mountain View, California, United States) from https://en.wikipedia.org/wiki/Googleplex",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        18
+      ]
+    },
+    {
+      "index": 20,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Googleplex",
+      "extraction_target": "Look up the count of temples near Mountain View, California, United States",
+      "extraction_section": null,
+      "extracted_value": 3.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "temples near Mountain View, California, United States"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of temples near Mountain View, California, United States) from https://en.wikipedia.org/wiki/Googleplex",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        18
+      ]
+    },
+    {
+      "index": 21,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Googleplex",
+      "extraction_target": "Combine the elevation of Mountain View, California, United States and the count of temples near Mountain View, California, United States: abs(26 - 3)",
+      "extraction_section": null,
+      "extracted_value": 23,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(26.98346710205078) - int(3.0))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Mountain View, California, United States abs_diff count of temples near Mountain View, California, United States",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        19,
+        20
+      ]
+    },
+    {
+      "index": 22,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Googleplex",
+      "extraction_target": "Reason: the number of vowels in that name",
+      "extraction_section": null,
+      "extracted_value": 16,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (vowel_count) on stop 5 value",
+      "reason_transform": "vowel_count",
+      "reason_source_stop": 18,
+      "reason_code": "result = sum(1 for c in \"Mountain View, California, United States\".lower() if c in 'aeiou')\nprint(result)",
+      "depends_on": [
+        18
+      ]
+    },
+    {
+      "index": 23,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Play_Store",
+      "extraction_target": "the number of languages listed under the article header",
+      "extraction_section": null,
+      "extracted_value": 87,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Tesla Inc wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Tesla_Inc",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "App stores and digital platforms (Google Play) are core distribution channels for music apps and streaming, shaping how listeners access albums like El Disco.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        22
+      ]
+    },
+    {
+      "index": 24,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Tesla_Inc",
+      "extraction_target": "Look up the closing price of TSLA on 2019-04-05",
+      "extraction_section": null,
+      "extracted_value": 18.33,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "stock_historical_price",
+            "arguments": {
+              "ticker": "TSLA",
+              "date": "2019-04-05"
+            },
+            "expected_output": null,
+            "output_key": "stock_price"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: stock price TSLA on 2019-04-05",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        23
+      ]
+    },
+    {
+      "index": 25,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Apple_TV_(streaming_service)",
+      "extraction_target": "the number of yearly subsections (2017–2023) under the \"Celebrity partnerships, other original content and programming decisions\" subsection",
+      "extraction_section": "Celebrity partnerships, other original content and programming decisions",
+      "extracted_value": 7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Zoom (software) wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Zoom_(software)",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Streaming services (Apple TV) are another axis of content distribution, showing competition among platform providers for audience attention.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        24
+      ]
+    },
+    {
+      "index": 26,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Zoom_(software)",
+      "extraction_target": "the initial release date of Zoom (software)",
+      "extraction_section": null,
+      "extracted_value": "October 12, 2011",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Detroit, Michigan wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Detroit,_Michigan",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Zoom and videoconferencing enabled new forms of live performance and fan engagement (virtual concerts), expanding how music reaches audiences.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        25
+      ]
+    },
+    {
+      "index": 27,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Detroit,_Michigan",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Founded ([Fort Detroit](/wiki/Fort_Detroit \"Fort Detroit\"))')",
+      "extraction_section": "infobox",
+      "extracted_value": 24,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Memphis,_Tennessee",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Detroit demonstrates how cities develop distinctive musical legacies (Motown) that feed back into recorded music and live scenes.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        26
+      ]
+    },
+    {
+      "index": 28,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Memphis,_Tennessee",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Founded')",
+      "extraction_section": "infobox",
+      "extracted_value": 22,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Neoliberalism wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Neoliberalism",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Memphis is another American music city whose genres (blues, early rock) shaped commercial music that travels via media and platforms.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        27
+      ]
+    },
+    {
+      "index": 29,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Memphis,_Tennessee",
+      "extraction_target": "Look up the elevation of Memphis, Tennessee",
+      "extraction_section": null,
+      "extracted_value": 82.746826171875,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Memphis, Tennessee"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Memphis, Tennessee) from https://en.wikipedia.org/wiki/Memphis,_Tennessee",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        28
+      ]
+    },
+    {
+      "index": 30,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Memphis,_Tennessee",
+      "extraction_target": "Look up the count of universities near Memphis, Tennessee",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "universities near Memphis, Tennessee"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of universities near Memphis, Tennessee) from https://en.wikipedia.org/wiki/Memphis,_Tennessee",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        28
+      ]
+    },
+    {
+      "index": 31,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Memphis,_Tennessee",
+      "extraction_target": "Combine the elevation of Memphis, Tennessee and the count of universities near Memphis, Tennessee: (82 + 20)",
+      "extraction_section": null,
+      "extracted_value": 102,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(82.746826171875) + int(20.0)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Memphis, Tennessee add count of universities near Memphis, Tennessee",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        29,
+        30
+      ]
+    },
+    {
+      "index": 32,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Neoliberalism",
+      "extraction_target": "the number of languages in which the article is available",
+      "extraction_section": null,
+      "extracted_value": 69,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Libertarianism",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Neoliberal economic policies affected media consolidation, deregulation, and the market pressures that reshaped the music industry and tech platforms.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        31
+      ]
+    },
+    {
+      "index": 33,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Libertarianism",
+      "extraction_target": "the number of languages the article is available in (as shown at the top of the page)",
+      "extraction_section": null,
+      "extracted_value": 81,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "UK wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/UK",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Libertarian ideas intersect with tech-industry thinking about regulation, intellectual property, and platform governance impacting music distribution.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        32
+      ]
+    },
+    {
+      "index": 34,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/UK",
+      "extraction_target": "Look up the population of United States",
+      "extraction_section": null,
+      "extracted_value": 87146,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "countries_population",
+            "arguments": {
+              "country": "United States"
+            },
+            "expected_output": null,
+            "output_key": "population"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: population of United States",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        33
+      ]
+    },
+    {
+      "index": 35,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/UK",
+      "extraction_target": "Reason: the sum of its digits",
+      "extraction_section": null,
+      "extracted_value": 26,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_sum) on stop 14 value",
+      "reason_transform": "digit_sum",
+      "reason_source_stop": 34,
+      "reason_code": "result = sum(int(d) for d in str(abs(int(87146))))\nprint(result)",
+      "depends_on": [
+        34
+      ]
+    },
+    {
+      "index": 36,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Ayn_Rand",
+      "extraction_target": "the number of subsections under the 'Life and career' section (1.x entries) shown in the Contents",
+      "extraction_section": "Life and career",
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Bermuda wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Bermuda",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Ayn Rand's ideas influenced some tech founders and libertarian-leaning economic thought that percolates into industry approaches to markets and regulation.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        35
+      ]
+    },
+    {
+      "index": 37,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Bermuda",
+      "extraction_target": "Look up the area in km² of United States",
+      "extraction_section": null,
+      "extracted_value": 347.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "countries_area",
+            "arguments": {
+              "country": "United States"
+            },
+            "expected_output": null,
+            "output_key": "area_km2"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: area of United States",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        36
+      ]
+    },
+    {
+      "index": 38,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Paul_Ryan",
+      "extraction_target": "the start date of Paul Ryan's term as Speaker of the United States House of Representatives",
+      "extraction_section": null,
+      "extracted_value": "October 29, 2015",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Hobart wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Hobart",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Paul Ryan is a contemporary U.S. political figure associated with market-oriented policy — placing politics in conversation with the economic forces shaping music and tech.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        37
+      ]
+    },
+    {
+      "index": 39,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Hobart",
+      "extraction_target": "Look up the elevation at -42.88056",
+      "extraction_section": null,
+      "extracted_value": 1265.517211914062,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "-42.88056"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for -42.88056",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        38
+      ]
+    },
+    {
+      "index": 40,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Hobart",
+      "extraction_target": "Reason: the number you get by reversing its digits",
+      "extraction_section": null,
+      "extracted_value": 5621,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_reversal) on stop 18 value",
+      "reason_transform": "digit_reversal",
+      "reason_source_stop": 39,
+      "reason_code": "result = int(str(abs(int(1265)))[::-1])\nprint(result)",
+      "depends_on": [
+        39
+      ]
+    },
+    {
+      "index": 41,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: abs(18 - 12799100) % 10",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "abs(18 - 12799100) % 10",
+        "expression_code": "result = abs(18 - 12799100) % 10\nprint(result)",
+        "referenced_stops": [
+          11,
+          14
+        ]
+      },
+      "reasoning": "Compute stop: abs(18 - 12799100) % 10 = 2",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        11,
+        14
+      ]
+    }
+  ],
+  "passcode": 2,
+  "difficulty": {
+    "level": "extreme",
+    "depth": 42,
+    "tool_stop_count": 20,
+    "reason_stop_count": 6,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. A colorful album ignites the journey, holding cherished melodies. When did its harmonious journey commence?\n\n2. Navigate to where the elevation dances with music's rhythm. What height marks this celebrated locale in meters?\n\n3. Seek the opinions of the crowd—how do they rate this gem on a popular review platform?\n\n4. Combine the heights you found earlier with the crowd's opinions. What is the absolute difference?\n\n5. Your quest now takes you to the channel that revolutionized music broadcasts. How many subsections discuss its influence and controversies?\n\n6. In the spirit of numbers, uncover the sum of the distinct prime factors of the figure from the previous clue. \n\n7. Turn your attention to the gathering known for joyous celebrations—how many languages echo through its pages?\n\n8. Discover the public's voice—what is the Google star rating for this spirited connection point?\n\n9. Reason through your findings; how many divisors does the figure from clue 7 reveal?\n\n10. Seek the heights listed for a city known for its theme parks and attractions—what is its elevation in meters?\n\n11. High above the ground, what is the current altitude of the city famous for its enchanting experiences?\n\n12. Nearby, how many stadiums can you count that host different events in this vibrant locale?\n\n13. First, take the city’s height above sea level and add to it the count of stadiums from the previous clue. What do they total?\n\n14. Reflect on the elevation of the thrilling place—what is its largest prime factor?\n\n15. Journey next to the expansive metropolitan area known for its diverse culture. What figure defines its population as of 2023?\n\n16. Cascading down, what is the elevation of this bustling community in meters?\n\n17. Nearby, count the libraries that enrich this region—what number do you find?\n\n18. Add the elevation you've discovered to the count of libraries. What is the result of pulling these values together?\n\n19. The headquarters of innovation in technology holds many secrets. What location can you uncover in its infobox?\n\n20. Elevate your search further! What is the altitude above sea level for this innovative site in meters?\n\n21. Nearby, how many temples enhance the spiritual landscape of this technological hub?\n\n22. Combine the heights from the tech center with the temple count. What do they yield?\n\n23. In the name you have unearthed, discover how many vowels it contains.\n\n24. Transition to the platform that shapes modern apps. How many languages does its article present?\n\n25. Shift your focus to a visionary company—what was its stock's closing price on April 5, 2019? \n\n26. Delve into the streaming realm and uncover how many yearly subsections span this service's narrative from 2017 to 2023.\n\n27. Your path now leads to a platform of virtual meetings. When did this software first take flight?\n\n28. Uncover the year when this industrial city was founded—what year marks its establishment?\n\n29. Another city of musical significance awaits you. Identify its founding year—what year did it come into existence?\n\n30. Elevate your understanding of this city—what is its elevation above sea level?\n\n31. Surrounding this cultural landmark, how many universities thrive in the vicinity?\n\n32. Finally, add together the city's elevation and the number of universities nearby. What does their sum give you?\n\n33. In the realm of economic thought, how many languages discuss the topic detailed on this page?\n\n34. Another philosophy expands—how many languages echo the principles found within the pages of this ideology?\n\n35. The United States is a land of diversity; what is its count of inhabitants?\n\n36. For deeper insight, compute the sum of the digits in that population figure.\n\n37. Discover the structure of a prominent thinker’s life—how many subsections detail their journey?\n\n38. While pondering this nation, assess its entire area in square kilometers.\n\n39. The political landscape shifts with a key figure. When did their term as Speaker begin?\n\n40. Journey down under; what is the elevation you find at the given coordinate?\n\n41. Reflect on this height, flipped—what number do you attain by reversing its digits?\n\n42. Combine your observations from clues 12 and 15 to calculate: abs(18 - 12799100) % 10. What single digit emerges from this computation?",
+  "metadata": {
+    "theme": "From a Latin album titled El Disco to the global music ecosystem — a trail that follows music culture (albums, TV, raves, cities), the tech platforms that distribute music, and the political-economic ideas that shape the industry.",
+    "difficulty": "extreme",
+    "sample_id": "sample_210",
+    "pages_crawled": 27992
+  },
+  "generated_at": "2026-03-20T09:27:29.900249+00:00"
+}

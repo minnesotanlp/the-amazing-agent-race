@@ -1,0 +1,640 @@
+{
+  "trail_id": "trail_be07b816",
+  "seed_url": "https://en.wikipedia.org/wiki/Starbucks",
+  "seed_title": "Starbucks",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Starbucks",
+      "extraction_target": "the number of subsections listed under 'Corporate governance and identity' in the Contents",
+      "extraction_section": "Contents",
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/San_Francisco_Bay_Area",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Seed: Starbucks is the corporate anchor — a global coffee company whose headquarters, growth and corporate identity set the trail's starting point.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/San_Francisco_Bay_Area",
+      "extraction_target": "the elevation listed in the infobox (field: 'Highest elevation [[2]](#cite_note-2) [Copernicus Peak](/wiki/Copernicus_Peak \"Copernicus Peak\")')",
+      "extraction_section": "infobox",
+      "extracted_value": 4360,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Santa Monica, California wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Santa_Monica,_California",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Urban tech and cultural hubs like the Bay Area shape coffeehouse demand and host many corporate HQs — a key urban context for Starbucks-style expansion.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/San_Francisco_Bay_Area",
+      "extraction_target": "Count hospitals near San Francisco Bay Area",
+      "extraction_section": null,
+      "extracted_value": 20,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "hospitals near San Francisco Bay Area"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (nearby_poi) derived from https://en.wikipedia.org/wiki/San_Francisco_Bay_Area",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Santa_Monica,_California",
+      "extraction_target": "Count the number of hospitals near 34.02194",
+      "extraction_section": null,
+      "extracted_value": 8,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "hospitals near 34.02194"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: count hospitals near 34.02194",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Santa_Monica,_California",
+      "extraction_target": "Reason: the next prime number after that figure",
+      "extraction_section": null,
+      "extracted_value": 11,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (next_prime) on stop 2 value",
+      "reason_transform": "next_prime",
+      "reason_source_stop": 3,
+      "reason_code": "def next_prime(n):\n    n = abs(int(n))\n    if n < 2: return 2\n    candidate = n + 1\n    while True:\n        if all(candidate % i != 0 for i in range(2, int(candidate**0.5)+1)):\n            return candidate\n        candidate += 1\nresult = next_prime(8)\nprint(result)",
+      "depends_on": [
+        3
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Berkeley,_California",
+      "extraction_target": "the number of language versions listed at the top of the page",
+      "extraction_section": null,
+      "extracted_value": 92,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Berkeley,_California",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "University towns like Berkeley influence coffee culture, activism and consumer patterns that shaped modern coffeehouse life.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Berkeley,_California",
+      "extraction_target": "Look up the elevation of Berkeley, California",
+      "extraction_section": null,
+      "extracted_value": 51.06609725952148,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Berkeley, California"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Berkeley, California) from https://en.wikipedia.org/wiki/Berkeley,_California",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Berkeley,_California",
+      "extraction_target": "Look up the count of hotels near Berkeley, California",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "hotels near Berkeley, California"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of hotels near Berkeley, California) from https://en.wikipedia.org/wiki/Berkeley,_California",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Berkeley,_California",
+      "extraction_target": "Combine the elevation of Berkeley, California and the count of hotels near Berkeley, California: abs(51 - 20)",
+      "extraction_section": null,
+      "extracted_value": 31,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(51.06609725952148) - int(20.0))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Berkeley, California abs_diff count of hotels near Berkeley, California",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6,
+        7
+      ]
+    },
+    {
+      "index": 9,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Berkeley,_California",
+      "extraction_target": "Reason: the largest prime factor of that figure",
+      "extraction_section": null,
+      "extracted_value": 23,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (largest_prime_factor) on stop 3 value",
+      "reason_transform": "largest_prime_factor",
+      "reason_source_stop": 5,
+      "reason_code": "def largest_prime_factor(n):\n    n = abs(int(n))\n    if n <= 1: return n\n    d = 2\n    while d * d <= n:\n        while n % d == 0: n //= d\n        d += 1\n    return n\nresult = largest_prime_factor(92)\nprint(result)",
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 10,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Harvard_University",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Established')",
+      "extraction_section": "infobox",
+      "extracted_value": 28,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Harvard_University",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Ivy-League and elite institutions connect to networks of leadership and corporate governance that influence how companies expand and are run.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        9
+      ]
+    },
+    {
+      "index": 11,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Harvard_University",
+      "extraction_target": "Reason: the number you get by reversing its digits",
+      "extraction_section": null,
+      "extracted_value": 82,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_reversal) on stop 4 value",
+      "reason_transform": "digit_reversal",
+      "reason_source_stop": 10,
+      "reason_code": "result = int(str(abs(int(28)))[::-1])\nprint(result)",
+      "depends_on": [
+        10
+      ]
+    },
+    {
+      "index": 12,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Gilded_Age",
+      "extraction_target": "the era timeframe listed in the infobox",
+      "extraction_section": null,
+      "extracted_value": "1870s – late 1890s",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "United States Department of Justice wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/United_States_Department_of_Justice",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Historical background: the Gilded Age offers a precedent for concentrated corporate power and public reaction — useful context for modern antitrust/regulation debates.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        11
+      ]
+    },
+    {
+      "index": 13,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/United_States_Department_of_Justice",
+      "extraction_target": "the URL for the Spanish-language version of this article",
+      "extraction_section": null,
+      "extracted_value": "https://es.wikipedia.org/wiki/Departamento_de_Justicia_de_los_Estados_Unidos",
+      "extracted_value_type": "url",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "FBI wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/FBI",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "The DOJ is the modern enforcer of competition law — central to any discussion about regulating large corporations and market power.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        12
+      ]
+    },
+    {
+      "index": 14,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/United_States_Department_of_Justice",
+      "extraction_target": "Look up the elevation of United States Department of Justice",
+      "extraction_section": null,
+      "extracted_value": 3236.2353515625,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "United States Department of Justice"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of United States Department of Justice) from https://en.wikipedia.org/wiki/United_States_Department_of_Justice",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        13
+      ]
+    },
+    {
+      "index": 15,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/United_States_Department_of_Justice",
+      "extraction_target": "Look up the count of parks near United States Department of Justice",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "parks near United States Department of Justice"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of parks near United States Department of Justice) from https://en.wikipedia.org/wiki/United_States_Department_of_Justice",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        13
+      ]
+    },
+    {
+      "index": 16,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/United_States_Department_of_Justice",
+      "extraction_target": "Combine the elevation of United States Department of Justice and the count of parks near United States Department of Justice: abs(3236 - 20)",
+      "extraction_section": null,
+      "extracted_value": 3216,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(3236.2353515625) - int(20.0))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of United States Department of Justice abs_diff count of parks near United States Department of Justice",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        14,
+        15
+      ]
+    },
+    {
+      "index": 17,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/FBI",
+      "extraction_target": "the number of subsections listed under 'Mission, priorities and budget' in the table of contents",
+      "extraction_section": "Contents",
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Hurricane Katrina wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Hurricane_Katrina",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "The FBI's investigative role intersects with corporate, regulatory and public-interest matters (data, fraud, national responses) that affect large companies and cities.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        16
+      ]
+    },
+    {
+      "index": 18,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Hurricane_Katrina",
+      "extraction_target": "the number of subsections under Aftermath",
+      "extraction_section": "Aftermath",
+      "extracted_value": 10,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Hurricane_Katrina",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A major urban crisis example: Hurricane Katrina highlights how companies, government agencies and cities respond in emergencies — tying corporate presence to vulnerability and public duty.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        17
+      ]
+    },
+    {
+      "index": 19,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: (4360 + 11 + 3 + 10) % 10",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "(4360 + 11 + 3 + 10) % 10",
+        "expression_code": "result = (4360 + 11 + 3 + 10) % 10\nprint(result)",
+        "referenced_stops": [
+          1,
+          4,
+          17,
+          18
+        ]
+      },
+      "reasoning": "Compute stop: (4360 + 11 + 3 + 10) % 10 = 4",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1,
+        4,
+        17,
+        18
+      ]
+    }
+  ],
+  "passcode": 4,
+  "difficulty": {
+    "level": "medium",
+    "depth": 20,
+    "tool_stop_count": 8,
+    "reason_stop_count": 3,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Seek the coffee chain that began as a humble store in Seattle, which has since brewed a cultural legacy. Find out how many subsections explore its corporate governance and identity.\n\n2. What vibrant bay marked the dawn of the tech era and is known for its hilly landscape? Navigate to uncover the highest point that overlooks this bustling area.\n\n3. The hospitals near the previously mentioned bay cradle the health of its many inhabitants — how many are there?\n\n4. A coastal city famed for its beach scenes and bustling promenade calls to you. How many hospitals can you count near its particular latitude?\n\n5. An adventure in numbers awaits! From the last clue, determine the next prime number after your discovered count of hospitals.\n\n6. In a scholarly hub known for its university, you seek another number—how many languages are represented at the top of its page?\n\n7. Elevate your quest by discovering the height of this city, famous for its intellectual fervor and notable institutions.\n\n8. Nearby accommodations abound; how many hotels can be found in close proximity to this academic city?\n\n9. The height where students contemplate their future and the number of nearby hotels combine their stories; compute the absolute difference between these values.\n\n10. A twist in logic leads you to seek the largest prime factor of the figure derived from clue 6. What does it reveal about the scholarly institution?\n\n11. Travel to the page detailing America’s oldest university. In what year did it open its doors to eager minds?\n\n12. Calculate the intriguing twist: when the digits of the establishment year are reversed, what number appears?\n\n13. As a blank slate of history, this term signifies both wealth and sickness in American development—discover the timeframe of this influential era.\n\n14. The land of justice has its own narrative. Can you find the URL of its article in the Spanish language?\n\n15. Now, let’s ground ourselves—what is the altitude for the dwelling of this judicial body?\n\n16. Nearby green spaces are essential for balance and respite; how many parks can you discover around this significant site?\n\n17. The elevation and parks near this realm of justice combine their narratives—what is the absolute difference between these two figures?\n\n18. In the realm of federal oversight, explore the mission. How many subsections guide travelers through its budgetary priorities?\n\n19. A natural disaster reshaped a city’s landscape and destiny. Examine how many subsections are listed under its aftermath.\n\n20. Finally, sum the insights gathered: (clue 2 + clue 5 + clue 18 + clue 19) and then take the result modulo 10. What single digit does this alchemical computation yield?",
+  "metadata": {
+    "theme": "Tracing Starbucks from a single coffee shop into the wider story of American cities, corporate power, regulation and historical precedents.",
+    "difficulty": "medium",
+    "sample_id": "sample_156",
+    "pages_crawled": 9793
+  },
+  "generated_at": "2026-03-17T14:13:42.996267+00:00"
+}

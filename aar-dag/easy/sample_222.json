@@ -1,0 +1,300 @@
+{
+  "trail_id": "trail_ffb7fef9",
+  "seed_url": "https://en.wikipedia.org/wiki/Airport_Road,_Wyoming",
+  "seed_title": "Airport Road, Wyoming",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Airport_Road,_Wyoming",
+      "extraction_target": "the elevation listed in the infobox (field: 'Elevation')",
+      "extraction_section": "infobox",
+      "extracted_value": 4121,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Rome wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Rome",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start the trail with an exploration of a unique, lesser-known location in Wyoming.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Airport_Road,_Wyoming",
+      "extraction_target": "Look up the elevation of Airport Road, Wyoming",
+      "extraction_section": null,
+      "extracted_value": 1255.671630859375,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Airport Road, Wyoming"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Airport Road, Wyoming) from https://en.wikipedia.org/wiki/Airport_Road,_Wyoming",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Airport_Road,_Wyoming",
+      "extraction_target": "Look up the count of churches near Airport Road, Wyoming",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "churches near Airport Road, Wyoming"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of churches near Airport Road, Wyoming) from https://en.wikipedia.org/wiki/Airport_Road,_Wyoming",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Airport_Road,_Wyoming",
+      "extraction_target": "Combine the elevation of Airport Road, Wyoming and the count of churches near Airport Road, Wyoming: abs(1255 - 20)",
+      "extraction_section": null,
+      "extracted_value": 1235,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(1255.671630859375) - int(20.0))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Airport Road, Wyoming abs_diff count of churches near Airport Road, Wyoming",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1,
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Rome",
+      "extraction_target": "the number of sub-sections under the 'Geography' section",
+      "extraction_section": "Geography",
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Rome",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Highlight Rome as a city of significant religious and cultural history, representative of Western civilization.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Rome",
+      "extraction_target": "Reason: the next prime number after that figure",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (next_prime) on stop 1 value",
+      "reason_transform": "next_prime",
+      "reason_source_stop": 4,
+      "reason_code": "def next_prime(n):\n    n = abs(int(n))\n    if n < 2: return 2\n    candidate = n + 1\n    while True:\n        if all(candidate % i != 0 for i in range(2, int(candidate**0.5)+1)):\n            return candidate\n        candidate += 1\nresult = next_prime(3)\nprint(result)",
+      "depends_on": [
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Xi%27an",
+      "extraction_target": "the number of administrative districts listed in the Administrative divisions section",
+      "extraction_section": "Administrative divisions",
+      "extracted_value": 11,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Jakarta wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Jakarta",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Explore Xi'an as an eastern counterpart to Rome, rich in history and culture, showcasing ancient Chinese civilization.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Jakarta",
+      "extraction_target": "the population of Jakarta according to the demographics section",
+      "extraction_section": "Demographics",
+      "extracted_value": "10,562,088",
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Conclude the journey with Jakarta, representing a dynamic and bustling city, bridging cultural and religious contexts between the East and the West.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: (4121 + 1235 + 11 + 10562088) % 10",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "(4121 + 1235 + 11 + 10562088) % 10",
+        "expression_code": "result = (4121 + 1235 + 11 + 10562088) % 10\nprint(result)",
+        "referenced_stops": [
+          0,
+          3,
+          6,
+          7
+        ]
+      },
+      "reasoning": "Compute stop: (4121 + 1235 + 11 + 10562088) % 10 = 5",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0,
+        3,
+        6,
+        7
+      ]
+    }
+  ],
+  "passcode": 5,
+  "difficulty": {
+    "level": "easy",
+    "depth": 9,
+    "tool_stop_count": 3,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Begin your journey on the page dedicated to an unassuming spot in Wyoming, known more for its proximity to a major thoroughfare than any bustling metropolis. The wise will measure the feet between this place and sea level to uncover the first clue.\n\n2. Curious feet will take you onward: discover the precise altitude of your starting point using the power of modern maps to reveal yet another number, keeping your eyes toward the heavens for accuracy.\n\n3. Explore the area further—though sparse, places of worship exist even here. How many sanctuaries dot this landscape, offering solace to passersby? Count their spires and you’ll know your next number.\n\n4. With altitudes and chapels counted, merge these figures of air and spirit. Subtract the sacred from the celestial, and find absolute value in simplicity.\n\n5. A city that once ruled the world’s mightiest empire holds knowledge on your path. Under the topic of physical features, tally the thematic explorations, each a subtext in the great narrative of its geography.\n\n6. Numbers have a natural order, and the last figure holds untapped potential. Seek the prime number that immediately follows, leapfrogging your previous finding into the realm of indivisibility.\n\n7. Across the vast lands of the Middle Kingdom lies an ancient capital that bore witness to the Silk Road’s bustling life. How many distinct areas govern this historic city? Count the divisions that manage its modern affairs.\n\n8. Next, journey to a sprawling expanse where many millions reside, bustling along the archipelago. Seek out the spoken count—how many souls inhabit this Southeast Asian metropolis?\n\n9. Your final task is a sum in disguise. Combine figures from the heights of Wyoming, the riddle of the plains and cathedrals, the ancient divisions, and the populous East. Subtract, add, and rotate these until only a single digit remains as your prize: Compute (clue 1 + clue 4 + clue 7 + clue 8) modulo 10, and unveil the ultimate answer to your quest’s question.",
+  "metadata": {
+    "theme": "Exploration of Cities Through a Religious and Cultural Lens",
+    "difficulty": "easy",
+    "sample_id": "sample_222",
+    "pages_crawled": 1014
+  },
+  "generated_at": "2026-03-27T07:51:41.853984+00:00"
+}

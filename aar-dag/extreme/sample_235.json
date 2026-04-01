@@ -1,0 +1,905 @@
+{
+  "trail_id": "trail_fb354790",
+  "seed_url": "https://en.wikipedia.org/wiki/Green_Bay_Packers_draft_picks_(1936–1969)",
+  "seed_title": "Green Bay Packers draft picks (1936–1969)",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Green_Bay_Packers_draft_picks_(1936%E2%80%931969)",
+      "extraction_target": "the year of the first NFL draft in which the Packers took part",
+      "extraction_section": null,
+      "extracted_value": "1936",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "North Dakota wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/North_Dakota",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Seed: the Packers' early draft history anchors the trail in American football and mid-20th-century sports institutions.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/North_Dakota",
+      "extraction_target": "Look up the population of United States",
+      "extraction_section": null,
+      "extracted_value": 87146,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "countries_population",
+            "arguments": {
+              "country": "United States"
+            },
+            "expected_output": null,
+            "output_key": "population"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: population of United States",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/National_Football_Conference",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Founded')",
+      "extraction_section": "infobox",
+      "extracted_value": 1970,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Rhode Island wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Rhode_Island",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Context: place the Packers within the NFL structure — the National Football Conference describes the organizational context for professional drafts and rivalry.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Rhode_Island",
+      "extraction_target": "Look up the elevation at Rhode Island",
+      "extraction_section": null,
+      "extracted_value": 25.86405944824219,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Rhode Island"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for Rhode Island",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Rhode_Island",
+      "extraction_target": "Reason: the number of characters when written as a Roman numeral",
+      "extraction_section": null,
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (roman_numeral_letter_count) on stop 3 value",
+      "reason_transform": "roman_numeral_letter_count",
+      "reason_source_stop": 3,
+      "reason_code": "def to_roman(n):\n    n = abs(int(n))\n    vals = [(1000,'M'),(900,'CM'),(500,'D'),(400,'CD'),(100,'C'),\n            (90,'XC'),(50,'L'),(40,'XL'),(10,'X'),(9,'IX'),(5,'V'),(4,'IV'),(1,'I')]\n    r = ''\n    for v, s in vals:\n        while n >= v:\n            r += s; n -= v\n    return r\nresult = len(to_roman(25))\nprint(result)",
+      "depends_on": [
+        3
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Notre_Dame_Fighting_Irish_football",
+      "extraction_target": "the stadium capacity as shown in the infobox",
+      "extraction_section": null,
+      "extracted_value": 77622,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Nick Saban wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Nick_Saban",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "College-to-pro pipeline: Notre Dame is a historic college football program that feeds professional drafts and shapes coaching careers.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Nick_Saban",
+      "extraction_target": "the years Nick Saban served as head coach of the Miami Dolphins",
+      "extraction_section": null,
+      "extracted_value": "2005–2006",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Venice wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Venice",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Coaching as institution: Nick Saban exemplifies long, influential coaching careers that shape college programs and professional prospects.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Venice",
+      "extraction_target": "Count the number of libraries near 45.43750",
+      "extraction_section": null,
+      "extracted_value": 7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "libraries near 45.43750"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: count libraries near 45.43750",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/National_Basketball_Association",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Founded')",
+      "extraction_section": "infobox",
+      "extracted_value": 6,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Indus River wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Indus_River",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Expand beyond football: the NBA is another major North American sports institution with international reach, paralleling NFL dynamics.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        7
+      ]
+    },
+    {
+      "index": 9,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Indus_River",
+      "extraction_target": "Look up the Google Maps rating of Indus River",
+      "extraction_section": null,
+      "extracted_value": 4.4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "Indus River"
+            },
+            "expected_output": null,
+            "output_key": "place_rating"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: Google rating of Indus River",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        8
+      ]
+    },
+    {
+      "index": 10,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/United_States_men%27s_national_basketball_team",
+      "extraction_target": "the number of History subsections listed in the table of contents",
+      "extraction_section": "History",
+      "extracted_value": 6,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/United_States_men%27s_national_basketball_team",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "International competition: the national basketball team shows how domestic leagues feed into global sports representation.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        9
+      ]
+    },
+    {
+      "index": 11,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/United_States_men%27s_national_basketball_team",
+      "extraction_target": "Look up the elevation of United States men's national basketball team",
+      "extraction_section": null,
+      "extracted_value": 3236.2353515625,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "United States men's national basketball team"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of United States men's national basketball team) from https://en.wikipedia.org/wiki/United_States_men%27s_national_basketball_team",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        10
+      ]
+    },
+    {
+      "index": 12,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/United_States_men%27s_national_basketball_team",
+      "extraction_target": "Look up the Google rating of United States men's national basketball team",
+      "extraction_section": null,
+      "extracted_value": 4.5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "United States men's national basketball team"
+            },
+            "expected_output": null,
+            "output_key": "place_rating"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (Google rating of United States men's national basketball team) from https://en.wikipedia.org/wiki/United_States_men%27s_national_basketball_team",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        10
+      ]
+    },
+    {
+      "index": 13,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/United_States_men%27s_national_basketball_team",
+      "extraction_target": "Combine the elevation of United States men's national basketball team and the Google rating of United States men's national basketball team: abs(3236 - 4)",
+      "extraction_section": null,
+      "extracted_value": 3232,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(3236.2353515625) - int(4.5))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of United States men's national basketball team abs_diff Google rating of United States men's national basketball team",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        11,
+        12
+      ]
+    },
+    {
+      "index": 14,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/United_States_men%27s_national_basketball_team",
+      "extraction_target": "Reason: the largest prime factor of that figure",
+      "extraction_section": null,
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (largest_prime_factor) on stop 9 value",
+      "reason_transform": "largest_prime_factor",
+      "reason_source_stop": 10,
+      "reason_code": "def largest_prime_factor(n):\n    n = abs(int(n))\n    if n <= 1: return n\n    d = 2\n    while d * d <= n:\n        while n % d == 0: n //= d\n        d += 1\n    return n\nresult = largest_prime_factor(6)\nprint(result)",
+      "depends_on": [
+        10
+      ]
+    },
+    {
+      "index": 15,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Chicago_White_Sox",
+      "extraction_target": "the city and state where the team is based",
+      "extraction_section": null,
+      "extracted_value": "Chicago, Illinois",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Canada–United States relations wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Canada%E2%80%93United_States_relations",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Cross-sport perspective: a historic American baseball franchise helps compare league traditions, urban fanbases, and regional identities alongside football and basketball.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        14
+      ]
+    },
+    {
+      "index": 16,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Chicago_White_Sox",
+      "extraction_target": "Look up the elevation of Chicago, Illinois",
+      "extraction_section": null,
+      "extracted_value": 183.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Chicago, Illinois"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Chicago, Illinois) from https://en.wikipedia.org/wiki/Chicago_White_Sox",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        15
+      ]
+    },
+    {
+      "index": 17,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Chicago_White_Sox",
+      "extraction_target": "Look up the count of libraries near Chicago, Illinois",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "libraries near Chicago, Illinois"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of libraries near Chicago, Illinois) from https://en.wikipedia.org/wiki/Chicago_White_Sox",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        15
+      ]
+    },
+    {
+      "index": 18,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Chicago_White_Sox",
+      "extraction_target": "Combine the elevation of Chicago, Illinois and the count of libraries near Chicago, Illinois: abs(183 - 20)",
+      "extraction_section": null,
+      "extracted_value": 163,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(183.0) - int(20.0))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Chicago, Illinois abs_diff count of libraries near Chicago, Illinois",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        16,
+        17
+      ]
+    },
+    {
+      "index": 19,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Canada%E2%80%93United_States_relations",
+      "extraction_target": "Look up the elevation at Canada–United States relations",
+      "extraction_section": null,
+      "extracted_value": 3236.2353515625,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Canada–United States relations"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for Canada–United States relations",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        18
+      ]
+    },
+    {
+      "index": 20,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Canada%E2%80%93United_States_relations",
+      "extraction_target": "Reason: the next prime number after that figure",
+      "extraction_section": null,
+      "extracted_value": 3251,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (next_prime) on stop 11 value",
+      "reason_transform": "next_prime",
+      "reason_source_stop": 19,
+      "reason_code": "def next_prime(n):\n    n = abs(int(n))\n    if n < 2: return 2\n    candidate = n + 1\n    while True:\n        if all(candidate % i != 0 for i in range(2, int(candidate**0.5)+1)):\n            return candidate\n        candidate += 1\nresult = next_prime(3236)\nprint(result)",
+      "depends_on": [
+        19
+      ]
+    },
+    {
+      "index": 21,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Pierre_Trudeau",
+      "extraction_target": "the number of languages listed at the top of the article",
+      "extraction_section": null,
+      "extracted_value": 81,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Charles V, Holy Roman Emperor wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Charles_V,_Holy_Roman_Emperor",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Political leadership: Pierre Trudeau's tenure and policies shaped Canada–US relations and cultural exchange, a political counterpart to sports-driven cross-border ties.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        20
+      ]
+    },
+    {
+      "index": 22,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Charles_V,_Holy_Roman_Emperor",
+      "extraction_target": "Calculate the number of days between 1936-01-01 and 2026-03-20",
+      "extraction_section": null,
+      "extracted_value": 32951,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "from datetime import date\nd1 = date.fromisoformat('1936-01-01')\nd2 = date.fromisoformat('2026-03-20')\nresult = abs((d2 - d1).days)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "days"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: date computation 1936-01-01 to 2026-03-20 (pinned)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        21
+      ]
+    },
+    {
+      "index": 23,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Benjamin_Netanyahu",
+      "extraction_target": "the number of languages listed at the top of the article",
+      "extraction_section": null,
+      "extracted_value": 128,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Benjamin_Netanyahu",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Contemporary leadership: a modern political figure whose long/recurring tenures echo patterns of long-serving leaders in sports and institutions.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        22
+      ]
+    },
+    {
+      "index": 24,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Benjamin_Netanyahu",
+      "extraction_target": "Reason: the sum of its distinct prime factors",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (sum_prime_factors) on stop 14 value",
+      "reason_transform": "sum_prime_factors",
+      "reason_source_stop": 23,
+      "reason_code": "def prime_factors(n):\n    n = abs(int(n))\n    factors = []\n    d = 2\n    while d * d <= n:\n        while n % d == 0:\n            factors.append(d)\n            n //= d\n        d += 1\n    if n > 1: factors.append(n)\n    return factors\nresult = sum(set(prime_factors(128)))\nprint(result)",
+      "depends_on": [
+        23
+      ]
+    },
+    {
+      "index": 25,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Pounds_sterling",
+      "extraction_target": "Convert 1970 meters to yards",
+      "extraction_section": null,
+      "extracted_value": 2154,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "# Convert meters to yards\nvalue = 1970.0\nconverted = value * 1.09361\nresult = int(converted)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "converted"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: convert 1970 meters to yards",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        24
+      ]
+    },
+    {
+      "index": 26,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Pounds_sterling",
+      "extraction_target": "Reason: the sum of its digits",
+      "extraction_section": null,
+      "extracted_value": 12,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_sum) on stop 15 value",
+      "reason_transform": "digit_sum",
+      "reason_source_stop": 25,
+      "reason_code": "result = sum(int(d) for d in str(abs(int(2154))))\nprint(result)",
+      "depends_on": [
+        25
+      ]
+    },
+    {
+      "index": 27,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: abs(77622 - 6) % 10",
+      "extraction_section": null,
+      "extracted_value": 6,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "abs(77622 - 6) % 10",
+        "expression_code": "result = abs(77622 - 6) % 10\nprint(result)",
+        "referenced_stops": [
+          5,
+          10
+        ]
+      },
+      "reasoning": "Compute stop: abs(77622 - 6) % 10 = 6",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5,
+        10
+      ]
+    }
+  ],
+  "passcode": 6,
+  "difficulty": {
+    "level": "extreme",
+    "depth": 28,
+    "tool_stop_count": 13,
+    "reason_stop_count": 5,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. **Seek the year when the Packers first graced the NFL draft stage. What year did this local team begin their journey?**\n\n2. **How many residents inhabit the vast expanse of the state that is known for its open plains and vibrant agriculture, a true heartland of America?**\n\n3. **A professional league known for its fierce competitiveness came into existence — uncover the year it was founded, and walk through its storied history.**\n\n4. **What notable seaside state often boasts its stunning beaches and is renowned for its history, holds hidden numerical treasures within its contours?**\n\n5. **When you grace this state's name in Roman numerals, how many characters entwine to tell its story?**\n\n6. **Step into the storied grounds where the Irish play; within these walls, what is the capacity in ardent attendance that this hallowed stadium can claim?**\n\n7. **In this arena of sports, find the coach who once donned the Dolphins' helm — during which years did he steer this local sea creature?**\n\n8. **From the canals of a floating city, how many libraries can you discover that lie nearby, whispering tales and knowledge under its charming bridges?**\n\n9. **A prominent basketball league took its initial shot in the history books — what year marked the birth of this association, forever changing sports culture?**\n\n10. **When searching for this river known for its ancient civilizations, what rating do modern explorers give to its serene beauty on a famous maps platform?**\n\n11. **The team representing the nation in men’s basketball has chapters of history — how many subsections narrate these events in the contents of their story?**\n\n12. **Now, gaze upon the elevation of the land where this national team makes its dominance known; what is its height above sea level, where dreams are measured?**\n\n13. **What score do adventure-seekers give to the national basketball team on the platforms where reviews flow like rivers of opinion?**\n\n14. **Combine the height above sea level from clue 12 with the traveler’s ratings from clue 13. What result do you find when navigating this numerical landscape?**\n\n15. **Within that combined total, discover the largest prime factor that lies hidden behind its numerical façade — what is it, waiting to be unveiled?**\n\n16. **In the city known for its baseball loyalty, what is the name of the sprawling location where a certain team makes its home, proud of its legacy?**\n\n17. **Delve into the Windy City's horizons and find how elevated it stands above the misty tides; what number reflects its elevation in feet?**\n\n18. **Seek the number of libraries that dot the landscape near this bustling urban center; how many share their knowledge with the eager minds nearby?**\n\n19. **Take the elevation you revealed in clue 17, and meld it with the count of libraries in clue 18. What outcome springs forth from their union?**\n\n20. **In the complex web of relations between the two neighboring nations, what height does this historical dialogue rest at?**\n\n21. **After seeking the elevation from clue 20, find the very next prime number to rise above that figure — can you identify it?**\n\n22. **In the chronicle of a notable Canadian leader, note how many languages reflect the diversity of this statesman's narrative — what sum sits at the summit?**\n\n23. **Turn your attention to a ruler whose reign spanned across Europe; what is the tally of days that separate the year 1936 from the onset of spring in 2026?**\n\n24. **In a land where languages intertwine, what number emerges from the leader’s narrative hiding atop this article of a prominent political figure?**\n\n25. **Identify the sum of distinct prime factors that shape the numerical landscape found in clue 24. What total emerges from this investigation?**\n\n26. **Now venture into the value that translates the distance of 1970 meters into yards; what number do you uncover in this conversion?**\n\n27. **Reflect on the total from clue 26; what is the collective sum of its digits, awaiting your calculation?**\n\n28. **Finally, compute the absolute difference between the combined numbers you uncovered from clues 6 and 11, and then apply the modulo operation by 10 to distill your journey’s count into a single digit. What is the final result, residing between 0 and 9?**",
+  "metadata": {
+    "theme": "From local draft rooms to global institutions — a short trail that begins with the Green Bay Packers' early draft history and moves through American sports institutions, geographic places, companies, and historical/political leaders to show how local culture connects to global contexts.",
+    "difficulty": "extreme",
+    "sample_id": "sample_235",
+    "pages_crawled": 34231
+  },
+  "generated_at": "2026-03-21T04:59:27.939892+00:00"
+}

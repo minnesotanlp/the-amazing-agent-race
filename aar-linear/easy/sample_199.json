@@ -1,0 +1,152 @@
+{
+  "trail_id": "trail_e546d0fd",
+  "seed_url": "https://en.wikipedia.org/wiki/Ethereum",
+  "seed_title": "Ethereum",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Ethereum",
+      "extraction_target": "the years shown in the 'Launch and the DAO event' subsection heading",
+      "extraction_section": "History",
+      "extracted_value": "2014–2016",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "WikiLeaks wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/WikiLeaks",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start at Ethereum — the smart-contract platform whose native currency and launch anchor the trail exploring crypto's technical origins and real-world effects.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/WikiLeaks",
+      "extraction_target": "the number of subsections listed under History",
+      "extraction_section": "History",
+      "extracted_value": 7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/WikiLeaks",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Visit WikiLeaks to illustrate political and censorship-resistance use cases for decentralized payments and to show how crypto has been used in controversial, high-profile real-world contexts.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/WikiLeaks",
+      "extraction_target": "Look up the Google rating of WikiLeaks",
+      "extraction_section": null,
+      "extracted_value": 4.6,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "WikiLeaks"
+            },
+            "expected_output": null,
+            "output_key": "place_rating"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (place_rating) derived from https://en.wikipedia.org/wiki/WikiLeaks",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 3,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/WikiLeaks",
+      "extraction_target": "Reason: the next prime number after that figure",
+      "extraction_section": null,
+      "extracted_value": 11,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (next_prime) on stop 1 value",
+      "reason_transform": "next_prime",
+      "reason_source_stop": 1,
+      "reason_code": "def next_prime(n):\n    n = abs(int(n))\n    if n < 2: return 2\n    candidate = n + 1\n    while True:\n        if all(candidate % i != 0 for i in range(2, int(candidate**0.5)+1)):\n            return candidate\n        candidate += 1\nresult = next_prime(7)\nprint(result)"
+    },
+    {
+      "index": 4,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: (7 + 4 + 11) % 10",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "(7 + 4 + 11) % 10",
+        "expression_code": "result = (7 + 4 + 11) % 10\nprint(result)",
+        "referenced_stops": [
+          1,
+          2,
+          3
+        ]
+      },
+      "reasoning": "Compute stop: (7 + 4 + 11) % 10 = 2",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 2,
+  "difficulty": {
+    "level": "easy",
+    "depth": 5,
+    "tool_stop_count": 1,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Seek the realm of decentralized ledgers and smart contracts; when did this digital frontier first come online, and what significant event altered its course?\n\n2. A controversial platform empowered by information — delve into its past and discover how many segments detail its journey through time.\n\n3. How many stars do globe-trotters bestow upon the controversial leaker that reshaped modern discourse?\n\n4. A riddle awaits: what prime number follows the one associated with the sections identified in the second clue?\n\n5. Now, blend your newfound knowledge: compute the result of (clue 2 + clue 3 + clue 4), then apply modulo 10. The answer will guide you closer to the treasure you seek, revealing a single digit (0-9).",
+  "metadata": {
+    "theme": "Tracing Ethereum's path from decentralized technology to real-world economic, corporate, and geopolitical interactions",
+    "difficulty": "easy",
+    "sample_id": "sample_199",
+    "pages_crawled": 4869
+  },
+  "generated_at": "2026-03-17T13:38:18.517612+00:00"
+}

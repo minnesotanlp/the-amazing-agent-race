@@ -1,0 +1,412 @@
+{
+  "trail_id": "trail_35803312",
+  "seed_url": "https://en.wikipedia.org/wiki/Community_Centre,_Skeldon",
+  "seed_title": "Community Centre, Skeldon",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Community_Centre,_Skeldon",
+      "extraction_target": "town and country where the Community Centre is located",
+      "extraction_section": null,
+      "extracted_value": "Skeldon, Guyana",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Guyana_national_cricket_team",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start at the local hub in Skeldon — the community centre anchors the trail and grounds the search in a real Guyanese locality.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Community_Centre,_Skeldon",
+      "extraction_target": "Look up the elevation of Skeldon, Guyana",
+      "extraction_section": null,
+      "extracted_value": 3.546543836593628,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Skeldon, Guyana"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Skeldon, Guyana) from https://en.wikipedia.org/wiki/Community_Centre,_Skeldon",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Community_Centre,_Skeldon",
+      "extraction_target": "Look up the count of parks near Skeldon, Guyana",
+      "extraction_section": null,
+      "extracted_value": 2.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "parks near Skeldon, Guyana"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of parks near Skeldon, Guyana) from https://en.wikipedia.org/wiki/Community_Centre,_Skeldon",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Community_Centre,_Skeldon",
+      "extraction_target": "Combine the elevation of Skeldon, Guyana and the count of parks near Skeldon, Guyana: (3 + 2)",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(3.546543836593628) + int(2.0)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Skeldon, Guyana add count of parks near Skeldon, Guyana",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1,
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Guyana_national_cricket_team",
+      "extraction_target": "the spectator capacity of the home ground as listed in the infobox",
+      "extraction_section": null,
+      "extracted_value": 15000,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Guyana_national_cricket_team",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Moves the narrative from a local meeting place to the region's principal sporting identity — Guyana's national cricket side links local participation to regional competition.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Guyana_national_cricket_team",
+      "extraction_target": "Reason: the number you get by reversing its digits",
+      "extraction_section": null,
+      "extracted_value": 51,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_reversal) on stop 1 value",
+      "reason_transform": "digit_reversal",
+      "reason_source_stop": 4,
+      "reason_code": "result = int(str(abs(int(15000)))[::-1])\nprint(result)",
+      "depends_on": [
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Clive_Lloyd",
+      "extraction_target": "Look up the population of Guyana",
+      "extraction_section": null,
+      "extracted_value": 772975,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "countries_population",
+            "arguments": {
+              "country": "Guyana"
+            },
+            "expected_output": null,
+            "output_key": "population"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: population of Guyana",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Regional_Super50",
+      "extraction_target": "Look up the population of Guyana",
+      "extraction_section": null,
+      "extracted_value": 772975,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "countries_population",
+            "arguments": {
+              "country": "Guyana"
+            },
+            "expected_output": null,
+            "output_key": "population"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: population of Guyana",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Regional_Super50",
+      "extraction_target": "Reason: the number of 1-bits in its binary representation",
+      "extraction_section": null,
+      "extracted_value": 14,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (binary_1bit_count) on stop 3 value",
+      "reason_transform": "binary_1bit_count",
+      "reason_source_stop": 7,
+      "reason_code": "result = bin(abs(int(772975))).count('1')\nprint(result)",
+      "depends_on": [
+        7
+      ]
+    },
+    {
+      "index": 9,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Super50_Cup",
+      "extraction_target": "Look up the population of Guyana",
+      "extraction_section": null,
+      "extracted_value": 772975,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "countries_population",
+            "arguments": {
+              "country": "Guyana"
+            },
+            "expected_output": null,
+            "output_key": "population"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: population of Guyana",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        8
+      ]
+    },
+    {
+      "index": 10,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Skidmore_College",
+      "extraction_target": "Look up the population of Guyana",
+      "extraction_section": null,
+      "extracted_value": 772975,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "countries_population",
+            "arguments": {
+              "country": "Guyana"
+            },
+            "expected_output": null,
+            "output_key": "population"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: population of Guyana",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        9
+      ]
+    },
+    {
+      "index": 11,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: (5 + 51 + 14) % 10",
+      "extraction_section": null,
+      "extracted_value": 0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "(5 + 51 + 14) % 10",
+        "expression_code": "result = (5 + 51 + 14) % 10\nprint(result)",
+        "referenced_stops": [
+          3,
+          5,
+          8
+        ]
+      },
+      "reasoning": "Compute stop: (5 + 51 + 14) % 10 = 0",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3,
+        5,
+        8
+      ]
+    }
+  ],
+  "passcode": 0,
+  "difficulty": {
+    "level": "medium",
+    "depth": 12,
+    "tool_stop_count": 7,
+    "reason_stop_count": 2,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "direct_link"
+  },
+  "riddle": "1. Unearth the gathering place where neighbors unite in Skeldon, a town nestled in South America. What country welcomes this hub of community spirit?\n\n2. Upon reaching this locale, how high do the grounds rise above sea level in Guyana?\n\n3. Your journey continues; seek out how many parks flourish within proximity to this town of Skeldon.\n\n4. Combine the elevation you uncovered about Skeldon with the count of nearby parks. What new number emerges from your addition?\n\n5. In the realm of cricket, there lies a team that represents a country. What capacity awaits spectators at their grand home ground?\n\n6. Flip the digits of that capacity number – what fresh value do you discover in this reversal?\n\n7. Turn your attention now to the population of the proud land that boasts a cricketing legacy.\n\n8. From the cricket fields to the heart of competition, what is the population of this same country again? \n\n9. Observe carefully: how many '1' bits dance within the binary frame of the number you found in clue 8? \n\n10. Backtrack to the world of cricket and find yet again the population of this country. \n\n11. Count how many fellows reside in this land once more – what is the figure?\n\n12. Conclude your quest by computing the remainder of (clue 4 + clue 6 + clue 9) when divided by 10. This final result will reveal a single digit, where will your journey's number lie?",
+  "metadata": {
+    "theme": "From a community centre in Skeldon to regional cricket and community scale — tracing how local hubs connect people, sport, travel and population.",
+    "difficulty": "medium",
+    "sample_id": "sample_094",
+    "pages_crawled": 5129
+  },
+  "generated_at": "2026-03-16T19:22:38.602411+00:00"
+}

@@ -1,0 +1,176 @@
+{
+  "trail_id": "trail_d28e7e73",
+  "seed_url": "https://en.wikipedia.org/wiki/David_Ledson",
+  "seed_title": "David Ledson",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/David_Ledson",
+      "extraction_target": "the organisation of which David Ledson is named Chairman of the Board",
+      "extraction_section": null,
+      "extracted_value": "Maritime New Zealand",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "M-Net wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/M-Net",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start at the seed person to anchor the trail in a media professional's perspective — extract the individual's role to set the human starting point for a tour of South African broadcast media.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/M-Net",
+      "extraction_target": "the headquarters location listed in the infobox",
+      "extraction_section": null,
+      "extracted_value": "Randburg",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/M-Net",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "M-Net is a cornerstone pay-TV broadcaster in South Africa; extracting its HQ and founding date shows when and where pay television entered the market.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/M-Net",
+      "extraction_target": "Reason: the alphabetical position of its first letter (A=1, B=2, ...)",
+      "extraction_section": null,
+      "extracted_value": 18,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (alpha_position_first_letter) on stop 1 value",
+      "reason_transform": "alpha_position_first_letter",
+      "reason_source_stop": 1,
+      "reason_code": "first = \"Randburg\"[0].upper()\nresult = ord(first) - ord('A') + 1 if first.isalpha() else 0\nprint(result)"
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/DStv",
+      "extraction_target": "Look up the population of South Africa",
+      "extraction_section": null,
+      "extracted_value": 63100945,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "countries_population",
+            "arguments": {
+              "country": "South Africa"
+            },
+            "expected_output": null,
+            "output_key": "population"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: population of South Africa",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 4,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Naspers",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Founded')",
+      "extraction_section": "infobox",
+      "extracted_value": 12,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Naspers",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Naspers is the major media conglomerate connected to M-Net/DStv; extracting its corporate ties explains the ownership and business context behind South African pay-TV.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 5,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: abs(18 - 63100945) % 10",
+      "extraction_section": null,
+      "extracted_value": 7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "abs(18 - 63100945) % 10",
+        "expression_code": "result = abs(18 - 63100945) % 10\nprint(result)",
+        "referenced_stops": [
+          2,
+          3,
+          4
+        ]
+      },
+      "reasoning": "Compute stop: abs(18 - 63100945) % 10 = 7",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 7,
+  "difficulty": {
+    "level": "easy",
+    "depth": 6,
+    "tool_stop_count": 1,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "Here is the revised riddle:\n\n1. Seek the Wikipedia page about a notable figure known for his impactful leadership and philanthropy within a prominent national media organization, and name the organisation of which he is listed as Chairman of the Board.\n\n2. There exists an article for that broadcaster; from it, report the town or city given as the location of its head office.\n\n3. What is the alphabetical position of the first letter of that place (A = 1, B = 2, and so on)?\n\n4. If you consult the national entry for the country that hosts that head office, how many people are recorded as living in that nation?\n\n5. The article whose opening describes the large media conglomerate historically connected to these outlets contains a year — which year does it give for when the company was founded?\n\n6. Now, to finish the treasure: compute the absolute difference between clue 3 and clue 4, then take that result modulo 10; your final answer should be a single digit (0–9).",
+  "metadata": {
+    "theme": "Tracing the development of pay-television and broadcast infrastructure in South Africa — from an individual media professional to the major companies and the audience they serve.",
+    "difficulty": "easy",
+    "sample_id": "sample_071",
+    "pages_crawled": 2957,
+    "source": "trail_puzzles_v2"
+  },
+  "generated_at": "2026-03-15T16:34:38.410160+00:00"
+}

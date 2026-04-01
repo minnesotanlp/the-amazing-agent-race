@@ -1,0 +1,152 @@
+{
+  "trail_id": "trail_3e7d0c99",
+  "seed_url": "https://en.wikipedia.org/wiki/IBM",
+  "seed_title": "IBM",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/IBM",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Founded')",
+      "extraction_section": "infobox",
+      "extracted_value": 16,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Watson_(computer)",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start at IBM to anchor the trail in a long-standing corporate R&D and computing history; use the infobox fields (headquarters, founding year) as context for IBM's legacy.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Watson_(computer)",
+      "extraction_target": "number of languages listed at the top of the article",
+      "extraction_section": null,
+      "extracted_value": 35,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Watson (computer) wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Watson_(computer)",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Follow IBM's AI efforts to Watson as a milestone that illustrates the company's shift from traditional computing to applied AI and public-facing AI systems.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Watson_(computer)",
+      "extraction_target": "Reason: the number you get by reversing its digits",
+      "extraction_section": null,
+      "extracted_value": 53,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_reversal) on stop 1 value",
+      "reason_transform": "digit_reversal",
+      "reason_source_stop": 1,
+      "reason_code": "result = int(str(abs(int(35)))[::-1])\nprint(result)"
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Mountain_View,_California",
+      "extraction_target": "Count the number of hotels near 37.38611",
+      "extraction_section": null,
+      "extracted_value": 13,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "hotels near 37.38611"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: count hotels near 37.38611",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 4,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: digital_root(35 + 53 + 13)",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "digital_root(35 + 53 + 13)",
+        "expression_code": "def digital_root(n):\n    n = abs(int(n))\n    return n if n == 0 else ((n - 1) % 9) + 1\nresult = digital_root(35 + 53 + 13)\nprint(result)",
+        "referenced_stops": [
+          1,
+          2,
+          3
+        ]
+      },
+      "reasoning": "Compute stop: digital_root(35 + 53 + 13) = 2",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 2,
+  "difficulty": {
+    "level": "easy",
+    "depth": 5,
+    "tool_stop_count": 1,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "Here is the revised riddle:\n\n1. Seek the Wikipedia page titled IBM; from the summary box note the year this company was founded, then follow the link labelled after the surname of a figure who famously contributed to both the company's success and the field of artificial intelligence, to continue.\n\n2. How many language editions crown the top of the page you arrived at by clicking that link?\n\n3. If you reverse the digits of the language-count you just recorded (write them in the opposite order), what number results?\n\n4. In the heart of Silicon Valley, near the latitude 37.38611, consult the city's entry and count how many hotels are listed as being near that coordinate.\n\n5. (Finally, compute the digital root of the sum of clue 2, clue 3 and clue 4.) Compute digital_root(clue 2 + clue 3 + clue 4) and give the single-digit result (0–9).",
+  "metadata": {
+    "theme": "From legacy corporate R&D to the modern AI hardware and ecosystem: trace IBM's AI lineage (Watson) to today's AI chipmakers and the Silicon Valley cluster that hosts them.",
+    "difficulty": "easy",
+    "sample_id": "sample_129",
+    "pages_crawled": 750
+  },
+  "generated_at": "2026-03-17T07:27:15.221420+00:00"
+}

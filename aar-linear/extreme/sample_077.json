@@ -1,0 +1,595 @@
+{
+  "trail_id": "trail_91e37b7c",
+  "seed_url": "https://en.wikipedia.org/wiki/Bramau",
+  "seed_title": "Bramau",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Bramau",
+      "extraction_target": "the country in which the Bramau is located",
+      "extraction_section": null,
+      "extracted_value": "Germany",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Head of tide wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Head_of_tide",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Seed: the local stream that starts our river-focused trail; extract its course and where it drains to anchor the journey.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Head_of_tide",
+      "extraction_target": "the distance upstream where the head of tide is located on the Hudson River (in miles)",
+      "extraction_section": null,
+      "extracted_value": 140,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Head_of_tide",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Introduce the concept of tidal limit — essential for understanding how even small rivers like the Bramau interact with tides.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Head_of_tide",
+      "extraction_target": "Reason: the sum of its digits",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_sum) on stop 1 value",
+      "reason_transform": "digit_sum",
+      "reason_source_stop": 1,
+      "reason_code": "result = sum(int(d) for d in str(abs(int(140))))\nprint(result)"
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Pueblo",
+      "extraction_target": "Look up the elevation at Pueblo",
+      "extraction_section": null,
+      "extracted_value": 1420.459838867188,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Pueblo"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for Pueblo",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 4,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Pueblo",
+      "extraction_target": "Reason: the largest prime factor of that figure",
+      "extraction_section": null,
+      "extracted_value": 71,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (largest_prime_factor) on stop 2 value",
+      "reason_transform": "largest_prime_factor",
+      "reason_source_stop": 3,
+      "reason_code": "def largest_prime_factor(n):\n    n = abs(int(n))\n    if n <= 1: return n\n    d = 2\n    while d * d <= n:\n        while n % d == 0: n //= d\n        d += 1\n    return n\nresult = largest_prime_factor(1420)\nprint(result)"
+    },
+    {
+      "index": 5,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Earth_tide",
+      "extraction_target": "the number of alternative names listed for Earth tide in the opening line",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Earth_tide",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Expand tidal thinking to earth tides — small solid-Earth deformations that modulate coastal and estuarine water levels the Bramau could experience.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 6,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Earth_tide",
+      "extraction_target": "Reason: the sum of its digits",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_sum) on stop 3 value",
+      "reason_transform": "digit_sum",
+      "reason_source_stop": 5,
+      "reason_code": "result = sum(int(d) for d in str(abs(int(5))))\nprint(result)"
+    },
+    {
+      "index": 7,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/WGS84",
+      "extraction_target": "the year associated with NAD 83 (North American Datum 1983) in the Standards (history) table",
+      "extraction_section": null,
+      "extracted_value": 1983,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "WGS84 wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/WGS84",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Introduce the geodetic reference used to map coordinates for all locations and to make the distance/elevation numbers comparable.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 8,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/WGS84",
+      "extraction_target": "Reason: the sum of its distinct prime factors",
+      "extraction_section": null,
+      "extracted_value": 664,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (sum_prime_factors) on stop 4 value",
+      "reason_transform": "sum_prime_factors",
+      "reason_source_stop": 7,
+      "reason_code": "def prime_factors(n):\n    n = abs(int(n))\n    factors = []\n    d = 2\n    while d * d <= n:\n        while n % d == 0:\n            factors.append(d)\n            n //= d\n        d += 1\n    if n > 1: factors.append(n)\n    return factors\nresult = sum(set(prime_factors(1983)))\nprint(result)"
+    },
+    {
+      "index": 9,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/8-track_tape",
+      "extraction_target": "Convert 1983 km to miles",
+      "extraction_section": null,
+      "extracted_value": 1232,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "# Convert km to miles\nvalue = 1983.0\nconverted = value * 0.621371\nresult = int(converted)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "converted"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: convert 1983 km to miles",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 10,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/8-track_tape",
+      "extraction_target": "Reason: the number of divisors of that figure",
+      "extraction_section": null,
+      "extracted_value": 20,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (num_divisors) on stop 5 value",
+      "reason_transform": "num_divisors",
+      "reason_source_stop": 9,
+      "reason_code": "n = abs(int(1232))\ncount = sum(1 for i in range(1, n+1) if n % i == 0) if n > 0 else 0\nresult = count\nprint(result)"
+    },
+    {
+      "index": 11,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Amt",
+      "extraction_target": "the short description at the top stating the type of administrative division the article is about",
+      "extraction_section": null,
+      "extracted_value": "Type of administrative division governing a group of municipalities in Germany",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Survey_township",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Look at the German local-administration unit (Amt) to ground how rivers like the Bramau are managed and mapped at the local level.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 12,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Survey_township",
+      "extraction_target": "the total area of a survey township in square miles",
+      "extraction_section": null,
+      "extracted_value": 36,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Chintadripet wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Chintadripet",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Survey townships show how land is parcelled for mapping and jurisdiction — relevant when tracing drainage basins and river-adjacent land use.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 13,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Chintadripet",
+      "extraction_target": "Count the number of restaurants near 13.0750",
+      "extraction_section": null,
+      "extracted_value": 16,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "restaurants near 13.0750"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: count restaurants near 13.0750",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 14,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Superfund",
+      "extraction_target": "the long title of the Comprehensive Environmental Response, Compensation, and Liability Act of 1980",
+      "extraction_section": null,
+      "extracted_value": "An act to provide for liability, compensation, cleanup, and emergency response for hazardous substances released into the environment and the cleanup of inactive hazardous waste disposal sites.",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Counties of Northern Ireland wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Counties_of_Northern_Ireland",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Shift to environmental legacy: Superfund illustrates programmatic responses to contaminated sites that often involve rivers and floodplain cleanups.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 15,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Counties_of_Northern_Ireland",
+      "extraction_target": "Look up the area in km² of Germany",
+      "extraction_section": null,
+      "extracted_value": 357114.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "countries_area",
+            "arguments": {
+              "country": "Germany"
+            },
+            "expected_output": null,
+            "output_key": "area_km2"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: area of Germany",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 16,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/CERCLA",
+      "extraction_target": "the date the bill was introduced in the House",
+      "extraction_section": null,
+      "extracted_value": "April 2, 1980",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Urban areas of New Zealand wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Urban_areas_of_New_Zealand",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Examine the legal basis for remediation programs: CERCLA is the statute behind Superfund and shows how law frames river cleanup.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 17,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Urban_areas_of_New_Zealand",
+      "extraction_target": "Look up the population of Germany",
+      "extraction_section": null,
+      "extracted_value": 83491249,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "countries_population",
+            "arguments": {
+              "country": "Germany"
+            },
+            "expected_output": null,
+            "output_key": "population"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: population of Germany",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 18,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Methylmercury",
+      "extraction_target": "the chemical formula of methylmercury",
+      "extraction_section": null,
+      "extracted_value": "CH3Hg",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Papakura (New Zealand electorate) wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Papakura_(New_Zealand_electorate)",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A common river-borne contaminant: methylmercury ties chemical pollution to aquatic food webs and human health downstream of contaminated sites.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 19,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Papakura_(New_Zealand_electorate)",
+      "extraction_target": "Look up the population of Germany",
+      "extraction_section": null,
+      "extracted_value": 83491249,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "countries_population",
+            "arguments": {
+              "country": "Germany"
+            },
+            "expected_output": null,
+            "output_key": "population"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: population of Germany",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 20,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Atlantic_white_cedar",
+      "extraction_target": "the IUCN conservation status of Chamaecyparis thyoides",
+      "extraction_section": null,
+      "extracted_value": "Least Concern",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Atlantic_white_cedar",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Finish with wetland ecology: a river-associated tree that signals the ecological value of riparian and wetland habitats the trail aims to connect and protect.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 21,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: (5 + 357114) % 10",
+      "extraction_section": null,
+      "extracted_value": 9,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "(5 + 357114) % 10",
+        "expression_code": "result = (5 + 357114) % 10\nprint(result)",
+        "referenced_stops": [
+          2,
+          15
+        ]
+      },
+      "reasoning": "Compute stop: (5 + 357114) % 10 = 9",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 9,
+  "difficulty": {
+    "level": "extreme",
+    "depth": 22,
+    "tool_stop_count": 6,
+    "reason_stop_count": 5,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "Here is the riddle with the specified clue rewritten:\n\n1. Seek the small northern German stream that runs through the state of Schleswig-Holstein and tell me which country claims its banks.  \n2. What upriver limit of tidal influence — the concept marking where salt’s reach ends — is located how many miles upstream on the Hudson River?  \n3. Before you move on, take the numeric answer you just found in clue 2 and give me the sum of its digits.  \n4. Pinpoint the Colorado city at the Arkansas River junction famed for steel and rail; what elevation above sea level does its page report?  \n5. Then, from the elevation in clue 4, extract its largest prime factor and present that prime.  \n6. There exists an article about the elastic bulging of Earth’s crust from lunar and solar pull; how many alternative names appear in its first line?  \n7. Next, compute the sum of the digits of the count you uncovered in clue 6.  \n8. If you open the page about the global geodetic reference used by GPS, what year is listed beside NAD 83 in the Standards (history) table?  \n9. Now, take the year from clue 8 and add together its distinct prime factors — what total do you get?  \n10. Convert 1,983 kilometres to miles (use the integer part of the result) and record that whole-mile figure.  \n11. Convert the whole-mile number from clue 10 into the number of positive divisors it has.  \n12. The German-language administrative unit article begins with a short description — what type of administrative division does it claim to describe?  \n13. From the linked article about the six-by-six-mile land division used in American surveys, state the total area this division covers in square miles.  \n14. Count how many restaurants are found near latitude 13.0750 — report that count.  \n15. On the page for the U.S. federal law that established the program to clean up hazardous waste sites (commonly referred to by a one-word program nickname), copy the act’s full long title as given at the top.  \n16. Consult modern country data and tell me the total area of Germany in square kilometres.  \n17. On the act’s legislative history page, when was the bill first introduced in the House (give the date listed)?  \n18. By national estimates, how many people currently live in Germany?  \n19. In the entry about the organic mercury compound linked to Minamata disease, what chemical formula is shown for the compound?  \n20. Again consult the country population source: what population figure is given for Germany?  \n21. In the article on Chamaecyparis thyoides, what conservation status does the IUCN assign to this species?  \n22. Compute the final single digit as follows and report only that digit: (clue 3 + clue 16) % 10.",
+  "metadata": {
+    "theme": "From a small German stream to global tides and human impact — a mapped trail that starts at the Bramau, follows concepts of tidal influence and geodesy, then examines administrative mapping, pollution and wetland ecology, using tools to compare elevations, distances, travel times, nearby urban POIs, national area/population and historical weather that influence rivers.",
+    "difficulty": "extreme",
+    "sample_id": "sample_077",
+    "pages_crawled": 2073
+  },
+  "generated_at": "2026-03-16T09:34:00.918945+00:00"
+}

@@ -1,0 +1,171 @@
+{
+  "trail_id": "trail_c15ec857",
+  "seed_url": "https://en.wikipedia.org/wiki/Open_Aosta_Valley",
+  "seed_title": "Open Aosta Valley",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Open_Aosta_Valley",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Founded')",
+      "extraction_section": "infobox",
+      "extracted_value": 2022,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "1994 French Open wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/1994_French_Open",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start at the regional Open Aosta Valley tournament to establish the local venue and dates as the origin for travel and scale comparisons.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/1994_French_Open",
+      "extraction_target": "Look up the elevation at Stade Roland Garros",
+      "extraction_section": null,
+      "extracted_value": 36.95230865478516,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Stade Roland Garros"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for Stade Roland Garros",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/1997_Australian_Open",
+      "extraction_target": "Convert 2022 km to miles",
+      "extraction_section": null,
+      "extracted_value": 1256,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "# Convert km to miles\nvalue = 2022.0\nconverted = value * 0.621371\nresult = int(converted)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "converted"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: convert 2022 km to miles",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 3,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/1997_Australian_Open",
+      "extraction_target": "Reason: the number you get by reversing its digits",
+      "extraction_section": null,
+      "extracted_value": 6521,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_reversal) on stop 2 value",
+      "reason_transform": "digit_reversal",
+      "reason_source_stop": 2,
+      "reason_code": "result = int(str(abs(int(1256)))[::-1])\nprint(result)"
+    },
+    {
+      "index": 4,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: (2022 + 36 + 1256 + 6521) % 10",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "(2022 + 36 + 1256 + 6521) % 10",
+        "expression_code": "result = (2022 + 36 + 1256 + 6521) % 10\nprint(result)",
+        "referenced_stops": [
+          0,
+          1,
+          2,
+          3
+        ]
+      },
+      "reasoning": "Compute stop: (2022 + 36 + 1256 + 6521) % 10 = 5",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 5,
+  "difficulty": {
+    "level": "easy",
+    "depth": 5,
+    "tool_stop_count": 2,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "Here is the riddle with the corrected clue:\n\n1. Seek the tournament page that hails from a picturesque region in Italy known for its stunning mountains and valleys; discover the year it was first founded; once you have that founding year, turn your attention to the 1994 edition of the clay-court Grand Slam in Paris to set a wider context.\n\n2. How high above sea level does the ground sit at the Paris venue that hosts that clay-court major — report the elevation in whole metres as your next number.\n\n3. There exists a page recounting the 1997 southern-hemisphere Grand Slam; on that subject convert a distance of 2,022 kilometres into miles and record the whole-number part of the result.\n\n4. The number whose digits you will reverse is the whole-mile tally you obtained in clue 3 — reverse its digits to produce a new numeric value for the next step.\n\n5. In the end, compute (clue 1 + clue 2 + clue 3 + clue 4) modulo 10 and give that single digit (0–9) as your final answer.",
+  "metadata": {
+    "theme": "From a regional Challenger tournament in the Aosta Valley to the Grand Slam stage — compare locations, travel and scale between Open Aosta Valley and major slams",
+    "difficulty": "easy",
+    "sample_id": "sample_070",
+    "pages_crawled": 2937,
+    "source": "trail_puzzles_v2"
+  },
+  "generated_at": "2026-03-15T16:30:05.504866+00:00"
+}

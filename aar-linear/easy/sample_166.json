@@ -1,0 +1,152 @@
+{
+  "trail_id": "trail_a4bb4339",
+  "seed_url": "https://en.wikipedia.org/wiki/AbbVie",
+  "seed_title": "AbbVie",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/AbbVie",
+      "extraction_target": "the company type listed in the infobox",
+      "extraction_section": null,
+      "extracted_value": "Public",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Fluoxetine wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Fluoxetine",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start at AbbVie to establish a major pharmaceutical manufacturer's role in developing and commercializing medicines.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/AbbVie",
+      "extraction_target": "Count hotels near Public",
+      "extraction_section": null,
+      "extracted_value": 20,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "hotels near Public"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (nearby_poi) derived from https://en.wikipedia.org/wiki/AbbVie",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Fluoxetine",
+      "extraction_target": "the number of languages listed in the language sidebar at the top of the article",
+      "extraction_section": null,
+      "extracted_value": 52,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Fluoxetine",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Visit fluoxetine (a well-known antidepressant) as an example of a widely distributed pharmaceutical product that links manufacturers and retailers to patients.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 3,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Fluoxetine",
+      "extraction_target": "Reason: the number you get by reversing its digits",
+      "extraction_section": null,
+      "extracted_value": 25,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_reversal) on stop 1 value",
+      "reason_transform": "digit_reversal",
+      "reason_source_stop": 2,
+      "reason_code": "result = int(str(abs(int(52)))[::-1])\nprint(result)"
+    },
+    {
+      "index": 4,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: digital_root(20 + 52 + 25)",
+      "extraction_section": null,
+      "extracted_value": 7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "digital_root(20 + 52 + 25)",
+        "expression_code": "def digital_root(n):\n    n = abs(int(n))\n    return n if n == 0 else ((n - 1) % 9) + 1\nresult = digital_root(20 + 52 + 25)\nprint(result)",
+        "referenced_stops": [
+          1,
+          2,
+          3
+        ]
+      },
+      "reasoning": "Compute stop: digital_root(20 + 52 + 25) = 7",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 7,
+  "difficulty": {
+    "level": "easy",
+    "depth": 5,
+    "tool_stop_count": 1,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. A titan of health, this American pharmaceutical company crafts innovations for wellness. What type of company does it represent?\n\n2. Within the bustling landscape of a capital, how many places open their doors to weary travelers near the public square?\n\n3. Seek the antidote that carries a second name of \"Prozac.\" Dive deep into its page — how many languages can you uncover listed at the top?\n\n4. A riddle unfolds: take the number garnered from the previous clue, reverse its digits, and what new figure does it become?\n\n5. Finally, sum the insights you’ve gathered: 20 from clue 2, 52 from clue 3, and the mysterious number from clue 4. From the total, what is the single-digit essence known as the digital root?",
+  "metadata": {
+    "theme": "Tracing the pharmaceutical product-to-market path: AbbVie as a pharma maker, a major retailer's market signal, a legacy antidepressant, and the timeline of a newer therapy.",
+    "difficulty": "easy",
+    "sample_id": "sample_166",
+    "pages_crawled": 2819
+  },
+  "generated_at": "2026-03-17T10:02:55.099934+00:00"
+}

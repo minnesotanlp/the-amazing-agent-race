@@ -1,0 +1,902 @@
+{
+  "trail_id": "trail_b7a7a4df",
+  "seed_url": "https://en.wikipedia.org/wiki/Dongji_Island",
+  "seed_title": "Dongji Island",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Dongji_Island",
+      "extraction_target": "the population listed in the infobox (field: 'Population')",
+      "extraction_section": "infobox",
+      "extracted_value": 261,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Eastern South Asia wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Eastern_South_Asia",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Seed of the trail — a small Chinese island that anchors the route and introduces coastal geography and community data to compare with other islands and maritime polities.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Eastern_South_Asia",
+      "extraction_target": "the population of Eastern South Asia as given in the article",
+      "extraction_section": null,
+      "extracted_value": 441000000,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Politics of Vietnam wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Politics_of_Vietnam",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Provides regional context for Dongji Island — defines the subregion of East/Southeast Asia that frames the cultural and political stops to follow.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Politics_of_Vietnam",
+      "extraction_target": "number of languages the article is available in (shown near the top)",
+      "extraction_section": null,
+      "extracted_value": 16,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Politics_of_Vietnam",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A major coastal state in the region — its politics and coastal concerns tie into maritime history, security and regional interactions with island communities.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Politics_of_Vietnam",
+      "extraction_target": "Look up the elevation of Politics of Vietnam",
+      "extraction_section": null,
+      "extracted_value": 731.8274536132812,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Politics of Vietnam"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Politics of Vietnam) from https://en.wikipedia.org/wiki/Politics_of_Vietnam",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Politics_of_Vietnam",
+      "extraction_target": "Look up the count of churches near Politics of Vietnam",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "churches near Politics of Vietnam"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of churches near Politics of Vietnam) from https://en.wikipedia.org/wiki/Politics_of_Vietnam",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Politics_of_Vietnam",
+      "extraction_target": "Combine the elevation of Politics of Vietnam and the count of churches near Politics of Vietnam: abs(731 - 20)",
+      "extraction_section": null,
+      "extracted_value": 711,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(731.8274536132812) - int(20.0))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Politics of Vietnam abs_diff count of churches near Politics of Vietnam",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3,
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Politics_of_Vietnam",
+      "extraction_target": "Reason: the number of divisors of that figure",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (num_divisors) on stop 2 value",
+      "reason_transform": "num_divisors",
+      "reason_source_stop": 2,
+      "reason_code": "n = abs(int(16))\ncount = sum(1 for i in range(1, n+1) if n % i == 0) if n > 0 else 0\nresult = count\nprint(result)",
+      "depends_on": [
+        2
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Ho_Chi_Minh_Thought",
+      "extraction_target": "the number of languages listed at the top of the article",
+      "extraction_section": null,
+      "extracted_value": 16,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Brungle, New South Wales wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Brungle,_New_South_Wales",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Political-ideological stop to show how modern political currents in coastal states have shaped national policy and regional maritime posture.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Brungle,_New_South_Wales",
+      "extraction_target": "Look up the population of Australia",
+      "extraction_section": null,
+      "extracted_value": 27536874,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "countries_population",
+            "arguments": {
+              "country": "Australia"
+            },
+            "expected_output": null,
+            "output_key": "population"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: population of Australia",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        7
+      ]
+    },
+    {
+      "index": 9,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Pagaruyung_Kingdom",
+      "extraction_target": "the years the Pagaruyung kingdom existed",
+      "extraction_section": null,
+      "extracted_value": "1347–1833",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Pegon script wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Pegon_script",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A maritime-era Sumatran polity that connects the trail to historical island kingdoms and trading networks across the archipelago.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        8
+      ]
+    },
+    {
+      "index": 10,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Pegon_script",
+      "extraction_target": "the number shown next to the article title indicating languages",
+      "extraction_section": null,
+      "extracted_value": 20,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Pescador Island wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Pescador_Island",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Shows linguistic practices used across Malay–Indonesian islands — cultural tools (writing systems) that traveled with maritime communities.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        9
+      ]
+    },
+    {
+      "index": 11,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Pescador_Island",
+      "extraction_target": "the region of the Philippines in which Pescador Island is located (infobox)",
+      "extraction_section": null,
+      "extracted_value": "Central Visayas",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Pescador_Island",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A Philippine island stop — complements Dongji by representing a different archipelagic culture and marine economy in the region.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        10
+      ]
+    },
+    {
+      "index": 12,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Pescador_Island",
+      "extraction_target": "Look up the elevation of Pescador Island",
+      "extraction_section": null,
+      "extracted_value": 7.483078479766846,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Pescador Island"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Pescador Island) from https://en.wikipedia.org/wiki/Pescador_Island",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        11
+      ]
+    },
+    {
+      "index": 13,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Pescador_Island",
+      "extraction_target": "Look up the Google rating of Pescador Island",
+      "extraction_section": null,
+      "extracted_value": 4.3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "Pescador Island"
+            },
+            "expected_output": null,
+            "output_key": "place_rating"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (Google rating of Pescador Island) from https://en.wikipedia.org/wiki/Pescador_Island",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        11
+      ]
+    },
+    {
+      "index": 14,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Pescador_Island",
+      "extraction_target": "Combine the elevation of Pescador Island and the Google rating of Pescador Island: (7 + 4)",
+      "extraction_section": null,
+      "extracted_value": 11,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(7.483078479766846) + int(4.3)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Pescador Island add Google rating of Pescador Island",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        12,
+        13
+      ]
+    },
+    {
+      "index": 15,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Pescador_Island",
+      "extraction_target": "Reason: the number of vowels in that name",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (vowel_count) on stop 7 value",
+      "reason_transform": "vowel_count",
+      "reason_source_stop": 11,
+      "reason_code": "result = sum(1 for c in \"Central Visayas\".lower() if c in 'aeiou')\nprint(result)",
+      "depends_on": [
+        11
+      ]
+    },
+    {
+      "index": 16,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Pescador",
+      "extraction_target": "the population of Pescador in 2020",
+      "extraction_section": null,
+      "extracted_value": 4256,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Time in Taiwan wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Time_in_Taiwan",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Cultural-linguistic echo of island names (pescador = fisherman) — ties fishing culture and place-naming across the maritime trail.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        15
+      ]
+    },
+    {
+      "index": 17,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Pescador",
+      "extraction_target": "Look up the elevation of Pescador",
+      "extraction_section": null,
+      "extracted_value": 367.0178527832031,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Pescador"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Pescador) from https://en.wikipedia.org/wiki/Pescador",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        16
+      ]
+    },
+    {
+      "index": 18,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Pescador",
+      "extraction_target": "Look up the count of universities near Pescador",
+      "extraction_section": null,
+      "extracted_value": 2.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "universities near Pescador"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of universities near Pescador) from https://en.wikipedia.org/wiki/Pescador",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        16
+      ]
+    },
+    {
+      "index": 19,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Pescador",
+      "extraction_target": "Combine the elevation of Pescador and the count of universities near Pescador: (367 + 2)",
+      "extraction_section": null,
+      "extracted_value": 369,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(367.0178527832031) + int(2.0)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Pescador add count of universities near Pescador",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        17,
+        18
+      ]
+    },
+    {
+      "index": 20,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Pescador",
+      "extraction_target": "Look up the Google rating of Pescador",
+      "extraction_section": null,
+      "extracted_value": 4.6,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "Pescador"
+            },
+            "expected_output": null,
+            "output_key": "place_rating"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (place_rating) derived from https://en.wikipedia.org/wiki/Pescador",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        19
+      ]
+    },
+    {
+      "index": 21,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Time_in_Taiwan",
+      "extraction_target": "the UTC offset of National Standard Time",
+      "extraction_section": null,
+      "extracted_value": "UTC+08:00",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Time_in_Taiwan",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Timezone stop — useful for comparing temporal coordination among nearby island and coastal communities (e.g., China, Taiwan, Philippines).",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        20
+      ]
+    },
+    {
+      "index": 22,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Time_in_Taiwan",
+      "extraction_target": "Reason: the alphabetical position of its first letter (A=1, B=2, ...)",
+      "extraction_section": null,
+      "extracted_value": 21,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (alpha_position_first_letter) on stop 9 value",
+      "reason_transform": "alpha_position_first_letter",
+      "reason_source_stop": 21,
+      "reason_code": "first = \"UTC+08:00\"[0].upper()\nresult = ord(first) - ord('A') + 1 if first.isalpha() else 0\nprint(result)",
+      "depends_on": [
+        21
+      ]
+    },
+    {
+      "index": 23,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Tongyong_Pinyin",
+      "extraction_target": "the number of languages listed at the top of the article",
+      "extraction_section": null,
+      "extracted_value": 23,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Pittsfield High School (Massachusetts) wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Pittsfield_High_School_(Massachusetts)",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A language-orthography stop tied to Taiwan — shows how writing systems and romanization choices map onto island identities and administration.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        22
+      ]
+    },
+    {
+      "index": 24,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Pittsfield_High_School_(Massachusetts)",
+      "extraction_target": "Look up the population of Brazil",
+      "extraction_section": null,
+      "extracted_value": 213421037,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "countries_population",
+            "arguments": {
+              "country": "Brazil"
+            },
+            "expected_output": null,
+            "output_key": "population"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: population of Brazil",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        23
+      ]
+    },
+    {
+      "index": 25,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Jeera_bhaat",
+      "extraction_target": "Convert 16 meters to feet",
+      "extraction_section": null,
+      "extracted_value": 52,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "# Convert meters to feet\nvalue = 16.0\nconverted = value * 3.28084\nresult = int(converted)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "converted"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: convert 16 meters to feet",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        24
+      ]
+    },
+    {
+      "index": 26,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Jeera_bhaat",
+      "extraction_target": "Reason: the digital root (iterated digit sum until single digit)",
+      "extraction_section": null,
+      "extracted_value": 7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digital_root) on stop 12 value",
+      "reason_transform": "digital_root",
+      "reason_source_stop": 25,
+      "reason_code": "n = abs(int(52))\nresult = n if n == 0 else ((n - 1) % 9) + 1\nprint(result)",
+      "depends_on": [
+        25
+      ]
+    },
+    {
+      "index": 27,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: abs(27536874 - 4256) % 10",
+      "extraction_section": null,
+      "extracted_value": 8,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "abs(27536874 - 4256) % 10",
+        "expression_code": "result = abs(27536874 - 4256) % 10\nprint(result)",
+        "referenced_stops": [
+          8,
+          16,
+          17,
+          25
+        ]
+      },
+      "reasoning": "Compute stop: abs(27536874 - 4256) % 10 = 8",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        8,
+        16,
+        17,
+        25
+      ]
+    }
+  ],
+  "passcode": 8,
+  "difficulty": {
+    "level": "hard",
+    "depth": 28,
+    "tool_stop_count": 13,
+    "reason_stop_count": 4,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Seek out a land surrounded by sapphire waves, home to fewer souls than many a bustling hamlet. How many call Dongji Island their home?\n\n2. Journey to the realm touching the Bay of Bengal, where myriad cultures meld. What is the population noted within its borders?\n\n3. Should you delve into the governance of the nation shaped by the letter \"V,\" you’ll uncover a linguistic tapestry. How many languages can you find woven through its discourse?\n\n4. What peaks rise beneath the documentary of governance for this Southeast Asian nation? Discover its elevation.\n\n5. A place of worship often stands sentinel in cities. Count how many churches can be found nearby this center of politics.\n\n6. Now, combine your newfound figures from clues 4 and 5. What is their absolute difference?\n\n7. For an intriguing transformation, consider the previous clue's outcome. How many different divisors exist for that number?\n\n8. Hidden wisdom lies in the philosophies of a prominent leader. Search for a page dedicated to these insights. How many languages reflect their teachings?\n\n9. Travel to the land down under; what is Australia’s current population?\n\n10. A kingdom once ruled over the fertile grounds of Sumatra. When did the majestic Pagaruyung kingdom's reign begin and end? Identify those significant years.\n\n11. A writing system serves to bridge tongues and ideas. What numeral rests beside the title of the script used for Javanese languages?\n\n12. An islet off the coast of Cebu greets you next. What region of the Philippines embraces Pescador Island?\n\n13. Ascend to the heights that crown this Filipino gem. How high does Pescador Island rise above sea level?\n\n14. Travelers often leave behind trails in the form of ratings. What score do they award Pescador Island?\n\n15. Collate the elevation you discovered in clue 13 with the visitor's score from clue 14. What numeral emerges from their sum?\n\n16. In the name of the island explored, how many vowels paint its identity?\n\n17. A colony once nestled among its shores reflects in the welcome of Pescador. What was the population here in the year 2020?\n\n18. Seek the rise of the land holding Pescador’s name. What is its elevation above the surrounding waters?\n\n19. Institutions of learning contrast the surrounding shores; how many universities are found in proximity to this coastal expanse?\n\n20. Combine the peak you measured in clue 18 with the count of universities mentioned in clue 19. What total do you realize from their addition?\n\n21. As travelers weight their experiences, what is the Google rating assigned to Pescador?\n\n22. Turn your attention now to a region that observes its standard time. What is the offset from Coordinated Universal Time for Taiwan?\n\n23. Delve into the first letter of that time zone’s name. What is its position in the alphabet? (A=1, B=2, ...)\n\n24. Explore a Romanization system that bridges languages across cultures. How many languages does the page for this system claim to support?\n\n25. Count the citizens dwelling in Brazil today. What number do you reach in your inquiry?\n\n26. From a culinary creation associated with a spice, convert 16 meters into the language of feet. What figure comes forth?\n\n27. Reflect upon the value from the previous clue. What is its digital root, the sum of its digits iterated until a single number emerges?\n\n28. Now calculate the outcome of subtracting the population of Australia from the population of Pescador, then apply the modulo operation with 10. Reveal your single-digit answer from that calculation: abs(clue 9 - clue 17) % 10.",
+  "metadata": {
+    "theme": "Island edges and maritime cultures of East & Southeast Asia — a compact trail beginning at Dongji Island that moves through regional geography, history, languages and politics, using a mix of geographic and data tools to compare elevation, distance, travel, population, POIs and simple unit conversions.",
+    "difficulty": "hard",
+    "sample_id": "sample_062",
+    "pages_crawled": 9047
+  },
+  "generated_at": "2026-03-16T21:33:19.379845+00:00"
+}

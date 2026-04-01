@@ -1,0 +1,136 @@
+{
+  "trail_id": "trail_56673a72",
+  "seed_url": "https://en.wikipedia.org/wiki/JPMorgan_Chase",
+  "seed_title": "JPMorgan Chase",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/JPMorgan_Chase",
+      "extraction_target": "the section number assigned to 'Lawsuits and legal settlements by years' in the table of contents",
+      "extraction_section": "Contents",
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Canada wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Canada",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Seed: JPMorgan Chase is the finance anchor for this trail — extract its HQ location so we can measure travel to its Manhattan tower and capture its corporate identity.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Canada",
+      "extraction_target": "Look up the elevation at Ottawa 45°24′N 75°40′W﻿ / ﻿45.400°N 75.667°W﻿ / 45.400; -75.667_region:CA-ON)",
+      "extraction_section": null,
+      "extracted_value": 72.36231231689453,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Ottawa 45°24′N 75°40′W﻿ / ﻿45.400°N 75.667°W﻿ / 45.400; -75.667_region:CA-ON)"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for Ottawa 45°24′N 75°40′W﻿ / ﻿45.400°N 75.667°W﻿ / 45.400; -75.667_region:CA-ON)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Canada",
+      "extraction_target": "Reason: the number of divisors of that figure",
+      "extraction_section": null,
+      "extracted_value": 12,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (num_divisors) on stop 1 value",
+      "reason_transform": "num_divisors",
+      "reason_source_stop": 1,
+      "reason_code": "n = abs(int(72))\ncount = sum(1 for i in range(1, n+1) if n % i == 0) if n > 0 else 0\nresult = count\nprint(result)"
+    },
+    {
+      "index": 3,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: abs(2 - 12) % 10",
+      "extraction_section": null,
+      "extracted_value": 0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "abs(2 - 12) % 10",
+        "expression_code": "result = abs(2 - 12) % 10\nprint(result)",
+        "referenced_stops": [
+          0,
+          2
+        ]
+      },
+      "reasoning": "Compute stop: abs(2 - 12) % 10 = 0",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 0,
+  "difficulty": {
+    "level": "easy",
+    "depth": 4,
+    "tool_stop_count": 1,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "Here is the riddle with the corrected clues:\n\n1. Seek the entry on the financial institution that was formed through the merger of multiple banking entities, including one founded by a renowned banker in the late 18th century. From its table of contents, determine which numbered entry chronicles the bank's legal disputes and settlements arranged chronologically, and record that section number.  \n2. What altitude in metres is listed at latitude 45°24′N, longitude 75°40′W (the coordinates of Ottawa) on the national article for the country whose capital is Ottawa?  \n3. The integer found in clue 2, when reduced to the count of its positive divisors, becomes your next value — compute how many divisors that elevation has.  \n4. In the final act, perform this arithmetic and report a single digit: compute the absolute difference between clue 1 and clue 3, then take that result modulo 10 — explicitly, compute abs(clue 1 - clue 3) % 10; the outcome must be a single digit (0–9).",
+  "metadata": {
+    "theme": "Tracing JPMorgan Chase's physical headquarters and global corporate influence — map the bank's HQ, measure access to its Manhattan tower, check a major tech partner's market value, and gauge population scale where it operates.",
+    "difficulty": "easy",
+    "sample_id": "sample_148",
+    "pages_crawled": 1850
+  },
+  "generated_at": "2026-03-17T08:53:45.305584+00:00"
+}

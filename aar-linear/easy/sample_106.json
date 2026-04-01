@@ -1,0 +1,162 @@
+{
+  "trail_id": "trail_1d2b5419",
+  "seed_url": "https://en.wikipedia.org/wiki/Marek_Wrona",
+  "seed_title": "Marek Wrona",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Marek_Wrona",
+      "extraction_target": "the age of Marek Wrona as shown in the article",
+      "extraction_section": null,
+      "extracted_value": 59,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Forbes Field wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Forbes_Field",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start with the individual — use Marek Wrona's birthplace and sport to anchor the trail and set the origin for travel comparisons.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Forbes_Field",
+      "extraction_target": "Look up the elevation at 230 South Bouquet St. in Oakland \"Oakland (Pittsburgh)\")",
+      "extraction_section": null,
+      "extracted_value": 274.4778747558594,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "230 South Bouquet St. in Oakland \"Oakland (Pittsburgh)\")"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for 230 South Bouquet St. in Oakland \"Oakland (Pittsburgh)\")",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Forbes_Field",
+      "extraction_target": "Reason: the sum of its distinct prime factors",
+      "extraction_section": null,
+      "extracted_value": 139,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (sum_prime_factors) on stop 1 value",
+      "reason_transform": "sum_prime_factors",
+      "reason_source_stop": 1,
+      "reason_code": "def prime_factors(n):\n    n = abs(int(n))\n    factors = []\n    d = 2\n    while d * d <= n:\n        while n % d == 0:\n            factors.append(d)\n            n //= d\n        d += 1\n    if n > 1: factors.append(n)\n    return factors\nresult = sum(set(prime_factors(274)))\nprint(result)"
+    },
+    {
+      "index": 3,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/PGA_European_Tour",
+      "extraction_target": "the year of the European Tour's first season",
+      "extraction_section": null,
+      "extracted_value": 1972,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/PGA_European_Tour",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Finish with a major professional sports organization to contextualize the athlete's potential destination on the international competitive stage (tournaments, administration, and media coverage).",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 4,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: (59 + 274 + 139 + 1972) % 10",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "(59 + 274 + 139 + 1972) % 10",
+        "expression_code": "result = (59 + 274 + 139 + 1972) % 10\nprint(result)",
+        "referenced_stops": [
+          0,
+          1,
+          2,
+          3
+        ]
+      },
+      "reasoning": "Compute stop: (59 + 274 + 139 + 1972) % 10 = 4",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 4,
+  "difficulty": {
+    "level": "easy",
+    "depth": 5,
+    "tool_stop_count": 1,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "Here is the riddle with the corrected clue:\n\n1. Seek the page of the Polish artistic director and producer known for his contributions to film and theatre; from that article, tell me how old he is as listed there.  \n\n2. There exists a page about an early-20th-century Pittsburgh ballpark that once stood near Schenley Park and the university district; using that article as your landmark, determine how high above sea level the ground is at 230 South Bouquet Street in the Oakland neighborhood of Pittsburgh.  \n\n3. What do you get if you take the elevation from clue 2 (treat it as an integer) and add together its distinct prime factors, using each prime only once?  \n\n4. The article whose opening line describes the principal men's professional golf circuit across Europe hides a simple date; discover the year in which that circuit staged its first season.  \n\n5. The ledger now asks you for a single-digit result: compute (clue 1 + clue 2 + clue 3 + clue 4) modulo 10, and report that one digit (0–9).",
+  "metadata": {
+    "theme": "Tracing an athlete's journey from hometown to international sports stages — linking a competitor (seed) to a historic venue and a major professional tour, and measuring the travel between them.",
+    "difficulty": "easy",
+    "sample_id": "sample_106",
+    "pages_crawled": 4293,
+    "source": "trail_puzzles_v2"
+  },
+  "generated_at": "2026-03-15T19:57:54.090697+00:00"
+}

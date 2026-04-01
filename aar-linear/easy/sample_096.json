@@ -1,0 +1,138 @@
+{
+  "trail_id": "trail_6787e965",
+  "seed_url": "https://en.wikipedia.org/wiki/Zvi_Brenner",
+  "seed_title": "Zvi Brenner",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Zvi_Brenner",
+      "extraction_target": "year of birth",
+      "extraction_section": null,
+      "extracted_value": "1915",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "History of the Jews in South Africa wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/History_of_the_Jews_in_South_Africa",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Begin at Zvi Brenner's biography to anchor the trail in a specific historical person; extracting his birth/death years places him in time and frames the subsequent look at diaspora communities.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/History_of_the_Jews_in_South_Africa",
+      "extraction_target": "Look up the elevation at History of the Jews in South Africa",
+      "extraction_section": null,
+      "extracted_value": 1106.688720703125,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "History of the Jews in South Africa"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for History of the Jews in South Africa",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/History_of_the_Jews_in_South_Africa",
+      "extraction_target": "Reason: the sum of its distinct prime factors",
+      "extraction_section": null,
+      "extracted_value": 88,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (sum_prime_factors) on stop 1 value",
+      "reason_transform": "sum_prime_factors",
+      "reason_source_stop": 1,
+      "reason_code": "def prime_factors(n):\n    n = abs(int(n))\n    factors = []\n    d = 2\n    while d * d <= n:\n        while n % d == 0:\n            factors.append(d)\n            n //= d\n        d += 1\n    if n > 1: factors.append(n)\n    return factors\nresult = sum(set(prime_factors(1106)))\nprint(result)"
+    },
+    {
+      "index": 3,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: digital_root(1915 + 1106 + 88)",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "digital_root(1915 + 1106 + 88)",
+        "expression_code": "def digital_root(n):\n    n = abs(int(n))\n    return n if n == 0 else ((n - 1) % 9) + 1\nresult = digital_root(1915 + 1106 + 88)\nprint(result)",
+        "referenced_stops": [
+          0,
+          1,
+          2
+        ]
+      },
+      "reasoning": "Compute stop: digital_root(1915 + 1106 + 88) = 4",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 4,
+  "difficulty": {
+    "level": "easy",
+    "depth": 4,
+    "tool_stop_count": 1,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "Here is the revised riddle:\n\n1. Seek the Wikipedia page for the individual known as a prominent figure in the history of Jewish cinema during the 20th century, particularly notable for his contributions in films about the Holocaust—record the year his life began as your first number.\n\n2. Which article tells the story of the Jewish community in the country at Africa’s southern tip? Open that history and ask: how high above sea level does the ground lie where this national tale is set; capture that elevation as your second number.\n\n3. If you have the elevation from clue 2, transform it by taking the sum of its distinct prime factors; the result becomes your third number.\n\n4. Like a numerologist closing the loop, compute the digital root of (clue 1 + clue 2 + clue 3) and report that single digit (0–9) as the final answer.",
+  "metadata": {
+    "theme": "From an individual biography to the wider Jewish diaspora: anchor on a person's life and then probe the population context for a Jewish community.",
+    "difficulty": "easy",
+    "sample_id": "sample_096",
+    "pages_crawled": 3895,
+    "source": "trail_puzzles_v2"
+  },
+  "generated_at": "2026-03-15T19:06:17.902633+00:00"
+}

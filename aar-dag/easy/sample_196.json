@@ -1,0 +1,249 @@
+{
+  "trail_id": "trail_f9bee075",
+  "seed_url": "https://en.wikipedia.org/wiki/Novo_Nordisk",
+  "seed_title": "Novo Nordisk",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Novo_Nordisk",
+      "extraction_target": "the country of the company's headquarters",
+      "extraction_section": null,
+      "extracted_value": "Denmark",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Novo_Nordisk",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start at the company page to extract the precise headquarters location (city/address and country) for downstream geographic and demographic checks.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Novo_Nordisk",
+      "extraction_target": "Look up the population of Denmark",
+      "extraction_section": null,
+      "extracted_value": 6011488.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "countries_population",
+            "arguments": {
+              "country": "Denmark"
+            },
+            "expected_output": null,
+            "output_key": "population"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (population of Denmark) from https://en.wikipedia.org/wiki/Novo_Nordisk",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Novo_Nordisk",
+      "extraction_target": "Look up the area of Denmark in km²",
+      "extraction_section": null,
+      "extracted_value": 43094.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "countries_area",
+            "arguments": {
+              "country": "Denmark"
+            },
+            "expected_output": null,
+            "output_key": "area_km2"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (area of Denmark in km²) from https://en.wikipedia.org/wiki/Novo_Nordisk",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Novo_Nordisk",
+      "extraction_target": "Combine the population of Denmark and the area of Denmark in km²: (6011488 + 43094)",
+      "extraction_section": null,
+      "extracted_value": 6054582,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(6011488.0) + int(43094.0)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: population of Denmark add area of Denmark in km²",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1,
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Novo_Nordisk",
+      "extraction_target": "Reason: the alphabetical position of its first letter (A=1, B=2, ...)",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (alpha_position_first_letter) on stop 0 value",
+      "reason_transform": "alpha_position_first_letter",
+      "reason_source_stop": 0,
+      "reason_code": "first = \"Denmark\"[0].upper()\nresult = ord(first) - ord('A') + 1 if first.isalpha() else 0\nprint(result)",
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Denmark",
+      "extraction_target": "Look up the population of Kingdom of Denmark",
+      "extraction_section": null,
+      "extracted_value": 6011488,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "countries_population",
+            "arguments": {
+              "country": "Kingdom of Denmark"
+            },
+            "expected_output": null,
+            "output_key": "population"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: population of Kingdom of Denmark",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: abs(43094 - 6054582) % 10",
+      "extraction_section": null,
+      "extracted_value": 8,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "abs(43094 - 6054582) % 10",
+        "expression_code": "result = abs(43094 - 6054582) % 10\nprint(result)",
+        "referenced_stops": [
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      "reasoning": "Compute stop: abs(43094 - 6054582) % 10 = 8",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2,
+        3,
+        4,
+        5
+      ]
+    }
+  ],
+  "passcode": 8,
+  "difficulty": {
+    "level": "easy",
+    "depth": 7,
+    "tool_stop_count": 4,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "direct_link"
+  },
+  "riddle": "1. A pharmaceutical leader operates from a land known for its happy inhabitants — identify this Nordic country where the company calls home.\n\n2. To understand this firm's context, uncover the number of individuals living in the kingdom of the fairytale tales and modern design.\n\n3. What is the vastness of this nation, measured in square kilometers, that houses both charming cities and rolling hills?\n\n4. Now, combine the figures you gleaned from the previous steps, summing the population from clue 2 with the area from clue 3. \n\n5. As you delve deeper, consider the name of the company’s homeland's enterprise; what position does its leading letter hold in the alphabet?\n\n6. Investigate a broader realm — how many souls inhabit the entire Kingdom of this Nordic country, beyond its mainland?\n\n7. With newfound wisdom from clues 3, 4, 5, and 6, compute: what's the absolute difference between the area you uncovered and the kingdom's population, reduced by 10?",
+  "metadata": {
+    "theme": "Tracing Novo Nordisk from company HQ to national context — locate its headquarters, measure its distance to Copenhagen, and place the company within Denmark's population scale.",
+    "difficulty": "easy",
+    "sample_id": "sample_196",
+    "pages_crawled": 4719
+  },
+  "generated_at": "2026-03-17T13:27:37.996330+00:00"
+}

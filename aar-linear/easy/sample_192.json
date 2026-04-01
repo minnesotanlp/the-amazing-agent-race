@@ -1,0 +1,192 @@
+{
+  "trail_id": "trail_dfaa9db3",
+  "seed_url": "https://en.wikipedia.org/wiki/BHP",
+  "seed_title": "BHP",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/BHP",
+      "extraction_target": "the city listed as the company's headquarters",
+      "extraction_section": null,
+      "extracted_value": "Melbourne",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Royal_Dutch_Shell",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Seed: BHP is a leading global mining company — extract its trading identifiers and HQ to anchor the trail in a real-world corporate actor.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Royal_Dutch_Shell",
+      "extraction_target": "Look up the closing price of SHEL on 2005-07-20",
+      "extraction_section": null,
+      "extracted_value": 22.22,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "stock_historical_price",
+            "arguments": {
+              "ticker": "SHEL",
+              "date": "2005-07-20"
+            },
+            "expected_output": null,
+            "output_key": "stock_price"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: stock price SHEL on 2005-07-20",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Mining",
+      "extraction_target": "the number of languages in which the Mining article is available",
+      "extraction_section": null,
+      "extracted_value": 89,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Mining",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Explain the industry fundamentals that supply companies like BHP — what is mined, and how — to connect corporate value back to physical extraction.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 3,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Mining",
+      "extraction_target": "Reason: the number of 1-bits in its binary representation",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (binary_1bit_count) on stop 2 value",
+      "reason_transform": "binary_1bit_count",
+      "reason_source_stop": 2,
+      "reason_code": "result = bin(abs(int(89))).count('1')\nprint(result)"
+    },
+    {
+      "index": 4,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Spain",
+      "extraction_target": "Look up the elevation at Spain",
+      "extraction_section": null,
+      "extracted_value": 594.1013793945312,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Spain"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for Spain",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 5,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: (22 + 4) % 10",
+      "extraction_section": null,
+      "extracted_value": 6,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "(22 + 4) % 10",
+        "expression_code": "result = (22 + 4) % 10\nprint(result)",
+        "referenced_stops": [
+          1,
+          3
+        ]
+      },
+      "reasoning": "Compute stop: (22 + 4) % 10 = 6",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 6,
+  "difficulty": {
+    "level": "easy",
+    "depth": 6,
+    "tool_stop_count": 2,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "direct_link"
+  },
+  "riddle": "1. Seek the Wikipedia page titled BHP; read its lead and note which city is given as the company’s headquarters, then follow the link on that page labelled \"Shell\" to continue. \n\n2. There exists a page reached by that link where a major energy firm trades under the ticker SHEL — determine the closing share price for ticker SHEL on 20 July 2005, and afterwards follow the link labelled \"Article\" to reach the broad entry on extracting earth resources. \n\n3. How many language editions list that general article about the extraction of valuable minerals and other geological materials? (Record the count, then proceed via the link that points to the country you will visit next.) \n\n4. If you take the count you just found (from clue 3) and express it in base two, how many ones appear in that binary representation? Treat this as the transformed numeric value for clue 4. \n\n5. The page whose opening line names the sovereign state on the Iberian Peninsula whose capital is Madrid contains geographic data; report the elevation above mean sea level at that country's central point in metres, then carry that number forward. \n\n6. As the final act, compute the following and give the single-digit result (0–9): (clue 2 + clue 4) % 10.",
+  "metadata": {
+    "theme": "From mine to market — tracing BHP's place in global resource extraction, the mining industry that supplies it, the city hub where it's headquartered, and how resource giants compare on the market",
+    "difficulty": "easy",
+    "sample_id": "sample_192",
+    "pages_crawled": 4469
+  },
+  "generated_at": "2026-03-17T13:00:03.351863+00:00"
+}

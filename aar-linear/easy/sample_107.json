@@ -1,0 +1,137 @@
+{
+  "trail_id": "trail_775500e3",
+  "seed_url": "https://en.wikipedia.org/wiki/ROH_Epic_Encounter_III",
+  "seed_title": "ROH Epic Encounter III",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/ROH_Epic_Encounter_III",
+      "extraction_target": "the date listed in the infobox (field: 'Date')",
+      "extraction_section": "infobox",
+      "extracted_value": "March 20, 2010",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/International_Centre",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start at the event page to extract the official venue and city for Epic Encounter III — this anchors the trail and provides the location used for subsequent logistics checks.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/International_Centre",
+      "extraction_target": "Look up the elevation at Mississauga",
+      "extraction_section": null,
+      "extracted_value": 156.0917663574219,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Mississauga"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for Mississauga",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/International_Centre",
+      "extraction_target": "Reason: the number of 1-bits in its binary representation",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (binary_1bit_count) on stop 1 value",
+      "reason_transform": "binary_1bit_count",
+      "reason_source_stop": 1,
+      "reason_code": "result = bin(abs(int(156))).count('1')\nprint(result)"
+    },
+    {
+      "index": 3,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: digital_root(156 + 4)",
+      "extraction_section": null,
+      "extracted_value": 7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "digital_root(156 + 4)",
+        "expression_code": "def digital_root(n):\n    n = abs(int(n))\n    return n if n == 0 else ((n - 1) % 9) + 1\nresult = digital_root(156 + 4)\nprint(result)",
+        "referenced_stops": [
+          1,
+          2
+        ]
+      },
+      "reasoning": "Compute stop: digital_root(156 + 4) = 7",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 7,
+  "difficulty": {
+    "level": "easy",
+    "depth": 4,
+    "tool_stop_count": 1,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "direct_link"
+  },
+  "riddle": "Here is the revised riddle:\n\n1. Seek the page that chronicles a certain professional wrestling event held in May 2005, which involved a famous American wrestling promotion that often features athletes from various backgrounds; what date does that entry give for the event, and then follow the venue link (the big local exhibition complex) found there to continue.  \n2. There exists a page for that exhibition complex in the Mississauga area — on it, what elevation above sea level is reported for the host city?  \n3. How many 1-bits appear in the binary form of the elevation you just obtained (i.e., take the number from clue 2 and count its ones in base two)?  \n4. In the end, compute the digital root of (clue 2 + clue 3); that single-digit result (0–9) is your final answer.",
+  "metadata": {
+    "theme": "Tracing ROH Epic Encounter III from the event listing to local venue logistics — identify the event venue, estimate travel time to a nearby major centre, and check local POI density for attendees.",
+    "difficulty": "easy",
+    "sample_id": "sample_107",
+    "pages_crawled": 63,
+    "source": "trail_puzzles_v3"
+  },
+  "generated_at": "2026-03-15T22:20:49.239632+00:00"
+}

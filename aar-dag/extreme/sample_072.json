@@ -1,0 +1,1049 @@
+{
+  "trail_id": "trail_5a82ba1c",
+  "seed_url": "https://en.wikipedia.org/wiki/John_Smith_(astronomer)",
+  "seed_title": "John Smith (astronomer)",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/John_Smith_(astronomer)",
+      "extraction_target": "baptism date of John Smith",
+      "extraction_section": null,
+      "extracted_value": "14 October 1711",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "European Terrestrial Reference System 1989 wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/European_Terrestrial_Reference_System_1989",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Seed: an astronomer as the historical origin of celestial methods used for navigation and early georeferencing.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/European_Terrestrial_Reference_System_1989",
+      "extraction_target": "the year indicated in the name of ETRS89",
+      "extraction_section": null,
+      "extracted_value": 1989,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Maungakiekie / One Tree Hill wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Maungakiekie_/_One_Tree_Hill",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Modern geodesy: an example of a terrestrial reference system that replaced earlier astronomical reference frames for precise mapping.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Maungakiekie_/_One_Tree_Hill",
+      "extraction_target": "Look up the elevation at Maungakiekie / One Tree Hill",
+      "extraction_section": null,
+      "extracted_value": 177.3206787109375,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Maungakiekie / One Tree Hill"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for Maungakiekie / One Tree Hill",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Maungakiekie_/_One_Tree_Hill",
+      "extraction_target": "Reason: the number of characters when written as a Roman numeral",
+      "extraction_section": null,
+      "extracted_value": 7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (roman_numeral_letter_count) on stop 2 value",
+      "reason_transform": "roman_numeral_letter_count",
+      "reason_source_stop": 2,
+      "reason_code": "def to_roman(n):\n    n = abs(int(n))\n    vals = [(1000,'M'),(900,'CM'),(500,'D'),(400,'CD'),(100,'C'),\n            (90,'XC'),(50,'L'),(40,'XL'),(10,'X'),(9,'IX'),(5,'V'),(4,'IV'),(1,'I')]\n    r = ''\n    for v, s in vals:\n        while n >= v:\n            r += s; n -= v\n    return r\nresult = len(to_roman(177))\nprint(result)",
+      "depends_on": [
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/South_American_Datum",
+      "extraction_target": "reference ellipsoid used by the South American Datum",
+      "extraction_section": null,
+      "extracted_value": "Geodetic Reference System 1967 (GRS-67)",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Time in Peru wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Time_in_Peru",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Regional datum: shows how global reference frames are related to regional systems used across South America for mapping Peru.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Time_in_Peru",
+      "extraction_target": "UTC offset of Peru Time as given in the article",
+      "extraction_section": null,
+      "extracted_value": "UTC−05:00",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Tāmaki Makaurau (New Zealand electorate) wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/T%C4%81maki_Makaurau_(New_Zealand_electorate)",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Timekeeping: ties astronomical time to civil time, important for historical observations and for timestamping geospatial data.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/T%C4%81maki_Makaurau_(New_Zealand_electorate)",
+      "extraction_target": "Convert 1989 km to miles",
+      "extraction_section": null,
+      "extracted_value": 1235,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "# Convert km to miles\nvalue = 1989.0\nconverted = value * 0.621371\nresult = int(converted)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "converted"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: convert 1989 km to miles",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Lima_metropolitan_area",
+      "extraction_target": "the estimated total population of the Lima Metropolitan Area (2022)",
+      "extraction_section": null,
+      "extracted_value": 11804609,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Lima_metropolitan_area",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A principal mapped area in Peru — population and extent show the scale at which modern maps and reference systems are applied.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Lima_metropolitan_area",
+      "extraction_target": "Reason: the next prime number after that figure",
+      "extraction_section": null,
+      "extracted_value": 11804641,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (next_prime) on stop 6 value",
+      "reason_transform": "next_prime",
+      "reason_source_stop": 7,
+      "reason_code": "def next_prime(n):\n    n = abs(int(n))\n    if n < 2: return 2\n    candidate = n + 1\n    while True:\n        if all(candidate % i != 0 for i in range(2, int(candidate**0.5)+1)):\n            return candidate\n        candidate += 1\nresult = next_prime(11804609)\nprint(result)",
+      "depends_on": [
+        7
+      ]
+    },
+    {
+      "index": 9,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Districts_of_Peru",
+      "extraction_target": "the total number of districts in Peru",
+      "extraction_section": null,
+      "extracted_value": 1838,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Ventanilla_District",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Administrative divisions: understanding districts is essential for local mapping and governance (how places are subdivided on maps).",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        8
+      ]
+    },
+    {
+      "index": 10,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Ventanilla_District",
+      "extraction_target": "Calculate the driving distance between Ventanilla District and Time in Peru",
+      "extraction_section": null,
+      "extracted_value": 630.31,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Ventanilla District"
+            },
+            "expected_output": null,
+            "output_key": "coords_a"
+          },
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Time in Peru"
+            },
+            "expected_output": null,
+            "output_key": "coords_b"
+          },
+          {
+            "tool_name": "maps_distance_matrix",
+            "arguments": {
+              "__from_previous_as_origins_destinations": [
+                "coords_a",
+                "coords_b"
+              ]
+            },
+            "expected_output": null,
+            "output_key": "distance_km"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: distance between Ventanilla District and Time in Peru",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        9
+      ]
+    },
+    {
+      "index": 11,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Ventanilla_District",
+      "extraction_target": "Reason: the sum of its distinct prime factors",
+      "extraction_section": null,
+      "extracted_value": 17,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (sum_prime_factors) on stop 8 value",
+      "reason_transform": "sum_prime_factors",
+      "reason_source_stop": 10,
+      "reason_code": "def prime_factors(n):\n    n = abs(int(n))\n    factors = []\n    d = 2\n    while d * d <= n:\n        while n % d == 0:\n            factors.append(d)\n            n //= d\n        d += 1\n    if n > 1: factors.append(n)\n    return factors\nresult = sum(set(prime_factors(630)))\nprint(result)",
+      "depends_on": [
+        10
+      ]
+    },
+    {
+      "index": 12,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Callao_District",
+      "extraction_target": "the total population (2017)",
+      "extraction_section": null,
+      "extracted_value": 451260,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/La_Perla_District",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Callao: Peru's primary port district adjacent to Lima — an important geospatial anchor for coastal mapping and shipping charts.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        11
+      ]
+    },
+    {
+      "index": 13,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Callao_District",
+      "extraction_target": "Look up the elevation of Callao District",
+      "extraction_section": null,
+      "extracted_value": 11.42637538909912,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Callao District"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Callao District) from https://en.wikipedia.org/wiki/Callao_District",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        12
+      ]
+    },
+    {
+      "index": 14,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Callao_District",
+      "extraction_target": "Look up the count of temples near Callao District",
+      "extraction_section": null,
+      "extracted_value": 6.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "temples near Callao District"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of temples near Callao District) from https://en.wikipedia.org/wiki/Callao_District",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        12
+      ]
+    },
+    {
+      "index": 15,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Callao_District",
+      "extraction_target": "Combine the elevation of Callao District and the count of temples near Callao District: abs(11 - 6)",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(11.42637538909912) - int(6.0))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Callao District abs_diff count of temples near Callao District",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        13,
+        14
+      ]
+    },
+    {
+      "index": 16,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/La_Perla_District",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Founded')",
+      "extraction_section": "infobox",
+      "extracted_value": 22,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/La_Perla_District",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A closely situated coastal district: useful as a local landmark and an example of fine-grained urban mapping in the Lima/Callao area.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        15
+      ]
+    },
+    {
+      "index": 17,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/La_Perla_District",
+      "extraction_target": "Reason: the number of characters when written as a Roman numeral",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (roman_numeral_letter_count) on stop 10 value",
+      "reason_transform": "roman_numeral_letter_count",
+      "reason_source_stop": 16,
+      "reason_code": "def to_roman(n):\n    n = abs(int(n))\n    vals = [(1000,'M'),(900,'CM'),(500,'D'),(400,'CD'),(100,'C'),\n            (90,'XC'),(50,'L'),(40,'XL'),(10,'X'),(9,'IX'),(5,'V'),(4,'IV'),(1,'I')]\n    r = ''\n    for v, s in vals:\n        while n >= v:\n            r += s; n -= v\n    return r\nresult = len(to_roman(22))\nprint(result)",
+      "depends_on": [
+        16
+      ]
+    },
+    {
+      "index": 18,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Meadowlands_Sports_Complex",
+      "extraction_target": "Count the number of hotels near 40°48′51″N 74°04′26″W﻿ / ﻿40.81417°N 74.07389°W﻿ / 40.81417; -74.07389",
+      "extraction_section": null,
+      "extracted_value": 8,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "hotels near 40°48′51″N 74°04′26″W﻿ / ﻿40.81417°N 74.07389°W﻿ / 40.81417; -74.07389"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: count hotels near 40°48′51″N 74°04′26″W﻿ / ﻿40.81417°N 74.07389°W﻿ / 40.81417; -74.07389",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        17
+      ]
+    },
+    {
+      "index": 19,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Plaza_Grau",
+      "extraction_target": "height of the Monument to Miguel Grau (in meters)",
+      "extraction_section": "Description",
+      "extracted_value": 21,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Plaza_Grau",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A central civic landmark in Callao/Lima — plazas and monuments are fixed reference features used in city maps and wayfinding.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        18
+      ]
+    },
+    {
+      "index": 20,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Plaza_Grau",
+      "extraction_target": "Look up the elevation of Plaza Grau",
+      "extraction_section": null,
+      "extracted_value": 1063.109741210938,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Plaza Grau"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Plaza Grau) from https://en.wikipedia.org/wiki/Plaza_Grau",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        19
+      ]
+    },
+    {
+      "index": 21,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Plaza_Grau",
+      "extraction_target": "Look up the count of restaurants near Plaza Grau",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "restaurants near Plaza Grau"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of restaurants near Plaza Grau) from https://en.wikipedia.org/wiki/Plaza_Grau",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        19
+      ]
+    },
+    {
+      "index": 22,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Plaza_Grau",
+      "extraction_target": "Combine the elevation of Plaza Grau and the count of restaurants near Plaza Grau: (1063 + 20)",
+      "extraction_section": null,
+      "extracted_value": 1083,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(1063.109741210938) + int(20.0)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Plaza Grau add count of restaurants near Plaza Grau",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        20,
+        21
+      ]
+    },
+    {
+      "index": 23,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Plaza_Grau",
+      "extraction_target": "Reason: the number you get by reversing its digits",
+      "extraction_section": null,
+      "extracted_value": 12,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_reversal) on stop 12 value",
+      "reason_transform": "digit_reversal",
+      "reason_source_stop": 19,
+      "reason_code": "result = int(str(abs(int(21)))[::-1])\nprint(result)",
+      "depends_on": [
+        19
+      ]
+    },
+    {
+      "index": 24,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/St_Patrick%27s_Cathedral,_Auckland",
+      "extraction_target": "Look up the Google Maps rating of Auckland Central City",
+      "extraction_section": null,
+      "extracted_value": 0.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "Auckland Central City"
+            },
+            "expected_output": null,
+            "output_key": "place_rating"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: Google rating of Auckland Central City",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        23
+      ]
+    },
+    {
+      "index": 25,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Monument_to_Miguel_Grau_Seminario",
+      "extraction_target": "the coordinates listed in the infobox (field: 'Coordinates')",
+      "extraction_section": "infobox",
+      "extracted_value": "12°03′35″S 77°02′09″W﻿ / ﻿12.05979°S 77.03577°W﻿ / -12.05979; -77.03577",
+      "extracted_value_type": "coords",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Cusco FC wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Cusco_FC",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A specific monument in Peru tied to naval history — monuments like this act as durable geospatial anchors for local maps and memorial waypoints.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        24
+      ]
+    },
+    {
+      "index": 26,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Monument_to_Miguel_Grau_Seminario",
+      "extraction_target": "Look up the elevation of Monument to Miguel Grau Seminario",
+      "extraction_section": null,
+      "extracted_value": 99.02320861816406,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Monument to Miguel Grau Seminario"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Monument to Miguel Grau Seminario) from https://en.wikipedia.org/wiki/Monument_to_Miguel_Grau_Seminario",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        25
+      ]
+    },
+    {
+      "index": 27,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Monument_to_Miguel_Grau_Seminario",
+      "extraction_target": "Look up the count of universities near Monument to Miguel Grau Seminario",
+      "extraction_section": null,
+      "extracted_value": 3.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "universities near Monument to Miguel Grau Seminario"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of universities near Monument to Miguel Grau Seminario) from https://en.wikipedia.org/wiki/Monument_to_Miguel_Grau_Seminario",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        25
+      ]
+    },
+    {
+      "index": 28,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Monument_to_Miguel_Grau_Seminario",
+      "extraction_target": "Combine the elevation of Monument to Miguel Grau Seminario and the count of universities near Monument to Miguel Grau Seminario: abs(99 - 3)",
+      "extraction_section": null,
+      "extracted_value": 96,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(99.02320861816406) - int(3.0))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Monument to Miguel Grau Seminario abs_diff count of universities near Monument to Miguel Grau Seminario",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        26,
+        27
+      ]
+    },
+    {
+      "index": 29,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Cusco_FC",
+      "extraction_target": "the stadium capacity as listed in the infobox",
+      "extraction_section": null,
+      "extracted_value": 45056,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Long ton wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Long_ton",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Cusco: an inland highland city whose football club anchors local identity — moving the trail from coastal Lima/Callao to the Andean interior emphasizes elevation and regional mapping differences.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        28
+      ]
+    },
+    {
+      "index": 30,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Long_ton",
+      "extraction_target": "Convert 11804609 meters to feet",
+      "extraction_section": null,
+      "extracted_value": 38729033,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "# Convert meters to feet\nvalue = 11804609.0\nconverted = value * 3.28084\nresult = int(converted)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "converted"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: convert 11804609 meters to feet",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        29
+      ]
+    },
+    {
+      "index": 31,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: (7 + 5 + 1063) % 10",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "(7 + 5 + 1063) % 10",
+        "expression_code": "result = (7 + 5 + 1063) % 10\nprint(result)",
+        "referenced_stops": [
+          3,
+          15,
+          20
+        ]
+      },
+      "reasoning": "Compute stop: (7 + 5 + 1063) % 10 = 5",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3,
+        15,
+        20
+      ]
+    }
+  ],
+  "passcode": 5,
+  "difficulty": {
+    "level": "extreme",
+    "depth": 32,
+    "tool_stop_count": 15,
+    "reason_stop_count": 5,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Unearth the astronomer who charted the stars in a world of numbers—what day did he enter the waters of baptism?\n\n2. Seek the time frame that arose in Europe for mapping terrestrial coordinates—what year does this reference system call its own?\n\n3. How high does the hill known as One Tree rise above the sea's embrace?\n\n4. Before moving on, transform that elevation into Roman numerals—how many letters does it encompass?\n\n5. Track down the geographic framework that defines land in South America—what ellipsoid forms its foundational shape?\n\n6. In what manner does Peru measure its time—what is its offset from Coordinated Universal Time?\n\n7. If you wandered far across the sea to the land of long white clouds, how many miles does the conversion of 1989 kilometers yield?\n\n8. A sprawling metropolis lies along the Pacific—what was the peak headcount of its population in 2022?\n\n9. Consider the next prime that follows the figure found in the previous stop—what number does this lead you to?\n\n10. Examine the governance of the nation; how many districts count themselves within Peru's borders?\n\n11. Measure the distance between the Ventanilla District and the conceptual location of time in Peru—what figure emerges from that journey?\n\n12. Reason this: find the sum of differing prime factors in your driving distance—what result do you arrive at?\n\n13. Locate the population figure in the year 2017 for a district named after a notable hero—what number stands there?\n\n14. Ascertain the elevation that rises above sea level for the same district named after the hero—what is that height?\n\n15. Hidden within the landscape are places of worship; how many temples reside near the district dedicated to that hero?\n\n16. Combine your findings from the height and temple count—what is the absolute difference of those two results?\n\n17. A district by the sea saw its foundation in a year—what was the significant moment when it was established?\n\n18. Reason this: how many letters represent the year of the district's founding when written in Roman numerals?\n\n19. Explore the area renowned for its games; how many hotels can be found near coordinates that point to the sports complex?\n\n20. What is the height, in meters, of the monument honoring the hero Miguel Grau? \n\n21. Determine the elevation found at the plaza that bears this statue—how high does it stand above the sea?\n\n22. Investigate the array of dining options nearby; how many restaurants are situated close to this elevated place?\n\n23. Combine the clarity of its height with the bounty of dining opportunities—what is the sum of those two discoveries?\n\n24. Reflect upon the height of the monument; what is the number you get by simply reversing its digits?\n\n25. Seek the ratings travelers give to the center of Auckland—what numerical score do they bestow?\n\n26. A tribute to the hero has its coordinates—what precise figures are recorded for its location?\n\n27. Find the elevation assigned to this monument of valor—what heights does it claim?\n\n28. The neighborhood reflects knowledge; how many universities are nearby this emblem of history?\n\n29. From the elevation of the monument, subtract the count of universities. What is the absolute difference of these figures?\n\n30. Discover the arena where the local football talent flourishes—what capacity does the stadium boast?\n\n31. Convert the expansive measurement of 11804609 meters into feet—what figure do you land upon?\n\n32. For the final act, compute the result: add the Roman numeral letter count from clue 4 with the absolute difference from clue 16 and the elevation total from clue 21, then take this sum modulo 10.",
+  "metadata": {
+    "theme": "From star charts to street charts — a short mapping trail that starts with an astronomer and follows the evolution of reference frames, timekeeping and local landmarks used in modern mapping across Peru, with comparative mapping tool checks in NZ and New Jersey.",
+    "difficulty": "extreme",
+    "sample_id": "sample_072",
+    "pages_crawled": 932
+  },
+  "generated_at": "2026-03-16T07:16:50.973751+00:00"
+}

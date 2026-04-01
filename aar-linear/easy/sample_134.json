@@ -1,0 +1,153 @@
+{
+  "trail_id": "trail_2d61720e",
+  "seed_url": "https://en.wikipedia.org/wiki/Tesla,_Inc.",
+  "seed_title": "Tesla, Inc.",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Tesla,_Inc.",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Founded')",
+      "extraction_section": "infobox",
+      "extracted_value": 1,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "New York City wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/New_York_City",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start at the seed: Tesla's company page provides the corporate HQ location and stock identity that anchor both geographic (factory) and market (stock) comparisons.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Tesla,_Inc.",
+      "extraction_target": "Count restaurants near Tesla, Inc.",
+      "extraction_section": null,
+      "extracted_value": 20,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "restaurants near Tesla, Inc."
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (nearby_poi) derived from https://en.wikipedia.org/wiki/Tesla,_Inc.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/New_York_City",
+      "extraction_target": "the elevation listed in the infobox (field: 'Highest elevation [[a]](#cite_note-6)')",
+      "extraction_section": "infobox",
+      "extracted_value": 400,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/New_York_City",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Move the trail from manufacturing to the markets: New York City (Wall Street) represents the financial arena where Tesla and auto makers are traded and valued.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 3,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/New_York_City",
+      "extraction_target": "Reason: the number you get by reversing its digits",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_reversal) on stop 1 value",
+      "reason_transform": "digit_reversal",
+      "reason_source_stop": 2,
+      "reason_code": "result = int(str(abs(int(400)))[::-1])\nprint(result)"
+    },
+    {
+      "index": 4,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: (1 + 20 + 400 + 4) % 10",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "(1 + 20 + 400 + 4) % 10",
+        "expression_code": "result = (1 + 20 + 400 + 4) % 10\nprint(result)",
+        "referenced_stops": [
+          0,
+          1,
+          2,
+          3
+        ]
+      },
+      "reasoning": "Compute stop: (1 + 20 + 400 + 4) % 10 = 5",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 5,
+  "difficulty": {
+    "level": "easy",
+    "depth": 5,
+    "tool_stop_count": 1,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Seek the home of electric dreams, where sustainable energy meets modern ambition—what year marked the inception of this pioneering venture?\n\n2. Overlook the buzzing activity around its headquarters; how many eateries can you spot in proximity to its grand design?\n\n3. In the concrete jungle famed for towering aspirations, what is the highest point, where land and sky unite?\n\n4. A curious transformation awaits—take that number from your previous discovery and let the digits dance in reverse. What do you uncover?\n\n5. Now, we gather numbers for a final calculation. Compute: (clue 1 + clue 2 + clue 3 + clue 4) % 10. The answer will reveal a single digit, waiting for you to discover.",
+  "metadata": {
+    "theme": "From Tesla's corporate HQ to its factory and into the markets: linking Tesla's location and manufacturing footprint with financial context and competitor stock performance.",
+    "difficulty": "easy",
+    "sample_id": "sample_134",
+    "pages_crawled": 1150
+  },
+  "generated_at": "2026-03-17T07:53:07.768368+00:00"
+}

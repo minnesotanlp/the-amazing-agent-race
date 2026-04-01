@@ -1,0 +1,814 @@
+{
+  "trail_id": "trail_fb6525d1",
+  "seed_url": "https://en.wikipedia.org/wiki/High_Wycombe_railway_station,_Perth",
+  "seed_title": "High Wycombe railway station, Perth",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/High_Wycombe_railway_station,_Perth",
+      "extraction_target": "the opening year listed in the infobox (field: 'Opened')",
+      "extraction_section": "infobox",
+      "extracted_value": 9,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "West Australian Football League wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/West_Australian_Football_League",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start at the local commuter hub in Perth — the trail's origin and a lens on how stations connect neighborhoods to arenas and freight networks.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/West_Australian_Football_League",
+      "extraction_target": "number of teams in the league",
+      "extraction_section": null,
+      "extracted_value": 10,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Canberra Raiders wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Canberra_Raiders",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Local sport served by Perth's rail connections — shows how public transit supports regional leagues and matchday travel.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Canberra_Raiders",
+      "extraction_target": "the listed capacity of Canberra Stadium (ground) in the infobox",
+      "extraction_section": null,
+      "extracted_value": 25011,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Canberra_Raiders",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "An example NRL club to illustrate intercity fan travel by rail and road to major sporting venues in Australia.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Canberra_Raiders",
+      "extraction_target": "Reason: the sum of its distinct prime factors",
+      "extraction_section": null,
+      "extracted_value": 407,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (sum_prime_factors) on stop 2 value",
+      "reason_transform": "sum_prime_factors",
+      "reason_source_stop": 2,
+      "reason_code": "def prime_factors(n):\n    n = abs(int(n))\n    factors = []\n    d = 2\n    while d * d <= n:\n        while n % d == 0:\n            factors.append(d)\n            n //= d\n        d += 1\n    if n > 1: factors.append(n)\n    return factors\nresult = sum(set(prime_factors(25011)))\nprint(result)",
+      "depends_on": [
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Canterbury-Bankstown_Bulldogs",
+      "extraction_target": "the year the club was founded",
+      "extraction_section": null,
+      "extracted_value": "1935",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Auckland Art Gallery wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Auckland_Art_Gallery",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Another Sydney-area rugby league club — helps trace typical commuter routes supporters take to matches.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Auckland_Art_Gallery",
+      "extraction_target": "Count the number of churches near Auckland Art Gallery",
+      "extraction_section": null,
+      "extracted_value": 20,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "churches near Auckland Art Gallery"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: count churches near Auckland Art Gallery",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Maryland_Terrapins_football",
+      "extraction_target": "the home stadium name",
+      "extraction_section": null,
+      "extracted_value": "SECU Stadium",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "2025 San Diego County Board of Supervisors special election wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/2025_San_Diego_County_Board_of_Supervisors_special_election",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Switching codes and continents: U.S. college football as a case of mass transit and shuttle services serving large stadium crowds.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/2025_San_Diego_County_Board_of_Supervisors_special_election",
+      "extraction_target": "Convert 9°C to a Fahrenheit-scale offset",
+      "extraction_section": null,
+      "extracted_value": 16,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "# Convert celsius to fahrenheit_offset\nvalue = 9.0\nconverted = value * 1.8\nresult = int(converted)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "converted"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: convert 9 celsius to fahrenheit_offset",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/San_Diego_Chargers",
+      "extraction_target": "the years the Chargers played at San Diego Stadium",
+      "extraction_section": null,
+      "extracted_value": "1967–2016",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Boston & Maine wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Boston_%26_Maine",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "An example of a major U.S. pro team (with relocation history) demonstrating how transport links and stadium locations shape team geography.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        7
+      ]
+    },
+    {
+      "index": 9,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/San_Diego_Chargers",
+      "extraction_target": "Count restaurants near 1967–2016",
+      "extraction_section": null,
+      "extracted_value": 20,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "restaurants near 1967–2016"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (nearby_poi) derived from https://en.wikipedia.org/wiki/San_Diego_Chargers",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        8
+      ]
+    },
+    {
+      "index": 10,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Boston_%26_Maine",
+      "extraction_target": "the number of route-miles B&M operated at the end of 1970",
+      "extraction_section": null,
+      "extracted_value": 1515,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Chicago, Rock Island & Pacific wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Chicago,_Rock_Island_%26_Pacific",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Begin the rail-history leg: a major regional railroad showing how rail companies connected cities, industry and sports venues.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        9
+      ]
+    },
+    {
+      "index": 11,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Chicago,_Rock_Island_%26_Pacific",
+      "extraction_target": "Number of miles of road operated at the end of 1970",
+      "extraction_section": null,
+      "extracted_value": 7183,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Chicago, Rock Island & Pacific wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Chicago,_Rock_Island_%26_Pacific",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Another historic U.S. railroad showing midwest connections and how rail corridors supported urban and sporting life.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        10
+      ]
+    },
+    {
+      "index": 12,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Chicago,_Rock_Island_%26_Pacific",
+      "extraction_target": "Look up the elevation of Chicago, Rock Island & Pacific",
+      "extraction_section": null,
+      "extracted_value": 125.3075790405273,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Chicago, Rock Island & Pacific"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Chicago, Rock Island & Pacific) from https://en.wikipedia.org/wiki/Chicago,_Rock_Island_%26_Pacific",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        11
+      ]
+    },
+    {
+      "index": 13,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Chicago,_Rock_Island_%26_Pacific",
+      "extraction_target": "Look up the Google rating of Chicago, Rock Island & Pacific",
+      "extraction_section": null,
+      "extracted_value": 3.6,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "Chicago, Rock Island & Pacific"
+            },
+            "expected_output": null,
+            "output_key": "place_rating"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (Google rating of Chicago, Rock Island & Pacific) from https://en.wikipedia.org/wiki/Chicago,_Rock_Island_%26_Pacific",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        11
+      ]
+    },
+    {
+      "index": 14,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Chicago,_Rock_Island_%26_Pacific",
+      "extraction_target": "Combine the elevation of Chicago, Rock Island & Pacific and the Google rating of Chicago, Rock Island & Pacific: abs(125 - 3)",
+      "extraction_section": null,
+      "extracted_value": 122,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(125.3075790405273) - int(3.6))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Chicago, Rock Island & Pacific abs_diff Google rating of Chicago, Rock Island & Pacific",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        12,
+        13
+      ]
+    },
+    {
+      "index": 15,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Chicago,_Rock_Island_%26_Pacific",
+      "extraction_target": "Reason: the number you get by reversing its digits",
+      "extraction_section": null,
+      "extracted_value": 3817,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_reversal) on stop 9 value",
+      "reason_transform": "digit_reversal",
+      "reason_source_stop": 11,
+      "reason_code": "result = int(str(abs(int(7183)))[::-1])\nprint(result)",
+      "depends_on": [
+        11
+      ]
+    },
+    {
+      "index": 16,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Illinois_Central",
+      "extraction_target": "the year the railroad began operating independently",
+      "extraction_section": null,
+      "extracted_value": 1851,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Illinois Central wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Illinois_Central",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A north–south trunk railroad example — illustrates freight and passenger corridors that tie together cities and stadiums.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        15
+      ]
+    },
+    {
+      "index": 17,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Illinois_Central",
+      "extraction_target": "Reason: the sum of its digits",
+      "extraction_section": null,
+      "extracted_value": 15,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_sum) on stop 10 value",
+      "reason_transform": "digit_sum",
+      "reason_source_stop": 16,
+      "reason_code": "result = sum(int(d) for d in str(abs(int(1851))))\nprint(result)",
+      "depends_on": [
+        16
+      ]
+    },
+    {
+      "index": 18,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Paperboard",
+      "extraction_target": "Convert 10°C to a Fahrenheit-scale offset",
+      "extraction_section": null,
+      "extracted_value": 18,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "# Convert celsius to fahrenheit_offset\nvalue = 10.0\nconverted = value * 1.8\nresult = int(converted)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "converted"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: convert 10 celsius to fahrenheit_offset",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        17
+      ]
+    },
+    {
+      "index": 19,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Louisville_%26_Nashville",
+      "extraction_target": "the number of years the company operated under one name continuously",
+      "extraction_section": null,
+      "extracted_value": 132,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "St. Louis & San Francisco wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/St._Louis_%26_San_Francisco",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A southern U.S. railroad illustrating regional connectivity and how rail links supported industrial and sporting economies.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        18
+      ]
+    },
+    {
+      "index": 20,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/St._Louis_%26_San_Francisco",
+      "extraction_target": "the miles of road operated at the end of 1970",
+      "extraction_section": null,
+      "extracted_value": 4547,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "St. Louis & San Francisco wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/St._Louis_%26_San_Francisco",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Close the rail-history leg with a line that tied Midwestern and southern routes together — underscoring the global role of rail in moving people to events and goods to markets.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        19
+      ]
+    },
+    {
+      "index": 21,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/St._Louis_%26_San_Francisco",
+      "extraction_target": "Look up the elevation of St. Louis & San Francisco",
+      "extraction_section": null,
+      "extracted_value": 141.3643493652344,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "St. Louis & San Francisco"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of St. Louis & San Francisco) from https://en.wikipedia.org/wiki/St._Louis_%26_San_Francisco",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        20
+      ]
+    },
+    {
+      "index": 22,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/St._Louis_%26_San_Francisco",
+      "extraction_target": "Look up the count of restaurants near St. Louis & San Francisco",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "restaurants near St. Louis & San Francisco"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of restaurants near St. Louis & San Francisco) from https://en.wikipedia.org/wiki/St._Louis_%26_San_Francisco",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        20
+      ]
+    },
+    {
+      "index": 23,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/St._Louis_%26_San_Francisco",
+      "extraction_target": "Combine the elevation of St. Louis & San Francisco and the count of restaurants near St. Louis & San Francisco: abs(141 - 20)",
+      "extraction_section": null,
+      "extracted_value": 121,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(141.3643493652344) - int(20.0))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of St. Louis & San Francisco abs_diff count of restaurants near St. Louis & San Francisco",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        21,
+        22
+      ]
+    },
+    {
+      "index": 24,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/St._Louis_%26_San_Francisco",
+      "extraction_target": "Reason: the largest prime factor of that figure",
+      "extraction_section": null,
+      "extracted_value": 4547,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (largest_prime_factor) on stop 13 value",
+      "reason_transform": "largest_prime_factor",
+      "reason_source_stop": 20,
+      "reason_code": "def largest_prime_factor(n):\n    n = abs(int(n))\n    if n <= 1: return n\n    d = 2\n    while d * d <= n:\n        while n % d == 0: n //= d\n        d += 1\n    return n\nresult = largest_prime_factor(4547)\nprint(result)",
+      "depends_on": [
+        20
+      ]
+    },
+    {
+      "index": 25,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: (1935 + 16 + 4547 + 121) % 10",
+      "extraction_section": null,
+      "extracted_value": 9,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "(1935 + 16 + 4547 + 121) % 10",
+        "expression_code": "result = (1935 + 16 + 4547 + 121) % 10\nprint(result)",
+        "referenced_stops": [
+          4,
+          7,
+          20,
+          23
+        ]
+      },
+      "reasoning": "Compute stop: (1935 + 16 + 4547 + 121) % 10 = 9",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        4,
+        7,
+        20,
+        23
+      ]
+    }
+  ],
+  "passcode": 9,
+  "difficulty": {
+    "level": "hard",
+    "depth": 26,
+    "tool_stop_count": 10,
+    "reason_stop_count": 4,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Begin your journey at a station named for the highest hills of luscious Western Australia. What year did this halt first welcome travelers?\n\n2. In a realm of spirited competition, how many teams unite in a league that celebrates the roar of the crowd and the thrill of the match?\n\n3. Journey next to where green and gold clad warriors do battle on the field. Within this arena, what capacity holds the eager fans?\n\n4. Calculate the sum of all the distinct prime numbers that divide this stadium's capacity. What value do you discover?\n\n5. Seek out a rugby league team whose name echoes through the streets of an iconic Australian suburb. In which year did this club come to life?\n\n6. A cultural treasure lies nearby; how many churches can be found in the shadow of an art gallery that inspires creativity?\n\n7. From the world of sports to the gridiron, what name is bestowed upon the home of a university's football warriors?\n\n8. If the temperature was a brisk chill of 9 degrees Celsius, what would that translate to on the Fahrenheit scale? \n\n9. A storied team once battled on the field at a stadium in a sun-soaked city. In what years did they grace this venue?\n\n10. Count the number of dining spots near the years of triumphs from 1967 to 2016 mentioned in the previous clue.\n\n11. Discover the extensive history of a New England rail company — how many miles of track did they operate at the conclusion of 1970?\n\n12. Another rail line also recalls its past; what distance in miles did it navigate at the very same year?\n\n13. Elevate your knowledge by learning the altitude at which this rail line operates in Chicago. How many feet above sea level does it stand?\n\n14. A company's reputation can be gauged — what star rating do visitors grant to this railway legacy?\n\n15. Combine your findings from clues 13 and 14, taking the absolute difference between the two. What number emerges?\n\n16. The last rail company you examined has a long history; reverse the digits of the number you found about its operational distance in 1970. What do you uncover?\n\n17. Shift your focus to a railroad that charted its own path — which year marked its independence from its parent company?\n\n18. Find significance in the digits of that founding year; what is their total when summed together?\n\n19. An art form demands precision; when the temperature is 10 degrees Celsius, how does it compare to Fahrenheit's warm embrace?\n\n20. This railway company carried travelers for many years. How many continuous years did it operate under a single banner?\n\n21. Another chapter in railway history awaits you. At the end of 1970, how many miles did this railway traverse?\n\n22. Ascend again to discover how high the St. Louis & San Francisco line runs above sea level. What elevation do they claim?\n\n23. Count the culinary spots near the tracks of this railroad — how many restaurants entice hungry travelers nearby?\n\n24. Merge your findings from clues 22 and 23 by taking their absolute difference. What number results from this mathematical union?\n\n25. Finally, contemplate the largest prime factor that resides within the distance figure of clue 21. What key number does this final calculation yield?\n\n26. Now, bring your journey to a conclusion: compute the expression \\((\\text{clue 5} + \\text{clue 8} + \\text{clue 21} + \\text{clue 24}) \\mod 10\\). What single digit do you obtain as your answer?",
+  "metadata": {
+    "theme": "From a Perth commuter stop to the rails and stadiums that shape cities — a traveler's trail linking High Wycombe station (Perth) to local sport, international teams, and the rail companies and freight that move people and goods.",
+    "difficulty": "hard",
+    "sample_id": "sample_112",
+    "pages_crawled": 8739
+  },
+  "generated_at": "2026-03-16T21:01:00.287032+00:00"
+}

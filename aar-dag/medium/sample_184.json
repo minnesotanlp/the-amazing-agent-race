@@ -1,0 +1,444 @@
+{
+  "trail_id": "trail_e363ea52",
+  "seed_url": "https://en.wikipedia.org/wiki/Kraken_(exchange)",
+  "seed_title": "Kraken (exchange)",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Kraken_(exchange)",
+      "extraction_target": "the number of founders named in the Founding and early development section",
+      "extraction_section": "Founding and early development (2011–2014)",
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Arthur D. Levinson wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Arthur_D._Levinson",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Seed: Kraken is the cryptocurrency exchange that launches the trail — an entry point into crypto markets and their intersections with corporate finance and regulation.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Arthur_D._Levinson",
+      "extraction_target": "year Levinson received his Bachelor of Science from the University of Washington",
+      "extraction_section": "Early life and education",
+      "extracted_value": 1972,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Arthur_D._Levinson",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Connects the corporate governance of a major tech company (Apple) back to individuals who shape investment and policy environments influencing markets.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Arthur_D._Levinson",
+      "extraction_target": "Reason: the sum of its distinct prime factors",
+      "extraction_section": null,
+      "extracted_value": 48,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (sum_prime_factors) on stop 1 value",
+      "reason_transform": "sum_prime_factors",
+      "reason_source_stop": 1,
+      "reason_code": "def prime_factors(n):\n    n = abs(int(n))\n    factors = []\n    d = 2\n    while d * d <= n:\n        while n % d == 0:\n            factors.append(d)\n            n //= d\n        d += 1\n    if n > 1: factors.append(n)\n    return factors\nresult = sum(set(prime_factors(1972)))\nprint(result)",
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/United_States_Department_of_Justice",
+      "extraction_target": "the number of languages listed at the top of the article",
+      "extraction_section": null,
+      "extracted_value": 49,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Bermuda wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Bermuda",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Moves the trail into regulatory enforcement: the DOJ is a key actor in legal actions that affect exchanges, companies, and cross-border finance.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/United_States_Department_of_Justice",
+      "extraction_target": "Look up the elevation of United States Department of Justice",
+      "extraction_section": null,
+      "extracted_value": 3236.2353515625,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "United States Department of Justice"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of United States Department of Justice) from https://en.wikipedia.org/wiki/United_States_Department_of_Justice",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/United_States_Department_of_Justice",
+      "extraction_target": "Look up the Google rating of United States Department of Justice",
+      "extraction_section": null,
+      "extracted_value": 3.4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "United States Department of Justice"
+            },
+            "expected_output": null,
+            "output_key": "place_rating"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (Google rating of United States Department of Justice) from https://en.wikipedia.org/wiki/United_States_Department_of_Justice",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/United_States_Department_of_Justice",
+      "extraction_target": "Combine the elevation of United States Department of Justice and the Google rating of United States Department of Justice: abs(3236 - 3)",
+      "extraction_section": null,
+      "extracted_value": 3233,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(3236.2353515625) - int(3.4))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of United States Department of Justice abs_diff Google rating of United States Department of Justice",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        4,
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Bermuda",
+      "extraction_target": "Look up the population of United Kingdom",
+      "extraction_section": null,
+      "extracted_value": 69281437,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "countries_population",
+            "arguments": {
+              "country": "United Kingdom"
+            },
+            "expected_output": null,
+            "output_key": "population"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: population of United Kingdom",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Foreign_policy_of_the_United_States",
+      "extraction_target": "the number of languages listed at the top of the article",
+      "extraction_section": null,
+      "extracted_value": 20,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/United_Nations",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Places finance and regulation in a geopolitical context — U.S. foreign policy often frames sanctions, cross-border enforcement, and international financial cooperation.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        7
+      ]
+    },
+    {
+      "index": 9,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/United_Nations",
+      "extraction_target": "the number of languages indicated under the article title",
+      "extraction_section": null,
+      "extracted_value": 293,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Laredo, Texas wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Laredo,_Texas",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Broadens to the multilateral level: the UN is where global norms (including those affecting finance, sanctions, and human-rights-related trade rules) are negotiated.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        8
+      ]
+    },
+    {
+      "index": 10,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Laredo,_Texas",
+      "extraction_target": "the number of languages the article is available in",
+      "extraction_section": null,
+      "extracted_value": 73,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Laredo,_Texas",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A major US–Mexico border city that represents cross-border flows of people and goods — a geographic counterpoint to online flows of value like crypto.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        9
+      ]
+    },
+    {
+      "index": 11,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Laredo,_Texas",
+      "extraction_target": "Reason: the number of divisors of that figure",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (num_divisors) on stop 6 value",
+      "reason_transform": "num_divisors",
+      "reason_source_stop": 10,
+      "reason_code": "n = abs(int(73))\ncount = sum(1 for i in range(1, n+1) if n % i == 0) if n > 0 else 0\nresult = count\nprint(result)",
+      "depends_on": [
+        10
+      ]
+    },
+    {
+      "index": 12,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Virginia_Beach,_Virginia",
+      "extraction_target": "Count the number of restaurants near 36.85000",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "restaurants near 36.85000"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: count restaurants near 36.85000",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        11
+      ]
+    },
+    {
+      "index": 13,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: digital_root(3233 + 2)",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "digital_root(3233 + 2)",
+        "expression_code": "def digital_root(n):\n    n = abs(int(n))\n    return n if n == 0 else ((n - 1) % 9) + 1\nresult = digital_root(3233 + 2)\nprint(result)",
+        "referenced_stops": [
+          6,
+          12
+        ]
+      },
+      "reasoning": "Compute stop: digital_root(3233 + 2) = 4",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6,
+        12
+      ]
+    }
+  ],
+  "passcode": 4,
+  "difficulty": {
+    "level": "medium",
+    "depth": 14,
+    "tool_stop_count": 5,
+    "reason_stop_count": 2,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Unearth the exchange that shares its name with a mythical sea creature, and count how many founders sparked its journey in the years from 2011 to 2014.\n\n2. Upon your next discovery, seek the individual who earned a Bachelor of Science from a renowned university in Seattle. What year did that event unfold?\n\n3. The number you gleaned holds secrets. Investigate its prime nature — what is the sum of its distinct prime factors?\n\n4. A powerful entity ensures justice across the land. Discover how many languages are mentioned at the top of this institution's entry.\n\n5. In a realm of power and authority, where does the ground sit beneath this organization? Ascertain its elevation—how high is it above sea level?\n\n6. Ratings shape perceptions. What score do travelers bestow upon this agency in their reviews?\n\n7. With the heights and ratings you've gathered, find the difference between them by taking the absolute value of the elevation and Google rating: what stands when you compute abs(clue 5 - clue 6)?\n\n8. Set your eyes on a distant archipelago in the Atlantic, known for its unique economics. What is the current population of the kingdom that claims this territory?\n\n9. An important document guiding relations with the world lies within a substantial entry. Identify how many languages grace the top of this article.\n\n10. A global assembly shrouded in complexity exists. Count the languages displayed under its title — how many grace its presence?\n\n11. The Texan city famed for its border crossing is a melting pot of cultures. How many languages is its article available in?\n\n12. You’re close! Now, take that number and discover its strength; how many divisors does it possess? \n\n13. In a coastal city known for its beach and boardwalk, what culinary destinations can you find nearby? Count the eateries near latitude 36.85000.\n\n14. To wrap up your quest, compute the digital root of the sum of 3233 and 2, using the values from clues 7 and 13. What single-digit result do you uncover?",
+  "metadata": {
+    "theme": "From crypto exchange to global financial and regulatory context — following Kraken as a lens into markets, major tech finance, legal authority, offshore jurisdictions, and the physical distances that shape enforcement and commerce.",
+    "difficulty": "medium",
+    "sample_id": "sample_184",
+    "pages_crawled": 11993
+  },
+  "generated_at": "2026-03-17T20:33:48.112109+00:00"
+}

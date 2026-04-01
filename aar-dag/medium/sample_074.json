@@ -1,0 +1,472 @@
+{
+  "trail_id": "trail_2c3f55d5",
+  "seed_url": "https://en.wikipedia.org/wiki/Irina_Spîrlea",
+  "seed_title": "Irina Spîrlea",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Irina_Sp%C3%AErlea",
+      "extraction_target": "number of WTA singles titles",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Irina_Sp%C3%AErlea",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start with Irina Spîrlea herself (seed). Extract her peak ranking/titles to anchor why her 1990s tournament schedule matters.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Irina_Sp%C3%AErlea",
+      "extraction_target": "Reason: the next prime number after that figure",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (next_prime) on stop 0 value",
+      "reason_transform": "next_prime",
+      "reason_source_stop": 0,
+      "reason_code": "def next_prime(n):\n    n = abs(int(n))\n    if n < 2: return 2\n    candidate = n + 1\n    while True:\n        if all(candidate % i != 0 for i in range(2, int(candidate**0.5)+1)):\n            return candidate\n        candidate += 1\nresult = next_prime(4)\nprint(result)",
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/1997_US_Open_(tennis)",
+      "extraction_target": "the start date of the tournament",
+      "extraction_section": null,
+      "extracted_value": "August 25, 1997",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Internationaux de Strasbourg wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Internationaux_de_Strasbourg",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A major late-season hard-court event where tour scheduling and travel culminating in New York affected players like Spîrlea; use the dates and location to compare conditions and timing.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Internationaux_de_Strasbourg",
+      "extraction_target": "the location (city and country) of the tournament",
+      "extraction_section": null,
+      "extracted_value": "Strasbourg, France",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "1999 Dreamland Egypt Classic – Singles wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/1999_Dreamland_Egypt_Classic_%E2%80%93_Singles",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A clay-court European stop often played by WTA pros — shows the switch in surfaces and European mid-season tournaments in Spîrlea's circuit.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Internationaux_de_Strasbourg",
+      "extraction_target": "Look up the elevation of Strasbourg, France",
+      "extraction_section": null,
+      "extracted_value": 142.3197784423828,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Strasbourg, France"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Strasbourg, France) from https://en.wikipedia.org/wiki/Internationaux_de_Strasbourg",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Internationaux_de_Strasbourg",
+      "extraction_target": "Look up the count of churches near Strasbourg, France",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "churches near Strasbourg, France"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of churches near Strasbourg, France) from https://en.wikipedia.org/wiki/Internationaux_de_Strasbourg",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Internationaux_de_Strasbourg",
+      "extraction_target": "Combine the elevation of Strasbourg, France and the count of churches near Strasbourg, France: (142 + 20)",
+      "extraction_section": null,
+      "extracted_value": 162,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(142.3197784423828) + int(20.0)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Strasbourg, France add count of churches near Strasbourg, France",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        4,
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/1999_Dreamland_Egypt_Classic_%E2%80%93_Singles",
+      "extraction_target": "Calculate the driving distance between 1999 Dreamland Egypt Classic – Singles and Strasbourg, France",
+      "extraction_section": null,
+      "extracted_value": 4768.78,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "1999 Dreamland Egypt Classic – Singles"
+            },
+            "expected_output": null,
+            "output_key": "coords_a"
+          },
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Strasbourg, France"
+            },
+            "expected_output": null,
+            "output_key": "coords_b"
+          },
+          {
+            "tool_name": "maps_distance_matrix",
+            "arguments": {
+              "__from_previous_as_origins_destinations": [
+                "coords_a",
+                "coords_b"
+              ]
+            },
+            "expected_output": null,
+            "output_key": "distance_km"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: distance between 1999 Dreamland Egypt Classic – Singles and Strasbourg, France",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Internazionali_Femminili_di_Palermo",
+      "extraction_target": "location (city and country) of the tournament as shown in the infobox",
+      "extraction_section": null,
+      "extracted_value": "Palermo Italy",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "1996 Bausch & Lomb Championships – Singles wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/1996_Bausch_%26_Lomb_Championships_%E2%80%93_Singles",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A southern European clay event in Spîrlea's era — helps show regional clusters of tournaments and the variety of venues she would travel to.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        7
+      ]
+    },
+    {
+      "index": 9,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/1996_Bausch_%26_Lomb_Championships_%E2%80%93_Singles",
+      "extraction_target": "the draw size listed for the singles event",
+      "extraction_section": null,
+      "extracted_value": 56,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "1995 Danamon Open – Singles wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/1995_Danamon_Open_%E2%80%93_Singles",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "An important early-season Florida stop (Amelia Island) in the WTA calendar — shows long-haul intercontinental travel from Europe to the U.S. spring circuit.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        8
+      ]
+    },
+    {
+      "index": 10,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/1995_Danamon_Open_%E2%80%93_Singles",
+      "extraction_target": "Calculate the number of days between 1997-08-25 and 2026-03-16",
+      "extraction_section": null,
+      "extracted_value": 10430,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "from datetime import date\nd1 = date.fromisoformat('1997-08-25')\nd2 = date.fromisoformat('2026-03-16')\nresult = abs((d2 - d1).days)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "days"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: date computation 1997-08-25 to 2026-03-16 (pinned)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        9
+      ]
+    },
+    {
+      "index": 11,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/1995_Danamon_Open_%E2%80%93_Singles",
+      "extraction_target": "Reason: the largest prime factor of that figure",
+      "extraction_section": null,
+      "extracted_value": 149,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (largest_prime_factor) on stop 6 value",
+      "reason_transform": "largest_prime_factor",
+      "reason_source_stop": 10,
+      "reason_code": "def largest_prime_factor(n):\n    n = abs(int(n))\n    if n <= 1: return n\n    d = 2\n    while d * d <= n:\n        while n % d == 0: n //= d\n        d += 1\n    return n\nresult = largest_prime_factor(10430)\nprint(result)",
+      "depends_on": [
+        10
+      ]
+    },
+    {
+      "index": 12,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/1998_Family_Circle_Cup_%E2%80%93_Singles",
+      "extraction_target": "Convert 56 meters to feet",
+      "extraction_section": null,
+      "extracted_value": 183,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "# Convert meters to feet\nvalue = 56.0\nconverted = value * 3.28084\nresult = int(converted)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "converted"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: convert 56 meters to feet",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        11
+      ]
+    },
+    {
+      "index": 13,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: (162 + 10430) % 10",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "(162 + 10430) % 10",
+        "expression_code": "result = (162 + 10430) % 10\nprint(result)",
+        "referenced_stops": [
+          6,
+          10
+        ]
+      },
+      "reasoning": "Compute stop: (162 + 10430) % 10 = 2",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6,
+        10
+      ]
+    }
+  ],
+  "passcode": 2,
+  "difficulty": {
+    "level": "medium",
+    "depth": 14,
+    "tool_stop_count": 6,
+    "reason_stop_count": 2,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Seek the page chronicling the accomplishments of a Romanian tennis player whose career peaked in the 1990s; from this, discover how many titles she claimed in singles play.\n\n2. What is the next prime number following your answer from clue 1? \n\n3. In what year did a significant tournament on the hard courts of Flushing Meadows commence, marking a pivotal point in the summer of 1997?\n\n4. This French city hosted a clay court event where tennis stars competed—what city and country might it be?\n\n5. Through the lens of topography, what is the elevation of this charming city known for its picturesque canals and timber-framed houses?\n\n6. As you explore the surroundings, how many churches can be found near this French locale?\n\n7. To proceed, take the elevation you found in clue 5 and add it to the number of churches counted in clue 6.\n\n8. What is the driving distance in kilometers between the captivating clay tournament in clue 4 and the destination of the 1999 event in Egypt?\n\n9. Find the page that tells of a notable clay tournament held in the Italian city celebrated for its stunning coastal views; what are those city and country?\n\n10. Within the history of the tournament you just uncovered, what was the size of the singles draw?\n\n11. Calculate how many days span from the start of the tournament in clue 3 to the not-so-distant future date in March 2026.\n\n12. From your findings in clue 11, what is the largest prime factor of that duration in days?\n\n13. If one were to convert 56 meters into feet, what figure would emerge from this transformation?\n\n14. Combine the total you achieved in clue 7 with the total days from clue 11, then compute the result of that sum modulo 10. The answer will be a single digit (0-9).",
+  "metadata": {
+    "theme": "Following Irina Spîrlea's 1990s WTA season: tournaments, travel and conditions — a mini tour of events she played and the logistics players faced (distances, elevations, weather, and scheduling).",
+    "difficulty": "medium",
+    "sample_id": "sample_074",
+    "pages_crawled": 3179
+  },
+  "generated_at": "2026-03-16T13:31:04.870470+00:00"
+}

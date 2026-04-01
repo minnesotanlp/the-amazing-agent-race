@@ -1,0 +1,153 @@
+{
+  "trail_id": "trail_ced327a3",
+  "seed_url": "https://en.wikipedia.org/wiki/Johnson_%26_Johnson",
+  "seed_title": "Johnson & Johnson",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Johnson_%26_Johnson",
+      "extraction_target": "the number of top-level sections shown in the table of contents",
+      "extraction_section": null,
+      "extracted_value": 11,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/COVID-19",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start at Johnson & Johnson — a major pharmaceutical company that developed COVID-19 vaccine candidates and sits at the intersection of pharma R&D and public health.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/COVID-19",
+      "extraction_target": "the number of subsections listed under Prognosis and risk factors in the Contents",
+      "extraction_section": "Prognosis and risk factors",
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/COVID-19",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Bring in the pandemic context: the COVID-19 article provides the timeline and dates that drove vaccine development, retail distribution changes, and demand for antivirals.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/COVID-19",
+      "extraction_target": "Look up the Google rating of COVID-19",
+      "extraction_section": null,
+      "extracted_value": 3.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "COVID-19"
+            },
+            "expected_output": null,
+            "output_key": "place_rating"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (place_rating) derived from https://en.wikipedia.org/wiki/COVID-19",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 3,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/COVID-19",
+      "extraction_target": "Reason: the sum of its distinct prime factors",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (sum_prime_factors) on stop 1 value",
+      "reason_transform": "sum_prime_factors",
+      "reason_source_stop": 1,
+      "reason_code": "def prime_factors(n):\n    n = abs(int(n))\n    factors = []\n    d = 2\n    while d * d <= n:\n        while n % d == 0:\n            factors.append(d)\n            n //= d\n        d += 1\n    if n > 1: factors.append(n)\n    return factors\nresult = sum(set(prime_factors(4)))\nprint(result)"
+    },
+    {
+      "index": 4,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: abs(11 - 4) % 10",
+      "extraction_section": null,
+      "extracted_value": 7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "abs(11 - 4) % 10",
+        "expression_code": "result = abs(11 - 4) % 10\nprint(result)",
+        "referenced_stops": [
+          0,
+          1,
+          2,
+          3
+        ]
+      },
+      "reasoning": "Compute stop: abs(11 - 4) % 10 = 7",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 7,
+  "difficulty": {
+    "level": "easy",
+    "depth": 5,
+    "tool_stop_count": 1,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "direct_link"
+  },
+  "riddle": "1. Seek the American multinational known for its pharmaceuticals and medical devices. Count how many sections headline its table of contents to unveil your starting number.\n\n2. A wildfire swept the globe, igniting a health crisis. Delve into the article discussing this contagion to uncover how many subcategories are detailed under its prognosis and risk factors.\n\n3. After discovering how many subcategories lurk within, explore the world of digital reviews. What star rating do people attribute to this contagious affliction?\n\n4. Reflect on your most recent discovery. What is the sum of its distinct prime factors, revealing a new value from the number you unearthed in clue 2?\n\n5. Finally, consider the absolute difference between 11 and 4, then take what you've just gleaned from clues 1, 2, 3, and 4. Compute the result as follows: abs(11 - 4) % 10. The answer should yield a single digit between 0 and 9.",
+  "metadata": {
+    "theme": "Tracing the corporate, retail and medical response to the COVID-19 pandemic: from a major vaccine manufacturer to retailers, the pandemic timeline, and antiviral approvals.",
+    "difficulty": "easy",
+    "sample_id": "sample_162",
+    "pages_crawled": 2619
+  },
+  "generated_at": "2026-03-17T09:50:12.270656+00:00"
+}

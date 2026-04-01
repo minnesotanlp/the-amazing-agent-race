@@ -1,0 +1,674 @@
+{
+  "trail_id": "trail_100c2091",
+  "seed_url": "https://en.wikipedia.org/wiki/Falabella_(retail_store)",
+  "seed_title": "Falabella (retail store)",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Falabella_(retail_store)",
+      "extraction_target": "the year Falabella was founded",
+      "extraction_section": null,
+      "extracted_value": "1889",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Tax incentive wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Tax_incentive",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Seed: Falabella is a major Latin American department-store chain whose growth frames the trail — starting point for a study of retail expansion and urban context.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Tax_incentive",
+      "extraction_target": "the number of languages listed in the language links at the top of the page",
+      "extraction_section": null,
+      "extracted_value": 9,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Tax_incentive",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Retail expansion is often driven by fiscal policy; this page explains incentives that can encourage mall and store development.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Tax_incentive",
+      "extraction_target": "Reason: the next prime number after that figure",
+      "extraction_section": null,
+      "extracted_value": 11,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (next_prime) on stop 1 value",
+      "reason_transform": "next_prime",
+      "reason_source_stop": 1,
+      "reason_code": "def next_prime(n):\n    n = abs(int(n))\n    if n < 2: return 2\n    candidate = n + 1\n    while True:\n        if all(candidate % i != 0 for i in range(2, int(candidate**0.5)+1)):\n            return candidate\n        candidate += 1\nresult = next_prime(9)\nprint(result)",
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/2022%E2%80%9323_Liga_1_(Indonesia)",
+      "extraction_target": "Convert 9 km to miles",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "# Convert km to miles\nvalue = 9.0\nconverted = value * 0.621371\nresult = int(converted)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "converted"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: convert 9 km to miles",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/KL_Monorail",
+      "extraction_target": "the number of stations listed in the infobox",
+      "extraction_section": null,
+      "extracted_value": 11,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Pavilion Kuala Lumpur–Bukit Bintang MRT station wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Pavilion_Kuala_Lumpur%E2%80%93Bukit_Bintang_MRT_station",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Urban transit backbone in Kuala Lumpur — transit access is crucial to high-footfall retail districts.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Pavilion_Kuala_Lumpur%E2%80%93Bukit_Bintang_MRT_station",
+      "extraction_target": "Count the number of universities near Jalan Bukit Bintang",
+      "extraction_section": null,
+      "extracted_value": 20,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "universities near Jalan Bukit Bintang"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: count universities near Jalan Bukit Bintang",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Scramble_crossing",
+      "extraction_target": "the time period when the pedestrian scramble was first used in Canada and the United States",
+      "extraction_section": null,
+      "extracted_value": "late 1940s",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Coulsdon wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Coulsdon",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Pedestrian flow: scramble crossings are iconic urban features where heavy foot traffic supports vibrant street-level retail.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Scramble_crossing",
+      "extraction_target": "Count parks near late 1940s",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "parks near late 1940s"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (nearby_poi) derived from https://en.wikipedia.org/wiki/Scramble_crossing",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Coulsdon",
+      "extraction_target": "the year Coulsdon was merged with Sanderstead to form Coulsdon and Purley Urban District",
+      "extraction_section": null,
+      "extracted_value": "1915",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Environmental impact statement wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Environmental_impact_statement",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A neighbouring suburban district to Purley — shows how local transport and services shape where shops locate outside city centres.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        7
+      ]
+    },
+    {
+      "index": 9,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Coulsdon",
+      "extraction_target": "Look up the elevation of Coulsdon",
+      "extraction_section": null,
+      "extracted_value": 82.26020050048828,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Coulsdon"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Coulsdon) from https://en.wikipedia.org/wiki/Coulsdon",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        8
+      ]
+    },
+    {
+      "index": 10,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Coulsdon",
+      "extraction_target": "Look up the count of restaurants near Coulsdon",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "restaurants near Coulsdon"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of restaurants near Coulsdon) from https://en.wikipedia.org/wiki/Coulsdon",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        8
+      ]
+    },
+    {
+      "index": 11,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Coulsdon",
+      "extraction_target": "Combine the elevation of Coulsdon and the count of restaurants near Coulsdon: (82 + 20)",
+      "extraction_section": null,
+      "extracted_value": 102,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(82.26020050048828) + int(20.0)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Coulsdon add count of restaurants near Coulsdon",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        9,
+        10
+      ]
+    },
+    {
+      "index": 12,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Environmental_impact_statement",
+      "extraction_target": "the year the National Environmental Policy Act (NEPA) was enacted",
+      "extraction_section": null,
+      "extracted_value": "1969",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Spatial reference systems wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Spatial_reference_systems",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Large retail projects (malls, mixed-use) often require environmental review — this stop covers the planning documentation that shapes development decisions.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        11
+      ]
+    },
+    {
+      "index": 13,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Spatial_reference_systems",
+      "extraction_target": "the number of top-level sections listed in the table of contents",
+      "extraction_section": null,
+      "extracted_value": 7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Spatial reference systems wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Spatial_reference_systems",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Geolocation and mapping underpin modern retail analytics (catchment areas, site selection); this page explains the coordinate systems used to map stores and transit.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        12
+      ]
+    },
+    {
+      "index": 14,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Spatial_reference_systems",
+      "extraction_target": "Count stadiums near Spatial reference systems",
+      "extraction_section": null,
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "stadiums near Spatial reference systems"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (nearby_poi) derived from https://en.wikipedia.org/wiki/Spatial_reference_systems",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        13
+      ]
+    },
+    {
+      "index": 15,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Spatial_reference_systems",
+      "extraction_target": "Reason: the largest prime factor of that figure",
+      "extraction_section": null,
+      "extracted_value": 7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (largest_prime_factor) on stop 8 value",
+      "reason_transform": "largest_prime_factor",
+      "reason_source_stop": 13,
+      "reason_code": "def largest_prime_factor(n):\n    n = abs(int(n))\n    if n <= 1: return n\n    d = 2\n    while d * d <= n:\n        while n % d == 0: n //= d\n        d += 1\n    return n\nresult = largest_prime_factor(7)\nprint(result)",
+      "depends_on": [
+        13
+      ]
+    },
+    {
+      "index": 16,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Haliade-X",
+      "extraction_target": "the month and year GE acquired LM Wind Power",
+      "extraction_section": "Growth and acquisition of Alstom Wind (2015–)",
+      "extracted_value": "April 2017",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "London Government Act 1963 wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/London_Government_Act_1963",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Sustainability in retail: large developments increasingly integrate renewables — Haliade‑X offers a concrete example of power capacity that could be compared to mall energy needs.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        15
+      ]
+    },
+    {
+      "index": 17,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/London_Government_Act_1963",
+      "extraction_target": "the chapter number of the act (c. number)",
+      "extraction_section": null,
+      "extracted_value": 33,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/London_Government_Act_1963",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Urban governance shapes planning and retail zoning; the London Government Act is an example of structural change affecting how cities manage growth and retail distribution.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        16
+      ]
+    },
+    {
+      "index": 18,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/London_Government_Act_1963",
+      "extraction_target": "Reason: the largest prime factor of that figure",
+      "extraction_section": null,
+      "extracted_value": 11,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (largest_prime_factor) on stop 10 value",
+      "reason_transform": "largest_prime_factor",
+      "reason_source_stop": 17,
+      "reason_code": "def largest_prime_factor(n):\n    n = abs(int(n))\n    if n <= 1: return n\n    d = 2\n    while d * d <= n:\n        while n % d == 0: n //= d\n        d += 1\n    return n\nresult = largest_prime_factor(33)\nprint(result)",
+      "depends_on": [
+        17
+      ]
+    },
+    {
+      "index": 19,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Urban_district_(England_and_Wales)",
+      "extraction_target": "the number of those 753 urban districts that had previously been local government districts",
+      "extraction_section": null,
+      "extracted_value": 692,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Urban_district_(England_and_Wales)",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Finishing stop: local administrative units historically governed land use and services that determine where shops and markets thrive — tying governance back to retail geography.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        18
+      ]
+    },
+    {
+      "index": 20,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Urban_district_(England_and_Wales)",
+      "extraction_target": "Reason: the digital root (iterated digit sum until single digit)",
+      "extraction_section": null,
+      "extracted_value": 8,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digital_root) on stop 11 value",
+      "reason_transform": "digital_root",
+      "reason_source_stop": 19,
+      "reason_code": "n = abs(int(692))\nresult = n if n == 0 else ((n - 1) % 9) + 1\nprint(result)",
+      "depends_on": [
+        19
+      ]
+    },
+    {
+      "index": 21,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: (20 + 82 + 102 + 7) % 10",
+      "extraction_section": null,
+      "extracted_value": 1,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "(20 + 82 + 102 + 7) % 10",
+        "expression_code": "result = (20 + 82 + 102 + 7) % 10\nprint(result)",
+        "referenced_stops": [
+          5,
+          9,
+          11,
+          15
+        ]
+      },
+      "reasoning": "Compute stop: (20 + 82 + 102 + 7) % 10 = 1",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5,
+        9,
+        11,
+        15
+      ]
+    }
+  ],
+  "passcode": 1,
+  "difficulty": {
+    "level": "hard",
+    "depth": 22,
+    "tool_stop_count": 7,
+    "reason_stop_count": 4,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Unearth the Latin American retail giant that began its journey in the year of independence, 1889. What year marks the foundation of Falabella?\n\n2. A concept crucial to business growth, this incentive often speaks to reduced tariffs or taxes. How many languages can you find at the top of that Wikipedia page which explores its essence?\n\n3. Seek the next prime number after the value you just calculated. What could that be?\n\n4. In a league where teams battle for glory, a nine-kilometer stretch is essential to urban transport. If you translate that distance into miles, what do you uncover?\n\n5. Home to a renowned mode of transport, this city boasts a monorail system — how many stations play their part in connecting its people?\n\n6. To thine own knowledge be true; near the bustling Bukit Bintang, how many universities share the proximity? \n\n7. A mode of pedestrian travel, used first in a particular urban setting in the mid-20th century, intrigues the curious. When did the pedestrian scramble make its debut in North America?\n\n8. In the whisper of the late 1940s, how many parks flourish nearby this lively era?\n\n9. This charming locale once unified two areas to create a thriving urban district. What year did Coulsdon join forces with Sanderstead?\n\n10. Ascend beyond this lively scene: what elevation does Coulsdon claim above sea level?\n\n11. In the heart of Coulsdon, how many restaurants await hungry patrons nearby?\n\n12. Combine the elevation of Coulsdon from clue 10 with the restaurant count from clue 11. What sum do you reach?\n\n13. The act that ushered forth a new era for environmental oversight was enacted in 1970. What year marks the establishment of this pivotal legislative framework?\n\n14. Seek the page where systems help in defining locations. How many main sections stand in the table of contents there?\n\n15. Sporting arenas are often social hubs. Count how many stadiums are found near the systems governing our spatial awareness.\n\n16. By extracting the largest prime factor from the count you uncovered in clue 14, what new number will you hold in your hands?\n\n17. In the growth saga of wind power, GE made a key acquisition — in what month and year did they secure LM Wind Power?\n\n18. Each legislative act carries its signature. What chapter number corresponds to the act that redefined local governance in London in 1963?\n\n19. From the chapter number found in clue 18, what is the largest prime factor of that value?\n\n20. Among the urban districts, how many counted previously served as local government districts in England and Wales?\n\n21. Reduce the count you found in clue 20 to a single digit using the digital root method. What remains?\n\n22. Take the total from clues 6, 10, 12, and 16, computing: (20 + 82 + 102 + 7) % 10. What single digit emerges from your calculations?",
+  "metadata": {
+    "theme": "From a Latin American department store to global shopping districts: a trail exploring how markets, transport, planning and environment shape retail hubs",
+    "difficulty": "hard",
+    "sample_id": "sample_035",
+    "pages_crawled": 2757
+  },
+  "generated_at": "2026-03-16T09:50:08.046291+00:00"
+}

@@ -1,0 +1,280 @@
+{
+  "trail_id": "trail_68ea0a22",
+  "seed_url": "https://en.wikipedia.org/wiki/Union_of_Cities_THE_HANSA",
+  "seed_title": "Union of Cities THE HANSA",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Union_of_Cities_THE_HANSA",
+      "extraction_target": "the year the Union of Cities THE HANSA was founded",
+      "extraction_section": null,
+      "extracted_value": "1980",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Hanseatic_Days_of_New_Time",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Seed: the contemporary civic association that frames the trail — establishes the modern network of Hanseatic cities we will measure and compare.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Hanseatic_Days_of_New_Time",
+      "extraction_target": "the host cities for the 1990 Hanseatic Days",
+      "extraction_section": "Venues",
+      "extracted_value": "Deventer and Zutphen, Netherlands",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Hanseatic_Days_of_New_Time",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Shows the living cultural exchange among Hanseatic cities — an event that demonstrates the Union's cooperative ties and gives concrete locations to map.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Hanseatic_Days_of_New_Time",
+      "extraction_target": "Reason: the number of vowels in that name",
+      "extraction_section": null,
+      "extracted_value": 9,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (vowel_count) on stop 1 value",
+      "reason_transform": "vowel_count",
+      "reason_source_stop": 1,
+      "reason_code": "result = sum(1 for c in \"Deventer and Zutphen, Netherlands\".lower() if c in 'aeiou')\nprint(result)"
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Gda%C5%84sk",
+      "extraction_target": "Calculate the driving distance between Gdańsk and Lübeck",
+      "extraction_section": null,
+      "extracted_value": 636.387,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Gdańsk"
+            },
+            "expected_output": null,
+            "output_key": "coords_a"
+          },
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Lübeck"
+            },
+            "expected_output": null,
+            "output_key": "coords_b"
+          },
+          {
+            "tool_name": "maps_distance_matrix",
+            "arguments": {
+              "__from_previous_as_origins_destinations": [
+                "coords_a",
+                "coords_b"
+              ]
+            },
+            "expected_output": null,
+            "output_key": "distance_km"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: distance between Gdańsk and Lübeck",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 4,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Gda%C5%84sk",
+      "extraction_target": "Reason: the next prime number after that figure",
+      "extraction_section": null,
+      "extracted_value": 641,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (next_prime) on stop 2 value",
+      "reason_transform": "next_prime",
+      "reason_source_stop": 3,
+      "reason_code": "def next_prime(n):\n    n = abs(int(n))\n    if n < 2: return 2\n    candidate = n + 1\n    while True:\n        if all(candidate % i != 0 for i in range(2, int(candidate**0.5)+1)):\n            return candidate\n        candidate += 1\nresult = next_prime(636)\nprint(result)"
+    },
+    {
+      "index": 5,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Quasi-Zenith_Satellite_System",
+      "extraction_target": "the number of nominal satellites listed in the infobox",
+      "extraction_section": null,
+      "extracted_value": 8,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Geographical distance wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Geographical_distance",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Modern positioning infrastructure that underpins accurate geolocation of member cities and enables precise distance and routing analyses.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 6,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Geographical_distance",
+      "extraction_target": "the number of languages listed near the top of the article",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "The Netherlands wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/The_Netherlands",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Provides the geodetic principles used when interpreting distances and travel times between cities — ties the measurements back to scientific definitions.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 7,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/The_Netherlands",
+      "extraction_target": "Look up the elevation at The Netherlands",
+      "extraction_section": null,
+      "extracted_value": 37.34151840209961,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "The Netherlands"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for The Netherlands",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 8,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: (1980 + 9 + 641) % 10",
+      "extraction_section": null,
+      "extracted_value": 0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "(1980 + 9 + 641) % 10",
+        "expression_code": "result = (1980 + 9 + 641) % 10\nprint(result)",
+        "referenced_stops": [
+          0,
+          2,
+          4
+        ]
+      },
+      "reasoning": "Compute stop: (1980 + 9 + 641) % 10 = 0",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 0,
+  "difficulty": {
+    "level": "medium",
+    "depth": 9,
+    "tool_stop_count": 2,
+    "reason_stop_count": 2,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "Here is the revised riddle:\n\n1. Seek the page that discusses a historic league formed by trading cities in Northern Europe, renowned for facilitating commerce from the 13th century onward; in which year did this civic league first form?\n\n2. There exists an event page linked from that union's entry which records modern gatherings of member towns; on the section that lists past venues, which city or cities hosted the 1990 meeting?\n\n3. How many vowels appear in the name you just uncovered from the 1990 host entry?\n\n4. If you chart a road route between the Baltic port where the Solidarity movement began and the medieval Hanseatic stronghold famed for its brick Gothic gate, how many kilometres would the driving journey measure?\n\n5. The number you found in clue 4 must be nudged upward — what is the next prime number after that driving-distance figure?\n\n6. In recent decades a regional satellite navigation system has been deployed to serve Asia; on its overview page the summary panel states how many nominal satellites comprise the constellation — what number is listed there?\n\n7. The article describing how to compute distances across Earth's surface lists a handful of language links near its top; how many languages are shown there?\n\n8. (As a quick aside) use a maps/elevation lookup for the low-lying Western European realm known for tulips and dikes; what elevation in metres does the service return for that country?\n\n9. Final step — compute the following and report a single digit (0–9): (clue 1 + clue 3 + clue 5) modulo 10.",
+  "metadata": {
+    "theme": "Tracing a modern Hanseatic network — from the civic Union of Cities to the tools that measure and connect its member cities",
+    "difficulty": "medium",
+    "sample_id": "sample_039",
+    "pages_crawled": 412
+  },
+  "generated_at": "2026-03-16T06:19:01.809991+00:00"
+}

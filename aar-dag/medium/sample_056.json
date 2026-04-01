@@ -1,0 +1,461 @@
+{
+  "trail_id": "trail_0795a43b",
+  "seed_url": "https://en.wikipedia.org/wiki/Social_Union_(Hungary)",
+  "seed_title": "Social Union (Hungary)",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Social_Union_(Hungary)",
+      "extraction_target": "the date the party was founded",
+      "extraction_section": null,
+      "extracted_value": "3 October 2010",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Dialogue_for_Hungary",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start at the seed: the Social Union party itself — extract when and by whom it was founded to anchor the trail.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Dialogue_for_Hungary",
+      "extraction_target": "number of seats held by the party in the National Assembly",
+      "extraction_section": null,
+      "extracted_value": 6,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Government of Hungary wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Government_of_Hungary",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A potential ally/partner on the Hungarian left/green spectrum; shows the practical alliances fringe parties form.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Dialogue_for_Hungary",
+      "extraction_target": "Look up the elevation of Dialogue for Hungary",
+      "extraction_section": null,
+      "extracted_value": 129.3714904785156,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Dialogue for Hungary"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Dialogue for Hungary) from https://en.wikipedia.org/wiki/Dialogue_for_Hungary",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Dialogue_for_Hungary",
+      "extraction_target": "Look up the count of museums near Dialogue for Hungary",
+      "extraction_section": null,
+      "extracted_value": 19.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "museums near Dialogue for Hungary"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of museums near Dialogue for Hungary) from https://en.wikipedia.org/wiki/Dialogue_for_Hungary",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Dialogue_for_Hungary",
+      "extraction_target": "Combine the elevation of Dialogue for Hungary and the count of museums near Dialogue for Hungary: abs(129 - 19)",
+      "extraction_section": null,
+      "extracted_value": 110,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(129.3714904785156) - int(19.0))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Dialogue for Hungary abs_diff count of museums near Dialogue for Hungary",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2,
+        3
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Government_of_Hungary",
+      "extraction_target": "Look up the elevation at Government of Hungary",
+      "extraction_section": null,
+      "extracted_value": 129.3714904785156,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Government of Hungary"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for Government of Hungary",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Politics_of_Hungary",
+      "extraction_target": "the first polity type listed in the infobox",
+      "extraction_section": null,
+      "extracted_value": "Unitary parliamentary republic",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Constitutional_Court_of_Hungary",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Explain the institutional and electoral framework that shapes how small parties can gain seats or influence.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Constitutional_Court_of_Hungary",
+      "extraction_target": "Count the number of hotels near Budapest",
+      "extraction_section": null,
+      "extracted_value": 20,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "hotels near Budapest"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: count hotels near Budapest",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Constitutional_Court_of_Hungary",
+      "extraction_target": "Reason: the number of characters when written as a Roman numeral",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (roman_numeral_letter_count) on stop 4 value",
+      "reason_transform": "roman_numeral_letter_count",
+      "reason_source_stop": 7,
+      "reason_code": "def to_roman(n):\n    n = abs(int(n))\n    vals = [(1000,'M'),(900,'CM'),(500,'D'),(400,'CD'),(100,'C'),\n            (90,'XC'),(50,'L'),(40,'XL'),(10,'X'),(9,'IX'),(5,'V'),(4,'IV'),(1,'I')]\n    r = ''\n    for v, s in vals:\n        while n >= v:\n            r += s; n -= v\n    return r\nresult = len(to_roman(20))\nprint(result)",
+      "depends_on": [
+        7
+      ]
+    },
+    {
+      "index": 9,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/2019_European_Parliament_election_in_Hungary",
+      "extraction_target": "number of seats won by Fidesz–KDNP",
+      "extraction_section": null,
+      "extracted_value": 13,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/2014_Hungarian_local_elections",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Look at a recent European-level election result to see how smaller parties performed and where Social Union-style groups might fit into the vote.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        8
+      ]
+    },
+    {
+      "index": 10,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/2014_Hungarian_local_elections",
+      "extraction_target": "Calculate the number of days between 2010-10-03 and 2026-03-16",
+      "extraction_section": null,
+      "extracted_value": 5643,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "from datetime import date\nd1 = date.fromisoformat('2010-10-03')\nd2 = date.fromisoformat('2026-03-16')\nresult = abs((d2 - d1).days)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "days"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: date computation 2010-10-03 to 2026-03-16 (pinned)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        9
+      ]
+    },
+    {
+      "index": 11,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/2014_Hungarian_local_elections",
+      "extraction_target": "Reason: the digital root (iterated digit sum until single digit)",
+      "extraction_section": null,
+      "extracted_value": 9,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digital_root) on stop 6 value",
+      "reason_transform": "digital_root",
+      "reason_source_stop": 10,
+      "reason_code": "n = abs(int(5643))\nresult = n if n == 0 else ((n - 1) % 9) + 1\nprint(result)",
+      "depends_on": [
+        10
+      ]
+    },
+    {
+      "index": 12,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/2024_Hungarian_local_elections",
+      "extraction_target": "the year in the article title (the year of the Hungarian local elections described)",
+      "extraction_section": null,
+      "extracted_value": 2024,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/2024_Hungarian_local_elections",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "End on the current/upcoming local elections to highlight the immediate stakes for small parties and how national context, geography, and timing converge.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        11
+      ]
+    },
+    {
+      "index": 13,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: (110 + 9) % 10",
+      "extraction_section": null,
+      "extracted_value": 9,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "(110 + 9) % 10",
+        "expression_code": "result = (110 + 9) % 10\nprint(result)",
+        "referenced_stops": [
+          4,
+          11
+        ]
+      },
+      "reasoning": "Compute stop: (110 + 9) % 10 = 9",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        4,
+        11
+      ]
+    }
+  ],
+  "passcode": 9,
+  "difficulty": {
+    "level": "medium",
+    "depth": 14,
+    "tool_stop_count": 6,
+    "reason_stop_count": 2,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Seek the origins of a Hungarian party known for its small stature; when did it take its first steps into the political landscape?\n\n2. Upon discovering its foundation, what number of representatives does this party hold in the assembly where national decisions shape the future?\n\n3. As you delve deeper into the previous page, ascend to the heights — how far above sea level does its name rise?\n\n4. Nearby, a cultural haven awaits; how many museums can be found in the vicinity of this party’s headquarters?\n\n5. Now, combine the height you just discovered with the count of nearby museums to unveil a new number of significance.\n\n6. With the findings tucked away, let’s venture to a governmental site. How high is the seat of state power perched above the ground?\n\n7. There exists a page where political structures abound; what type of governance sits at the helm according to the first entry noted in its overview?\n\n8. Journey onward to a judicial landmark in the capital; how many places for travelers to rest, specifically hotels, dot the landscape near this city?\n\n9. Transform the previous hotel count into ancient art, written in the form of Roman numerals — how many characters does it take to express that number?\n\n10. What legislative strength did the ruling coalition achieve in a recent electoral contest, remembered for its impact on the political arena?\n\n11. Time marches forward; calculate the days separating the political landscape of 2010 from the dawn of another election in 2026.\n\n12. Reduce that expansive number down to its essence — what is the digital root you find when summing its digits repeatedly until a single figure emerges?\n\n13. Step into the future once more; what year is encapsulated in the title of a local elections page destined for Hungary?\n\n14. Now for a final challenge: compute the result of adding your findings from clues 5 and 12, reducing that sum modulo 10. What single digit emerges from this calculation?",
+  "metadata": {
+    "theme": "Following a small Hungarian party (Social Union) through its alliances, the national political system, and electoral context — mixing factual extraction with geographic and temporal tools to understand its scale and place.",
+    "difficulty": "medium",
+    "sample_id": "sample_056",
+    "pages_crawled": 1823
+  },
+  "generated_at": "2026-03-16T09:41:40.040486+00:00"
+}

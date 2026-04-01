@@ -1,0 +1,327 @@
+{
+  "trail_id": "trail_dfaa9db3",
+  "seed_url": "https://en.wikipedia.org/wiki/BHP",
+  "seed_title": "BHP",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/BHP",
+      "extraction_target": "the city listed as the company's headquarters",
+      "extraction_section": null,
+      "extracted_value": "Melbourne",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Royal_Dutch_Shell",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Seed: BHP is a leading global mining company — extract its trading identifiers and HQ to anchor the trail in a real-world corporate actor.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/BHP",
+      "extraction_target": "Look up the elevation of Melbourne",
+      "extraction_section": null,
+      "extracted_value": 10.06689834594727,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Melbourne"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Melbourne) from https://en.wikipedia.org/wiki/BHP",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/BHP",
+      "extraction_target": "Look up the count of museums near Melbourne",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "museums near Melbourne"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of museums near Melbourne) from https://en.wikipedia.org/wiki/BHP",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/BHP",
+      "extraction_target": "Combine the elevation of Melbourne and the count of museums near Melbourne: (10 + 20)",
+      "extraction_section": null,
+      "extracted_value": 30,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(10.06689834594727) + int(20.0)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Melbourne add count of museums near Melbourne",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1,
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Royal_Dutch_Shell",
+      "extraction_target": "Look up the closing price of SHEL on 2005-07-20",
+      "extraction_section": null,
+      "extracted_value": 22.22,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "stock_historical_price",
+            "arguments": {
+              "ticker": "SHEL",
+              "date": "2005-07-20"
+            },
+            "expected_output": null,
+            "output_key": "stock_price"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: stock price SHEL on 2005-07-20",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Mining",
+      "extraction_target": "the number of languages in which the Mining article is available",
+      "extraction_section": null,
+      "extracted_value": 89,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Mining",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Explain the industry fundamentals that supply companies like BHP — what is mined, and how — to connect corporate value back to physical extraction.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Mining",
+      "extraction_target": "Reason: the number of 1-bits in its binary representation",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (binary_1bit_count) on stop 2 value",
+      "reason_transform": "binary_1bit_count",
+      "reason_source_stop": 5,
+      "reason_code": "result = bin(abs(int(89))).count('1')\nprint(result)",
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Spain",
+      "extraction_target": "Look up the elevation at Spain",
+      "extraction_section": null,
+      "extracted_value": 594.1013793945312,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Spain"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for Spain",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: abs(20 - 22) % 10",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "abs(20 - 22) % 10",
+        "expression_code": "result = abs(20 - 22) % 10\nprint(result)",
+        "referenced_stops": [
+          2,
+          4,
+          6,
+          7
+        ]
+      },
+      "reasoning": "Compute stop: abs(20 - 22) % 10 = 2",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2,
+        4,
+        6,
+        7
+      ]
+    }
+  ],
+  "passcode": 2,
+  "difficulty": {
+    "level": "easy",
+    "depth": 9,
+    "tool_stop_count": 5,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "direct_link"
+  },
+  "riddle": "1. A corporate giant roams where resources lie; the city that cradles its headquarters is your first target. Which urban center nurtures this behemoth of extraction?\n\n2. Ascend to a land Down Under, where culture and nature intertwine. What is the elevation, in meters, of the city that houses this colossus?\n\n3. Search for treasures of art and history around that very metropolis. How many museums can you discover in close proximity to this vibrant hub?\n\n4. Combine the height you uncovered in clue 2 with the number of cultural institutions from clue 3. What sum do you find as you join these two values?\n\n5. Shift your gaze to the oil fields, where financial markets pulse with activity. What was the closing price of a certain oil company on July 20, 2005?\n\n6. The world of extraction stands vast and diverse. Discover how many languages express the tale told by the page on this pivotal industry.\n\n7. Delve deeper into the world you've just explored. Among the count of languages in clue 6, how many 1-bits dance in its binary form?\n\n8. Beyond the hills and valleys, another land flourishes across the waters. Look up the elevation of this sun-kissed country. How high does it rise above sea level?\n\n9. To conclude your journey, you'll perform a final calculation. Take the absolute difference between the figures from clues 3 and 5, then apply the modulo with 10. What single digit unfolds from this arithmetic?",
+  "metadata": {
+    "theme": "From mine to market — tracing BHP's place in global resource extraction, the mining industry that supplies it, the city hub where it's headquartered, and how resource giants compare on the market",
+    "difficulty": "easy",
+    "sample_id": "sample_192",
+    "pages_crawled": 4469
+  },
+  "generated_at": "2026-03-17T13:00:03.351863+00:00"
+}

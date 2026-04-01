@@ -1,0 +1,500 @@
+{
+  "trail_id": "trail_96d2cc0a",
+  "seed_url": "https://en.wikipedia.org/wiki/Lynnwood,_Edmonton",
+  "seed_title": "Lynnwood, Edmonton",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Lynnwood,_Edmonton",
+      "extraction_target": "the elevation listed in the infobox (field: 'Elevation')",
+      "extraction_section": "infobox",
+      "extracted_value": 671,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Lynnwood,_Edmonton",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start at the seed neighbourhood — Lynnwood's population and basic infobox facts set the local, human-scale baseline for the trail.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Lynnwood,_Edmonton",
+      "extraction_target": "Reason: the digital root (iterated digit sum until single digit)",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digital_root) on stop 0 value",
+      "reason_transform": "digital_root",
+      "reason_source_stop": 0,
+      "reason_code": "n = abs(int(671))\nresult = n if n == 0 else ((n - 1) % 9) + 1\nprint(result)",
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Edmonton_Transit_Service",
+      "extraction_target": "number of bus routes",
+      "extraction_section": null,
+      "extracted_value": 181,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Downtown_Edmonton",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Edmonton Transit Service connects neighbourhoods like Lynnwood to downtown and attractions — extract transit system facts to understand mobility options.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Downtown_Edmonton",
+      "extraction_target": "the coordinates listed in the infobox (field: 'Coordinates')",
+      "extraction_section": "infobox",
+      "extracted_value": "53.544, -113.491",
+      "extracted_value_type": "coords",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Fort_Edmonton_Park",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Downtown is the major destination for many Lynnwood commuters — capture its core infobox metrics to ground comparisons of scale and density.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Fort_Edmonton_Park",
+      "extraction_target": "the year Fort Edmonton Park was established (as shown in the infobox)",
+      "extraction_section": null,
+      "extracted_value": "1974",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Ontario Highway 27 wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Ontario_Highway_27",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Fort Edmonton Park ties to Edmonton's history and heritage — extract its founding/opening date to anchor the city's historical narrative.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Fort_Edmonton_Park",
+      "extraction_target": "Look up the elevation of Fort Edmonton Park",
+      "extraction_section": null,
+      "extracted_value": 627.8358154296875,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Fort Edmonton Park"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Fort Edmonton Park) from https://en.wikipedia.org/wiki/Fort_Edmonton_Park",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Fort_Edmonton_Park",
+      "extraction_target": "Look up the count of hospitals near Fort Edmonton Park",
+      "extraction_section": null,
+      "extracted_value": 7.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "hospitals near Fort Edmonton Park"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of hospitals near Fort Edmonton Park) from https://en.wikipedia.org/wiki/Fort_Edmonton_Park",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        4
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Fort_Edmonton_Park",
+      "extraction_target": "Combine the elevation of Fort Edmonton Park and the count of hospitals near Fort Edmonton Park: abs(627 - 7)",
+      "extraction_section": null,
+      "extracted_value": 620,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(627.8358154296875) - int(7.0))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Fort Edmonton Park abs_diff count of hospitals near Fort Edmonton Park",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5,
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Ontario_Highway_27",
+      "extraction_target": "Look up the population of Canada",
+      "extraction_section": null,
+      "extracted_value": 41651653,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "countries_population",
+            "arguments": {
+              "country": "Canada"
+            },
+            "expected_output": null,
+            "output_key": "population"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: population of Canada",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        7
+      ]
+    },
+    {
+      "index": 9,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Ontario_Highway_27",
+      "extraction_target": "Reason: the number of 1-bits in its binary representation",
+      "extraction_section": null,
+      "extracted_value": 15,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (binary_1bit_count) on stop 4 value",
+      "reason_transform": "binary_1bit_count",
+      "reason_source_stop": 8,
+      "reason_code": "result = bin(abs(int(41651653))).count('1')\nprint(result)",
+      "depends_on": [
+        8
+      ]
+    },
+    {
+      "index": 10,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Edmonton_Metropolitan_Region",
+      "extraction_target": "population of the CMA (2021)",
+      "extraction_section": null,
+      "extracted_value": 1418118,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Edmonton_Metropolitan_Region",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Scale up from neighbourhood to the metropolitan region — extract the region's population to see how Lynnwood fits into the larger urban area.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        9
+      ]
+    },
+    {
+      "index": 11,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Edmonton_Metropolitan_Region",
+      "extraction_target": "Reason: the sum of its digits",
+      "extraction_section": null,
+      "extracted_value": 24,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_sum) on stop 5 value",
+      "reason_transform": "digit_sum",
+      "reason_source_stop": 10,
+      "reason_code": "result = sum(int(d) for d in str(abs(int(1418118))))\nprint(result)",
+      "depends_on": [
+        10
+      ]
+    },
+    {
+      "index": 12,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/ISO_3166-2:CN",
+      "extraction_target": "Look up the area in km² of Canada",
+      "extraction_section": null,
+      "extracted_value": 9984670.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "countries_area",
+            "arguments": {
+              "country": "Canada"
+            },
+            "expected_output": null,
+            "output_key": "area_km2"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: area of Canada",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        11
+      ]
+    },
+    {
+      "index": 13,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Edmonton_City_Council",
+      "extraction_target": "number of city councillors",
+      "extraction_section": null,
+      "extracted_value": 12,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Canadian Interuniversity Sport wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Canadian_Interuniversity_Sport",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Civic governance shapes services and planning — extract council composition to understand how local decisions affecting Lynnwood are made.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        12
+      ]
+    },
+    {
+      "index": 14,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Canadian_Interuniversity_Sport",
+      "extraction_target": "the year U Sports (Canadian Interuniversity Sport) was formed",
+      "extraction_section": null,
+      "extracted_value": "1961",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Canadian_Interuniversity_Sport",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Finish by connecting the local to national institutions: university sport is part of the city's social life and helps close the trail by showing a civic-cultural layer beyond transit and land use.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        13
+      ]
+    },
+    {
+      "index": 15,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: abs(1974 - 627) % 10",
+      "extraction_section": null,
+      "extracted_value": 7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "abs(1974 - 627) % 10",
+        "expression_code": "result = abs(1974 - 627) % 10\nprint(result)",
+        "referenced_stops": [
+          4,
+          5,
+          6,
+          9
+        ]
+      },
+      "reasoning": "Compute stop: abs(1974 - 627) % 10 = 7",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        4,
+        5,
+        6,
+        9
+      ]
+    }
+  ],
+  "passcode": 7,
+  "difficulty": {
+    "level": "medium",
+    "depth": 16,
+    "tool_stop_count": 5,
+    "reason_stop_count": 3,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. **Seek the neighborhood where the elevation rests in the heart of Edmonton — how many meters above sea level does it claim?**\n\n2. **What single digit arises when you distill your discovery from clue 1 into its simplest form?**\n\n3. **To discover the city's pulse, track down the number of bus routes that crisscross its streets.**\n\n4. **This vibrant area boasts coordinates that place it on the map — what are the exact figures that pinpoint its location?**\n\n5. **In a historic park that echoes tales from the past, what year marks its establishment? Take note, for this will guide your next step.**\n\n6. **What is the elevation of the park dedicated to living history, nestled within the city’s bounds? Ascertain this figure.**\n\n7. **How many hospitals serve the community in proximity to this slice of history? Count them to progress on your quest.**\n\n8. **Now, combine the elevation you noted in clue 6 with the count of hospitals from clue 7 — what is the absolute difference you uncover?**\n\n9. **Seek the page dedicated to the highway linking Canada’s landscapes; what is the estimated population of this vast northern nation?**\n\n10. **What transformation takes place when you count the number of 1-bits in the binary representation of your previous population figure from clue 9?**\n\n11. **Wander to the article that discusses the area encompassing Edmonton and its surroundings — what figure represents the population of this metropolitan area as of 2021?**\n\n12. **From the number you derived in clue 11, what is the sum of its digits, revealing your next piece of the puzzle?**\n\n13. **Journey to discover the land's vastness — what area in square kilometers does the second-largest country on Earth encompass?**\n\n14. **Turn your attention to the governance of the city; how many councillors are elected to represent its citizens? This count will serve you well.**\n\n15. **At the crossroads of sports and education, which year marks the inception of the organization that governs university athletics in Canada?**\n\n16. **With the year from clue 15, subtract the elevation found in clue 6 and reduce the result modulo 10. What is the number you uncover from that computation?**",
+  "metadata": {
+    "theme": "A local exploration of Lynnwood and greater Edmonton — measuring neighbourhood geography, transit links, civic structure and heritage, with comparative anchors from other places to give scale.",
+    "difficulty": "medium",
+    "sample_id": "sample_119",
+    "pages_crawled": 6843
+  },
+  "generated_at": "2026-03-16T23:50:12.894547+00:00"
+}

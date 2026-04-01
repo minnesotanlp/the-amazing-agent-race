@@ -1,0 +1,628 @@
+{
+  "trail_id": "trail_fad32919",
+  "seed_url": "https://en.wikipedia.org/wiki/Commodore_Hotel_(Portland,_Oregon)",
+  "seed_title": "Commodore Hotel (Portland, Oregon)",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Commodore_Hotel_(Portland,_Oregon)",
+      "extraction_target": "the year the building was built",
+      "extraction_section": null,
+      "extracted_value": 1925,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Commodore_Hotel_(Portland,_Oregon)",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start point — the Portland hotel where the road‑trip begins; use its location as the travel base for visiting basketball sites and cultural stops.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Commodore_Hotel_(Portland,_Oregon)",
+      "extraction_target": "Look up the elevation of Commodore Hotel",
+      "extraction_section": null,
+      "extracted_value": 18.85005760192871,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Commodore Hotel"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Commodore Hotel) from https://en.wikipedia.org/wiki/Commodore_Hotel_(Portland,_Oregon)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Commodore_Hotel_(Portland,_Oregon)",
+      "extraction_target": "Look up the count of libraries near Commodore Hotel",
+      "extraction_section": null,
+      "extracted_value": 18.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "libraries near Commodore Hotel"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of libraries near Commodore Hotel) from https://en.wikipedia.org/wiki/Commodore_Hotel_(Portland,_Oregon)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Commodore_Hotel_(Portland,_Oregon)",
+      "extraction_target": "Combine the elevation of Commodore Hotel and the count of libraries near Commodore Hotel: (18 + 18)",
+      "extraction_section": null,
+      "extracted_value": 36,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(18.85005760192871) + int(18.0)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Commodore Hotel add count of libraries near Commodore Hotel",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1,
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Commodore_Hotel_(Portland,_Oregon)",
+      "extraction_target": "Reason: the day of the week for January 1st of that year (1=Mon, 7=Sun)",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (day_of_week) on stop 0 value",
+      "reason_transform": "day_of_week",
+      "reason_source_stop": 0,
+      "reason_code": "from datetime import date\nresult = date(abs(int(1925)), 1, 1).isoweekday()\nprint(result)",
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Jack_Ramsay",
+      "extraction_target": "Jack Ramsay's listed height in feet and inches",
+      "extraction_section": null,
+      "extracted_value": "6 ft 1 in",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Hal_Greer",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Iconic Portland‑era coach (Trail Blazers) — an early historic stop on the basketball leg of the tour.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Hal_Greer",
+      "extraction_target": "the round in which Hal Greer was selected in the 1958 NBA draft (numeric)",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Al_McGuire",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Highlight a Hall‑of‑Fame player's achievements — connects pro playing legacy to the fan's itinerary of historic basketball figures.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Hal_Greer",
+      "extraction_target": "Reason: the next prime number after that figure",
+      "extraction_section": null,
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (next_prime) on stop 3 value",
+      "reason_transform": "next_prime",
+      "reason_source_stop": 6,
+      "reason_code": "def next_prime(n):\n    n = abs(int(n))\n    if n < 2: return 2\n    candidate = n + 1\n    while True:\n        if all(candidate % i != 0 for i in range(2, int(candidate**0.5)+1)):\n            return candidate\n        candidate += 1\nresult = next_prime(2)\nprint(result)",
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Al_McGuire",
+      "extraction_target": "the height listed in the infobox (field: 'Listed height')",
+      "extraction_section": "infobox",
+      "extracted_value": 6,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Adolph_Rupp",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "College coaching legend — adds the collegiate chapter to the tour, connecting pro and college basketball histories.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        7
+      ]
+    },
+    {
+      "index": 9,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Adolph_Rupp",
+      "extraction_target": "Years Adolph Rupp was head coach at Kentucky",
+      "extraction_section": null,
+      "extracted_value": "1930–1972",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Bidwell Mansion wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Bidwell_Mansion",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A foundational figure in U.S. college basketball history — helps trace coaching lineages and controversies visitors might research.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        8
+      ]
+    },
+    {
+      "index": 10,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Bidwell_Mansion",
+      "extraction_target": "Look up the elevation at 525 Esplanade",
+      "extraction_section": null,
+      "extracted_value": 27.54957389831543,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "525 Esplanade"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for 525 Esplanade",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        9
+      ]
+    },
+    {
+      "index": 11,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Lynette_Woodard",
+      "extraction_target": "college and years Lynette Woodard played there",
+      "extraction_section": null,
+      "extracted_value": "Kansas (1977–1981)",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Pecos National Historical Park wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Pecos_National_Historical_Park",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Representing women's basketball history — ties the tour to milestones in the women's game and player breakthroughs.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        10
+      ]
+    },
+    {
+      "index": 12,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Pecos_National_Historical_Park",
+      "extraction_target": "Get the driving duration in minutes from NM 63 SW of jct. with NM 50 to 1609 SW Morrison Street Portland",
+      "extraction_section": null,
+      "extracted_value": 1293,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_directions",
+            "arguments": {
+              "origin": "NM 63 SW of jct. with NM 50",
+              "destination": "1609 SW Morrison Street Portland",
+              "mode": "driving"
+            },
+            "expected_output": null,
+            "output_key": "duration"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: directions duration NM 63 SW of jct. with NM 50 to 1609 SW Morrison Street Portland",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        11
+      ]
+    },
+    {
+      "index": 13,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Pecos_National_Historical_Park",
+      "extraction_target": "Reason: the number you get by reversing its digits",
+      "extraction_section": null,
+      "extracted_value": 3921,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_reversal) on stop 7 value",
+      "reason_transform": "digit_reversal",
+      "reason_source_stop": 12,
+      "reason_code": "result = int(str(abs(int(1293)))[::-1])\nprint(result)",
+      "depends_on": [
+        12
+      ]
+    },
+    {
+      "index": 14,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Honda_Sports_Award",
+      "extraction_target": "the number of sports the Honda Sports Award is given in",
+      "extraction_section": null,
+      "extracted_value": 12,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Fox Sports 1 wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Fox_Sports_1",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Connects the tour's celebration of players and coaches to formal recognition in collegiate women’s sports.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        13
+      ]
+    },
+    {
+      "index": 15,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Fox_Sports_1",
+      "extraction_target": "the launch date of Fox Sports 1",
+      "extraction_section": null,
+      "extracted_value": "August 17, 2013",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Hyperpop wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Hyperpop",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Media stop — covers how modern broadcasting shapes fan culture and how games on TV connect the road‑trip to national audiences.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        14
+      ]
+    },
+    {
+      "index": 16,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Fox_Sports_1",
+      "extraction_target": "Count churches near Fox Sports 1",
+      "extraction_section": null,
+      "extracted_value": 6,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "churches near Fox Sports 1"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (nearby_poi) derived from https://en.wikipedia.org/wiki/Fox_Sports_1",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        15
+      ]
+    },
+    {
+      "index": 17,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Hyperpop",
+      "extraction_target": "the number of language links shown at the top of the article",
+      "extraction_section": null,
+      "extracted_value": 23,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "SM-64 Navaho wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/SM-64_Navaho",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A cultural coda — exploring contemporary music scenes a traveler might encounter in cities on the trip, showing the tour crosses sports and popular culture.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        16
+      ]
+    },
+    {
+      "index": 18,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/SM-64_Navaho",
+      "extraction_target": "Convert 6 km to miles",
+      "extraction_section": null,
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "# Convert km to miles\nvalue = 6.0\nconverted = value * 0.621371\nresult = int(converted)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "converted"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: convert 6 km to miles",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        17
+      ]
+    },
+    {
+      "index": 19,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: abs(1925 - 23) % 10",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "abs(1925 - 23) % 10",
+        "expression_code": "result = abs(1925 - 23) % 10\nprint(result)",
+        "referenced_stops": [
+          0,
+          17
+        ]
+      },
+      "reasoning": "Compute stop: abs(1925 - 23) % 10 = 2",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0,
+        17
+      ]
+    }
+  ],
+  "passcode": 2,
+  "difficulty": {
+    "level": "hard",
+    "depth": 20,
+    "tool_stop_count": 7,
+    "reason_stop_count": 3,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Seek the Portland landmark known for its legendary hospitality; the year it opened its doors marks your starting point.\n\n2. Track down the height at which this iconic structure stands above sea level; it’s a number that gives a sense of its prominence.\n\n3. What is the number of knowledge repositories, commonly referred to as libraries, within a short stroll of this lodging? This count leads to your next clue.\n\n4. By merging the elevation you found with the library count, you unravel a new figure that paints a picture of community density in this urban setting.\n\n5. In the year you extracted at the start, what day did the calendar turn on January 1st? A simple number will guide your next journey.\n\n6. Next, embark on the path of a legendary coach known for his keen insights and tactical genius. What does his stature reveal in feet and inches?\n\n7. Who was the basketball talent chosen during a draft held in 1958 in a particular round? This figure stands as a testament to his legacy.\n\n8. From that round, what is the next prime number that follows? This numerical leap is essential for your upcoming steps.\n\n9. Find the impressive height of a notable coach revered in college basketball lore; it hides in his infobox.\n\n10. Reflect on the years during which another coaching legend reigned supreme at a prominent university in Kentucky; they mark a significant era in sports history.\n\n11. At the address of a historic mansion on the Esplanade, what altitude do you discover? This detail adds depth to your expedition.\n\n12. What educational institution did an exceptional female player represent, and during which years did she grace its courts? This is a highlight of her storied journey.\n\n13. How long does it take, in minutes, to drive from a certain junction in New Mexico to the heart of Portland? This travel time guides your grand adventure.\n\n14. Reverse the digits of the travel time you uncovered previously; the new figure brings you clarity on the journey ahead.\n\n15. Discover the total number of athletic pursuits recognized by an esteemed award honoring excellence in sports; it underscores the impact of competition.\n\n16. What date marks the commencement of a sports broadcasting network? This moment in time shaped how fans consume basketball.\n\n17. Count the number of places worship near the broadcasting headquarters; this figure provides insight into the local community.\n\n18. Atop an article dedicated to a musical genre that's on the rise, how many languages do you find linked at the top? This measure signifies its global reach.\n\n19. Convert a distance of 6 kilometers into miles; this transformation lets you see the journey through another lens.\n\n20. Finally, take the absolute difference between the year you first discovered and the number of languages counted. Apply this as follows: compute abs(clue 1 - clue 18) % 10 to unveil a single digit — the end of your treasure hunt.",
+  "metadata": {
+    "theme": "A fan's cultural road‑trip from a Portland base: exploring American basketball legends, media and awards — with practical checks (distances, elevations, weather, travel time and unit conversions) a traveler might use while tracing the sport's history and cultural reach.",
+    "difficulty": "hard",
+    "sample_id": "sample_044",
+    "pages_crawled": 5149
+  },
+  "generated_at": "2026-03-16T13:44:26.929619+00:00"
+}

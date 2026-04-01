@@ -1,0 +1,305 @@
+{
+  "trail_id": "trail_7ec739e0",
+  "seed_url": "https://en.wikipedia.org/wiki/Salesforce",
+  "seed_title": "Salesforce",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Salesforce",
+      "extraction_target": "the headquarters city",
+      "extraction_section": null,
+      "extracted_value": "San Francisco",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/San_Francisco",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start at the seed: Salesforce is the cloud CRM pioneer and anchors the trail — extract its headquarters to connect company → city.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Salesforce",
+      "extraction_target": "Look up the elevation of San Francisco",
+      "extraction_section": null,
+      "extracted_value": 15.55781936645508,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "San Francisco"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of San Francisco) from https://en.wikipedia.org/wiki/Salesforce",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Salesforce",
+      "extraction_target": "Look up the count of hospitals near San Francisco",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "hospitals near San Francisco"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of hospitals near San Francisco) from https://en.wikipedia.org/wiki/Salesforce",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Salesforce",
+      "extraction_target": "Combine the elevation of San Francisco and the count of hospitals near San Francisco: (15 + 20)",
+      "extraction_section": null,
+      "extracted_value": 35,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(15.55781936645508) + int(20.0)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of San Francisco add count of hospitals near San Francisco",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1,
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/San_Francisco",
+      "extraction_target": "the coordinates listed in the infobox (field: 'Coordinates')",
+      "extraction_section": "infobox",
+      "extracted_value": "37.77750, -122.41639",
+      "extracted_value_type": "coords",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Silicon_Valley",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "San Francisco is Salesforce's host city (Salesforce Tower) — extract coordinates to use in geographic proximity checks and population for urban context.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Silicon_Valley",
+      "extraction_target": "the number of languages listed at the top of the article",
+      "extraction_section": null,
+      "extracted_value": 93,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Silicon_Valley",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Broaden to the region: describe Silicon Valley's role, R&D and notable firms to contextualize Salesforce and Oracle within the tech cluster.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Silicon_Valley",
+      "extraction_target": "Reason: the number you get by reversing its digits",
+      "extraction_section": null,
+      "extracted_value": 39,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_reversal) on stop 2 value",
+      "reason_transform": "digit_reversal",
+      "reason_source_stop": 5,
+      "reason_code": "result = int(str(abs(int(93)))[::-1])\nprint(result)",
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Salesforce_Tower",
+      "extraction_target": "Count the number of churches near 415 Mission Street San Francisco",
+      "extraction_section": null,
+      "extracted_value": 20,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "churches near 415 Mission Street San Francisco"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: count churches near 415 Mission Street San Francisco",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: (15 + 93) % 10",
+      "extraction_section": null,
+      "extracted_value": 8,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "(15 + 93) % 10",
+        "expression_code": "result = (15 + 93) % 10\nprint(result)",
+        "referenced_stops": [
+          1,
+          5
+        ]
+      },
+      "reasoning": "Compute stop: (15 + 93) % 10 = 8",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1,
+        5
+      ]
+    }
+  ],
+  "passcode": 8,
+  "difficulty": {
+    "level": "easy",
+    "depth": 9,
+    "tool_stop_count": 4,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "direct_link"
+  },
+  "riddle": "1. Pinpoint the tech giant that revolutionized customer relationships from its headquarters located in a bustling coastal city known for its iconic bridge.\n\n2. What is the height above sea level that defines the landscape of the city where this giant resides? Seek the answer in the sapiens' scrolls.\n\n3. In the vicinity of this panoramic metropolis, how many establishments dedicated to healing and restoration can be found? Let your search for wellness guide you.\n\n4. With the wisdom gained from your previous findings, combine the height of the land you discerned in clue 2 with the count of healing establishments you uncovered in clue 3.\n\n5. Browse through the chronicles of the city where you began and unveil the hidden secrets of its precise geographical identity, as etched within the confines of an informative box.\n\n6. Move to the article where the technological hub lies, and from there, discover how many tongues are spoken across its vibrant landscape as mentioned at the outset.\n\n7. If you were to glimpse at the number you found in clue 6, what new tale would it tell when the digits are reversed? Let this transformed numeric story reveal itself.\n\n8. In the shadow of the towering structure that rises within the city, investigate how many places of worship can be counted nearby its noted address on Mission Street.\n\n9. Finally, unite the newfound enlightenment from clue 2 with the multitude of languages discovered in clue 6. Then, compute your answer as follows: (15 + the number from clue 6) mod 10. Your final answer will be a single digit between 0 and 9.",
+  "metadata": {
+    "theme": "Tracing Salesforce's place in the Silicon Valley ecosystem: from the company to its city and region, and the market and geographic context that shape enterprise tech.",
+    "difficulty": "easy",
+    "sample_id": "sample_126",
+    "pages_crawled": 550
+  },
+  "generated_at": "2026-03-17T07:18:53.242562+00:00"
+}

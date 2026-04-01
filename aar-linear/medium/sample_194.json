@@ -1,0 +1,303 @@
+{
+  "trail_id": "trail_1c594f6f",
+  "seed_url": "https://en.wikipedia.org/wiki/BMW",
+  "seed_title": "BMW",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/BMW",
+      "extraction_target": "the number of sub-subsections listed under Current models (i models and M models)",
+      "extraction_section": "Current models",
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Automobiles wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Automobiles",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Seed: BMW is the German legacy automaker that anchors the trail — its founding date and HQ provide the historical and geographic starting point for a global auto story.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Automobiles",
+      "extraction_target": "the number of languages listed for this article",
+      "extraction_section": null,
+      "extracted_value": 211,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "BYD Company wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/BYD_Company",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Context: The general 'Automobiles' article frames technological, industrial and historical themes that connect legacy makers like BMW to modern developments.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/BYD_Company",
+      "extraction_target": "the name of the chairman and CEO listed under Key people",
+      "extraction_section": null,
+      "extracted_value": "Wang Chuanfu",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Xi'an wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Xi%27an",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Rival manufacturer: BYD represents the new major Chinese automotive and EV challenger — linking the story to non-Western manufacturing and corporate growth.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 3,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Xi%27an",
+      "extraction_target": "the elevation listed in the infobox (field: 'Elevation')",
+      "extraction_section": "infobox",
+      "extracted_value": 405,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Xi%27an",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Place: Xi'an is a major Chinese city with both heritage and growing industrial activity — used to ground the trail in a concrete manufacturing/urban location.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 4,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Xi%27an",
+      "extraction_target": "Reason: the number of characters when written as a Roman numeral",
+      "extraction_section": null,
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (roman_numeral_letter_count) on stop 3 value",
+      "reason_transform": "roman_numeral_letter_count",
+      "reason_source_stop": 3,
+      "reason_code": "def to_roman(n):\n    n = abs(int(n))\n    vals = [(1000,'M'),(900,'CM'),(500,'D'),(400,'CD'),(100,'C'),\n            (90,'XC'),(50,'L'),(40,'XL'),(10,'X'),(9,'IX'),(5,'V'),(4,'IV'),(1,'I')]\n    r = ''\n    for v, s in vals:\n        while n >= v:\n            r += s; n -= v\n    return r\nresult = len(to_roman(405))\nprint(result)"
+    },
+    {
+      "index": 5,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Zhengzhou,_Henan",
+      "extraction_target": "Calculate the driving distance between Zhengzhou, Henan and Xi'an",
+      "extraction_section": null,
+      "extracted_value": 481.495,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Zhengzhou, Henan"
+            },
+            "expected_output": null,
+            "output_key": "coords_a"
+          },
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Xi'an"
+            },
+            "expected_output": null,
+            "output_key": "coords_b"
+          },
+          {
+            "tool_name": "maps_distance_matrix",
+            "arguments": {
+              "__from_previous_as_origins_destinations": [
+                "coords_a",
+                "coords_b"
+              ]
+            },
+            "expected_output": null,
+            "output_key": "distance_km"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: distance between Zhengzhou, Henan and Xi'an",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 6,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/St_Petersburg",
+      "extraction_target": "Count the number of universities near 59.93750",
+      "extraction_section": null,
+      "extracted_value": 1,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "universities near 59.93750"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: count universities near 59.93750",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 7,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/President_of_the_United_States",
+      "extraction_target": "Look up the population of China",
+      "extraction_section": null,
+      "extracted_value": 7527500,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "countries_population",
+            "arguments": {
+              "country": "China"
+            },
+            "expected_output": null,
+            "output_key": "population"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: population of China",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 8,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/President_of_the_United_States",
+      "extraction_target": "Reason: the sum of its distinct prime factors",
+      "extraction_section": null,
+      "extracted_value": 3018,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (sum_prime_factors) on stop 6 value",
+      "reason_transform": "sum_prime_factors",
+      "reason_source_stop": 7,
+      "reason_code": "def prime_factors(n):\n    n = abs(int(n))\n    factors = []\n    d = 2\n    while d * d <= n:\n        while n % d == 0:\n            factors.append(d)\n            n //= d\n        d += 1\n    if n > 1: factors.append(n)\n    return factors\nresult = sum(set(prime_factors(7527500)))\nprint(result)"
+    },
+    {
+      "index": 9,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: digital_root(2 + 481)",
+      "extraction_section": null,
+      "extracted_value": 6,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "digital_root(2 + 481)",
+        "expression_code": "def digital_root(n):\n    n = abs(int(n))\n    return n if n == 0 else ((n - 1) % 9) + 1\nresult = digital_root(2 + 481)\nprint(result)",
+        "referenced_stops": [
+          0,
+          5
+        ]
+      },
+      "reasoning": "Compute stop: digital_root(2 + 481) = 6",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 6,
+  "difficulty": {
+    "level": "medium",
+    "depth": 10,
+    "tool_stop_count": 3,
+    "reason_stop_count": 2,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Seek the page for the German automotive firm BMW; inside the section that lays out the maker's present lineup — the portion that separates the sporty 'M' branch from the electric 'i' branch — count how many sub‑headings (sub‑subsections) are listed there.\n\n2. Which broad Wikipedia overview covering motor vehicles (the general article that surveys cars as a category) displays how many language editions alongside it?\n\n3. A page exists for the large Shenzhen‑based Chinese carmaker; on that company's quick‑facts area, note the person named as both chairman and chief executive.\n\n4. If you open the article for the capital of Shaanxi province, look in the summary panel for the city's height above sea level and record that figure.\n\n5. In the manner of an ancient scribe, take the elevation you found in clue 4 and render it as a Roman numeral — then count how many characters long that Roman representation is.\n\n6. The article whose opening names the Henan provincial capital will let you determine the driving distance between that city and the Shaanxi capital you used earlier; calculate the driving distance a car would cover between them (in the units given).\n\n7. Gaze toward latitude 59.93750 and perform a local places search: how many universities are reported near that coordinate?\n\n8. (A detour) Consult a current country data source for China and write down the population figure listed there.\n\n9. Now take the population number from clue 8 and compute the sum of its distinct prime factors; that sum is the value for this clue.\n\n10. Finally, compute the digital root of (clue 1 + clue 6) and report that single digit (0–9) as your final treasure.",
+  "metadata": {
+    "theme": "Tracing the global automobile story — from BMW's German roots through the broader concept of automobiles to rising manufacturers, their manufacturing geographies, market scale and cultural context.",
+    "difficulty": "medium",
+    "sample_id": "sample_194",
+    "pages_crawled": 13043
+  },
+  "generated_at": "2026-03-17T23:08:32.966515+00:00"
+}

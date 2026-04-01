@@ -1,0 +1,443 @@
+{
+  "trail_id": "trail_8a5ad9e1",
+  "seed_url": "https://en.wikipedia.org/wiki/SS_Benjamin_Noble",
+  "seed_title": "SS Benjamin Noble",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/SS_Benjamin_Noble",
+      "extraction_target": "the location listed in the infobox (field: 'Location')",
+      "extraction_section": "infobox",
+      "extracted_value": "Lake Superior near Knife River",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Dry_Dock_Complex_(Detroit,_Michigan)",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Seed: the SS Benjamin Noble is the starting wreck that frames this micro-trail of Great Lakes shipping and links to Detroit-era shipbuilding.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/SS_Benjamin_Noble",
+      "extraction_target": "Look up the elevation of Lake Superior near Knife River",
+      "extraction_section": null,
+      "extracted_value": 194.8870849609375,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Lake Superior near Knife River"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Lake Superior near Knife River) from https://en.wikipedia.org/wiki/SS_Benjamin_Noble",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/SS_Benjamin_Noble",
+      "extraction_target": "Look up the count of hospitals near Lake Superior near Knife River",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "hospitals near Lake Superior near Knife River"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of hospitals near Lake Superior near Knife River) from https://en.wikipedia.org/wiki/SS_Benjamin_Noble",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/SS_Benjamin_Noble",
+      "extraction_target": "Combine the elevation of Lake Superior near Knife River and the count of hospitals near Lake Superior near Knife River: (194 + 20)",
+      "extraction_section": null,
+      "extracted_value": 214,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(194.8870849609375) + int(20.0)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Lake Superior near Knife River add count of hospitals near Lake Superior near Knife River",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1,
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Dry_Dock_Complex_(Detroit,_Michigan)",
+      "extraction_target": "Calculate the driving distance between 1801–1803 and 1900 Atwater St. and Lake Superior near Knife River",
+      "extraction_section": null,
+      "extracted_value": 1237.939,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "1801–1803 and 1900 Atwater St."
+            },
+            "expected_output": null,
+            "output_key": "coords_a"
+          },
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Lake Superior near Knife River"
+            },
+            "expected_output": null,
+            "output_key": "coords_b"
+          },
+          {
+            "tool_name": "maps_distance_matrix",
+            "arguments": {
+              "__from_previous_as_origins_destinations": [
+                "coords_a",
+                "coords_b"
+              ]
+            },
+            "expected_output": null,
+            "output_key": "distance_km"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: distance between 1801–1803 and 1900 Atwater St. and Lake Superior near Knife River",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Dry_Dock_Complex_(Detroit,_Michigan)",
+      "extraction_target": "Reason: the sum of its distinct prime factors",
+      "extraction_section": null,
+      "extracted_value": 1237,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (sum_prime_factors) on stop 1 value",
+      "reason_transform": "sum_prime_factors",
+      "reason_source_stop": 4,
+      "reason_code": "def prime_factors(n):\n    n = abs(int(n))\n    factors = []\n    d = 2\n    while d * d <= n:\n        while n % d == 0:\n            factors.append(d)\n            n //= d\n        d += 1\n    if n > 1: factors.append(n)\n    return factors\nresult = sum(set(prime_factors(1237)))\nprint(result)",
+      "depends_on": [
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Detroit_International_Riverfront",
+      "extraction_target": "Get the driving duration in minutes from Detroit International Riverfront to Lake Superior near Knife River",
+      "extraction_section": null,
+      "extracted_value": 686,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_directions",
+            "arguments": {
+              "origin": "Detroit International Riverfront",
+              "destination": "Lake Superior near Knife River",
+              "mode": "driving"
+            },
+            "expected_output": null,
+            "output_key": "duration"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: directions duration Detroit International Riverfront to Lake Superior near Knife River",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Detroit_International_Riverfront",
+      "extraction_target": "Reason: the digital root (iterated digit sum until single digit)",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digital_root) on stop 2 value",
+      "reason_transform": "digital_root",
+      "reason_source_stop": 6,
+      "reason_code": "n = abs(int(686))\nresult = n if n == 0 else ((n - 1) % 9) + 1\nprint(result)",
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/SS_Columbia_(1902_steamboat)",
+      "extraction_target": "Count the number of stadiums near Buffalo",
+      "extraction_section": null,
+      "extracted_value": 20,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "stadiums near Buffalo"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: count stadiums near Buffalo",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        7
+      ]
+    },
+    {
+      "index": 9,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/SS_Ste._Claire",
+      "extraction_target": "Look up the elevation at Riverside Marina",
+      "extraction_section": null,
+      "extracted_value": 2.222212791442871,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Riverside Marina"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for Riverside Marina",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        8
+      ]
+    },
+    {
+      "index": 10,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Detroit_Shipbuilding_Company",
+      "extraction_target": "the years listed as the complex's built dates",
+      "extraction_section": null,
+      "extracted_value": "1892, 1902, c. 1910s",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Detroit_Shipbuilding_Company",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Endpoint page: extracts the local shipbuilding firm's operational dates and notable constructions to tie the Benjamin Noble and other Great Lakes vessels into Detroit's shipbuilding narrative.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        9
+      ]
+    },
+    {
+      "index": 11,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: (1237 + 1237 + 686 + 2) % 10",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "(1237 + 1237 + 686 + 2) % 10",
+        "expression_code": "result = (1237 + 1237 + 686 + 2) % 10\nprint(result)",
+        "referenced_stops": [
+          4,
+          5,
+          6,
+          9
+        ]
+      },
+      "reasoning": "Compute stop: (1237 + 1237 + 686 + 2) % 10 = 2",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        4,
+        5,
+        6,
+        9
+      ]
+    }
+  ],
+  "passcode": 2,
+  "difficulty": {
+    "level": "medium",
+    "depth": 12,
+    "tool_stop_count": 7,
+    "reason_stop_count": 2,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "direct_link"
+  },
+  "riddle": "1. A vessel once traversed the Great Lakes, now resting in history — trace its legacy by uncovering the place where it met its watery end.\n\n2. Rising from the depths, examine the heights of the vast body of water near a village that shares its name with a cutting tool. What is the elevation of this lake near Knife River?\n\n3. Among the communities surrounding this natural wonder, how many places of healing can you find that cater to the sick and injured nearby?\n\n4. With the answers from clues 2 and 3 in hand, add the elevation of the lake to the count of hospitals within its reach. What combined value emerges from this addition?\n\n5. Seek the connection between two addresses in Detroit: 1801–1803 and 1900 Atwater St. and the lake near Knife River. What is the driving distance between these two points?\n\n6. From the distance you obtained, explore its prime composition. What is the sum of its distinct prime factors?\n\n7. In a city where rivers meet and skyline shines, determine the time it takes to journey from the heart of the International Riverfront to the lake you’ve been investigating. How many minutes does that drive require?\n\n8. Reflect on your previous travel time. Reduce it to a single digit by finding its digital root, the sum of its digits iterated down until one remains.\n\n9. Upon finding the waterfront charm of Buffalo, tally how many arenas stand ready to host the cheers and chants of enthusiastic crowds nearby.\n\n10. In the heart of the city’s waterfront, discover the height above sea level at a marina named after a peerless river. What is the elevation noted there?\n\n11. Cross into the era of shipbuilding and uncover the range of years that marked the establishment of a renowned shipbuilding entity in Detroit. What years do they span?\n\n12. Finally, combine your findings from clues 5, 6, 7, and 10 in this computation: what is the result of (clue 5 + clue 6 + clue 7 + clue 10) modulo 10?",
+  "metadata": {
+    "theme": "From wreck to workshop — tracing the SS Benjamin Noble's place in Great Lakes ship history and Detroit shipbuilding heritage using geodata and simple conversions.",
+    "difficulty": "medium",
+    "sample_id": "sample_109",
+    "pages_crawled": 6111
+  },
+  "generated_at": "2026-03-16T21:47:15.377466+00:00"
+}

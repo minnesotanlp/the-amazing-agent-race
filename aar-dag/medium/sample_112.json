@@ -1,0 +1,422 @@
+{
+  "trail_id": "trail_789bb8b5",
+  "seed_url": "https://en.wikipedia.org/wiki/Kobina_Gyan",
+  "seed_title": "Kobina Gyan",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Kobina_Gyan",
+      "extraction_target": "Years of Kobina Gyan's second reign as Edinahene (as listed)",
+      "extraction_section": null,
+      "extracted_value": "1894 – 1896",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Portuguese Gold Coast wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Portuguese_Gold_Coast",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Seed: Kobina Gyan was a local ruler in Elmina whose authority and actions sit at the center of resistance and negotiation during the late colonial period on the Gold Coast — the starting point for this trail.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Portuguese_Gold_Coast",
+      "extraction_target": "the capital of the Portuguese Gold Coast",
+      "extraction_section": null,
+      "extracted_value": "São Jorge da Mina",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Portuguese_Gold_Coast",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Provides the colonial context for Elmina and Kobina Gyan: the Portuguese foothold in the region and the forts that anchored European trade and political power.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Portuguese_Gold_Coast",
+      "extraction_target": "Look up the elevation of São Jorge da Mina",
+      "extraction_section": null,
+      "extracted_value": 7.540502071380615,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "São Jorge da Mina"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of São Jorge da Mina) from https://en.wikipedia.org/wiki/Portuguese_Gold_Coast",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Portuguese_Gold_Coast",
+      "extraction_target": "Look up the Google rating of São Jorge da Mina",
+      "extraction_section": null,
+      "extracted_value": 4.5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "São Jorge da Mina"
+            },
+            "expected_output": null,
+            "output_key": "place_rating"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (Google rating of São Jorge da Mina) from https://en.wikipedia.org/wiki/Portuguese_Gold_Coast",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Portuguese_Gold_Coast",
+      "extraction_target": "Combine the elevation of São Jorge da Mina and the Google rating of São Jorge da Mina: abs(7 - 4)",
+      "extraction_section": null,
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(7.540502071380615) - int(4.5))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of São Jorge da Mina abs_diff Google rating of São Jorge da Mina",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2,
+        3
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Portuguese_Gold_Coast",
+      "extraction_target": "Reason: the number of vowels in that name",
+      "extraction_section": null,
+      "extracted_value": 6,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (vowel_count) on stop 1 value",
+      "reason_transform": "vowel_count",
+      "reason_source_stop": 1,
+      "reason_code": "result = sum(1 for c in \"São Jorge da Mina\".lower() if c in 'aeiou')\nprint(result)",
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Pan-African_flag",
+      "extraction_target": "the adoption date of the Pan-African flag",
+      "extraction_section": null,
+      "extracted_value": "13 August 1920",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Districts of Ghana wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Districts_of_Ghana",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Moves from colonial infrastructure to symbolic response: the Pan‑African flag as an emblem of unity and identity that emerged from anti‑colonial and diasporic movements linked to the histories of places like the Gold Coast.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Districts_of_Ghana",
+      "extraction_target": "the number of local metropolitan, municipal and district assemblies (MMDA's) currently",
+      "extraction_section": null,
+      "extracted_value": 261,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Beary wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Beary",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Situates the historical sites and leaders within modern Ghana’s administrative geography — how colonial-era places are integrated into present-day districts and governance.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Beary",
+      "extraction_target": "the number of interlanguage Wikipedia links shown near the top of the article (labeled as languages)",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Freestyle music wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Freestyle_music",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A stop highlighting a distinct, localized ethno-linguistic community to contrast how colonial and maritime histories produced varied local identities across oceanic regions — a parallel to Ghanaian/local identities shaped by colonialism and trade.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        7
+      ]
+    },
+    {
+      "index": 9,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Freestyle_music",
+      "extraction_target": "the count of stylistic origins listed in the infobox (Dance-pop, Latin music, electro, boogie, hip hop, synth-pop, hi-NRG, post-disco)",
+      "extraction_section": null,
+      "extracted_value": 8,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "American Shipbuilding Company wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/American_Shipbuilding_Company",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Cultural expression as a diasporic echo: this musical genre exemplifies how global movement and mixed communities create new cultural forms — connecting back to Pan‑African identity and cultural flows set in motion by colonial and maritime networks.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        8
+      ]
+    },
+    {
+      "index": 10,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Freestyle_music",
+      "extraction_target": "Count temples near Freestyle music",
+      "extraction_section": null,
+      "extracted_value": 8,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "temples near Freestyle music"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (nearby_poi) derived from https://en.wikipedia.org/wiki/Freestyle_music",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        9
+      ]
+    },
+    {
+      "index": 11,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/American_Shipbuilding_Company",
+      "extraction_target": "Count the number of hospitals near Cleveland",
+      "extraction_section": null,
+      "extracted_value": 20,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "hospitals near Cleveland"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: count hospitals near Cleveland",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        10
+      ]
+    },
+    {
+      "index": 12,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: abs(7 - 8) % 10",
+      "extraction_section": null,
+      "extracted_value": 1,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "abs(7 - 8) % 10",
+        "expression_code": "result = abs(7 - 8) % 10\nprint(result)",
+        "referenced_stops": [
+          2,
+          9,
+          10,
+          11
+        ]
+      },
+      "reasoning": "Compute stop: abs(7 - 8) % 10 = 1",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2,
+        9,
+        10,
+        11
+      ]
+    }
+  ],
+  "passcode": 1,
+  "difficulty": {
+    "level": "medium",
+    "depth": 13,
+    "tool_stop_count": 5,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Unearth the reign of a notable Edinahene, whose second rule ushered in stories from the shores of Ghana—what were the years that witnessed his leadership?\n\n2. The heart of a former coastal empire lies beneath the waves—what was the capital city serving the realm that thrived on the trade of gold?\n\n3. Ascend to the heights of a fort named after a saint; how high above the sea does it rest, standing testament to the age of exploration?\n\n4. This stronghold holds a reputation among travelers, marked by a score indicating its allure—what rating do visitors bestow upon this coastal treasure?\n\n5. Take the elevation from clue 3 and the Google rating from clue 4, and find the absolute difference between these two figures.\n\n6. In the name of the capital you discovered in clue 2, seek its melodic rhythm—how many vowels dance within its syllables?\n\n7. A colorful emblem of unity and aspirations has a date forever etched in history—when was this symbol of redemption officially adopted?\n\n8. The map of governance in Ghana showcases multiple territories—how many local assemblies oversee the dynamic landscape of this nation?\n\n9. In the entry of a distinguished community known for a widely spoken language, count how many forms of this tongue link together—what number fills this linguistic tapestry?\n\n10. A genre that electrified dance floors has roots in diverse origins—how many stylistic influences are highlighted within its history?\n\n11. Count the sacred spaces that gather near the rhythm of life encapsulated by this electrifying genre—what number of temples can be found in their vicinity?\n\n12. In the city renowned for its shipyards, a quest awaits to tally the centers of healing nearby—what is the number of hospitals that dwell close to this urban hub?\n\n13. Now, combine the outputs from clues 3, 10, 11, and 12 using this expression: compute the absolute difference between the counts from clues 3 and 10, then take this value modulo 10. Your answer will yield a single digit.",
+  "metadata": {
+    "theme": "From Elmina's last leaders to global networks: tracing the Portuguese Gold Coast, maritime links and the cultural echoes that fed Pan‑African identity",
+    "difficulty": "medium",
+    "sample_id": "sample_112",
+    "pages_crawled": 6323
+  },
+  "generated_at": "2026-03-16T22:18:47.193121+00:00"
+}

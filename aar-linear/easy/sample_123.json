@@ -1,0 +1,160 @@
+{
+  "trail_id": "trail_7cc1930f",
+  "seed_url": "https://en.wikipedia.org/wiki/Amazon_(company)",
+  "seed_title": "Amazon (company)",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Amazon_(company)",
+      "extraction_target": "the number of immediate subsections listed under Products and services in the Contents (e.g., 2.1, 2.2, ...)",
+      "extraction_section": "Products and services",
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Doppler_(building)",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start at Amazon's main page to establish the company's ticker (AMZN) and its stated headquarters location — the anchor for linking corporate value to the physical HQ.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Doppler_(building)",
+      "extraction_target": "Convert 4 meters to feet",
+      "extraction_section": null,
+      "extracted_value": 13,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "# Convert meters to feet\nvalue = 4.0\nconverted = value * 3.28084\nresult = int(converted)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "converted"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: convert 4 meters to feet",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Doppler_(building)",
+      "extraction_target": "Reason: the number of 1-bits in its binary representation",
+      "extraction_section": null,
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (binary_1bit_count) on stop 1 value",
+      "reason_transform": "binary_1bit_count",
+      "reason_source_stop": 1,
+      "reason_code": "result = bin(abs(int(13))).count('1')\nprint(result)"
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Seattle",
+      "extraction_target": "Count the number of libraries near 47.60389",
+      "extraction_section": null,
+      "extracted_value": 8,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "libraries near 47.60389"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: count libraries near 47.60389",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 4,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: digital_root(13 + 8)",
+      "extraction_section": null,
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "digital_root(13 + 8)",
+        "expression_code": "def digital_root(n):\n    n = abs(int(n))\n    return n if n == 0 else ((n - 1) % 9) + 1\nresult = digital_root(13 + 8)\nprint(result)",
+        "referenced_stops": [
+          1,
+          3
+        ]
+      },
+      "reasoning": "Compute stop: digital_root(13 + 8) = 3",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 3,
+  "difficulty": {
+    "level": "easy",
+    "depth": 5,
+    "tool_stop_count": 2,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "direct_link"
+  },
+  "riddle": "Here is the revised riddle:\n\n1. Seek the company's main article, known for its rainforest namesake and vast online marketplace; within that page's table of contents locate the entry that catalogs the firm's offerings and count how many immediate numbered subsections sit directly beneath that entry — that count is your first value, then follow the article's link to the firm's downtown headquarters.\n\n2. There exists a page about that headquarters (the tower named after a scientific principle involving wave frequency changes); convert a length of four meters into feet and note the whole-number part (discard any fractional remainder) — that integer becomes clue 2.\n\n3. If you take the integer from clue 2 and write it in base two, how many 1-bits (set bits) appear in that binary form? Count them — this tally is clue 3.\n\n4. If you probe the neighborhood around latitude 47.60389 with a map search, how many libraries does the local search return within the nearby area (include public and academic branches that show up as distinct places)? That total is clue 4.\n\n5. The treasure cipher asks you to combine earlier findings: compute the digital root of (clue 2 + clue 4). Perform that arithmetic using the numeric values you obtained for clue 2 and clue 4, then reduce the sum to its digital root; the result is the final single digit (0–9).",
+  "metadata": {
+    "theme": "Following Amazon from corporate identity to market value and its Seattle headquarters — connecting the company, its stock market footprint, and the local urban footprint around its Doppler HQ.",
+    "difficulty": "easy",
+    "sample_id": "sample_123",
+    "pages_crawled": 200
+  },
+  "generated_at": "2026-03-17T06:54:56.994451+00:00"
+}

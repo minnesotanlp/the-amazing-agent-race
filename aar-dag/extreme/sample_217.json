@@ -1,0 +1,901 @@
+{
+  "trail_id": "trail_9ca28ce1",
+  "seed_url": "https://en.wikipedia.org/wiki/Dance_in_the_Dark_(horse)",
+  "seed_title": "Dance in the Dark (horse)",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Dance_in_the_Dark_(horse)",
+      "extraction_target": "the country of origin of Dance in the Dark",
+      "extraction_section": null,
+      "extracted_value": "Japan",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Dance_in_the_Dark_(horse)",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start: the seed — Dance in the Dark is a Japanese champion racehorse whose pedigree and earnings open the trail on competition and legacy.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Dance_in_the_Dark_(horse)",
+      "extraction_target": "Look up the elevation of Japan",
+      "extraction_section": null,
+      "extracted_value": 996.7568969726562,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Japan"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Japan) from https://en.wikipedia.org/wiki/Dance_in_the_Dark_(horse)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Dance_in_the_Dark_(horse)",
+      "extraction_target": "Look up the count of churches near Japan",
+      "extraction_section": null,
+      "extracted_value": 5.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "churches near Japan"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of churches near Japan) from https://en.wikipedia.org/wiki/Dance_in_the_Dark_(horse)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Dance_in_the_Dark_(horse)",
+      "extraction_target": "Combine the elevation of Japan and the count of churches near Japan: abs(996 - 5)",
+      "extraction_section": null,
+      "extracted_value": 991,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(996.7568969726562) - int(5.0))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Japan abs_diff count of churches near Japan",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1,
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Dance_in_the_Dark_(horse)",
+      "extraction_target": "Reason: the number of vowels in that name",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (vowel_count) on stop 0 value",
+      "reason_transform": "vowel_count",
+      "reason_source_stop": 0,
+      "reason_code": "result = sum(1 for c in \"Japan\".lower() if c in 'aeiou')\nprint(result)",
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Kentucky",
+      "extraction_target": "the area listed in the infobox (field: '[Largest metro](/wiki/Statistical_area_(United_States) \"Statistical area (United States)\") and [urban](/wiki/List_of_United_States_urban_areas \"List of United States urban areas\") areas')",
+      "extraction_section": "infobox",
+      "extracted_value": -1,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Joe DiMaggio wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Joe_DiMaggio",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Move to the U.S. horse-racing heartland (Kentucky) to link a Japanese champion with global centers of equine fame.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Kentucky",
+      "extraction_target": "Look up the elevation of Kentucky",
+      "extraction_section": null,
+      "extracted_value": 237.7756958007812,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Kentucky"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Kentucky) from https://en.wikipedia.org/wiki/Kentucky",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Kentucky",
+      "extraction_target": "Look up the count of temples near Kentucky",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "temples near Kentucky"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of temples near Kentucky) from https://en.wikipedia.org/wiki/Kentucky",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Kentucky",
+      "extraction_target": "Combine the elevation of Kentucky and the count of temples near Kentucky: abs(237 - 20)",
+      "extraction_section": null,
+      "extracted_value": 217,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(237.7756958007812) - int(20.0))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Kentucky abs_diff count of temples near Kentucky",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6,
+        7
+      ]
+    },
+    {
+      "index": 9,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Joe_DiMaggio",
+      "extraction_target": "Number of languages the article is available in (as shown)",
+      "extraction_section": null,
+      "extracted_value": 46,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Arantxa Sánchez Vicario wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Arantxa_S%C3%A1nchez_Vicario",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Pivot from equine champions to human sporting legends — DiMaggio exemplifies fame and the cultural mythology of victory.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        8
+      ]
+    },
+    {
+      "index": 10,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Arantxa_S%C3%A1nchez_Vicario",
+      "extraction_target": "the number of Grand Slam singles titles listed",
+      "extraction_section": "Grand Slam finals",
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Arantxa_S%C3%A1nchez_Vicario",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Another sporting victor — Arantxa connects individual athletic achievement across eras and geographies.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        9
+      ]
+    },
+    {
+      "index": 11,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Arantxa_S%C3%A1nchez_Vicario",
+      "extraction_target": "Reason: the number of divisors of that figure",
+      "extraction_section": null,
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (num_divisors) on stop 3 value",
+      "reason_transform": "num_divisors",
+      "reason_source_stop": 10,
+      "reason_code": "n = abs(int(4))\ncount = sum(1 for i in range(1, n+1) if n % i == 0) if n > 0 else 0\nresult = count\nprint(result)",
+      "depends_on": [
+        10
+      ]
+    },
+    {
+      "index": 12,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Charles_Lindbergh",
+      "extraction_target": "the number of subsections listed under the 'Pre-war activities and politics' section (6.1–6.2)",
+      "extraction_section": "Pre-war activities and politics",
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Plato wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Plato",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A different kind of pioneering victory — Lindbergh's flight links human movement, technology and celebrated firsts.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        11
+      ]
+    },
+    {
+      "index": 13,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Plato",
+      "extraction_target": "the number of languages listed at the top of the article",
+      "extraction_section": null,
+      "extracted_value": 219,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Plato",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Introduce philosophical reflection on virtue and success — Plato provides a lens to think about the ideals behind 'victory' and social order.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        12
+      ]
+    },
+    {
+      "index": 14,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Plato",
+      "extraction_target": "Reason: the number of divisors of that figure",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (num_divisors) on stop 5 value",
+      "reason_transform": "num_divisors",
+      "reason_source_stop": 13,
+      "reason_code": "n = abs(int(219))\ncount = sum(1 for i in range(1, n+1) if n % i == 0) if n > 0 else 0\nresult = count\nprint(result)",
+      "depends_on": [
+        13
+      ]
+    },
+    {
+      "index": 15,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Tokyo_Station",
+      "extraction_target": "Count the number of hotels near Chiyoda",
+      "extraction_section": null,
+      "extracted_value": 20,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "hotels near Chiyoda"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: count hotels near Chiyoda",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        14
+      ]
+    },
+    {
+      "index": 16,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Maimonides",
+      "extraction_target": "the number of subsections listed under 'Philosophical and theological commentary' in the Contents",
+      "extraction_section": "Philosophical and theological commentary",
+      "extracted_value": 9,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Maimonides",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Another foundational thinker whose ethics and law deepen the trail's reflection on success, obligation and community.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        15
+      ]
+    },
+    {
+      "index": 17,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Maimonides",
+      "extraction_target": "Reason: the sum of its digits",
+      "extraction_section": null,
+      "extracted_value": 9,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_sum) on stop 7 value",
+      "reason_transform": "digit_sum",
+      "reason_source_stop": 16,
+      "reason_code": "result = sum(int(d) for d in str(abs(int(9))))\nprint(result)",
+      "depends_on": [
+        16
+      ]
+    },
+    {
+      "index": 18,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Marxism",
+      "extraction_target": "the number of languages the article is available in",
+      "extraction_section": null,
+      "extracted_value": 141,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Vladimir Putin wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Vladimir_Putin",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Shift to political economy: examine systems-level views of power and success that contrast with individual sporting or corporate victory.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        17
+      ]
+    },
+    {
+      "index": 19,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Marxism",
+      "extraction_target": "Look up the Google rating of Marxism",
+      "extraction_section": null,
+      "extracted_value": 3.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "Marxism"
+            },
+            "expected_output": null,
+            "output_key": "place_rating"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (place_rating) derived from https://en.wikipedia.org/wiki/Marxism",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        18
+      ]
+    },
+    {
+      "index": 20,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Vladimir_Putin",
+      "extraction_target": "the years listed in the 3.1 subsection title under Political career",
+      "extraction_section": "Contents",
+      "extracted_value": "2024–present",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "United States Air Force wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/United_States_Air_Force",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Bring in contemporary political power — Putin exemplifies centralized state authority and long-term dominance in geopolitics.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        19
+      ]
+    },
+    {
+      "index": 21,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/United_States_Air_Force",
+      "extraction_target": "Look up the population of Japan",
+      "extraction_section": null,
+      "extracted_value": 123210000,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "countries_population",
+            "arguments": {
+              "country": "Japan"
+            },
+            "expected_output": null,
+            "output_key": "population"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: population of Japan",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        20
+      ]
+    },
+    {
+      "index": 22,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/United_States_Air_Force",
+      "extraction_target": "Reason: the sum of its distinct prime factors",
+      "extraction_section": null,
+      "extracted_value": 47,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (sum_prime_factors) on stop 10 value",
+      "reason_transform": "sum_prime_factors",
+      "reason_source_stop": 21,
+      "reason_code": "def prime_factors(n):\n    n = abs(int(n))\n    factors = []\n    d = 2\n    while d * d <= n:\n        while n % d == 0:\n            factors.append(d)\n            n //= d\n        d += 1\n    if n > 1: factors.append(n)\n    return factors\nresult = sum(set(prime_factors(123210000)))\nprint(result)",
+      "depends_on": [
+        21
+      ]
+    },
+    {
+      "index": 23,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Hezbollah",
+      "extraction_target": "the number of subsections listed under the Political activities section in the table of contents",
+      "extraction_section": "Political activities",
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Prince Philip, Duke of Edinburgh wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Prince_Philip,_Duke_of_Edinburgh",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Non-state organized power: Hezbollah shows another axis of influence and conflict, complementing state actors.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        22
+      ]
+    },
+    {
+      "index": 24,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Prince_Philip,_Duke_of_Edinburgh",
+      "extraction_target": "Calculate the number of days between 2024-01-01 and 2026-03-20",
+      "extraction_section": null,
+      "extracted_value": 809,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "from datetime import date\nd1 = date.fromisoformat('2024-01-01')\nd2 = date.fromisoformat('2026-03-20')\nresult = abs((d2 - d1).days)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "days"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: date computation 2024-01-01 to 2026-03-20 (pinned)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        23
+      ]
+    },
+    {
+      "index": 25,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Treaty_of_Trianon",
+      "extraction_target": "the number of subsections listed under 'Results and consequences' in the Contents",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Ford Field wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Ford_Field",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A historical turning point that reshaped power and borders — ties the trail's ideas of victory, loss and political consequence to concrete treaties.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        24
+      ]
+    },
+    {
+      "index": 26,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Ford_Field",
+      "extraction_target": "Look up the Google Maps rating of Detroit",
+      "extraction_section": null,
+      "extracted_value": 0.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "Detroit"
+            },
+            "expected_output": null,
+            "output_key": "place_rating"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: Google rating of Detroit",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        25
+      ]
+    },
+    {
+      "index": 27,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Bill_Gates",
+      "extraction_target": "the number of languages the article is available in (displayed under the title)",
+      "extraction_section": null,
+      "extracted_value": 177,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Bill_Gates",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Close with modern technological and philanthropic influence — Gates represents corporate success and its attempts to shape public life, tying back to earlier corporate and individual champions.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        26
+      ]
+    },
+    {
+      "index": 28,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: (5 + 46 + 47 + 4) % 10",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "(5 + 46 + 47 + 4) % 10",
+        "expression_code": "result = (5 + 46 + 47 + 4) % 10\nprint(result)",
+        "referenced_stops": [
+          2,
+          9,
+          22,
+          25
+        ]
+      },
+      "reasoning": "Compute stop: (5 + 46 + 47 + 4) % 10 = 2",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2,
+        9,
+        22,
+        25
+      ]
+    }
+  ],
+  "passcode": 2,
+  "difficulty": {
+    "level": "extreme",
+    "depth": 29,
+    "tool_stop_count": 11,
+    "reason_stop_count": 5,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Seek the champion whose endurance was matched only by the beauty of his name. Which land gave rise to this noble steed?\n\n2. In what heights does the land of your champion rise, above the vast sea?\n\n3. Count the number of places of worship that grace the countryside surrounding the realm of your equestrian advocate.\n\n4. Now, subtract the number of sanctuaries you just counted from the elevation you uncovered. What is the difference between these two values?\n\n5. There exists a page where the name bestowed upon your initial champion echoes. How many vowels are there in this distinguished name?\n\n6. A place famous for its bourbon and bluegrass — what is its total land area, as documented?\n\n7. Under the billowing skies of this land, how high does its terrain ascend above the surrounding waters?\n\n8. Discover the count of spiritual sanctuaries that dwell in proximity to the fair heart of this state.\n\n9. Take a moment to compute the difference in height of this land and the number of temples that stand nearby. What value emerges from this calculation?\n\n10. Which legendary baseball player captivated hearts? Find the page dedicated to his achievements and determine how many languages it can be read in.\n\n11. What title do you give to the illustrious tennis champion known for her incredible Grand Slam accomplishments? How many titles does she claim?\n\n12. Reflect on the triumphs you revealed — how many distinct divisors does that title count have?\n\n13. In the chronicles of an aviation pioneer, how many subsections unfold beneath the 'Pre-war activities and politics' heading?\n\n14. Seek the philosopher whose thoughts shaped time. What is the total number of languages in which his wisdom has been translated?\n\n15. Return to your philosophical guide and consider how many divisors can be derived from that language total.\n\n16. Where do travelers find refuge near the iconic transport hub nestled in Chiyoda? Count the number of nearby establishments.\n\n17. A sage known for his theological insights awaits. What can you uncover in the count of subsections listed under his significant contributions?\n\n18. Envision the digits that form the number you just unearthed — what is their total when added together?\n\n19. Insights await you in a socio-political ideology. Discover how many languages convey the principles of this doctrine.\n\n20. What do searchers say about the rating of this ideology in the public domain? Seek the average score.\n\n21. Glance at the chronicles of Russia’s leader — what years define a notable era in his political journey?\n\n22. When considering the population of the country where the rising sun first greets the day, what figure do you find?\n\n23. Analyze the number you just found. What is the sum of its distinct prime factors?\n\n24. In the corridors of influence — how many subdivisions lie within the political endeavors of this group?\n\n25. Mark your calendar for the days spanning between the beginning of 2024 and the spring of 2026. How many days are encompassed?\n\n26. An agreement that reshaped borders—how many subsections are recorded under its aftermath?\n\n27. As the Motor City stands tall, what is the acclaimed rating it holds in maps?\n\n28. The figure standing beside philanthropy — what is the number of languages that share his legacy?\n\n29. Final challenge: Combine the numbers derived from clues 3, 10, 23, and 26. Calculate the total of (5 + 46 + 47 + 4) and then take that total modulo 10. What single digit does your journey yield?",
+  "metadata": {
+    "theme": "A braided journey from a champion Japanese Thoroughbred outward to human champions, places, companies and centers of power — tracing victory, movement and influence across sport, place, commerce and politics.",
+    "difficulty": "extreme",
+    "sample_id": "sample_217",
+    "pages_crawled": 29436
+  },
+  "generated_at": "2026-03-20T14:35:58.509655+00:00"
+}

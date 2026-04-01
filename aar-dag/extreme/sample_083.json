@@ -1,0 +1,1014 @@
+{
+  "trail_id": "trail_4ea8be81",
+  "seed_url": "https://en.wikipedia.org/wiki/Athletics_at_the_2000_Summer_Paralympics_–_Men's_100_metres_T42",
+  "seed_title": "Athletics at the 2000 Summer Paralympics – Men's 100 metres T42",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Athletics_at_the_2000_Summer_Paralympics_–_Men's_100_metres_T42",
+      "extraction_target": "the winning time",
+      "extraction_section": null,
+      "extracted_value": 12.61,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Canada_at_the_2000_Summer_Paralympics",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start at the specific event that anchors the trail — the Men's T42 100m final at Sydney 2000 — to examine the result that everything else will help explain.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Canada_at_the_2000_Summer_Paralympics",
+      "extraction_target": "the number of sports Canadian competitors participated in",
+      "extraction_section": null,
+      "extracted_value": 16,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Canada_at_the_2000_Summer_Paralympics",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Look at a national team that participated in Sydney 2000 to connect individual performances to team-level participation and support structures.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Canada_at_the_2000_Summer_Paralympics",
+      "extraction_target": "Reason: the sum of its distinct prime factors",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (sum_prime_factors) on stop 1 value",
+      "reason_transform": "sum_prime_factors",
+      "reason_source_stop": 1,
+      "reason_code": "def prime_factors(n):\n    n = abs(int(n))\n    factors = []\n    d = 2\n    while d * d <= n:\n        while n % d == 0:\n            factors.append(d)\n            n //= d\n        d += 1\n    if n > 1: factors.append(n)\n    return factors\nresult = sum(set(prime_factors(16)))\nprint(result)",
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/2021_Canadian_Census",
+      "extraction_target": "Look up the population of Canada",
+      "extraction_section": null,
+      "extracted_value": 41651653,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "countries_population",
+            "arguments": {
+              "country": "Canada"
+            },
+            "expected_output": null,
+            "output_key": "population"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: population of Canada",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Germany_at_the_2000_Summer_Paralympics",
+      "extraction_target": "the total number of competitors representing Germany",
+      "extraction_section": null,
+      "extracted_value": 251,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "ISO 3166-2:CN wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/ISO_3166-2:CN",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Compare another leading Paralympic nation from the same Games to contrast delegation size and success.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/ISO_3166-2:CN",
+      "extraction_target": "Convert 12 km to miles",
+      "extraction_section": null,
+      "extracted_value": 7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "# Convert km to miles\nvalue = 12.61\nconverted = value * 0.621371\nresult = int(converted)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "converted"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: convert 12 km to miles",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Queensland_Sport_and_Athletics_Centre",
+      "extraction_target": "the seating capacity of the main stadium",
+      "extraction_section": null,
+      "extracted_value": 48500,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Pocono Raceway wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Pocono_Raceway",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Introduce a major athletics venue (an Australian athletics centre) to explore infrastructure and where athletes train or compete.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Queensland_Sport_and_Athletics_Centre",
+      "extraction_target": "Look up the elevation of Queensland Sport and Athletics Centre",
+      "extraction_section": null,
+      "extracted_value": 85.806884765625,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Queensland Sport and Athletics Centre"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Queensland Sport and Athletics Centre) from https://en.wikipedia.org/wiki/Queensland_Sport_and_Athletics_Centre",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Queensland_Sport_and_Athletics_Centre",
+      "extraction_target": "Look up the Google rating of Queensland Sport and Athletics Centre",
+      "extraction_section": null,
+      "extracted_value": 4.2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "Queensland Sport and Athletics Centre"
+            },
+            "expected_output": null,
+            "output_key": "place_rating"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (Google rating of Queensland Sport and Athletics Centre) from https://en.wikipedia.org/wiki/Queensland_Sport_and_Athletics_Centre",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 9,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Queensland_Sport_and_Athletics_Centre",
+      "extraction_target": "Combine the elevation of Queensland Sport and Athletics Centre and the Google rating of Queensland Sport and Athletics Centre: (85 + 4)",
+      "extraction_section": null,
+      "extracted_value": 89,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(85.806884765625) + int(4.2)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Queensland Sport and Athletics Centre add Google rating of Queensland Sport and Athletics Centre",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        7,
+        8
+      ]
+    },
+    {
+      "index": 10,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Pocono_Raceway",
+      "extraction_target": "Look up the elevation at 1234 Long Pond Road Blakeslee",
+      "extraction_section": null,
+      "extracted_value": 569.057861328125,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "1234 Long Pond Road Blakeslee"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for 1234 Long Pond Road Blakeslee",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        9
+      ]
+    },
+    {
+      "index": 11,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Vodno",
+      "extraction_target": "Look up the elevation at Vodno",
+      "extraction_section": null,
+      "extracted_value": 431.6098022460938,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Vodno"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for Vodno",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        10
+      ]
+    },
+    {
+      "index": 12,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/2000_Summer_Olympics_closing_ceremony",
+      "extraction_target": "name of the Artistic Director and Producer for the closing ceremony",
+      "extraction_section": null,
+      "extracted_value": "David Atkins",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Ontario Highway 7 wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Ontario_Highway_7",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Place the Paralympics within the bigger Sydney 2000 context by linking to Olympic ceremonies and venues used during that year.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        11
+      ]
+    },
+    {
+      "index": 13,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Ontario_Highway_7",
+      "extraction_target": "Convert 251 km to miles",
+      "extraction_section": null,
+      "extracted_value": 155,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "# Convert km to miles\nvalue = 251.0\nconverted = value * 0.621371\nresult = int(converted)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "converted"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: convert 251 km to miles",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        12
+      ]
+    },
+    {
+      "index": 14,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Ontario_Highway_7",
+      "extraction_target": "Reason: the largest prime factor of that figure",
+      "extraction_section": null,
+      "extracted_value": 31,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (largest_prime_factor) on stop 9 value",
+      "reason_transform": "largest_prime_factor",
+      "reason_source_stop": 13,
+      "reason_code": "def largest_prime_factor(n):\n    n = abs(int(n))\n    if n <= 1: return n\n    d = 2\n    while d * d <= n:\n        while n % d == 0: n //= d\n        d += 1\n    return n\nresult = largest_prime_factor(155)\nprint(result)",
+      "depends_on": [
+        13
+      ]
+    },
+    {
+      "index": 15,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/2013_European_Athletics_U23_Championships",
+      "extraction_target": "the host city of the championships",
+      "extraction_section": null,
+      "extracted_value": "Tampere, Finland",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "1972 in baseball wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/1972_in_baseball",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Show the athlete development pathway via continental U23 championships — the competitions that help create future Paralympic contenders.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        14
+      ]
+    },
+    {
+      "index": 16,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/2013_European_Athletics_U23_Championships",
+      "extraction_target": "Look up the elevation of Tampere, Finland",
+      "extraction_section": null,
+      "extracted_value": 91.2018051147461,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Tampere, Finland"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Tampere, Finland) from https://en.wikipedia.org/wiki/2013_European_Athletics_U23_Championships",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        15
+      ]
+    },
+    {
+      "index": 17,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/2013_European_Athletics_U23_Championships",
+      "extraction_target": "Look up the count of churches near Tampere, Finland",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "churches near Tampere, Finland"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of churches near Tampere, Finland) from https://en.wikipedia.org/wiki/2013_European_Athletics_U23_Championships",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        15
+      ]
+    },
+    {
+      "index": 18,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/2013_European_Athletics_U23_Championships",
+      "extraction_target": "Combine the elevation of Tampere, Finland and the count of churches near Tampere, Finland: abs(91 - 20)",
+      "extraction_section": null,
+      "extracted_value": 71,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(91.2018051147461) - int(20.0))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Tampere, Finland abs_diff count of churches near Tampere, Finland",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        16,
+        17
+      ]
+    },
+    {
+      "index": 19,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/1972_in_baseball",
+      "extraction_target": "Convert 251 meters to feet",
+      "extraction_section": null,
+      "extracted_value": 823,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "# Convert meters to feet\nvalue = 251.0\nconverted = value * 3.28084\nresult = int(converted)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "converted"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: convert 251 meters to feet",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        18
+      ]
+    },
+    {
+      "index": 20,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Europe_Triathlon_Championships",
+      "extraction_target": "the year from which the standard distance championships became part of the European Championships multi-sport event every four years",
+      "extraction_section": "History",
+      "extracted_value": 2018,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "BYU Cougars wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/BYU_Cougars",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Bring in a multi-discipline European championship to illustrate how multi-sport preparation and classification systems intersect with Paralympic training strategies.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        19
+      ]
+    },
+    {
+      "index": 21,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/BYU_Cougars",
+      "extraction_target": "the number of individual and relay NCAA champions",
+      "extraction_section": null,
+      "extracted_value": 86,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/BYU_Cougars",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Highlight a prominent collegiate athletics program to show one route athletes take for development, access to facilities, and coaching expertise.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        20
+      ]
+    },
+    {
+      "index": 22,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/BYU_Cougars",
+      "extraction_target": "Reason: the number of 1-bits in its binary representation",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (binary_1bit_count) on stop 13 value",
+      "reason_transform": "binary_1bit_count",
+      "reason_source_stop": 21,
+      "reason_code": "result = bin(abs(int(86))).count('1')\nprint(result)",
+      "depends_on": [
+        21
+      ]
+    },
+    {
+      "index": 23,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Athletics_at_the_2017_Jeux_de_la_Francophonie",
+      "extraction_target": "the host city of the athletics events",
+      "extraction_section": null,
+      "extracted_value": "Abidjan, Ivory Coast",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Athletics_at_the_2017_Jeux_de_la_Francophonie",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Include a regional multi-sport competition with athletics to demonstrate how regional meets feed into global competitions like the Paralympics.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        22
+      ]
+    },
+    {
+      "index": 24,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Athletics_at_the_2017_Jeux_de_la_Francophonie",
+      "extraction_target": "Look up the elevation of Abidjan, Ivory Coast",
+      "extraction_section": null,
+      "extracted_value": 23.93559837341309,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Abidjan, Ivory Coast"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Abidjan, Ivory Coast) from https://en.wikipedia.org/wiki/Athletics_at_the_2017_Jeux_de_la_Francophonie",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        23
+      ]
+    },
+    {
+      "index": 25,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Athletics_at_the_2017_Jeux_de_la_Francophonie",
+      "extraction_target": "Look up the count of hotels near Abidjan, Ivory Coast",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "hotels near Abidjan, Ivory Coast"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of hotels near Abidjan, Ivory Coast) from https://en.wikipedia.org/wiki/Athletics_at_the_2017_Jeux_de_la_Francophonie",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        23
+      ]
+    },
+    {
+      "index": 26,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Athletics_at_the_2017_Jeux_de_la_Francophonie",
+      "extraction_target": "Combine the elevation of Abidjan, Ivory Coast and the count of hotels near Abidjan, Ivory Coast: (23 + 20)",
+      "extraction_section": null,
+      "extracted_value": 43,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(23.93559837341309) + int(20.0)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Abidjan, Ivory Coast add count of hotels near Abidjan, Ivory Coast",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        24,
+        25
+      ]
+    },
+    {
+      "index": 27,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Athletics_at_the_2017_Jeux_de_la_Francophonie",
+      "extraction_target": "Reason: the number of vowels in that name",
+      "extraction_section": null,
+      "extracted_value": 7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (vowel_count) on stop 14 value",
+      "reason_transform": "vowel_count",
+      "reason_source_stop": 23,
+      "reason_code": "result = sum(1 for c in \"Abidjan, Ivory Coast\".lower() if c in 'aeiou')\nprint(result)",
+      "depends_on": [
+        23
+      ]
+    },
+    {
+      "index": 28,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Athletics_at_the_1966_British_Empire_and_Commonwealth_Games_%E2%80%93_Men%27s_4_%C3%97_110_yards_relay",
+      "extraction_target": "the previous Games year shown in the navigation",
+      "extraction_section": null,
+      "extracted_value": 1962,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Athletics_at_the_1966_British_Empire_and_Commonwealth_Games_%E2%80%93_Men%27s_4_%C3%97_110_yards_relay",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Finish by connecting modern Paralympic sprinting to historical athletics events, showing continuity and change in event formats, distances and competitive heritage.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        27
+      ]
+    },
+    {
+      "index": 29,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Athletics_at_the_1966_British_Empire_and_Commonwealth_Games_%E2%80%93_Men%27s_4_%C3%97_110_yards_relay",
+      "extraction_target": "Reason: the largest prime factor of that figure",
+      "extraction_section": null,
+      "extracted_value": 109,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (largest_prime_factor) on stop 15 value",
+      "reason_transform": "largest_prime_factor",
+      "reason_source_stop": 28,
+      "reason_code": "def largest_prime_factor(n):\n    n = abs(int(n))\n    if n <= 1: return n\n    d = 2\n    while d * d <= n:\n        while n % d == 0: n //= d\n        d += 1\n    return n\nresult = largest_prime_factor(1962)\nprint(result)",
+      "depends_on": [
+        28
+      ]
+    },
+    {
+      "index": 30,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: digital_root(16 + 85 + 431 + 4)",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "digital_root(16 + 85 + 431 + 4)",
+        "expression_code": "def digital_root(n):\n    n = abs(int(n))\n    return n if n == 0 else ((n - 1) % 9) + 1\nresult = digital_root(16 + 85 + 431 + 4)\nprint(result)",
+        "referenced_stops": [
+          1,
+          7,
+          11,
+          22
+        ]
+      },
+      "reasoning": "Compute stop: digital_root(16 + 85 + 431 + 4) = 5",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1,
+        7,
+        11,
+        22
+      ]
+    }
+  ],
+  "passcode": 5,
+  "difficulty": {
+    "level": "extreme",
+    "depth": 31,
+    "tool_stop_count": 15,
+    "reason_stop_count": 5,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Unearth the thrilling moment when speed met spirit at the Sydney 2000; find out the winning time in the T42 men's 100 meters.\n\n2. Which country sent a formidable team to these games? Discover how many sports its athletes competed in.\n\n3. Now, seek something deeper: what is the sum of the distinct prime factors of that total from clue 2?\n\n4. A land of vast stretches, what is the current population that occupies this northern territory?\n\n5. Across the ocean, which nation sent even more athletes to the games? Count their number of competitors.\n\n6. In the reign of metrics, how far does 12 kilometers translate into miles?\n\n7. Find the heartbeat of a stadium where many athletes found glory; what is the seating capacity here?\n\n8. Ascend to new heights! What elevation does this sports center rise to above sea level?\n\n9. The patrons have spoken — how do visitors rate this venue on a scale from one to five stars?\n\n10. Before you venture forth, combine the height from clue 8 with the rating you unearthed in clue 9.\n\n11. In a realm of racing excitement, what is the elevation recorded at the address where racing dreams come true at 1234 Long Pond Road?\n\n12. Seek altitude in the picturesque slopes of a nearby mountain—what does Vodno’s elevation measure?\n\n13. In a grand spectacle of sport, who guided the artistic vision of the closing ceremony; etch their name for your next stepping stone?\n\n14. Upon the sacred roads of Ontario, how many miles do 251 kilometers equate to?\n\n15. Now for a challenge: what is the largest prime factor of that figure you discovered in clue 14? \n\n16. Recall a gathering of young athletes in Europe; which city hosted the U23 championships you seek? \n\n17. In this Finnish city, how high does the ground lie above sea level?\n\n18. A spiritual journey awaits—how many churches stand sentinel near this urban center?\n\n19. From this magnificent tally, combine the heights from clue 17 and the count from clue 18 by taking their absolute difference.\n\n20. Close your eyes and imagine the distance—how many feet are equivalent to 251 meters?\n\n21. As the athletic history unfolds, which year marked the beginning of the standard distance championships? \n\n22. For the champions of the NCAA, how many individual and relay titles have they claimed for their glory?\n\n23. Now, seek wisdom in numbers: what is the count of 1-bits found in the binary representation of your knowledge from clue 22?\n\n24. Within the colorful tapestry of the Jeux de la Francophonie, which city played host to the athletics events?\n\n25. What elevation does the coastal city of Abidjan dwell at above sea level?\n\n26. A traveler needs rest—how many hotels can be found nearby this vibrant locale?\n\n27. To understand the terrain, sum the elevation from clue 25 and the hotel count from clue 26.\n\n28. As you think of the city named earlier, how many vowels are found in that title from clue 24?\n\n29. Glancing backward in history, what year preceded the Commonwealth Games where they held relays?\n\n30. Challenge your wits: determine the largest prime factor of the year you unearthed in clue 29.\n\n31. Finally, gather your insights: calculate the digital root of (clue 2 + clue 8 + clue 12 + clue 23). Your result shall yield a single digit!",
+  "metadata": {
+    "theme": "From a single T42 100m final at Sydney 2000, trace the athletes, national teams, venues and environmental/logistical data that shape elite Paralympic sprinting — connecting results, host infrastructure, national context and measurable factors (elevation, distance, sunshine, population, etc.) that influence performance and planning.",
+    "difficulty": "extreme",
+    "sample_id": "sample_083",
+    "pages_crawled": 2909
+  },
+  "generated_at": "2026-03-16T11:39:20.006023+00:00"
+}

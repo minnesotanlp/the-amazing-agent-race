@@ -1,0 +1,129 @@
+{
+  "trail_id": "trail_8eeefc98",
+  "seed_url": "https://en.wikipedia.org/wiki/Park_Jong-won_(footballer)",
+  "seed_title": "Park Jong-won (footballer)",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Park_Jong-won_(footballer)",
+      "extraction_target": "place of birth",
+      "extraction_section": null,
+      "extracted_value": "South Korea",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Auckland Rugby Union wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Auckland_Rugby_Union",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start with the player to establish his origin (where he was born/raised), which anchors the rest of the travel/mobility narrative.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Auckland_Rugby_Union",
+      "extraction_target": "Calculate the number of days between 1883-01-01 and 2026-03-15",
+      "extraction_section": null,
+      "extracted_value": 52303,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "from datetime import date\nd1 = date.fromisoformat('1883-01-01')\nd2 = date.fromisoformat('2026-03-15')\nresult = abs((d2 - d1).days)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "days"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: date computation 1883-01-01 to 2026-03-15 (pinned)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Auckland_Rugby_Union",
+      "extraction_target": "Reason: the sum of its digits",
+      "extraction_section": null,
+      "extracted_value": 13,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_sum) on stop 1 value",
+      "reason_transform": "digit_sum",
+      "reason_source_stop": 1,
+      "reason_code": "result = sum(int(d) for d in str(abs(int(52303))))\nprint(result)"
+    },
+    {
+      "index": 3,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: digital_root(52303 + 13)",
+      "extraction_section": null,
+      "extracted_value": 8,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "digital_root(52303 + 13)",
+        "expression_code": "def digital_root(n):\n    n = abs(int(n))\n    return n if n == 0 else ((n - 1) % 9) + 1\nresult = digital_root(52303 + 13)\nprint(result)",
+        "referenced_stops": [
+          1,
+          2
+        ]
+      },
+      "reasoning": "Compute stop: digital_root(52303 + 13) = 8",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 8,
+  "difficulty": {
+    "level": "easy",
+    "depth": 4,
+    "tool_stop_count": 1,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "Here is the rewritten riddle:\n\n1. Seek the page about a South Korean footballer known for his skill who shares a name with a famous character in a 7-part series and tell me the town or city where his life began.  \n2. There exists a page about the governing body for rugby in New Zealand's largest city; using that context, calculate how many days elapsed between 1 January 1883 and 15 March 2026.  \n3. What number do you get if you add together every digit of the days-count you just found (the result from clue 2)?  \n4. The final operation, which combines your earlier discoveries, demands that you compute the digital root of (clue 2 + clue 3); report that single digit (0–9).",
+  "metadata": {
+    "theme": "From a South Korean footballer to global athlete mobility — locate the player's origin, then compute travel time to a major rugby center (Auckland) to illustrate international movement in sport.",
+    "difficulty": "easy",
+    "sample_id": "sample_059",
+    "pages_crawled": 2461,
+    "source": "trail_puzzles_v2"
+  },
+  "generated_at": "2026-03-15T15:20:57.872680+00:00"
+}

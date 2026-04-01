@@ -1,0 +1,129 @@
+{
+  "trail_id": "trail_40c6908f",
+  "seed_url": "https://en.wikipedia.org/wiki/Jack_H._Goaslind",
+  "seed_title": "Jack H. Goaslind",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Jack_H._Goaslind",
+      "extraction_target": "start date of service as a member of the First Quorum of the Seventy",
+      "extraction_section": null,
+      "extracted_value": "September 30, 1978",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/First_Quorum_of_the_Seventy",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Jack H. Goaslind is the seed: a longtime LDS general authority whose call and release dates (and positions held) anchor the trail about leadership tenure in the First Quorum of the Seventy.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/First_Quorum_of_the_Seventy",
+      "extraction_target": "Calculate the number of days between 1978-09-30 and 2026-03-15",
+      "extraction_section": null,
+      "extracted_value": 17333,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "from datetime import date\nd1 = date.fromisoformat('1978-09-30')\nd2 = date.fromisoformat('2026-03-15')\nresult = abs((d2 - d1).days)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "days"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: date computation 1978-09-30 to 2026-03-15 (pinned)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/First_Quorum_of_the_Seventy",
+      "extraction_target": "Reason: the number you get by reversing its digits",
+      "extraction_section": null,
+      "extracted_value": 33371,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_reversal) on stop 1 value",
+      "reason_transform": "digit_reversal",
+      "reason_source_stop": 1,
+      "reason_code": "result = int(str(abs(int(17333)))[::-1])\nprint(result)"
+    },
+    {
+      "index": 3,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: digital_root(17333 + 33371)",
+      "extraction_section": null,
+      "extracted_value": 7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "digital_root(17333 + 33371)",
+        "expression_code": "def digital_root(n):\n    n = abs(int(n))\n    return n if n == 0 else ((n - 1) % 9) + 1\nresult = digital_root(17333 + 33371)\nprint(result)",
+        "referenced_stops": [
+          1,
+          2
+        ]
+      },
+      "reasoning": "Compute stop: digital_root(17333 + 33371) = 7",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 7,
+  "difficulty": {
+    "level": "easy",
+    "depth": 4,
+    "tool_stop_count": 1,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "direct_link"
+  },
+  "riddle": "Here is the riddle with the corrected clues:\n\n1. Seek the page about the man from Salt Lake City who served as a member of the church's senior body of seventy general authorities, known for his time in leadership roles from the late twentieth century; then follow the internal link on that page to the article about that assembly.\n\n2. There exists an article about that assembly; for a fixed reference, determine how many days elapsed between 1978-09-30 and 2026-03-15.\n\n3. What number do you obtain when you reverse the digits of the quantity found in clue 2?\n\n4. If you add clue 2 to clue 3 and then take the digital root of that sum, what single digit (0–9) results?",
+  "metadata": {
+    "theme": "LDS Church leadership: tracing Jack H. Goaslind's service within the First Quorum of the Seventy and computing his tenure",
+    "difficulty": "easy",
+    "sample_id": "sample_078",
+    "pages_crawled": 3230,
+    "source": "trail_puzzles_v2"
+  },
+  "generated_at": "2026-03-15T17:22:25.090178+00:00"
+}

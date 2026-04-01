@@ -1,0 +1,137 @@
+{
+  "trail_id": "trail_88b70320",
+  "seed_url": "https://en.wikipedia.org/wiki/Sergei_Antonchik",
+  "seed_title": "Sergei Antonchik",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Sergei_Antonchik",
+      "extraction_target": "the date of birth of Sergei Antonchik",
+      "extraction_section": null,
+      "extracted_value": "1 April 1956",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "M-Net wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/M-Net",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start with the individual: extracting Sergei Antonchik's place of birth anchors the trail geographically so we can compare his origin to major media company locations.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/M-Net",
+      "extraction_target": "Look up the elevation at Randburg",
+      "extraction_section": null,
+      "extracted_value": 1531.816650390625,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Randburg"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for Randburg",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/M-Net",
+      "extraction_target": "Reason: the number of 1-bits in its binary representation",
+      "extraction_section": null,
+      "extracted_value": 9,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (binary_1bit_count) on stop 1 value",
+      "reason_transform": "binary_1bit_count",
+      "reason_source_stop": 1,
+      "reason_code": "result = bin(abs(int(1531))).count('1')\nprint(result)"
+    },
+    {
+      "index": 3,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: (1531 + 9) % 10",
+      "extraction_section": null,
+      "extracted_value": 0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "(1531 + 9) % 10",
+        "expression_code": "result = (1531 + 9) % 10\nprint(result)",
+        "referenced_stops": [
+          1,
+          2
+        ]
+      },
+      "reasoning": "Compute stop: (1531 + 9) % 10 = 0",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 0,
+  "difficulty": {
+    "level": "easy",
+    "depth": 4,
+    "tool_stop_count": 1,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "Here is the revised riddle:\n\n1. Seek the page of the figure known for his connections to athletics, particularly in the domain of track and field; from its opening lines, record the date on which he was born.\n\n2. What elevation above sea level does the Johannesburg suburb Randburg sit at, as you would find when consulting the page for the major South African pay‑TV broadcaster commonly associated with DStv?\n\n3. If you convert the elevation you just found into base‑2, count how many 1‑bits appear in that binary form — that count is your next number.\n\n4. At journey's end, compute (clue 2 + clue 3) % 10 and report that single digit (0–9).",
+  "metadata": {
+    "theme": "From a person's birthplace to global media hubs — mapping geographic distance and audience scale to show how an individual's origin relates to major broadcasters",
+    "difficulty": "easy",
+    "sample_id": "sample_032",
+    "pages_crawled": 1508,
+    "source": "trail_puzzles_v2"
+  },
+  "generated_at": "2026-03-15T12:57:39.177875+00:00"
+}

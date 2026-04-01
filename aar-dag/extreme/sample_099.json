@@ -1,0 +1,1152 @@
+{
+  "trail_id": "trail_0e96c110",
+  "seed_url": "https://en.wikipedia.org/wiki/Ghent_(Norfolk)",
+  "seed_title": "Ghent (Norfolk)",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Ghent_(Norfolk)",
+      "extraction_target": "the coordinates listed in the infobox (field: 'Coordinates')",
+      "extraction_section": "infobox",
+      "extracted_value": "36°51′45.6″N 76°18′2.9″W﻿ / ﻿36.862667°N 76.300806°W﻿ / 36.862667; -76.300806&params=36_51_45.6_N_76_18_2.9_W_type:landmark_region:US-VA)",
+      "extracted_value_type": "coords",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Hundred (county division) wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Hundred_(county_division)",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start at the seed: the small Norfolk hamlet named Ghent — the local anchor for a trail about place names and local institutions.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Ghent_(Norfolk)",
+      "extraction_target": "Look up the elevation of Ghent",
+      "extraction_section": null,
+      "extracted_value": 7.268630027770996,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Ghent"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Ghent) from https://en.wikipedia.org/wiki/Ghent_(Norfolk)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Ghent_(Norfolk)",
+      "extraction_target": "Look up the count of churches near Ghent",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "churches near Ghent"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of churches near Ghent) from https://en.wikipedia.org/wiki/Ghent_(Norfolk)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Ghent_(Norfolk)",
+      "extraction_target": "Combine the elevation of Ghent and the count of churches near Ghent: abs(7 - 20)",
+      "extraction_section": null,
+      "extracted_value": 13,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(7.268630027770996) - int(20.0))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Ghent abs_diff count of churches near Ghent",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1,
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Hundred_(county_division)",
+      "extraction_target": "the number of language links shown at the top of the article",
+      "extraction_section": null,
+      "extracted_value": 22,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Hundred_(county_division)",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Explains the historic county subdivision (the 'hundred') that organized rural England, giving context to local Norfolk governance.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Hundred_(county_division)",
+      "extraction_target": "Reason: the number of 1-bits in its binary representation",
+      "extraction_section": null,
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (binary_1bit_count) on stop 1 value",
+      "reason_transform": "binary_1bit_count",
+      "reason_source_stop": 4,
+      "reason_code": "result = bin(abs(int(22))).count('1')\nprint(result)",
+      "depends_on": [
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/High_Sheriff_of_Kent",
+      "extraction_target": "the year prior to which the office was previously known as 'sheriff'",
+      "extraction_section": null,
+      "extracted_value": "1974",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Kent County Cricket Club wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Kent_County_Cricket_Club",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A county civic office example (High Sheriff) showing how county-level institutions evolved from the same administrative landscape as small hamlets.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/High_Sheriff_of_Kent",
+      "extraction_target": "Look up the elevation of High Sheriff of Kent",
+      "extraction_section": null,
+      "extracted_value": 44.10449981689453,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "High Sheriff of Kent"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of High Sheriff of Kent) from https://en.wikipedia.org/wiki/High_Sheriff_of_Kent",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/High_Sheriff_of_Kent",
+      "extraction_target": "Look up the count of temples near High Sheriff of Kent",
+      "extraction_section": null,
+      "extracted_value": 4.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "temples near High Sheriff of Kent"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of temples near High Sheriff of Kent) from https://en.wikipedia.org/wiki/High_Sheriff_of_Kent",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 9,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/High_Sheriff_of_Kent",
+      "extraction_target": "Combine the elevation of High Sheriff of Kent and the count of temples near High Sheriff of Kent: (44 + 4)",
+      "extraction_section": null,
+      "extracted_value": 48,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(44.10449981689453) + int(4.0)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of High Sheriff of Kent add count of temples near High Sheriff of Kent",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        7,
+        8
+      ]
+    },
+    {
+      "index": 10,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Kent_County_Cricket_Club",
+      "extraction_target": "the listed capacity of the home ground",
+      "extraction_section": null,
+      "extracted_value": 7000,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Kent_County_Cricket_Club",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "County sport (cricket) as a social institution rooted in county identity — a local cultural thread from Norfolk to neighbouring Kent.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        9
+      ]
+    },
+    {
+      "index": 11,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Kent_County_Cricket_Club",
+      "extraction_target": "Reason: the sum of its digits",
+      "extraction_section": null,
+      "extracted_value": 7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_sum) on stop 3 value",
+      "reason_transform": "digit_sum",
+      "reason_source_stop": 10,
+      "reason_code": "result = sum(int(d) for d in str(abs(int(7000))))\nprint(result)",
+      "depends_on": [
+        10
+      ]
+    },
+    {
+      "index": 12,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Bidwell_Mansion",
+      "extraction_target": "Look up the elevation at 525 Esplanade",
+      "extraction_section": null,
+      "extracted_value": 27.54957389831543,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "525 Esplanade"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for 525 Esplanade",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        11
+      ]
+    },
+    {
+      "index": 13,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Bidwell_Mansion",
+      "extraction_target": "Reason: the number you get by reversing its digits",
+      "extraction_section": null,
+      "extracted_value": 72,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_reversal) on stop 4 value",
+      "reason_transform": "digit_reversal",
+      "reason_source_stop": 12,
+      "reason_code": "result = int(str(abs(int(27)))[::-1])\nprint(result)",
+      "depends_on": [
+        12
+      ]
+    },
+    {
+      "index": 14,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Tudor_Revival_architecture",
+      "extraction_target": "the period of years usually referred to as the Tudor period",
+      "extraction_section": "Identification",
+      "extracted_value": "between about 1485 and 1560",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Chapleau Crown Game Preserve wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Chapleau_Crown_Game_Preserve",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "An architectural style common in English locales that helps explain the built environment of hamlets and revived styles exported abroad.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        13
+      ]
+    },
+    {
+      "index": 15,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Chapleau_Crown_Game_Preserve",
+      "extraction_target": "Convert 7000 meters to yards",
+      "extraction_section": null,
+      "extracted_value": 7655,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "# Convert meters to yards\nvalue = 7000.0\nconverted = value * 1.09361\nresult = int(converted)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "converted"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: convert 7000 meters to yards",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        14
+      ]
+    },
+    {
+      "index": 16,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Chapleau_Crown_Game_Preserve",
+      "extraction_target": "Reason: the digital root (iterated digit sum until single digit)",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digital_root) on stop 6 value",
+      "reason_transform": "digital_root",
+      "reason_source_stop": 15,
+      "reason_code": "n = abs(int(7655))\nresult = n if n == 0 else ((n - 1) % 9) + 1\nprint(result)",
+      "depends_on": [
+        15
+      ]
+    },
+    {
+      "index": 17,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Colonial_Revival_architecture",
+      "extraction_target": "the approximate period when fairly small numbers of Colonial Revival homes were built",
+      "extraction_section": null,
+      "extracted_value": "c. 1880–1910",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Population of Canada wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Population_of_Canada",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "The American architectural movement that echoes British forms — ties local English architectural ideas to their American reinterpretation.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        16
+      ]
+    },
+    {
+      "index": 18,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Population_of_Canada",
+      "extraction_target": "Look up the elevation at Population of Canada",
+      "extraction_section": null,
+      "extracted_value": 469.0814514160156,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Population of Canada"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for Population of Canada",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        17
+      ]
+    },
+    {
+      "index": 19,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Virginia_Landmarks_Register",
+      "extraction_target": "the approximate number of sites on the national register that are also listed on the state register (as phrased in the article)",
+      "extraction_section": "List of Virginia Landmarks",
+      "extracted_value": 2800,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Ranchi–Ajmer Garib Nawaz Express wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Ranchi%E2%80%93Ajmer_Garib_Nawaz_Express",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A registry of historic places in Virginia illustrating how place memory is curated in a former British colony — parallels with English localism.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        18
+      ]
+    },
+    {
+      "index": 20,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Virginia_Landmarks_Register",
+      "extraction_target": "Look up the elevation of Virginia Landmarks Register",
+      "extraction_section": null,
+      "extracted_value": 213.6569519042969,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Virginia Landmarks Register"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Virginia Landmarks Register) from https://en.wikipedia.org/wiki/Virginia_Landmarks_Register",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        19
+      ]
+    },
+    {
+      "index": 21,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Virginia_Landmarks_Register",
+      "extraction_target": "Look up the count of universities near Virginia Landmarks Register",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "universities near Virginia Landmarks Register"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of universities near Virginia Landmarks Register) from https://en.wikipedia.org/wiki/Virginia_Landmarks_Register",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        19
+      ]
+    },
+    {
+      "index": 22,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Virginia_Landmarks_Register",
+      "extraction_target": "Combine the elevation of Virginia Landmarks Register and the count of universities near Virginia Landmarks Register: (213 + 20)",
+      "extraction_section": null,
+      "extracted_value": 233,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(213.6569519042969) + int(20.0)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Virginia Landmarks Register add count of universities near Virginia Landmarks Register",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        20,
+        21
+      ]
+    },
+    {
+      "index": 23,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Ranchi%E2%80%93Ajmer_Garib_Nawaz_Express",
+      "extraction_target": "Convert 7000 km to miles",
+      "extraction_section": null,
+      "extracted_value": 4349,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "# Convert km to miles\nvalue = 7000.0\nconverted = value * 0.621371\nresult = int(converted)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "converted"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: convert 7000 km to miles",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        22
+      ]
+    },
+    {
+      "index": 24,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Virginia_Washington_Monument",
+      "extraction_target": "the location listed in the infobox (field: 'Location')",
+      "extraction_section": "infobox",
+      "extracted_value": "Capitol Square, Richmond, Virginia",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Namesake wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Namesake",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A concrete example of a commemorative monument in the United States tied to British/American historical memory — a transatlantic echo from small English places to large public monuments.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        23
+      ]
+    },
+    {
+      "index": 25,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Virginia_Washington_Monument",
+      "extraction_target": "Look up the elevation of Capitol Square, Richmond, Virginia",
+      "extraction_section": null,
+      "extracted_value": 50.15598678588867,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Capitol Square, Richmond, Virginia"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Capitol Square, Richmond, Virginia) from https://en.wikipedia.org/wiki/Virginia_Washington_Monument",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        24
+      ]
+    },
+    {
+      "index": 26,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Virginia_Washington_Monument",
+      "extraction_target": "Look up the count of churches near Capitol Square, Richmond, Virginia",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "churches near Capitol Square, Richmond, Virginia"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of churches near Capitol Square, Richmond, Virginia) from https://en.wikipedia.org/wiki/Virginia_Washington_Monument",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        24
+      ]
+    },
+    {
+      "index": 27,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Virginia_Washington_Monument",
+      "extraction_target": "Combine the elevation of Capitol Square, Richmond, Virginia and the count of churches near Capitol Square, Richmond, Virginia: (50 + 20)",
+      "extraction_section": null,
+      "extracted_value": 70,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(50.15598678588867) + int(20.0)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Capitol Square, Richmond, Virginia add count of churches near Capitol Square, Richmond, Virginia",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        25,
+        26
+      ]
+    },
+    {
+      "index": 28,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Namesake",
+      "extraction_target": "the month and year shown in the Suffixes section maintenance note that it 'does not cite any sources'",
+      "extraction_section": "Suffixes",
+      "extracted_value": "June 2020",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "12-inch wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/12-inch",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "An explicit look at 'namesakes' to tie together why places like Ghent appear in England and overseas — the central naming theme of the trail.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        27
+      ]
+    },
+    {
+      "index": 29,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/12-inch",
+      "extraction_target": "Convert 7000 meters to yards",
+      "extraction_section": null,
+      "extracted_value": 7655,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "# Convert meters to yards\nvalue = 7000.0\nconverted = value * 1.09361\nresult = int(converted)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "converted"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: convert 7000 meters to yards",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        28
+      ]
+    },
+    {
+      "index": 30,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/I_Am_the_Walrus",
+      "extraction_target": "the release date of the single",
+      "extraction_section": null,
+      "extracted_value": "24 November 1967",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "1937 Indian provincial elections wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/1937_Indian_provincial_elections",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A famous piece of British music as cultural context — shows how small places feed into broader cultural waves (Beatles → global culture).",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        29
+      ]
+    },
+    {
+      "index": 31,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/1937_Indian_provincial_elections",
+      "extraction_target": "Calculate the number of days between 2020-01-01 and 2026-03-16",
+      "extraction_section": null,
+      "extracted_value": 2266,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "from datetime import date\nd1 = date.fromisoformat('2020-01-01')\nd2 = date.fromisoformat('2026-03-16')\nresult = abs((d2 - d1).days)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "days"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: date computation 2020-01-01 to 2026-03-16 (pinned)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        30
+      ]
+    },
+    {
+      "index": 32,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/1937_Indian_provincial_elections",
+      "extraction_target": "Reason: the largest prime factor of that figure",
+      "extraction_section": null,
+      "extracted_value": 103,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (largest_prime_factor) on stop 15 value",
+      "reason_transform": "largest_prime_factor",
+      "reason_source_stop": 31,
+      "reason_code": "def largest_prime_factor(n):\n    n = abs(int(n))\n    if n <= 1: return n\n    d = 2\n    while d * d <= n:\n        while n % d == 0: n //= d\n        d += 1\n    return n\nresult = largest_prime_factor(2266)\nprint(result)",
+      "depends_on": [
+        31
+      ]
+    },
+    {
+      "index": 33,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Supersonic_(Oasis_song)",
+      "extraction_target": "the release date of the single in Ireland",
+      "extraction_section": null,
+      "extracted_value": "5 April 1994",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Supersonic_(Oasis_song)",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "End with a modern British musical echo (Oasis) to close the cultural loop — from a small Norfolk hamlet to global British cultural exports.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        32
+      ]
+    },
+    {
+      "index": 34,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: (213 + 70 + 7655) % 10",
+      "extraction_section": null,
+      "extracted_value": 8,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "(213 + 70 + 7655) % 10",
+        "expression_code": "result = (213 + 70 + 7655) % 10\nprint(result)",
+        "referenced_stops": [
+          20,
+          27,
+          29
+        ]
+      },
+      "reasoning": "Compute stop: (213 + 70 + 7655) % 10 = 8",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        20,
+        27,
+        29
+      ]
+    }
+  ],
+  "passcode": 8,
+  "difficulty": {
+    "level": "extreme",
+    "depth": 35,
+    "tool_stop_count": 18,
+    "reason_stop_count": 5,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. In a quaint hamlet with a name echoing the city of Flanders, what geographical coordinates can be found marking its existence?\n\n2. Ascend from this tiny locality and discover the height at which it stands above the sea. What is this elevation in meters?\n\n3. Seek the sacred places of worship in proximity to this spot — how many churches rise to serve the faithful?\n\n4. The answers you've gathered will paint a new picture: take the elevation from clue 2 and subtract the number of churches from clue 3. What remains in terms of absolute value?\n\n5. There exists a page detailing a historical division of counties in England — what numerical links to languages dance at the top of that article?\n\n6. Should you weave the figure from clue 5 into binary, how many 1-bits will you find dancing within?\n\n7. A vital role in law and order was once held by a title that has altered over years. In what year did this title transform from 'sheriff' to a new designation?\n\n8. What height does the current holder of this office touch in the skies above? Seek the elevation listed for this personage.\n\n9. Explore the divine attributes nearby; how many temples can be located in the vicinity of where this title resides?\n\n10. Blend your findings: elevate the height from clue 8 by adding the count of temples from clue 9. What is our new distinction in numeric form?\n\n11. There’s a club dedicated to a beloved sport in this region; what is the maximum number of supporters that can fill their sanctuary?\n\n12. Should you calculate the sum of the digits in the number you found from clue 11, what result do you derive?\n\n13. In a mansion resting at an address of number 525, what elevation can be found gracing the grounds?\n\n14. Find amusement in the digits and reverse them; what number do you now have as they dance back in order?\n\n15. The era most commonly associated with Tudor designs spanned from what year to what year? Reveal this range to proceed.\n\n16. How far does a stretch of 7000 meters translate into yards? Measure this conversion with care.\n\n17. From the yards of the previous clue, what is the digital root you get when summing the digits iteratively to arrive at a single digit?\n\n18. The architectural revival encompassing colonial influences began in what approximate year? Share this pivotal date with your journey.\n\n19. What elevation marks the area under the population of a vast northern land? Seek this height to continue your quest.\n\n20. Within a county of notable landmarks, how many sites boast a place on both the national and state registers — as referenced in the local history?\n\n21. Ascertain the height of the landmarks mentioned above; what is their altitude, marking the intersection of nature and history?\n\n22. Meanwhile, in the vicinity of landmark universities, how many students learn and grow? Count them to guide your steps further.\n\n23. Unify the elevation of these landmarks with the count of universities: add the two numbers together. What total do you garner?\n\n24. Now, transform 7000 kilometers into miles; what distance does that turn out to be?\n\n25. What geographic coordinate marks the location of a memorial honoring a key figure in American history? Reveal the detail to surmount.\n\n26. How high do the grounds of Capitol Square reach into the heavens? Seek out this elevation.\n\n27. Count the number of churches that surround the hallowed ground of Capitol Square. How many do they count?\n\n28. Finally, unify: what is the sum of the elevation from clue 26 and the count from clue 27?\n\n29. Within the notes of a page about those who share namesake, what month and year are cited as lacking sources?\n\n30. Yet another measurement conversion awaits: how does 7000 meters translate into yards once more?\n\n31. Unravel the date on which the melody of a particular single was first released — what day marks its debut?\n\n32. What is the count of days transpiring between the first day of January, 2020, and a date in the spring of 2026? Chart this distance in time.\n\n33. Reflecting on that number, what is the largest prime factor that can be drawn from it?\n\n34. One should release their preconceptions; what was the date when a certain single hit the airwaves in Ireland?\n\n35. Now, compute the result of combining the total from clues 21, 28, and 30: (213 + 70 + 7655) mod 10. What single digit do you uncover?",
+  "metadata": {
+    "theme": "From a tiny Norfolk hamlet called Ghent to transatlantic echoes: a short cultural–administrative trail linking local place‑names, county governance and architecture to sport, monuments and British music — with tool stops to compare geography, climate and historical dates.",
+    "difficulty": "extreme",
+    "sample_id": "sample_099",
+    "pages_crawled": 5617
+  },
+  "generated_at": "2026-03-16T18:51:13.002018+00:00"
+}

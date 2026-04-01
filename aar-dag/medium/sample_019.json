@@ -1,0 +1,533 @@
+{
+  "trail_id": "trail_abdb8548",
+  "seed_url": "https://en.wikipedia.org/wiki/Naruto_Hichō",
+  "seed_title": "Naruto Hichō",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Naruto_Hich%C5%8D",
+      "extraction_target": "the page last edited on date and time as shown at the bottom of the article",
+      "extraction_section": null,
+      "extracted_value": "10 November 2025, at 21:22 (UTC)",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Jidaigeki",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start with a concrete example of Japanese period fiction/film to anchor the trail in jidaigeki storytelling.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Jidaigeki",
+      "extraction_target": "the historical daimyō whose travels are the (fictitious) subject of Mito Kōmon",
+      "extraction_section": "Types",
+      "extracted_value": "Tokugawa Mitsukuni",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Acorn TV wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Acorn_TV",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Explain the broader genre (jidaigeki) that frames Naruto Hichō and connects to other forms of historical drama globally.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Jidaigeki",
+      "extraction_target": "Count hotels near Jidaigeki",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "hotels near Jidaigeki"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (nearby_poi) derived from https://en.wikipedia.org/wiki/Jidaigeki",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Acorn_TV",
+      "extraction_target": "the year Acorn Media Group began distributing British television in the United States",
+      "extraction_section": "History",
+      "extracted_value": 1994,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Acorn_TV",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Move from content to distribution: a streaming service known for curating international and period dramas, showing how jidaigeki and similar works reach modern audiences.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Acorn_TV",
+      "extraction_target": "Reason: the number of characters when written as a Roman numeral",
+      "extraction_section": null,
+      "extracted_value": 7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (roman_numeral_letter_count) on stop 2 value",
+      "reason_transform": "roman_numeral_letter_count",
+      "reason_source_stop": 3,
+      "reason_code": "def to_roman(n):\n    n = abs(int(n))\n    vals = [(1000,'M'),(900,'CM'),(500,'D'),(400,'CD'),(100,'C'),\n            (90,'XC'),(50,'L'),(40,'XL'),(10,'X'),(9,'IX'),(5,'V'),(4,'IV'),(1,'I')]\n    r = ''\n    for v, s in vals:\n        while n >= v:\n            r += s; n -= v\n    return r\nresult = len(to_roman(1994))\nprint(result)",
+      "depends_on": [
+        3
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/ITV1",
+      "extraction_target": "the launch date listed in the infobox",
+      "extraction_section": null,
+      "extracted_value": "28 October 2002",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "History Hit wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/History_Hit",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A major broadcaster that exemplifies traditional TV distribution of historical dramas and adaptations in the UK market.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/History_Hit",
+      "extraction_target": "the number of divisions listed in the infobox",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "History Hit wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/History_Hit",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Bridge from drama to fact: a history media platform demonstrating contemporary appetite for historical content across formats (podcasts, documentaries, articles).",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/History_Hit",
+      "extraction_target": "Reason: the next prime number after that figure",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (next_prime) on stop 4 value",
+      "reason_transform": "next_prime",
+      "reason_source_stop": 6,
+      "reason_code": "def next_prime(n):\n    n = abs(int(n))\n    if n < 2: return 2\n    candidate = n + 1\n    while True:\n        if all(candidate % i != 0 for i in range(2, int(candidate**0.5)+1)):\n            return candidate\n        candidate += 1\nresult = next_prime(4)\nprint(result)",
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Finborough_Theatre",
+      "extraction_target": "the location listed in the infobox (field: 'Location')",
+      "extraction_section": "infobox",
+      "extracted_value": "West Brompton London, SW10 9ED United Kingdom",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Assassins (musical) wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Assassins_(musical)",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Shift to live performance: an example of a venue that stages historical plays and adaptations, keeping period storytelling in the theatre tradition.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        7
+      ]
+    },
+    {
+      "index": 9,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Assassins_(musical)",
+      "extraction_target": "the premiere date of the musical",
+      "extraction_section": null,
+      "extracted_value": "December 18, 1990",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Olvera Street wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Olvera_Street",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "An example of modern theatre using historical events/figures to create dramatic works, illustrating how history is reinterpreted on stage.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        8
+      ]
+    },
+    {
+      "index": 10,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Olvera_Street",
+      "extraction_target": "the geographic coordinates of Olvera Street as given at the top of the article",
+      "extraction_section": null,
+      "extracted_value": "34°03′27″N 118°14′17″W﻿ / ﻿34.057495°N 118.237996°W﻿ / 34.057495; -118.237996",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Dublin-Belfast railway line wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Dublin-Belfast_railway_line",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Compare another preserved historic street (in a different country) to Gastown to highlight how historic districts inspire storytelling and tourism worldwide.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        9
+      ]
+    },
+    {
+      "index": 11,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Dublin-Belfast_railway_line",
+      "extraction_target": "the line length as given in the infobox",
+      "extraction_section": null,
+      "extracted_value": "181 kilometres (112 mi)",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Dublin-Belfast_railway_line",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "End with an infrastructure page showing the physical link between historic cities and sites—underscoring how travel connects audiences to places that inspire and host historical storytelling.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        10
+      ]
+    },
+    {
+      "index": 12,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Dublin-Belfast_railway_line",
+      "extraction_target": "Look up the elevation of 181 kilometres (112 mi)",
+      "extraction_section": null,
+      "extracted_value": 413.5394897460938,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "181 kilometres (112 mi)"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of 181 kilometres (112 mi)) from https://en.wikipedia.org/wiki/Dublin-Belfast_railway_line",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        11
+      ]
+    },
+    {
+      "index": 13,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Dublin-Belfast_railway_line",
+      "extraction_target": "Look up the count of parks near 181 kilometres (112 mi)",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "parks near 181 kilometres (112 mi)"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of parks near 181 kilometres (112 mi)) from https://en.wikipedia.org/wiki/Dublin-Belfast_railway_line",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        11
+      ]
+    },
+    {
+      "index": 14,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Dublin-Belfast_railway_line",
+      "extraction_target": "Combine the elevation of 181 kilometres (112 mi) and the count of parks near 181 kilometres (112 mi): (413 + 20)",
+      "extraction_section": null,
+      "extracted_value": 433,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(413.5394897460938) + int(20.0)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of 181 kilometres (112 mi) add count of parks near 181 kilometres (112 mi)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        12,
+        13
+      ]
+    },
+    {
+      "index": 15,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Dublin-Belfast_railway_line",
+      "extraction_target": "Look up the elevation of 181 kilometres (112 mi)",
+      "extraction_section": null,
+      "extracted_value": 413.5394897460938,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "181 kilometres (112 mi)"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (elevation) derived from https://en.wikipedia.org/wiki/Dublin-Belfast_railway_line",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        14
+      ]
+    },
+    {
+      "index": 16,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: digital_root(7 + 433 + 413)",
+      "extraction_section": null,
+      "extracted_value": 7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "digital_root(7 + 433 + 413)",
+        "expression_code": "def digital_root(n):\n    n = abs(int(n))\n    return n if n == 0 else ((n - 1) % 9) + 1\nresult = digital_root(7 + 433 + 413)\nprint(result)",
+        "referenced_stops": [
+          4,
+          14,
+          15
+        ]
+      },
+      "reasoning": "Compute stop: digital_root(7 + 433 + 413) = 7",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        4,
+        14,
+        15
+      ]
+    }
+  ],
+  "passcode": 7,
+  "difficulty": {
+    "level": "medium",
+    "depth": 17,
+    "tool_stop_count": 5,
+    "reason_stop_count": 2,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Seek the tale that follows a ninja's journey, which began its own legendary run online; note the last moment it saw edits at the bottom of its chronicle.\n\n2. A certain fictional daimyō roams the pages of period drama — whose name symbolizes a balance of power and glory in storytelling?\n\n3. Among the shadows of traditional narratives, how many resting places for travelers exist within a stone's throw of the classic tales?\n\n4. In the realm of televised stories, a company emerged to bring British charm across the Atlantic in a certain year — which one was it?\n\n5. Now, take that year you just uncovered and translate it into its Roman roots. How many letters compose that numeral?\n\n6. One station on the broadcasting journey marks a significant arrival. When did this channel first appear to the eager audience?\n\n7. This channel hosts a myriad of segments — how many distinct divisions bring forth entertainment to the viewers?\n\n8. Continuing on your path, find a prime that follows the total of storytelling divisions you just counted.\n\n9. The stage where live performances of artistic expression unfold hides its location behind a curtain of text — can you reveal where it's situated?\n\n10. A musical that contemplates the roles of history’s most infamous figures had its debut on a significant date. What day did this tale first grace the stage?\n\n11. Nestled within a vibrant community, a notable street awaits discovery; what are its geographic coordinates, marking its cultural significance?\n\n12. As you travel along the track that connects major cities, how long is this route, measured in miles?\n\n13. Elevation can change as swiftly as the plot twists in a gripping drama — what lies beneath the tracks at this measure?\n\n14. To enrich your journey, how many parks can be found near the point of your travel upon this storied line?\n\n15. Combine the height of the tale with the count of nearby green spaces; what total do you achieve from these two discoveries?\n\n16. Once again, uncover the height above sea level; how high does this span rise once more?\n\n17. Now weave together the essence of your previous findings: compute the digital root of the sum of the results from clues 5, 15, and 16. What single digit emerges from your thoughtful calculation?",
+  "metadata": {
+    "theme": "From Japanese jidaigeki to global historical storytelling: tracing period drama from origins through modern distribution, live performance, historic places, and the travel that connects them.",
+    "difficulty": "medium",
+    "sample_id": "sample_019",
+    "pages_crawled": 2376,
+    "source": "trail_puzzles_v2"
+  },
+  "generated_at": "2026-03-15T16:43:03.048764+00:00"
+}

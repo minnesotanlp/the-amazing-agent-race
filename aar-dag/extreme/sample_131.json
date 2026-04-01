@@ -1,0 +1,923 @@
+{
+  "trail_id": "trail_9df5b124",
+  "seed_url": "https://en.wikipedia.org/wiki/AbbVie",
+  "seed_title": "AbbVie",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/AbbVie",
+      "extraction_target": "the company's headquarters location",
+      "extraction_section": null,
+      "extracted_value": "North Chicago, Illinois",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Pharmaceutical industry wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Pharmaceutical_industry",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start at AbbVie (seed): a major pharmaceutical company whose products and business decisions anchor this trail.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/AbbVie",
+      "extraction_target": "Look up the elevation of North Chicago, Illinois",
+      "extraction_section": null,
+      "extracted_value": 199.254150390625,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "North Chicago, Illinois"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of North Chicago, Illinois) from https://en.wikipedia.org/wiki/AbbVie",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/AbbVie",
+      "extraction_target": "Look up the count of hotels near North Chicago, Illinois",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "hotels near North Chicago, Illinois"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of hotels near North Chicago, Illinois) from https://en.wikipedia.org/wiki/AbbVie",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/AbbVie",
+      "extraction_target": "Combine the elevation of North Chicago, Illinois and the count of hotels near North Chicago, Illinois: abs(199 - 20)",
+      "extraction_section": null,
+      "extracted_value": 179,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(199.254150390625) - int(20.0))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of North Chicago, Illinois abs_diff count of hotels near North Chicago, Illinois",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1,
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Pharmaceutical_industry",
+      "extraction_target": "the number of subsections listed under Research and development in the Contents",
+      "extraction_section": "Research and development",
+      "extracted_value": 1,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "R&D wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/R%26D",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Context: the pharmaceutical industry frames how companies like AbbVie develop, produce, and commercialize drugs.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/R%26D",
+      "extraction_target": "the number of top-level sections listed in the Contents",
+      "extraction_section": "Contents",
+      "extracted_value": 7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Monoclonal antibody wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Monoclonal_antibody",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "R&D is the engine that turns scientific discovery into medicines; understanding it connects company strategy to therapies.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Monoclonal_antibody",
+      "extraction_target": "number of languages listed in the language links at the top of the article",
+      "extraction_section": null,
+      "extracted_value": 40,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Monoclonal_antibody",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Monoclonal antibodies are a major modern drug class (biologics) produced by pharma companies — a bridge between R&D and targeted treatments.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Monoclonal_antibody",
+      "extraction_target": "Reason: the number you get by reversing its digits",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_reversal) on stop 3 value",
+      "reason_transform": "digit_reversal",
+      "reason_source_stop": 6,
+      "reason_code": "result = int(str(abs(int(40)))[::-1])\nprint(result)",
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Ramucirumab",
+      "extraction_target": "molar mass of ramucirumab (in g·mol−1)",
+      "extraction_section": null,
+      "extracted_value": 143609.63,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Cancer_immunotherapy",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A concrete example of a monoclonal antibody therapy used in oncology, illustrating how a drug moves from concept to approved treatment.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        7
+      ]
+    },
+    {
+      "index": 9,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Ramucirumab",
+      "extraction_target": "Count universities near Ramucirumab",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "universities near Ramucirumab"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (nearby_poi) derived from https://en.wikipedia.org/wiki/Ramucirumab",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        8
+      ]
+    },
+    {
+      "index": 10,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Cancer_immunotherapy",
+      "extraction_target": "the number of languages listed at the top of the article",
+      "extraction_section": null,
+      "extracted_value": 23,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Nirmatrelvir/ritonavir wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Nirmatrelvir/ritonavir",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Places ramucirumab in the broader field of immunotherapy, showing the landscape of modern cancer treatments.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        9
+      ]
+    },
+    {
+      "index": 11,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Nirmatrelvir/ritonavir",
+      "extraction_target": "the number of languages listed for the article in the header",
+      "extraction_section": null,
+      "extracted_value": 16,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Nirmatrelvir/ritonavir",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "An example of antiviral combination therapy developed and deployed rapidly during a global pandemic — connects R&D to urgent public-health response.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        10
+      ]
+    },
+    {
+      "index": 12,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Nirmatrelvir/ritonavir",
+      "extraction_target": "Reason: the number of characters when written as a Roman numeral",
+      "extraction_section": null,
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (roman_numeral_letter_count) on stop 6 value",
+      "reason_transform": "roman_numeral_letter_count",
+      "reason_source_stop": 11,
+      "reason_code": "def to_roman(n):\n    n = abs(int(n))\n    vals = [(1000,'M'),(900,'CM'),(500,'D'),(400,'CD'),(100,'C'),\n            (90,'XC'),(50,'L'),(40,'XL'),(10,'X'),(9,'IX'),(5,'V'),(4,'IV'),(1,'I')]\n    r = ''\n    for v, s in vals:\n        while n >= v:\n            r += s; n -= v\n    return r\nresult = len(to_roman(16))\nprint(result)",
+      "depends_on": [
+        11
+      ]
+    },
+    {
+      "index": 13,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Fluoxetine",
+      "extraction_target": "the number of subsections under 'Society and culture' listed in the table of contents",
+      "extraction_section": "Society and culture",
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Fluoxetine",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A long-established psychiatric drug (Prozac) illustrating how some medications become staples of clinical care over decades.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        12
+      ]
+    },
+    {
+      "index": 14,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Fluoxetine",
+      "extraction_target": "Reason: the sum of its digits",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_sum) on stop 7 value",
+      "reason_transform": "digit_sum",
+      "reason_source_stop": 13,
+      "reason_code": "result = sum(int(d) for d in str(abs(int(4))))\nprint(result)",
+      "depends_on": [
+        13
+      ]
+    },
+    {
+      "index": 15,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Penicillin",
+      "extraction_target": "the number of languages shown near the top of the article",
+      "extraction_section": null,
+      "extracted_value": 113,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Penicillin",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Historical landmark: penicillin revolutionized medicine and launched mass antibiotic use — a contrast to modern biologics and antivirals.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        14
+      ]
+    },
+    {
+      "index": 16,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Penicillin",
+      "extraction_target": "Reason: the number of divisors of that figure",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (num_divisors) on stop 8 value",
+      "reason_transform": "num_divisors",
+      "reason_source_stop": 15,
+      "reason_code": "n = abs(int(113))\ncount = sum(1 for i in range(1, n+1) if n % i == 0) if n > 0 else 0\nresult = count\nprint(result)",
+      "depends_on": [
+        15
+      ]
+    },
+    {
+      "index": 17,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Antibiotic",
+      "extraction_target": "the number of sub-subsections listed under 11.1 Replenishing the antibiotic pipeline and developing other new therapies (11.1.x)",
+      "extraction_section": "Contents",
+      "extracted_value": 6,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Antibiotic",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Broader drug class discussion: how antibiotics function and their societal impact (resistance, access).",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        16
+      ]
+    },
+    {
+      "index": 18,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Antibiotic",
+      "extraction_target": "Reason: the next prime number after that figure",
+      "extraction_section": null,
+      "extracted_value": 7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (next_prime) on stop 9 value",
+      "reason_transform": "next_prime",
+      "reason_source_stop": 17,
+      "reason_code": "def next_prime(n):\n    n = abs(int(n))\n    if n < 2: return 2\n    candidate = n + 1\n    while True:\n        if all(candidate % i != 0 for i in range(2, int(candidate**0.5)+1)):\n            return candidate\n        candidate += 1\nresult = next_prime(6)\nprint(result)",
+      "depends_on": [
+        17
+      ]
+    },
+    {
+      "index": 19,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Insulin",
+      "extraction_target": "the number of subsections listed under the History of study section in the Table of Contents",
+      "extraction_section": "Contents",
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Health insurance in the United States wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Health_insurance_in_the_United_States",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Biologic therapy with enormous public-health importance; exemplifies long-term patient dependence on drug supply and pricing issues.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        18
+      ]
+    },
+    {
+      "index": 20,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Health_insurance_in_the_United_States",
+      "extraction_target": "the number of subsections under 'Enrollment and the uninsured' in the Contents",
+      "extraction_section": "Enrollment and the uninsured",
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "San Francisco, California wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/San_Francisco,_California",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Connects drug development and therapies to patient access — how insurance shapes who gets medicines and at what cost.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        19
+      ]
+    },
+    {
+      "index": 21,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Health_insurance_in_the_United_States",
+      "extraction_target": "Look up the elevation of Health insurance in the United States",
+      "extraction_section": null,
+      "extracted_value": 3236.2353515625,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Health insurance in the United States"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Health insurance in the United States) from https://en.wikipedia.org/wiki/Health_insurance_in_the_United_States",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        20
+      ]
+    },
+    {
+      "index": 22,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Health_insurance_in_the_United_States",
+      "extraction_target": "Look up the Google rating of Health insurance in the United States",
+      "extraction_section": null,
+      "extracted_value": 4.9,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "Health insurance in the United States"
+            },
+            "expected_output": null,
+            "output_key": "place_rating"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (Google rating of Health insurance in the United States) from https://en.wikipedia.org/wiki/Health_insurance_in_the_United_States",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        20
+      ]
+    },
+    {
+      "index": 23,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Health_insurance_in_the_United_States",
+      "extraction_target": "Combine the elevation of Health insurance in the United States and the Google rating of Health insurance in the United States: (3236 + 4)",
+      "extraction_section": null,
+      "extracted_value": 3240,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(3236.2353515625) + int(4.9)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Health insurance in the United States add Google rating of Health insurance in the United States",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        21,
+        22
+      ]
+    },
+    {
+      "index": 24,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Health_insurance_in_the_United_States",
+      "extraction_target": "Look up the Google rating of Health insurance in the United States",
+      "extraction_section": null,
+      "extracted_value": 4.9,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "Health insurance in the United States"
+            },
+            "expected_output": null,
+            "output_key": "place_rating"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (place_rating) derived from https://en.wikipedia.org/wiki/Health_insurance_in_the_United_States",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        23
+      ]
+    },
+    {
+      "index": 25,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/San_Francisco,_California",
+      "extraction_target": "Count the number of museums near 37.77750",
+      "extraction_section": null,
+      "extracted_value": 1,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "museums near 37.77750"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: count museums near 37.77750",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        24
+      ]
+    },
+    {
+      "index": 26,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/S%C3%A3o_Paulo",
+      "extraction_target": "Look up the population of Brazil",
+      "extraction_section": null,
+      "extracted_value": 213421037,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "countries_population",
+            "arguments": {
+              "country": "Brazil"
+            },
+            "expected_output": null,
+            "output_key": "population"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: population of Brazil",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        25
+      ]
+    },
+    {
+      "index": 27,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Washington_(state)",
+      "extraction_target": "Look up the area in km² of United States",
+      "extraction_section": null,
+      "extracted_value": 34.2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "countries_area",
+            "arguments": {
+              "country": "United States"
+            },
+            "expected_output": null,
+            "output_key": "area_km2"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: area of United States",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        26
+      ]
+    },
+    {
+      "index": 28,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/United_States_Department_of_Justice",
+      "extraction_target": "the section number assigned to Finances and budget in the Contents",
+      "extraction_section": "Contents",
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/United_States_Department_of_Justice",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Finish with legal/regulatory oversight: the U.S. Justice Department enforces competition and fraud laws that shape pharmaceutical markets and patient access.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        27
+      ]
+    },
+    {
+      "index": 29,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: (20 + 16) % 10",
+      "extraction_section": null,
+      "extracted_value": 6,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "(20 + 16) % 10",
+        "expression_code": "result = (20 + 16) % 10\nprint(result)",
+        "referenced_stops": [
+          2,
+          11
+        ]
+      },
+      "reasoning": "Compute stop: (20 + 16) % 10 = 6",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2,
+        11
+      ]
+    }
+  ],
+  "passcode": 6,
+  "difficulty": {
+    "level": "extreme",
+    "depth": 30,
+    "tool_stop_count": 11,
+    "reason_stop_count": 5,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Unearth the hub where a significant pharmaceutical titan resides, nestled in a city that shares its name with a famous lake. What is this city's location?\n\n2. What is the height above sea level of the city you've just discovered? Seek this information.\n\n3. How many lodgings can be found surrounding the shores of the lake near your current city? \n\n4. Before adventuring further, calculate the absolute difference between the elevation you discovered and the number of hotels near the lake. \n\n5. A sector of industry known for innovations holds secrets in its research division. Can you determine how many subsections exist under the research and development section of this industry?\n\n6. In realms of inquiry, there’s a page detailing the advancements in devices and medicines. Count how many top-level sections it contains.\n\n7. Within the article on a specialized class of therapy, there lies further information. Discover how many languages are represented in the links at the top of this article.\n\n8. If you were to reverse the digits of that last number found, what would the new value be? \n\n9. A treatment for a serious condition has a corresponding entry. What is the molar mass of this treatment, measured in grams per mole?\n\n10. Count how many universities are located nearby the centers of knowledge focusing on this treatment.\n\n11. Venturing into another branch of therapy, investigate the number of languages linked at the top of this entry about a specific type of therapy for threatening conditions. \n\n12. Find the number of languages listed at the top of the article concerning a modern antiviral therapy. \n\n13. By writing the latter number you obtained as a Roman numeral, how many characters would it take?\n\n14. Explore the entry dedicated to a popular antidepressant. How many subsections can you find under the 'Society and culture' heading?\n\n15. Delve into the last number you uncovered and sum its digits. \n\n16. Look into the treatment that has revolutionized curing bacterial infections. What is the count of languages linked at the article’s top regarding this wonder?\n\n17. Draw down the number of divisors belonging to the figure you've just encountered regarding this treatment.\n\n18. There’s a section discussing the revitalization of antibiotic treatments. How many subsections are outlined under this specific segment?\n\n19. Find the next prime number that follows the count you just enumerated in the previous clue. \n\n20. Seek out how many subsections lie under the historical examination of a life-saving hormone within its article. \n\n21. Within the article centered on health coverage systems, how many subsections focus specifically on enrollment and the uninsured?\n\n22. What is the altitude of the page dedicated to health coverage in the United States?\n\n23. What star rating have users offered for the page about health coverage in the United States?\n\n24. Combine the altitude you've discovered with the star rating to unveil a new number.\n\n25. Again, evaluate the star rating given to the health coverage scenarios you just explored.\n\n26. Nearby the coordinates of a distinct city by the bay, how many museums can you identify? \n\n27. How populous is the largest country in South America? \n\n28. Concerning the land of the brave, can you find out its grand area measured in square kilometers?\n\n29. Among the pages detailing the governance of a nation, which section discusses finances and budget? Provide the section number. \n\n30. Compute: The sum of the hotel count from clue 3 and the language count from clue 12, then take that result modulo 10. This will yield your final answer, a single digit between 0 and 9.",
+  "metadata": {
+    "theme": "Tracing the lifecycle of modern medicines — from a pharmaceutical company (AbbVie) through drug discovery, key drug classes and treatments, to distribution, market scale, and legal/regulatory access.",
+    "difficulty": "extreme",
+    "sample_id": "sample_131",
+    "pages_crawled": 12430
+  },
+  "generated_at": "2026-03-17T15:28:30.021187+00:00"
+}

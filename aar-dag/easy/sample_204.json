@@ -1,0 +1,265 @@
+{
+  "trail_id": "trail_a602a797",
+  "seed_url": "https://en.wikipedia.org/wiki/Taylor_County_Courthouse_(Iowa)",
+  "seed_title": "Taylor County Courthouse (Iowa)",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Taylor_County_Courthouse_(Iowa)",
+      "extraction_target": "the initial cost to build the Taylor County Courthouse",
+      "extraction_section": "History",
+      "extracted_value": "38000",
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Japan wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Japan",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start at the Taylor County Courthouse in Iowa, a building listed on the National Register of Historic Places, to explore the cultural significance and architecture of this historic site.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Taylor_County_Courthouse_(Iowa)",
+      "extraction_target": "Look up the elevation of Taylor County Courthouse",
+      "extraction_section": null,
+      "extracted_value": 527.0971069335938,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Taylor County Courthouse"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Taylor County Courthouse) from https://en.wikipedia.org/wiki/Taylor_County_Courthouse_(Iowa)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Taylor_County_Courthouse_(Iowa)",
+      "extraction_target": "Look up the count of museums near Taylor County Courthouse",
+      "extraction_section": null,
+      "extracted_value": 17.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "museums near Taylor County Courthouse"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of museums near Taylor County Courthouse) from https://en.wikipedia.org/wiki/Taylor_County_Courthouse_(Iowa)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Taylor_County_Courthouse_(Iowa)",
+      "extraction_target": "Combine the elevation of Taylor County Courthouse and the count of museums near Taylor County Courthouse: (527 + 17)",
+      "extraction_section": null,
+      "extracted_value": 544,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(527.0971069335938) + int(17.0)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Taylor County Courthouse add count of museums near Taylor County Courthouse",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1,
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Japan",
+      "extraction_target": "Look up the elevation at Japan",
+      "extraction_section": null,
+      "extracted_value": 996.7568969726562,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Japan"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for Japan",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Japan",
+      "extraction_target": "Reason: the next prime number after that figure",
+      "extraction_section": null,
+      "extracted_value": 997,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (next_prime) on stop 1 value",
+      "reason_transform": "next_prime",
+      "reason_source_stop": 4,
+      "reason_code": "def next_prime(n):\n    n = abs(int(n))\n    if n < 2: return 2\n    candidate = n + 1\n    while True:\n        if all(candidate % i != 0 for i in range(2, int(candidate**0.5)+1)):\n            return candidate\n        candidate += 1\nresult = next_prime(996)\nprint(result)",
+      "depends_on": [
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: (527 + 544 + 996 + 997) % 10",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "(527 + 544 + 996 + 997) % 10",
+        "expression_code": "result = (527 + 544 + 996 + 997) % 10\nprint(result)",
+        "referenced_stops": [
+          1,
+          3,
+          4,
+          5
+        ]
+      },
+      "reasoning": "Compute stop: (527 + 544 + 996 + 997) % 10 = 4",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1,
+        3,
+        4,
+        5
+      ]
+    }
+  ],
+  "passcode": 4,
+  "difficulty": {
+    "level": "easy",
+    "depth": 7,
+    "tool_stop_count": 4,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Begin your journey in a place of justice, a historic structure in Iowa named after a presidential predecessor with the same surname as a singer who shook off trouble. In the annals of its creation, calculate how much gold was needed to lay its foundation.\n\n2. Seek not on foot, but elevate your discovery — how high above sea level does this Iowan temple of law sit? Ascend the heights through cartography insights.\n\n3. Museums whisper the tales of old, near this courthouse in Iowa. How many such storytellers stand within the embrace of this judicial giant?\n\n4. Unite the elevation you unearthed with the chorus of museums counted. Their sum reveals a new harmony for you to ponder.\n\n5. If you search the lexicon of a land rising with the sun, find the altitude at which this Eastern nation floats above the vast waves and plains beneath.\n\n6. From the height of this sun-bathed realm, unlock the ancient cipher — seek the smallest indivisible number that surpasses it with perfect loyalty.\n\n7. Now, at the crossroads of elevation and prime exploration, you must add the findings. Merge the heightened figure from the courthouse (clue 2) with its combined cultural captivation (clue 4), then extend your sum with the island nation's zenith (clue 5), and the wise number of indivisibility (clue 6). What remains after dividing by ten is your ultimate answer, a single digit destined to conclude your quest.",
+  "metadata": {
+    "theme": "Exploring Historical and Cultural Significance of Places",
+    "difficulty": "easy",
+    "sample_id": "sample_204",
+    "pages_crawled": 306
+  },
+  "generated_at": "2026-03-27T06:54:12.841629+00:00"
+}

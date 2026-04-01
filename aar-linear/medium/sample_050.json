@@ -1,0 +1,270 @@
+{
+  "trail_id": "trail_2fa2e58a",
+  "seed_url": "https://en.wikipedia.org/wiki/Cultural_Palace_of_Nationalities",
+  "seed_title": "Cultural Palace of Nationalities",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Cultural_Palace_of_Nationalities",
+      "extraction_target": "the month and year the Cultural Palace of Nationalities was built",
+      "extraction_section": null,
+      "extracted_value": "September 1959",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Chang%27an_Avenue",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start at the Cultural Palace of Nationalities — a Beijing cultural landmark dedicated to ethnic minority arts; we extract its exact coordinates as the anchor for the rest of the trail.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Chang%27an_Avenue",
+      "extraction_target": "how many parts the Avenue consists of",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "WGS84 wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/WGS84",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Chang'an Avenue is the ceremonial east–west spine of central Beijing; extracting its length situates the Cultural Palace relative to the city's principal thoroughfare.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/WGS84",
+      "extraction_target": "Convert 2 meters to feet",
+      "extraction_section": null,
+      "extracted_value": 6,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "# Convert meters to feet\nvalue = 2.0\nconverted = value * 3.28084\nresult = int(converted)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "converted"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: convert 2 meters to feet",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 3,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/WGS84",
+      "extraction_target": "Reason: the sum of its distinct prime factors",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (sum_prime_factors) on stop 2 value",
+      "reason_transform": "sum_prime_factors",
+      "reason_source_stop": 2,
+      "reason_code": "def prime_factors(n):\n    n = abs(int(n))\n    factors = []\n    d = 2\n    while d * d <= n:\n        while n % d == 0:\n            factors.append(d)\n            n //= d\n        d += 1\n    if n > 1: factors.append(n)\n    return factors\nresult = sum(set(prime_factors(6)))\nprint(result)"
+    },
+    {
+      "index": 4,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Beijing_Hotel",
+      "extraction_target": "the distance from Beijing railway station",
+      "extraction_section": null,
+      "extracted_value": 1.5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Ordnance Survey National Grid wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Ordnance_Survey_National_Grid",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Beijing Hotel is a historic, centrally located hotel near Wangfujing and central axes — extracting its coordinates lets us place a second, well-known Beijing waypoint relative to the Cultural Palace.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 5,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Ordnance_Survey_National_Grid",
+      "extraction_target": "Convert 1 meters to yards",
+      "extraction_section": null,
+      "extracted_value": 1,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "# Convert meters to yards\nvalue = 1.5\nconverted = value * 1.09361\nresult = int(converted)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "converted"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: convert 1 meters to yards",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 6,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Townships_of_China",
+      "extraction_target": "Look up the elevation at Townships of China",
+      "extraction_section": null,
+      "extracted_value": 187.946044921875,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Townships of China"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for Townships of China",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 7,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Townships_of_China",
+      "extraction_target": "Reason: the sum of its distinct prime factors",
+      "extraction_section": null,
+      "extracted_value": 28,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (sum_prime_factors) on stop 5 value",
+      "reason_transform": "sum_prime_factors",
+      "reason_source_stop": 6,
+      "reason_code": "def prime_factors(n):\n    n = abs(int(n))\n    factors = []\n    d = 2\n    while d * d <= n:\n        while n % d == 0:\n            factors.append(d)\n            n //= d\n        d += 1\n    if n > 1: factors.append(n)\n    return factors\nresult = sum(set(prime_factors(187)))\nprint(result)"
+    },
+    {
+      "index": 8,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: abs(6 - 5) % 10",
+      "extraction_section": null,
+      "extracted_value": 1,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "abs(6 - 5) % 10",
+        "expression_code": "result = abs(6 - 5) % 10\nprint(result)",
+        "referenced_stops": [
+          2,
+          3,
+          4
+        ]
+      },
+      "reasoning": "Compute stop: abs(6 - 5) % 10 = 1",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 1,
+  "difficulty": {
+    "level": "medium",
+    "depth": 9,
+    "tool_stop_count": 3,
+    "reason_stop_count": 2,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "Here is the revised riddle:\n\n1. Seek the page for a significant architectural landmark in Beijing that serves as a venue for various cultural exhibitions and events: read its introductory lines and tell me the month and year in which the building was completed or first opened. From that article follow the link that names the wide ceremonial avenue running east–west through Beijing's central axis.\n\n2. There exists a Wikipedia entry for that grand east–west boulevard; on its page determine into how many distinct sections the avenue is commonly divided. Afterwards, chase down the modern global geodetic reference system used by GPS (search for the system, not the acronym) to continue.\n\n3. What does that geodetic-reference article say if you convert a length of two metres into feet? Give the integer number of feet (rounding down).\n\n4. If you take the integer from clue 3, transform it by replacing it with the sum of its distinct prime factors — that new number is your answer to this step.\n\n5. The article whose opening mentions the century‑old hotel near Tiananmen holds a statement about how far that hotel lies from the city's principal railway station; extract that distance as a number (use the numeric distance given on the page).\n\n6. In surveying lore, metres are often compared with yards: convert a length of 1.5 metres into yards and give the integer result (round down).\n\n7. Imagine the encyclopaedic article devoted to China’s township-level administrative units; what elevation above sea level, in metres, is associated with the coordinates connected to that topic? Report that elevation as a numeric value.\n\n8. (As a numerical twist) take the elevation value you just found and replace it by the sum of its distinct prime factors — that transformed total is the answer for this clue.\n\n9. At last — compute the following using only the numeric answers you uncovered: take the absolute difference between clue 3 and clue 4, reduce that by taking it modulo the numeric value from clue 5, and finally give that result modulo 10. In formula form: (abs(clue3 - clue4) % clue5) % 10. The final answer should be a single digit (0–9).",
+  "metadata": {
+    "theme": "Mapping Beijing's cultural axis — start at the Cultural Palace of Nationalities and follow links that connect a landmark to the city's places and the global coordinate systems that locate and measure them.",
+    "difficulty": "medium",
+    "sample_id": "sample_050",
+    "pages_crawled": 1352
+  },
+  "generated_at": "2026-03-16T08:36:54.439340+00:00"
+}

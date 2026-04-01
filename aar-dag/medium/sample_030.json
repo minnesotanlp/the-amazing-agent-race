@@ -1,0 +1,423 @@
+{
+  "trail_id": "trail_e5972e39",
+  "seed_url": "https://en.wikipedia.org/wiki/Nomantu_Nkomo-Ralehoko",
+  "seed_title": "Nomantu Nkomo-Ralehoko",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Nomantu_Nkomo-Ralehoko",
+      "extraction_target": "date she assumed office as Gauteng MEC for Health and Wellness",
+      "extraction_section": null,
+      "extracted_value": "7 October 2022",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Government_of_Gauteng",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start with the subject: Nomantu Nkomo-Ralehoko is a Member of the Gauteng Provincial Legislature; extract her official role and constituency to anchor the trail in a real provincial representative.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Government_of_Gauteng",
+      "extraction_target": "the number of members of the Gauteng Provincial Legislature",
+      "extraction_section": "Legislature",
+      "extracted_value": 73,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Gauteng_Provincial_Legislature",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Establish the institutional home of provincial governance — the Government of Gauteng page gives the administrative HQ and location that define where provincial business is conducted.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Government_of_Gauteng",
+      "extraction_target": "Look up the elevation of Government of Gauteng",
+      "extraction_section": null,
+      "extracted_value": 1589.0517578125,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Government of Gauteng"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Government of Gauteng) from https://en.wikipedia.org/wiki/Government_of_Gauteng",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Government_of_Gauteng",
+      "extraction_target": "Look up the count of museums near Government of Gauteng",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "museums near Government of Gauteng"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of museums near Government of Gauteng) from https://en.wikipedia.org/wiki/Government_of_Gauteng",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Government_of_Gauteng",
+      "extraction_target": "Combine the elevation of Government of Gauteng and the count of museums near Government of Gauteng: (1589 + 20)",
+      "extraction_section": null,
+      "extracted_value": 1609,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(1589.0517578125) + int(20.0)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Government of Gauteng add count of museums near Government of Gauteng",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2,
+        3
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Gauteng_Provincial_Legislature",
+      "extraction_target": "Count the number of parks near Gauteng Provincial Legislature",
+      "extraction_section": null,
+      "extracted_value": 20,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "parks near Gauteng Provincial Legislature"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: count parks near Gauteng Provincial Legislature",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Gauteng_Provincial_Legislature",
+      "extraction_target": "Reason: the number of characters when written as a Roman numeral",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (roman_numeral_letter_count) on stop 2 value",
+      "reason_transform": "roman_numeral_letter_count",
+      "reason_source_stop": 5,
+      "reason_code": "def to_roman(n):\n    n = abs(int(n))\n    vals = [(1000,'M'),(900,'CM'),(500,'D'),(400,'CD'),(100,'C'),\n            (90,'XC'),(50,'L'),(40,'XL'),(10,'X'),(9,'IX'),(5,'V'),(4,'IV'),(1,'I')]\n    r = ''\n    for v, s in vals:\n        while n >= v:\n            r += s; n -= v\n    return r\nresult = len(to_roman(20))\nprint(result)",
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Panyaza_Lesufi",
+      "extraction_target": "Convert 73°C to a Fahrenheit-scale offset",
+      "extraction_section": null,
+      "extracted_value": 131,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "# Convert celsius to fahrenheit_offset\nvalue = 73.0\nconverted = value * 1.8\nresult = int(converted)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "converted"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: convert 73 celsius to fahrenheit_offset",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Government_of_South_Africa",
+      "extraction_target": "Look up the elevation at Government of South Africa",
+      "extraction_section": null,
+      "extracted_value": 1106.688720703125,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Government of South Africa"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for Government of South Africa",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        7
+      ]
+    },
+    {
+      "index": 9,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Government_of_South_Africa",
+      "extraction_target": "Reason: the number of 1-bits in its binary representation",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (binary_1bit_count) on stop 4 value",
+      "reason_transform": "binary_1bit_count",
+      "reason_source_stop": 8,
+      "reason_code": "result = bin(abs(int(1106))).count('1')\nprint(result)",
+      "depends_on": [
+        8
+      ]
+    },
+    {
+      "index": 10,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/2024_Gauteng_provincial_election",
+      "extraction_target": "Calculate the number of days between 2022-10-07 and 2026-03-15",
+      "extraction_section": null,
+      "extracted_value": 1255,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "from datetime import date\nd1 = date.fromisoformat('2022-10-07')\nd2 = date.fromisoformat('2026-03-15')\nresult = abs((d2 - d1).days)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "days"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: date computation 2022-10-07 to 2026-03-15 (pinned)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        9
+      ]
+    },
+    {
+      "index": 11,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: abs(1589 - 1609) % 10",
+      "extraction_section": null,
+      "extracted_value": 0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "abs(1589 - 1609) % 10",
+        "expression_code": "result = abs(1589 - 1609) % 10\nprint(result)",
+        "referenced_stops": [
+          2,
+          4,
+          5,
+          8
+        ]
+      },
+      "reasoning": "Compute stop: abs(1589 - 1609) % 10 = 0",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2,
+        4,
+        5,
+        8
+      ]
+    }
+  ],
+  "passcode": 0,
+  "difficulty": {
+    "level": "medium",
+    "depth": 12,
+    "tool_stop_count": 7,
+    "reason_stop_count": 2,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "direct_link"
+  },
+  "riddle": "1. Unearth the date when a devoted health and wellness champion began her service in provincial leadership — who is she?\n\n2. What assembly, comprised of representatives shaping policy in this province, boasts a significant count of its members?\n\n3. Seek the earth beneath the provincial assembly — how high does it rise above sea level?\n\n4. Discover how many museums share their knowledge nearby this provincial seat of power.\n\n5. Take the elevation you found in clue 3 and combine it with the number of those cultural institutions you uncovered in clue 4 — what new value emerges?\n\n6. A gathering place for nature and relaxation flourishes near the assembly. How many parks can you find in that vicinity?\n\n7. The previous result from clue 6, now turned into a Roman numeral, reveals a new perspective—how many characters comprise that numeral?\n\n8. Transitioning from Celsius to Fahrenheit, how warm is the temperature set at 73 degrees in the Fahrenheit scale?\n\n9. Venture to the title of the national seat of governance and unveil how high it stands in the world — what elevation does it register?\n\n10. With your newfound height from clue 9, investigate how many 1-bits are revealed in its binary representation.\n\n11. Count the days from the start of October in 2022 until mid-March in 2026 — how many days does this span?\n\n12. Now, compute the absolute difference between the height you found in clue 3 and that in clue 9, then reduce it by taking the modulo 10 of this difference. What single digit emerges from the calculation based on clues 3 and 9?",
+  "metadata": {
+    "theme": "Tracing a Gauteng provincial politician's role and reach — from Nomantu Nkomo-Ralehoko's office to the provincial government's location, nearby civic amenities, travel logistics, provincial/national scale, and the upcoming 2024 provincial election date.",
+    "difficulty": "medium",
+    "sample_id": "sample_030",
+    "pages_crawled": 745,
+    "source": "trail_puzzles_v3"
+  },
+  "generated_at": "2026-03-16T00:02:27.078064+00:00"
+}

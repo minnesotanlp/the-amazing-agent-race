@@ -1,0 +1,156 @@
+{
+  "trail_id": "trail_95809b8e",
+  "seed_url": "https://en.wikipedia.org/wiki/Mississippi_Highway_556",
+  "seed_title": "Mississippi Highway 556",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Mississippi_Highway_556",
+      "extraction_target": "the length listed in the infobox (field: 'Length')",
+      "extraction_section": "infobox",
+      "extracted_value": 3.009,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Homochitto_National_Forest",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start at the seed: MS 556 is the short state connector that defines the trail — extracting its length and endpoints establishes the physical scope and where it links into the wider road network.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Homochitto_National_Forest",
+      "extraction_target": "the area listed in the infobox (field: 'Area')",
+      "extraction_section": "infobox",
+      "extracted_value": 191839,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Homochitto_National_Forest",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "MS 556 lies in the same region as Homochitto National Forest; visiting the forest page highlights the natural landscape the highway serves and gives context on protected lands and recreation nearby.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Homochitto_National_Forest",
+      "extraction_target": "Reason: the digital root (iterated digit sum until single digit)",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digital_root) on stop 1 value",
+      "reason_transform": "digital_root",
+      "reason_source_stop": 1,
+      "reason_code": "n = abs(int(191839))\nresult = n if n == 0 else ((n - 1) % 9) + 1\nprint(result)"
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/U.S._Route_84_in_Mississippi",
+      "extraction_target": "Get the driving duration in minutes from U.S. Route 84 in Mississippi to Mississippi",
+      "extraction_section": null,
+      "extracted_value": 87,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_directions",
+            "arguments": {
+              "origin": "U.S. Route 84 in Mississippi",
+              "destination": "Mississippi",
+              "mode": "driving"
+            },
+            "expected_output": null,
+            "output_key": "duration"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: directions duration U.S. Route 84 in Mississippi to Mississippi",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 4,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: abs(3 - 191839) % 10",
+      "extraction_section": null,
+      "extracted_value": 6,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "abs(3 - 191839) % 10",
+        "expression_code": "result = abs(3 - 191839) % 10\nprint(result)",
+        "referenced_stops": [
+          0,
+          1,
+          2,
+          3
+        ]
+      },
+      "reasoning": "Compute stop: abs(3 - 191839) % 10 = 6",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 6,
+  "difficulty": {
+    "level": "easy",
+    "depth": 5,
+    "tool_stop_count": 1,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "direct_link"
+  },
+  "riddle": "Here is the revised riddle:\n\n1. Seek the page detailing a specific route in the state that is designated as a two-lane, short connector numbered 556; learn one succinct fact about its length in miles, as the article states; afterward, follow the link on that page to the nearby national forest it mentions.\n\n2. There exists a page about that national forest you just reached; from its overview, determine the area given for the forest (the single area figure presented for the whole forest).\n\n3. What single-digit remains if you iteratively sum the digits of the area you just found until only one digit is left (in other words, compute the digital root of the area)?\n\n4. The article describing the major east–west U.S. highway that traverses this state holds a practical travel detail: if you asked how many minutes it would take to drive from that highway to the state as your destination, what driving-duration in minutes would be reported?\n\n5. Like a careful accountant balancing a ledger, perform this final arithmetic using only the numeric results you uncovered: compute (clue 1 + clue 2 + clue 3 + clue 4) modulo 10, and report the single digit (0–9) that this expression yields.",
+  "metadata": {
+    "theme": "Tracing a short Mississippi connector road (MS 556) and its ties to the Homochitto region — the highway's stats, nearby national forest, travel time to the main US route it meets, and recreational POIs along the Homochitto River.",
+    "difficulty": "easy",
+    "sample_id": "sample_115",
+    "pages_crawled": 347,
+    "source": "trail_puzzles_v3"
+  },
+  "generated_at": "2026-03-15T23:10:45.227488+00:00"
+}

@@ -1,0 +1,672 @@
+{
+  "trail_id": "trail_f6023ade",
+  "seed_url": "https://en.wikipedia.org/wiki/NHL_on_Sportsnet",
+  "seed_title": "NHL on Sportsnet",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/NHL_on_Sportsnet",
+      "extraction_target": "the years during which Sportsnet previously held national cable rights for NHL regular season and playoff games",
+      "extraction_section": null,
+      "extracted_value": "1998 to 2002",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Sportsnet",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Seed: the programme that redefined NHL coverage in Canada and anchors this trail through networks and personalities.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Sportsnet",
+      "extraction_target": "the launch date of Sportsnet",
+      "extraction_section": null,
+      "extracted_value": "1998-10-09",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Rogers_Communications",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "The national network that produces NHL on Sportsnet — examine its founding, scope and infrastructure.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Rogers_Communications",
+      "extraction_target": "the headquarters city of Rogers Communications",
+      "extraction_section": null,
+      "extracted_value": "Toronto",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Rogers_Communications",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Parent company whose rights deals and strategy shaped modern Canadian NHL broadcasting.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Rogers_Communications",
+      "extraction_target": "Look up the elevation of Toronto",
+      "extraction_section": null,
+      "extracted_value": 94.81500244140625,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Toronto"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Toronto) from https://en.wikipedia.org/wiki/Rogers_Communications",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Rogers_Communications",
+      "extraction_target": "Look up the count of temples near Toronto",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "temples near Toronto"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of temples near Toronto) from https://en.wikipedia.org/wiki/Rogers_Communications",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Rogers_Communications",
+      "extraction_target": "Combine the elevation of Toronto and the count of temples near Toronto: abs(94 - 20)",
+      "extraction_section": null,
+      "extracted_value": 74,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(94.81500244140625) - int(20.0))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Toronto abs_diff count of temples near Toronto",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3,
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Rogers_Communications",
+      "extraction_target": "Reason: the number of vowels in that name",
+      "extraction_section": null,
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (vowel_count) on stop 2 value",
+      "reason_transform": "vowel_count",
+      "reason_source_stop": 2,
+      "reason_code": "result = sum(1 for c in \"Toronto\".lower() if c in 'aeiou')\nprint(result)",
+      "depends_on": [
+        2
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Broadcasting_of_sports_events",
+      "extraction_target": "the year of the first radio broadcasting event of a boxing match in Pittsburgh",
+      "extraction_section": "History",
+      "extracted_value": "1921",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Regional_sports_network",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Provide the broader context — how sports rights, production and distribution work across networks.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Regional_sports_network",
+      "extraction_target": "the lower bound of the typical monthly retransmission fee for an RSN as of 2024",
+      "extraction_section": "Overview",
+      "extracted_value": 3.5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "CBC Television wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/CBC_Television",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Explains the complementary regional model that coexists with national NHL broadcasts in North America.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        7
+      ]
+    },
+    {
+      "index": 9,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/CBC_Television",
+      "extraction_target": "the number of hours in the CBC Television network schedule",
+      "extraction_section": "Overview",
+      "extracted_value": 24,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Selby Abbey wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Selby_Abbey",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Historic public broadcaster and long-time NHL partner — important counterpoint to private networks.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        8
+      ]
+    },
+    {
+      "index": 10,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/CBC_Television",
+      "extraction_target": "Count churches near CBC Television",
+      "extraction_section": null,
+      "extracted_value": 20,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "churches near CBC Television"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (nearby_poi) derived from https://en.wikipedia.org/wiki/CBC_Television",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        9
+      ]
+    },
+    {
+      "index": 11,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Selby_Abbey",
+      "extraction_target": "Count the number of hospitals near Selby Abbey",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "hospitals near Selby Abbey"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: count hospitals near Selby Abbey",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        10
+      ]
+    },
+    {
+      "index": 12,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/TSN_Hockey",
+      "extraction_target": "the year TSN first held the Canadian national cable rights to the NHL",
+      "extraction_section": null,
+      "extracted_value": "1985",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/NHL_on_TNT",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "TSN is a major Canadian rival in hockey broadcasting — compare its approach and rights history with Sportsnet.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        11
+      ]
+    },
+    {
+      "index": 13,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/NHL_on_TNT",
+      "extraction_target": "the year Turner Sports reached the national NHL contract",
+      "extraction_section": null,
+      "extracted_value": 2021,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/NHL_on_TNT",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A recent U.S. rights-holder — provides a cross-border comparison of production values and broadcast strategy.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        12
+      ]
+    },
+    {
+      "index": 14,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/NHL_on_TNT",
+      "extraction_target": "Count stadiums near NHL on TNT",
+      "extraction_section": null,
+      "extracted_value": 20,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "stadiums near NHL on TNT"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (nearby_poi) derived from https://en.wikipedia.org/wiki/NHL_on_TNT",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        13
+      ]
+    },
+    {
+      "index": 15,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/NHL_on_TNT",
+      "extraction_target": "Reason: the largest prime factor of that figure",
+      "extraction_section": null,
+      "extracted_value": 47,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (largest_prime_factor) on stop 8 value",
+      "reason_transform": "largest_prime_factor",
+      "reason_source_stop": 13,
+      "reason_code": "def largest_prime_factor(n):\n    n = abs(int(n))\n    if n <= 1: return n\n    d = 2\n    while d * d <= n:\n        while n % d == 0: n //= d\n        d += 1\n    return n\nresult = largest_prime_factor(2021)\nprint(result)",
+      "depends_on": [
+        13
+      ]
+    },
+    {
+      "index": 16,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/NHL_on_ESPN",
+      "extraction_target": "the number of seasons of NHL on ESPN",
+      "extraction_section": null,
+      "extracted_value": 18,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Bob Cole (sportscaster) wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Bob_Cole_(sportscaster)",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Contrast ESPN's rights and presentation style with Canadian networks to show differences in market positioning.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        15
+      ]
+    },
+    {
+      "index": 17,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Bob_Cole_(sportscaster)",
+      "extraction_target": "Bob Cole's age at death",
+      "extraction_section": null,
+      "extracted_value": 90,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Don Cherry (hockey) wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Don_Cherry_(hockey)",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "An iconic Canadian hockey play-by-play voice — explores the role of talent and personalities in brand identity for NHL broadcasts.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        16
+      ]
+    },
+    {
+      "index": 18,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Don_Cherry_(hockey)",
+      "extraction_target": "Don Cherry's height as listed in the infobox",
+      "extraction_section": null,
+      "extracted_value": "5 ft 11 in (180 cm)",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "North Yorkshire (district) wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/North_Yorkshire_(district)",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A polarizing broadcaster whose career illustrates how commentators influence public perception and the cultural footprint of televised hockey.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        17
+      ]
+    },
+    {
+      "index": 19,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/North_Yorkshire_(district)",
+      "extraction_target": "Look up the population of Canada",
+      "extraction_section": null,
+      "extracted_value": 41651653,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "countries_population",
+            "arguments": {
+              "country": "Canada"
+            },
+            "expected_output": null,
+            "output_key": "population"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: population of Canada",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        18
+      ]
+    },
+    {
+      "index": 20,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/North_Yorkshire_(district)",
+      "extraction_target": "Reason: the next prime number after that figure",
+      "extraction_section": null,
+      "extracted_value": 41651663,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (next_prime) on stop 12 value",
+      "reason_transform": "next_prime",
+      "reason_source_stop": 19,
+      "reason_code": "def next_prime(n):\n    n = abs(int(n))\n    if n < 2: return 2\n    candidate = n + 1\n    while True:\n        if all(candidate % i != 0 for i in range(2, int(candidate**0.5)+1)):\n            return candidate\n        candidate += 1\nresult = next_prime(41651653)\nprint(result)",
+      "depends_on": [
+        19
+      ]
+    },
+    {
+      "index": 21,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: abs(74 - 1921) % 10",
+      "extraction_section": null,
+      "extracted_value": 7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "abs(74 - 1921) % 10",
+        "expression_code": "result = abs(74 - 1921) % 10\nprint(result)",
+        "referenced_stops": [
+          5,
+          7,
+          19
+        ]
+      },
+      "reasoning": "Compute stop: abs(74 - 1921) % 10 = 7",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5,
+        7,
+        19
+      ]
+    }
+  ],
+  "passcode": 7,
+  "difficulty": {
+    "level": "hard",
+    "depth": 22,
+    "tool_stop_count": 7,
+    "reason_stop_count": 3,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Seek the network that held the national cable rights for hockey in seasons past — which years did they dominate the ice?\n\n2. A channel known for its sports talk and lively coverage made its debut in the spring of which year?\n\n3. The telecommunications giant that operates from a vibrant city also shaped this channel — where is their home base found?\n\n4. If you gaze upon a map, how far does the ground rise beneath this bustling metropolis?\n\n5. Discover the count of sacred places of worship that gather around this same urban center.\n\n6. To proceed, find the absolute difference between the elevation you discovered in clue 4 and the number of temples you counted in clue 5.\n\n7. Tally the vowels in the name of the corporation you uncovered in clue 3 — how many do you find?\n\n8. In what year did the first auditory broadcast of a boxing clash resonate through radios in a significant Western city?\n\n9. Seek the financial threshold typically required for accessing a local sports channel’s feed in the year 2024 — what figure appears?\n\n10. The national broadcaster has a schedule of how many hours dedicated to its viewing audience?\n\n11. From the location of the broadcaster, how many places of worship do you find nearby?\n\n12. Count the hospitals that grace the vicinity of a historic abbey situated in Yorkshire.\n\n13. In which year did the channel synonymous with Canadian hockey first stake its claim to national cable rights for the NHL?\n\n14. When did the sports network linked with a prominent national contract join the ranks of NHL coverage?\n\n15. How many athletic arenas stand in proximity to this broadcast hub of hockey excitement?\n\n16. To continue, uncover the largest prime factor of the number you retrieved from clue 14.\n\n17. What is the total number of seasons this esteemed channel has devoted to broadcasting hockey games?\n\n18. At what age did the legendary sportscaster, known for his passionate commentary, leave this world?\n\n19. What height is attributed to the famous hockey commentator, represented in the data source?\n\n20. How many individuals call the land of the maple leaf their home?\n\n21. The next prime number after the population figure you found in clue 20 — what number emerges from your search?\n\n22. Finally, compute the expression: take the absolute difference between the figure from clue 6 and 1921, then apply modulo 10. The solution will yield a single digit!",
+  "metadata": {
+    "theme": "Tracing the Canadian NHL broadcasting ecosystem — networks, rights, regional distribution and the personalities who shaped televised hockey",
+    "difficulty": "hard",
+    "sample_id": "sample_046",
+    "pages_crawled": 5669
+  },
+  "generated_at": "2026-03-16T14:44:11.762193+00:00"
+}

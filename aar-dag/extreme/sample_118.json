@@ -1,0 +1,754 @@
+{
+  "trail_id": "trail_726f35a5",
+  "seed_url": "https://en.wikipedia.org/wiki/Eaton_Hotel_Hong_Kong",
+  "seed_title": "Eaton Hotel Hong Kong",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Eaton_Hotel_Hong_Kong",
+      "extraction_target": "the opening year listed in the infobox (field: 'Opened')",
+      "extraction_section": "infobox",
+      "extracted_value": 1,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Jordan,_Hong_Kong",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Seed: the boutique Eaton Hotel in Jordan (Kowloon) — our starting point for a micro‑tour of nearby neighborhoods and the multicultural threads that radiate outward.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Eaton_Hotel_Hong_Kong",
+      "extraction_target": "Look up the elevation of Eaton Hotel Hong Kong",
+      "extraction_section": null,
+      "extracted_value": 2.050166606903076,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Eaton Hotel Hong Kong"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Eaton Hotel Hong Kong) from https://en.wikipedia.org/wiki/Eaton_Hotel_Hong_Kong",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Eaton_Hotel_Hong_Kong",
+      "extraction_target": "Look up the count of libraries near Eaton Hotel Hong Kong",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "libraries near Eaton Hotel Hong Kong"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of libraries near Eaton Hotel Hong Kong) from https://en.wikipedia.org/wiki/Eaton_Hotel_Hong_Kong",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Eaton_Hotel_Hong_Kong",
+      "extraction_target": "Combine the elevation of Eaton Hotel Hong Kong and the count of libraries near Eaton Hotel Hong Kong: abs(2 - 20)",
+      "extraction_section": null,
+      "extracted_value": 18,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(2.050166606903076) - int(20.0))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Eaton Hotel Hong Kong abs_diff count of libraries near Eaton Hotel Hong Kong",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1,
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Jordan,_Hong_Kong",
+      "extraction_target": "Calculate the driving distance between Jordan, Hong Kong and 380 Nathan Road in Kowloon",
+      "extraction_section": null,
+      "extracted_value": 1.242,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Jordan, Hong Kong"
+            },
+            "expected_output": null,
+            "output_key": "coords_a"
+          },
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "380 Nathan Road in Kowloon"
+            },
+            "expected_output": null,
+            "output_key": "coords_b"
+          },
+          {
+            "tool_name": "maps_distance_matrix",
+            "arguments": {
+              "__from_previous_as_origins_destinations": [
+                "coords_a",
+                "coords_b"
+              ]
+            },
+            "expected_output": null,
+            "output_key": "distance_km"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: distance between Jordan, Hong Kong and 380 Nathan Road in Kowloon",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Yau_Ma_Tei",
+      "extraction_target": "Convert 1 km to miles",
+      "extraction_section": null,
+      "extracted_value": 0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "# Convert km to miles\nvalue = 1.0\nconverted = value * 0.621371\nresult = int(converted)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "converted"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: convert 1 km to miles",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Chungking_Mansions",
+      "extraction_target": "Convert 1°C to a Fahrenheit-scale offset",
+      "extraction_section": null,
+      "extracted_value": 1,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "# Convert celsius to fahrenheit_offset\nvalue = 1.0\nconverted = value * 1.8\nresult = int(converted)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "converted"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: convert 1 celsius to fahrenheit_offset",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Pop_Mie",
+      "extraction_target": "the product type listed in the infobox",
+      "extraction_section": null,
+      "extracted_value": "Instant noodle",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Pop Mie wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Pop_Mie",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Cheap, portable instant noodles like Pop Mie are a traveler staple — they illustrate the foodways of transient populations in hubs such as Chungking Mansions.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Pop_Mie",
+      "extraction_target": "Reason: the alphabetical position of its first letter (A=1, B=2, ...)",
+      "extraction_section": null,
+      "extracted_value": 9,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (alpha_position_first_letter) on stop 4 value",
+      "reason_transform": "alpha_position_first_letter",
+      "reason_source_stop": 7,
+      "reason_code": "first = \"Instant noodle\"[0].upper()\nresult = ord(first) - ord('A') + 1 if first.isalpha() else 0\nprint(result)",
+      "depends_on": [
+        7
+      ]
+    },
+    {
+      "index": 9,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Sham_Shui_Po",
+      "extraction_target": "Convert 1 meters to yards",
+      "extraction_section": null,
+      "extracted_value": 1,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "# Convert meters to yards\nvalue = 1.0\nconverted = value * 1.09361\nresult = int(converted)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "converted"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: convert 1 meters to yards",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        8
+      ]
+    },
+    {
+      "index": 10,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Chinese_tones",
+      "extraction_target": "the number of consonant phonemes in the inventory (excluding certain sounds and glides)",
+      "extraction_section": "Consonants",
+      "extracted_value": 19,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Kayōkyoku wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Kay%C5%8Dkyoku",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Hong Kong's linguistic texture (Cantonese tones) explains local signage, shop calls and how languages shape daily life in Kowloon markets.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        9
+      ]
+    },
+    {
+      "index": 11,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Kay%C5%8Dkyoku",
+      "extraction_target": "the years given in parentheses for the late second decade of the Showa Era",
+      "extraction_section": "1920s–1940s: Origin",
+      "extracted_value": "1935–1944",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Pacific Islander Americans wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Pacific_Islander_Americans",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Popular music genres (here, Japanese Kayōkyoku) show regional cultural flows across East Asia that influence youth culture and shops in Hong Kong.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        10
+      ]
+    },
+    {
+      "index": 12,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Pacific_Islander_Americans",
+      "extraction_target": "the percent of the total US population represented by Pacific Islander Americans who identified 'Alone (one race)' (as shown in the infobox)",
+      "extraction_section": null,
+      "extracted_value": "0.21%",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Ndrumbea language wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Ndrumbea_language",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Shifts to the wider diaspora: Pacific Islander migration patterns help frame trans-Pacific connections affecting people and culture in port cities and migrant hubs.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        11
+      ]
+    },
+    {
+      "index": 13,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Ndrumbea_language",
+      "extraction_target": "the number of native speakers cited in the 1996 census",
+      "extraction_section": null,
+      "extracted_value": 2000,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Judeo-Tat wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Judeo-Tat",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "An example of a Pacific language — examining Ndrumbea highlights linguistic diversity connected to broader migration narratives introduced earlier.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        12
+      ]
+    },
+    {
+      "index": 14,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Judeo-Tat",
+      "extraction_target": "the number of native speakers listed in the infobox",
+      "extraction_section": null,
+      "extracted_value": 80000,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Judeo-Tat",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Another minority language tradition (Judeo‑Tat) — this stop broadens the tour from Asian Pacific languages to Eurasian minority communities and diasporas.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        13
+      ]
+    },
+    {
+      "index": 15,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Judeo-Tat",
+      "extraction_target": "Reason: the sum of its distinct prime factors",
+      "extraction_section": null,
+      "extracted_value": 7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (sum_prime_factors) on stop 10 value",
+      "reason_transform": "sum_prime_factors",
+      "reason_source_stop": 14,
+      "reason_code": "def prime_factors(n):\n    n = abs(int(n))\n    factors = []\n    d = 2\n    while d * d <= n:\n        while n % d == 0:\n            factors.append(d)\n            n //= d\n        d += 1\n    if n > 1: factors.append(n)\n    return factors\nresult = sum(set(prime_factors(80000)))\nprint(result)",
+      "depends_on": [
+        14
+      ]
+    },
+    {
+      "index": 16,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Creole_of_color",
+      "extraction_target": "the title from which this article is redirected",
+      "extraction_section": null,
+      "extracted_value": "Creole of color",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Banat Swabians wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Banat_Swabians",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Discussing Creole communities highlights how mixed cultural identities form in port and colonial cities — a theme resonant with Kowloon's multicultural districts.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        15
+      ]
+    },
+    {
+      "index": 17,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Banat_Swabians",
+      "extraction_target": "the region listed in the infobox as having significant Banat Swabian populations",
+      "extraction_section": null,
+      "extracted_value": "Banat (south-western Romania)",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Banat_Swabians",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "European migration example (Banat Swabians) — contrasts with Pacific and Asian diasporas to emphasize global patterns of movement and settlement.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        16
+      ]
+    },
+    {
+      "index": 18,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Banat_Swabians",
+      "extraction_target": "Reason: the alphabetical position of its first letter (A=1, B=2, ...)",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (alpha_position_first_letter) on stop 12 value",
+      "reason_transform": "alpha_position_first_letter",
+      "reason_source_stop": 17,
+      "reason_code": "first = \"Banat (south-western Romania)\"[0].upper()\nresult = ord(first) - ord('A') + 1 if first.isalpha() else 0\nprint(result)",
+      "depends_on": [
+        17
+      ]
+    },
+    {
+      "index": 19,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/ISO_4_(infobox)",
+      "extraction_target": "Convert 80000 km to miles",
+      "extraction_section": null,
+      "extracted_value": 49709,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "# Convert km to miles\nvalue = 80000.0\nconverted = value * 0.621371\nresult = int(converted)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "converted"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: convert 80000 km to miles",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        18
+      ]
+    },
+    {
+      "index": 20,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/ISO_4_(infobox)",
+      "extraction_target": "Reason: the next prime number after that figure",
+      "extraction_section": null,
+      "extracted_value": 49711,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (next_prime) on stop 13 value",
+      "reason_transform": "next_prime",
+      "reason_source_stop": 19,
+      "reason_code": "def next_prime(n):\n    n = abs(int(n))\n    if n < 2: return 2\n    candidate = n + 1\n    while True:\n        if all(candidate % i != 0 for i in range(2, int(candidate**0.5)+1)):\n            return candidate\n        candidate += 1\nresult = next_prime(49709)\nprint(result)",
+      "depends_on": [
+        19
+      ]
+    },
+    {
+      "index": 21,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/White_British",
+      "extraction_target": "the percentage of the United Kingdom population that is White British as given in the infobox",
+      "extraction_section": null,
+      "extracted_value": 76.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Talking animals in fiction wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Talking_animals_in_fiction",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A contemporary demographic example from the UK — helps compare majority/minority dynamics with Hong Kong's own population mixes.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        20
+      ]
+    },
+    {
+      "index": 22,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Talking_animals_in_fiction",
+      "extraction_target": "the number of languages the article is available in (displayed under the title)",
+      "extraction_section": null,
+      "extracted_value": 6,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Talking_animals_in_fiction",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A lighter cultural coda: animals and anthropomorphic imagery in fiction reflect how cultures narrate identity and difference — a playful close to the trail.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        21
+      ]
+    },
+    {
+      "index": 23,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: (18 + 1 + 0 + 49709) % 10",
+      "extraction_section": null,
+      "extracted_value": 8,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "(18 + 1 + 0 + 49709) % 10",
+        "expression_code": "result = (18 + 1 + 0 + 49709) % 10\nprint(result)",
+        "referenced_stops": [
+          3,
+          4,
+          5,
+          19
+        ]
+      },
+      "reasoning": "Compute stop: (18 + 1 + 0 + 49709) % 10 = 8",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3,
+        4,
+        5,
+        19
+      ]
+    }
+  ],
+  "passcode": 8,
+  "difficulty": {
+    "level": "extreme",
+    "depth": 24,
+    "tool_stop_count": 8,
+    "reason_stop_count": 4,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Seek the lodging where a vibrant skyline has welcomed visitors since a year not far from the turn of the millennium. What year marked its grand opening?\n\n2. This cherished retreat resides at a height that offers splendid views. What is its elevation above the bustling streets below, measured in meters?\n\n3. Within a stone's throw from this sanctuary, libraries await eager minds. How many of these knowledge bastions stand nearby?\n\n4. To continue your quest, take the absolute difference between the elevation found in clue 2 and the count of libraries you discovered in clue 3.\n\n5. Now, navigate to the neighborhood vibrant with life named for a biblical figure, where you shall determine the journey time by car from a notable landmark at 380 Nathan Road. What distance separates these two locations, measured in kilometers?\n\n6. Imagine traveling far and wide; how many miles would you traverse if the distance covered was a single kilometer?\n\n7. In a famous dwelling where cultures collide, discover the conversion of a mere degree from Celsius into its Fahrenheit counterpart. How many degrees would you find?\n\n8. Beneath the culinary surface lies a dish that warms the soul. What type of product does the article on a beloved instant noodle reveal?\n\n9. In looking into this flavor-filled title, what is the alphabetical position of its first letter (A=1, B=2, ...)? \n\n10. Wander to the area known for its busy streets and vibrant markets. What is the equivalent of one meter in yards, as you stride onward?\n\n11. The sounds of a rich cultural tapestry surround you. What number of distinct consonant phonemes enriches the language documented in the piece you're exploring?\n\n12. Ink flows with stories from the late Second Showa Era — which years held significant happenings during its twilight?\n\n13. Those from faraway shores call the United States their home. What percent of the national population do Pacific Islander Americans represent, claiming the identity of 'Alone (one race)'?\n\n14. The voice of an entire community echoes through the results of a census; how many native speakers were counted in the year 1996 among those who speak this distant tongue?\n\n15. From the echoes of history, turn to a language that binds a unique culture. What is the known count of native speakers as recorded in the infobox?\n\n16. For those who studied such unique nuances, find the sum of its distinct prime factors as you reflect on the native speakers identified in clue 15.\n\n17. Seek the redirected title that leads to a discussion about a community both vibrant and complex. What is its name?\n\n18. Amongst the Banat Swabians, which region is noted for harboring significant populations within its embrace?\n\n19. The initial letter of this place tells its own tale. What is the alphabetical position of that first letter?\n\n20. As you ponder vast distances, how many miles lie within 80,000 kilometers?\n\n21. Finally, what prime number lies just past the miles you discovered in clue 20?\n\n22. As the final step, from the UK, what percentage of the population identifies as those of White British descent?\n\n23. Looking across narratives, how many languages capture the essence of stories with talking animals?\n\n24. Complete this journey by calculating: (18 + 1 + 0 + 49709) % 10. Your answer will lead you to a single digit, lying between 0 and 9.",
+  "metadata": {
+    "theme": "From a boutique hotel in Kowloon to global diasporas — a short trail that starts at Eaton Hotel Hong Kong and uses local geodata to orient a walk through nearby Kowloon neighborhoods, then branches into food, language and migration stories that connect Hong Kong to the wider Pacific and world.",
+    "difficulty": "extreme",
+    "sample_id": "sample_118",
+    "pages_crawled": 8732
+  },
+  "generated_at": "2026-03-17T01:51:32.763248+00:00"
+}

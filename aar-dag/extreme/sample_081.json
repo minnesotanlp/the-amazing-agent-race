@@ -1,0 +1,1188 @@
+{
+  "trail_id": "trail_bb91af63",
+  "seed_url": "https://en.wikipedia.org/wiki/Stanley_Joseph",
+  "seed_title": "Stanley Joseph",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Stanley_Joseph",
+      "extraction_target": "the height listed in the infobox (field: 'Height')",
+      "extraction_section": "infobox",
+      "extracted_value": 1.81,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Forster Square railway station wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Forster_Square_railway_station",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Seed: the journeyman's origin — establish who Stanley Joseph is and his hometown as the starting point for the itinerary.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Forster_Square_railway_station",
+      "extraction_target": "the number of platforms at the station",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Forster Square railway station wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Forster_Square_railway_station",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A key Bradford/Yorkshire rail hub on the local leg of the journey — use its infobox data to anchor the early rail itinerary.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Forster_Square_railway_station",
+      "extraction_target": "Look up the elevation of Forster Square railway station",
+      "extraction_section": null,
+      "extracted_value": 101.5064926147461,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Forster Square railway station"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Forster Square railway station) from https://en.wikipedia.org/wiki/Forster_Square_railway_station",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Forster_Square_railway_station",
+      "extraction_target": "Look up the Google rating of Forster Square railway station",
+      "extraction_section": null,
+      "extracted_value": 3.8,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "Forster Square railway station"
+            },
+            "expected_output": null,
+            "output_key": "place_rating"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (Google rating of Forster Square railway station) from https://en.wikipedia.org/wiki/Forster_Square_railway_station",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Forster_Square_railway_station",
+      "extraction_target": "Combine the elevation of Forster Square railway station and the Google rating of Forster Square railway station: abs(101 - 3)",
+      "extraction_section": null,
+      "extracted_value": 98,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(101.5064926147461) - int(3.8))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Forster Square railway station abs_diff Google rating of Forster Square railway station",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2,
+        3
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Forster_Square_railway_station",
+      "extraction_target": "Reason: the number of divisors of that figure",
+      "extraction_section": null,
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (num_divisors) on stop 1 value",
+      "reason_transform": "num_divisors",
+      "reason_source_stop": 1,
+      "reason_code": "n = abs(int(4))\ncount = sum(1 for i in range(1, n+1) if n % i == 0) if n > 0 else 0\nresult = count\nprint(result)",
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Leeds,_Bradford_and_Halifax_Junction_Railway",
+      "extraction_target": "Convert 1°C to a Fahrenheit-scale offset",
+      "extraction_section": null,
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "# Convert celsius to fahrenheit_offset\nvalue = 1.81\nconverted = value * 1.8\nresult = int(converted)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "converted"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: convert 1 celsius to fahrenheit_offset",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Keighley_railway_station",
+      "extraction_target": "the coordinates listed in the infobox (field: 'Coordinates')",
+      "extraction_section": "infobox",
+      "extracted_value": "53°52′04″N 1°54′04″W﻿ / ﻿53.8679°N 1.9011°W﻿ / 53.8679; -1.9011",
+      "extracted_value_type": "coords",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Ranchi–Ajmer Garib Nawaz Express wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Ranchi%E2%80%93Ajmer_Garib_Nawaz_Express",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Another Yorkshire stop on the route — its station details show the local transport network that propels the journey.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Keighley_railway_station",
+      "extraction_target": "Look up the elevation of Keighley railway station",
+      "extraction_section": null,
+      "extracted_value": 99.63919067382812,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Keighley railway station"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Keighley railway station) from https://en.wikipedia.org/wiki/Keighley_railway_station",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        7
+      ]
+    },
+    {
+      "index": 9,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Keighley_railway_station",
+      "extraction_target": "Look up the count of hotels near Keighley railway station",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "hotels near Keighley railway station"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of hotels near Keighley railway station) from https://en.wikipedia.org/wiki/Keighley_railway_station",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        7
+      ]
+    },
+    {
+      "index": 10,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Keighley_railway_station",
+      "extraction_target": "Combine the elevation of Keighley railway station and the count of hotels near Keighley railway station: abs(99 - 20)",
+      "extraction_section": null,
+      "extracted_value": 79,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(99.63919067382812) - int(20.0))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Keighley railway station abs_diff count of hotels near Keighley railway station",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        8,
+        9
+      ]
+    },
+    {
+      "index": 11,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Ranchi%E2%80%93Ajmer_Garib_Nawaz_Express",
+      "extraction_target": "Convert 4 meters to yards",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "# Convert meters to yards\nvalue = 4.0\nconverted = value * 1.09361\nresult = int(converted)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "converted"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: convert 4 meters to yards",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        10
+      ]
+    },
+    {
+      "index": 12,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Ranchi%E2%80%93Ajmer_Garib_Nawaz_Express",
+      "extraction_target": "Reason: the sum of its digits",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_sum) on stop 4 value",
+      "reason_transform": "digit_sum",
+      "reason_source_stop": 11,
+      "reason_code": "result = sum(int(d) for d in str(abs(int(4))))\nprint(result)",
+      "depends_on": [
+        11
+      ]
+    },
+    {
+      "index": 13,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Mirfield_railway_station",
+      "extraction_target": "the date the first Mirfield station opened",
+      "extraction_section": "History",
+      "extracted_value": "April 1845",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "2006 Canadian census wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/2006_Canadian_census",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A further West Yorkshire station to finish the regional rail arc before we pivot to cultural stops overseas.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        12
+      ]
+    },
+    {
+      "index": 14,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Mirfield_railway_station",
+      "extraction_target": "Look up the elevation of Mirfield railway station",
+      "extraction_section": null,
+      "extracted_value": 49.29505157470703,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Mirfield railway station"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Mirfield railway station) from https://en.wikipedia.org/wiki/Mirfield_railway_station",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        13
+      ]
+    },
+    {
+      "index": 15,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Mirfield_railway_station",
+      "extraction_target": "Look up the Google rating of Mirfield railway station",
+      "extraction_section": null,
+      "extracted_value": 3.1,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "Mirfield railway station"
+            },
+            "expected_output": null,
+            "output_key": "place_rating"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (Google rating of Mirfield railway station) from https://en.wikipedia.org/wiki/Mirfield_railway_station",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        13
+      ]
+    },
+    {
+      "index": 16,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Mirfield_railway_station",
+      "extraction_target": "Combine the elevation of Mirfield railway station and the Google rating of Mirfield railway station: abs(49 - 3)",
+      "extraction_section": null,
+      "extracted_value": 46,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(49.29505157470703) - int(3.1))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Mirfield railway station abs_diff Google rating of Mirfield railway station",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        14,
+        15
+      ]
+    },
+    {
+      "index": 17,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/2006_Canadian_census",
+      "extraction_target": "Look up the population of Canada",
+      "extraction_section": null,
+      "extracted_value": 41651653,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "countries_population",
+            "arguments": {
+              "country": "Canada"
+            },
+            "expected_output": null,
+            "output_key": "population"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: population of Canada",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        16
+      ]
+    },
+    {
+      "index": 18,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/2006_Canadian_census",
+      "extraction_target": "Reason: the number of divisors of that figure",
+      "extraction_section": null,
+      "extracted_value": 8,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (num_divisors) on stop 6 value",
+      "reason_transform": "num_divisors",
+      "reason_source_stop": 17,
+      "reason_code": "n = abs(int(41651653))\ncount = sum(1 for i in range(1, n+1) if n % i == 0) if n > 0 else 0\nresult = count\nprint(result)",
+      "depends_on": [
+        17
+      ]
+    },
+    {
+      "index": 19,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Lancashire_%26_Yorkshire_Railway",
+      "extraction_target": "the track gauge of the Lancashire and Yorkshire Railway in millimetres",
+      "extraction_section": null,
+      "extracted_value": 1435,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Battle Abbey wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Battle_Abbey",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Historic regional railway company that contextualizes the rail network our journeyman used — offers datable infobox facts for the travel narrative.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        18
+      ]
+    },
+    {
+      "index": 20,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Lancashire_%26_Yorkshire_Railway",
+      "extraction_target": "Look up the elevation of Lancashire & Yorkshire Railway",
+      "extraction_section": null,
+      "extracted_value": 10.54630661010742,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Lancashire & Yorkshire Railway"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Lancashire & Yorkshire Railway) from https://en.wikipedia.org/wiki/Lancashire_%26_Yorkshire_Railway",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        19
+      ]
+    },
+    {
+      "index": 21,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Lancashire_%26_Yorkshire_Railway",
+      "extraction_target": "Look up the Google rating of Lancashire & Yorkshire Railway",
+      "extraction_section": null,
+      "extracted_value": 4.8,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "Lancashire & Yorkshire Railway"
+            },
+            "expected_output": null,
+            "output_key": "place_rating"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (Google rating of Lancashire & Yorkshire Railway) from https://en.wikipedia.org/wiki/Lancashire_%26_Yorkshire_Railway",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        19
+      ]
+    },
+    {
+      "index": 22,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Lancashire_%26_Yorkshire_Railway",
+      "extraction_target": "Combine the elevation of Lancashire & Yorkshire Railway and the Google rating of Lancashire & Yorkshire Railway: (10 + 4)",
+      "extraction_section": null,
+      "extracted_value": 14,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(10.54630661010742) + int(4.8)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Lancashire & Yorkshire Railway add Google rating of Lancashire & Yorkshire Railway",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        20,
+        21
+      ]
+    },
+    {
+      "index": 23,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Battle_Abbey",
+      "extraction_target": "Count the number of stadiums near Battle",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "stadiums near Battle"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: count stadiums near Battle",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        22
+      ]
+    },
+    {
+      "index": 24,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Hariharan_(singer)",
+      "extraction_target": "the years Hariharan has been active",
+      "extraction_section": null,
+      "extracted_value": "1977–present",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Bapu_(director)",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Begin the cultural detour in India with a major vocalist; his infobox anchors the musical leg of the itinerary.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        23
+      ]
+    },
+    {
+      "index": 25,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Bapu_(director)",
+      "extraction_target": "age at death as stated in the infobox",
+      "extraction_section": null,
+      "extracted_value": 80,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "São Paulo International Film Festival wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/S%C3%A3o_Paulo_International_Film_Festival",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A film director representing the movie/visual arts strand of the journey — connects to festivals and transnational cultural exchange.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        24
+      ]
+    },
+    {
+      "index": 26,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/S%C3%A3o_Paulo_International_Film_Festival",
+      "extraction_target": "the year the festival was founded",
+      "extraction_section": null,
+      "extracted_value": 1977,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Atco Records wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Atco_Records",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A major international festival node in Brazil — illustrates how the journey crosses into global cultural circuits.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        25
+      ]
+    },
+    {
+      "index": 27,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Atco_Records",
+      "extraction_target": "the month and year ATCO Records was founded",
+      "extraction_section": null,
+      "extracted_value": "July 1955",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Cienciano wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Cienciano",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A music-industry node (label) that ties together recorded-music destinations encountered during the creative side of the journey.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        26
+      ]
+    },
+    {
+      "index": 28,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Cienciano",
+      "extraction_target": "the capacity of Cienciano's home stadium",
+      "extraction_section": null,
+      "extracted_value": 45056,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Juan_Aurich",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Begin the Peruvian football leg: Cienciano provides a sporting destination and local infobox facts (stadium/city) to ground the South American leg.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        27
+      ]
+    },
+    {
+      "index": 29,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Juan_Aurich",
+      "extraction_target": "the year this incarnation of the club was founded",
+      "extraction_section": null,
+      "extracted_value": 2005,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Juan_Aurich",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Another Peruvian club stop — comparing club facts helps trace the football circuit our traveler encounters.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        28
+      ]
+    },
+    {
+      "index": 30,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Juan_Aurich",
+      "extraction_target": "Reason: the sum of its digits",
+      "extraction_section": null,
+      "extracted_value": 7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_sum) on stop 14 value",
+      "reason_transform": "digit_sum",
+      "reason_source_stop": 29,
+      "reason_code": "result = sum(int(d) for d in str(abs(int(2005))))\nprint(result)",
+      "depends_on": [
+        29
+      ]
+    },
+    {
+      "index": 31,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Sport_Huancayo",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Founded')",
+      "extraction_section": "infobox",
+      "extracted_value": 7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Sport_Huancayo",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A highland Peruvian club whose altitude highlights contrast with earlier lowland and temperate stops — sets up the elevation/distance comparisons from tools.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        30
+      ]
+    },
+    {
+      "index": 32,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Sport_Huancayo",
+      "extraction_target": "Reason: the number of characters when written as a Roman numeral",
+      "extraction_section": null,
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (roman_numeral_letter_count) on stop 15 value",
+      "reason_transform": "roman_numeral_letter_count",
+      "reason_source_stop": 31,
+      "reason_code": "def to_roman(n):\n    n = abs(int(n))\n    vals = [(1000,'M'),(900,'CM'),(500,'D'),(400,'CD'),(100,'C'),\n            (90,'XC'),(50,'L'),(40,'XL'),(10,'X'),(9,'IX'),(5,'V'),(4,'IV'),(1,'I')]\n    r = ''\n    for v, s in vals:\n        while n >= v:\n            r += s; n -= v\n    return r\nresult = len(to_roman(7))\nprint(result)",
+      "depends_on": [
+        31
+      ]
+    },
+    {
+      "index": 33,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Trisulfuryl_fluoride",
+      "extraction_target": "Convert 2005°C to a Fahrenheit-scale offset",
+      "extraction_section": null,
+      "extracted_value": 3609,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "# Convert celsius to fahrenheit_offset\nvalue = 2005.0\nconverted = value * 1.8\nresult = int(converted)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "converted"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: convert 2005 celsius to fahrenheit_offset",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        32
+      ]
+    },
+    {
+      "index": 34,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/1976_in_baseball",
+      "extraction_target": "Calculate the number of days between 1845-01-01 and 2026-03-16",
+      "extraction_section": null,
+      "extracted_value": 66183,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "from datetime import date\nd1 = date.fromisoformat('1845-01-01')\nd2 = date.fromisoformat('2026-03-16')\nresult = abs((d2 - d1).days)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "days"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: date computation 1845-01-01 to 2026-03-16 (pinned)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        33
+      ]
+    },
+    {
+      "index": 35,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/1976_in_baseball",
+      "extraction_target": "Reason: the sum of its digits",
+      "extraction_section": null,
+      "extracted_value": 24,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_sum) on stop 17 value",
+      "reason_transform": "digit_sum",
+      "reason_source_stop": 34,
+      "reason_code": "result = sum(int(d) for d in str(abs(int(66183))))\nprint(result)",
+      "depends_on": [
+        34
+      ]
+    },
+    {
+      "index": 36,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: digital_root(49 + 8 + 7)",
+      "extraction_section": null,
+      "extracted_value": 1,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "digital_root(49 + 8 + 7)",
+        "expression_code": "def digital_root(n):\n    n = abs(int(n))\n    return n if n == 0 else ((n - 1) % 9) + 1\nresult = digital_root(49 + 8 + 7)\nprint(result)",
+        "referenced_stops": [
+          14,
+          18,
+          30
+        ]
+      },
+      "reasoning": "Compute stop: digital_root(49 + 8 + 7) = 1",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        14,
+        18,
+        30
+      ]
+    }
+  ],
+  "passcode": 1,
+  "difficulty": {
+    "level": "extreme",
+    "depth": 37,
+    "tool_stop_count": 18,
+    "reason_stop_count": 6,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Track down the life and legacy of the man whose pursuits once triumphed in the realm of sports. What is his height listed in the annals of history?\n\n2. At a bustling hub of transport in Yorkshire, count the number of platforms that facilitate journeys. This connection leads you further along your path.\n\n3. How does the ground beneath the sheltering roofs of the railway station rise into the sky, expressed in meters?\n\n4. What rating do travelers bestow upon this station on a popular review platform? \n\n5. Now, take the elevation you discovered in clue 3 and the rating from clue 4; what is the absolute difference between these two numbers?\n\n6. Divide the figure obtained in clue 2, which signifies the number of platforms, into its distinct components and count how many unique divisors it possesses.\n\n7. A region served by trains often experiences changes in temperature. How many degrees Fahrenheit correspond to a chilly 1°C?\n\n8. Examine another railway station nearby — its coordinates are essential for your journey. What numbers define its geographical location in the infobox?\n\n9. Seek the height of the station standing in Keighley. In meters, how far from the sea do its tracks rest?\n\n10. Nearby this station, how many places offering rest and accommodation stand ready to welcome weary travelers?\n\n11. Consider the elevation from clue 9 and the number of hotels from clue 10. What is the absolute difference between these two figures?\n\n12. If you were to measure the span of 4 meters in yards, how many do you find in this gracious conversion?\n\n13. Reflect on the sum of the digits from the number you gleaned in clue 12. What total do they yield?\n\n14. In a town rich in history, what date marks the commencement of the first railway station named Mirfield?\n\n15. Look skyward at the elevation of this Mirfield station. How many meters does it rise above the ground?\n\n16. Travelers have rated this station, what score do they grant it on a popular review platform?\n\n17. Now, combine the height from clue 15 with the rating in clue 16. What is the absolute difference between these two values?\n\n18. Explore a census report from 2006; how many souls called Canada their home during that year?\n\n19. Return to the population figure from clue 18, and seek its divisors — how many distinct positive integers can divide it evenly?\n\n20. The Lancashire and Yorkshire Railway ran on tracks of a specific gauge. How wide in millimeters are those tracks?\n\n21. Elevate your knowledge of the same railway; how high does it sit above sea level in meters?\n\n22. Travelers have once again judged this railway; what score does it receive in the ratings?\n\n23. Merge the elevation from clue 21 with the rating from clue 22. What sum do they yield when added together?\n\n24. Count the number of stadiums that surround the historical site known for its battles — what total do you discover?\n\n25. Shift gears to a celebrated musician from India. What years mark the timeline of his artistic contributions?\n\n26. Seek out a renowned film director. How old was he at the moment of his departure from this world?\n\n27. On a grand cinematic stage in Brazil, which year witnessed the foundation of the film festival celebrated in São Paulo?\n\n28. A record label has its origin in a month during a specific year. What do you discover of the establishment of ATCO Records?\n\n29. In the heart of Peru, what is the capacity of Cienciano's football ground, which witnesses the fervor of its fans?\n\n30. An incarnation of a Peruvian football team rose in a certain year. What year marks this club's origin?\n\n31. Reflect on that year; what do you get when you total all its digits?\n\n32. Another club claims its foundation year within the text. What does the entry show as its establishment?\n\n33. Contemplate how many characters compose its written representation in Roman numerals.\n\n34. In the realm of chemical compounds, how hot does 2005°C translate to on the Fahrenheit scale?\n\n35. Calculate the number of days that stretch from the dawn of 1845 to the spring of 2026. What figure emerges from this calculation?\n\n36. Sum the digits of your earlier answer from clue 35; what total does this operation reveal?\n\n37. Finally, compute the digital root of the total from the clues 15, 19, and 31 before you. What single-digit number do you arrive at?",
+  "metadata": {
+    "theme": "A cross-continental travelogue: follow an imagined journeyman (beginning at Stanley Joseph) as we map stops through rail hubs in Yorkshire, cultural detours in India and Brazil, and football grounds in Peru — using a mix of page facts and tools (elevation, distances, travel durations, population, POI counts, historical sunshine, unit conversions and date math) to stitch the itinerary together.",
+    "difficulty": "extreme",
+    "sample_id": "sample_081",
+    "pages_crawled": 2389
+  },
+  "generated_at": "2026-03-16T10:35:37.684121+00:00"
+}

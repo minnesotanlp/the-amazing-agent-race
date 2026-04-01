@@ -1,0 +1,281 @@
+{
+  "trail_id": "trail_1c4df5fe",
+  "seed_url": "https://en.wikipedia.org/wiki/Culture_of_Yorkshire",
+  "seed_title": "Culture of Yorkshire",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Culture_of_Yorkshire",
+      "extraction_target": "the year Nigel Farndale used 'God's Own Country' as a headline in a special Yorkshire edition of Country Life",
+      "extraction_section": "Traditions and stereotypes",
+      "extracted_value": "1995",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Yorkshire_dialect",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Starting seed: an overview of Yorkshire's cultural identity that frames the trail (language, clothing, songs, landscape and food).",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Yorkshire_dialect",
+      "extraction_target": "the number of speech example audio files shown on the page (examples from Leeds, Bradford and South Yorkshire)",
+      "extraction_section": null,
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Flat cap wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Flat_cap",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Language stop: highlights the distinctive Yorkshire speech that underpins regional identity and local songs/poems.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Flat_cap",
+      "extraction_target": "the year shown in the image caption for the woollen flat cap worn by Jason Isaacs",
+      "extraction_section": null,
+      "extracted_value": "2005",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Ilkley Moor wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Ilkley_Moor",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Dress stop: the flat cap is a classic piece of working-class Yorkshire attire and a visible cultural emblem.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Ilkley_Moor",
+      "extraction_target": "Calculate the number of days between 2005-01-01 and 2026-03-16",
+      "extraction_section": null,
+      "extracted_value": 7744,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "from datetime import date\nd1 = date.fromisoformat('2005-01-01')\nd2 = date.fromisoformat('2026-03-16')\nresult = abs((d2 - d1).days)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "days"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: date computation 2005-01-01 to 2026-03-16 (pinned)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 4,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Ilkley_Moor",
+      "extraction_target": "Reason: the number you get by reversing its digits",
+      "extraction_section": null,
+      "extracted_value": 4477,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_reversal) on stop 3 value",
+      "reason_transform": "digit_reversal",
+      "reason_source_stop": 3,
+      "reason_code": "result = int(str(abs(int(7744)))[::-1])\nprint(result)"
+    },
+    {
+      "index": 5,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Eboracum",
+      "extraction_target": "Calculate the driving distance between York and Yorkshire dialect",
+      "extraction_section": null,
+      "extracted_value": 0.487,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "York"
+            },
+            "expected_output": null,
+            "output_key": "coords_a"
+          },
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Yorkshire dialect"
+            },
+            "expected_output": null,
+            "output_key": "coords_b"
+          },
+          {
+            "tool_name": "maps_distance_matrix",
+            "arguments": {
+              "__from_previous_as_origins_destinations": [
+                "coords_a",
+                "coords_b"
+              ]
+            },
+            "expected_output": null,
+            "output_key": "distance_km"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: distance between York and Yorkshire dialect",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 6,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Parkin_(cake)",
+      "extraction_target": "Calculate the number of days between 2005-01-01 and 2026-03-16",
+      "extraction_section": null,
+      "extracted_value": 7744,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "from datetime import date\nd1 = date.fromisoformat('2005-01-01')\nd2 = date.fromisoformat('2026-03-16')\nresult = abs((d2 - d1).days)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "days"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: date computation 2005-01-01 to 2026-03-16 (pinned)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 7,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Parkin_(cake)",
+      "extraction_target": "Reason: the next prime number after that figure",
+      "extraction_section": null,
+      "extracted_value": 7753,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (next_prime) on stop 5 value",
+      "reason_transform": "next_prime",
+      "reason_source_stop": 6,
+      "reason_code": "def next_prime(n):\n    n = abs(int(n))\n    if n < 2: return 2\n    candidate = n + 1\n    while True:\n        if all(candidate % i != 0 for i in range(2, int(candidate**0.5)+1)):\n            return candidate\n        candidate += 1\nresult = next_prime(7744)\nprint(result)"
+    },
+    {
+      "index": 8,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: abs(3 - 2005) % 10",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "abs(3 - 2005) % 10",
+        "expression_code": "result = abs(3 - 2005) % 10\nprint(result)",
+        "referenced_stops": [
+          1,
+          2,
+          4
+        ]
+      },
+      "reasoning": "Compute stop: abs(3 - 2005) % 10 = 2",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 2,
+  "difficulty": {
+    "level": "medium",
+    "depth": 9,
+    "tool_stop_count": 3,
+    "reason_stop_count": 2,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "Here is the revised riddle:\n\n1. Seek the page detailing the heritage and customs of a northern English county known for its historic whaling cities; in what year did Nigel Farndale first use the phrase \"God's Own Country\" as a headline for a special county edition of Country Life? After you note that year, follow the link on the page labelled the county's regional speech to continue.\n\n2. There exists a page about that regional speech; count how many audio samples of local pronunciations are shown (examples include recordings from Leeds, Bradford and South Yorkshire). When you've tallied those clips, hunt the web for an article about the traditional rounded woollen headwear once common among working folk.\n\n3. What year appears in the image caption showing the woollen cap worn by actor Jason Isaacs on that headwear page? With that year in mind, search next for the famous West Yorkshire moor immortalised in a folk song above a spa town.\n\n4. If you arrive at the article about that moor, compute how many days elapse between 1 January 2005 and 16 March 2026; record the total number of days as your next value before moving on.\n\n5. The number you just found—now reverse its digits (flip the order from last to first); that reversed number is your new clue value to carry forward.\n\n6. In Roman times the settlement we now call York had another name; visit the page about that ancient town and answer this travel question: what is the driving distance between modern York and the area associated with the regional speech you examined in clue 2? Report the distance as a single numeric value (specify miles or kilometres if you wish).\n\n7. The sticky, gingery cake of the county has its own article; there too, determine how many days lie between 1 January 2005 and 16 March 2026 — compute the same span again and note that number for the next step.\n\n8. (As a quick aside: take the number from clue 7 and find the next prime number greater than that figure; that prime becomes the value you carry into the final reckoning.)\n\n9. At last, compute the following single-digit result exactly as written using only the numeric values you discovered for the referenced clues: compute the absolute difference between clue 2 and clue 3, then take that result modulo 10 — formally, calculate abs(clue 2 - clue 3) % 10. The outcome of this operation is a single digit from 0–9; that digit is your final answer.",
+  "metadata": {
+    "theme": "A compact cultural trail through Yorkshire: language, dress, landscape and food — from dialect and traditional headwear to moors, Roman York and a recipe for parkin.",
+    "difficulty": "medium",
+    "sample_id": "sample_110",
+    "pages_crawled": 6168
+  },
+  "generated_at": "2026-03-16T21:52:46.126598+00:00"
+}

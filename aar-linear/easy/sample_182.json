@@ -1,0 +1,151 @@
+{
+  "trail_id": "trail_caf0d2b3",
+  "seed_url": "https://en.wikipedia.org/wiki/General_Electric",
+  "seed_title": "General Electric",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/General_Electric",
+      "extraction_target": "the number of languages listed at the top of the article",
+      "extraction_section": null,
+      "extracted_value": 67,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Boston",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start at GE (the seed): extract its headquarters location to anchor the geographic leg of the trail and confirm its historical ownership of NBCUniversal (the asset it sold).",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/General_Electric",
+      "extraction_target": "Look up the Google rating of General Electric",
+      "extraction_section": null,
+      "extracted_value": 5.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "General Electric"
+            },
+            "expected_output": null,
+            "output_key": "place_rating"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (place_rating) derived from https://en.wikipedia.org/wiki/General_Electric",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Boston",
+      "extraction_target": "the number of language editions listed at the top of the page",
+      "extraction_section": null,
+      "extracted_value": 178,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Boston",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "GE relocated substantial corporate functions to the Boston area in recent years — extract Boston's coordinates to map GE's present corporate center.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 3,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Boston",
+      "extraction_target": "Reason: the sum of its digits",
+      "extraction_section": null,
+      "extracted_value": 16,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_sum) on stop 1 value",
+      "reason_transform": "digit_sum",
+      "reason_source_stop": 2,
+      "reason_code": "result = sum(int(d) for d in str(abs(int(178))))\nprint(result)"
+    },
+    {
+      "index": 4,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: (178 + 16) % 10",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "(178 + 16) % 10",
+        "expression_code": "result = (178 + 16) % 10\nprint(result)",
+        "referenced_stops": [
+          2,
+          3
+        ]
+      },
+      "reasoning": "Compute stop: (178 + 16) % 10 = 4",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 4,
+  "difficulty": {
+    "level": "easy",
+    "depth": 5,
+    "tool_stop_count": 1,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "direct_link"
+  },
+  "riddle": "1. Unearth the tale of a titan born in 1892 that once sparked the American industrial age. What is the count of languages that honor its legacy?\n\n2. Seek the score that reflect travelers' impressions of this conglomerate’s current standing. How many stars shine upon its name?\n\n3. The heart of Massachusetts beats strongly in a city that shares its name with a common bean. How many language editions does this bustling hub boast?\n\n4. Reflect on the digits that compose your previous answer; what total do they yield when summed together?\n\n5. Find the result of the expression formed by the stars you uncovered in clue 2 and the total from clue 4. Compute the value of (clue 3 + clue 4) % 10.\n\nThe final answer will be a single digit obtained through your calculations!",
+  "metadata": {
+    "theme": "Tracing General Electric's corporate shift — from its media divestiture to its relocated headquarters and the buyer's market position",
+    "difficulty": "easy",
+    "sample_id": "sample_182",
+    "pages_crawled": 3969
+  },
+  "generated_at": "2026-03-17T12:03:47.494235+00:00"
+}

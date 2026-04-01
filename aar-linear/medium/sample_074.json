@@ -1,0 +1,326 @@
+{
+  "trail_id": "trail_2c3f55d5",
+  "seed_url": "https://en.wikipedia.org/wiki/Irina_Spîrlea",
+  "seed_title": "Irina Spîrlea",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Irina_Sp%C3%AErlea",
+      "extraction_target": "number of WTA singles titles",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Irina_Sp%C3%AErlea",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start with Irina Spîrlea herself (seed). Extract her peak ranking/titles to anchor why her 1990s tournament schedule matters.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Irina_Sp%C3%AErlea",
+      "extraction_target": "Reason: the next prime number after that figure",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (next_prime) on stop 0 value",
+      "reason_transform": "next_prime",
+      "reason_source_stop": 0,
+      "reason_code": "def next_prime(n):\n    n = abs(int(n))\n    if n < 2: return 2\n    candidate = n + 1\n    while True:\n        if all(candidate % i != 0 for i in range(2, int(candidate**0.5)+1)):\n            return candidate\n        candidate += 1\nresult = next_prime(4)\nprint(result)"
+    },
+    {
+      "index": 2,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/1997_US_Open_(tennis)",
+      "extraction_target": "the start date of the tournament",
+      "extraction_section": null,
+      "extracted_value": "August 25, 1997",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Internationaux de Strasbourg wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Internationaux_de_Strasbourg",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A major late-season hard-court event where tour scheduling and travel culminating in New York affected players like Spîrlea; use the dates and location to compare conditions and timing.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 3,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Internationaux_de_Strasbourg",
+      "extraction_target": "the location (city and country) of the tournament",
+      "extraction_section": null,
+      "extracted_value": "Strasbourg, France",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "1999 Dreamland Egypt Classic – Singles wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/1999_Dreamland_Egypt_Classic_%E2%80%93_Singles",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A clay-court European stop often played by WTA pros — shows the switch in surfaces and European mid-season tournaments in Spîrlea's circuit.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 4,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/1999_Dreamland_Egypt_Classic_%E2%80%93_Singles",
+      "extraction_target": "Calculate the driving distance between 1999 Dreamland Egypt Classic – Singles and Strasbourg, France",
+      "extraction_section": null,
+      "extracted_value": 4768.78,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "1999 Dreamland Egypt Classic – Singles"
+            },
+            "expected_output": null,
+            "output_key": "coords_a"
+          },
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Strasbourg, France"
+            },
+            "expected_output": null,
+            "output_key": "coords_b"
+          },
+          {
+            "tool_name": "maps_distance_matrix",
+            "arguments": {
+              "__from_previous_as_origins_destinations": [
+                "coords_a",
+                "coords_b"
+              ]
+            },
+            "expected_output": null,
+            "output_key": "distance_km"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: distance between 1999 Dreamland Egypt Classic – Singles and Strasbourg, France",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 5,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Internazionali_Femminili_di_Palermo",
+      "extraction_target": "location (city and country) of the tournament as shown in the infobox",
+      "extraction_section": null,
+      "extracted_value": "Palermo Italy",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "1996 Bausch & Lomb Championships – Singles wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/1996_Bausch_%26_Lomb_Championships_%E2%80%93_Singles",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A southern European clay event in Spîrlea's era — helps show regional clusters of tournaments and the variety of venues she would travel to.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 6,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/1996_Bausch_%26_Lomb_Championships_%E2%80%93_Singles",
+      "extraction_target": "the draw size listed for the singles event",
+      "extraction_section": null,
+      "extracted_value": 56,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "1995 Danamon Open – Singles wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/1995_Danamon_Open_%E2%80%93_Singles",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "An important early-season Florida stop (Amelia Island) in the WTA calendar — shows long-haul intercontinental travel from Europe to the U.S. spring circuit.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 7,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/1995_Danamon_Open_%E2%80%93_Singles",
+      "extraction_target": "Calculate the number of days between 1997-08-25 and 2026-03-16",
+      "extraction_section": null,
+      "extracted_value": 10430,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "from datetime import date\nd1 = date.fromisoformat('1997-08-25')\nd2 = date.fromisoformat('2026-03-16')\nresult = abs((d2 - d1).days)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "days"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: date computation 1997-08-25 to 2026-03-16 (pinned)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 8,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/1995_Danamon_Open_%E2%80%93_Singles",
+      "extraction_target": "Reason: the largest prime factor of that figure",
+      "extraction_section": null,
+      "extracted_value": 149,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (largest_prime_factor) on stop 6 value",
+      "reason_transform": "largest_prime_factor",
+      "reason_source_stop": 7,
+      "reason_code": "def largest_prime_factor(n):\n    n = abs(int(n))\n    if n <= 1: return n\n    d = 2\n    while d * d <= n:\n        while n % d == 0: n //= d\n        d += 1\n    return n\nresult = largest_prime_factor(10430)\nprint(result)"
+    },
+    {
+      "index": 9,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/1998_Family_Circle_Cup_%E2%80%93_Singles",
+      "extraction_target": "Convert 56 meters to feet",
+      "extraction_section": null,
+      "extracted_value": 183,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "# Convert meters to feet\nvalue = 56.0\nconverted = value * 3.28084\nresult = int(converted)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "converted"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: convert 56 meters to feet",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 10,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: (56 + 10430) % 10",
+      "extraction_section": null,
+      "extracted_value": 6,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "(56 + 10430) % 10",
+        "expression_code": "result = (56 + 10430) % 10\nprint(result)",
+        "referenced_stops": [
+          6,
+          7
+        ]
+      },
+      "reasoning": "Compute stop: (56 + 10430) % 10 = 6",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 6,
+  "difficulty": {
+    "level": "medium",
+    "depth": 11,
+    "tool_stop_count": 3,
+    "reason_stop_count": 2,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Seek the Wikipedia page about the Romanian tennis player who rose to world No. 7 in the 1990s; on that page, how many WTA singles titles are listed?\n\n2. There is a small mathematical twist waiting: take the number you obtained in clue 1 and give the next prime number strictly greater than it.\n\n3. When you visit the U.S. hard-court major's 1997 edition page, on which date did that tournament begin?\n\n4. If you follow the tournament link from the player's article that points to a European clay warm-up in Alsace, which city and country are named as the host?\n\n5. In 1999 the tour visited an Egyptian resort event she played; using a mapping service, estimate the driving distance between that Egyptian tournament venue and the Alsace city you uncovered in clue 4 — how many kilometers would the route show?\n\n6. The article whose opening line mentions a Sicilian seaside stop holds your next answer: what city and country does that Palermo tournament page list?\n\n7. The Amelia Island event keeps its tournament size like a hidden draw; consult the 1996 edition's page and report the singles draw size shown there.\n\n8. (For a scheduling perspective) how many days elapse between 1997-08-25 and 2026-03-16?\n\n9. As a reasoned step, take the day-count you just computed in clue 8 and determine its largest prime factor.\n\n10. By conversion, turn 56 metres into feet and keep the whole-number (integer) part as your value for this stop.\n\n11. Finally, compute the following single-digit result and report only that digit: (clue 7 + clue 8) % 10. The outcome will be a single digit from 0 to 9.",
+  "metadata": {
+    "theme": "Following Irina Spîrlea's 1990s WTA season: tournaments, travel and conditions — a mini tour of events she played and the logistics players faced (distances, elevations, weather, and scheduling).",
+    "difficulty": "medium",
+    "sample_id": "sample_074",
+    "pages_crawled": 3179
+  },
+  "generated_at": "2026-03-16T13:31:04.870470+00:00"
+}

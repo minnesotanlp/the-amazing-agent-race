@@ -1,0 +1,473 @@
+{
+  "trail_id": "trail_72abc6f5",
+  "seed_url": "https://en.wikipedia.org/wiki/A._R._Casavant",
+  "seed_title": "A. R. Casavant",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/A._R._Casavant",
+      "extraction_target": "number of patents awarded",
+      "extraction_section": null,
+      "extracted_value": 6,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Corps_of_drums",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Seed: A. R. Casavant pioneered modern marching‑band drill and pedagogy — the trail begins with his innovations that shaped how bands move and teach.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Corps_of_drums",
+      "extraction_target": "the group to which the history of the Corps of Drums is traced in the Origin section",
+      "extraction_section": "Origin",
+      "extracted_value": "Swiss mercenaries",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Fife (musical instrument) wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Fife_(musical_instrument)",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Shows the military origins of organized marching percussion and drill that influenced civilian marching bands.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Fife_(musical_instrument)",
+      "extraction_target": "the number of languages listed in the interlanguage links at the top of the page",
+      "extraction_section": null,
+      "extracted_value": 15,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Goin' Band from Raiderland wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Goin%27_Band_from_Raiderland",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Examines a traditional marching instrument (the fife) to connect instrumentation used in early marches to modern ensembles.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Fife_(musical_instrument)",
+      "extraction_target": "Look up the elevation of Fife",
+      "extraction_section": null,
+      "extracted_value": 92.60670471191406,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Fife"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Fife) from https://en.wikipedia.org/wiki/Fife_(musical_instrument)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Fife_(musical_instrument)",
+      "extraction_target": "Look up the count of parks near Fife",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "parks near Fife"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of parks near Fife) from https://en.wikipedia.org/wiki/Fife_(musical_instrument)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Fife_(musical_instrument)",
+      "extraction_target": "Combine the elevation of Fife and the count of parks near Fife: abs(92 - 20)",
+      "extraction_section": null,
+      "extracted_value": 72,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(92.60670471191406) - int(20.0))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Fife abs_diff count of parks near Fife",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3,
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Fife_(musical_instrument)",
+      "extraction_target": "Count museums near Fife",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "museums near Fife"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (nearby_poi) derived from https://en.wikipedia.org/wiki/Fife_(musical_instrument)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Goin%27_Band_from_Raiderland",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Founded')",
+      "extraction_section": "infobox",
+      "extracted_value": 1925,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Suzuki method wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Suzuki_method",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A living example of a contemporary college marching band (Texas Tech) that illustrates how drill and showmanship evolved into college pageantry.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Suzuki_method",
+      "extraction_target": "the century during which the Suzuki method is described as originating in the article lead",
+      "extraction_section": null,
+      "extracted_value": "mid-20th century",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "High school football wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/High_school_football",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Places marching‑band pedagogy alongside broader music education movements — the Suzuki method is an influential teaching approach showing how systematic instruction spread.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        7
+      ]
+    },
+    {
+      "index": 9,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/High_school_football",
+      "extraction_target": "the governing body for high school football in the United States as listed",
+      "extraction_section": null,
+      "extracted_value": "National Federation of State High School Associations",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/High_school_football",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "High‑school football is a primary context where marching bands perform; this stop ties educational bands to community sports.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        8
+      ]
+    },
+    {
+      "index": 10,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/High_school_football",
+      "extraction_target": "Reason: the alphabetical position of its first letter (A=1, B=2, ...)",
+      "extraction_section": null,
+      "extracted_value": 14,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (alpha_position_first_letter) on stop 5 value",
+      "reason_transform": "alpha_position_first_letter",
+      "reason_source_stop": 9,
+      "reason_code": "first = \"National Federation of State High School Associations\"[0].upper()\nresult = ord(first) - ord('A') + 1 if first.isalpha() else 0\nprint(result)",
+      "depends_on": [
+        9
+      ]
+    },
+    {
+      "index": 11,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Georgia_Bulldogs_football",
+      "extraction_target": "Sanford Stadium capacity",
+      "extraction_section": null,
+      "extracted_value": 93033,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Port Lincoln Airport wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Port_Lincoln_Airport",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A prominent college football program whose game-day scale (stadium size, crowd) shows the large audiences marching bands now entertain.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        10
+      ]
+    },
+    {
+      "index": 12,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Port_Lincoln_Airport",
+      "extraction_target": "Convert 1925 meters to feet",
+      "extraction_section": null,
+      "extracted_value": 6315,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "# Convert meters to feet\nvalue = 1925.0\nconverted = value * 3.28084\nresult = int(converted)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "converted"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: convert 1925 meters to feet",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        11
+      ]
+    },
+    {
+      "index": 13,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Port_Lincoln_Airport",
+      "extraction_target": "Reason: the number of 1-bits in its binary representation",
+      "extraction_section": null,
+      "extracted_value": 7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (binary_1bit_count) on stop 7 value",
+      "reason_transform": "binary_1bit_count",
+      "reason_source_stop": 12,
+      "reason_code": "result = bin(abs(int(6315))).count('1')\nprint(result)",
+      "depends_on": [
+        12
+      ]
+    },
+    {
+      "index": 14,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: abs(20 - 93033) % 10",
+      "extraction_section": null,
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "abs(20 - 93033) % 10",
+        "expression_code": "result = abs(20 - 93033) % 10\nprint(result)",
+        "referenced_stops": [
+          4,
+          11,
+          13
+        ]
+      },
+      "reasoning": "Compute stop: abs(20 - 93033) % 10 = 3",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        4,
+        11,
+        13
+      ]
+    }
+  ],
+  "passcode": 3,
+  "difficulty": {
+    "level": "medium",
+    "depth": 15,
+    "tool_stop_count": 5,
+    "reason_stop_count": 2,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Seek the pioneer of innovation in the world of music who has amassed numerous patents — how many can you uncover?\n\n2. Delve into the evolution of musical ensembles that have driven a rhythmic march forward; to which legendary military group does the history trace back?\n\n3. Unveil the name of the spirited woodwind often played in unison with drums, famed in many military and celebratory settings. How many tongues around the globe carry its name?\n\n4. What altitude does this land of melodies enjoy above the sea, where your previous discovery hails from?\n\n5. Nearby this melodic haven, how many green escapes exist, allowing for leisure and recreation?\n\n6. Now, seek the difference between the height you found in clue 4 and the nearby parks from clue 5. What is the absolute value of that computation?\n\n7. As you traverse the district surrounding this musical haven, how many places of exhibit can you find showcasing art and history?\n\n8. A dynamic ensemble emerged with a vibrant energy from the heart of Texas; what year marked its inception?\n\n9. In the domain of music education, during which century did a new teaching methodology, rooted in nurturing talent, first gain recognition?\n\n10. Within the realm of youth athletics, which organization oversees the rules and progressions of football at secondary schools across the nation?\n\n11. Upon discovering that governing body, note the value of its first character’s placement in the alphabet. What number corresponds to that letter?\n\n12. In the grand stadium where the local heroes play, how many spectators can be accommodated in its walls?\n\n13. Convert the height of the airplane runway ongoing since the 1920s to its length in feet. What is that transformed measurement?\n\n14. Reflection upon your conversion in clue 13 will reveal the wealth of binary data — how many 1s lie within its digital representation?\n\n15. To conclude your quest, calculate the absolute difference between the parks noted in clue 5 and the grand seating capacity from clue 12; then reduce it modulo 10. What single digit emerges from this calculation?",
+  "metadata": {
+    "theme": "From military drumlines to modern marching-band tours — tracing the musical, educational, and logistical evolution of American marching bands",
+    "difficulty": "medium",
+    "sample_id": "sample_011",
+    "pages_crawled": 1338,
+    "source": "trail_puzzles_v2"
+  },
+  "generated_at": "2026-03-15T13:28:31.442198+00:00"
+}

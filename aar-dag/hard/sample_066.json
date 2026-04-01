@@ -1,0 +1,648 @@
+{
+  "trail_id": "trail_a258852f",
+  "seed_url": "https://en.wikipedia.org/wiki/Louis_Oliver_(poet)",
+  "seed_title": "Louis Oliver (poet)",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Louis_Oliver_(poet)",
+      "extraction_target": "Louis Oliver's age at death",
+      "extraction_section": null,
+      "extracted_value": 87,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Muscogee (Creek) Nation wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Muscogee_(Creek)_Nation",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start with the poet whose work anchors the trail in Muscogee experience and personal expression of place and identity.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Muscogee_(Creek)_Nation",
+      "extraction_target": "the capital listed in the infobox (field: 'Capital')",
+      "extraction_section": "infobox",
+      "extracted_value": "Okmulgee",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Muscogee_(Creek)_Nation",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Move from the poet to the sovereign Muscogee (Creek) Nation — the political and cultural home that shapes the community Louis Oliver wrote about.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Muscogee_(Creek)_Nation",
+      "extraction_target": "Look up the elevation of Okmulgee",
+      "extraction_section": null,
+      "extracted_value": 219.3908233642578,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Okmulgee"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Okmulgee) from https://en.wikipedia.org/wiki/Muscogee_(Creek)_Nation",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Muscogee_(Creek)_Nation",
+      "extraction_target": "Look up the count of restaurants near Okmulgee",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "restaurants near Okmulgee"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of restaurants near Okmulgee) from https://en.wikipedia.org/wiki/Muscogee_(Creek)_Nation",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Muscogee_(Creek)_Nation",
+      "extraction_target": "Combine the elevation of Okmulgee and the count of restaurants near Okmulgee: abs(219 - 20)",
+      "extraction_section": null,
+      "extracted_value": 199,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(219.3908233642578) - int(20.0))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Okmulgee abs_diff count of restaurants near Okmulgee",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2,
+        3
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Muscogee_(Creek)_Nation",
+      "extraction_target": "Reason: the number of vowels in that name",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (vowel_count) on stop 1 value",
+      "reason_transform": "vowel_count",
+      "reason_source_stop": 1,
+      "reason_code": "result = sum(1 for c in \"Okmulgee\".lower() if c in 'aeiou')\nprint(result)",
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Central_District_(Ahar_County)",
+      "extraction_target": "Look up the population of Iran",
+      "extraction_section": null,
+      "extracted_value": 15040,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "countries_population",
+            "arguments": {
+              "country": "Iran"
+            },
+            "expected_output": null,
+            "output_key": "population"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: population of Iran",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Muscogee_Nation",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Established')",
+      "extraction_section": "infobox",
+      "extracted_value": 7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Muscogee_Nation",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Examine the Muscogee Nation entry to contrast terminologies and organizational history (how nationhood, governance and recognition are described).",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Muscogee_Nation",
+      "extraction_target": "Reason: the number of divisors of that figure",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (num_divisors) on stop 3 value",
+      "reason_transform": "num_divisors",
+      "reason_source_stop": 7,
+      "reason_code": "n = abs(int(7))\ncount = sum(1 for i in range(1, n+1) if n % i == 0) if n > 0 else 0\nresult = count\nprint(result)",
+      "depends_on": [
+        7
+      ]
+    },
+    {
+      "index": 9,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Creek_Freedmen",
+      "extraction_target": "year of the Muscogee Nation treaty that emancipated enslaved people and offered them citizenship",
+      "extraction_section": null,
+      "extracted_value": "1866",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Multiracial_Americans",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Follow the sensitive story of Creek Freedmen to explore mixed ancestry, membership disputes and how identity and belonging are negotiated historically and legally.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        8
+      ]
+    },
+    {
+      "index": 10,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Multiracial_Americans",
+      "extraction_target": "increase in the multiracial population between 2010 and 2020",
+      "extraction_section": null,
+      "extracted_value": 276,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Malaysia Federal Route 3145 wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Malaysia_Federal_Route_3145",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Situate individual and group identity within broader U.S. patterns of mixed ancestry — context for understanding Creek Freedmen and multiracial identities in and beyond Native communities.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        9
+      ]
+    },
+    {
+      "index": 11,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Malaysia_Federal_Route_3145",
+      "extraction_target": "Count the number of stadiums near Malaysia Federal Route 3145",
+      "extraction_section": null,
+      "extracted_value": 1,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "stadiums near Malaysia Federal Route 3145"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: count stadiums near Malaysia Federal Route 3145",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        10
+      ]
+    },
+    {
+      "index": 12,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Woodland_period",
+      "extraction_target": "the number of languages indicated near the top of the article",
+      "extraction_section": null,
+      "extracted_value": 12,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Woodland_period",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Step back in time to the archaeological Woodland period to connect contemporary cultural threads to deep-time occupation and continuity in eastern North America.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        11
+      ]
+    },
+    {
+      "index": 13,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Woodland_period",
+      "extraction_target": "Reason: the next prime number after that figure",
+      "extraction_section": null,
+      "extracted_value": 13,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (next_prime) on stop 7 value",
+      "reason_transform": "next_prime",
+      "reason_source_stop": 12,
+      "reason_code": "def next_prime(n):\n    n = abs(int(n))\n    if n < 2: return 2\n    candidate = n + 1\n    while True:\n        if all(candidate % i != 0 for i in range(2, int(candidate**0.5)+1)):\n            return candidate\n        candidate += 1\nresult = next_prime(12)\nprint(result)",
+      "depends_on": [
+        12
+      ]
+    },
+    {
+      "index": 14,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Fubini_number",
+      "extraction_target": "Convert 7 meters to feet",
+      "extraction_section": null,
+      "extracted_value": 22,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "# Convert meters to feet\nvalue = 7.0\nconverted = value * 3.28084\nresult = int(converted)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "converted"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: convert 7 meters to feet",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        13
+      ]
+    },
+    {
+      "index": 15,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Outline_of_linguistics",
+      "extraction_target": "the number of languages the article is available in (language links shown near the top)",
+      "extraction_section": null,
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Sawndip wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Sawndip",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Turn to language and documentation: use an overview of linguistics to frame efforts to preserve and study Muscogee language and other indigenous languages.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        14
+      ]
+    },
+    {
+      "index": 16,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Sawndip",
+      "extraction_target": "the period of use for Sawndip as listed in the infobox",
+      "extraction_section": null,
+      "extracted_value": "7th century – present",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Non-possession wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Non-possession",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Bring in a case of script survival (Sawndip) as an analogue for writing, orthography and cultural continuity — useful comparison for thinking about language preservation strategies.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        15
+      ]
+    },
+    {
+      "index": 17,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Non-possession",
+      "extraction_target": "the number of languages listed in the interlanguage links at the top of the article",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Non-possession",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Conclude with a philosophical turn: the concept of non-possession invites reflection on relationships to land, stewardship, and cultural values that surface in Muscogee thought and poetry.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        16
+      ]
+    },
+    {
+      "index": 18,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Non-possession",
+      "extraction_target": "Count temples near Non-possession",
+      "extraction_section": null,
+      "extracted_value": 6,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "temples near Non-possession"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (nearby_poi) derived from https://en.wikipedia.org/wiki/Non-possession",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        17
+      ]
+    },
+    {
+      "index": 19,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Non-possession",
+      "extraction_target": "Reason: the next prime number after that figure",
+      "extraction_section": null,
+      "extracted_value": 7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (next_prime) on stop 11 value",
+      "reason_transform": "next_prime",
+      "reason_source_stop": 17,
+      "reason_code": "def next_prime(n):\n    n = abs(int(n))\n    if n < 2: return 2\n    candidate = n + 1\n    while True:\n        if all(candidate % i != 0 for i in range(2, int(candidate**0.5)+1)):\n            return candidate\n        candidate += 1\nresult = next_prime(5)\nprint(result)",
+      "depends_on": [
+        17
+      ]
+    },
+    {
+      "index": 20,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: abs(20 - 12) % 10",
+      "extraction_section": null,
+      "extracted_value": 8,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "abs(20 - 12) % 10",
+        "expression_code": "result = abs(20 - 12) % 10\nprint(result)",
+        "referenced_stops": [
+          3,
+          12,
+          15,
+          18
+        ]
+      },
+      "reasoning": "Compute stop: abs(20 - 12) % 10 = 8",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3,
+        12,
+        15,
+        18
+      ]
+    }
+  ],
+  "passcode": 8,
+  "difficulty": {
+    "level": "hard",
+    "depth": 21,
+    "tool_stop_count": 7,
+    "reason_stop_count": 4,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Unearth the words of a poet born from the Muscogee land. How many years did he grace this world before his passing?\n\n2. A seat of governance once thrived in the heart of this nation — can you name its capital?\n\n3. What measurement denotes the height of Okmulgee above the sea, where many stories dwell?\n\n4. How many places serve the hunger of those who roam near Okmulgee, awaiting culinary exploration?\n\n5. To unlock another clue, take the difference between the elevation you found in clue 3 and the number of eateries from clue 4. What is this result?\n\n6. Within the capital's name lies a hidden clue — how many vowels can you count in it?\n\n7. Journey to a land far off: what number graces the population count of the state known for its rich history, Persia's heir?\n\n8. Among the pages of this united tribe, seek the year it was brought forth into existence. What number does this history present?\n\n9. Can you discover how many divisors are attributed to the year you uncovered in clue 8?\n\n10. In deliberation, remember the year when a treaty granted freedom and citizenship to those once enslaved. What year might that be?\n\n11. Since 2010, the winds of change have stirred among many identities. What increase can be expected in the multiracial community over the decade?\n\n12. Count how many arenas stand tall in proximity to the highway that winds through Malaysia — what number emerges?\n\n13. An era ripe with languages beckons; how many languages are whispered about at the beginning of this historical period?\n\n14. Peer into the future: what is the next prime number after that figure you discovered in clue 13?\n\n15. Imagine converting a height of 7 meters — how many feet does that stand tall?\n\n16. Seek the article that traces the design of languages. Can you uncover how many tongues dance in its text?\n\n17. Reflecting on the past, the script of Sawndip paints a careful history. What era does it claim throughout its pages?\n\n18. As languages intertwine, how many are noted in the networks of the article on non-possession?\n\n19. When you walk the path of non-possession, how many temples can you find nestled nearby?\n\n20. To step forward, discover what the next prime number is after the figure from clue 18.\n\n21. Now calculate: what remains when you take the absolute difference between the number of restaurants near Okmulgee from clue 4 and the number of languages from clue 13, reduced by 10?",
+  "metadata": {
+    "theme": "Tracing cultural survival and place: start with Muscogee (Creek) poet Louis Oliver and follow threads of nationhood, mixed heritage, language, deep-time roots, and measurements of place that help tell stories of identity and land.",
+    "difficulty": "hard",
+    "sample_id": "sample_066",
+    "pages_crawled": 9894
+  },
+  "generated_at": "2026-03-16T23:05:53.625559+00:00"
+}

@@ -1,0 +1,200 @@
+{
+  "trail_id": "trail_371e607e",
+  "seed_url": "https://en.wikipedia.org/wiki/Chevron_Corporation",
+  "seed_title": "Chevron Corporation",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Chevron_Corporation",
+      "extraction_target": "the number of languages the article is available in",
+      "extraction_section": null,
+      "extracted_value": 57,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Foreign policy of the United States wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Foreign_policy_of_the_United_States",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Seed: Chevron is a global oil major whose corporate footprint and ticker/headquarters anchor the trail connecting energy, geopolitics, and industry.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Foreign_policy_of_the_United_States",
+      "extraction_target": "the number of subsections listed under Diplomatic policy in the Contents",
+      "extraction_section": "Diplomatic policy",
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "2022 Russian invasion of Ukraine wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/2022_Russian_invasion_of_Ukraine",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Shows how energy concerns shape national strategy and explain why corporations like Chevron factor into diplomatic and security decisions.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/2022_Russian_invasion_of_Ukraine",
+      "extraction_target": "the date range of the invasion as given in the infobox",
+      "extraction_section": null,
+      "extracted_value": "24 February – 8 April 2022 (1 month, 2 weeks and 1 day)",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Arms industry wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Arms_industry",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A recent case where geopolitics dramatically affected energy markets and corporate risk — linking policy and corporate exposure.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 3,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Arms_industry",
+      "extraction_target": "the number of languages the article is available in (as listed near the top of the page)",
+      "extraction_section": null,
+      "extracted_value": 40,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Ford Motor Company wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Ford_Motor_Company",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Explores the military–industrial side of geopolitical conflict, showing how wars reshape industrial production and corporate priorities.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 4,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Ford_Motor_Company",
+      "extraction_target": "Look up the closing price of F on 2022-04-08",
+      "extraction_section": null,
+      "extracted_value": 11.41,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "stock_historical_price",
+            "arguments": {
+              "ticker": "F",
+              "date": "2022-04-08"
+            },
+            "expected_output": null,
+            "output_key": "stock_price"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: stock price F on 2022-04-08",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 5,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Ford_Motor_Company",
+      "extraction_target": "Reason: the next prime number after that figure",
+      "extraction_section": null,
+      "extracted_value": 13,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (next_prime) on stop 4 value",
+      "reason_transform": "next_prime",
+      "reason_source_stop": 4,
+      "reason_code": "def next_prime(n):\n    n = abs(int(n))\n    if n < 2: return 2\n    candidate = n + 1\n    while True:\n        if all(candidate % i != 0 for i in range(2, int(candidate**0.5)+1)):\n            return candidate\n        candidate += 1\nresult = next_prime(11)\nprint(result)"
+    },
+    {
+      "index": 6,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: digital_root(57 + 4 + 40 + 11)",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "digital_root(57 + 4 + 40 + 11)",
+        "expression_code": "def digital_root(n):\n    n = abs(int(n))\n    return n if n == 0 else ((n - 1) % 9) + 1\nresult = digital_root(57 + 4 + 40 + 11)\nprint(result)",
+        "referenced_stops": [
+          0,
+          1,
+          3,
+          4
+        ]
+      },
+      "reasoning": "Compute stop: digital_root(57 + 4 + 40 + 11) = 4",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 4,
+  "difficulty": {
+    "level": "easy",
+    "depth": 7,
+    "tool_stop_count": 1,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "Here is the riddle with the corrected clues:\n\n1. Seek the Wikipedia page that details a major player in the energy sector known for its oil and gas operations and often found in discussions about corporate responsibility; how many languages does that article appear in?\n\n2. There exists a Wikipedia article that surveys the United States' conduct abroad; when you open it, locate the Contents entry named \"Diplomatic policy\" and count how many subsections are listed beneath that heading.\n\n3. What page chronicles the full-scale invasion of Ukraine that began in 2022? Inspect its infobox and report the date range given for the invasion.\n\n4. If you follow the link for the industry that manufactures weapons and military technology, you will arrive at an article which displays language availability near the top — how many language editions does that page list?\n\n5. The article whose opening line names the large American automaker commonly traded under the ticker F holds the next datum; look up the market closing price for that ticker on 2022-04-08 and record the numeric value.\n\n6. In 2022 the market set that closing figure — your next task is a small transformation: find the next prime number after the numeric price you obtained in clue 5, and use that prime as your new value.\n\n7. The final reckoning is a simple reduction: compute the digital root of (clue 1 + clue 2 + clue 4 + clue 5) and report that single digit result (0–9).",
+  "metadata": {
+    "theme": "From oil to geopolitics: tracing how a major oil company (Chevron) links to U.S. foreign policy, an energy-driven war, the arms industry, and industrial/economic consequences.",
+    "difficulty": "easy",
+    "sample_id": "sample_178",
+    "pages_crawled": 3769
+  },
+  "generated_at": "2026-03-17T11:40:50.215015+00:00"
+}

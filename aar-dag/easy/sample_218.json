@@ -1,0 +1,261 @@
+{
+  "trail_id": "trail_46abea04",
+  "seed_url": "https://en.wikipedia.org/wiki/Wolli_Creek_Regional_Park",
+  "seed_title": "Wolli Creek Regional Park",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Wolli_Creek_Regional_Park",
+      "extraction_target": "the location listed in the infobox (field: 'Location')",
+      "extraction_section": "infobox",
+      "extracted_value": "Sydney, New South Wales, Australia",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Wolli_Creek_Regional_Park",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "The journey begins with a walk through Wolli Creek Regional Park, a serene green space amidst urban Sydney, setting the foundation for exploring the interaction between nature and city life.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Wolli_Creek_Regional_Park",
+      "extraction_target": "Look up the elevation of Sydney, New South Wales, Australia",
+      "extraction_section": null,
+      "extracted_value": 10.57631683349609,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Sydney, New South Wales, Australia"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Sydney, New South Wales, Australia) from https://en.wikipedia.org/wiki/Wolli_Creek_Regional_Park",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Wolli_Creek_Regional_Park",
+      "extraction_target": "Look up the count of temples near Sydney, New South Wales, Australia",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "temples near Sydney, New South Wales, Australia"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of temples near Sydney, New South Wales, Australia) from https://en.wikipedia.org/wiki/Wolli_Creek_Regional_Park",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Wolli_Creek_Regional_Park",
+      "extraction_target": "Combine the elevation of Sydney, New South Wales, Australia and the count of temples near Sydney, New South Wales, Australia: (10 + 20)",
+      "extraction_section": null,
+      "extracted_value": 30,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(10.57631683349609) + int(20.0)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Sydney, New South Wales, Australia add count of temples near Sydney, New South Wales, Australia",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1,
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Wolli_Creek_Regional_Park",
+      "extraction_target": "Reason: the alphabetical position of its first letter (A=1, B=2, ...)",
+      "extraction_section": null,
+      "extracted_value": 19,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (alpha_position_first_letter) on stop 0 value",
+      "reason_transform": "alpha_position_first_letter",
+      "reason_source_stop": 0,
+      "reason_code": "first = \"Sydney, New South Wales, Australia\"[0].upper()\nresult = ord(first) - ord('A') + 1 if first.isalpha() else 0\nprint(result)",
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Sydney",
+      "extraction_target": "Look up the elevation at -33.86778",
+      "extraction_section": null,
+      "extracted_value": 69.34953308105469,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "-33.86778"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for -33.86778",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: abs(10 - 19) % 10",
+      "extraction_section": null,
+      "extracted_value": 9,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "abs(10 - 19) % 10",
+        "expression_code": "result = abs(10 - 19) % 10\nprint(result)",
+        "referenced_stops": [
+          1,
+          4
+        ]
+      },
+      "reasoning": "Compute stop: abs(10 - 19) % 10 = 9",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1,
+        4
+      ]
+    }
+  ],
+  "passcode": 9,
+  "difficulty": {
+    "level": "easy",
+    "depth": 7,
+    "tool_stop_count": 4,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "direct_link"
+  },
+  "riddle": "1. Begin your journey in a green enclave within Australia's buzzing metropolis. There lies a locale by the tributary's name, known for its nature walks. Note where this park resides, mentioned in its sidebar.\n\n2. What might the sky whisper of a grand city down under? Measure how high above the sea the arching coat of arms of New South Wales stands.\n\n3. Within the embrace of the harbor city, sacred structures abound. Count these places of reflection that grace the landscape.\n\n4. Unite your findings by combining the altitude you unearthed with the sacred count from the prior quest.\n\n5. The very first mark you made in clue 1, consider its initial character. How does it rank if one sang the alphabet's tune?\n\n6. At the coordinates of a southern landmark, how far does the skyline rise from 33.86778 latitude?\n\n7. To conclude the quest, calculate the distance between the heights from clues 2 and 5, find the absolute, and wrap it with the clasp of the final digit of the decade.",
+  "metadata": {
+    "theme": "Exploring Green Spaces and Urban Landscapes",
+    "difficulty": "easy",
+    "sample_id": "sample_218",
+    "pages_crawled": 869
+  },
+  "generated_at": "2026-03-27T07:13:00.906797+00:00"
+}

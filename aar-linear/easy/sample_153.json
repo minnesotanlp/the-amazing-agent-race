@@ -1,0 +1,161 @@
+{
+  "trail_id": "trail_6be8e9eb",
+  "seed_url": "https://en.wikipedia.org/wiki/Visa_Inc.",
+  "seed_title": "Visa Inc.",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Visa_Inc.",
+      "extraction_target": "the number of subsections under the Criticism and controversy section (3.x)",
+      "extraction_section": "Criticism and controversy",
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Travel_visa",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start at Visa Inc.: the payment network that enables most cross-border and everyday transactions — the anchor for a trail about payments, travel and mobility.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Visa_Inc.",
+      "extraction_target": "Reason: the next prime number after that figure",
+      "extraction_section": null,
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (next_prime) on stop 0 value",
+      "reason_transform": "next_prime",
+      "reason_source_stop": 0,
+      "reason_code": "def next_prime(n):\n    n = abs(int(n))\n    if n < 2: return 2\n    candidate = n + 1\n    while True:\n        if all(candidate % i != 0 for i in range(2, int(candidate**0.5)+1)):\n            return candidate\n        candidate += 1\nresult = next_prime(2)\nprint(result)"
+    },
+    {
+      "index": 2,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Travel_visa",
+      "extraction_target": "the number of subsections under 'Entry and duration period' (4.3)",
+      "extraction_section": "Entry and duration period",
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Philippines",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Move from digital payments to physical travel: travel visas regulate the movement of people whose spending drives cross-border Visa transactions.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Philippines",
+      "extraction_target": "Look up the elevation at Manila (*de jure*) Metro Manila[[b]](#cite_note-a-5) (*de facto*) 13°N 122°E﻿ / ﻿13°N 122°E﻿ / 13; 122",
+      "extraction_section": null,
+      "extracted_value": 3.115211486816406,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Manila (*de jure*) Metro Manila[[b]](#cite_note-a-5) (*de facto*) 13°N 122°E﻿ / ﻿13°N 122°E﻿ / 13; 122"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for Manila (*de jure*) Metro Manila[[b]](#cite_note-a-5) (*de facto*) 13°N 122°E﻿ / ﻿13°N 122°E﻿ / 13; 122",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 4,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: digital_root(2 + 3 + 2 + 3)",
+      "extraction_section": null,
+      "extracted_value": 1,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "digital_root(2 + 3 + 2 + 3)",
+        "expression_code": "def digital_root(n):\n    n = abs(int(n))\n    return n if n == 0 else ((n - 1) % 9) + 1\nresult = digital_root(2 + 3 + 2 + 3)\nprint(result)",
+        "referenced_stops": [
+          0,
+          1,
+          2,
+          3
+        ]
+      },
+      "reasoning": "Compute stop: digital_root(2 + 3 + 2 + 3) = 1",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 1,
+  "difficulty": {
+    "level": "easy",
+    "depth": 5,
+    "tool_stop_count": 1,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "direct_link"
+  },
+  "riddle": "1. Seek the empire of payments that swipes across the globe. From the shadows of its reputation, how many subsections dwell under the topic of criticism?\n\n2. Join the journey of numbers — what prime follows the count you unearthed in your last discovery? \n\n3. In the realm where travelers seek permission, how many sections detail the duration and entry of stay in its vast territories?\n\n4. As you venture to the archipelago famed for its vibrant culture, what is the height at which its bustling capital rests above the azure sea?\n\n5. Now, let your adventures weave together! Calculate the digital root of the sum derived from clue 1, clue 2, clue 3, and clue 4 as follows: digital_root(clue 1 + clue 2 + clue 3 + clue 4). Your answer will be a single digit, ranging from 0 to 9.",
+  "metadata": {
+    "theme": "From global payments to people on the move — tracing how a payments network (Visa) connects with technology, travel, urban mobility and population markets.",
+    "difficulty": "easy",
+    "sample_id": "sample_153",
+    "pages_crawled": 2150
+  },
+  "generated_at": "2026-03-17T09:18:17.343412+00:00"
+}

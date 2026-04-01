@@ -1,0 +1,151 @@
+{
+  "trail_id": "trail_74b34dae",
+  "seed_url": "https://en.wikipedia.org/wiki/CME_Group",
+  "seed_title": "CME Group",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/CME_Group",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Founded')",
+      "extraction_section": "infobox",
+      "extracted_value": 1848,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Interest_rate",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start at the derivatives exchange that lists interest-rate futures and options — the market hub whose products transmit expectations about rates to broader financial markets.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Interest_rate",
+      "extraction_target": "the number of subsections under Monetary policy listed in the table of contents",
+      "extraction_section": "Monetary policy",
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Interest_rate",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Zoom from the exchange to the economic variable CME's interest-rate contracts reference — interest rates drive the pricing of futures and materially affect corporate financing and demand.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Interest_rate",
+      "extraction_target": "Count restaurants near Interest rate",
+      "extraction_section": null,
+      "extracted_value": 20,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "restaurants near Interest rate"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (nearby_poi) derived from https://en.wikipedia.org/wiki/Interest_rate",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 3,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Interest_rate",
+      "extraction_target": "Reason: the sum of its digits",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_sum) on stop 1 value",
+      "reason_transform": "digit_sum",
+      "reason_source_stop": 1,
+      "reason_code": "result = sum(int(d) for d in str(abs(int(4))))\nprint(result)"
+    },
+    {
+      "index": 4,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: abs(1848 - 20) % 10",
+      "extraction_section": null,
+      "extracted_value": 8,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "abs(1848 - 20) % 10",
+        "expression_code": "result = abs(1848 - 20) % 10\nprint(result)",
+        "referenced_stops": [
+          0,
+          2
+        ]
+      },
+      "reasoning": "Compute stop: abs(1848 - 20) % 10 = 8",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 8,
+  "difficulty": {
+    "level": "easy",
+    "depth": 5,
+    "tool_stop_count": 1,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "direct_link"
+  },
+  "riddle": "1. Unearth the origins of the American derivatives powerhouse known for shaping financial futures — what year did it first see the light?\n\n2. A charge applied to borrowed funds often guides monetary decisions. How many subdivisions detail its governing principles in a specific section?\n\n3. Nearby culinary establishments may hold the key to a wealth of flavor. How many of them surround the realm that speaks of borrowing costs?\n\n4. The answer you unearthed in your previous query holds hidden value. What do you get when you sum its individual digits?\n\n5. Now, take the difference between the year from clue 1 and the quantity from clue 3. Wrap that value around an absolute measure, then reduce it modulo 10. What single digit does this computation yield?",
+  "metadata": {
+    "theme": "From exchange to economy: tracing how CME Group's interest-rate markets connect to corporate stock prices and historical episodes of market stress.",
+    "difficulty": "easy",
+    "sample_id": "sample_160",
+    "pages_crawled": 2519
+  },
+  "generated_at": "2026-03-17T09:43:47.583201+00:00"
+}

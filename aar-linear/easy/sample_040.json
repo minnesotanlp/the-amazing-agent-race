@@ -1,0 +1,129 @@
+{
+  "trail_id": "trail_67e66cd2",
+  "seed_url": "https://en.wikipedia.org/wiki/Gradient-like_vector_field",
+  "seed_title": "Gradient-like vector field",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Gradient-like_vector_field",
+      "extraction_target": "the standard Morse-lemma form of f(x) around a critical point as written in the Definition section",
+      "extraction_section": "Definition",
+      "extracted_value": "f(x)=f(b)-x_{1}^{2}-\\cdots -x_{\\alpha }^{2}+x_{\\alpha +1}^{2}+\\cdots +x_{n}^{2}",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Saint Anthony Falls wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Saint_Anthony_Falls",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "This seed introduces the mathematical notion of gradient-like flows (used in Morse theory) that model how quantities move 'downhill' toward critical points — the abstract starting point for thinking about natural flows such as water over a landscape.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Saint_Anthony_Falls",
+      "extraction_target": "Count the number of hotels near Mississippi River into the Mississippi River Gorge in Minneapolis",
+      "extraction_section": null,
+      "extracted_value": 20,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "hotels near Mississippi River into the Mississippi River Gorge in Minneapolis"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: count hotels near Mississippi River into the Mississippi River Gorge in Minneapolis",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Saint_Anthony_Falls",
+      "extraction_target": "Reason: the digital root (iterated digit sum until single digit)",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digital_root) on stop 1 value",
+      "reason_transform": "digital_root",
+      "reason_source_stop": 1,
+      "reason_code": "n = abs(int(20))\nresult = n if n == 0 else ((n - 1) % 9) + 1\nprint(result)"
+    },
+    {
+      "index": 3,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: digital_root(20 + 2)",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "digital_root(20 + 2)",
+        "expression_code": "def digital_root(n):\n    n = abs(int(n))\n    return n if n == 0 else ((n - 1) % 9) + 1\nresult = digital_root(20 + 2)\nprint(result)",
+        "referenced_stops": [
+          1,
+          2
+        ]
+      },
+      "reasoning": "Compute stop: digital_root(20 + 2) = 4",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 4,
+  "difficulty": {
+    "level": "easy",
+    "depth": 4,
+    "tool_stop_count": 1,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "Here is the complete riddle with the necessary changes:\n\n1. Seek the page discussing a mathematical concept that characterizes how a scalar function changes, particularly emphasizing the local behavior around a critical point where the function isn't flat: what standard local form does it give for f(x) around a nondegenerate critical point?\n\n2. How many hotels lie along the stretch where the Mississippi falls into the Minneapolis river gorge — count the establishments near that river reach to get a whole number?\n\n3. Thereafter, take the hotel-count you just found and reduce it to a single digit by repeatedly summing its digits until only one digit remains; that single digit is clue 3.\n\n4. If you compute the digital root of (clue 2 + clue 3), you will obtain the final single-digit treasure number; report that digit (it is between 0 and 9).",
+  "metadata": {
+    "theme": "Linking abstract gradient flows from Morse theory to a real-world example: waterfalls as natural gradient-driven features and their human context",
+    "difficulty": "easy",
+    "sample_id": "sample_040",
+    "pages_crawled": 1811,
+    "source": "trail_puzzles_v2"
+  },
+  "generated_at": "2026-03-15T13:40:55.185002+00:00"
+}

@@ -1,0 +1,315 @@
+{
+  "trail_id": "trail_fc1a6db9",
+  "seed_url": "https://en.wikipedia.org/wiki/Prichard_House_(Huntington,_West_Virginia)",
+  "seed_title": "Prichard House (Huntington, West Virginia)",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Prichard_House_(Huntington,_West_Virginia)",
+      "extraction_target": "the year shown in the infobox as when the Prichard House was built",
+      "extraction_section": null,
+      "extracted_value": "1921",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "John A. Logan wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/John_A._Logan",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start at a preserved historic home in Huntington, WV to anchor the trail in a local, tangible landmark before branching out to national figures of the same era.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/John_A._Logan",
+      "extraction_target": "Calculate the number of days between 1921-01-01 and 2026-03-15",
+      "extraction_section": null,
+      "extracted_value": 38424,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "from datetime import date\nd1 = date.fromisoformat('1921-01-01')\nd2 = date.fromisoformat('2026-03-15')\nresult = abs((d2 - d1).days)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "days"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: date computation 1921-01-01 to 2026-03-15 (pinned)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/John_A._Logan",
+      "extraction_target": "Reason: the next prime number after that figure",
+      "extraction_section": null,
+      "extracted_value": 38431,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (next_prime) on stop 1 value",
+      "reason_transform": "next_prime",
+      "reason_source_stop": 1,
+      "reason_code": "def next_prime(n):\n    n = abs(int(n))\n    if n < 2: return 2\n    candidate = n + 1\n    while True:\n        if all(candidate % i != 0 for i in range(2, int(candidate**0.5)+1)):\n            return candidate\n        candidate += 1\nresult = next_prime(38424)\nprint(result)",
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Radical_Republicans",
+      "extraction_target": "the thing Radical Republicans aimed to immediately, completely, and permanently eradicate (the reason they called themselves 'Radicals')",
+      "extraction_section": null,
+      "extracted_value": "slavery in the United States",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "J. Warren Keifer wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/J._Warren_Keifer",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Examine the political movement (Radical Republicans) that shaped Reconstruction-era policy and included figures connected to the trail; this provides the ideological context linking local sites and national actors.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Radical_Republicans",
+      "extraction_target": "Look up the elevation of slavery in the United States",
+      "extraction_section": null,
+      "extracted_value": 3236.2353515625,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "slavery in the United States"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of slavery in the United States) from https://en.wikipedia.org/wiki/Radical_Republicans",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Radical_Republicans",
+      "extraction_target": "Look up the Google rating of slavery in the United States",
+      "extraction_section": null,
+      "extracted_value": 4.7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "slavery in the United States"
+            },
+            "expected_output": null,
+            "output_key": "place_rating"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (Google rating of slavery in the United States) from https://en.wikipedia.org/wiki/Radical_Republicans",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Radical_Republicans",
+      "extraction_target": "Combine the elevation of slavery in the United States and the Google rating of slavery in the United States: abs(3236 - 4)",
+      "extraction_section": null,
+      "extracted_value": 3232,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(3236.2353515625) - int(4.7))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of slavery in the United States abs_diff Google rating of slavery in the United States",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        4,
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/J._Warren_Keifer",
+      "extraction_target": "Calculate the number of days between 1921-01-01 and 2026-03-15",
+      "extraction_section": null,
+      "extracted_value": 38424,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "from datetime import date\nd1 = date.fromisoformat('1921-01-01')\nd2 = date.fromisoformat('2026-03-15')\nresult = abs((d2 - d1).days)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "days"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: date computation 1921-01-01 to 2026-03-15 (pinned)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: digital_root(1921 + 38431)",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "digital_root(1921 + 38431)",
+        "expression_code": "def digital_root(n):\n    n = abs(int(n))\n    return n if n == 0 else ((n - 1) % 9) + 1\nresult = digital_root(1921 + 38431)\nprint(result)",
+        "referenced_stops": [
+          0,
+          2
+        ]
+      },
+      "reasoning": "Compute stop: digital_root(1921 + 38431) = 5",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0,
+        2
+      ]
+    }
+  ],
+  "passcode": 5,
+  "difficulty": {
+    "level": "easy",
+    "depth": 9,
+    "tool_stop_count": 5,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Unearth the dwelling where history whispers, built in the year that follows the Great War's end — what year does the Prichard House claim as its origin?\n\n2. What twilight in the life of a prevailing leader was it when days counted since a year marked the dawn of the Roaring Twenties until a specified date in the future? Seek that calculated sum.\n\n3. Journey further: what prime number awaits after the total of days you’ve just discovered?\n\n4. A faction rose during the nation's rebuilding, aiming to dismantle a particular institution they deemed a scourge — know this aim and retrieve the very substance they sought to abolish.\n\n5. By the echo of ambition, find what lies beneath the surface where this institution once existed, measured in feet above sea level.\n\n6. Survey the opinions of travelers — what rating do those who reflect on this scar of history offer in their collective voice?\n\n7. Take the height you uncovered in clue 5 and compare it with the rating you found in clue 6. What is the absolute difference of these two values?\n\n8. Now, calculate the same amount of days you found earlier in relation to a certain date, as noted from the origin of the living room of leadership’s hall. \n\n9. Finally, compute the digital root of the sum of the year extracted in clue 1 and the next prime from clue 3. What single, resilient digit emerges from this union? \n\nConclude your quest with the final revelation, a number simple yet profound, residing within the bounds of 0 to 9.",
+  "metadata": {
+    "theme": "From a preserved West Virginia home into the orbit of post–Civil War Republican leaders — a short historical trail that links a local historic house to Reconstruction-era figures by mapping travel and timelines.",
+    "difficulty": "easy",
+    "sample_id": "sample_037",
+    "pages_crawled": 1700,
+    "source": "trail_puzzles_v2"
+  },
+  "generated_at": "2026-03-15T13:20:16.759423+00:00"
+}

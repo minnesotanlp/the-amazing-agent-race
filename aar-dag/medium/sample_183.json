@@ -1,0 +1,430 @@
+{
+  "trail_id": "trail_24695c3f",
+  "seed_url": "https://en.wikipedia.org/wiki/Robinhood_Markets",
+  "seed_title": "Robinhood Markets",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Robinhood_Markets",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Founded')",
+      "extraction_section": "infobox",
+      "extracted_value": 18,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/2020_stock_market_crash",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Seed: Robinhood Markets is the retail-trading app that catalyzed the modern 'meme stock' era — starting point for a trail about markets, crises, and oversight.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/2020_stock_market_crash",
+      "extraction_target": "the date of the pre-crash high mentioned in the DJIA image caption",
+      "extraction_section": null,
+      "extracted_value": "12 February",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/COVID-19_pandemic_in_New_York_City",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Context: a recent major market shock that frames how external events (pandemic) create volatility which platforms and retail traders react to.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/COVID-19_pandemic_in_New_York_City",
+      "extraction_target": "the location of the first outbreak as listed in the infobox",
+      "extraction_section": null,
+      "extracted_value": "Wuhan, Hubei, China",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Alexandria Ocasio-Cortez wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Alexandria_Ocasio-Cortez",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Local-impact case study: NYC's pandemic experience drove economic disruption and influenced markets — important to understand regional effects tied to national market reactions.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/COVID-19_pandemic_in_New_York_City",
+      "extraction_target": "Look up the elevation of Wuhan, Hubei, China",
+      "extraction_section": null,
+      "extracted_value": 11.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Wuhan, Hubei, China"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Wuhan, Hubei, China) from https://en.wikipedia.org/wiki/COVID-19_pandemic_in_New_York_City",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/COVID-19_pandemic_in_New_York_City",
+      "extraction_target": "Look up the count of hospitals near Wuhan, Hubei, China",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "hospitals near Wuhan, Hubei, China"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of hospitals near Wuhan, Hubei, China) from https://en.wikipedia.org/wiki/COVID-19_pandemic_in_New_York_City",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/COVID-19_pandemic_in_New_York_City",
+      "extraction_target": "Combine the elevation of Wuhan, Hubei, China and the count of hospitals near Wuhan, Hubei, China: (11 + 20)",
+      "extraction_section": null,
+      "extracted_value": 31,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(11.0) + int(20.0)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Wuhan, Hubei, China add count of hospitals near Wuhan, Hubei, China",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3,
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Alexandria_Ocasio-Cortez",
+      "extraction_target": "the number of languages the article is available in (as shown near the top)",
+      "extraction_section": null,
+      "extracted_value": 74,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Alexandria_Ocasio-Cortez",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Political oversight: AOC and other legislators were central to hearings and debates about market fairness, platform conduct, and retail investor protections after meme-stock episodes.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Alexandria_Ocasio-Cortez",
+      "extraction_target": "Reason: the next prime number after that figure",
+      "extraction_section": null,
+      "extracted_value": 79,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (next_prime) on stop 3 value",
+      "reason_transform": "next_prime",
+      "reason_source_stop": 6,
+      "reason_code": "def next_prime(n):\n    n = abs(int(n))\n    if n < 2: return 2\n    candidate = n + 1\n    while True:\n        if all(candidate % i != 0 for i in range(2, int(candidate**0.5)+1)):\n            return candidate\n        candidate += 1\nresult = next_prime(74)\nprint(result)",
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Nigeria",
+      "extraction_target": "Look up the elevation at Abuja 9°4′N 7°29′E﻿ / ﻿9.067°N 7.483°E﻿ / 9.067; 7.483",
+      "extraction_section": null,
+      "extracted_value": 498.2035827636719,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Abuja 9°4′N 7°29′E﻿ / ﻿9.067°N 7.483°E﻿ / 9.067; 7.483"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for Abuja 9°4′N 7°29′E﻿ / ﻿9.067°N 7.483°E﻿ / 9.067; 7.483",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        7
+      ]
+    },
+    {
+      "index": 9,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/US_House",
+      "extraction_target": "the number of subsections listed under Membership, qualifications, and apportionment",
+      "extraction_section": "Membership, qualifications, and apportionment",
+      "extracted_value": 6,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Nashville, Tennessee wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Nashville,_Tennessee",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Institutional follow-up: the U.S. House is where legislative responses to market and platform issues (hearings, bills) are often initiated — ties the civic/regulatory angle back into the trail.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        8
+      ]
+    },
+    {
+      "index": 10,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Nashville,_Tennessee",
+      "extraction_target": "Count the number of libraries near 36.16222",
+      "extraction_section": null,
+      "extracted_value": 9,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "libraries near 36.16222"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: count libraries near 36.16222",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        9
+      ]
+    },
+    {
+      "index": 11,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Nashville,_Tennessee",
+      "extraction_target": "Reason: the sum of its distinct prime factors",
+      "extraction_section": null,
+      "extracted_value": 11,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (sum_prime_factors) on stop 6 value",
+      "reason_transform": "sum_prime_factors",
+      "reason_source_stop": 10,
+      "reason_code": "def prime_factors(n):\n    n = abs(int(n))\n    factors = []\n    d = 2\n    while d * d <= n:\n        while n % d == 0:\n            factors.append(d)\n            n //= d\n        d += 1\n    if n > 1: factors.append(n)\n    return factors\nresult = sum(set(prime_factors(11)))\nprint(result)",
+      "depends_on": [
+        10
+      ]
+    },
+    {
+      "index": 12,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: digital_root(11 + 74 + 498 + 6)",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "digital_root(11 + 74 + 498 + 6)",
+        "expression_code": "def digital_root(n):\n    n = abs(int(n))\n    return n if n == 0 else ((n - 1) % 9) + 1\nresult = digital_root(11 + 74 + 498 + 6)\nprint(result)",
+        "referenced_stops": [
+          3,
+          6,
+          8,
+          9
+        ]
+      },
+      "reasoning": "Compute stop: digital_root(11 + 74 + 498 + 6) = 4",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3,
+        6,
+        8,
+        9
+      ]
+    }
+  ],
+  "passcode": 4,
+  "difficulty": {
+    "level": "medium",
+    "depth": 13,
+    "tool_stop_count": 5,
+    "reason_stop_count": 2,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. A pioneer of modern finance founded in a year that marked a shift in how investors engage with the market — what year did this platform first appear? \n\n2. Find the moment before the market trembled, when the Dow Jones Industrial Average reached its peak, trailed closely by turmoil. What date was that high point captured with anticipation?\n\n3. New York was not just a bustling metropolis; it became the epicenter of a global crisis. From where did the initial outbreak ripple through the streets and into the hearts of its citizens?\n\n4. In a city once burdened by a health emergency, seek the heights of an eastern metropolis — how high is the ground beneath the bustling life of Wuhan in meters?\n\n5. As you explore Wuhan’s shadow, count the number of healing centers that stand nearby — how many hospitals can you uncover in that region?\n\n6. Now take the answers you uncovered from clues 4 and 5, and bring them together by summing their numerical treasures. What new figure appears from this combination?\n\n7. Whispers of power echo from the halls of Congress — discover how many languages can a certain New York representative’s page be read in?\n\n8. Cast light upon the future by seeking the next prime number following the linguist's count you just made. What number stands ahead in the line of order?\n\n9. Travel to the land where the capital city sits at a notable elevation — how high does Abuja rise above the sea in meters?\n\n10. Seek a legislative body that governs with keen oversight — how many subsections decorate the section detailing Membership, qualifications, and apportionment?\n\n11. Walking the streets of the Music City, note how many literary havens lie near the heart of Nashville at 36.16222 degrees latitude. \n\n12. Reflect on a mathematical journey as you sift through the libraries found; sum up the distinct prime factors of that number you found. What total emerges from this amalgamation of parts?\n\n13. In the final reckoning, compute the digital root of the total you’ve amassed from clues 4, 7, 9, and 10 by adding them together first: what is the result of digital_root(11 + 74 + 498 + 6)? Remember, the answer should reveal a single digit (0-9).",
+  "metadata": {
+    "theme": "From retail trading platforms to market shocks and political response — tracing how a modern brokerage (Robinhood) connects to market volatility, pandemic impact, tech-sector influence, political oversight, and global demographic context.",
+    "difficulty": "medium",
+    "sample_id": "sample_183",
+    "pages_crawled": 11943
+  },
+  "generated_at": "2026-03-17T20:25:47.873978+00:00"
+}

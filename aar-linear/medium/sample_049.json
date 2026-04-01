@@ -1,0 +1,409 @@
+{
+  "trail_id": "trail_42d006ad",
+  "seed_url": "https://en.wikipedia.org/wiki/Keshbridge",
+  "seed_title": "Keshbridge",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Keshbridge",
+      "extraction_target": "the degrees/minutes/seconds coordinates of Keshbridge as shown on the page",
+      "extraction_section": null,
+      "extracted_value": "54°28′44″N 6°06′54″W",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Lisburn_City_Council",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Seed: a small Northern Ireland village named for a bridge — our starting point for a journey that moves from local governance and rural waterways toward urban transport hubs.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Lisburn_City_Council",
+      "extraction_target": "the percentage of the population identified as Catholic",
+      "extraction_section": null,
+      "extracted_value": 36.5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Largs wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Largs",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Local administration covering the region around Keshbridge; extracts civic scale (population) to contrast rural origins with the larger urban networks ahead.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Largs",
+      "extraction_target": "Calculate the driving distance between Largs and Lisburn City Council",
+      "extraction_section": null,
+      "extracted_value": 235.192,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Largs"
+            },
+            "expected_output": null,
+            "output_key": "coords_a"
+          },
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Lisburn City Council"
+            },
+            "expected_output": null,
+            "output_key": "coords_b"
+          },
+          {
+            "tool_name": "maps_distance_matrix",
+            "arguments": {
+              "__from_previous_as_origins_destinations": [
+                "coords_a",
+                "coords_b"
+              ]
+            },
+            "expected_output": null,
+            "output_key": "distance_km"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: distance between Largs and Lisburn City Council",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 3,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Largs",
+      "extraction_target": "Reason: the largest prime factor of that figure",
+      "extraction_section": null,
+      "extracted_value": 47,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (largest_prime_factor) on stop 2 value",
+      "reason_transform": "largest_prime_factor",
+      "reason_source_stop": 2,
+      "reason_code": "def largest_prime_factor(n):\n    n = abs(int(n))\n    if n <= 1: return n\n    d = 2\n    while d * d <= n:\n        while n % d == 0: n //= d\n        d += 1\n    return n\nresult = largest_prime_factor(235)\nprint(result)"
+    },
+    {
+      "index": 4,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Townhead",
+      "extraction_target": "the geographic coordinates of Townhead as listed at the top of the article",
+      "extraction_section": null,
+      "extracted_value": "55°51′53″N 4°14′48″W",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Cowcaddens",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Entry into Glasgow: Townhead is an inner-city district near major transport corridors and cultural sites — a first urban stop on the Scottish side of the trail.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 5,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Cowcaddens",
+      "extraction_target": "the coordinates of Cowcaddens as given in the infobox",
+      "extraction_section": null,
+      "extracted_value": "55°52′05″N 4°15′35″W﻿ / ﻿55.868194°N 4.259635°W﻿ / 55.868194; -4.259635",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Cowcaddens_subway_station",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Cowcaddens sits adjacent to major Glasgow transit nodes; it helps map the corridor from Townhead to the city's central stations and bus terminals.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 6,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Cowcaddens_subway_station",
+      "extraction_target": "the opening year listed in the infobox (field: 'Opened')",
+      "extraction_section": "infobox",
+      "extracted_value": 14,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Cowcaddens_subway_station",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A transport infobox stop showing when this subway link opened — evidence of Glasgow's layered transit history that connects neighborhoods to the city centre.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 7,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Cowcaddens_subway_station",
+      "extraction_target": "Reason: the number of characters when written as a Roman numeral",
+      "extraction_section": null,
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (roman_numeral_letter_count) on stop 5 value",
+      "reason_transform": "roman_numeral_letter_count",
+      "reason_source_stop": 6,
+      "reason_code": "def to_roman(n):\n    n = abs(int(n))\n    vals = [(1000,'M'),(900,'CM'),(500,'D'),(400,'CD'),(100,'C'),\n            (90,'XC'),(50,'L'),(40,'XL'),(10,'X'),(9,'IX'),(5,'V'),(4,'IV'),(1,'I')]\n    r = ''\n    for v, s in vals:\n        while n >= v:\n            r += s; n -= v\n    return r\nresult = len(to_roman(14))\nprint(result)"
+    },
+    {
+      "index": 8,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Buchanan_Street_railway_station",
+      "extraction_target": "the number of platforms at Buchanan Street station",
+      "extraction_section": null,
+      "extracted_value": 6,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Buchanan_Bus_Station",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "One of central Glasgow's key rail hubs (historical/operational details help gauge station capacity and role in the city's network).",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 9,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Buchanan_Bus_Station",
+      "extraction_target": "the opening year listed in the infobox (field: 'Opened')",
+      "extraction_section": "infobox",
+      "extracted_value": 1977,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Buchanan Bus Station wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Buchanan_Bus_Station",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Adjacent major bus interchange; extracting stand count highlights the scale of surface transit feeding the rail/subway network.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 10,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Buchanan_Bus_Station",
+      "extraction_target": "Reason: the sum of its distinct prime factors",
+      "extraction_section": null,
+      "extracted_value": 662,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (sum_prime_factors) on stop 7 value",
+      "reason_transform": "sum_prime_factors",
+      "reason_source_stop": 9,
+      "reason_code": "def prime_factors(n):\n    n = abs(int(n))\n    factors = []\n    d = 2\n    while d * d <= n:\n        while n % d == 0:\n            factors.append(d)\n            n //= d\n        d += 1\n    if n > 1: factors.append(n)\n    return factors\nresult = sum(set(prime_factors(1977)))\nprint(result)"
+    },
+    {
+      "index": 11,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Port_Dundas",
+      "extraction_target": "the number of loft-style residential apartments Speirs Wharf was converted into",
+      "extraction_section": null,
+      "extracted_value": 150,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Forth_and_Clyde_Canal",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Industrial port district historically tied to Scotland's canal network—this stop links urban transit to historic waterways that enabled freight and industry.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 12,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Forth_and_Clyde_Canal",
+      "extraction_target": "the length listed in the infobox (field: 'Length')",
+      "extraction_section": "infobox",
+      "extracted_value": 35,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Glasgow city centre wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Glasgow_city_centre",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Major engineered waterway across the central lowlands; extracting canal length underscores the scale of the waterways that shaped regional transport and industry.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 13,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Glasgow_city_centre",
+      "extraction_target": "Count the number of hotels near Glasgow city centre",
+      "extraction_section": null,
+      "extracted_value": 20,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "hotels near Glasgow city centre"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: count hotels near Glasgow city centre",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 14,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: digital_root(36 + 662)",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "digital_root(36 + 662)",
+        "expression_code": "def digital_root(n):\n    n = abs(int(n))\n    return n if n == 0 else ((n - 1) % 9) + 1\nresult = digital_root(36 + 662)\nprint(result)",
+        "referenced_stops": [
+          1,
+          10
+        ]
+      },
+      "reasoning": "Compute stop: digital_root(36 + 662) = 5",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 5,
+  "difficulty": {
+    "level": "medium",
+    "depth": 15,
+    "tool_stop_count": 2,
+    "reason_stop_count": 3,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "Here is the revised riddle:\n\n1. Seek the rural hamlet located in County Fermanagh on Wikipedia; what are the coordinates given there in degrees, minutes and seconds as written on the page? (Follow the municipal link on that entry to continue.)\n\n2. There exists a municipal authority page linked from the village; on that council entry, what percentage of the population is listed as identifying with the Catholic faith? (Next, look up the well-known Ayrshire seaside town by name on Wikipedia.)\n\n3. How many kilometres would you be shown if you asked for driving directions between that Ayrshire seaside town and the municipal area you uncovered in clue 2? (Use a maps-style distance between the two places.)\n\n4. If you take the driving-distance number obtained in clue 3, compute its largest prime factor — that prime is the value you should record for this stop.\n\n5. Locate the Wikipedia article describing an inner-Glasgow district (the one linked onward from the previous page); what geographic coordinates are printed at the top of that article?\n\n6. In that neighbourhood's entry you will find a link to a nearby district article; open it and read the geographic coordinates given in its summary box — what are they?\n\n7. Imagine the small subway stop linked from that neighbourhood's page has an article of its own; on that station page, which year is recorded as the year it first opened?\n\n8. (Take the opening year you just found in clue 7 and write it as a Roman numeral) — how many characters long is that Roman numeral when written in full?\n\n9. Behold the article about the city’s former central railway terminus that appears next in the chain; how many platforms does that entry state the terminus had?\n\n10. By following the link from that railway entry to the main bus terminus article, note the year which the bus-station page records as the year it opened.\n\n11. Now take the opening-year number from clue 10 and calculate the sum of its distinct prime factors; report that sum as the value for this clue.\n\n12. Within the docks-area article reached next you will read about a converted wharf: how many loft-style residential apartments does the page say the conversion produced?\n\n13. Consider the long canal that links the two great firths — on its article, what length is given in the summary box (the canal’s length as stated on the page)?\n\n14. Count the hotels returned by a places search focused near the heart of Glasgow — how many hotels does that nearby-places query find?\n\n15. Finally, compute the digital root of (clue 2 + clue 11); perform that arithmetic using the numeric values you obtained for clue 2 and clue 11, and report the single-digit result (0–9).",
+  "metadata": {
+    "theme": "From a rural Northern Irish bridge to Glasgow's transport heart: tracing local governance, waterways and transit links that connect towns, ports and city hubs across the Irish Sea and the Firth of Clyde.",
+    "difficulty": "medium",
+    "sample_id": "sample_049",
+    "pages_crawled": 1301
+  },
+  "generated_at": "2026-03-16T08:28:13.530518+00:00"
+}

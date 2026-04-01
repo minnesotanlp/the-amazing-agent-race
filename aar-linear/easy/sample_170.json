@@ -1,0 +1,216 @@
+{
+  "trail_id": "trail_cf6b345a",
+  "seed_url": "https://en.wikipedia.org/wiki/Nike,_Inc.",
+  "seed_title": "Nike, Inc.",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Nike,_Inc.",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Founded')",
+      "extraction_section": "infobox",
+      "extracted_value": 25,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Indonesia wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Indonesia",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start at Nike's company page to anchor the trail: identify its HQ (Beaverton/Portland area) and origin before branching outward to manufacturing countries, retail cities, and market peers.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Indonesia",
+      "extraction_target": "Look up the elevation at Indonesia",
+      "extraction_section": null,
+      "extracted_value": 100.3525619506836,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Indonesia"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for Indonesia",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Portland,_Oregon",
+      "extraction_target": "the coordinates listed in the infobox (field: 'Coordinates')",
+      "extraction_section": "infobox",
+      "extracted_value": "45.52000, -122.68194",
+      "extracted_value_type": "coords",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Los_Angeles",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Portland (and the Portland metro) frames Nike's regional headquarters and local ecosystem — extract its population/coordinates to connect corporate HQ to the city scale.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Los_Angeles",
+      "extraction_target": "Count the number of museums near 34.050",
+      "extraction_section": null,
+      "extracted_value": 20,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "museums near 34.050"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: count museums near 34.050",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 4,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Los_Angeles",
+      "extraction_target": "Reason: the number of characters when written as a Roman numeral",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (roman_numeral_letter_count) on stop 3 value",
+      "reason_transform": "roman_numeral_letter_count",
+      "reason_source_stop": 3,
+      "reason_code": "def to_roman(n):\n    n = abs(int(n))\n    vals = [(1000,'M'),(900,'CM'),(500,'D'),(400,'CD'),(100,'C'),\n            (90,'XC'),(50,'L'),(40,'XL'),(10,'X'),(9,'IX'),(5,'V'),(4,'IV'),(1,'I')]\n    r = ''\n    for v, s in vals:\n        while n >= v:\n            r += s; n -= v\n    return r\nresult = len(to_roman(20))\nprint(result)"
+    },
+    {
+      "index": 5,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Apple_Computer",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Founded')",
+      "extraction_section": "infobox",
+      "extracted_value": 1,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Apple_Computer",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Branch to another major consumer brand headquartered in the U.S.; extract Apple’s ticker to highlight how consumer brands participate in public markets and compare corporate scale.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 6,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: abs(100 - 20) % 10",
+      "extraction_section": null,
+      "extracted_value": 0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "abs(100 - 20) % 10",
+        "expression_code": "result = abs(100 - 20) % 10\nprint(result)",
+        "referenced_stops": [
+          1,
+          3,
+          4,
+          5
+        ]
+      },
+      "reasoning": "Compute stop: abs(100 - 20) % 10 = 0",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 0,
+  "difficulty": {
+    "level": "easy",
+    "depth": 7,
+    "tool_stop_count": 2,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "Here is the revised riddle:\n\n1. Seek the corporate profile of the renowned athletic footwear and apparel giant; on that page, in which year was the company born? After you note it, proceed to the Wikipedia entry for the archipelagic nation described as a country in Southeast Asia and Oceania.\n\n2. There exists a page for that island nation — determine how many meters above sea level the land sits there (its elevation).\n\n3. What geographic coordinates are given at the top of the article for the city that is the most populous in Oregon? Use that city's page to follow the link to the most populous city in California.\n\n4. If you follow the link to California’s largest city, ask: how many museums can you find located near latitude 34.050?\n\n5. The count you just uncovered, when rendered as a Roman numeral, requires how many characters to write?\n\n6. In a little narrative: two young enthusiasts started a famous tech company in a California garage; on that firm’s Wikipedia page, which year is listed as its founding?\n\n7. The referee now demands arithmetic: compute (abs(clue 2 - clue 4) + clue 5 - clue 6) modulo 10, and report that single-digit result (0–9).",
+  "metadata": {
+    "theme": "Tracing Nike's global ecosystem — from its headquarters to manufacturing countries, major U.S. retail metros, and public-market peers to see how a sports brand fits into global production and commerce.",
+    "difficulty": "easy",
+    "sample_id": "sample_170",
+    "pages_crawled": 3219
+  },
+  "generated_at": "2026-03-17T10:32:30.148576+00:00"
+}

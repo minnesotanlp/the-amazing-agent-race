@@ -1,0 +1,890 @@
+{
+  "trail_id": "trail_dd833194",
+  "seed_url": "https://en.wikipedia.org/wiki/Xiaomi",
+  "seed_title": "Xiaomi",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Xiaomi",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Founded')",
+      "extraction_section": "infobox",
+      "extracted_value": 6,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Xiaomi",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Seed: Xiaomi is the Chinese smartphone and consumer electronics company anchoring this trail — start by extracting its HQ and origin to orient the journey.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Xiaomi",
+      "extraction_target": "Reason: the number of divisors of that figure",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (num_divisors) on stop 0 value",
+      "reason_transform": "num_divisors",
+      "reason_source_stop": 0,
+      "reason_code": "n = abs(int(6))\ncount = sum(1 for i in range(1, n+1) if n % i == 0) if n > 0 else 0\nresult = count\nprint(result)",
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Smartphones",
+      "extraction_target": "the number of subsections under the Hardware section listed in the Contents",
+      "extraction_section": "Contents",
+      "extracted_value": 10,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Smartphones wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Smartphones",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Places Xiaomi in the broader smartphone market — what smartphones are and who the main players are.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Smartphones",
+      "extraction_target": "Reason: the number of 1-bits in its binary representation",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (binary_1bit_count) on stop 1 value",
+      "reason_transform": "binary_1bit_count",
+      "reason_source_stop": 2,
+      "reason_code": "result = bin(abs(int(10))).count('1')\nprint(result)",
+      "depends_on": [
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Pearl_River_Delta",
+      "extraction_target": "the number of major cities listed in the infobox 'Major Cities' field",
+      "extraction_section": null,
+      "extracted_value": 11,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Suzhou wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Suzhou",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "The Pearl River Delta is the manufacturing heartland for many electronics firms (including supply-chain context for Xiaomi).",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Suzhou",
+      "extraction_target": "Calculate the driving distance between Suzhou and Beijing",
+      "extraction_section": null,
+      "extracted_value": 1138.857,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Suzhou"
+            },
+            "expected_output": null,
+            "output_key": "coords_a"
+          },
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Beijing"
+            },
+            "expected_output": null,
+            "output_key": "coords_b"
+          },
+          {
+            "tool_name": "maps_distance_matrix",
+            "arguments": {
+              "__from_previous_as_origins_destinations": [
+                "coords_a",
+                "coords_b"
+              ]
+            },
+            "expected_output": null,
+            "output_key": "distance_km"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: distance between Suzhou and Beijing",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Hefei",
+      "extraction_target": "Look up the elevation at Hefei",
+      "extraction_section": null,
+      "extracted_value": 33.33245086669922,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Hefei"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for Hefei",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Google_China",
+      "extraction_target": "Google's search market share in China by November 2013",
+      "extraction_section": null,
+      "extracted_value": 1.7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Government of the People's Republic of China wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Government_of_the_People%27s_Republic_of_China",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Google's China operations show how multinational tech firms interact with Chinese regulation — useful context for how Xiaomi and others operate in that regulatory environment.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Government_of_the_People%27s_Republic_of_China",
+      "extraction_target": "Convert 6 km to miles",
+      "extraction_section": null,
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "# Convert km to miles\nvalue = 6.0\nconverted = value * 0.621371\nresult = int(converted)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "converted"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: convert 6 km to miles",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        7
+      ]
+    },
+    {
+      "index": 9,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Chinese_Communist_Party",
+      "extraction_target": "the number of subsections listed under Governance in the Contents",
+      "extraction_section": "Contents",
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "International Telecommunication Union wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/International_Telecommunication_Union",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Understand the political actor shaping industrial policy, tech regulation, and national strategy affecting firms like Xiaomi.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        8
+      ]
+    },
+    {
+      "index": 10,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/International_Telecommunication_Union",
+      "extraction_target": "the number of subsections listed under the Membership section in the table of contents",
+      "extraction_section": "Contents",
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Motorola Mobility wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Motorola_Mobility",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "International standards bodies (like the ITU) influence interoperability and spectrum rules that affect smartphone makers and networked devices.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        9
+      ]
+    },
+    {
+      "index": 11,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Motorola_Mobility",
+      "extraction_target": "the date the current logo has been used since",
+      "extraction_section": null,
+      "extracted_value": "25 May 2017",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Artificial Intelligence wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Artificial_Intelligence",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Motorola's history shows consolidation and brand transitions in the handset industry, helping explain competitive dynamics Xiaomi faces.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        10
+      ]
+    },
+    {
+      "index": 12,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Motorola_Mobility",
+      "extraction_target": "Count restaurants near Motorola Mobility",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "restaurants near Motorola Mobility"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (nearby_poi) derived from https://en.wikipedia.org/wiki/Motorola_Mobility",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        11
+      ]
+    },
+    {
+      "index": 13,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Artificial_Intelligence",
+      "extraction_target": "the number of subsections listed under Applications",
+      "extraction_section": "Applications",
+      "extracted_value": 10,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Canadian Pacific Railway wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Canadian_Pacific_Railway",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "AI capabilities are increasingly embedded in smartphones and IoT devices — tie product evolution to software and AI trends.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        12
+      ]
+    },
+    {
+      "index": 14,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Canadian_Pacific_Railway",
+      "extraction_target": "the length listed in the infobox (field: 'Length')",
+      "extraction_section": "infobox",
+      "extracted_value": 20100,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Canadian_Pacific_Railway",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Logistics firms like railways move goods from ports to inland markets — include transport infrastructure to show how devices reach global customers.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        13
+      ]
+    },
+    {
+      "index": 15,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Canadian_Pacific_Railway",
+      "extraction_target": "Reason: the number you get by reversing its digits",
+      "extraction_section": null,
+      "extracted_value": 102,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_reversal) on stop 11 value",
+      "reason_transform": "digit_reversal",
+      "reason_source_stop": 14,
+      "reason_code": "result = int(str(abs(int(20100)))[::-1])\nprint(result)",
+      "depends_on": [
+        14
+      ]
+    },
+    {
+      "index": 16,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/2025_United_States_trade_war_with_Canada_and_Mexico",
+      "extraction_target": "the number of languages listed at the top of the article",
+      "extraction_section": null,
+      "extracted_value": 18,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/2025_United_States_trade_war_with_Canada_and_Mexico",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Trade policy and tariffs (exemplified by a 2025 trade-war entry) can reshape supply chains and corporate strategies for electronics manufacturers.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        15
+      ]
+    },
+    {
+      "index": 17,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/2025_United_States_trade_war_with_Canada_and_Mexico",
+      "extraction_target": "Look up the elevation of 2025 United States trade war with Canada and Mexico",
+      "extraction_section": null,
+      "extracted_value": 3236.2353515625,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "2025 United States trade war with Canada and Mexico"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of 2025 United States trade war with Canada and Mexico) from https://en.wikipedia.org/wiki/2025_United_States_trade_war_with_Canada_and_Mexico",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        16
+      ]
+    },
+    {
+      "index": 18,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/2025_United_States_trade_war_with_Canada_and_Mexico",
+      "extraction_target": "Look up the count of libraries near 2025 United States trade war with Canada and Mexico",
+      "extraction_section": null,
+      "extracted_value": 1.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "libraries near 2025 United States trade war with Canada and Mexico"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of libraries near 2025 United States trade war with Canada and Mexico) from https://en.wikipedia.org/wiki/2025_United_States_trade_war_with_Canada_and_Mexico",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        16
+      ]
+    },
+    {
+      "index": 19,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/2025_United_States_trade_war_with_Canada_and_Mexico",
+      "extraction_target": "Combine the elevation of 2025 United States trade war with Canada and Mexico and the count of libraries near 2025 United States trade war with Canada and Mexico: (3236 + 1)",
+      "extraction_section": null,
+      "extracted_value": 3237,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(3236.2353515625) + int(1.0)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of 2025 United States trade war with Canada and Mexico add count of libraries near 2025 United States trade war with Canada and Mexico",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        17,
+        18
+      ]
+    },
+    {
+      "index": 20,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/2025_United_States_trade_war_with_Canada_and_Mexico",
+      "extraction_target": "Reason: the digital root (iterated digit sum until single digit)",
+      "extraction_section": null,
+      "extracted_value": 9,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digital_root) on stop 12 value",
+      "reason_transform": "digital_root",
+      "reason_source_stop": 16,
+      "reason_code": "n = abs(int(18))\nresult = n if n == 0 else ((n - 1) % 9) + 1\nprint(result)",
+      "depends_on": [
+        16
+      ]
+    },
+    {
+      "index": 21,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Autonomous_vehicle",
+      "extraction_target": "the number of languages listed at the top of the article",
+      "extraction_section": null,
+      "extracted_value": 53,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Electric vehicles wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Electric_vehicles",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Device-makers (and component suppliers) are branching into adjacent markets like automotive tech — shows diversification of hardware/software ecosystems.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        20
+      ]
+    },
+    {
+      "index": 22,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Electric_vehicles",
+      "extraction_target": "the number of languages listed at the top of the article",
+      "extraction_section": null,
+      "extracted_value": 49,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Electric vehicles wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Electric_vehicles",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Electric vehicles represent another market where smartphone-era sensors and connectivity intersect with manufacturing and supply chains (Xiaomi has signaled interest in EVs).",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        21
+      ]
+    },
+    {
+      "index": 23,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Electric_vehicles",
+      "extraction_target": "Reason: the number you get by reversing its digits",
+      "extraction_section": null,
+      "extracted_value": 94,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_reversal) on stop 14 value",
+      "reason_transform": "digit_reversal",
+      "reason_source_stop": 22,
+      "reason_code": "result = int(str(abs(int(49)))[::-1])\nprint(result)",
+      "depends_on": [
+        22
+      ]
+    },
+    {
+      "index": 24,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Macau",
+      "extraction_target": "Count the number of museums near Macau",
+      "extraction_section": null,
+      "extracted_value": 20,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "museums near Macau"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: count museums near Macau",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        23
+      ]
+    },
+    {
+      "index": 25,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Macau",
+      "extraction_target": "Reason: the number of 1-bits in its binary representation",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (binary_1bit_count) on stop 15 value",
+      "reason_transform": "binary_1bit_count",
+      "reason_source_stop": 24,
+      "reason_code": "result = bin(abs(int(20))).count('1')\nprint(result)",
+      "depends_on": [
+        24
+      ]
+    },
+    {
+      "index": 26,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Asia%E2%80%93Pacific",
+      "extraction_target": "the oldid number shown in the permanent link URL for this revision of the page",
+      "extraction_section": "Tools",
+      "extracted_value": 1342535252,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Five Eyes wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Five_Eyes",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Frame the regional market context (Asia–Pacific) that drives manufacturing, consumer demand, and trade flows for smartphone companies.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        25
+      ]
+    },
+    {
+      "index": 27,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Five_Eyes",
+      "extraction_target": "the number of member countries in the Five Eyes alliance",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Five_Eyes",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Conclude by highlighting international security and intelligence considerations (Five Eyes) that influence device security requirements, export controls, and corporate risk assessments.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        26
+      ]
+    },
+    {
+      "index": 28,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: (1 + 49 + 94) % 10",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "(1 + 49 + 94) % 10",
+        "expression_code": "result = (1 + 49 + 94) % 10\nprint(result)",
+        "referenced_stops": [
+          18,
+          22,
+          23
+        ]
+      },
+      "reasoning": "Compute stop: (1 + 49 + 94) % 10 = 4",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        18,
+        22,
+        23
+      ]
+    }
+  ],
+  "passcode": 4,
+  "difficulty": {
+    "level": "extreme",
+    "depth": 29,
+    "tool_stop_count": 8,
+    "reason_stop_count": 6,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. In the realm where mobile innovation thrives, a company emerged in the early years of the 21st century. What year marks its inception?\n\n2. Seek the numeral that defines how many ways to divide the year you uncovered in clue 1 perfectly.\n\n3. A device of communication that fits into a pocket—what is the count of elements found within a specific technical section of its article?\n\n4. What is the quantity of '1' bits that form the binary identity of the number from clue 3?\n\n5. A vast estuary rich with commerce houses numerous urban centers—how many major cities reside within its boundaries?\n\n6. One metropolis links to the capital of the nation. If you embarked on a road trip, how many kilometers would you traverse to get from this city to that high place?\n\n7. In a region known for its cultural significance, what is the height above sea level where this city rests?\n\n8. A technology juggernaut once had a stronghold in the Middle Kingdom. By what percentage did it control the online search landscape there in 2013?\n\n9. How many miles correspond to a distance of 6 kilometers, as understood by the regulatory body overseeing communication in your previous clue?\n\n10. In a giant ruling party’s headquarters, what is the summation of subsections under its governance described in the contents?\n\n11. The union of telecommunication standards encompasses many articles. Count the subsections listed in the membership section—what number appears?\n\n12. An iconic tech firm that redefined telecommunications became known by a recognizably simple logo in the 2010s. Since what date has this emblem been featured?\n\n13. Nearby the headquarters of your last discovery, how many places of culinary delight can one find?\n\n14. What fraction of technological advance is detailed in the applications section of artificial reasoning? How many subsections dwell therein?\n\n15. In a national railway that connects lands, what is the extent of the track stretching across terrains in kilometers?\n\n16. Change that numerical length of the railway into its mirrored twin—what figure emerges?\n\n17. The looming shadows of a trade conflict prompt a counting of tongues—how many languages are mentioned at the outset of this conflict's narrative?\n\n18. Take a geographic measurement for the trade war discussed earlier; what elevation exists at this reference point?\n\n19. On the same topic, how many repositories of wisdom lie close to the aforementioned location of contention?\n\n20. Combine your findings from clues 18 and 19; add the height from clue 18 to the total from clue 19.\n\n21. From the languages count in clue 17, what number do you achieve when calculating the digital root until a single digit emerges?\n\n22. A category of machine once dominated by an automotive essence: how many languages are referenced at the top of this evolving article?\n\n23. Referring again to a fleet of electric travel, how many languages find mention at the pinnacle of its discussion?\n\n24. Return to the previous count of languages about the fleet of electric chariots and reverse its digits—what does this yield?\n\n25. In a nearby region famed for entertainment, how many establishments devoted to culture and history stand waiting?\n\n26. Reflect upon the count of museums from clue 25, and identify how many '1' bits are present in its binary form.\n\n27. In the expansive area known for cultural influence, determine the oldid number from this archival page's permanent link. What is its numerical value?\n\n28. Count the nations that unite under the auspices of a collaborative intelligence-sharing agreement—how many are part of this alliance?\n\n29. Compute the following: (1 + the results from clues 19, 23, and 24) % 10. The final answer shall reveal a single digit, a gateway to concluding this intricate journey.",
+  "metadata": {
+    "theme": "Tracing Xiaomi's path from smartphone maker to the global technology ecosystem — supply chains in the Pearl River Delta, Chinese governance and regulation, international standards and trade, and how companies and cities connect that web.",
+    "difficulty": "extreme",
+    "sample_id": "sample_177",
+    "pages_crawled": 20980
+  },
+  "generated_at": "2026-03-19T02:28:47.736136+00:00"
+}

@@ -1,0 +1,313 @@
+{
+  "trail_id": "trail_5a44f3cb",
+  "seed_url": "https://en.wikipedia.org/wiki/Salesforce",
+  "seed_title": "Salesforce",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Salesforce",
+      "extraction_target": "the company's headquarters city and state as listed in the infobox",
+      "extraction_section": null,
+      "extracted_value": "Salesforce Tower, San Francisco, California, U.S.",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Amazon.com wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Amazon.com",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start at Salesforce to anchor the trail: the company's HQ and origin set the geographic and industry context for connections to regional tech hubs and other Big Tech players.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Amazon.com",
+      "extraction_target": "the number of subsections under Products and services",
+      "extraction_section": "Products and services",
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Amazon.com",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Move to a major cloud and retail titan (Amazon/AWS) to contrast Salesforce's cloud software focus with hyperscale cloud providers that shape enterprise IT strategy and competition.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Amazon.com",
+      "extraction_target": "Reason: the sum of its digits",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_sum) on stop 1 value",
+      "reason_transform": "digit_sum",
+      "reason_source_stop": 1,
+      "reason_code": "result = sum(int(d) for d in str(abs(int(4))))\nprint(result)",
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Cambridge,_Massachusetts",
+      "extraction_target": "the elevation listed in the infobox (field: 'Elevation')",
+      "extraction_section": "infobox",
+      "extracted_value": 39,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Cambridge,_Massachusetts",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "End at a prominent R&D and talent hub (Cambridge, MA) to highlight where engineering and research talent and university partnerships originate — the human capital that fuels companies like Salesforce, Amazon, and Apple.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Cambridge,_Massachusetts",
+      "extraction_target": "Look up the elevation of Cambridge, Massachusetts",
+      "extraction_section": null,
+      "extracted_value": 6.57575798034668,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Cambridge, Massachusetts"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Cambridge, Massachusetts) from https://en.wikipedia.org/wiki/Cambridge,_Massachusetts",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Cambridge,_Massachusetts",
+      "extraction_target": "Look up the count of libraries near Cambridge, Massachusetts",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "libraries near Cambridge, Massachusetts"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of libraries near Cambridge, Massachusetts) from https://en.wikipedia.org/wiki/Cambridge,_Massachusetts",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Cambridge,_Massachusetts",
+      "extraction_target": "Combine the elevation of Cambridge, Massachusetts and the count of libraries near Cambridge, Massachusetts: abs(6 - 20)",
+      "extraction_section": null,
+      "extracted_value": 14,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(6.57575798034668) - int(20.0))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Cambridge, Massachusetts abs_diff count of libraries near Cambridge, Massachusetts",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        4,
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Cambridge,_Massachusetts",
+      "extraction_target": "Look up the elevation of Cambridge, Massachusetts",
+      "extraction_section": null,
+      "extracted_value": 6.57575798034668,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Cambridge, Massachusetts"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (elevation) derived from https://en.wikipedia.org/wiki/Cambridge,_Massachusetts",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: abs(39 - 20) % 10",
+      "extraction_section": null,
+      "extracted_value": 9,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "abs(39 - 20) % 10",
+        "expression_code": "result = abs(39 - 20) % 10\nprint(result)",
+        "referenced_stops": [
+          3,
+          5
+        ]
+      },
+      "reasoning": "Compute stop: abs(39 - 20) % 10 = 9",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3,
+        5
+      ]
+    }
+  ],
+  "passcode": 9,
+  "difficulty": {
+    "level": "easy",
+    "depth": 9,
+    "tool_stop_count": 4,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Seek the digital titan known for its cloud solutions and headquartered in a city that dreams of a golden gate — what is the name of this urban home?\n\n2. What vast marketplace offers goods and services in limitless variety, categorized under a section showcasing its diverse products? Count how many subsections reside within.\n\n3. Take the number you found in clue 2, and reveal the essence of its digits — what is their sum?\n\n4. Within the confines of a scholarly city renowned for its prestigious institutions, what stands tall above sea level, reflecting its elevation? \n\n5. Ascend higher in knowledge — how elevated in meters does the ground rise beneath this celebrated town, as discovered using a geographical lookup?\n\n6. Nearby this intellectual hub, how many public collections of literature can be counted? Seek out those who guard the stories.\n\n7. Combining your findings from clues 5 and 6, reveal what lies between the two: what is the absolute difference in height and library count? \n\n8. As you journey on, revisit the elevation clue — how many meters does this city rise from the sea once again?\n\n9. Now, compute the remainder when the absolute difference of the revelations in clues 4 and 6 is divided by 10. What number do you unveil?",
+  "metadata": {
+    "theme": "Tracing Salesforce's place in the Big Tech ecosystem: headquarters and regional connections, major cloud/tech competitors, and the talent/R&D hubs that feed them.",
+    "difficulty": "easy",
+    "sample_id": "sample_139",
+    "pages_crawled": 1400
+  },
+  "generated_at": "2026-03-17T08:19:56.776597+00:00"
+}

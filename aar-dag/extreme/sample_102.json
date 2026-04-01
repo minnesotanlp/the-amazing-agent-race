@@ -1,0 +1,916 @@
+{
+  "trail_id": "trail_c31e6f7d",
+  "seed_url": "https://en.wikipedia.org/wiki/John_Bobo",
+  "seed_title": "John Bobo",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/John_Bobo",
+      "extraction_target": "John Bobo's overall head coaching record (wins–losses–ties)",
+      "extraction_section": null,
+      "extracted_value": "13–30–1",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Dan Pastorini wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Dan_Pastorini",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Seed: the trail begins with coach John Bobo to ground the story in a real coaching career and set the human perspective for the rest of the route.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Dan_Pastorini",
+      "extraction_target": "Number of passing attempts in Dan Pastorini's NFL career (infobox)",
+      "extraction_section": null,
+      "extracted_value": 3055,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Dan_Pastorini",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Profiles a prototypical NFL quarterback to connect the coach's work to player performance and passing metrics.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Dan_Pastorini",
+      "extraction_target": "Reason: the sum of its digits",
+      "extraction_section": null,
+      "extracted_value": 13,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_sum) on stop 1 value",
+      "reason_transform": "digit_sum",
+      "reason_source_stop": 1,
+      "reason_code": "result = sum(int(d) for d in str(abs(int(3055))))\nprint(result)",
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Passing_completions",
+      "extraction_target": "the number of languages listed at the top of the article",
+      "extraction_section": null,
+      "extracted_value": 7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Passing completions wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Passing_completions",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Introduces the core stat 'completions' that coaches and QBs use to evaluate passing performance.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Passing_completions",
+      "extraction_target": "Reason: the number of characters when written as a Roman numeral",
+      "extraction_section": null,
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (roman_numeral_letter_count) on stop 2 value",
+      "reason_transform": "roman_numeral_letter_count",
+      "reason_source_stop": 3,
+      "reason_code": "def to_roman(n):\n    n = abs(int(n))\n    vals = [(1000,'M'),(900,'CM'),(500,'D'),(400,'CD'),(100,'C'),\n            (90,'XC'),(50,'L'),(40,'XL'),(10,'X'),(9,'IX'),(5,'V'),(4,'IV'),(1,'I')]\n    r = ''\n    for v, s in vals:\n        while n >= v:\n            r += s; n -= v\n    return r\nresult = len(to_roman(7))\nprint(result)",
+      "depends_on": [
+        3
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Completion_percentage",
+      "extraction_target": "the numerator used in the completion percentage formula",
+      "extraction_section": "C",
+      "extracted_value": "the number of completed passes",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Passing_yards",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Explains the efficiency metric coaches use to judge quarterbacks, tying raw counts to meaningful rates.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Passing_yards",
+      "extraction_target": "Convert 3055 km to miles",
+      "extraction_section": null,
+      "extracted_value": 1898,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "# Convert km to miles\nvalue = 3055.0\nconverted = value * 0.621371\nresult = int(converted)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "converted"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: convert 3055 km to miles",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/1979_NFL_season",
+      "extraction_target": "the date listed in the infobox (field: 'Start date')",
+      "extraction_section": "infobox",
+      "extracted_value": "December 23, 1979",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "1976 Pro Bowl wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/1976_Pro_Bowl",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Provides historical NFL season context showing how passing standards and leader figures have evolved.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/1976_Pro_Bowl",
+      "extraction_target": "Find the sunshine duration (seconds) at Louisiana Superdome  New Orleans on 1979-12-23",
+      "extraction_section": null,
+      "extracted_value": 22662.62,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Louisiana Superdome  New Orleans"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "weather_historical",
+            "arguments": {
+              "__from_previous": "coords",
+              "start_date": "1979-12-23",
+              "end_date": "1979-12-23",
+              "select": [
+                "daily.sunshine_duration[0]"
+              ]
+            },
+            "expected_output": null,
+            "output_key": "sunshine"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: sunshine duration at Louisiana Superdome  New Orleans on 1979-12-23",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        7
+      ]
+    },
+    {
+      "index": 9,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/1993_NCAA_Division_I-A_football_season",
+      "extraction_target": "the month and year the season began",
+      "extraction_section": null,
+      "extracted_value": "August 1993",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/1994_NCAA_Division_I-A_football_season",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Shifts focus to college football seasons (coaches recruit and develop QBs here) and their statistical landscapes.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        8
+      ]
+    },
+    {
+      "index": 10,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/1994_NCAA_Division_I-A_football_season",
+      "extraction_target": "the month and year the season began",
+      "extraction_section": null,
+      "extracted_value": "August 1994",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/1995_NCAA_Division_I-A_football_season",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Continues the college-season narrative, letting us track trends across consecutive seasons.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        9
+      ]
+    },
+    {
+      "index": 11,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/1995_NCAA_Division_I-A_football_season",
+      "extraction_target": "the number of teams in Division I-A for the 1995 season",
+      "extraction_section": null,
+      "extracted_value": 108,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/1995_NCAA_Division_I-A_football_season",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Adds another seasonal snapshot to compare offensive evolution and QB development relevant to coaching.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        10
+      ]
+    },
+    {
+      "index": 12,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/1995_NCAA_Division_I-A_football_season",
+      "extraction_target": "Reason: the number you get by reversing its digits",
+      "extraction_section": null,
+      "extracted_value": 801,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_reversal) on stop 9 value",
+      "reason_transform": "digit_reversal",
+      "reason_source_stop": 11,
+      "reason_code": "result = int(str(abs(int(108)))[::-1])\nprint(result)",
+      "depends_on": [
+        11
+      ]
+    },
+    {
+      "index": 13,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/1996_NCAA_Division_I-A_football_season",
+      "extraction_target": "the score of the earlier regular-season meeting between Florida and Florida State when they were ranked No. 1 and No. 2",
+      "extraction_section": null,
+      "extracted_value": "24–21",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Big_West_Conference",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Completes a mid-90s college-era arc showing how the college game and its passers influenced coaching philosophies.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        12
+      ]
+    },
+    {
+      "index": 14,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Big_West_Conference",
+      "extraction_target": "year the conference was renamed the Big West Conference",
+      "extraction_section": null,
+      "extracted_value": 1988,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Big_West_Conference",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Explores the conference-level organization that shapes schedules, travel and recruiting — practical constraints for coaches.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        13
+      ]
+    },
+    {
+      "index": 15,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Big_West_Conference",
+      "extraction_target": "Reason: the number you get by reversing its digits",
+      "extraction_section": null,
+      "extracted_value": 8891,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_reversal) on stop 11 value",
+      "reason_transform": "digit_reversal",
+      "reason_source_stop": 14,
+      "reason_code": "result = int(str(abs(int(1988)))[::-1])\nprint(result)",
+      "depends_on": [
+        14
+      ]
+    },
+    {
+      "index": 16,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Arkansas_State_Red_Wolves_football",
+      "extraction_target": "the location listed in the infobox (field: 'Location')",
+      "extraction_section": "infobox",
+      "extracted_value": "Jonesboro, Arkansas",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Middle Tennessee Blue Raiders football wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Middle_Tennessee_Blue_Raiders_football",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "An example of a college program environment (facilities, location) where coaches like Bobo operate and recruit.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        15
+      ]
+    },
+    {
+      "index": 17,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Arkansas_State_Red_Wolves_football",
+      "extraction_target": "Look up the elevation of Jonesboro, Arkansas",
+      "extraction_section": null,
+      "extracted_value": 102.7261428833008,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Jonesboro, Arkansas"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Jonesboro, Arkansas) from https://en.wikipedia.org/wiki/Arkansas_State_Red_Wolves_football",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        16
+      ]
+    },
+    {
+      "index": 18,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Arkansas_State_Red_Wolves_football",
+      "extraction_target": "Look up the count of libraries near Jonesboro, Arkansas",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "libraries near Jonesboro, Arkansas"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of libraries near Jonesboro, Arkansas) from https://en.wikipedia.org/wiki/Arkansas_State_Red_Wolves_football",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        16
+      ]
+    },
+    {
+      "index": 19,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Arkansas_State_Red_Wolves_football",
+      "extraction_target": "Combine the elevation of Jonesboro, Arkansas and the count of libraries near Jonesboro, Arkansas: (102 + 20)",
+      "extraction_section": null,
+      "extracted_value": 122,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(102.7261428833008) + int(20.0)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Jonesboro, Arkansas add count of libraries near Jonesboro, Arkansas",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        17,
+        18
+      ]
+    },
+    {
+      "index": 20,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Middle_Tennessee_Blue_Raiders_football",
+      "extraction_target": "the team's location (city and state)",
+      "extraction_section": null,
+      "extracted_value": "Murfreesboro, Tennessee",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Middle_Tennessee_Blue_Raiders_football",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Another program stop for comparison of facilities, geography and program scale that affect game planning and travel.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        19
+      ]
+    },
+    {
+      "index": 21,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Middle_Tennessee_Blue_Raiders_football",
+      "extraction_target": "Look up the elevation of Murfreesboro, Tennessee",
+      "extraction_section": null,
+      "extracted_value": 177.6046905517578,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Murfreesboro, Tennessee"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Murfreesboro, Tennessee) from https://en.wikipedia.org/wiki/Middle_Tennessee_Blue_Raiders_football",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        20
+      ]
+    },
+    {
+      "index": 22,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Middle_Tennessee_Blue_Raiders_football",
+      "extraction_target": "Look up the count of hotels near Murfreesboro, Tennessee",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "hotels near Murfreesboro, Tennessee"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of hotels near Murfreesboro, Tennessee) from https://en.wikipedia.org/wiki/Middle_Tennessee_Blue_Raiders_football",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        20
+      ]
+    },
+    {
+      "index": 23,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Middle_Tennessee_Blue_Raiders_football",
+      "extraction_target": "Combine the elevation of Murfreesboro, Tennessee and the count of hotels near Murfreesboro, Tennessee: abs(177 - 20)",
+      "extraction_section": null,
+      "extracted_value": 157,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(177.6046905517578) - int(20.0))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Murfreesboro, Tennessee abs_diff count of hotels near Murfreesboro, Tennessee",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        21,
+        22
+      ]
+    },
+    {
+      "index": 24,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Middle_Tennessee_Blue_Raiders_football",
+      "extraction_target": "Reason: the alphabetical position of its first letter (A=1, B=2, ...)",
+      "extraction_section": null,
+      "extracted_value": 13,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (alpha_position_first_letter) on stop 13 value",
+      "reason_transform": "alpha_position_first_letter",
+      "reason_source_stop": 20,
+      "reason_code": "first = \"Murfreesboro, Tennessee\"[0].upper()\nresult = ord(first) - ord('A') + 1 if first.isalpha() else 0\nprint(result)",
+      "depends_on": [
+        20
+      ]
+    },
+    {
+      "index": 25,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Atlanta_Bread_Company",
+      "extraction_target": "Count the number of libraries near Smyrna",
+      "extraction_section": null,
+      "extracted_value": 20,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "libraries near Smyrna"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: count libraries near Smyrna",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        24
+      ]
+    },
+    {
+      "index": 26,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Niagara_University",
+      "extraction_target": "Convert 3055 meters to feet",
+      "extraction_section": null,
+      "extracted_value": 10022,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "# Convert meters to feet\nvalue = 3055.0\nconverted = value * 3.28084\nresult = int(converted)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "converted"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: convert 3055 meters to feet",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        25
+      ]
+    },
+    {
+      "index": 27,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Rich%27s_(department_store)",
+      "extraction_target": "Get the driving duration in minutes from Atlanta to [Irvine",
+      "extraction_section": null,
+      "extracted_value": 1892,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_directions",
+            "arguments": {
+              "origin": "Atlanta",
+              "destination": "[Irvine",
+              "mode": "driving"
+            },
+            "expected_output": null,
+            "output_key": "duration"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: directions duration Atlanta to [Irvine",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        26
+      ]
+    },
+    {
+      "index": 28,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: digital_root(13 + 1898 + 801 + 8891)",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "digital_root(13 + 1898 + 801 + 8891)",
+        "expression_code": "def digital_root(n):\n    n = abs(int(n))\n    return n if n == 0 else ((n - 1) % 9) + 1\nresult = digital_root(13 + 1898 + 801 + 8891)\nprint(result)",
+        "referenced_stops": [
+          2,
+          6,
+          12,
+          15
+        ]
+      },
+      "reasoning": "Compute stop: digital_root(13 + 1898 + 801 + 8891) = 2",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2,
+        6,
+        12,
+        15
+      ]
+    }
+  ],
+  "passcode": 2,
+  "difficulty": {
+    "level": "extreme",
+    "depth": 29,
+    "tool_stop_count": 11,
+    "reason_stop_count": 5,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Unearth the legacy of a coach whose wins and losses shaped a generation of players. What is his overall record?\n\n2. In the annals of football, who threw the ball with such skill that he amassed a remarkable count of attempts throughout his professional career? Seek out this number.\n\n3. Now, take the total passing attempts you just uncovered, and reveal the sum of its digits — what do you find?\n\n4. Discover the page that lists a metric crucial to success in football: the number of languages represented near the top of the text. This count holds your next clue.\n\n5. Convert that number into a Roman numeral and share how many characters it took to write — what’s the tally?\n\n6. Within the hallowed halls of completion metrics, a numerator plays a pivotal role. What is the numerator used in the corresponding formula?\n\n7. From the grasp of yards gained, ponder how far 3055 kilometers stretches in miles. What’s the transformation?\n\n8. A memorable season began for teams in the NFL during a certain year—what start date is recorded for this thrilling chapter?\n\n9. On that special day, for the game held in the dome, how many seconds of sunshine danced upon the location in New Orleans? Seek this figure.\n\n10. Looking toward the college ranks, recall the beginning of a season in 1993. What month and year did the games kick off?\n\n11. As time unfolds, what month and year marked the start of the subsequent season in 1994? Find this date to continue your quest.\n\n12. In the 1995 season, how many teams competed in Division I-A? This number is essential for your next step.\n\n13. Once you hold that number, reverse its digits! What new value emerges for your journey?\n\n14. A clash of titans lit the field during the regular season—peel back the layers to discover the score when Florida met Florida State in their epic encounter.\n\n15. When unity was rebranded, what year did the conference claim the name Big West Conference? Such a transformation requires your search.\n\n16. Echoing your previous findings, reverse that year and reveal the number you uncover. \n\n17. What city lies beneath the banner of the Arkansas State Red Wolves? Find this location to forge ahead.\n\n18. Ascend high and determine the elevation of Jonesboro, Arkansas; what height does the ground reach there?\n\n19. Not far from the campus grounds, how many libraries grace the area surrounding Jonesboro, Arkansas? This count is pivotal.\n\n20. Now, to continue your journey, combine the elevation you noted in clue 18 with the library count from clue 19 — what total do you find?\n\n21. Seek the name of the hometown for the blue-clad warriors of the Blue Raiders — where do their battles take place?\n\n22. Ascend again, but this time to Murfreesboro, Tennessee. What elevation does this city reach?\n\n23. While you’re exploring, how many hotels cater to weary travelers in Murfreesboro's embrace? \n\n24. It’s time to merge your findings: subtract the hotel count from the elevation of Murfreesboro found in clue 22. What do you end up with?\n\n25. By the sound of things, what is the alphabetical position of the first letter of the city you uncovered in clue 21? Reveal this number as you continue.\n\n26. A glance across Smyrna transports you to numerous libraries—what’s the count of these knowledge repositories nearby?\n\n27. From the realm of heights, convert 3055 meters to feet. What figure do you arrive at?\n\n28. If you set out from Atlanta towards a vibrant Irvine, how long would the drive take in minutes? Gather this duration.\n\n29. With all puzzle pieces in play, compute the digital root of (clue 3 + clue 7 + clue 13 + clue 16). The answer lies within a single digit—what do you reveal?",
+  "metadata": {
+    "theme": "A coach's playbook: tracing a gridiron journey from coaching biography through quarterback passing metrics and season context to the real-world factors (stadium elevation, travel, weather, nearby facilities) that shape games.",
+    "difficulty": "extreme",
+    "sample_id": "sample_102",
+    "pages_crawled": 5880
+  },
+  "generated_at": "2026-03-16T19:44:59.456472+00:00"
+}

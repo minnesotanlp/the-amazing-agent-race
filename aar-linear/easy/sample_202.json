@@ -1,0 +1,206 @@
+{
+  "trail_id": "trail_e400761f",
+  "seed_url": "https://en.wikipedia.org/wiki/Căușeni",
+  "seed_title": "Căușeni",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/C%C4%83u%C8%99eni",
+      "extraction_target": "year of the population census cited",
+      "extraction_section": null,
+      "extracted_value": "2014",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Nativity_Church,_C%C4%83u%C8%99eni",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start at the seed town Căușeni to establish a local baseline (population and location) for the trail.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Nativity_Church,_C%C4%83u%C8%99eni",
+      "extraction_target": "Count the number of stadiums near Căuşeni",
+      "extraction_section": null,
+      "extracted_value": 1,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "stadiums near Căuşeni"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: count stadiums near Căuşeni",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/C%C4%83u%C8%99eni_District",
+      "extraction_target": "the area listed in the infobox (field: '[Area code](/wiki/Telephone_numbering_plan \"Telephone numbering plan\")')",
+      "extraction_section": "infobox",
+      "extracted_value": 373,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Moldova",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Move out to the administrative district to compare the town's scale with its district area and population context.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Moldova",
+      "extraction_target": "Look up the population of Moldova",
+      "extraction_section": null,
+      "extracted_value": 2749076,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "countries_population",
+            "arguments": {
+              "country": "Moldova"
+            },
+            "expected_output": null,
+            "output_key": "population"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: population of Moldova",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 4,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Dniester",
+      "extraction_target": "the length listed in the infobox (field: 'Length')",
+      "extraction_section": "infobox",
+      "extracted_value": 1362,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Dniester",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Highlight regional geography — the Dniester River shapes the broader landscape around Căușeni and Bessarabia.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 5,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Dniester",
+      "extraction_target": "Reason: the largest prime factor of that figure",
+      "extraction_section": null,
+      "extracted_value": 227,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (largest_prime_factor) on stop 4 value",
+      "reason_transform": "largest_prime_factor",
+      "reason_source_stop": 4,
+      "reason_code": "def largest_prime_factor(n):\n    n = abs(int(n))\n    if n <= 1: return n\n    d = 2\n    while d * d <= n:\n        while n % d == 0: n //= d\n        d += 1\n    return n\nresult = largest_prime_factor(1362)\nprint(result)"
+    },
+    {
+      "index": 6,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: abs(2014 - 2749076) % 10",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "abs(2014 - 2749076) % 10",
+        "expression_code": "result = abs(2014 - 2749076) % 10\nprint(result)",
+        "referenced_stops": [
+          0,
+          3
+        ]
+      },
+      "reasoning": "Compute stop: abs(2014 - 2749076) % 10 = 2",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 2,
+  "difficulty": {
+    "level": "easy",
+    "depth": 7,
+    "tool_stop_count": 2,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "direct_link"
+  },
+  "riddle": "1. Seek the Wikipedia page for Căușeni and read its opening; which year is given for the population census cited there?\n\n2. There is a linked page about the village’s medieval church dedicated to the Virgin’s birth; on that church’s page, how many stadiums are located in or near the village (use a local map search to count them)?\n\n3. Which nearby district’s article (follow the administrative link on the village or church page) lists a land area in its infobox, and what is that area value in square kilometres?\n\n4. If you follow the district’s link to the sovereign state that contains it (the Eastern European country linked on the district page), what total population figure does that country’s article report?\n\n5. The district page also links to an article about a long eastward-flowing river in the region; on that river’s article, what length (in kilometres) is shown in the infobox?\n\n6. In a quest for number theory: take the river length you just found and determine its largest prime factor — that prime is your next numeric result.\n\n7. The calculating hermit asks you to finish: compute the absolute difference between clue 1 and clue 4, then take that result modulo 10 (explicitly: absolute difference of clue 1 and clue 4, % 10). The final answer should be a single digit from 0–9.",
+  "metadata": {
+    "theme": "From Căușeni's local heritage to national context and a UK connection — examining place, population, points of interest and distance",
+    "difficulty": "easy",
+    "sample_id": "sample_202",
+    "pages_crawled": 117
+  },
+  "generated_at": "2026-03-20T00:18:13.319808+00:00"
+}

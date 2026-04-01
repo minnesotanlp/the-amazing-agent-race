@@ -1,0 +1,353 @@
+{
+  "trail_id": "trail_6dfe8bd8",
+  "seed_url": "https://en.wikipedia.org/wiki/Amphion_(horse)",
+  "seed_title": "Amphion (horse)",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Amphion_(horse)",
+      "extraction_target": "the number of career wins recorded for Amphion",
+      "extraction_section": null,
+      "extracted_value": 14,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Epsom_Derby",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start with Amphion, the seed racehorse — extracting its foaling year and major wins anchors the personal starting point for this historical racing trail.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Amphion_(horse)",
+      "extraction_target": "Look up the elevation of Amphion",
+      "extraction_section": null,
+      "extracted_value": 135.8930816650391,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Amphion"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Amphion) from https://en.wikipedia.org/wiki/Amphion_(horse)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Amphion_(horse)",
+      "extraction_target": "Look up the Google rating of Amphion",
+      "extraction_section": null,
+      "extracted_value": 5.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "Amphion"
+            },
+            "expected_output": null,
+            "output_key": "place_rating"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (Google rating of Amphion) from https://en.wikipedia.org/wiki/Amphion_(horse)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Amphion_(horse)",
+      "extraction_target": "Combine the elevation of Amphion and the Google rating of Amphion: (135 + 5)",
+      "extraction_section": null,
+      "extracted_value": 140,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(135.8930816650391) + int(5.0)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Amphion add Google rating of Amphion",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1,
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Epsom_Derby",
+      "extraction_target": "the year the Epsom Derby was inaugurated",
+      "extraction_section": null,
+      "extracted_value": 1780,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Kempton Park Racecourse wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Kempton_Park_Racecourse",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "The Epsom Derby is the quintessential British Classic; linking Amphion to the Derby situates the horse within the broader tradition of Classic flat racing.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Kempton_Park_Racecourse",
+      "extraction_target": "Look up the elevation at Sunbury-on-Thames",
+      "extraction_section": null,
+      "extracted_value": 12.69510078430176,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Sunbury-on-Thames"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for Sunbury-on-Thames",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Kempton_Park_Racecourse",
+      "extraction_target": "Reason: the next prime number after that figure",
+      "extraction_section": null,
+      "extracted_value": 13,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (next_prime) on stop 2 value",
+      "reason_transform": "next_prime",
+      "reason_source_stop": 5,
+      "reason_code": "def next_prime(n):\n    n = abs(int(n))\n    if n < 2: return 2\n    candidate = n + 1\n    while True:\n        if all(candidate % i != 0 for i in range(2, int(candidate**0.5)+1)):\n            return candidate\n        candidate += 1\nresult = next_prime(12)\nprint(result)",
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Hermit_(horse)",
+      "extraction_target": "the country listed in the infobox (field: 'Country')",
+      "extraction_section": "infobox",
+      "extracted_value": "United Kingdom of Great Britain and Ireland",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Sandown Park Racecourse wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Sandown_Park_Racecourse",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Hermit was a notable Epsom Derby winner — examining a contemporary/classic-winning horse gives a human/historical counterpart to Amphion and highlights lineage and era.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Sandown_Park_Racecourse",
+      "extraction_target": "Calculate the number of days between 1875-01-01 and 2026-03-15",
+      "extraction_section": null,
+      "extracted_value": 55225,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "from datetime import date\nd1 = date.fromisoformat('1875-01-01')\nd2 = date.fromisoformat('2026-03-15')\nresult = abs((d2 - d1).days)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "days"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: date computation 1875-01-01 to 2026-03-15 (pinned)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        7
+      ]
+    },
+    {
+      "index": 9,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: abs(14 - 5) % 10",
+      "extraction_section": null,
+      "extracted_value": 9,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "abs(14 - 5) % 10",
+        "expression_code": "result = abs(14 - 5) % 10\nprint(result)",
+        "referenced_stops": [
+          0,
+          2,
+          4,
+          5
+        ]
+      },
+      "reasoning": "Compute stop: abs(14 - 5) % 10 = 9",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0,
+        2,
+        4,
+        5
+      ]
+    }
+  ],
+  "passcode": 9,
+  "difficulty": {
+    "level": "easy",
+    "depth": 10,
+    "tool_stop_count": 5,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Seek the steed named after a Greek figure, whose racing prowess garnered numerous victories—how many wins did this gallant horse achieve?\n\n2. A geographical marvel bears the name of this champion. What is the elevation, in meters, of the place from which he hails?\n\n3. In the realm of modern reviews, how do visitors score this noble name on the stars? \n\n4. Combine the elevation you discovered in clue 2 with the rating from clue 3. What total emerges from this unison?\n\n5. Venture now to a historic event that marked the beginning of a legendary race — in what year was this significant event first held?\n\n6. The town where the next legendary races take place offers a certain height above sea level. What is that elevation in meters for the venue situated in Sunbury-on-Thames?\n\n7. Consider the elevation from clue 6. Which prime number follows it, standing resolutely as the next in line?\n\n8. Journey onwards to a tale of a horse whose name echoes the past—what country claims this strapping runner as its own? \n\n9. Time travels from a historic starting line in 1875 to a future date. How many days are there from then to March 15, 2026?\n\n10. Now compute the final puzzle: take the absolute difference between the wins from clue 1 and the rating from clue 3, as well as the year from clue 5 and the elevation from clue 6. What does the operation abs(14 - 5) modulo 10 yield? Here, your key numbers come from clues 1, 3, 5, and 6, revealing a singular digit between 0 and 9.",
+  "metadata": {
+    "theme": "A short historical tour of British flat racing: from a starting racehorse (Amphion) to the major classic, racecourses and a contemporary Derby winner — using facts and simple computations to connect horse, race and place.",
+    "difficulty": "easy",
+    "sample_id": "sample_052",
+    "pages_crawled": 2199,
+    "source": "trail_puzzles_v2"
+  },
+  "generated_at": "2026-03-15T14:43:39.000565+00:00"
+}

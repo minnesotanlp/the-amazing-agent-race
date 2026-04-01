@@ -1,0 +1,541 @@
+{
+  "trail_id": "trail_f0db9e13",
+  "seed_url": "https://en.wikipedia.org/wiki/Nasdaq",
+  "seed_title": "Nasdaq",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Nasdaq",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Founded')",
+      "extraction_section": "infobox",
+      "extracted_value": 8,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Nasdaq",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Seed: the Nasdaq is the modern electronic stock exchange — the trail begins here to explore market history, listed companies, and the cities and events that shape trading.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Nasdaq",
+      "extraction_target": "Reason: the next prime number after that figure",
+      "extraction_section": null,
+      "extracted_value": 11,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (next_prime) on stop 0 value",
+      "reason_transform": "next_prime",
+      "reason_source_stop": 0,
+      "reason_code": "def next_prime(n):\n    n = abs(int(n))\n    if n < 2: return 2\n    candidate = n + 1\n    while True:\n        if all(candidate % i != 0 for i in range(2, int(candidate**0.5)+1)):\n            return candidate\n        candidate += 1\nresult = next_prime(8)\nprint(result)"
+    },
+    {
+      "index": 2,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Panic_of_1873",
+      "extraction_target": "the years during which the economic depression lasted in Europe and North America",
+      "extraction_section": null,
+      "extracted_value": "from 1873 to 1877",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Bombay Stock Exchange wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Bombay_Stock_Exchange",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Historic market crash that helps explain how exchanges and financial regulation evolved into the forms companies (and Nasdaq) operate within today.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 3,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Bombay_Stock_Exchange",
+      "extraction_target": "the location listed in the infobox (field: 'Location')",
+      "extraction_section": "infobox",
+      "extracted_value": "Mumbai, Maharashtra, India",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Ethiopia wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Ethiopia",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "An international counterpart to Nasdaq — shows how stock exchanges developed globally and links to multinational listings and regional market structures.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 4,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Ethiopia",
+      "extraction_target": "Look up the elevation at Ethiopia",
+      "extraction_section": null,
+      "extracted_value": 1355.773681640625,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Ethiopia"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for Ethiopia",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 5,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Royal_Dutch_Shell",
+      "extraction_target": "Look up the closing price of SHEL on 2005-07-20",
+      "extraction_section": null,
+      "extracted_value": 22.22,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "stock_historical_price",
+            "arguments": {
+              "ticker": "SHEL",
+              "date": "2005-07-20"
+            },
+            "expected_output": null,
+            "output_key": "stock_price"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: stock price SHEL on 2005-07-20",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 6,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Royal_Dutch_Shell",
+      "extraction_target": "Reason: the number you get by reversing its digits",
+      "extraction_section": null,
+      "extracted_value": 22,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_reversal) on stop 4 value",
+      "reason_transform": "digit_reversal",
+      "reason_source_stop": 5,
+      "reason_code": "result = int(str(abs(int(22)))[::-1])\nprint(result)"
+    },
+    {
+      "index": 7,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Sony",
+      "extraction_target": "the number of subsections under Formats and technologies",
+      "extraction_section": "Formats and technologies",
+      "extracted_value": 10,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Sony",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A major multinational technology and media company — useful to compare with Nasdaq-listed tech firms and to discuss cross-listings and global capital markets.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 8,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Sony",
+      "extraction_target": "Reason: the largest prime factor of that figure",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (largest_prime_factor) on stop 5 value",
+      "reason_transform": "largest_prime_factor",
+      "reason_source_stop": 7,
+      "reason_code": "def largest_prime_factor(n):\n    n = abs(int(n))\n    if n <= 1: return n\n    d = 2\n    while d * d <= n:\n        while n % d == 0: n //= d\n        d += 1\n    return n\nresult = largest_prime_factor(10)\nprint(result)"
+    },
+    {
+      "index": 9,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Apple_Macintosh",
+      "extraction_target": "the number of languages listed at the top of the page",
+      "extraction_section": null,
+      "extracted_value": 87,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Market economy wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Market_economy",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Technology products (Macintosh) underpin many Nasdaq firms — this stop ties product innovation to the companies that drive exchange activity.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 10,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Market_economy",
+      "extraction_target": "the number of languages listed at the top of the article",
+      "extraction_section": null,
+      "extracted_value": 72,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "New York State Assembly wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/New_York_State_Assembly",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Provides the economic framework for why stock exchanges exist and how capital allocation via markets affects companies and cities across the trail.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 11,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/New_York_State_Assembly",
+      "extraction_target": "the capacity listed in the infobox (field: 'Seats')",
+      "extraction_section": "infobox",
+      "extracted_value": 150,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "270 Park Avenue (2021–present) wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/270_Park_Avenue_(2021%E2%80%93present)",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Connects Nasdaq (based in New York) to local/state governance and regulation — important context for how exchanges interact with government.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 12,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/270_Park_Avenue_(2021%E2%80%93present)",
+      "extraction_target": "Count the number of hospitals near 270 Park Avenue",
+      "extraction_section": null,
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "hospitals near 270 Park Avenue"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: count hospitals near 270 Park Avenue",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 13,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/COVID-19_pandemic_in_New_York_City",
+      "extraction_target": "the number of languages the article is available in",
+      "extraction_section": null,
+      "extracted_value": 22,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Hurricane_Sandy",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A recent event that dramatically affected markets, office occupancy, and how financial centers (and exchanges) reacted; ties urban disruption to market activity.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 14,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Hurricane_Sandy",
+      "extraction_target": "Calculate the number of days between 1873-01-01 and 2026-03-17",
+      "extraction_section": null,
+      "extracted_value": 55957,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "from datetime import date\nd1 = date.fromisoformat('1873-01-01')\nd2 = date.fromisoformat('2026-03-17')\nresult = abs((d2 - d1).days)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "days"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: date computation 1873-01-01 to 2026-03-17 (pinned)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 15,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Hartford,_Connecticut",
+      "extraction_target": "the elevation listed in the infobox (field: 'Elevation [[8]](#cite_note-8)')",
+      "extraction_section": "infobox",
+      "extracted_value": 30,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Hartford,_Connecticut",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Hartford is historically an insurance and financial services center — a reminder that capital markets serve and are influenced by varied regional industries.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 16,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Hartford,_Connecticut",
+      "extraction_target": "Reason: the number of 1-bits in its binary representation",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (binary_1bit_count) on stop 12 value",
+      "reason_transform": "binary_1bit_count",
+      "reason_source_stop": 15,
+      "reason_code": "result = bin(abs(int(30))).count('1')\nprint(result)"
+    },
+    {
+      "index": 17,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Munich",
+      "extraction_target": "Convert 30 km to miles",
+      "extraction_section": null,
+      "extracted_value": 18,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "# Convert km to miles\nvalue = 30.0\nconverted = value * 0.621371\nresult = int(converted)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "converted"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: convert 30 km to miles",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 18,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Summit,_New_Jersey",
+      "extraction_target": "the number of subsections listed under Parks and recreation in the table of contents",
+      "extraction_section": "Parks and recreation",
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Summit,_New_Jersey",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A suburban finance/commuter town near NYC — a final local stop showing how exchanges based in cities like New York have economic effects on surrounding communities.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 19,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: (4 + 18) % 10",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "(4 + 18) % 10",
+        "expression_code": "result = (4 + 18) % 10\nprint(result)",
+        "referenced_stops": [
+          16,
+          17
+        ]
+      },
+      "reasoning": "Compute stop: (4 + 18) % 10 = 2",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 2,
+  "difficulty": {
+    "level": "hard",
+    "depth": 20,
+    "tool_stop_count": 5,
+    "reason_stop_count": 4,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Seek the American electronic stock exchange best known for transforming trading in the late 20th century; in which year do its quick facts record its founding?\n\n2. Before moving on, take that founding year and find the next prime number greater than it — report that prime.\n\n3. Which late‑19th‑century financial crisis that began in 1873 and triggered a prolonged depression across Europe and North America lists the span of years that downturn covered?\n\n4. Should you locate the historic Mumbai‑based bourse referenced on that crisis page, what location does the article give as the place of business in its overview?\n\n5. The country whose opening line calls it a nation in the Horn of Africa holds an elevation value in global mapping data — how high above sea level does that land sit?\n\n6. That year, a major oil company traded under the ticker SHEL; consult historical market records and report the closing share price for that ticker on 2005‑07‑20.\n\n7. Invert that market figure: write its digits backward to form a new number, and give the result.\n\n8. One article profiles the Japanese multinational behind the Walkman and PlayStation; within its section on formats and technologies, how many subsections are listed?\n\n9. Proceed to compute the largest prime factor of the number you just found from the formats-and-technologies subsections.\n\n10. A page about the iconic family of personal computers displays several language links at the top; how many languages does that article show?\n\n11. How many language editions appear at the top of the article that describes economies organized primarily by market forces?\n\n12. Inspecting the article about New York State's lower legislative chamber, what number of seats is given in its overview?\n\n13. Use a map search around the Midtown Manhattan office‑tower site at 270 Park Avenue to count how many hospitals are located nearby.\n\n14. Read the article about the pandemic's impact on New York City and report how many language versions that page has.\n\n15. Calculate how many days lie between 1873‑01‑01 and 2026‑03‑17; state that total.\n\n16. Turning to U.S. state capitals, provide the elevation value listed for Connecticut's capital in the article's quick facts.\n\n17. Now convert that elevation figure into binary and count how many ones appear in its binary representation.\n\n18. Perform a straightforward unit conversion: turn 30 kilometres into miles and report the whole‑number miles.\n\n19. In the Union County municipality whose name suggests a meeting point, how many subsections are listed under \"Parks and recreation\" in the table of contents?\n\n20. Finally, compute (clue 17 + clue 18) % 10 and give the result — the answer must be a single digit from 0 to 9.",
+  "metadata": {
+    "theme": "From exchange floor to Main Street — tracing how the Nasdaq fits into the wider history of markets, global companies, cities and events that shaped modern finance.",
+    "difficulty": "hard",
+    "sample_id": "sample_151",
+    "pages_crawled": 15428
+  },
+  "generated_at": "2026-03-17T22:57:46.807591+00:00"
+}

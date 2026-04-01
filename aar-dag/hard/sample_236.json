@@ -1,0 +1,679 @@
+{
+  "trail_id": "trail_c31ca69e",
+  "seed_url": "https://en.wikipedia.org/wiki/Frank_Shellenback",
+  "seed_title": "Frank Shellenback",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Frank_Shellenback",
+      "extraction_target": "number of years he spent throwing the spitball legally in the Pacific Coast League",
+      "extraction_section": null,
+      "extracted_value": 19,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Los Angeles Dodgers wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Los_Angeles_Dodgers",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Seed: Frank Shellenback is an early 20th‑century American pitcher — the personal starting point for a trail about baseball's role in American cities and society.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Los_Angeles_Dodgers",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Established in [1883](/wiki/1883_Major_League_Baseball_season \"1883 Major League Baseball season\")')",
+      "extraction_section": "infobox",
+      "extracted_value": 1958,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Los_Angeles_Dodgers",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A major MLB franchise that illustrates baseball's westward growth and how teams anchor city identity and economies.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Los_Angeles_Dodgers",
+      "extraction_target": "Look up the Google rating of Los Angeles Dodgers",
+      "extraction_section": null,
+      "extracted_value": 4.7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "Los Angeles Dodgers"
+            },
+            "expected_output": null,
+            "output_key": "place_rating"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (place_rating) derived from https://en.wikipedia.org/wiki/Los_Angeles_Dodgers",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Los_Angeles_Dodgers",
+      "extraction_target": "Reason: the count of leap years between that year and 2000",
+      "extraction_section": null,
+      "extracted_value": 11,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (leap_years_to_2000) on stop 1 value",
+      "reason_transform": "leap_years_to_2000",
+      "reason_source_stop": 1,
+      "reason_code": "import calendar\ny = abs(int(1958))\nlo, hi = min(y, 2000), max(y, 2000)\nresult = sum(1 for yr in range(lo, hi+1) if calendar.isleap(yr))\nprint(result)",
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Detroit_Tigers",
+      "extraction_target": "the number of language links displayed at the top of the article",
+      "extraction_section": null,
+      "extracted_value": 36,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Detroit_Tigers",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A contrast to the Dodgers — an industrial Midwestern franchise linking baseball to manufacturing-era cities and working-class communities.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Detroit_Tigers",
+      "extraction_target": "Reason: the sum of its digits",
+      "extraction_section": null,
+      "extracted_value": 9,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_sum) on stop 2 value",
+      "reason_transform": "digit_sum",
+      "reason_source_stop": 4,
+      "reason_code": "result = sum(int(d) for d in str(abs(int(36))))\nprint(result)",
+      "depends_on": [
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Irish_Americans",
+      "extraction_target": "the number of top-level sections listed in the table of contents",
+      "extraction_section": "Contents",
+      "extracted_value": 10,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Irish_Americans",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Explains one immigrant community's contribution to urban culture and to early professional sports rosters and fandom.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Irish_Americans",
+      "extraction_target": "Reason: the largest prime factor of that figure",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (largest_prime_factor) on stop 3 value",
+      "reason_transform": "largest_prime_factor",
+      "reason_source_stop": 6,
+      "reason_code": "def largest_prime_factor(n):\n    n = abs(int(n))\n    if n <= 1: return n\n    d = 2\n    while d * d <= n:\n        while n % d == 0: n //= d\n        d += 1\n    return n\nresult = largest_prime_factor(10)\nprint(result)",
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Rudy_Giuliani",
+      "extraction_target": "the number of languages the article is available in (as listed near the top)",
+      "extraction_section": null,
+      "extracted_value": 57,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Robert F. Kennedy Jr. wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Robert_F._Kennedy_Jr.",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "An example of urban executive leadership — how city mayors shape public safety, transit, and business environments that affect sports and city life.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        7
+      ]
+    },
+    {
+      "index": 9,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Robert_F._Kennedy_Jr.",
+      "extraction_target": "the number of subsections in the \"Secretary of Health and Human Services (2025–present)\" section",
+      "extraction_section": "Secretary of Health and Human Services (2025–present)",
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Mexican–American War wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Mexican%E2%80%93American_War",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A contemporary political figure (public health/policy) whose positions intersect with urban public debate and governance affecting cities and institutions.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        8
+      ]
+    },
+    {
+      "index": 10,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Mexican%E2%80%93American_War",
+      "extraction_target": "Look up the elevation at Mexican–American War",
+      "extraction_section": null,
+      "extracted_value": 3236.2353515625,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Mexican–American War"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for Mexican–American War",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        9
+      ]
+    },
+    {
+      "index": 11,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Mexican%E2%80%93American_War",
+      "extraction_target": "Reason: the next prime number after that figure",
+      "extraction_section": null,
+      "extracted_value": 3251,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (next_prime) on stop 6 value",
+      "reason_transform": "next_prime",
+      "reason_source_stop": 10,
+      "reason_code": "def next_prime(n):\n    n = abs(int(n))\n    if n < 2: return 2\n    candidate = n + 1\n    while True:\n        if all(candidate % i != 0 for i in range(2, int(candidate**0.5)+1)):\n            return candidate\n        candidate += 1\nresult = next_prime(3236)\nprint(result)",
+      "depends_on": [
+        10
+      ]
+    },
+    {
+      "index": 12,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Dan_Quayle",
+      "extraction_target": "years shown in the \"Military service and career\" section heading",
+      "extraction_section": "Military service and career (1969–1977)",
+      "extracted_value": "1969–1977",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Paul_Ryan",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A federal political figure whose era overlaps with policies and cultural moments that shaped late 20th‑century American cities and institutions (including sports).",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        11
+      ]
+    },
+    {
+      "index": 13,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Paul_Ryan",
+      "extraction_target": "the numerical order of Paul Ryan as Speaker of the United States House of Representatives",
+      "extraction_section": null,
+      "extracted_value": 54,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "101st United States Congress wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/101st_United_States_Congress",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Legislative leadership and fiscal policy influence funding and regulation that affect urban infrastructure and the economic context for teams and venues.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        12
+      ]
+    },
+    {
+      "index": 14,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/101st_United_States_Congress",
+      "extraction_target": "the U.S. legislative term shown in the article header",
+      "extraction_section": null,
+      "extracted_value": "1989–1991 U.S. legislative term",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Biden administration wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Biden_administration",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A concrete legislative term to anchor discussion of how federal law and budgets shaped cities, transportation, and public life during the modern baseball era.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        13
+      ]
+    },
+    {
+      "index": 15,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/101st_United_States_Congress",
+      "extraction_target": "Look up the elevation of 1989–1991 U.S. legislative term",
+      "extraction_section": null,
+      "extracted_value": 3236.2353515625,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "1989–1991 U.S. legislative term"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of 1989–1991 U.S. legislative term) from https://en.wikipedia.org/wiki/101st_United_States_Congress",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        14
+      ]
+    },
+    {
+      "index": 16,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/101st_United_States_Congress",
+      "extraction_target": "Look up the count of temples near 1989–1991 U.S. legislative term",
+      "extraction_section": null,
+      "extracted_value": 2.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "temples near 1989–1991 U.S. legislative term"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of temples near 1989–1991 U.S. legislative term) from https://en.wikipedia.org/wiki/101st_United_States_Congress",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        14
+      ]
+    },
+    {
+      "index": 17,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/101st_United_States_Congress",
+      "extraction_target": "Combine the elevation of 1989–1991 U.S. legislative term and the count of temples near 1989–1991 U.S. legislative term: abs(3236 - 2)",
+      "extraction_section": null,
+      "extracted_value": 3234,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(3236.2353515625) - int(2.0))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of 1989–1991 U.S. legislative term abs_diff count of temples near 1989–1991 U.S. legislative term",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        15,
+        16
+      ]
+    },
+    {
+      "index": 18,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Biden_administration",
+      "extraction_target": "the number of languages listed under the article header",
+      "extraction_section": null,
+      "extracted_value": 20,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Warsaw wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Warsaw",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Current executive context that frames contemporary policy on urban planning, public health, and economic measures affecting city life and cultural institutions.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        17
+      ]
+    },
+    {
+      "index": 19,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Warsaw",
+      "extraction_target": "Look up the population of Poland",
+      "extraction_section": null,
+      "extracted_value": 37392000,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "countries_population",
+            "arguments": {
+              "country": "Poland"
+            },
+            "expected_output": null,
+            "output_key": "population"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: population of Poland",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        18
+      ]
+    },
+    {
+      "index": 20,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Chipotle_Mexican_Grill",
+      "extraction_target": "Look up the trading volume of CMG on 2025-01-01",
+      "extraction_section": null,
+      "extracted_value": 5321500,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "stock_volume",
+            "arguments": {
+              "ticker": "CMG",
+              "date": "2025-01-01"
+            },
+            "expected_output": null,
+            "output_key": "stock_volume"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: stock volume CMG on 2025-01-01",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        19
+      ]
+    },
+    {
+      "index": 21,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: abs(4 - 5321500) % 10",
+      "extraction_section": null,
+      "extracted_value": 6,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "abs(4 - 5321500) % 10",
+        "expression_code": "result = abs(4 - 5321500) % 10\nprint(result)",
+        "referenced_stops": [
+          2,
+          20
+        ]
+      },
+      "reasoning": "Compute stop: abs(4 - 5321500) % 10 = 6",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2,
+        20
+      ]
+    }
+  ],
+  "passcode": 6,
+  "difficulty": {
+    "level": "hard",
+    "depth": 22,
+    "tool_stop_count": 7,
+    "reason_stop_count": 4,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Unearth the tale of a pitcher known for his craft, a master of the spitball in the early days of baseball. How many years did he ply his trade in the Pacific Coast League?\n\n2. From the sun-kissed fields of California, find the franchise that emerged in a pivotal year is now a symbol of the city’s spirit. What year was this beloved team established?\n\n3. The crowd roars, eager to cheer on their team. Seek the opinion of the masses who have watched them play; what rating do they give this franchise, reflecting its place in the minds of fans?\n\n4. In a leap through time, calculate how many leap years have passed from the year you uncovered to the dawn of a new millennium—what is your count?\n\n5. Track down the fierce felines from the Midwest who capture the hearts of baseball enthusiasts. Count the number of language links that greet you at the top of their page—what does this number yield?\n\n6. Reflect on your previous discovery and uncover something deeper by adding together the digits of the number you found. What does this total reveal?\n\n7. Navigate to the rich history of a community that has shaped the streets of America. How many main sections are outlined in the contents of that group's entry?\n\n8. Given the figure you extracted previously, seek the largest prime number that can fit within it. What prime factor rises to the occasion?\n\n9. A notable name in politics and governance awaits you, recognized for his leadership through crises. In how many languages can you find his story told on Wikipedia?\n\n10. Next, delve into the life of a prominent figure related to health and service. How many subsections make up the segment detailing his role as Secretary of Health and Human Services?\n\n11. Journey to the conflicts of the past; look up the geographical high point that marks where the battles were fought. What elevation is associated with this historic war?\n\n12. Reflect again on the number acquired from the elevation. What is the next prime number that follows?\n\n13. A figure of consequence served in military ranks during his time. When did his service begin and end, as detailed in the article about him?\n\n14. Among the most significant legislative leaders, how does this figure rank numerically as Speaker of the House in United States history?\n\n15. Explore the governmental setting during a pivotal period. What U.S. legislative term is indicated at the beginning of that article?\n\n16. As the legislative wheels turned from 1989 to 1991, seek the elevation associated with that time — what height do you uncover?\n\n17. In proximity to the legislative period mentioned, count the temples standing nearby. How many temples can be found in that vicinity?\n\n18. Merge your discoveries from clues 16 and 17. What is the absolute difference between the elevation you noted and the nearby temple count?\n\n19. A new chapter unfolds under the current administration. How many languages does this entry feature in its header?\n\n20. Journey to Europe, specifically the land of history and resilience. What is the current population of the nation known for its vibrant cities and rich heritage?\n\n21. In the world of commerce, seek insights into a popular fast-casual dining chain. What was their trading volume on the first day of January in the year 2025?\n\n22. Finally, compute the absolute difference between your findings from clue 3 and clue 21 modulo 10. What single digit emerges from your calculations?",
+  "metadata": {
+    "theme": "From an early-20th-century pitcher to the modern civic and economic forces that shape American cities — following baseball, immigration, urban leaders, legislation, and markets.",
+    "difficulty": "hard",
+    "sample_id": "sample_236",
+    "pages_crawled": 35976
+  },
+  "generated_at": "2026-03-21T03:45:54.824503+00:00"
+}

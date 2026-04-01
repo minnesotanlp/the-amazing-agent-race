@@ -1,0 +1,588 @@
+{
+  "trail_id": "trail_1a1f30ff",
+  "seed_url": "https://en.wikipedia.org/wiki/Merck_%26_Co.",
+  "seed_title": "Merck & Co.",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Merck_%26_Co.",
+      "extraction_target": "the headquarters city and state of Merck & Co.",
+      "extraction_section": null,
+      "extracted_value": "Rahway, New Jersey, U.S.",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Monoclonal antibody wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Monoclonal_antibody",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Seed: Merck & Co. as the corporate anchor — identify its ticker and HQ to link finance, products, and place.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Merck_%26_Co.",
+      "extraction_target": "Look up the elevation of Rahway, New Jersey, U.S.",
+      "extraction_section": null,
+      "extracted_value": 7.353646755218506,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Rahway, New Jersey, U.S."
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Rahway, New Jersey, U.S.) from https://en.wikipedia.org/wiki/Merck_%26_Co.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Merck_%26_Co.",
+      "extraction_target": "Look up the count of libraries near Rahway, New Jersey, U.S.",
+      "extraction_section": null,
+      "extracted_value": 1.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "libraries near Rahway, New Jersey, U.S."
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of libraries near Rahway, New Jersey, U.S.) from https://en.wikipedia.org/wiki/Merck_%26_Co.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Merck_%26_Co.",
+      "extraction_target": "Combine the elevation of Rahway, New Jersey, U.S. and the count of libraries near Rahway, New Jersey, U.S.: (7 + 1)",
+      "extraction_section": null,
+      "extracted_value": 8,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(7.353646755218506) + int(1.0)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Rahway, New Jersey, U.S. add count of libraries near Rahway, New Jersey, U.S.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1,
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Monoclonal_antibody",
+      "extraction_target": "the number of languages the article is available in (as shown near the top)",
+      "extraction_section": null,
+      "extracted_value": 40,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Ramucirumab",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Introduce the drug class central to Merck's biologics pipeline and modern therapeutic development.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Ramucirumab",
+      "extraction_target": "the molar mass of Ramucirumab (numeric value)",
+      "extraction_section": null,
+      "extracted_value": 143609.63,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Ramucirumab",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A concrete Merck-associated monoclonal antibody — links company to a specific biologic product and regulatory timeline.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Ramucirumab",
+      "extraction_target": "Reason: the number of divisors of that figure",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (num_divisors) on stop 2 value",
+      "reason_transform": "num_divisors",
+      "reason_source_stop": 5,
+      "reason_code": "n = abs(int(143609))\ncount = sum(1 for i in range(1, n+1) if n % i == 0) if n > 0 else 0\nresult = count\nprint(result)",
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Maurice_Hilleman",
+      "extraction_target": "Maurice Hilleman's age at death",
+      "extraction_section": null,
+      "extracted_value": 85,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Antibiotic wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Antibiotic",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Historic vaccinology perspective showing scientific figures whose work shaped vaccine development that companies like Merck build on.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Antibiotic",
+      "extraction_target": "the number of sub-subsections listed under '11.1 Replenishing the antibiotic pipeline and developing other new therapies' in the Contents",
+      "extraction_section": "Antibiotic pipeline",
+      "extracted_value": 6,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Princeton University wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Princeton_University",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Situates biologics and vaccines within the broader history of infectious-disease therapeutics developed by pharmaceutical industry.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        7
+      ]
+    },
+    {
+      "index": 9,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Princeton_University",
+      "extraction_target": "the location listed in the infobox (field: 'Location')",
+      "extraction_section": "infobox",
+      "extracted_value": "Princeton , New Jersey , United States  40°20′43″N 74°39′22″W﻿ / ﻿40.34528°N 74.65611°W﻿ / 40.34528; -74.65611",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Princeton_University",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Academic research hub in New Jersey — frames the local university ecosystem that interacts with pharma R&D and talent pipelines.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        8
+      ]
+    },
+    {
+      "index": 10,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Princeton_University",
+      "extraction_target": "Reason: the alphabetical position of its first letter (A=1, B=2, ...)",
+      "extraction_section": null,
+      "extracted_value": 16,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (alpha_position_first_letter) on stop 5 value",
+      "reason_transform": "alpha_position_first_letter",
+      "reason_source_stop": 9,
+      "reason_code": "first = \"Princeton , New Jersey , United States  40°20′43″N 74°39′22″W﻿ / ﻿40.34528°N 74.65611°W﻿ / 40.34528; -74.65611\"[0].upper()\nresult = ord(first) - ord('A') + 1 if first.isalpha() else 0\nprint(result)",
+      "depends_on": [
+        9
+      ]
+    },
+    {
+      "index": 11,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Durham,_North_Carolina",
+      "extraction_target": "the elevation listed in the infobox (field: 'Elevation [[6]](#cite_note-gnis-6)')",
+      "extraction_section": "infobox",
+      "extracted_value": 404,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Bangalore wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Bangalore",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Shift to a U.S. biotech cluster (Research Triangle) to show regional hubs beyond New Jersey where pharma/biotech activity concentrates.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        10
+      ]
+    },
+    {
+      "index": 12,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Durham,_North_Carolina",
+      "extraction_target": "Look up the elevation of Durham, North Carolina",
+      "extraction_section": null,
+      "extracted_value": 124.7831115722656,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Durham, North Carolina"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Durham, North Carolina) from https://en.wikipedia.org/wiki/Durham,_North_Carolina",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        11
+      ]
+    },
+    {
+      "index": 13,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Durham,_North_Carolina",
+      "extraction_target": "Look up the count of universities near Durham, North Carolina",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "universities near Durham, North Carolina"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of universities near Durham, North Carolina) from https://en.wikipedia.org/wiki/Durham,_North_Carolina",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        11
+      ]
+    },
+    {
+      "index": 14,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Durham,_North_Carolina",
+      "extraction_target": "Combine the elevation of Durham, North Carolina and the count of universities near Durham, North Carolina: (124 + 20)",
+      "extraction_section": null,
+      "extracted_value": 144,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(124.7831115722656) + int(20.0)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Durham, North Carolina add count of universities near Durham, North Carolina",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        12,
+        13
+      ]
+    },
+    {
+      "index": 15,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Durham,_North_Carolina",
+      "extraction_target": "Count universities near Durham, North Carolina",
+      "extraction_section": null,
+      "extracted_value": 20,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "universities near Durham, North Carolina"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (nearby_poi) derived from https://en.wikipedia.org/wiki/Durham,_North_Carolina",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        14
+      ]
+    },
+    {
+      "index": 16,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Bangalore",
+      "extraction_target": "Look up the population of India",
+      "extraction_section": null,
+      "extracted_value": 1417492000,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "countries_population",
+            "arguments": {
+              "country": "India"
+            },
+            "expected_output": null,
+            "output_key": "population"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: population of India",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        15
+      ]
+    },
+    {
+      "index": 17,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: (7 + 404 + 124 + 20) % 10",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "(7 + 404 + 124 + 20) % 10",
+        "expression_code": "result = (7 + 404 + 124 + 20) % 10\nprint(result)",
+        "referenced_stops": [
+          1,
+          11,
+          12,
+          15
+        ]
+      },
+      "reasoning": "Compute stop: (7 + 404 + 124 + 20) % 10 = 5",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1,
+        11,
+        12,
+        15
+      ]
+    }
+  ],
+  "passcode": 5,
+  "difficulty": {
+    "level": "medium",
+    "depth": 18,
+    "tool_stop_count": 8,
+    "reason_stop_count": 2,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Seek the corporate giant headquartered in a city of Rahway, situated in the Garden State. What is the name of this company that leads the pharmaceutical industry?\n\n2. From the heart of New Jersey, how high does the ground beneath this city rise, in meters?\n\n3. Pursue the knowledge of nearby libraries in this same town — how many can you find within close reach?\n\n4. With the elevation from clue 2 and the nearby library count from clue 3, sum these figures to chart your next course.\n\n5. What scientific breakthrough involves a cleverly engineered type of antibody? Find its Wikipedia entry and see how many languages it speaks worldwide.\n\n6. Journey onward to discover the drug that targets specific cancer cells, starting your search with the name of the previous clue. What is its molar mass, measured in grams per mole?\n\n7. Reflect on your last discovery: how many divisors does that molar mass possess? \n\n8. In the realm of vaccines, one man is famed for his countless contributions. How old was he when he left this world?\n\n9. Among the topics discussed in a comprehensive guide on infection fighters, how many parts are detailed under the section regarding the revitalization of antibiotic innovation?\n\n10. Within the pages of a prestigious institution, where do scholars gather? Seek its entry and uncover the geographical label provided in the infobox.\n\n11. A secret lies in the name of this university; can you determine the alphabetical position of its very first letter?\n\n12. Explore the town named for its hilly terrain, nestled in the state of North Carolina. What is the elevation noted there?\n\n13. Now, take a look at the height of this destination where the environment and academia harmonize — how many meters above sea level does it sit?\n\n14. In this scholarly city, count the impressive universities that rise to inspire young minds. \n\n15. With the elevation noted in clue 13 and the tally of universities from clue 14, combine these values to unveil the next step on your intellectual journey.\n\n16. To further grasp the academic landscape, reconfirm the tally of universities within the same vicinity, ensuring you have the correct number.\n\n17. As you turn your gaze toward a city famed for its technological and educational prowess, retrieve the population of the entire nation that encompasses it.\n\n18. Finally, gather the numbers from clues 2, 12, 13, and 16, summing them up and applying modulo 10. What single digit remains?",
+  "metadata": {
+    "theme": "From Merck's corporate profile into the science, products, and places that define modern pharmaceuticals — tracing biologics and vaccines to research hubs and the global context of the industry.",
+    "difficulty": "medium",
+    "sample_id": "sample_147",
+    "pages_crawled": 9193
+  },
+  "generated_at": "2026-03-17T12:16:39.096230+00:00"
+}

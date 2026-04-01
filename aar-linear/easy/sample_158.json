@@ -1,0 +1,128 @@
+{
+  "trail_id": "trail_e63e2db2",
+  "seed_url": "https://en.wikipedia.org/wiki/Berkshire_Hathaway",
+  "seed_title": "Berkshire Hathaway",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Berkshire_Hathaway",
+      "extraction_target": "the number of subsections listed under Selected holdings in the table of contents",
+      "extraction_section": "Selected holdings",
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Bryant Park wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Bryant_Park",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Begin at Berkshire Hathaway to identify its headquarters (the geographic origin of the trail) and a primary public holding to investigate.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Bryant_Park",
+      "extraction_target": "Count the number of universities near between Fifth and Sixth Avenues and between 40th \"40th Street (Manhattan)\") and 42nd \"42nd Street (Manhattan)\") Streets in Midtown Manhattan",
+      "extraction_section": null,
+      "extracted_value": 19,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "universities near between Fifth and Sixth Avenues and between 40th \"40th Street (Manhattan)\") and 42nd \"42nd Street (Manhattan)\") Streets in Midtown Manhattan"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: count universities near between Fifth and Sixth Avenues and between 40th \"40th Street (Manhattan)\") and 42nd \"42nd Street (Manhattan)\") Streets in Midtown Manhattan",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Bryant_Park",
+      "extraction_target": "Reason: the number of 1-bits in its binary representation",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (binary_1bit_count) on stop 1 value",
+      "reason_transform": "binary_1bit_count",
+      "reason_source_stop": 1,
+      "reason_code": "result = bin(abs(int(20))).count('1')\nprint(result)"
+    },
+    {
+      "index": 3,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: abs(2 - 2) % 10",
+      "extraction_section": null,
+      "extracted_value": 0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "abs(2 - 2) % 10",
+        "expression_code": "result = abs(2 - 2) % 10\nprint(result)",
+        "referenced_stops": [
+          0,
+          2
+        ]
+      },
+      "reasoning": "Compute stop: abs(2 - 2) % 10 = 0",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 0,
+  "difficulty": {
+    "level": "easy",
+    "depth": 4,
+    "tool_stop_count": 1,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "Here is the revised riddle:\n\n1. Seek the Wikipedia page for the conglomerate founded by Warren Buffett and Charlie Munger; on that company’s article, look to the table of contents for the entry that lists its notable investments and count how many sub-entries appear beneath that heading.\n\n2. How many institutions of higher education sit between Fifth and Sixth Avenues and between 40th and 42nd Streets, adjacent to the small Midtown public park whose page you were led to from the previous article?\n\n3. The park article you consulted now hands you a value from clue 2 — convert that count into base two and tell how many 1-bits appear in its binary representation.\n\n4. Finally, like a careful accountant closing the ledger, compute abs(clue 1 - clue 3) % 10; that arithmetic yields a single digit (0–9), which is your final answer.",
+  "metadata": {
+    "theme": "From Omaha to the market: follow Berkshire Hathaway from its Omaha headquarters to one of its largest public holdings (Apple) and compare the HQ's physical distance and urban activity in Midtown Manhattan.",
+    "difficulty": "easy",
+    "sample_id": "sample_158",
+    "pages_crawled": 2433
+  },
+  "generated_at": "2026-03-17T09:37:32.201920+00:00"
+}

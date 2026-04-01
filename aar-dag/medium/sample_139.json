@@ -1,0 +1,508 @@
+{
+  "trail_id": "trail_d47dbf0d",
+  "seed_url": "https://en.wikipedia.org/wiki/Visa_Inc.",
+  "seed_title": "Visa Inc.",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Visa_Inc.",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Founded')",
+      "extraction_section": "infobox",
+      "extracted_value": 18,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Visa_Inc.",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Seed: Visa is the anchor of the trail — extract its headquarters location to ground later place-based comparisons and distances.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Visa_Inc.",
+      "extraction_target": "Reason: the sum of its digits",
+      "extraction_section": null,
+      "extracted_value": 9,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_sum) on stop 0 value",
+      "reason_transform": "digit_sum",
+      "reason_source_stop": 0,
+      "reason_code": "result = sum(int(d) for d in str(abs(int(18))))\nprint(result)",
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Payment_card_industry",
+      "extraction_target": "the number of card types denoted in the opening sentence",
+      "extraction_section": null,
+      "extracted_value": 6,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Payment_card_industry",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Provides industry context: the ecosystem in which Visa operates and the major participants it competes and cooperates with.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Payment_card_industry",
+      "extraction_target": "Reason: the number of characters when written as a Roman numeral",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (roman_numeral_letter_count) on stop 1 value",
+      "reason_transform": "roman_numeral_letter_count",
+      "reason_source_stop": 2,
+      "reason_code": "def to_roman(n):\n    n = abs(int(n))\n    vals = [(1000,'M'),(900,'CM'),(500,'D'),(400,'CD'),(100,'C'),\n            (90,'XC'),(50,'L'),(40,'XL'),(10,'X'),(9,'IX'),(5,'V'),(4,'IV'),(1,'I')]\n    r = ''\n    for v, s in vals:\n        while n >= v:\n            r += s; n -= v\n    return r\nresult = len(to_roman(6))\nprint(result)",
+      "depends_on": [
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Automated_teller_machine",
+      "extraction_target": "the number of top-level sections listed in the table of contents",
+      "extraction_section": "Contents",
+      "extracted_value": 16,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Whole Foods Market wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Whole_Foods_Market",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Infrastructure stop: ATMs are a key physical touchpoint for card payments; extract their origin to show the evolution of payment access.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Whole_Foods_Market",
+      "extraction_target": "the city listed as Whole Foods Market's headquarters",
+      "extraction_section": null,
+      "extracted_value": "Austin, Texas",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Whole_Foods_Market",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Merchant stop: Whole Foods represents large retail merchants that accept card payments and participate in the payments ecosystem.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Whole_Foods_Market",
+      "extraction_target": "Look up the elevation of Austin, Texas",
+      "extraction_section": null,
+      "extracted_value": 149.0889434814453,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Austin, Texas"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Austin, Texas) from https://en.wikipedia.org/wiki/Whole_Foods_Market",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Whole_Foods_Market",
+      "extraction_target": "Look up the count of hospitals near Austin, Texas",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "hospitals near Austin, Texas"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of hospitals near Austin, Texas) from https://en.wikipedia.org/wiki/Whole_Foods_Market",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Whole_Foods_Market",
+      "extraction_target": "Combine the elevation of Austin, Texas and the count of hospitals near Austin, Texas: abs(149 - 20)",
+      "extraction_section": null,
+      "extracted_value": 129,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(149.0889434814453) - int(20.0))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Austin, Texas abs_diff count of hospitals near Austin, Texas",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6,
+        7
+      ]
+    },
+    {
+      "index": 9,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Whole_Foods_Market",
+      "extraction_target": "Reason: the number of vowels in that name",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (vowel_count) on stop 3 value",
+      "reason_transform": "vowel_count",
+      "reason_source_stop": 5,
+      "reason_code": "result = sum(1 for c in \"Austin, Texas\".lower() if c in 'aeiou')\nprint(result)",
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 10,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/E-commerce",
+      "extraction_target": "the number of languages the article is available in (as shown at the top of the page)",
+      "extraction_section": null,
+      "extracted_value": 73,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Dublin wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Dublin",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Digital commerce stop: shows the online side of payments where card networks, merchants and fintechs intersect.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        9
+      ]
+    },
+    {
+      "index": 11,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Dublin",
+      "extraction_target": "Look up the population of Ireland",
+      "extraction_section": null,
+      "extracted_value": 5458600,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "countries_population",
+            "arguments": {
+              "country": "Ireland"
+            },
+            "expected_output": null,
+            "output_key": "population"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: population of Ireland",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        10
+      ]
+    },
+    {
+      "index": 12,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/European_Union_competition_law",
+      "extraction_target": "the number of subsections listed under 'Mergers and abuse of dominance' in the Contents",
+      "extraction_section": "Mergers and abuse of dominance",
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Partial Nuclear Test Ban Treaty wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Partial_Nuclear_Test_Ban_Treaty",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Regulation stop: EU competition law is relevant to large payment networks operating across borders — extract regulatory scope that shapes Visa's operating environment.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        11
+      ]
+    },
+    {
+      "index": 13,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Partial_Nuclear_Test_Ban_Treaty",
+      "extraction_target": "Look up the elevation at Moscow",
+      "extraction_section": null,
+      "extracted_value": 141.7627258300781,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Moscow"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for Moscow",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        12
+      ]
+    },
+    {
+      "index": 14,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/San_Mateo,_California",
+      "extraction_target": "the coordinates listed in the infobox (field: 'Coordinates')",
+      "extraction_section": "infobox",
+      "extracted_value": "37.55417, -122.31306",
+      "extracted_value_type": "coords",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/San_Mateo,_California",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Local stop near Silicon Valley: San Mateo represents the tech/finance geography near Visa's Bay Area presence and rounds out the trail from HQ to local tech hubs.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        13
+      ]
+    },
+    {
+      "index": 15,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: (6 + 2 + 16 + 149) % 10",
+      "extraction_section": null,
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "(6 + 2 + 16 + 149) % 10",
+        "expression_code": "result = (6 + 2 + 16 + 149) % 10\nprint(result)",
+        "referenced_stops": [
+          2,
+          3,
+          4,
+          6
+        ]
+      },
+      "reasoning": "Compute stop: (6 + 2 + 16 + 149) % 10 = 3",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2,
+        3,
+        4,
+        6
+      ]
+    }
+  ],
+  "passcode": 3,
+  "difficulty": {
+    "level": "medium",
+    "depth": 16,
+    "tool_stop_count": 5,
+    "reason_stop_count": 3,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Seek the page where the company behind ubiquitous plastic payment methods began its journey. In what year was it established?\n\n2. Once you have discovered the founding year, sum its digits to find your next answer.\n\n3. Venture to the page that explores the sector of card transactions. How many different types of cards are mentioned in the opening?\n\n4. For the number you found, convert it to a Roman numeral. How many characters does it take to write that numeral?\n\n5. Navigate over to the entry that reveals details about machines dispensing cash. Count the top-level sections present in the table of contents there.\n\n6. Now, uncover the city that serves as the headquarters of a well-known grocery chain noted for its organic foods. What is the name of this city?\n\n7. An exploration of Austin, Texas awaits — how high does this city rise above sea level?\n\n8. Nearby, how many hospitals can you count that cater to the needs of its residents?\n\n9. Reveal the difference between the elevation you discovered in clue 7 and the count of hospitals gathered in clue 8.\n\n10. From the name of the grocery chain you uncovered, how many vowels can you discover?\n\n11. Journey to the article that discussions the vast online marketplace; how many languages is it accessible in?\n\n12. In your travels, how populous is the land of Ireland?\n\n13. Now direct your gaze to the topic of legal frameworks in Europe. How many subsections are found within the section discussing mergers and abuse of dominance?\n\n14. Shift your attention to the capital of Russia and determine its height above sea level.\n\n15. Seek out the geographical coordinates that pinpoint a city in California known for its close ties to Silicon Valley.\n\n16. To conclude your quest, compute the result of the following: (clue 3 + clue 4 + clue 5 + clue 7) modulo 10. The answer will yield a single digit (0-9).",
+  "metadata": {
+    "theme": "Tracing Visa's payments ecosystem: from the company's headquarters through the industry players, physical infrastructure, merchants and cities to international regulation — a short investigative trail showing how card payments span firms, places and law.",
+    "difficulty": "medium",
+    "sample_id": "sample_139",
+    "pages_crawled": 8543
+  },
+  "generated_at": "2026-03-17T10:24:58.638910+00:00"
+}

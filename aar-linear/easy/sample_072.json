@@ -1,0 +1,200 @@
+{
+  "trail_id": "trail_6ca73f75",
+  "seed_url": "https://en.wikipedia.org/wiki/Ouled_Farès_District",
+  "seed_title": "Ouled Farès District",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Ouled_Far%C3%A8s_District",
+      "extraction_target": "number of communes listed in the Communes section",
+      "extraction_section": "Communes",
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Communes_of_Algeria",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start at the seed district to anchor the trail in a real Algerian administrative unit and extract its basic administrative facts.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Communes_of_Algeria",
+      "extraction_target": "the number of municipalities in Algeria as of 2002",
+      "extraction_section": null,
+      "extracted_value": 1541,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Quarter (urban subdivision) wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Quarter_(urban_subdivision)",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Zoom out to the national level of local government to explain how Ouled Farès District is organized into communes and where it fits in Algeria's administrative hierarchy.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Quarter_(urban_subdivision)",
+      "extraction_target": "the number of languages listed at the top of the article",
+      "extraction_section": null,
+      "extracted_value": 21,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Malek bin Abbas Mosque wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Malek_bin_Abbas_Mosque",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Move from formal administrative units to the lived urban scale (quarters) to consider how residents experience communes and districts on the neighborhood level.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 3,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Malek_bin_Abbas_Mosque",
+      "extraction_target": "the religious affiliation of the mosque",
+      "extraction_section": null,
+      "extracted_value": "Sunni Islam",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Malek_bin_Abbas_Mosque",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Highlight a local cultural and religious landmark to show how heritage sites sit inside communes and quarters, illustrating the district's cultural landscape.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 4,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Malek_bin_Abbas_Mosque",
+      "extraction_target": "Reason: the number of vowels in that name",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (vowel_count) on stop 3 value",
+      "reason_transform": "vowel_count",
+      "reason_source_stop": 3,
+      "reason_code": "result = sum(1 for c in \"Sunni Islam\".lower() if c in 'aeiou')\nprint(result)"
+    },
+    {
+      "index": 5,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Salah_Rais",
+      "extraction_target": "Look up the population of Algeria",
+      "extraction_section": null,
+      "extracted_value": 47400000,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "countries_population",
+            "arguments": {
+              "country": "Algeria"
+            },
+            "expected_output": null,
+            "output_key": "population"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: population of Algeria",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 6,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: (3 + 1541 + 21 + 47400000) % 10",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "(3 + 1541 + 21 + 47400000) % 10",
+        "expression_code": "result = (3 + 1541 + 21 + 47400000) % 10\nprint(result)",
+        "referenced_stops": [
+          0,
+          1,
+          2,
+          5
+        ]
+      },
+      "reasoning": "Compute stop: (3 + 1541 + 21 + 47400000) % 10 = 5",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 5,
+  "difficulty": {
+    "level": "easy",
+    "depth": 7,
+    "tool_stop_count": 1,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "Here is the revised riddle:\n\n1. Seek the district in Algeria that shares its name with local inhabitants known as \"Ouled Farès\"; in the section labeled \"Communes\" count how many communes are listed there, then follow the link labeled \"communes\" to continue.  \n2. There exists a country-wide page about municipal divisions; on that page locate the official total given for the number of municipalities recorded in 2002.  \n3. How many language links appear at the very top of the article that describes a defined area within a city, usually providing residential or commercial functions, often referred to as a neighborhood or district?  \n4. If you find the Wikipedia entry for the historic mosque associated with the name Malek bin Abbas, read its opening and report the mosque’s declared religious affiliation — which faith is it tied to?  \n5. The article whose opening line mentions that faith now supplies a short puzzle: take that faith’s name and count its vowels (a, e, i, o, u only); that vowel count is your next number.  \n6. In a related biography page about a Mediterranean admiral you were linked to, consult a reliable source to learn the total population of the country that contains Ouled Farès — what is Algeria’s population figure?  \n7. One last calculation (the answer must be a single digit 0–9): compute (clue 1 + clue 2 + clue 3 + clue 6) modulo 10 and report that remainder.",
+  "metadata": {
+    "theme": "Tracing local administration and cultural landmarks in Algeria: from a district to its communes, urban quarters, and a historic mosque — then sizing the country to give the district context.",
+    "difficulty": "easy",
+    "sample_id": "sample_072",
+    "pages_crawled": 2966,
+    "source": "trail_puzzles_v2"
+  },
+  "generated_at": "2026-03-15T16:40:06.892428+00:00"
+}

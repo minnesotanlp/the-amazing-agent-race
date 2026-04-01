@@ -1,0 +1,621 @@
+{
+  "trail_id": "trail_26aa9e03",
+  "seed_url": "https://en.wikipedia.org/wiki/UnitedHealth_Group",
+  "seed_title": "UnitedHealth Group",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/UnitedHealth_Group",
+      "extraction_target": "the headquarters location listed in the infobox",
+      "extraction_section": null,
+      "extracted_value": "Eden Prairie, Minnesota, United States",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Insurance",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start at the company whose scale and decisions anchor the trail — UnitedHealth Group is a major US health insurer whose HQ and corporate posture shape access to care.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/UnitedHealth_Group",
+      "extraction_target": "Look up the elevation of Eden Prairie, Minnesota, United States",
+      "extraction_section": null,
+      "extracted_value": 270.0517272949219,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Eden Prairie, Minnesota, United States"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Eden Prairie, Minnesota, United States) from https://en.wikipedia.org/wiki/UnitedHealth_Group",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/UnitedHealth_Group",
+      "extraction_target": "Look up the count of museums near Eden Prairie, Minnesota, United States",
+      "extraction_section": null,
+      "extracted_value": 16.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "museums near Eden Prairie, Minnesota, United States"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of museums near Eden Prairie, Minnesota, United States) from https://en.wikipedia.org/wiki/UnitedHealth_Group",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/UnitedHealth_Group",
+      "extraction_target": "Combine the elevation of Eden Prairie, Minnesota, United States and the count of museums near Eden Prairie, Minnesota, United States: abs(270 - 16)",
+      "extraction_section": null,
+      "extracted_value": 254,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(270.0517272949219) - int(16.0))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Eden Prairie, Minnesota, United States abs_diff count of museums near Eden Prairie, Minnesota, United States",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1,
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Insurance",
+      "extraction_target": "the number of subsections listed under Insurance companies",
+      "extraction_section": "Insurance companies",
+      "extracted_value": 7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Insurance",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Lay out the basic concept that underpins UnitedHealth's business: what insurance is and how it functions as financial protection in healthcare.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Insurance",
+      "extraction_target": "Reason: the largest prime factor of that figure",
+      "extraction_section": null,
+      "extracted_value": 7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (largest_prime_factor) on stop 1 value",
+      "reason_transform": "largest_prime_factor",
+      "reason_source_stop": 4,
+      "reason_code": "def largest_prime_factor(n):\n    n = abs(int(n))\n    if n <= 1: return n\n    d = 2\n    while d * d <= n:\n        while n % d == 0: n //= d\n        d += 1\n    return n\nresult = largest_prime_factor(7)\nprint(result)",
+      "depends_on": [
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Health_insurance_in_the_United_States",
+      "extraction_target": "Look up the elevation at Health insurance in the United States",
+      "extraction_section": null,
+      "extracted_value": 3236.2353515625,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Health insurance in the United States"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for Health insurance in the United States",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Naloxone",
+      "extraction_target": "the routes of administration listed in the infobox",
+      "extraction_section": null,
+      "extracted_value": "Intranasal, intravenous, intramuscular",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Insulin wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Insulin",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Move from payer to a critical, life-saving medication — naloxone is central to insurer coverage decisions around the opioid crisis.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Insulin",
+      "extraction_target": "the number of languages the article is available in (as shown at the top of the page)",
+      "extraction_section": null,
+      "extracted_value": 97,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Insulin",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Another example of an essential drug whose pricing and coverage are major issues for insurers and patients alike.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        7
+      ]
+    },
+    {
+      "index": 9,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Insulin",
+      "extraction_target": "Reason: the number you get by reversing its digits",
+      "extraction_section": null,
+      "extracted_value": 79,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_reversal) on stop 4 value",
+      "reason_transform": "digit_reversal",
+      "reason_source_stop": 8,
+      "reason_code": "result = int(str(abs(int(97)))[::-1])\nprint(result)",
+      "depends_on": [
+        8
+      ]
+    },
+    {
+      "index": 10,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/United_States_Department_of_Justice",
+      "extraction_target": "the number of languages the article is available in (as shown near the top)",
+      "extraction_section": null,
+      "extracted_value": 49,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Baltimore wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Baltimore",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Regulation and enforcement (DOJ) affect how large insurers and pharma firms operate — antitrust and litigation shape market behavior.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        9
+      ]
+    },
+    {
+      "index": 11,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/United_States_Department_of_Justice",
+      "extraction_target": "Look up the elevation of United States Department of Justice",
+      "extraction_section": null,
+      "extracted_value": 3236.2353515625,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "United States Department of Justice"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of United States Department of Justice) from https://en.wikipedia.org/wiki/United_States_Department_of_Justice",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        10
+      ]
+    },
+    {
+      "index": 12,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/United_States_Department_of_Justice",
+      "extraction_target": "Look up the Google rating of United States Department of Justice",
+      "extraction_section": null,
+      "extracted_value": 3.4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "United States Department of Justice"
+            },
+            "expected_output": null,
+            "output_key": "place_rating"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (Google rating of United States Department of Justice) from https://en.wikipedia.org/wiki/United_States_Department_of_Justice",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        10
+      ]
+    },
+    {
+      "index": 13,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/United_States_Department_of_Justice",
+      "extraction_target": "Combine the elevation of United States Department of Justice and the Google rating of United States Department of Justice: abs(3236 - 3)",
+      "extraction_section": null,
+      "extracted_value": 3233,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(3236.2353515625) - int(3.4))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of United States Department of Justice abs_diff Google rating of United States Department of Justice",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        11,
+        12
+      ]
+    },
+    {
+      "index": 14,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Baltimore",
+      "extraction_target": "the founding/establishment year in the infobox (field: '[Founded](/wiki/Town_incorporation \"Town incorporation\")')",
+      "extraction_section": "infobox",
+      "extracted_value": 8,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Baltimore",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Zoom to a U.S. city heavily affected by public-health challenges (including substance-use and healthcare access) that insurers' policies impact.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        13
+      ]
+    },
+    {
+      "index": 15,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Baltimore",
+      "extraction_target": "Reason: the sum of its digits",
+      "extraction_section": null,
+      "extracted_value": 8,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_sum) on stop 6 value",
+      "reason_transform": "digit_sum",
+      "reason_source_stop": 14,
+      "reason_code": "result = sum(int(d) for d in str(abs(int(8))))\nprint(result)",
+      "depends_on": [
+        14
+      ]
+    },
+    {
+      "index": 16,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/SmithKline_Beecham",
+      "extraction_target": "Look up the closing price of GSK on 2000-12-27",
+      "extraction_section": null,
+      "extracted_value": 17.55,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "stock_historical_price",
+            "arguments": {
+              "ticker": "GSK",
+              "date": "2000-12-27"
+            },
+            "expected_output": null,
+            "output_key": "stock_price"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: stock price GSK on 2000-12-27",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        15
+      ]
+    },
+    {
+      "index": 17,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/West_Virginia",
+      "extraction_target": "the elevation listed in the infobox (field: 'Elevation')",
+      "extraction_section": "infobox",
+      "extracted_value": 1512,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/West_Virginia",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Finish at a U.S. state disproportionately affected by the opioid epidemic and healthcare access issues — illustrating the human geography behind insurer and pharma decisions.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        16
+      ]
+    },
+    {
+      "index": 18,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: digital_root(270 + 254 + 3233)",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "digital_root(270 + 254 + 3233)",
+        "expression_code": "def digital_root(n):\n    n = abs(int(n))\n    return n if n == 0 else ((n - 1) % 9) + 1\nresult = digital_root(270 + 254 + 3233)\nprint(result)",
+        "referenced_stops": [
+          1,
+          3,
+          13
+        ]
+      },
+      "reasoning": "Compute stop: digital_root(270 + 254 + 3233) = 4",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1,
+        3,
+        13
+      ]
+    }
+  ],
+  "passcode": 4,
+  "difficulty": {
+    "level": "medium",
+    "depth": 19,
+    "tool_stop_count": 8,
+    "reason_stop_count": 3,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Seek the corporation that plays a pivotal role in America’s health ecosystem; where do its leaders gather to steer the ship?\n\n2. What is the altitude at which this corporate haven perches just outside Minneapolis, Minnesota, in meters?\n\n3. Among the community offerings, how many repositories of art and history populate near this corporate enclave of Eden Prairie?\n\n4. To move forward, calculate the absolute difference between the elevation from clue 2 and the museums counted in clue 3.\n\n5. An extensive domain discusses various forms of cover for health risks; can you tell me how many sub-categories fit under companies that provide such protection?\n\n6. From the count you found in clue 5, what is the largest prime number that can be drawn from it?\n\n7. From a page detailing coverage across the nation, what height looms over the landscape where these policies are explored?\n\n8. Discover the methods through which a certain lifesaving drug can be administered — what terminology encompasses its routes listed in that specific page?\n\n9. Dig deeper into the text about a vital hormone; in how many languages is this knowledge accessible to curious minds?\n\n10. In reversing the digits of your language count from clue 9, what new number presents itself?\n\n11. Within the records of a federal entity focused on justice, how many languages does its page embrace near the top?\n\n12. Ascend to where this justice department stands — what lies beneath it in terms of meters of elevation?\n\n13. Search the web for the travelers’ opinions; what star rating reflects their sentiments toward this department?\n\n14. From the figures gathered in clues 12 and 13, derive the absolute difference between the elevation of justice and the stars given by the people.\n\n15. Within the annals of a notable city by the harbor, what year marked its establishment in history's scroll?\n\n16. If you were to sum the digits of the establishment year you unearthed in clue 15, what total emerges?\n\n17. Turn your gaze to a pharmaceutical giant; find out the closing stock price of GSK on the day that marked the end of 2000.\n\n18. Hover over a state known for its mountains — what is the height recorded for it in the infobox?\n\n19. Finally, compute the digital root of the sum obtained from the elevation in clue 2, the absolute difference from clue 4, and the elevation from clue 14. What final single digit do you uncover?",
+  "metadata": {
+    "theme": "Tracing UnitedHealth Group’s role in the U.S. health ecosystem — from insurer headquarters to essential medicines, regulation, and the cities and states most affected by health policy decisions.",
+    "difficulty": "medium",
+    "sample_id": "sample_146",
+    "pages_crawled": 9093
+  },
+  "generated_at": "2026-03-17T11:46:05.849201+00:00"
+}

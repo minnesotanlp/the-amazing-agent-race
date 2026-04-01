@@ -1,0 +1,248 @@
+{
+  "trail_id": "trail_a1552e37",
+  "seed_url": "https://en.wikipedia.org/wiki/Easington_(UK_Parliament_constituency)",
+  "seed_title": "Easington (UK Parliament constituency)",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Easington_(UK_Parliament_constituency)",
+      "extraction_target": "the current Member of Parliament for Easington constituency",
+      "extraction_section": null,
+      "extracted_value": "Grahame Morris",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Easington_(UK_Parliament_constituency)",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "This is the seed page focusing on a UK parliamentary constituency, setting the stage for exploring political and electoral changes.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Easington_(UK_Parliament_constituency)",
+      "extraction_target": "Look up the elevation of Easington",
+      "extraction_section": null,
+      "extracted_value": 119.6334609985352,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Easington"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Easington) from https://en.wikipedia.org/wiki/Easington_(UK_Parliament_constituency)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Easington_(UK_Parliament_constituency)",
+      "extraction_target": "Look up the count of churches near Easington",
+      "extraction_section": null,
+      "extracted_value": 6.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "churches near Easington"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of churches near Easington) from https://en.wikipedia.org/wiki/Easington_(UK_Parliament_constituency)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Easington_(UK_Parliament_constituency)",
+      "extraction_target": "Combine the elevation of Easington and the count of churches near Easington: (119 + 6)",
+      "extraction_section": null,
+      "extracted_value": 125,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(119.6334609985352) + int(6.0)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Easington add count of churches near Easington",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1,
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Easington_(UK_Parliament_constituency)",
+      "extraction_target": "Reason: the number of vowels in that name",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (vowel_count) on stop 0 value",
+      "reason_transform": "vowel_count",
+      "reason_source_stop": 0,
+      "reason_code": "result = sum(1 for c in \"Grahame Morris\".lower() if c in 'aeiou')\nprint(result)",
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/2016_United_Kingdom_European_Union_membership_referendum",
+      "extraction_target": "the number of constituent countries in the United Kingdom that voted in the 2016 referendum",
+      "extraction_section": "Result",
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "The 2016 referendum was a significant political event influencing electoral demographics and constituency alignments.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: digital_root(6 + 125 + 5 + 4)",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "digital_root(6 + 125 + 5 + 4)",
+        "expression_code": "def digital_root(n):\n    n = abs(int(n))\n    return n if n == 0 else ((n - 1) % 9) + 1\nresult = digital_root(6 + 125 + 5 + 4)\nprint(result)",
+        "referenced_stops": [
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      "reasoning": "Compute stop: digital_root(6 + 125 + 5 + 4) = 5",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2,
+        3,
+        4,
+        5
+      ]
+    }
+  ],
+  "passcode": 5,
+  "difficulty": {
+    "level": "easy",
+    "depth": 7,
+    "tool_stop_count": 3,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "direct_link"
+  },
+  "riddle": "1. Seek the political domain born from 1950, representing the voices of a North East English locality. Name the current political bearer of its banner, as you set the stage for your quest.\n\n2. What secrets does this location hold at its elevation? Ascertain its height above the sea using the power of maps, as the air grows thin above you.\n\n3. How many sacred homes of worship stand near this Northeastern sanctuary? Count the churches dotting the landscape, as they each whisper tales of time.\n\n4. Unearth a sum woven from heights and holy grounds: marry your results from the second quest with those from your recent sojourn among the steeples.\n\n5. In the political name you first unearthed, find beauty in simplicity. Count how many vowels take shelter within its letters, silently shaping the sound.\n\n6. In a decision that changed a nation, how many territorial voices cast their votes? Seek the number of kingdom's hearts that swayed during the referendum of 2016.\n\n7. Combine wisdom from myriad sources — the voices of worship, the heights of land, vowels' gentle whispers, and a kingdom's quartet. Unveil this sum's digital essence. Add together what you found in clues 3, 4, 5, and 6, then seek the root of it all, distilling life's complex melody into a single, pure tone.",
+  "metadata": {
+    "theme": "The Impact of Boundary Changes and Political Shifts in the UK",
+    "difficulty": "easy",
+    "sample_id": "sample_200",
+    "pages_crawled": 52
+  },
+  "generated_at": "2026-03-27T06:47:10.712798+00:00"
+}

@@ -1,0 +1,284 @@
+{
+  "trail_id": "trail_5bd041c8",
+  "seed_url": "https://en.wikipedia.org/wiki/Wells_Fargo",
+  "seed_title": "Wells Fargo",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Wells_Fargo",
+      "extraction_target": "the number of subsections listed under 'Lawsuits, fines, and controversies' in the table of contents",
+      "extraction_section": "Lawsuits, fines, and controversies",
+      "extracted_value": 26,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Automated_teller_machines",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Seed: Wells Fargo is the starting point — a large, historic U.S. bank whose HQ and origins anchor the trail into banking technology, regulation, crises, and markets.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Automated_teller_machines",
+      "extraction_target": "the number of languages listed at the top of the article",
+      "extraction_section": null,
+      "extracted_value": 86,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Automated teller machines wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Automated_teller_machines",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Shows a major technological shift in retail banking (how customers access cash and services), connecting operations like Wells Fargo's branch and ATM networks.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Automated_teller_machines",
+      "extraction_target": "Reason: the next prime number after that figure",
+      "extraction_section": null,
+      "extracted_value": 89,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (next_prime) on stop 1 value",
+      "reason_transform": "next_prime",
+      "reason_source_stop": 1,
+      "reason_code": "def next_prime(n):\n    n = abs(int(n))\n    if n < 2: return 2\n    candidate = n + 1\n    while True:\n        if all(candidate % i != 0 for i in range(2, int(candidate**0.5)+1)):\n            return candidate\n        candidate += 1\nresult = next_prime(86)\nprint(result)"
+    },
+    {
+      "index": 3,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Credit_card",
+      "extraction_target": "the number of languages the article is available in (as shown near the top of the page)",
+      "extraction_section": null,
+      "extracted_value": 87,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Credit_card",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Follows the payments evolution from cash/ATMs to cards — credit cards reshaped consumer lending and banks' business models (relevant to Wells Fargo's services).",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 4,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Credit_card",
+      "extraction_target": "Reason: the number of 1-bits in its binary representation",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (binary_1bit_count) on stop 2 value",
+      "reason_transform": "binary_1bit_count",
+      "reason_source_stop": 3,
+      "reason_code": "result = bin(abs(int(87))).count('1')\nprint(result)"
+    },
+    {
+      "index": 5,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Philippines",
+      "extraction_target": "Look up the elevation at Manila (*de jure*) Metro Manila[[b]](#cite_note-a-5) (*de facto*) 13°N 122°E﻿ / ﻿13°N 122°E﻿ / 13; 122",
+      "extraction_section": null,
+      "extracted_value": 3.115211486816406,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Manila (*de jure*) Metro Manila[[b]](#cite_note-a-5) (*de facto*) 13°N 122°E﻿ / ﻿13°N 122°E﻿ / 13; 122"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for Manila (*de jure*) Metro Manila[[b]](#cite_note-a-5) (*de facto*) 13°N 122°E﻿ / ﻿13°N 122°E﻿ / 13; 122",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 6,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Federal_Reserve",
+      "extraction_target": "the year given for the Second Central Bank in the subsection title 'First Central Bank, 1791 and Second Central Bank, 1816'",
+      "extraction_section": "History",
+      "extracted_value": "1816",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Panic_of_1893",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Central bank and regulator of the U.S. banking system — explains the policy and oversight context that shapes how institutions like Wells Fargo operate.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 7,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Panic_of_1893",
+      "extraction_target": "the month and year the Panic of 1893 began",
+      "extraction_section": null,
+      "extracted_value": "February 1893",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Panic_of_1893",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A historical financial crisis illustrating systemic risk and how bank failures and panics have historically reshaped regulation and banking practices.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 8,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Panic_of_1893",
+      "extraction_target": "Count hotels near Panic of 1893",
+      "extraction_section": null,
+      "extracted_value": 1,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "hotels near Panic of 1893"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (nearby_poi) derived from https://en.wikipedia.org/wiki/Panic_of_1893",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 9,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: digital_root(86 + 5 + 1)",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "digital_root(86 + 5 + 1)",
+        "expression_code": "def digital_root(n):\n    n = abs(int(n))\n    return n if n == 0 else ((n - 1) % 9) + 1\nresult = digital_root(86 + 5 + 1)\nprint(result)",
+        "referenced_stops": [
+          1,
+          4,
+          8
+        ]
+      },
+      "reasoning": "Compute stop: digital_root(86 + 5 + 1) = 2",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 2,
+  "difficulty": {
+    "level": "medium",
+    "depth": 10,
+    "tool_stop_count": 2,
+    "reason_stop_count": 2,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Unearth the vault that holds a multitude of financial services, originating from a name synonymous with banking across the United States. How many subsections reside within the chapter of its legal disputes and scandals?\n\n2. A device once heralded for simplifying monetary transactions — what is the count of languages that accompany this innovation at the beginning of its account?\n\n3. Seek the next prime number after the figure you just yielded from clue 2. What intermediary holds this value as it steps forward?\n\n4. Track down the plastic card that revolutionizes the way we manage finances. Near the summit of its narrative, how many tongues share the story of this transaction tool?\n\n5. What remains when you delve into the binary representation of the number you discovered earlier in clue 4? Count the 1-bits and proceed with your findings.\n\n6. Now, cast your gaze towards an archipelago in Southeast Asia; what is the altitude at which its bustling capital lies above the sea?\n\n7. In the annals of American finance, which significant year stands out for the establishment of a central bank, marking the wave of economic progression and downfall?\n\n8. A financial tremor that reshaped history — in which month and year did this economic crisis begin to unfold?\n\n9. As you wander the vicinity of this financial calamity, how many lodges stand ready to welcome weary travelers?\n\n10. The path to treasure lies hidden in a calculation: find the digital root of the sum of clues 2, 5, and 9, expressed as digital_root(86 + 5 + 1). Remember, your final answer will condense to a single digit (0-9).",
+  "metadata": {
+    "theme": "Tracing modern banking from a major U.S. bank (Wells Fargo) through the technologies, regulations, crises, and global markets that shape finance today.",
+    "difficulty": "medium",
+    "sample_id": "sample_138",
+    "pages_crawled": 8493
+  },
+  "generated_at": "2026-03-17T10:16:30.665889+00:00"
+}

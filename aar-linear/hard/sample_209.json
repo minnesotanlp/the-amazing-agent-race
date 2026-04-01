@@ -1,0 +1,508 @@
+{
+  "trail_id": "trail_e35a61c7",
+  "seed_url": "https://en.wikipedia.org/wiki/Bend-Or_spots",
+  "seed_title": "Bend-Or spots",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Bend-Or_spots",
+      "extraction_target": "the types of horses on which Bend-Or spots are most commonly seen",
+      "extraction_section": null,
+      "extracted_value": "palominos, chestnuts, and darker horses",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Fur trade wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Fur_trade",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Seed: a concrete example of 'markings' on animals — a small, tangible starting point for a trail about marks, trade in pelts, and how animal and human movements intersect.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Fur_trade",
+      "extraction_target": "the number of languages the article is available in (displayed near the top)",
+      "extraction_section": null,
+      "extracted_value": 30,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Fur_trade",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Connects animal markings/coats to economic value: fur trade drove exploration, transport of animals and people, and early contact zones that reshaped demographics.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Fur_trade",
+      "extraction_target": "Count museums near Fur trade",
+      "extraction_section": null,
+      "extracted_value": 18,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "museums near Fur trade"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (nearby_poi) derived from https://en.wikipedia.org/wiki/Fur_trade",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 3,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Fur_trade",
+      "extraction_target": "Reason: the number of characters when written as a Roman numeral",
+      "extraction_section": null,
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (roman_numeral_letter_count) on stop 1 value",
+      "reason_transform": "roman_numeral_letter_count",
+      "reason_source_stop": 1,
+      "reason_code": "def to_roman(n):\n    n = abs(int(n))\n    vals = [(1000,'M'),(900,'CM'),(500,'D'),(400,'CD'),(100,'C'),\n            (90,'XC'),(50,'L'),(40,'XL'),(10,'X'),(9,'IX'),(5,'V'),(4,'IV'),(1,'I')]\n    r = ''\n    for v, s in vals:\n        while n >= v:\n            r += s; n -= v\n    return r\nresult = len(to_roman(30))\nprint(result)"
+    },
+    {
+      "index": 4,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/California_Gold_Rush",
+      "extraction_target": "Calculate the number of days between 1848-01-24 and 2026-03-20",
+      "extraction_section": null,
+      "extracted_value": 65069,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "from datetime import date\nd1 = date.fromisoformat('1848-01-24')\nd2 = date.fromisoformat('2026-03-20')\nresult = abs((d2 - d1).days)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "days"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: date computation 1848-01-24 to 2026-03-20 (pinned)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 5,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/California_Gold_Rush",
+      "extraction_target": "Reason: the sum of its distinct prime factors",
+      "extraction_section": null,
+      "extracted_value": 2130,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (sum_prime_factors) on stop 2 value",
+      "reason_transform": "sum_prime_factors",
+      "reason_source_stop": 4,
+      "reason_code": "def prime_factors(n):\n    n = abs(int(n))\n    factors = []\n    d = 2\n    while d * d <= n:\n        while n % d == 0:\n            factors.append(d)\n            n //= d\n        d += 1\n    if n > 1: factors.append(n)\n    return factors\nresult = sum(set(prime_factors(65069)))\nprint(result)"
+    },
+    {
+      "index": 6,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Black_Hills_gold_rush",
+      "extraction_target": "month and year the large placer gold deposits of Deadwood Gulch were discovered",
+      "extraction_section": null,
+      "extracted_value": "November 1875",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Manchukuo wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Manchukuo",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A later North American gold rush that continued the pattern of rapid migration, conflict over land, and economic reshaping of regions — complements the California example.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 7,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Manchukuo",
+      "extraction_target": "Look up the elevation at Hsinking (Changchun) (until 9 August 1945) * Tonghua (from 9 August 1945)",
+      "extraction_section": null,
+      "extracted_value": 222.7384948730469,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Hsinking (Changchun) (until 9 August 1945) * Tonghua (from 9 August 1945)"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for Hsinking (Changchun) (until 9 August 1945) * Tonghua (from 9 August 1945)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 8,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Manchukuo",
+      "extraction_target": "Reason: the sum of its digits",
+      "extraction_section": null,
+      "extracted_value": 6,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_sum) on stop 4 value",
+      "reason_transform": "digit_sum",
+      "reason_source_stop": 7,
+      "reason_code": "result = sum(int(d) for d in str(abs(int(222))))\nprint(result)"
+    },
+    {
+      "index": 9,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Kentucky",
+      "extraction_target": "the area listed in the infobox (field: '[Largest metro](/wiki/Statistical_area_(United_States) \"Statistical area (United States)\") and [urban](/wiki/List_of_United_States_urban_areas \"List of United States urban areas\") areas')",
+      "extraction_section": "infobox",
+      "extracted_value": -1,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Race_and_ethnicity_in_the_United_States_census",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "State-level stop to pivot back to U.S. domestic geography — Kentucky (and its cities) served as staging grounds or waypoints in internal migration patterns related to trade and settlement.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 10,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Race_and_ethnicity_in_the_United_States_census",
+      "extraction_target": "the year since which respondents are categorized by membership in one of two ethnic categories",
+      "extraction_section": null,
+      "extracted_value": "1980",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Non-Hispanic or Latino African Americans wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Non-Hispanic_or_Latino_African_Americans",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Shifts from movement and settlement to how populations are categorized — the census records the demographic outcomes of migrations and economic shifts driven by trade and resource rushes.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 11,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Non-Hispanic_or_Latino_African_Americans",
+      "extraction_target": "the number of subsections listed under Racism and social status in the table of contents",
+      "extraction_section": "Racism and social status",
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Native American (U.S. Census) wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Native_American_(U.S._Census)",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A focused look at one major U.S. demographic group to illustrate how historical movements, labor demands, and policy shaped present population categories.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 12,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Native_American_(U.S._Census)",
+      "extraction_target": "the agencies that define the set of self-identified categories of race and ethnicity for the census",
+      "extraction_section": null,
+      "extracted_value": "U.S. Census Bureau and the Office of Management and Budget (OMB)",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Military history of African Americans wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Military_history_of_African_Americans",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Examines an indigenous perspective — gold rushes, land seizures, and trade routes dramatically affected Native populations; the census entry shows how those effects became recorded (and contested).",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 13,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Military_history_of_African_Americans",
+      "extraction_target": "the month and year when the Tuskegee Airmen attended a briefing at Ramitelli Airfield (from the image caption)",
+      "extraction_section": null,
+      "extracted_value": "March 1945",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Los Angeles County, California wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Los_Angeles_County,_California",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Explores another dimension of movement and identity: military service shaped migration, opportunity, and civil status for African Americans, further changing demographics and regional cultures.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 14,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Los_Angeles_County,_California",
+      "extraction_target": "Count the number of museums near 34.050",
+      "extraction_section": null,
+      "extracted_value": 1,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "museums near 34.050"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: count museums near 34.050",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 15,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Omaha",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Founded')",
+      "extraction_section": "infobox",
+      "extracted_value": 1854,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Omaha wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Omaha",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Omaha as an historical gateway/transport hub exemplifies inland migration routes feeding westward expansion and urban growth — ties back to trade, gold rushes, and settlement patterns.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 16,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Omaha",
+      "extraction_target": "Reason: the number you get by reversing its digits",
+      "extraction_section": null,
+      "extracted_value": 4581,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_reversal) on stop 11 value",
+      "reason_transform": "digit_reversal",
+      "reason_source_stop": 15,
+      "reason_code": "result = int(str(abs(int(1854)))[::-1])\nprint(result)"
+    },
+    {
+      "index": 17,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Tampa",
+      "extraction_target": "the elevation listed in the infobox (field: 'Elevation [[10]](#cite_note-gnis-11)')",
+      "extraction_section": "infobox",
+      "extracted_value": 10,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Tampa",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A coastal city that received waves of migrants and immigrants; contrasts interior hubs like Omaha and shows how different places absorbed population shifts over time.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 18,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: digital_root(18 + -1)",
+      "extraction_section": null,
+      "extracted_value": 8,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "digital_root(18 + -1)",
+        "expression_code": "def digital_root(n):\n    n = abs(int(n))\n    return n if n == 0 else ((n - 1) % 9) + 1\nresult = digital_root(18 + -1)\nprint(result)",
+        "referenced_stops": [
+          2,
+          9
+        ]
+      },
+      "reasoning": "Compute stop: digital_root(18 + -1) = 8",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 8,
+  "difficulty": {
+    "level": "hard",
+    "depth": 19,
+    "tool_stop_count": 4,
+    "reason_stop_count": 4,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "Here is the riddle with the specified clues rewritten:\n\n1. Unearth the name for the unique spotted coat markings that can be seen on a certain breed of horse, celebrated by enthusiasts and breeders alike.\n\n2. Explore the vast global industry involving the exchange of animal fur, where creatures from land and sea are valued for their pelts. How many languages tell their story on this topic?\n\n3. The heart of this industry pulses near cultural landmarks; count how many museums are close to the world renowned for its historical connection to pelts and trade.\n\n4. If you take the number you found in clue 2, convert it to a Roman numeral — how many characters grace this transformation? \n\n5. Seek the event that sparked a rush for gold in 1848, beginning a mass migration and many fortune-seekers. How many days will pass from that historic date until the spring of 2026?\n\n6. From your answer in clue 5, find the sum of its distinct prime factors to uncover a new pathway through history.\n\n7. This gold rush was not the only one — what month and year marked the discovery of rich placer deposits in a town known for its gold in Dakota Territory?\n\n8. In a land shaped by conflict, look up the elevation of the place known as Hsinking, renamed after August 1945, and Tonghua; what is the height above sea level?\n\n9. What is the sum of the digits in the elevation value you discovered in clue 8? \n\n10. A state shaped by both struggle and culture, find the area of this U.S. region known for its bluegrass and Bourbon.\n\n11. The tale of identity continues through numbers — since which year have respondents in America been sorted into the framework of two major ethnic categories?\n\n12. Explore the chapter focused on struggles faced by one demographic; count how many subsections hide under the theme of Racism and social status in the contents.\n\n13. In the realm of self-identification for the census, who presides over the classification of racial and ethnic categories, according to federal guidelines? \n\n14. Dive into the skies where the brave Tuskegee Airmen once met for crucial discussions; remember the month and year they gathered at Ramitelli Airfield.\n\n15. The populous county with endless dreams and stories within its borders — how many museums can you find near the heart of this iconic place?\n\n16. At last, venture to a city that rose from its establishment; find out the year it was founded, written boldly in its historical records.\n\n17. Flip the digits of your founding year from clue 16 to reveal a number anew.\n\n18. A coastal city with its feet in the water — discover the vertical distance from sea level to this upland area.\n\n19. From the insights of clues 3 and 10, calculate the digital root of (18 + -1) to uncover the essence of this treasure trail. Your final answer should be a single digit between 0-9.",
+  "metadata": {
+    "theme": "Marks, migration and identity — a historical trail that begins with animal coat markings and the fur trade, follows goldrushes and mining that propelled human migration, and ends by tracing how those movements shaped U.S. places and racial/ethnic identities (with data checks along the way).",
+    "difficulty": "hard",
+    "sample_id": "sample_209",
+    "pages_crawled": 29345
+  },
+  "generated_at": "2026-03-20T08:06:32.051468+00:00"
+}

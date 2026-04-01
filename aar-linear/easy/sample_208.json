@@ -1,0 +1,128 @@
+{
+  "trail_id": "trail_015e6c26",
+  "seed_url": "https://en.wikipedia.org/wiki/HMS_Africa_(1761)",
+  "seed_title": "HMS Africa (1761)",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/HMS_Africa_(1761)",
+      "extraction_target": "the date HMS Africa was launched",
+      "extraction_section": null,
+      "extracted_value": "1 August 1761",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Spanish–American War wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Spanish%E2%80%93American_War",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start with HMS Africa (1761), an example of 18th‑century Royal Navy sea power that anchors the trail in the age of sailing warships.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Spanish%E2%80%93American_War",
+      "extraction_target": "Calculate the number of days between 1761-08-01 and 2026-03-20",
+      "extraction_section": null,
+      "extracted_value": 96655,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "from datetime import date\nd1 = date.fromisoformat('1761-08-01')\nd2 = date.fromisoformat('2026-03-20')\nresult = abs((d2 - d1).days)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "days"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: date computation 1761-08-01 to 2026-03-20 (pinned)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Spanish%E2%80%93American_War",
+      "extraction_target": "Reason: the number of 1-bits in its binary representation",
+      "extraction_section": null,
+      "extracted_value": 11,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (binary_1bit_count) on stop 1 value",
+      "reason_transform": "binary_1bit_count",
+      "reason_source_stop": 1,
+      "reason_code": "result = bin(abs(int(96655))).count('1')\nprint(result)"
+    },
+    {
+      "index": 3,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: digital_root(96655 + 11)",
+      "extraction_section": null,
+      "extracted_value": 6,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "digital_root(96655 + 11)",
+        "expression_code": "def digital_root(n):\n    n = abs(int(n))\n    return n if n == 0 else ((n - 1) % 9) + 1\nresult = digital_root(96655 + 11)\nprint(result)",
+        "referenced_stops": [
+          1,
+          2
+        ]
+      },
+      "reasoning": "Compute stop: digital_root(96655 + 11) = 6",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 6,
+  "difficulty": {
+    "level": "easy",
+    "depth": 4,
+    "tool_stop_count": 1,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "Here is the riddle with the corrected clue:\n\n1. Seek the page for the ship launched in 1761 that bore the name of a continent known for its diverse wildlife and rich history, and record the date on which she was launched.  \n2. How many days have elapsed between that launch date and 20 March 2026?  \n3. Thereafter, take the day-count you just found, write it in base two, and count how many 1s appear.  \n4. The oracle asks you to compute the digital root of (clue 2 + clue 3); that single digit (0–9) is your final answer.",
+  "metadata": {
+    "theme": "Tracing naval power and imperial change: from an 18th‑century Royal Navy ship (HMS Africa, 1761) to the age of US overseas expansion (Spanish–American War) and the national scale of the United Kingdom that underpinned empire.",
+    "difficulty": "easy",
+    "sample_id": "sample_208",
+    "pages_crawled": 4955
+  },
+  "generated_at": "2026-03-21T02:40:07.410028+00:00"
+}

@@ -1,0 +1,392 @@
+{
+  "trail_id": "trail_1bfb9507",
+  "seed_url": "https://en.wikipedia.org/wiki/Parties_in_the_European_Council_between_January_and_June_2013",
+  "seed_title": "Parties in the European Council between January and June 2013",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Parties_in_the_European_Council_between_January_and_June_2013",
+      "extraction_target": "the number of votes allocated to Germany in the List of leaders (1 January 2013) table",
+      "extraction_section": "List of leaders (1 January 2013)",
+      "extracted_value": 29,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Parties_in_the_European_Council_between_January_and_June_2013",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Seed: establishes the EU-level political context and the party affiliations of national leaders during the first half of 2013 — the starting point for comparing how party leadership maps down to city-level governance.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Parties_in_the_European_Council_between_January_and_June_2013",
+      "extraction_target": "Reason: the sum of its distinct prime factors",
+      "extraction_section": null,
+      "extracted_value": 29,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (sum_prime_factors) on stop 0 value",
+      "reason_transform": "sum_prime_factors",
+      "reason_source_stop": 0,
+      "reason_code": "def prime_factors(n):\n    n = abs(int(n))\n    factors = []\n    d = 2\n    while d * d <= n:\n        while n % d == 0:\n            factors.append(d)\n            n //= d\n        d += 1\n    if n > 1: factors.append(n)\n    return factors\nresult = sum(set(prime_factors(29)))\nprint(result)",
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Kai_Wegner",
+      "extraction_target": "date Kai Wegner assumed office as Leader of the Christian Democratic Union in Berlin",
+      "extraction_section": null,
+      "extracted_value": "18 May 2019",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Gergely Karácsony wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Gergely_Kar%C3%A1csony",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A contemporary German municipal leader (Berlin). Use his page to anchor the trail in a European capital and to extract the official office and location for later spatial comparisons.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Gergely_Kar%C3%A1csony",
+      "extraction_target": "the date he assumed office as Mayor of Budapest",
+      "extraction_section": null,
+      "extracted_value": "13 October 2019",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Mayor of Dallas wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Mayor_of_Dallas",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Another European city mayor (Budapest). Bringing in Budapest lets us compare two EU municipal leaders (Berlin and Budapest) who relate to the European Council's national leaders.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Mayor_of_Dallas",
+      "extraction_target": "the year since which the incumbent has held office",
+      "extraction_section": null,
+      "extracted_value": "2019",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "California Democratic Party wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/California_Democratic_Party",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Brings a United States municipal office into the comparison. Contrasting a US mayoral office with European mayors underscores differences in local governance structures under various national party systems.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Mayor_of_Dallas",
+      "extraction_target": "Look up the elevation of Mayor of Dallas",
+      "extraction_section": null,
+      "extracted_value": 137.5745239257812,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Mayor of Dallas"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Mayor of Dallas) from https://en.wikipedia.org/wiki/Mayor_of_Dallas",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Mayor_of_Dallas",
+      "extraction_target": "Look up the count of libraries near Mayor of Dallas",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "libraries near Mayor of Dallas"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of libraries near Mayor of Dallas) from https://en.wikipedia.org/wiki/Mayor_of_Dallas",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        4
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Mayor_of_Dallas",
+      "extraction_target": "Combine the elevation of Mayor of Dallas and the count of libraries near Mayor of Dallas: abs(137 - 20)",
+      "extraction_section": null,
+      "extracted_value": 117,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(137.5745239257812) - int(20.0))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Mayor of Dallas abs_diff count of libraries near Mayor of Dallas",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5,
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/California_Democratic_Party",
+      "extraction_target": "Convert 29 km to miles",
+      "extraction_section": null,
+      "extracted_value": 18,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "# Convert km to miles\nvalue = 29.0\nconverted = value * 0.621371\nresult = int(converted)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "converted"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: convert 29 km to miles",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        7
+      ]
+    },
+    {
+      "index": 9,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Third_Cabinet_of_Donald_Tusk",
+      "extraction_target": "Calculate the number of days between 2019-10-13 and 2026-03-16",
+      "extraction_section": null,
+      "extracted_value": 2346,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "from datetime import date\nd1 = date.fromisoformat('2019-10-13')\nd2 = date.fromisoformat('2026-03-16')\nresult = abs((d2 - d1).days)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "days"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: date computation 2019-10-13 to 2026-03-16 (pinned)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        8
+      ]
+    },
+    {
+      "index": 10,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Third_Cabinet_of_Donald_Tusk",
+      "extraction_target": "Reason: the number you get by reversing its digits",
+      "extraction_section": null,
+      "extracted_value": 6432,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_reversal) on stop 5 value",
+      "reason_transform": "digit_reversal",
+      "reason_source_stop": 9,
+      "reason_code": "result = int(str(abs(int(2346)))[::-1])\nprint(result)",
+      "depends_on": [
+        9
+      ]
+    },
+    {
+      "index": 11,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: (20 + 117) % 10",
+      "extraction_section": null,
+      "extracted_value": 7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "(20 + 117) % 10",
+        "expression_code": "result = (20 + 117) % 10\nprint(result)",
+        "referenced_stops": [
+          6,
+          7
+        ]
+      },
+      "reasoning": "Compute stop: (20 + 117) % 10 = 7",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6,
+        7
+      ]
+    }
+  ],
+  "passcode": 7,
+  "difficulty": {
+    "level": "medium",
+    "depth": 12,
+    "tool_stop_count": 5,
+    "reason_stop_count": 2,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Seek the article that reports the divisions of power within a council representing a union of various nations in early 2013. Discover how many votes were allocated to the largest economy in Europe.\n\n2. Now reflect upon the numeric answer you found in the previous clue. What do you get when you sum the distinct prime factors of that number?\n\n3. As you continue your journey through leadership, identify the date on which the individual in charge of a significant political alliance in Berlin took office. \n\n4. Turn your gaze eastward and search for the date upon which this Budapest mayor began to steer his city's governance. \n\n5. Now venture forth to find the page of a prominent Texan city, and note the year when its current leader assumed the position.\n\n6. High above, the ground beneath the leadership in Dallas rests at a certain elevation. Investigate what that number is.\n\n7. Nearby these civic operations, a literary treasure trove thrives. Count how many libraries are in the vicinity of this mayoral figure.\n\n8. To proceed, merge your findings from clues 6 and 7: What is the absolute difference when you subtract the library count from the elevation you uncovered?\n\n9. Travel elsewhere to explore a political party on the west coast of the United States. What would be the equivalent of 29 kilometers in miles?\n\n10. Next, delve into a significant cabinet assembly that took place in Poland. How many days lie between the thirteenth of October in 2019 and the sixteenth of March in 2026?\n\n11. Unravel the mystery of that last number you found — what do you get when you reverse its digits?\n\n12. Finally, after gathering insights from clues 7 and 8, compute the result of (20 plus your answer from clue 8) modulo 10. The resolution lies as a single digit between 0 and 9.",
+  "metadata": {
+    "theme": "From European Council parties to municipal leadership worldwide — a comparative trail that starts with EU-level party alignments (Jan–Jun 2013) and walks through city leaders and civic infrastructure across continents, using tools to compare distances, travel times, populations and key dates.",
+    "difficulty": "medium",
+    "sample_id": "sample_101",
+    "pages_crawled": 5647
+  },
+  "generated_at": "2026-03-16T20:37:16.992934+00:00"
+}

@@ -1,0 +1,834 @@
+{
+  "trail_id": "trail_0d086791",
+  "seed_url": "https://en.wikipedia.org/wiki/Col_Campbell",
+  "seed_title": "Col Campbell",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Col_Campbell",
+      "extraction_target": "Col Campbell's age at death (as listed)",
+      "extraction_section": null,
+      "extracted_value": 78,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Mayor of Kansas City, Missouri wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Mayor_of_Kansas_City,_Missouri",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start at the seed: Col Campbell as a local public figure. We extract the office/party to ground the trail in the perspective of an officeholder.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Mayor_of_Kansas_City,_Missouri",
+      "extraction_target": "the date the incumbent has been in office since",
+      "extraction_section": null,
+      "extracted_value": "August 1, 2019",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Cathedral Church of St. Paul (Detroit) wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Cathedral_Church_of_St._Paul_(Detroit)",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Jump to an Anglophone counterpart in the US: the mayoralty is a direct analogue to local office discussed at the seed and London stops.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Mayor_of_Kansas_City,_Missouri",
+      "extraction_target": "Look up the elevation of Mayor of Kansas City, Missouri",
+      "extraction_section": null,
+      "extracted_value": 273.5455017089844,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Mayor of Kansas City, Missouri"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Mayor of Kansas City, Missouri) from https://en.wikipedia.org/wiki/Mayor_of_Kansas_City,_Missouri",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Mayor_of_Kansas_City,_Missouri",
+      "extraction_target": "Look up the count of universities near Mayor of Kansas City, Missouri",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "universities near Mayor of Kansas City, Missouri"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of universities near Mayor of Kansas City, Missouri) from https://en.wikipedia.org/wiki/Mayor_of_Kansas_City,_Missouri",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Mayor_of_Kansas_City,_Missouri",
+      "extraction_target": "Combine the elevation of Mayor of Kansas City, Missouri and the count of universities near Mayor of Kansas City, Missouri: (273 + 20)",
+      "extraction_section": null,
+      "extracted_value": 293,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(273.5455017089844) + int(20.0)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Mayor of Kansas City, Missouri add count of universities near Mayor of Kansas City, Missouri",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2,
+        3
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Cathedral_Church_of_St._Paul_(Detroit)",
+      "extraction_target": "Get the driving duration in minutes from 42°21′22.43″N 83°3′49.66″W﻿ / ﻿42.3562306°N 83.0637944°W﻿ / 42.3562306; -83.0637944&params=42_21_22.43_N_83_3_49.66_W_type:landmark_region:US) to Mayor of Kansas City, Missouri",
+      "extraction_section": null,
+      "extracted_value": 755,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_directions",
+            "arguments": {
+              "origin": "42°21′22.43″N 83°3′49.66″W﻿ / ﻿42.3562306°N 83.0637944°W﻿ / 42.3562306; -83.0637944&params=42_21_22.43_N_83_3_49.66_W_type:landmark_region:US)",
+              "destination": "Mayor of Kansas City, Missouri",
+              "mode": "driving"
+            },
+            "expected_output": null,
+            "output_key": "duration"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: directions duration 42°21′22.43″N 83°3′49.66″W﻿ / ﻿42.3562306°N 83.0637944°W﻿ / 42.3562306; -83.0637944&params=42_21_22.43_N_83_3_49.66_W_type:landmark_region:US) to Mayor of Kansas City, Missouri",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Cathedral_Church_of_St._Paul_(Detroit)",
+      "extraction_target": "Reason: the digital root (iterated digit sum until single digit)",
+      "extraction_section": null,
+      "extracted_value": 8,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digital_root) on stop 2 value",
+      "reason_transform": "digital_root",
+      "reason_source_stop": 5,
+      "reason_code": "n = abs(int(755))\nresult = n if n == 0 else ((n - 1) % 9) + 1\nprint(result)",
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Municipal_corporation",
+      "extraction_target": "the number of languages listed in the language links at the top of the article",
+      "extraction_section": null,
+      "extracted_value": 18,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Nigerians wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Nigerians",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Examine the legal and institutional form that underpins mayoralties and city halls: the municipal corporation as the organisational unit of local government.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Nigerians",
+      "extraction_target": "Look up the elevation at Nigerians",
+      "extraction_section": null,
+      "extracted_value": 479.4509582519531,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Nigerians"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for Nigerians",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        7
+      ]
+    },
+    {
+      "index": 9,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Historic_district_(United_States)",
+      "extraction_target": "the number of levels of government mentioned that can create historic districts (federal, state, or local)",
+      "extraction_section": null,
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Pennsylvania State Game Lands wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Pennsylvania_State_Game_Lands",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Historic districts show how civic policy preserves place — a theme tying municipal power to cultural geography and built environment.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        8
+      ]
+    },
+    {
+      "index": 10,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Historic_district_(United_States)",
+      "extraction_target": "Look up the elevation of Historic district",
+      "extraction_section": null,
+      "extracted_value": 13.73561954498291,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Historic district"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Historic district) from https://en.wikipedia.org/wiki/Historic_district_(United_States)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        9
+      ]
+    },
+    {
+      "index": 11,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Historic_district_(United_States)",
+      "extraction_target": "Look up the count of restaurants near Historic district",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "restaurants near Historic district"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of restaurants near Historic district) from https://en.wikipedia.org/wiki/Historic_district_(United_States)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        9
+      ]
+    },
+    {
+      "index": 12,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Historic_district_(United_States)",
+      "extraction_target": "Combine the elevation of Historic district and the count of restaurants near Historic district: (13 + 20)",
+      "extraction_section": null,
+      "extracted_value": 33,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(13.73561954498291) + int(20.0)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Historic district add count of restaurants near Historic district",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        10,
+        11
+      ]
+    },
+    {
+      "index": 13,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Pennsylvania_State_Game_Lands",
+      "extraction_target": "Count the number of restaurants near Pennsylvania State Game Lands",
+      "extraction_section": null,
+      "extracted_value": 20,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "restaurants near Pennsylvania State Game Lands"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: count restaurants near Pennsylvania State Game Lands",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        12
+      ]
+    },
+    {
+      "index": 14,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Federalist_Era",
+      "extraction_target": "the years spanned by the Federalist Era as given in the article header",
+      "extraction_section": null,
+      "extracted_value": "1788–1800",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Timeline_of_United_States_history",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Shift to national-level political history in the U.S.: the Federalist Era sets a backdrop for the formation of American institutions that later govern cities and regions.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        13
+      ]
+    },
+    {
+      "index": 15,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Timeline_of_United_States_history",
+      "extraction_target": "the number of timeline ranges listed under the 'Timelines and lists' subsection",
+      "extraction_section": "Timelines and lists",
+      "extracted_value": 7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Timeline_of_United_States_history",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A timeline helps place municipal and national events in sequence — tying the local offices we've seen to national developments.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        14
+      ]
+    },
+    {
+      "index": 16,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Timeline_of_United_States_history",
+      "extraction_target": "Look up the elevation of Timeline of United States history",
+      "extraction_section": null,
+      "extracted_value": 3236.2353515625,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Timeline of United States history"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Timeline of United States history) from https://en.wikipedia.org/wiki/Timeline_of_United_States_history",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        15
+      ]
+    },
+    {
+      "index": 17,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Timeline_of_United_States_history",
+      "extraction_target": "Look up the count of libraries near Timeline of United States history",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "libraries near Timeline of United States history"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of libraries near Timeline of United States history) from https://en.wikipedia.org/wiki/Timeline_of_United_States_history",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        15
+      ]
+    },
+    {
+      "index": 18,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Timeline_of_United_States_history",
+      "extraction_target": "Combine the elevation of Timeline of United States history and the count of libraries near Timeline of United States history: (3236 + 20)",
+      "extraction_section": null,
+      "extracted_value": 3256,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(3236.2353515625) + int(20.0)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Timeline of United States history add count of libraries near Timeline of United States history",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        16,
+        17
+      ]
+    },
+    {
+      "index": 19,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Timeline_of_United_States_history",
+      "extraction_target": "Reason: the next prime number after that figure",
+      "extraction_section": null,
+      "extracted_value": 11,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (next_prime) on stop 8 value",
+      "reason_transform": "next_prime",
+      "reason_source_stop": 15,
+      "reason_code": "def next_prime(n):\n    n = abs(int(n))\n    if n < 2: return 2\n    candidate = n + 1\n    while True:\n        if all(candidate % i != 0 for i in range(2, int(candidate**0.5)+1)):\n            return candidate\n        candidate += 1\nresult = next_prime(7)\nprint(result)",
+      "depends_on": [
+        15
+      ]
+    },
+    {
+      "index": 20,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Merchant_Marine_Act_of_1920",
+      "extraction_target": "Convert 7 meters to yards",
+      "extraction_section": null,
+      "extracted_value": 7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "# Convert meters to yards\nvalue = 7.0\nconverted = value * 1.09361\nresult = int(converted)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "converted"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: convert 7 meters to yards",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        19
+      ]
+    },
+    {
+      "index": 21,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Merchant_Marine_Act_of_1920",
+      "extraction_target": "Reason: the largest prime factor of that figure",
+      "extraction_section": null,
+      "extracted_value": 7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (largest_prime_factor) on stop 9 value",
+      "reason_transform": "largest_prime_factor",
+      "reason_source_stop": 20,
+      "reason_code": "def largest_prime_factor(n):\n    n = abs(int(n))\n    if n <= 1: return n\n    d = 2\n    while d * d <= n:\n        while n % d == 0: n //= d\n        d += 1\n    return n\nresult = largest_prime_factor(7)\nprint(result)",
+      "depends_on": [
+        20
+      ]
+    },
+    {
+      "index": 22,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Era_of_Good_Feelings",
+      "extraction_target": "the period years given under the article title (period in US political history)",
+      "extraction_section": null,
+      "extracted_value": "1815–1825",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Ohio Country wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Ohio_Country",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Follow the Federalist Era with the Era of Good Feelings to trace political transitions that influenced expansion of civic institutions and local governance practices.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        21
+      ]
+    },
+    {
+      "index": 23,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Ohio_Country",
+      "extraction_target": "the geographic coordinates listed at the top of the article",
+      "extraction_section": null,
+      "extracted_value": "40°30′N 82°30′W / 40.5°N 82.5°W / 40.5; -82.5",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Ohio_Country",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "End with a territorial/geographic case-study: the Ohio Country reveals how early political eras translated into territorial governance, settlement patterns and municipal creation.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        22
+      ]
+    },
+    {
+      "index": 24,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: abs(273 - 755) % 10",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "abs(273 - 755) % 10",
+        "expression_code": "result = abs(273 - 755) % 10\nprint(result)",
+        "referenced_stops": [
+          2,
+          5,
+          8,
+          16
+        ]
+      },
+      "reasoning": "Compute stop: abs(273 - 755) % 10 = 2",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2,
+        5,
+        8,
+        16
+      ]
+    }
+  ],
+  "passcode": 2,
+  "difficulty": {
+    "level": "hard",
+    "depth": 25,
+    "tool_stop_count": 13,
+    "reason_stop_count": 3,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Unearth the life of a military figure revered in Virginia, who named a heavy artillery piece after himself. Find out how many years he lived before his final farewell.\n\n2. What city proclaimed itself a pivotal center of leadership in its state? Discover the tenure date of the individual currently steering its ship.\n\n3. Journey onwards to the towering structures of local governance — how high is the ground beneath the seat of power you just uncovered?\n\n4. Seek the academic havens nearby! Count how many institutions of higher learning exist within a stone's throw of this local authority.\n\n5. Step forward to combine your findings: what do you get when you add the elevation from clue 3 to the number of universities found in clue 4?\n\n6. Navigate now to a grand place of worship in the Motor City, where lives find solace. How long will it take to drive from its peaceful grounds to the governance stronghold you just visited?\n\n7. In the city where automotive dreams soared, distill your travel duration into its simplest form — what is the single-digit sum of the digits in the answer from clue 6?\n\n8. There exists a page where civic organization thrives; find out how many languages reflect the diversity of municipal governance at the top of that entry.\n\n9. Seek the nationality occupying a vast territory; how high does the land rise, marked by their vibrant presence?\n\n10. An age-old structure holds sway over the realms of history — how many branches of governance can confer the power to establish historic districts?\n\n11. Discover the heights reached by historic neighborhoods across the nation. What is their elevation, resting in the annals of time?\n\n12. Close to these heritage zones are places for food and camaraderie — how many restaurants call this area home?\n\n13. Add together the elevation from clue 11 and the count of eateries from clue 12; what is the new value you unveil?\n\n14. Find the greenery of a state’s conservation lands; uncover how many dining establishments lie near this natural refuge.\n\n15. A scent of political evolution wafts from the age defined as the Federalist Era — pin down the years that traversed this pivotal moment in the nation’s fabric.\n\n16. A scroll of history reveals many significant epochs; how many timeline categories unfold in the sub-section of timelines from that history?\n\n17. Ascertain the height of knowledge enshrined in the history of a nation; how high does the land rise in the areas chronicled in that timeline?\n\n18. Libraries are bastions of learning; how many stand vigilant near the landscapes chronicled in the timeline you just explored?\n\n19. Combine the elevation from clue 17 with the number of libraries found in clue 18. This fusion yields another numerical revelation.\n\n20. Contemplate this: what is the next prime number after the result you derived in clue 16?\n\n21. In the waters surrounding maritime legislation, convert the length of 7 meters into yards — how far does it stretch?\n\n22. Within that yardage, find the largest prime factor unearthing its mystery — what is your discovered value?\n\n23. The era painted with flourishing optimism sparked by the Era of Good Feelings offers dates at its core — what years compose this vibrant age?\n\n24. What landscape inhabited by settlers lies beyond the great lakes? Uncover the geographic coordinates that demarcate this land's boundaries.\n\n25. For the final computation, conduct this operation: take the absolute difference between the elevation from clue 3 and the sum found in clue 6; reduce this value modulo 10. From clues 3 and 6, reveal the final single digit!",
+  "metadata": {
+    "theme": "From local office to national eras — a guided trail linking a public figure to civic institutions, landscapes and early American political history across the Anglophone world.",
+    "difficulty": "hard",
+    "sample_id": "sample_032",
+    "pages_crawled": 2139
+  },
+  "generated_at": "2026-03-16T08:45:40.846147+00:00"
+}

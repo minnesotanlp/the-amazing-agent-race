@@ -1,0 +1,792 @@
+{
+  "trail_id": "trail_68f322f4",
+  "seed_url": "https://en.wikipedia.org/wiki/5th_Mounted_Rifles_(Otago_Hussars)",
+  "seed_title": "5th Mounted Rifles (Otago Hussars)",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/5th_Mounted_Rifles_(Otago_Hussars)",
+      "extraction_target": "the year the unit became active (start of Active)",
+      "extraction_section": null,
+      "extracted_value": 1911,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Clan Murray wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Clan_Murray",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Seed: introduces the Otago Hussars — the local mounted regiment whose service and legacy the trail will follow.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Clan_Murray",
+      "extraction_target": "the historic seat of the clan (Historic seat)",
+      "extraction_section": null,
+      "extracted_value": "Bothwell Castle",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Renfrewshire (historic) wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Renfrewshire_(historic)",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Shows likely Scottish origins and identity of many Otago settlers who provided recruits for New Zealand mounted units.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Clan_Murray",
+      "extraction_target": "Look up the elevation of Bothwell Castle",
+      "extraction_section": null,
+      "extracted_value": 35.51709365844727,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Bothwell Castle"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Bothwell Castle) from https://en.wikipedia.org/wiki/Clan_Murray",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Clan_Murray",
+      "extraction_target": "Look up the Google rating of Bothwell Castle",
+      "extraction_section": null,
+      "extracted_value": 4.3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "Bothwell Castle"
+            },
+            "expected_output": null,
+            "output_key": "place_rating"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (Google rating of Bothwell Castle) from https://en.wikipedia.org/wiki/Clan_Murray",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Clan_Murray",
+      "extraction_target": "Combine the elevation of Bothwell Castle and the Google rating of Bothwell Castle: (35 + 4)",
+      "extraction_section": null,
+      "extracted_value": 39,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(35.51709365844727) + int(4.3)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Bothwell Castle add Google rating of Bothwell Castle",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2,
+        3
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Clan_Murray",
+      "extraction_target": "Count parks near Bothwell Castle",
+      "extraction_section": null,
+      "extracted_value": 6,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "parks near Bothwell Castle"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (nearby_poi) derived from https://en.wikipedia.org/wiki/Clan_Murray",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Renfrewshire_(historic)",
+      "extraction_target": "area of Renfrewshire in 1975 in square miles",
+      "extraction_section": null,
+      "extracted_value": 245,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "New Zealand Liberal Party wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/New_Zealand_Liberal_Party",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Places the clan in a geographic Scottish context to trace migration routes from homeland to Otago.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Renfrewshire_(historic)",
+      "extraction_target": "Look up the elevation of Renfrewshire",
+      "extraction_section": null,
+      "extracted_value": 43.26527404785156,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Renfrewshire"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Renfrewshire) from https://en.wikipedia.org/wiki/Renfrewshire_(historic)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Renfrewshire_(historic)",
+      "extraction_target": "Look up the count of hospitals near Renfrewshire",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "hospitals near Renfrewshire"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of hospitals near Renfrewshire) from https://en.wikipedia.org/wiki/Renfrewshire_(historic)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 9,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Renfrewshire_(historic)",
+      "extraction_target": "Combine the elevation of Renfrewshire and the count of hospitals near Renfrewshire: (43 + 20)",
+      "extraction_section": null,
+      "extracted_value": 63,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(43.26527404785156) + int(20.0)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Renfrewshire add count of hospitals near Renfrewshire",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        7,
+        8
+      ]
+    },
+    {
+      "index": 10,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/New_Zealand_Liberal_Party",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Founded')",
+      "extraction_section": "infobox",
+      "extracted_value": 1891,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/New_Zealand_Liberal_Party",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Situates the regiment in New Zealand's political landscape — connecting late-19th/early-20th-century civic life to military service.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        9
+      ]
+    },
+    {
+      "index": 11,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/New_Zealand_Liberal_Party",
+      "extraction_target": "Reason: the number of characters when written as a Roman numeral",
+      "extraction_section": null,
+      "extracted_value": 8,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (roman_numeral_letter_count) on stop 3 value",
+      "reason_transform": "roman_numeral_letter_count",
+      "reason_source_stop": 10,
+      "reason_code": "def to_roman(n):\n    n = abs(int(n))\n    vals = [(1000,'M'),(900,'CM'),(500,'D'),(400,'CD'),(100,'C'),\n            (90,'XC'),(50,'L'),(40,'XL'),(10,'X'),(9,'IX'),(5,'V'),(4,'IV'),(1,'I')]\n    r = ''\n    for v, s in vals:\n        while n >= v:\n            r += s; n -= v\n    return r\nresult = len(to_roman(1891))\nprint(result)",
+      "depends_on": [
+        10
+      ]
+    },
+    {
+      "index": 12,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Mayor_of_Wellington",
+      "extraction_target": "the date the incumbent began serving",
+      "extraction_section": null,
+      "extracted_value": "17 October 2025",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Boston Common wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Boston_Common",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Civic leadership in the country's capital — a node for postwar commemoration, ceremonies, and veteran recognition.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        11
+      ]
+    },
+    {
+      "index": 13,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Boston_Common",
+      "extraction_target": "Count the number of restaurants near Boston",
+      "extraction_section": null,
+      "extracted_value": 20,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "restaurants near Boston"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: count restaurants near Boston",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        12
+      ]
+    },
+    {
+      "index": 14,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Boston_Common",
+      "extraction_target": "Reason: the number of 1-bits in its binary representation",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (binary_1bit_count) on stop 5 value",
+      "reason_transform": "binary_1bit_count",
+      "reason_source_stop": 13,
+      "reason_code": "result = bin(abs(int(20))).count('1')\nprint(result)",
+      "depends_on": [
+        13
+      ]
+    },
+    {
+      "index": 15,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Christianity_in_New_Zealand",
+      "extraction_target": "the number of language links shown at the top of the article",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Battle of the Ancre wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Battle_of_the_Ancre",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Religious institutions often shaped commemorative practices (chaplains, memorial services); this page provides cultural context.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        14
+      ]
+    },
+    {
+      "index": 16,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Battle_of_the_Ancre",
+      "extraction_target": "the date range given for the Battle of the Somme in the infobox",
+      "extraction_section": null,
+      "extracted_value": "1 July – 18 November 1916",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "United States campaigns in World War I wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/United_States_campaigns_in_World_War_I",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A key WWI battle on the Somme with which New Zealand units (and allied mounted troops) are historically associated.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        15
+      ]
+    },
+    {
+      "index": 17,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/United_States_campaigns_in_World_War_I",
+      "extraction_target": "the number of official military campaigns the American Expeditionary Force engaged in between 1917 and 1918",
+      "extraction_section": null,
+      "extracted_value": 13,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/United_States_campaigns_in_World_War_I",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Provides broader WWI operational context and connects allied campaign narratives to the Otago Hussars' era.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        16
+      ]
+    },
+    {
+      "index": 18,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/United_States_campaigns_in_World_War_I",
+      "extraction_target": "Reason: the number of divisors of that figure",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (num_divisors) on stop 8 value",
+      "reason_transform": "num_divisors",
+      "reason_source_stop": 17,
+      "reason_code": "n = abs(int(13))\ncount = sum(1 for i in range(1, n+1) if n % i == 0) if n > 0 else 0\nresult = count\nprint(result)",
+      "depends_on": [
+        17
+      ]
+    },
+    {
+      "index": 19,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Schuyler_Flatts",
+      "extraction_target": "the location listed in the infobox (field: 'Location')",
+      "extraction_section": "infobox",
+      "extracted_value": "Between NY 32 and the Hudson River, Colonie, NY \"New York (state)\")",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "2001 New Year Honours (New Zealand) wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/2001_New_Year_Honours_(New_Zealand)",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "An example of a North American historic site tied to militia and colonial military memory — contrasts different memorial traditions.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        18
+      ]
+    },
+    {
+      "index": 20,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Schuyler_Flatts",
+      "extraction_target": "Look up the elevation of Schuyler Flatts",
+      "extraction_section": null,
+      "extracted_value": 5.548087596893311,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Schuyler Flatts"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (elevation) derived from https://en.wikipedia.org/wiki/Schuyler_Flatts",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        19
+      ]
+    },
+    {
+      "index": 21,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/2001_New_Year_Honours_(New_Zealand)",
+      "extraction_target": "Calculate the number of days between 1916-11-18 and 2026-03-16",
+      "extraction_section": null,
+      "extracted_value": 39930,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "from datetime import date\nd1 = date.fromisoformat('1916-11-18')\nd2 = date.fromisoformat('2026-03-16')\nresult = abs((d2 - d1).days)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "days"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: date computation 1916-11-18 to 2026-03-16 (pinned)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        20
+      ]
+    },
+    {
+      "index": 22,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/2026_New_Year_Honours_(New_Zealand)",
+      "extraction_target": "the number of main sections listed in the article's Contents",
+      "extraction_section": "Contents",
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/2026_New_Year_Honours_(New_Zealand)",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Brings the trail to a contemporary moment of national recognition, closing the loop from 19th-century regiment to present-day honours and commemoration.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        21
+      ]
+    },
+    {
+      "index": 23,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/2026_New_Year_Honours_(New_Zealand)",
+      "extraction_target": "Reason: the sum of its distinct prime factors",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (sum_prime_factors) on stop 11 value",
+      "reason_transform": "sum_prime_factors",
+      "reason_source_stop": 22,
+      "reason_code": "def prime_factors(n):\n    n = abs(int(n))\n    factors = []\n    d = 2\n    while d * d <= n:\n        while n % d == 0:\n            factors.append(d)\n            n //= d\n        d += 1\n    if n > 1: factors.append(n)\n    return factors\nresult = sum(set(prime_factors(5)))\nprint(result)",
+      "depends_on": [
+        22
+      ]
+    },
+    {
+      "index": 24,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: abs(4 - 39) % 10",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "abs(4 - 39) % 10",
+        "expression_code": "result = abs(4 - 39) % 10\nprint(result)",
+        "referenced_stops": [
+          3,
+          4
+        ]
+      },
+      "reasoning": "Compute stop: abs(4 - 39) % 10 = 5",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3,
+        4
+      ]
+    }
+  ],
+  "passcode": 5,
+  "difficulty": {
+    "level": "hard",
+    "depth": 25,
+    "tool_stop_count": 10,
+    "reason_stop_count": 4,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Track down the valiant cavalry unit born in the year when the sun first rose in a new century—what year might that be?\n\n2. Seek the ancestral domain that once belonged to the clan, sheltered amongst the highlands of Scotland—what is this seat called?\n\n3. With a gentle ascent, uncover the height of a mighty fortress that once stood guard over its realm—how tall is Bothwell Castle above sea level?\n\n4. As you wander near the same stronghold, how many stars do travelers bestow upon its hospitality in ratings?\n\n5. Combine the altitude of Bothwell Castle you gathered in clue 3 with its visitor rating from clue 4—what do they sum to?\n\n6. In the shadows of this stronghold, how many parks flourish in its vicinity, providing green spaces for rest and play?\n\n7. Journey to the region where this ancestral seat lies and find out how many square miles it spanned in the year the world changed drastically—what number describes its area in 1975?\n\n8. As you explore this region, seek the elevation that kisses the clouds above Renfrewshire—what height does it reach?\n\n9. In the area you’ve uncovered, how many hospitals extend their arms of care to the community nearby—what is their count?\n\n10. Combine the height of Renfrewshire from clue 8 with the number of hospitals from clue 9—what total do they reach together?\n\n11. Among political movements, discover the year when a progressive party first planted its roots in New Zealand—what is the founding year?\n\n12. Convert that founding year into a Roman numeral, and count how many symbols it takes to express this historical date—how many characters will you find?\n\n13. Onward to the leadership of the capital; when did the current steward of Wellington first take up the reins—what date marks their beginning?\n\n14. In the heart of a bustling metropolis, how many eateries share their cuisines close to Boston's green space—count them!\n\n15. Reflect on the culinary scene and uncover how many '1' bits emerge in the binary representation of that restaurant number from clue 14—what number of 1-bits do you unveil?\n\n16. Shift your gaze to the land where faith finds its many tongues—how many languages are represented at the top of the entry describing Christianity in New Zealand?\n\n17. In the annals of conflict, explore the dates when the Battle of the Somme unfolded—what time frame encapsulates this historic struggle?\n\n18. Look into the military annals of another nation to find how many formal military operations its forces engaged in during the Great War years—what figure do they represent?\n\n19. Concerning that military count from clue 18, let’s consider its mathematical essence—what is the total number of its divisors?\n\n20. A location of note appears within the records you’ve crossed; seek the home where its details are inscribed—what is the location name listed in its entry?\n\n21. Discover the elevation of this noteworthy place, challenging the sky once more—what altitude does Schuyler Flatts bear?\n\n22. Time is a relentless river; calculate the number of days that flows between November 18, 1916, and March 16, 2026—what figure emerges from this span?\n\n23. A future celebration awaits, marked with honours; how many main sections are laid out in the contents of that celebratory article from 2026?\n\n24. Distill this figure, turning it towards its prime essence—what is the sum of its distinct prime factors?\n\n25. To reach the final reckoning, compute the absolute difference between clue 4's findings and clue 5's results, and proceed to take their result modulo 10—what single digit do you arrive at?",
+  "metadata": {
+    "theme": "From Otago cavalry to public memory: trace the 5th Mounted Rifles (Otago Hussars) through origins, WWI service, civic life in New Zealand, and how battlefields and commons are commemorated around the world.",
+    "difficulty": "hard",
+    "sample_id": "sample_056",
+    "pages_crawled": 7907
+  },
+  "generated_at": "2026-03-16T19:38:18.847013+00:00"
+}

@@ -1,0 +1,128 @@
+{
+  "trail_id": "trail_6dbe279f",
+  "seed_url": "https://en.wikipedia.org/wiki/Samsung_Electronics",
+  "seed_title": "Samsung Electronics",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Samsung_Electronics",
+      "extraction_target": "the number of subsections under the Criticism and controversies section (11.1–11.7)",
+      "extraction_section": "Criticism and controversies",
+      "extracted_value": 7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Samsung_Electronics",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Seed page — Samsung is the anchor: a major multinational electronics manufacturer whose HQ location and founding details set up comparisons of market position and global logistics.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Samsung_Electronics",
+      "extraction_target": "Reason: the sum of its distinct prime factors",
+      "extraction_section": null,
+      "extracted_value": 7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (sum_prime_factors) on stop 0 value",
+      "reason_transform": "sum_prime_factors",
+      "reason_source_stop": 0,
+      "reason_code": "def prime_factors(n):\n    n = abs(int(n))\n    factors = []\n    d = 2\n    while d * d <= n:\n        while n % d == 0:\n            factors.append(d)\n            n //= d\n        d += 1\n    if n > 1: factors.append(n)\n    return factors\nresult = sum(set(prime_factors(7)))\nprint(result)"
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/London,_England",
+      "extraction_target": "Count the number of churches near 51.50722",
+      "extraction_section": null,
+      "extracted_value": 17,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "churches near 51.50722"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: count churches near 51.50722",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 3,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: digital_root(7 + 7)",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "digital_root(7 + 7)",
+        "expression_code": "def digital_root(n):\n    n = abs(int(n))\n    return n if n == 0 else ((n - 1) % 9) + 1\nresult = digital_root(7 + 7)\nprint(result)",
+        "referenced_stops": [
+          0,
+          1
+        ]
+      },
+      "reasoning": "Compute stop: digital_root(7 + 7) = 5",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 5,
+  "difficulty": {
+    "level": "easy",
+    "depth": 4,
+    "tool_stop_count": 1,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "direct_link"
+  },
+  "riddle": "1. Seek the page for the South Korean multinational electronics corporation known for phones and chips; within its \"Criticism and controversies\" section, how many subsections are listed? Follow the link labeled \"Article\" there to continue.  \n2. There exists an article at the link you followed; take the count from clue 1 and transform it by summing its distinct prime factors — that sum becomes the value for this clue.  \n3. What global hub would you examine next to trace the firm's footprint: the United Kingdom's capital near latitude 51.50722 — if you search for churches around that coordinate, how many churches are returned?  \n4. In this final reckoning, compute the digital root of (clue 1 + clue 2); the result is a single digit (0–9) and is your treasure.",
+  "metadata": {
+    "theme": "Tracing Samsung Electronics' global footprint: from its HQ to industry peers and key international hubs (market, travel, and local activity).",
+    "difficulty": "easy",
+    "sample_id": "sample_184",
+    "pages_crawled": 4069
+  },
+  "generated_at": "2026-03-17T12:12:24.667231+00:00"
+}

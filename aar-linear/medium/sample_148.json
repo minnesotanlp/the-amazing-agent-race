@@ -1,0 +1,346 @@
+{
+  "trail_id": "trail_04d6f1d6",
+  "seed_url": "https://en.wikipedia.org/wiki/Moderna",
+  "seed_title": "Moderna",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Moderna",
+      "extraction_target": "the month and year Moderna was founded",
+      "extraction_section": null,
+      "extracted_value": "September 2010",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/MRNA_vaccine",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Seed: Moderna is the biotech company that commercialized mRNA vaccine technology — we start here to anchor the trail in the company and its base of operations.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/MRNA_vaccine",
+      "extraction_target": "the molecule used by mRNA vaccines as a blueprint to build foreign protein (as stated in the lead)",
+      "extraction_section": null,
+      "extracted_value": "messenger RNA (mRNA)",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Moderna_COVID-19_vaccine",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Connects Moderna's product to the underlying technology: explains mRNA vaccine principles that made Moderna's vaccine possible.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Moderna_COVID-19_vaccine",
+      "extraction_target": "the number of languages listed at the top of the page",
+      "extraction_section": null,
+      "extracted_value": 50,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Operation_Warp_Speed",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Focus on the specific vaccine produced by Moderna and the key milestone date(s) for its regulatory authorization.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Operation_Warp_Speed",
+      "extraction_target": "Calculate the number of days between 2010-01-01 and 2026-03-17",
+      "extraction_section": null,
+      "extracted_value": 5919,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "from datetime import date\nd1 = date.fromisoformat('2010-01-01')\nd2 = date.fromisoformat('2026-03-17')\nresult = abs((d2 - d1).days)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "days"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: date computation 2010-01-01 to 2026-03-17 (pinned)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 4,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Operation_Warp_Speed",
+      "extraction_target": "Reason: the sum of its digits",
+      "extraction_section": null,
+      "extracted_value": 24,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_sum) on stop 3 value",
+      "reason_transform": "digit_sum",
+      "reason_source_stop": 3,
+      "reason_code": "result = sum(int(d) for d in str(abs(int(5919))))\nprint(result)"
+    },
+    {
+      "index": 5,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Clinical_trial",
+      "extraction_target": "the number of languages listed for the article",
+      "extraction_section": null,
+      "extracted_value": 44,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Clinical_trial",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Explains the clinical-trial process that underpins vaccine safety and efficacy claims—key context for understanding Moderna's trial data and approvals.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 6,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Clinical_trial",
+      "extraction_target": "Reason: the number of 1-bits in its binary representation",
+      "extraction_section": null,
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (binary_1bit_count) on stop 4 value",
+      "reason_transform": "binary_1bit_count",
+      "reason_source_stop": 5,
+      "reason_code": "result = bin(abs(int(44))).count('1')\nprint(result)"
+    },
+    {
+      "index": 7,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Robert_S._Langer",
+      "extraction_target": "The number of languages the article is available in (as shown near the top)",
+      "extraction_section": null,
+      "extracted_value": 21,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "MIT wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/MIT",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Profiles a leading scientist whose work on delivery systems and biomaterials influenced modern drug and vaccine technologies related to mRNA platforms.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 8,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/MIT",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Established')",
+      "extraction_section": "infobox",
+      "extracted_value": 10,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "First presidency of Donald Trump wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/First_presidency_of_Donald_Trump",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Places Langer and the research ecosystem in an institutional context — MIT as a hub for biomedical innovation tied to mRNA research.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 9,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/First_presidency_of_Donald_Trump",
+      "extraction_target": "the number of subsections under the Russia and related investigations section",
+      "extraction_section": "Russia and related investigations",
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "GSK plc wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/GSK_plc",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Provides political context: Operation Warp Speed and pandemic-era policy decisions occurred under this administration, linking government action to vaccine rollout.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 10,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/GSK_plc",
+      "extraction_target": "Look up the closing price of GSK on 2010-01-01",
+      "extraction_section": null,
+      "extracted_value": 18.67,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "stock_historical_price",
+            "arguments": {
+              "ticker": "GSK",
+              "date": "2010-01-01"
+            },
+            "expected_output": null,
+            "output_key": "stock_price"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: stock price GSK on 2010-01-01",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 11,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/GSK_plc",
+      "extraction_target": "Reason: the sum of its digits",
+      "extraction_section": null,
+      "extracted_value": 9,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_sum) on stop 8 value",
+      "reason_transform": "digit_sum",
+      "reason_source_stop": 10,
+      "reason_code": "result = sum(int(d) for d in str(abs(int(18))))\nprint(result)"
+    },
+    {
+      "index": 12,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: abs(24 - 2) % 10",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "abs(24 - 2) % 10",
+        "expression_code": "result = abs(24 - 2) % 10\nprint(result)",
+        "referenced_stops": [
+          4,
+          9,
+          11
+        ]
+      },
+      "reasoning": "Compute stop: abs(24 - 2) % 10 = 2",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 2,
+  "difficulty": {
+    "level": "medium",
+    "depth": 13,
+    "tool_stop_count": 2,
+    "reason_stop_count": 3,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "Here is the revised riddle with the necessary adjustments:\n\n1. Seek the Wikipedia page for the American biotechnology company known for its mRNA technology in vaccine development; from its opening, record the month and year when the firm was founded.\n\n2. There exists a linked article whose lead explains which molecule serves as the blueprint used to build foreign proteins in these vaccines — identify that molecule by name.\n\n3. Which page describing the company’s COVID‑19 vaccine shows how many language versions are linked at the very top? Give that count.\n\n4. If you locate the article about the U.S. programme that accelerated vaccine development, calculate how many days lie between 2010‑01‑01 and 2026‑03‑17.\n\n5. The numeric span you just computed should now be simplified by summing all of its digits; what total does that digit‑sum produce?\n\n6. In the encyclopedia’s treatment of phases of clinical research in medicine, how many language editions are linked at the top of that article?\n\n7. Imagine converting the language‑count from the previous clue into binary; how many ‘1’ bits appear in that binary representation?\n\n8. One biographical entry tied to a chemical engineer who is a longtime professor at the private Cambridge institute often referred to by a three‑letter abbreviation hides its language tally near the top (check that profile) — how many languages is that article available in?\n\n9. Pinpoint the page for the private research university in Cambridge, Massachusetts, founded by William Barton Rogers and renowned for engineering and technology; read the year recorded as its establishment; what year is listed?\n\n10. On the article chronicling the 2017–2021 U.S. presidential administration, count the subsections under the heading that discusses Russia and related investigations.\n\n11. Should you visit the British pharmaceutical and biotechnology company’s page, what was the market closing price for its stock on 2010‑01‑01?\n\n12. Next, reduce that closing‑price number by adding each digit together; what is the resulting digit sum?\n\n13. Finally, take the absolute difference between clue 5 and clue 10, then compute that result modulo clue 12; the outcome should be a single digit (0–9).",
+  "metadata": {
+    "theme": "Tracing the journey of mRNA vaccine development and rollout: Moderna's science, clinical trials, government acceleration, institutional roots, geographic reach, and market impact.",
+    "difficulty": "medium",
+    "sample_id": "sample_148",
+    "pages_crawled": 9343
+  },
+  "generated_at": "2026-03-17T12:37:21.027768+00:00"
+}

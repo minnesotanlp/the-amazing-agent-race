@@ -1,0 +1,282 @@
+{
+  "trail_id": "trail_4f1dd07c",
+  "seed_url": "https://en.wikipedia.org/wiki/Tamil_Nadu_Legislature",
+  "seed_title": "Tamil Nadu Legislature",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Tamil_Nadu_Legislature",
+      "extraction_target": "the capacity listed in the infobox (field: 'Seats')",
+      "extraction_section": "infobox",
+      "extracted_value": 234,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Tamil_Nadu_Legislative_Assembly",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start at the Tamil Nadu Legislature to introduce the state's legislative body and its institutional form and seat — the trail's focal point.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Tamil_Nadu_Legislative_Assembly",
+      "extraction_target": "the term limits (in years) for the Tamil Nadu Legislative Assembly",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Government_of_Tamil_Nadu",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Drill into the Legislative Assembly (the primary chamber) to extract concrete facts (seats, meeting place) that define representation in Tamil Nadu.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Government_of_Tamil_Nadu",
+      "extraction_target": "Get the driving duration in minutes from Government of Tamil Nadu to Tamil Nadu Legislature",
+      "extraction_section": null,
+      "extracted_value": 0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_directions",
+            "arguments": {
+              "origin": "Government of Tamil Nadu",
+              "destination": "Tamil Nadu Legislature",
+              "mode": "driving"
+            },
+            "expected_output": null,
+            "output_key": "duration"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: directions duration Government of Tamil Nadu to Tamil Nadu Legislature",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/France_at_the_2024_Summer_Paralympics",
+      "extraction_target": "Look up the elevation at France at the 2024 Summer Paralympics",
+      "extraction_section": null,
+      "extracted_value": 423.1949462890625,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "France at the 2024 Summer Paralympics"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for France at the 2024 Summer Paralympics",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 4,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/France_at_the_2024_Summer_Paralympics",
+      "extraction_target": "Reason: the number of characters when written as a Roman numeral",
+      "extraction_section": null,
+      "extracted_value": 7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (roman_numeral_letter_count) on stop 3 value",
+      "reason_transform": "roman_numeral_letter_count",
+      "reason_source_stop": 3,
+      "reason_code": "def to_roman(n):\n    n = abs(int(n))\n    vals = [(1000,'M'),(900,'CM'),(500,'D'),(400,'CD'),(100,'C'),\n            (90,'XC'),(50,'L'),(40,'XL'),(10,'X'),(9,'IX'),(5,'V'),(4,'IV'),(1,'I')]\n    r = ''\n    for v, s in vals:\n        while n >= v:\n            r += s; n -= v\n    return r\nresult = len(to_roman(423))\nprint(result)"
+    },
+    {
+      "index": 5,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Constituencies_of_the_Parliament_of_the_United_Kingdom",
+      "extraction_target": "Convert 234°C to a Fahrenheit-scale offset",
+      "extraction_section": null,
+      "extracted_value": 421,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "# Convert celsius to fahrenheit_offset\nvalue = 234.0\nconverted = value * 1.8\nresult = int(converted)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "converted"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: convert 234 celsius to fahrenheit_offset",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 6,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Constituencies_of_the_Parliament_of_the_United_Kingdom",
+      "extraction_target": "Reason: the sum of its digits",
+      "extraction_section": null,
+      "extracted_value": 7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_sum) on stop 4 value",
+      "reason_transform": "digit_sum",
+      "reason_source_stop": 5,
+      "reason_code": "result = sum(int(d) for d in str(abs(int(421))))\nprint(result)"
+    },
+    {
+      "index": 7,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/2026_Tamil_Nadu_Legislative_Assembly_election",
+      "extraction_target": "Convert 5 meters to yards",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "# Convert meters to yards\nvalue = 5.0\nconverted = value * 1.09361\nresult = int(converted)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "converted"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: convert 5 meters to yards",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 8,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: (234 + 0 + 421 + 7) % 10",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "(234 + 0 + 421 + 7) % 10",
+        "expression_code": "result = (234 + 0 + 421 + 7) % 10\nprint(result)",
+        "referenced_stops": [
+          0,
+          2,
+          5,
+          6
+        ]
+      },
+      "reasoning": "Compute stop: (234 + 0 + 421 + 7) % 10 = 2",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 2,
+  "difficulty": {
+    "level": "medium",
+    "depth": 9,
+    "tool_stop_count": 4,
+    "reason_stop_count": 2,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "direct_link"
+  },
+  "riddle": "Here is the riddle with the corrected clue:\n\n1. Seek the page describing the legislative arm of the southern Indian state known for its rich culture and language, and discover its assembly's capacity: how many seats compose its chambers?\n\n2. There exists a follow-up page about the state's legislative assembly; on that article, how many years does a single elected term last?\n\n3. What would a driver see on a directions app if tasked to go from the state's executive headquarters to that legislature building — report the driving duration in minutes.\n\n4. If you follow the link that leads to an article about a country's participation in the 2024 Paralympic Games, what elevation above sea level does the map associate with that entry?\n\n5. The article whose focus is that Paralympic contingent gives you an elevation; take the number you found in clue 4, convert it to Roman numerals, and tell how many characters long that numeral is.\n\n6. In the next article, one cataloguing electoral districts across a European kingdom, perform this arithmetic on a Celsius prompt: convert 234°C by multiplying by 1.8 and record the resulting whole number.\n\n7. The result from the conversion in clue 6 now needs a simple habit of numeracy — compute the sum of its digits.\n\n8. One detail hides in the page about the forthcoming state election: translate five metres into yards, then report the integer value you obtain.\n\n9. Finally, compute the following single-digit result and give it as your answer (0–9): (clue 1 + clue 3 + clue 6 + clue 7) % 10.",
+  "metadata": {
+    "theme": "Mapping Tamil Nadu's legislature and its place in comparative representative systems — from the state's legislative structure to the locations, travel, population context and upcoming election timeline.",
+    "difficulty": "medium",
+    "sample_id": "sample_077",
+    "pages_crawled": 3493
+  },
+  "generated_at": "2026-03-16T14:09:43.620225+00:00"
+}

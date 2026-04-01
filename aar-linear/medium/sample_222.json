@@ -1,0 +1,380 @@
+{
+  "trail_id": "trail_cbbb9576",
+  "seed_url": "https://en.wikipedia.org/wiki/Paragominas",
+  "seed_title": "Paragominas",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Paragominas",
+      "extraction_target": "the coordinates listed in the infobox (field: 'Coordinates')",
+      "extraction_section": "infobox",
+      "extracted_value": "-2.99583, -47.35278",
+      "extracted_value_type": "coords",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Hudson River wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Hudson_River",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start at the seed: Paragominas is a municipality in the Brazilian Amazon — we extract its coordinates to ground distance and geographic comparisons.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Hudson_River",
+      "extraction_target": "Calculate the driving distance between See *Populated places on the Hudson River* and -2.99583",
+      "extraction_section": null,
+      "extracted_value": 8661.704,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "See *Populated places on the Hudson River*"
+            },
+            "expected_output": null,
+            "output_key": "coords_a"
+          },
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "-2.99583"
+            },
+            "expected_output": null,
+            "output_key": "coords_b"
+          },
+          {
+            "tool_name": "maps_distance_matrix",
+            "arguments": {
+              "__from_previous_as_origins_destinations": [
+                "coords_a",
+                "coords_b"
+              ]
+            },
+            "expected_output": null,
+            "output_key": "distance_km"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: distance between See *Populated places on the Hudson River* and -2.99583",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Manhattan",
+      "extraction_target": "the elevation listed in the infobox (field: 'Highest elevation [[3]](#cite_note-3)')",
+      "extraction_section": "infobox",
+      "extracted_value": 265.05,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Manhattan",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Manhattan sits on the Hudson River and is an iconic dense urban center — compare urban scale after measuring distance to the Hudson.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 3,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Manhattan",
+      "extraction_target": "Reason: the number of 1-bits in its binary representation",
+      "extraction_section": null,
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (binary_1bit_count) on stop 2 value",
+      "reason_transform": "binary_1bit_count",
+      "reason_source_stop": 2,
+      "reason_code": "result = bin(abs(int(265))).count('1')\nprint(result)"
+    },
+    {
+      "index": 4,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Washington_DC",
+      "extraction_target": "the elevation listed in the infobox (field: 'Highest elevation ([Fort Reno Park](/wiki/Fort_Reno_Park \"Fort Reno Park\"))')",
+      "extraction_section": "infobox",
+      "extracted_value": 409,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "UK wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/UK",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "The national capital near the US East Coast: a political counterpoint to the Amazon municipality and an anchor for geopolitical comparisons.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 5,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/UK",
+      "extraction_target": "Look up the population of United States",
+      "extraction_section": null,
+      "extracted_value": 87146,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "countries_population",
+            "arguments": {
+              "country": "United States"
+            },
+            "expected_output": null,
+            "output_key": "population"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: population of United States",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 6,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/UK",
+      "extraction_target": "Reason: the digital root (iterated digit sum until single digit)",
+      "extraction_section": null,
+      "extracted_value": 8,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digital_root) on stop 4 value",
+      "reason_transform": "digital_root",
+      "reason_source_stop": 5,
+      "reason_code": "n = abs(int(87146))\nresult = n if n == 0 else ((n - 1) % 9) + 1\nprint(result)"
+    },
+    {
+      "index": 7,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/San_Francisco,_California",
+      "extraction_target": "the elevation listed in the infobox (field: 'Elevation [[9]](#cite_note-9)')",
+      "extraction_section": "infobox",
+      "extracted_value": 52,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/San_Francisco,_California",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "West Coast urban and tech region contrast (geographic opposite of the Amazon) — prepares context for a market/tech stop.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 8,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/San_Francisco,_California",
+      "extraction_target": "Reason: the next prime number after that figure",
+      "extraction_section": null,
+      "extracted_value": 53,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (next_prime) on stop 5 value",
+      "reason_transform": "next_prime",
+      "reason_source_stop": 7,
+      "reason_code": "def next_prime(n):\n    n = abs(int(n))\n    if n < 2: return 2\n    candidate = n + 1\n    while True:\n        if all(candidate % i != 0 for i in range(2, int(candidate**0.5)+1)):\n            return candidate\n        candidate += 1\nresult = next_prime(52)\nprint(result)"
+    },
+    {
+      "index": 9,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Luiz_In%C3%A1cio_Lula_da_Silva",
+      "extraction_target": "the number of country sub-subsections listed under 'Foreign policy' in the First presidency section (China, Cuba, Iran, Iraq, Libya, Venezuela)",
+      "extraction_section": "First presidency (2003–2011)",
+      "extracted_value": 6,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Falklands War wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Falklands_War",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Return attention to Brazil's national leadership — connect the local (Paragominas) to national politics and policy that shape regional development.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 10,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Falklands_War",
+      "extraction_target": "Look up the elevation at Falklands War",
+      "extraction_section": null,
+      "extracted_value": -21.66177177429199,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Falklands War"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for Falklands War",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 11,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Battle_of_Gettysburg",
+      "extraction_target": "the number of languages shown near the article title",
+      "extraction_section": null,
+      "extracted_value": 56,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Battle_of_Gettysburg",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "End with a major historical turning point in U.S. history — extracting the battle date lets the trail close by comparing long-term historical timelines between places visited.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 12,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: digital_root(52 + 53)",
+      "extraction_section": null,
+      "extracted_value": 6,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "digital_root(52 + 53)",
+        "expression_code": "def digital_root(n):\n    n = abs(int(n))\n    return n if n == 0 else ((n - 1) % 9) + 1\nresult = digital_root(52 + 53)\nprint(result)",
+        "referenced_stops": [
+          7,
+          8
+        ]
+      },
+      "reasoning": "Compute stop: digital_root(52 + 53) = 6",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 6,
+  "difficulty": {
+    "level": "medium",
+    "depth": 13,
+    "tool_stop_count": 3,
+    "reason_stop_count": 3,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "Here is the revised riddle:\n\n1. Seek the Wikipedia article for a municipality in the northern part of Brazil, known for its proximity to a significant tributary of the Amazon River; from its infobox, read the geographic coordinates that pin this location on a map; when you have them, look up the major river that runs alongside New York and New Jersey to continue the trail.\n\n2. Which driving distance connects the list-of-towns page for that river to the point at longitude −2.99583? — compute the driving distance (in your preferred units) between the Wikipedia list of populated places along that river and the location at longitude −2.99583, then proceed to the New York City borough that is coterminous with a single county.\n\n3. There exists a borough of New York City coextensive with its own county; consult that borough’s infobox and note the highest elevation given there.\n\n4. If you write that elevation in base two, how many “1” digits appear in its binary form? (Hint: count the ones in the binary representation.)\n\n5. The article whose opening describes the federal district that serves as the United States capital hides its maximum height in the infobox; record that highest elevation and then turn toward a British national page for the next step.\n\n6. In the British national article you found, fetch the most recent population figure given for the United States and keep that number for the next transformation.\n\n7. Like a numerologist, reduce the population figure you just obtained by repeatedly summing its digits until a single digit remains; record that digital root. (Hint: iterate digit-sums until only one digit is left.)\n\n8. (Now consult the fog-bound city on the northern tip of a Californian peninsula and take the elevation that appears in its infobox.)\n\n9. Ascertain the smallest prime strictly greater than the elevation you just noted; that next prime is your new numeric waypoint. (Hint: find the next prime number after that figure.)\n\n10. Examine the biography of the Brazilian leader who governed from 2003–2011 and returned to office in 2023; within the subsection covering his first presidency, under the heading about foreign policy, count how many country sub-subsections are listed.\n\n11. What elevation is recorded at the location of the 1982 undeclared conflict between Argentina and the United Kingdom — query the geographic elevation for that theatre of operations.\n\n12. Count how many language links are shown beside the Wikipedia entry for the 1863 Pennsylvania engagement of the American Civil War and record that count.\n\n13. Compute the digital root of (clue 8 + clue 9): add the numeric result from clue 8 to the numeric result from clue 9, then iteratively sum the digits of that total until a single digit remains; give that single digit as your final answer (0–9).",
+  "metadata": {
+    "theme": "From the Amazon frontier to global cities, politics, history and markets — a geographical and civic journey beginning in Paragominas that measures place, population, elevation, distance, historical anniversaries and market signals.",
+    "difficulty": "medium",
+    "sample_id": "sample_222",
+    "pages_crawled": 15920
+  },
+  "generated_at": "2026-03-21T02:54:17.773366+00:00"
+}

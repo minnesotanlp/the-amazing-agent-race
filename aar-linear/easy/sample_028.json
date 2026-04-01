@@ -1,0 +1,138 @@
+{
+  "trail_id": "trail_e48e47a1",
+  "seed_url": "https://en.wikipedia.org/wiki/HMS_E8",
+  "seed_title": "HMS E8",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/HMS_E8",
+      "extraction_target": "the surfaced displacement of HMS E8 in long tons",
+      "extraction_section": null,
+      "extracted_value": 652,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/British_E-class_submarine",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "HMS E8 is the seed — a specific WWI British E‑class submarine. Extracting its displacement and commissioning date from the infobox grounds the trail in a concrete vessel's specs and service start.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/British_E-class_submarine",
+      "extraction_target": "Look up the elevation at British E-class submarine",
+      "extraction_section": null,
+      "extracted_value": 371.4067077636719,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "British E-class submarine"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for British E-class submarine",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/British_E-class_submarine",
+      "extraction_target": "Reason: the number of divisors of that figure",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (num_divisors) on stop 1 value",
+      "reason_transform": "num_divisors",
+      "reason_source_stop": 1,
+      "reason_code": "n = abs(int(371))\ncount = sum(1 for i in range(1, n+1) if n % i == 0) if n > 0 else 0\nresult = count\nprint(result)"
+    },
+    {
+      "index": 3,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: digital_root(652 + 371 + 4)",
+      "extraction_section": null,
+      "extracted_value": 1,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "digital_root(652 + 371 + 4)",
+        "expression_code": "def digital_root(n):\n    n = abs(int(n))\n    return n if n == 0 else ((n - 1) % 9) + 1\nresult = digital_root(652 + 371 + 4)\nprint(result)",
+        "referenced_stops": [
+          0,
+          1,
+          2
+        ]
+      },
+      "reasoning": "Compute stop: digital_root(652 + 371 + 4) = 1",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 1,
+  "difficulty": {
+    "level": "easy",
+    "depth": 4,
+    "tool_stop_count": 1,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "direct_link"
+  },
+  "riddle": "Here is the revised riddle:\n\n1. Seek the entry on a British submarine that was an E-class vessel: from its opening lines, report the surfaced displacement of this boat in long tons.  \n2. There exists a page linked from that article describing the class to which E8 belonged; on that class page, determine the elevation above sea level associated with the subject (treat it as a geographic height).  \n3. The next step asks you to take the numeric height you just found and count how many positive divisors it has — how many factors divide that number evenly?  \n4. Finally, compute the digital root of (clue 1 + clue 2 + clue 3) and give that single-digit result (0–9).",
+  "metadata": {
+    "theme": "A short naval-history micro-trail following a WWI British E-class submarine: inspect HMS E8's specifications, consult its class for operational context, then compute a historic transit duration for a typical patrol route.",
+    "difficulty": "easy",
+    "sample_id": "sample_028",
+    "pages_crawled": 1301,
+    "source": "trail_puzzles_v2"
+  },
+  "generated_at": "2026-03-15T12:31:40.811302+00:00"
+}

@@ -1,0 +1,876 @@
+{
+  "trail_id": "trail_ffb812c4",
+  "seed_url": "https://en.wikipedia.org/wiki/Faust_Brothers_Building",
+  "seed_title": "Faust Brothers Building",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Faust_Brothers_Building",
+      "extraction_target": "the year the building was built (Built)",
+      "extraction_section": null,
+      "extracted_value": 1875,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Faust_Brothers_Building",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Seed: a historic commercial building anchoring the trail — use its coordinates and construction date to connect architecture to mapping.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Faust_Brothers_Building",
+      "extraction_target": "Reason: the sum of its digits",
+      "extraction_section": null,
+      "extracted_value": 21,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_sum) on stop 0 value",
+      "reason_transform": "digit_sum",
+      "reason_source_stop": 0,
+      "reason_code": "result = sum(int(d) for d in str(abs(int(1875))))\nprint(result)",
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Baltimore_National_Heritage_Area",
+      "extraction_target": "the coordinates of the Baltimore National Heritage Area as listed",
+      "extraction_section": null,
+      "extracted_value": "39°17′N 76°38′W﻿ / ﻿39.29°N 76.63°W﻿ / 39.29; -76.63",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Queen Anne style architecture in the United States wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Queen_Anne_style_architecture_in_the_United_States",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Places the Faust Brothers Building in its local preservation context and gives a nearby-area geometry to reference on the map.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Queen_Anne_style_architecture_in_the_United_States",
+      "extraction_target": "the number of distinctive features of the American Queen Anne style listed in the Overview section",
+      "extraction_section": "Overview",
+      "extracted_value": 9,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "World Geodetic System wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/World_Geodetic_System",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Explains the architectural style background that helps interpret the building's historical significance.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Queen_Anne_style_architecture_in_the_United_States",
+      "extraction_target": "Look up the elevation of Queen Anne style architecture in the United States",
+      "extraction_section": null,
+      "extracted_value": 3236.2353515625,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Queen Anne style architecture in the United States"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Queen Anne style architecture in the United States) from https://en.wikipedia.org/wiki/Queen_Anne_style_architecture_in_the_United_States",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Queen_Anne_style_architecture_in_the_United_States",
+      "extraction_target": "Look up the Google rating of Queen Anne style architecture in the United States",
+      "extraction_section": null,
+      "extracted_value": 4.6,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "Queen Anne style architecture in the United States"
+            },
+            "expected_output": null,
+            "output_key": "place_rating"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (Google rating of Queen Anne style architecture in the United States) from https://en.wikipedia.org/wiki/Queen_Anne_style_architecture_in_the_United_States",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Queen_Anne_style_architecture_in_the_United_States",
+      "extraction_target": "Combine the elevation of Queen Anne style architecture in the United States and the Google rating of Queen Anne style architecture in the United States: abs(3236 - 4)",
+      "extraction_section": null,
+      "extracted_value": 3232,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(3236.2353515625) - int(4.6))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Queen Anne style architecture in the United States abs_diff Google rating of Queen Anne style architecture in the United States",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        4,
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/World_Geodetic_System",
+      "extraction_target": "the number of language links shown near the top of the article",
+      "extraction_section": null,
+      "extracted_value": 20,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/GRS_80",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Introduce the global geodetic framework used to express the building's coordinates and align local maps with global reference frames.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/GRS_80",
+      "extraction_target": "Convert 9°C to a Fahrenheit-scale offset",
+      "extraction_section": null,
+      "extracted_value": 16,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "# Convert celsius to fahrenheit_offset\nvalue = 9.0\nconverted = value * 1.8\nresult = int(converted)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "converted"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: convert 9 celsius to fahrenheit_offset",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        7
+      ]
+    },
+    {
+      "index": 9,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/WGS84",
+      "extraction_target": "the number of languages listed at the top of the article",
+      "extraction_section": null,
+      "extracted_value": 20,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "WGS84 wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/WGS84",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "WGS84 is the practical realization of the world geodetic system used by GPS — a key step from theory to applied coordinates.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        8
+      ]
+    },
+    {
+      "index": 10,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/WGS84",
+      "extraction_target": "Reason: the next prime number after that figure",
+      "extraction_section": null,
+      "extracted_value": 23,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (next_prime) on stop 5 value",
+      "reason_transform": "next_prime",
+      "reason_source_stop": 9,
+      "reason_code": "def next_prime(n):\n    n = abs(int(n))\n    if n < 2: return 2\n    candidate = n + 1\n    while True:\n        if all(candidate % i != 0 for i in range(2, int(candidate**0.5)+1)):\n            return candidate\n        candidate += 1\nresult = next_prime(20)\nprint(result)",
+      "depends_on": [
+        9
+      ]
+    },
+    {
+      "index": 11,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/DORIS_(satellite_system)",
+      "extraction_target": "Convert 9 meters to yards",
+      "extraction_section": null,
+      "extracted_value": 9,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "# Convert meters to yards\nvalue = 9.0\nconverted = value * 1.09361\nresult = int(converted)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "converted"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: convert 9 meters to yards",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        10
+      ]
+    },
+    {
+      "index": 12,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/DORIS_(satellite_system)",
+      "extraction_target": "Reason: the number of divisors of that figure",
+      "extraction_section": null,
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (num_divisors) on stop 6 value",
+      "reason_transform": "num_divisors",
+      "reason_source_stop": 11,
+      "reason_code": "n = abs(int(9))\ncount = sum(1 for i in range(1, n+1) if n % i == 0) if n > 0 else 0\nresult = count\nprint(result)",
+      "depends_on": [
+        11
+      ]
+    },
+    {
+      "index": 13,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Spatial_reference_system",
+      "extraction_target": "the number of top-level sections listed in the table of contents",
+      "extraction_section": "Contents",
+      "extracted_value": 7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Spatial_reference_system",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Shows how coordinate reference systems package datums, projections and units — tying building coordinates to map displays and GIS workflows.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        12
+      ]
+    },
+    {
+      "index": 14,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Spatial_reference_system",
+      "extraction_target": "Reason: the number of divisors of that figure",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (num_divisors) on stop 7 value",
+      "reason_transform": "num_divisors",
+      "reason_source_stop": 13,
+      "reason_code": "n = abs(int(7))\ncount = sum(1 for i in range(1, n+1) if n % i == 0) if n > 0 else 0\nresult = count\nprint(result)",
+      "depends_on": [
+        13
+      ]
+    },
+    {
+      "index": 15,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Downtown_Kansas_City",
+      "extraction_target": "the total area of Downtown Kansas City in square miles",
+      "extraction_section": null,
+      "extracted_value": 6.23,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Discrete Global Grid wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Discrete_Global_Grid",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Shift to an applied urban example: Downtown Kansas City will be the target urban area for applying the geodetic and mapping ideas introduced earlier.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        14
+      ]
+    },
+    {
+      "index": 16,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Downtown_Kansas_City",
+      "extraction_target": "Look up the elevation of Downtown Kansas City",
+      "extraction_section": null,
+      "extracted_value": 282.5777282714844,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Downtown Kansas City"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Downtown Kansas City) from https://en.wikipedia.org/wiki/Downtown_Kansas_City",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        15
+      ]
+    },
+    {
+      "index": 17,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Downtown_Kansas_City",
+      "extraction_target": "Look up the count of temples near Downtown Kansas City",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "temples near Downtown Kansas City"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of temples near Downtown Kansas City) from https://en.wikipedia.org/wiki/Downtown_Kansas_City",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        15
+      ]
+    },
+    {
+      "index": 18,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Downtown_Kansas_City",
+      "extraction_target": "Combine the elevation of Downtown Kansas City and the count of temples near Downtown Kansas City: abs(282 - 20)",
+      "extraction_section": null,
+      "extracted_value": 262,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(282.5777282714844) - int(20.0))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Downtown Kansas City abs_diff count of temples near Downtown Kansas City",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        16,
+        17
+      ]
+    },
+    {
+      "index": 19,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Discrete_Global_Grid",
+      "extraction_target": "Convert 7 km to miles",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "# Convert km to miles\nvalue = 7.0\nconverted = value * 0.621371\nresult = int(converted)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "converted"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: convert 7 km to miles",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        18
+      ]
+    },
+    {
+      "index": 20,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Flag_of_Kansas_City,_Missouri",
+      "extraction_target": "the date the current flag was adopted",
+      "extraction_section": null,
+      "extracted_value": "February 9, 2023",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Mayor of Kansas City, Missouri wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Mayor_of_Kansas_City,_Missouri",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A civic symbol in the urban case study; its adoption date is a datum for local history and ties civic identity to place.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        19
+      ]
+    },
+    {
+      "index": 21,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Flag_of_Kansas_City,_Missouri",
+      "extraction_target": "Look up the elevation of Flag of Kansas City, Missouri",
+      "extraction_section": null,
+      "extracted_value": 273.5455017089844,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Flag of Kansas City, Missouri"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Flag of Kansas City, Missouri) from https://en.wikipedia.org/wiki/Flag_of_Kansas_City,_Missouri",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        20
+      ]
+    },
+    {
+      "index": 22,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Flag_of_Kansas_City,_Missouri",
+      "extraction_target": "Look up the Google rating of Flag of Kansas City, Missouri",
+      "extraction_section": null,
+      "extracted_value": 4.9,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "Flag of Kansas City, Missouri"
+            },
+            "expected_output": null,
+            "output_key": "place_rating"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (Google rating of Flag of Kansas City, Missouri) from https://en.wikipedia.org/wiki/Flag_of_Kansas_City,_Missouri",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        20
+      ]
+    },
+    {
+      "index": 23,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Flag_of_Kansas_City,_Missouri",
+      "extraction_target": "Combine the elevation of Flag of Kansas City, Missouri and the Google rating of Flag of Kansas City, Missouri: abs(273 - 4)",
+      "extraction_section": null,
+      "extracted_value": 269,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(273.5455017089844) - int(4.9))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Flag of Kansas City, Missouri abs_diff Google rating of Flag of Kansas City, Missouri",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        21,
+        22
+      ]
+    },
+    {
+      "index": 24,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Mayor_of_Kansas_City,_Missouri",
+      "extraction_target": "term length of the mayor in years",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Kansas City Union Station wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Kansas_City_Union_Station",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Connect mapping and urban analysis back to civic stewardship — the mayoral office oversees planning and landmarks in the case-study city.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        23
+      ]
+    },
+    {
+      "index": 25,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Kansas_City_Union_Station",
+      "extraction_target": "Get the driving duration in minutes from 30 West Pershing Road Kansas City to Flag of Kansas City, Missouri",
+      "extraction_section": null,
+      "extracted_value": 6,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_directions",
+            "arguments": {
+              "origin": "30 West Pershing Road Kansas City",
+              "destination": "Flag of Kansas City, Missouri",
+              "mode": "driving"
+            },
+            "expected_output": null,
+            "output_key": "duration"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: directions duration 30 West Pershing Road Kansas City to Flag of Kansas City, Missouri",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        24
+      ]
+    },
+    {
+      "index": 26,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: (9 + 9 + 2) % 10",
+      "extraction_section": null,
+      "extracted_value": 0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "(9 + 9 + 2) % 10",
+        "expression_code": "result = (9 + 9 + 2) % 10\nprint(result)",
+        "referenced_stops": [
+          3,
+          11,
+          14
+        ]
+      },
+      "reasoning": "Compute stop: (9 + 9 + 2) % 10 = 0",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3,
+        11,
+        14
+      ]
+    }
+  ],
+  "passcode": 0,
+  "difficulty": {
+    "level": "hard",
+    "depth": 27,
+    "tool_stop_count": 13,
+    "reason_stop_count": 4,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Unearth the tale of a remarkable commercial edifice in Baltimore, born in what year? \n\n2. Once you discover its establishment year, sum the digits of that number to unlock the next answer.\n\n3. A historic region awaits you — what geographic points define the domain known for its cultural legacy in the city?\n\n4. Seek out a page where distinctive architectural traits shine bright; how many special features define the beloved style known as Queen Anne?\n\n5. Quench your curiosity regarding this style's elevation: what altitude does it typically reach, spoken in meters?\n\n6. Gaze upon the opinions etched in the ether; what score do visitors give this architectural style in their reviews?\n\n7. Combine your newfound elevation from clue 5 with the rating from clue 6, and find the absolute difference to move forward.\n\n8. A framework of global positioning lies ahead; how many language links can you find at the top of this geodetic guide?\n\n9. Convert a slight chill of 9 degrees Celsius into a corresponding temperature on the Fahrenheit scale — what’s the offset?\n\n10. At the next stop, another article awaits. How many languages does it list near the beginning of its text?\n\n11. Ponder this: what is the next prime number following the count you just unearthed from clue 10?\n\n12. A measurement from the skies beckons; convert 9 meters into yards. What is this value?\n\n13. Reflect on your last transformation — how many factors does the number of yards you found in clue 12 possess?\n\n14. Within a certain document regarding geography, how many main divisions can you find within its table of contents?\n\n15. Again, analyze that number; what is the total of its divisors to continue your journey?\n\n16. A vibrant urban hub awaits in Kansas City; what area does this bustling downtown cover, quantified in square miles?\n\n17. Seek the heights of this urban center — how far above sea level does it stand in meters?\n\n18. Count the sacred spaces nestled near this downtown; how many temples grace the vicinity?\n\n19. Now merge your results from clue 17 and clue 18—what is the absolute difference between those two numbers?\n\n20. Set your sights on a grid that simplifies our world; how many miles does a distance of 7 kilometers translate to?\n\n21. Search for a symbol that waves proudly in this Missouri city; when was the current flag first adopted? \n\n22. The elevation of a flag must be uncovered. What altitude does the site of this emblem reach in meters?\n\n23. Cloaked in glamour, what rating do the people bestow upon the flag that represents Kansas City?\n\n24. To proceed, combine the elevation you’ve just found in clue 22 with the rating from clue 23, then find the absolute difference.\n\n25. The leader of this city holds a significant title; for how many years is the mayor appointed?\n\n26. Drive along a specified route from one notable location to this flag site. How long does that journey take in minutes?\n\n27. At last, take the answers from clues 4, 12, and 15, adding them together, and then compute the result modulo 10. The outcome yields a single digit — what is it?",
+  "metadata": {
+    "theme": "From a single historic commercial building in Baltimore, follow a narrative that moves from local architectural context into the geodetic and coordinate systems that map our world — then apply those standards to an urban case study in Kansas City. The trail mixes architectural history, geodesy standards, and practical measurements (distances, elevations, travel time, POI counts) to illustrate how heritage and mapping meet.",
+    "difficulty": "hard",
+    "sample_id": "sample_075",
+    "pages_crawled": 788
+  },
+  "generated_at": "2026-03-16T06:36:53.671275+00:00"
+}

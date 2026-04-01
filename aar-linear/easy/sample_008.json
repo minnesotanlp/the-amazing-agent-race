@@ -1,0 +1,130 @@
+{
+  "trail_id": "trail_27c7bca6",
+  "seed_url": "https://en.wikipedia.org/wiki/Lawrence_D._Mass",
+  "seed_title": "Lawrence D. Mass",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Lawrence_D._Mass",
+      "extraction_target": "year he was in the first group of physicians designated as diplomates of the American Board of Addiction Medicine",
+      "extraction_section": null,
+      "extracted_value": 2009,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Gay_Men%27s_Health_Crisis",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Lawrence D. Mass, a physician and early chronicler of the AIDS crisis, wrote some of the first public pieces about the disease; extracting the date of his first AIDS coverage anchors the timeline for the trail.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Gay_Men%27s_Health_Crisis",
+      "extraction_target": "Calculate the number of days between 1982-06-30 and 2026-03-15",
+      "extraction_section": null,
+      "extracted_value": 15964,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "from datetime import date\nd1 = date.fromisoformat('1982-06-30')\nd2 = date.fromisoformat('2026-03-15')\nresult = abs((d2 - d1).days)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "days"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: date computation 1982-06-30 to 2026-03-15 (pinned)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Gay_Men%27s_Health_Crisis",
+      "extraction_target": "Reason: the number of divisors of that figure",
+      "extraction_section": null,
+      "extracted_value": 12,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (num_divisors) on stop 1 value",
+      "reason_transform": "num_divisors",
+      "reason_source_stop": 1,
+      "reason_code": "n = abs(int(15964))\ncount = sum(1 for i in range(1, n+1) if n % i == 0) if n > 0 else 0\nresult = count\nprint(result)"
+    },
+    {
+      "index": 3,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: digital_root(2009 + 15964 + 12)",
+      "extraction_section": null,
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "digital_root(2009 + 15964 + 12)",
+        "expression_code": "def digital_root(n):\n    n = abs(int(n))\n    return n if n == 0 else ((n - 1) % 9) + 1\nresult = digital_root(2009 + 15964 + 12)\nprint(result)",
+        "referenced_stops": [
+          0,
+          1,
+          2
+        ]
+      },
+      "reasoning": "Compute stop: digital_root(2009 + 15964 + 12) = 3",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 3,
+  "difficulty": {
+    "level": "easy",
+    "depth": 4,
+    "tool_stop_count": 1,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "direct_link"
+  },
+  "riddle": "Here is the riddle with the corrected clues in place:\n\n1. Seek the Wikipedia page for a physician and author known for his work in addiction medicine and an outspoken advocate for gay men's health; on that entry, find the year recorded when he was counted among the first physicians designated as diplomates of the American Board of Addiction Medicine, and then follow the linked name of the grassroots organisation for gay men's health and early AIDS advocacy to continue.\n\n2. What is the number of days between 1982-06-30 and 2026-03-15 — compute that interval while you are on the community organisation's page you just reached.\n\n3. If you take the day-count from clue 2, determine how many positive divisors that integer has.\n\n4. Narrative: Add the three numbers you uncovered — clue 1, clue 2 and clue 3 — then compute the digital root of that sum; report the result as a single digit (0–9).",
+  "metadata": {
+    "theme": "Early AIDS reporting and the birth of community response — follow a physician-journalist's first public coverage to the founding of grassroots health activism.",
+    "difficulty": "easy",
+    "sample_id": "sample_008",
+    "pages_crawled": 440,
+    "source": "trail_puzzles_v2"
+  },
+  "generated_at": "2026-03-15T10:37:30.285453+00:00"
+}

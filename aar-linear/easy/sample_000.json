@@ -1,0 +1,129 @@
+{
+  "trail_id": "trail_a8265418",
+  "seed_url": "https://en.wikipedia.org/wiki/Singolare",
+  "seed_title": "Singolare",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Singolare",
+      "extraction_target": "the release month and year of the album",
+      "extraction_section": null,
+      "extracted_value": "October 1976 (1976-10)",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Plurale",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Singolare is the seed album (by Mina); extract its release date from the infobox to establish when this 'singular' half of the pair was issued.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Plurale",
+      "extraction_target": "Calculate the number of days between 1976-01-01 and 2026-03-15",
+      "extraction_section": null,
+      "extracted_value": 18336,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "from datetime import date\nd1 = date.fromisoformat('1976-01-01')\nd2 = date.fromisoformat('2026-03-15')\nresult = abs((d2 - d1).days)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "days"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: date computation 1976-01-01 to 2026-03-15 (pinned)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Plurale",
+      "extraction_target": "Reason: the digital root (iterated digit sum until single digit)",
+      "extraction_section": null,
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digital_root) on stop 1 value",
+      "reason_transform": "digital_root",
+      "reason_source_stop": 1,
+      "reason_code": "n = abs(int(18336))\nresult = n if n == 0 else ((n - 1) % 9) + 1\nprint(result)"
+    },
+    {
+      "index": 3,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: (18336 + 3) % 10",
+      "extraction_section": null,
+      "extracted_value": 9,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "(18336 + 3) % 10",
+        "expression_code": "result = (18336 + 3) % 10\nprint(result)",
+        "referenced_stops": [
+          1,
+          2
+        ]
+      },
+      "reasoning": "Compute stop: (18336 + 3) % 10 = 9",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 9,
+  "difficulty": {
+    "level": "easy",
+    "depth": 4,
+    "tool_stop_count": 1,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "direct_link"
+  },
+  "riddle": "Here is the revised riddle:\n\n1. Seek the page dedicated to the Italian word meaning \"singular\" in music — from its opening line note the month and year when Mina's album first appeared, then follow the linked companion album (its plural counterpart) to continue the hunt.  \n2. How many days lie between 1 January 1976 and 15 March 2026 — compute that span exactly while you are on the companion's page.  \n3. If you have the day-count from clue 2, repeatedly sum its digits until only one digit remains (the iterated digit-sum, sometimes called the digital root); that single digit is your next value.  \n4. The final step, which ties the chain together, is to compute (clue 2 + clue 3) modulo 10; the result of this arithmetic is a single digit from 0 to 9.",
+  "metadata": {
+    "theme": "Tracing Mina's paired album release — the 'Singolare' / 'Plurale' companion albums and their release timing",
+    "difficulty": "easy",
+    "sample_id": "sample_000",
+    "pages_crawled": 33,
+    "source": "trail_puzzles_v2"
+  },
+  "generated_at": "2026-03-15T09:45:16.371336+00:00"
+}

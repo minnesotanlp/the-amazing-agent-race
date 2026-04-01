@@ -1,0 +1,889 @@
+{
+  "trail_id": "trail_2845b715",
+  "seed_url": "https://en.wikipedia.org/wiki/The_U.D.I._Song",
+  "seed_title": "The U.D.I. Song",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/The_U.D.I._Song",
+      "extraction_target": "the number of weeks the song initially spent at number 1 on the Rhodesian music charts",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Prime_Minister_of_Rhodesia",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Seed stop — the U.D.I. Song is a cultural entry point that commemorates Rhodesia's 1965 Unilateral Declaration of Independence and sets the trail's historical focus.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Prime_Minister_of_Rhodesia",
+      "extraction_target": "the formation date of the office of Prime Minister of Rhodesia",
+      "extraction_section": null,
+      "extracted_value": "1 October 1923",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "1956 French legislative election wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/1956_French_legislative_election",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Connects the anthem to Rhodesia's governing office and leaders who implemented and sustained UDI; provides political context for the period the song celebrates.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/1956_French_legislative_election",
+      "extraction_target": "Calculate the number of days between 1923-10-01 and 2026-03-16",
+      "extraction_section": null,
+      "extracted_value": 37422,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "from datetime import date\nd1 = date.fromisoformat('1923-10-01')\nd2 = date.fromisoformat('2026-03-16')\nresult = abs((d2 - d1).days)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "days"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: date computation 1923-10-01 to 2026-03-16 (pinned)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/1956_French_legislative_election",
+      "extraction_target": "Reason: the sum of its digits",
+      "extraction_section": null,
+      "extracted_value": 18,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_sum) on stop 2 value",
+      "reason_transform": "digit_sum",
+      "reason_source_stop": 2,
+      "reason_code": "result = sum(int(d) for d in str(abs(int(37422))))\nprint(result)",
+      "depends_on": [
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Rhodesian_diaspora",
+      "extraction_target": "the population of Zimbabwe listed in the infobox",
+      "extraction_section": null,
+      "extracted_value": 13061239,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Rhodesian diaspora wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Rhodesian_diaspora",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Shows the human consequence of UDI and later conflicts: where former Rhodesians resettled and how communities formed overseas.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Rhodesian_diaspora",
+      "extraction_target": "Reason: the number of divisors of that figure",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (num_divisors) on stop 3 value",
+      "reason_transform": "num_divisors",
+      "reason_source_stop": 4,
+      "reason_code": "n = abs(int(13061239))\ncount = sum(1 for i in range(1, n+1) if n % i == 0) if n > 0 else 0\nresult = count\nprint(result)",
+      "depends_on": [
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Lower_Town",
+      "extraction_target": "the geographic coordinates of Lower Town as shown",
+      "extraction_section": null,
+      "extracted_value": "45°26′00″N 75°41′30″W",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Society of African Missions wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Society_of_African_Missions",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Lower Town is another urban neighbourhood example; paired with Sandy Hill it helps illustrate typical settlement patterns and community formation in immigrant-receiving cities.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Lower_Town",
+      "extraction_target": "Look up the elevation of Lower Town",
+      "extraction_section": null,
+      "extracted_value": 58.69623184204102,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Lower Town"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Lower Town) from https://en.wikipedia.org/wiki/Lower_Town",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Lower_Town",
+      "extraction_target": "Look up the count of universities near Lower Town",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "universities near Lower Town"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of universities near Lower Town) from https://en.wikipedia.org/wiki/Lower_Town",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 9,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Lower_Town",
+      "extraction_target": "Combine the elevation of Lower Town and the count of universities near Lower Town: (58 + 20)",
+      "extraction_section": null,
+      "extracted_value": 78,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(58.69623184204102) + int(20.0)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Lower Town add count of universities near Lower Town",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        7,
+        8
+      ]
+    },
+    {
+      "index": 10,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Society_of_African_Missions",
+      "extraction_target": "the pope who blessed the founding of the Society",
+      "extraction_section": "Foundation",
+      "extracted_value": "Pope Pius IX",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Cathedral Church of St. Paul (Detroit) wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Cathedral_Church_of_St._Paul_(Detroit)",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Missionary organizations influenced cultural and religious ties across Africa and the diaspora; this stop highlights institutional links between African communities and overseas churches.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        9
+      ]
+    },
+    {
+      "index": 11,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Society_of_African_Missions",
+      "extraction_target": "Look up the elevation of Society of African Missions",
+      "extraction_section": null,
+      "extracted_value": 65.12470245361328,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Society of African Missions"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Society of African Missions) from https://en.wikipedia.org/wiki/Society_of_African_Missions",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        10
+      ]
+    },
+    {
+      "index": 12,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Society_of_African_Missions",
+      "extraction_target": "Look up the count of temples near Society of African Missions",
+      "extraction_section": null,
+      "extracted_value": 7.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "temples near Society of African Missions"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of temples near Society of African Missions) from https://en.wikipedia.org/wiki/Society_of_African_Missions",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        10
+      ]
+    },
+    {
+      "index": 13,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Society_of_African_Missions",
+      "extraction_target": "Combine the elevation of Society of African Missions and the count of temples near Society of African Missions: (65 + 7)",
+      "extraction_section": null,
+      "extracted_value": 72,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(65.12470245361328) + int(7.0)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Society of African Missions add count of temples near Society of African Missions",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        11,
+        12
+      ]
+    },
+    {
+      "index": 14,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Cathedral_Church_of_St._Paul_(Detroit)",
+      "extraction_target": "the location listed in the infobox (field: 'Location')",
+      "extraction_section": "infobox",
+      "extracted_value": "4800 Woodward Avenue Detroit, Michigan",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Cathedral_Church_of_St._Paul_(Detroit)",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A concrete example of a Christian cathedral in a major diaspora city — useful to examine how religious institutions anchor immigrant communities outside Africa.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        13
+      ]
+    },
+    {
+      "index": 15,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Cathedral_Church_of_St._Paul_(Detroit)",
+      "extraction_target": "Look up the elevation of 4800 Woodward Avenue Detroit, Michigan",
+      "extraction_section": null,
+      "extracted_value": 189.6721496582031,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "4800 Woodward Avenue Detroit, Michigan"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of 4800 Woodward Avenue Detroit, Michigan) from https://en.wikipedia.org/wiki/Cathedral_Church_of_St._Paul_(Detroit)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        14
+      ]
+    },
+    {
+      "index": 16,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Cathedral_Church_of_St._Paul_(Detroit)",
+      "extraction_target": "Look up the count of churches near 4800 Woodward Avenue Detroit, Michigan",
+      "extraction_section": null,
+      "extracted_value": 16.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "churches near 4800 Woodward Avenue Detroit, Michigan"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of churches near 4800 Woodward Avenue Detroit, Michigan) from https://en.wikipedia.org/wiki/Cathedral_Church_of_St._Paul_(Detroit)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        14
+      ]
+    },
+    {
+      "index": 17,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Cathedral_Church_of_St._Paul_(Detroit)",
+      "extraction_target": "Combine the elevation of 4800 Woodward Avenue Detroit, Michigan and the count of churches near 4800 Woodward Avenue Detroit, Michigan: (189 + 16)",
+      "extraction_section": null,
+      "extracted_value": 205,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(189.6721496582031) + int(16.0)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of 4800 Woodward Avenue Detroit, Michigan add count of churches near 4800 Woodward Avenue Detroit, Michigan",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        15,
+        16
+      ]
+    },
+    {
+      "index": 18,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Cathedral_Church_of_St._Paul_(Detroit)",
+      "extraction_target": "Reason: the number of vowels in that name",
+      "extraction_section": null,
+      "extracted_value": 13,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (vowel_count) on stop 6 value",
+      "reason_transform": "vowel_count",
+      "reason_source_stop": 14,
+      "reason_code": "result = sum(1 for c in \"4800 Woodward Avenue Detroit, Michigan\".lower() if c in 'aeiou')\nprint(result)",
+      "depends_on": [
+        14
+      ]
+    },
+    {
+      "index": 19,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/KL_Monorail",
+      "extraction_target": "Look up the population of Canada",
+      "extraction_section": null,
+      "extracted_value": 41651653,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "countries_population",
+            "arguments": {
+              "country": "Canada"
+            },
+            "expected_output": null,
+            "output_key": "population"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: population of Canada",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        18
+      ]
+    },
+    {
+      "index": 20,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Languages_of_Nigeria",
+      "extraction_target": "Look up the population of Canada",
+      "extraction_section": null,
+      "extracted_value": 41651653,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "countries_population",
+            "arguments": {
+              "country": "Canada"
+            },
+            "expected_output": null,
+            "output_key": "population"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: population of Canada",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        19
+      ]
+    },
+    {
+      "index": 21,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Languages_of_Nigeria",
+      "extraction_target": "Reason: the sum of its digits",
+      "extraction_section": null,
+      "extracted_value": 31,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_sum) on stop 8 value",
+      "reason_transform": "digit_sum",
+      "reason_source_stop": 20,
+      "reason_code": "result = sum(int(d) for d in str(abs(int(41651653))))\nprint(result)",
+      "depends_on": [
+        20
+      ]
+    },
+    {
+      "index": 22,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Nigerian_English",
+      "extraction_target": "the country where Nigerian English is listed as an official language",
+      "extraction_section": null,
+      "extracted_value": "Nigeria",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Wenhaston with Mells Hamlet wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Wenhaston_with_Mells_Hamlet",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Examines another colonial English variety to compare how language and identity evolved differently in West Africa versus southern African settler societies like Rhodesia.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        21
+      ]
+    },
+    {
+      "index": 23,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Wenhaston_with_Mells_Hamlet",
+      "extraction_target": "Look up the elevation at Wenhaston with Mells Hamlet",
+      "extraction_section": null,
+      "extracted_value": 19.13129043579102,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Wenhaston with Mells Hamlet"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for Wenhaston with Mells Hamlet",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        22
+      ]
+    },
+    {
+      "index": 24,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Quasi-Zenith_Satellite_System",
+      "extraction_target": "Convert 4 meters to feet",
+      "extraction_section": null,
+      "extracted_value": 13,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "# Convert meters to feet\nvalue = 4.0\nconverted = value * 3.28084\nresult = int(converted)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "converted"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: convert 4 meters to feet",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        23
+      ]
+    },
+    {
+      "index": 25,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/European_New_Zealanders",
+      "extraction_target": "percentage of New Zealand's population that European New Zealanders made up according to the 2023 census",
+      "extraction_section": null,
+      "extracted_value": 67.8,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/European_New_Zealanders",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Concluding comparative stop: situates Rhodesian settler identity within a broader set of settler-colonial communities (e.g., European New Zealanders) to reflect on long-term cultural and demographic legacies.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        24
+      ]
+    },
+    {
+      "index": 26,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: (16 + 41651653) % 10",
+      "extraction_section": null,
+      "extracted_value": 9,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "(16 + 41651653) % 10",
+        "expression_code": "result = (16 + 41651653) % 10\nprint(result)",
+        "referenced_stops": [
+          16,
+          19
+        ]
+      },
+      "reasoning": "Compute stop: (16 + 41651653) % 10 = 9",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        16,
+        19
+      ]
+    }
+  ],
+  "passcode": 9,
+  "difficulty": {
+    "level": "hard",
+    "depth": 27,
+    "tool_stop_count": 14,
+    "reason_stop_count": 4,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Seek the anthem that resonates with a declaration of sovereignty — how many weeks did it rule the charts in its homeland?\n\n2. A title of leadership began to take form in Rhodesia on what fateful date? Seek its origins and unveil the founding moment.\n\n3. From whence arose parliamentary decisions, compute the span in days from October 1, 1923, to March 16, 2026.\n\n4. Can you unveil the fate of the number obtained in clue 3? Seek the essence of its digits and discover their harmonious sum.\n\n5. Unravel the tale of those who departed a land transformed; how many souls now inhabit Zimbabwe, as revealed in its demographic scrolls?\n\n6. Contemplate the figure you just unearthed; how many unique factors can this population claim, revealing their underlying structure?\n\n7. A district whispers secrets in coordinates — what numbers point to the location known as Lower Town?\n\n8. Ascend and find the altitude of this district; how far does it rise above sea level, in meters?\n\n9. As you explore, how many institutions of higher learning lie within reach of this locale?\n\n10. Combine your findings from clues 8 and 9 — the elevation and the university count shall yield new insights when added.\n\n11. Seek knowledge from the mission that blessed its foundation. Name the pope who bestowed this gain upon the Society you now explore.\n\n12. Ascertain the elevation of this sacred site; how high does it stand above the earth, measured in meters?\n\n13. In your quest for enlightenment, how many temples can be found in proximity to this hallowed ground?\n\n14. Merge the findings from clues 12 and 13 — the height of the mission and the number of temples shall reveal a new figure.\n\n15. Venture forth to a cathedral standing proud in Detroit; where does its location place it on the map?\n\n16. Discover the elevation of this landmark at its specified address; how high is 4800 Woodward Avenue from the surface of the earth?\n\n17. Nearby, churches gather — can you count how many congregations meet close to this address?\n\n18. Unite the elevation of the cathedral with the number of surrounding churches — what total emerges from these two figures?\n\n19. Reflect on the name of this cathedral; how many vowels grace its title, revealing the harmony within?\n\n20. In the vast expanse of the north, seek out the population of the country renowned for its icy reaches — Canada.\n\n21. Lookup the same number once again, ensuring your count aligns with the wonders of the north.\n\n22. Contemplate the digits that comprise this northern figure; what is their sum, revealing a hidden simplicity?\n\n23. In what nation is the version of English, uniquely Nigerian, recognized as an official tongue? Seek this place and unveil its name.\n\n24. Ascend to Wenhaston with Mells Hamlet; how elevated is this location, marked in meters above sea level?\n\n25. Convert a modest measure of 4 meters — how many feet does this distance translate into, revealing its significance?\n\n26. Knowledge unfolds in the southern seas; what percentage did European New Zealanders comprise in the latest census of 2023?\n\n27. Combine the total from clues 17 and 20, and determine the modulus of this sum against 10 to unearth your single-digit answer. \n\nCompute: (16 + 41651653) % 10, where your findings from clues 17 and 20 guide you to the final answer.",
+  "metadata": {
+    "theme": "From a Rhodesian UDI anthem to the global aftershocks: tracing Rhodesia's unilateral declaration of independence through its political office, the resulting diaspora, missionary and religious links, and comparative colonial-language and settler legacies.",
+    "difficulty": "hard",
+    "sample_id": "sample_084",
+    "pages_crawled": 2810
+  },
+  "generated_at": "2026-03-16T09:56:15.121649+00:00"
+}

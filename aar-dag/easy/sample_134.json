@@ -1,0 +1,283 @@
+{
+  "trail_id": "trail_2d61720e",
+  "seed_url": "https://en.wikipedia.org/wiki/Tesla,_Inc.",
+  "seed_title": "Tesla, Inc.",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Tesla,_Inc.",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Founded')",
+      "extraction_section": "infobox",
+      "extracted_value": 1,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "New York City wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/New_York_City",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start at the seed: Tesla's company page provides the corporate HQ location and stock identity that anchor both geographic (factory) and market (stock) comparisons.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Tesla,_Inc.",
+      "extraction_target": "Count restaurants near Tesla, Inc.",
+      "extraction_section": null,
+      "extracted_value": 20,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "restaurants near Tesla, Inc."
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (nearby_poi) derived from https://en.wikipedia.org/wiki/Tesla,_Inc.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/New_York_City",
+      "extraction_target": "the elevation listed in the infobox (field: 'Highest elevation [[a]](#cite_note-6)')",
+      "extraction_section": "infobox",
+      "extracted_value": 400,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/New_York_City",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Move the trail from manufacturing to the markets: New York City (Wall Street) represents the financial arena where Tesla and auto makers are traded and valued.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/New_York_City",
+      "extraction_target": "Look up the elevation of New York City",
+      "extraction_section": null,
+      "extracted_value": 13.36520862579346,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "New York City"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of New York City) from https://en.wikipedia.org/wiki/New_York_City",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/New_York_City",
+      "extraction_target": "Look up the count of parks near New York City",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "parks near New York City"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of parks near New York City) from https://en.wikipedia.org/wiki/New_York_City",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/New_York_City",
+      "extraction_target": "Combine the elevation of New York City and the count of parks near New York City: (13 + 20)",
+      "extraction_section": null,
+      "extracted_value": 33,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(13.36520862579346) + int(20.0)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of New York City add count of parks near New York City",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3,
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/New_York_City",
+      "extraction_target": "Reason: the number you get by reversing its digits",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_reversal) on stop 1 value",
+      "reason_transform": "digit_reversal",
+      "reason_source_stop": 2,
+      "reason_code": "result = int(str(abs(int(400)))[::-1])\nprint(result)",
+      "depends_on": [
+        2
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: abs(20 - 400) % 10",
+      "extraction_section": null,
+      "extracted_value": 0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "abs(20 - 400) % 10",
+        "expression_code": "result = abs(20 - 400) % 10\nprint(result)",
+        "referenced_stops": [
+          1,
+          2,
+          3,
+          5
+        ]
+      },
+      "reasoning": "Compute stop: abs(20 - 400) % 10 = 0",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1,
+        2,
+        3,
+        5
+      ]
+    }
+  ],
+  "passcode": 0,
+  "difficulty": {
+    "level": "easy",
+    "depth": 8,
+    "tool_stop_count": 4,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Seek the page that tells of electric innovation and the company that changed the roads we travel. What year did this visionary enterprise first spark to life?\n\n2. Count the culinary havens that lie within close reach of the electric carmaker's abode — how many restaurants can you unearth?\n\n3. What bustling metropolis, known for its towering skyline, lists its highest natural point in an article? Discover the elevation noted in its overview.\n\n4. If you stand at the apex of this iconic city, how far above sea level do the streets sit? Ascertain this height from a trusted mapping source.\n\n5. Seek nature amidst the concrete — how many parks flourish within proximity of this urban center?\n\n6. Take your recent findings and amalgamate the elevation from clue 4 with the number of parks from clue 5. What new value emerges from this equation?\n\n7. The highest elevation noted in clue 3 holds a secret when its digits are reversed. What number does it transform into?\n\n8. Take the number of restaurants found in clue 2 and the height from clue 3. Subtract 400 from twice the height obtained in clue 4. The answer, when reduced, will yield a single digit: compute abs(clue 2 - clue 3) % 10. What is this final single-digit treasure?",
+  "metadata": {
+    "theme": "From Tesla's corporate HQ to its factory and into the markets: linking Tesla's location and manufacturing footprint with financial context and competitor stock performance.",
+    "difficulty": "easy",
+    "sample_id": "sample_134",
+    "pages_crawled": 1150
+  },
+  "generated_at": "2026-03-17T07:53:07.768368+00:00"
+}

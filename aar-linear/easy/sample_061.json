@@ -1,0 +1,200 @@
+{
+  "trail_id": "trail_dc94bbef",
+  "seed_url": "https://en.wikipedia.org/wiki/Li_Shiu_Tong",
+  "seed_title": "Li Shiu Tong",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Li_Shiu_Tong",
+      "extraction_target": "Li Shiu Tong's age at death as listed",
+      "extraction_section": null,
+      "extracted_value": 86,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "History of the Jews in South Africa wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/History_of_the_Jews_in_South_Africa",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Begin at the seed: Li Shiu Tong anchors the trail in an early 20th‑century transnational life that links East and West — a human starting point for following cultural exchange into media and public discourse.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/History_of_the_Jews_in_South_Africa",
+      "extraction_target": "Look up the elevation at History of the Jews in South Africa",
+      "extraction_section": null,
+      "extracted_value": 1106.688720703125,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "History of the Jews in South Africa"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for History of the Jews in South Africa",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/History_of_the_Jews_in_South_Africa",
+      "extraction_target": "Reason: the next prime number after that figure",
+      "extraction_section": null,
+      "extracted_value": 1109,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (next_prime) on stop 1 value",
+      "reason_transform": "next_prime",
+      "reason_source_stop": 1,
+      "reason_code": "def next_prime(n):\n    n = abs(int(n))\n    if n < 2: return 2\n    candidate = n + 1\n    while True:\n        if all(candidate % i != 0 for i in range(2, int(candidate**0.5)+1)):\n            return candidate\n        candidate += 1\nresult = next_prime(1106)\nprint(result)"
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/DStv",
+      "extraction_target": "Look up the elevation at Randburg",
+      "extraction_section": null,
+      "extracted_value": 1531.816650390625,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Randburg"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for Randburg",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 4,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/New_York_Native",
+      "extraction_target": "the date the New York Native ceased publication",
+      "extraction_section": null,
+      "extracted_value": "January 13, 1997",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/New_York_Native",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Finish at New York Native to represent the rise of specialized/alternative press (LGBT and health reporting) in a Western urban center — showing one branch of media that followed from transnational lives into focused public discourse.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 5,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: abs(86 - 1531) % 10",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "abs(86 - 1531) % 10",
+        "expression_code": "result = abs(86 - 1531) % 10\nprint(result)",
+        "referenced_stops": [
+          0,
+          3
+        ]
+      },
+      "reasoning": "Compute stop: abs(86 - 1531) % 10 = 5",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 5,
+  "difficulty": {
+    "level": "easy",
+    "depth": 6,
+    "tool_stop_count": 2,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "Here is the revised riddle:\n\n1. Seek the page for a Chinese-born American who made significant contributions to the computer science field and note how old he was when he died; after you record that number, turn your attention to a survey of a diasporic community in South Africa.\n\n2. There exists a Wikipedia article that chronicles the history of Jews in South Africa; on that page, report the elevation figure (in metres) associated with the primary locale discussed and treat it as a whole number.\n\n3. What prime number comes immediately after the elevation you extracted in clue 2? (Use the elevation from clue 2 as the starting point for this “next prime” transform.)\n\n4. If you stood in Randburg, the Johannesburg suburb, how many metres above sea level would you be? Record that elevation as a numeric value for later use.\n\n5. The article whose opening line identifies an alternative New York weekly that covered LGBT topics holds the date it folded; extract the exact date on which that paper ceased publication.\n\n6. At journey’s end, perform this arithmetic using the numeric discoveries you made: take the absolute difference between clue 1 and clue 4, then take that result modulo 10. Compute: abs(clue 1 - clue 4) % 10. Your final answer should be a single digit between 0 and 9.",
+  "metadata": {
+    "theme": "Tracing an East–West cultural thread into modern media: start with Li Shiu Tong as an early transnational figure, move to LGBT/alternative press in New York, then quantify and locate the mainstream broadcast context in South Africa.",
+    "difficulty": "easy",
+    "sample_id": "sample_061",
+    "pages_crawled": 2555,
+    "source": "trail_puzzles_v2"
+  },
+  "generated_at": "2026-03-15T15:29:31.956267+00:00"
+}

@@ -1,0 +1,160 @@
+{
+  "trail_id": "trail_c4d86e69",
+  "seed_url": "https://en.wikipedia.org/wiki/Qualcomm",
+  "seed_title": "Qualcomm",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Qualcomm",
+      "extraction_target": "the city where Qualcomm's headquarters is located",
+      "extraction_section": null,
+      "extracted_value": "San Diego",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "ARM architecture family wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/ARM_architecture_family",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Seed page — establishes Qualcomm's identity as a mobile SoC and modem designer and gives its headquarters location to anchor the trail.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/ARM_architecture_family",
+      "extraction_target": "the number of top-level sections listed in the table of contents",
+      "extraction_section": "Contents",
+      "extracted_value": 13,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "India wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/India",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Explains the core architecture (ARM) that Qualcomm licences and builds its mobile processors around — key technical connection to Qualcomm's products.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/India",
+      "extraction_target": "Look up the elevation at New Delhi 28°36′50″N 77°12′30″E﻿ / ﻿28.61389°N 77.20833°E﻿ / 28.61389; 77.20833",
+      "extraction_section": null,
+      "extracted_value": 232.0728302001953,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "New Delhi 28°36′50″N 77°12′30″E﻿ / ﻿28.61389°N 77.20833°E﻿ / 28.61389; 77.20833"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for New Delhi 28°36′50″N 77°12′30″E﻿ / ﻿28.61389°N 77.20833°E﻿ / 28.61389; 77.20833",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 3,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/India",
+      "extraction_target": "Reason: the number of characters when written as a Roman numeral",
+      "extraction_section": null,
+      "extracted_value": 7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (roman_numeral_letter_count) on stop 2 value",
+      "reason_transform": "roman_numeral_letter_count",
+      "reason_source_stop": 2,
+      "reason_code": "def to_roman(n):\n    n = abs(int(n))\n    vals = [(1000,'M'),(900,'CM'),(500,'D'),(400,'CD'),(100,'C'),\n            (90,'XC'),(50,'L'),(40,'XL'),(10,'X'),(9,'IX'),(5,'V'),(4,'IV'),(1,'I')]\n    r = ''\n    for v, s in vals:\n        while n >= v:\n            r += s; n -= v\n    return r\nresult = len(to_roman(232))\nprint(result)"
+    },
+    {
+      "index": 4,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: abs(13 - 232) % 10",
+      "extraction_section": null,
+      "extracted_value": 9,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "abs(13 - 232) % 10",
+        "expression_code": "result = abs(13 - 232) % 10\nprint(result)",
+        "referenced_stops": [
+          1,
+          2,
+          3
+        ]
+      },
+      "reasoning": "Compute stop: abs(13 - 232) % 10 = 9",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 9,
+  "difficulty": {
+    "level": "easy",
+    "depth": 5,
+    "tool_stop_count": 1,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "Here is the revised riddle:\n\n1. Seek the Wikipedia page about the prominent American technology company known for its semiconductor and telecommunications equipment, often associated with the development of wireless technologies, and report the city that hosts its corporate headquarters.\n\n2. There exists a separate article about the family of reduced-instruction-set architectures widely used in mobile processors; from the section relevant to the aforementioned company, follow or search to that family’s entry and count how many top-level entries appear in its table of contents.\n\n3. What is the elevation, in meters above sea level, at the coordinates 28°36′50″N 77°12′30″E (the capital city’s central point of the large South Asian country whose capital is New Delhi)?\n\n4. If you convert the numeric elevation you just found into Roman numerals, how many characters long is that Roman representation? (Use the value from clue 3 as the thing you convert.)\n\n5. In the final tally, compute the expression exactly as follows and give a single digit result (0–9): abs(clue 2 - clue 3) % 10. Use only the numeric values you uncovered for clue 2 and clue 3 to evaluate this expression.",
+  "metadata": {
+    "theme": "Tracing Qualcomm's role in the global mobile silicon ecosystem — from its HQ and chip architecture to the market context and scale of key regions.",
+    "difficulty": "easy",
+    "sample_id": "sample_143",
+    "pages_crawled": 1650
+  },
+  "generated_at": "2026-03-17T08:37:47.690591+00:00"
+}

@@ -1,0 +1,129 @@
+{
+  "trail_id": "trail_3170ab60",
+  "seed_url": "https://en.wikipedia.org/wiki/Sin_Ye-young",
+  "seed_title": "Sin Ye-young",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Sin_Ye-young",
+      "extraction_target": "The date Sin Ye-young made her solo debut",
+      "extraction_section": null,
+      "extracted_value": "November 20, 2019",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Korean_ballad",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start at the artist's page to capture basic biographical and career-start facts (birth date, debut year/years active) that place Sin Ye-young in time and show when she entered the Korean music scene.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Korean_ballad",
+      "extraction_target": "Calculate the number of days between 2019-11-20 and 2026-03-15",
+      "extraction_section": null,
+      "extracted_value": 2307,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "from datetime import date\nd1 = date.fromisoformat('2019-11-20')\nd2 = date.fromisoformat('2026-03-15')\nresult = abs((d2 - d1).days)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "days"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: date computation 2019-11-20 to 2026-03-15 (pinned)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Korean_ballad",
+      "extraction_target": "Reason: the number of divisors of that figure",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (num_divisors) on stop 1 value",
+      "reason_transform": "num_divisors",
+      "reason_source_stop": 1,
+      "reason_code": "n = abs(int(2307))\ncount = sum(1 for i in range(1, n+1) if n % i == 0) if n > 0 else 0\nresult = count\nprint(result)"
+    },
+    {
+      "index": 3,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: abs(2307 - 4) % 10",
+      "extraction_section": null,
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "abs(2307 - 4) % 10",
+        "expression_code": "result = abs(2307 - 4) % 10\nprint(result)",
+        "referenced_stops": [
+          1,
+          2
+        ]
+      },
+      "reasoning": "Compute stop: abs(2307 - 4) % 10 = 3",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 3,
+  "difficulty": {
+    "level": "easy",
+    "depth": 4,
+    "tool_stop_count": 1,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "direct_link"
+  },
+  "riddle": "Here is the riddle with the corrected clue:\n\n1. Seek the South Korean singer known for her emotive ballads and performances: note the date she made her solo debut on her page, then follow the link labeled \"Ballad\" to continue.  \n2. How many days lie between 2019-11-20 and 2026-03-15 when counted on the genre page you just reached?  \n3. The article whose opening passage sketches that musical tradition now asks you to take the day-count from clue 2 and determine how many positive whole-number divisors that count has.  \n4. Like a ledger closed at midnight, perform this arithmetic: take the absolute difference between clue 2 and clue 3, then reduce that result modulo 10 — your final answer is a single digit (0–9).",
+  "metadata": {
+    "theme": "Tracing a modern South Korean singer back to the musical tradition she works within — from the artist Sin Ye-young to the history of the Korean ballad genre.",
+    "difficulty": "easy",
+    "sample_id": "sample_017",
+    "pages_crawled": 828,
+    "source": "trail_puzzles_v2"
+  },
+  "generated_at": "2026-03-15T11:34:14.241139+00:00"
+}

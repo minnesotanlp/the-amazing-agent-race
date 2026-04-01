@@ -1,0 +1,1067 @@
+{
+  "trail_id": "trail_809bfd39",
+  "seed_url": "https://en.wikipedia.org/wiki/Inger_Marie_Andersen",
+  "seed_title": "Inger Marie Andersen",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Inger_Marie_Andersen",
+      "extraction_target": "years active (as listed in the infobox)",
+      "extraction_section": null,
+      "extracted_value": "1951–1982",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "ISO 3166-2:NO wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/ISO_3166-2:NO",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start with the seed: the Norwegian film actress who anchors this trail in Scandinavian cinema and geography.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/ISO_3166-2:NO",
+      "extraction_target": "the first part of each ISO 3166-2 code for Norway",
+      "extraction_section": null,
+      "extracted_value": "NO",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/ISO_3166-2:NO",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Pin down Norway officially (ISO entry) to orient the trail geographically and link the actress to her country.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/ISO_3166-2:NO",
+      "extraction_target": "Count restaurants near NO",
+      "extraction_section": null,
+      "extracted_value": 20,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "restaurants near NO"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (nearby_poi) derived from https://en.wikipedia.org/wiki/ISO_3166-2:NO",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/ISO_3166-2:NO",
+      "extraction_target": "Reason: the alphabetical position of its first letter (A=1, B=2, ...)",
+      "extraction_section": null,
+      "extracted_value": 14,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (alpha_position_first_letter) on stop 1 value",
+      "reason_transform": "alpha_position_first_letter",
+      "reason_source_stop": 1,
+      "reason_code": "first = \"NO\"[0].upper()\nresult = ord(first) - ord('A') + 1 if first.isalpha() else 0\nprint(result)",
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Scottish_Parliament_constituencies_and_electoral_regions",
+      "extraction_target": "the number of languages listed at the top of the article",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Clan Keith wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Clan_Keith",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Shift west to the UK — Scotland's political map helps transition from Scandinavian film to British cultural locales where many films and shows circulate.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Scottish_Parliament_constituencies_and_electoral_regions",
+      "extraction_target": "Look up the elevation of Scottish Parliament constituencies and electoral regions",
+      "extraction_section": null,
+      "extracted_value": 395.3996887207031,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Scottish Parliament constituencies and electoral regions"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Scottish Parliament constituencies and electoral regions) from https://en.wikipedia.org/wiki/Scottish_Parliament_constituencies_and_electoral_regions",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Scottish_Parliament_constituencies_and_electoral_regions",
+      "extraction_target": "Look up the count of temples near Scottish Parliament constituencies and electoral regions",
+      "extraction_section": null,
+      "extracted_value": 1.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "temples near Scottish Parliament constituencies and electoral regions"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of temples near Scottish Parliament constituencies and electoral regions) from https://en.wikipedia.org/wiki/Scottish_Parliament_constituencies_and_electoral_regions",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        4
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Scottish_Parliament_constituencies_and_electoral_regions",
+      "extraction_target": "Combine the elevation of Scottish Parliament constituencies and electoral regions and the count of temples near Scottish Parliament constituencies and electoral regions: (395 + 1)",
+      "extraction_section": null,
+      "extracted_value": 396,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(395.3996887207031) + int(1.0)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Scottish Parliament constituencies and electoral regions add count of temples near Scottish Parliament constituencies and electoral regions",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5,
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Clan_Keith",
+      "extraction_target": "the clan seat (as given in the infobox)",
+      "extraction_section": null,
+      "extracted_value": "Keith Hall, Aberdeenshire",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Arbroath 36–0 Bon Accord wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Arbroath_36%E2%80%930_Bon_Accord",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A Scottish clan page to give historical and regional context for Scottish places and connect to local identities that shape sporting and cultural life.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        7
+      ]
+    },
+    {
+      "index": 9,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Clan_Keith",
+      "extraction_target": "Look up the elevation of Keith Hall, Aberdeenshire",
+      "extraction_section": null,
+      "extracted_value": 106.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Keith Hall, Aberdeenshire"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Keith Hall, Aberdeenshire) from https://en.wikipedia.org/wiki/Clan_Keith",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        8
+      ]
+    },
+    {
+      "index": 10,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Clan_Keith",
+      "extraction_target": "Look up the count of parks near Keith Hall, Aberdeenshire",
+      "extraction_section": null,
+      "extracted_value": 13.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "parks near Keith Hall, Aberdeenshire"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of parks near Keith Hall, Aberdeenshire) from https://en.wikipedia.org/wiki/Clan_Keith",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        8
+      ]
+    },
+    {
+      "index": 11,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Clan_Keith",
+      "extraction_target": "Combine the elevation of Keith Hall, Aberdeenshire and the count of parks near Keith Hall, Aberdeenshire: (106 + 13)",
+      "extraction_section": null,
+      "extracted_value": 119,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(106.0) + int(13.0)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Keith Hall, Aberdeenshire add count of parks near Keith Hall, Aberdeenshire",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        9,
+        10
+      ]
+    },
+    {
+      "index": 12,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Arbroath_36%E2%80%930_Bon_Accord",
+      "extraction_target": "the number of goals Arbroath scored in the second half",
+      "extraction_section": "A record-breaking game",
+      "extracted_value": 21,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "1892 County Championship wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/1892_County_Championship",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A famous Scottish football event — a dramatic sporting landmark that ties into the UK's popular culture and arena of public spectacle.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        11
+      ]
+    },
+    {
+      "index": 13,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/1892_County_Championship",
+      "extraction_target": "the number of days for first-class matches (as listed in the infobox)",
+      "extraction_section": null,
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "1979 NFL season wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/1979_NFL_season",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "British sporting history continues with cricket — showing another facet of UK sporting culture that intersects with popular entertainment.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        12
+      ]
+    },
+    {
+      "index": 14,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/1892_County_Championship",
+      "extraction_target": "Count restaurants near 1892 County Championship",
+      "extraction_section": null,
+      "extracted_value": 10,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "restaurants near 1892 County Championship"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (nearby_poi) derived from https://en.wikipedia.org/wiki/1892_County_Championship",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        13
+      ]
+    },
+    {
+      "index": 15,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/1979_NFL_season",
+      "extraction_target": "Convert 2 km to miles",
+      "extraction_section": null,
+      "extracted_value": 1,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "# Convert km to miles\nvalue = 2.0\nconverted = value * 0.621371\nresult = int(converted)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "converted"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: convert 2 km to miles",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        14
+      ]
+    },
+    {
+      "index": 16,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/1951_Copa_del_General%C3%ADsimo",
+      "extraction_target": "the number of teams in the tournament",
+      "extraction_section": null,
+      "extracted_value": 14,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/1951_Copa_del_General%C3%ADsimo",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Cross into continental Europe: Spanish football history connects the sporting thread from the British Isles to Iberia.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        15
+      ]
+    },
+    {
+      "index": 17,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/1951_Copa_del_General%C3%ADsimo",
+      "extraction_target": "Reason: the digital root (iterated digit sum until single digit)",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digital_root) on stop 7 value",
+      "reason_transform": "digital_root",
+      "reason_source_stop": 16,
+      "reason_code": "n = abs(int(14))\nresult = n if n == 0 else ((n - 1) % 9) + 1\nprint(result)",
+      "depends_on": [
+        16
+      ]
+    },
+    {
+      "index": 18,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/1951_Copa_del_General%C3%ADsimo_final",
+      "extraction_target": "venue of the final",
+      "extraction_section": null,
+      "extracted_value": "Estadio Chamartín",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Ignacio_Eizaguirre",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Zoom in to the decisive match and its venue — tying places to memorable cultural events (stadia as civic stages).",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        17
+      ]
+    },
+    {
+      "index": 19,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Ignacio_Eizaguirre",
+      "extraction_target": "the height listed in the infobox (field: 'Height')",
+      "extraction_section": "infobox",
+      "extracted_value": 1.81,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Sabino_Barinaga",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A notable Spanish goalkeeper who connects the tournament-level narrative to the players who made it memorable.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        18
+      ]
+    },
+    {
+      "index": 20,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Sabino_Barinaga",
+      "extraction_target": "the height listed in the infobox (field: 'Height')",
+      "extraction_section": "infobox",
+      "extracted_value": 1.8,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Ayrshire (horse) wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Ayrshire_(horse)",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Another Spanish football figure to deepen the personal/cultural connections across the Copa and Spanish football history.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        19
+      ]
+    },
+    {
+      "index": 21,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Ayrshire_(horse)",
+      "extraction_target": "the country listed in the infobox (field: 'Country')",
+      "extraction_section": "infobox",
+      "extracted_value": "United Kingdom of Great Britain and Ireland",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Ayrshire_(horse)",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Shift into horse racing: Ayrshire is an example of the sporting-bred celebrities that often intersect with public life and film/press culture.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        20
+      ]
+    },
+    {
+      "index": 22,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Ayrshire_(horse)",
+      "extraction_target": "Reason: the alphabetical position of its first letter (A=1, B=2, ...)",
+      "extraction_section": null,
+      "extracted_value": 21,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (alpha_position_first_letter) on stop 11 value",
+      "reason_transform": "alpha_position_first_letter",
+      "reason_source_stop": 21,
+      "reason_code": "first = \"United Kingdom of Great Britain and Ireland\"[0].upper()\nresult = ord(first) - ord('A') + 1 if first.isalpha() else 0\nprint(result)",
+      "depends_on": [
+        21
+      ]
+    },
+    {
+      "index": 23,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Pittsburgh_Hornets",
+      "extraction_target": "Count the number of museums near Pittsburgh",
+      "extraction_section": null,
+      "extracted_value": 20,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "museums near Pittsburgh"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: count museums near Pittsburgh",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        22
+      ]
+    },
+    {
+      "index": 24,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Ladas_(horse)",
+      "extraction_target": "the country listed in the infobox (field: 'Country')",
+      "extraction_section": "infobox",
+      "extracted_value": "United Kingdom of Great Britain and Ireland",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Ladas_(horse)",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Another classic racehorse, continuing the thread of sporting celebrities and their historic races.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        23
+      ]
+    },
+    {
+      "index": 25,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Ladas_(horse)",
+      "extraction_target": "Look up the elevation of Ladas",
+      "extraction_section": null,
+      "extracted_value": 680.2139892578125,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Ladas"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Ladas) from https://en.wikipedia.org/wiki/Ladas_(horse)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        24
+      ]
+    },
+    {
+      "index": 26,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Ladas_(horse)",
+      "extraction_target": "Look up the count of parks near Ladas",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "parks near Ladas"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of parks near Ladas) from https://en.wikipedia.org/wiki/Ladas_(horse)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        24
+      ]
+    },
+    {
+      "index": 27,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Ladas_(horse)",
+      "extraction_target": "Combine the elevation of Ladas and the count of parks near Ladas: abs(680 - 20)",
+      "extraction_section": null,
+      "extracted_value": 660,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(680.2139892578125) - int(20.0))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Ladas abs_diff count of parks near Ladas",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        25,
+        26
+      ]
+    },
+    {
+      "index": 28,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Ladas_(horse)",
+      "extraction_target": "Reason: the number of vowels in that name",
+      "extraction_section": null,
+      "extracted_value": 15,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (vowel_count) on stop 13 value",
+      "reason_transform": "vowel_count",
+      "reason_source_stop": 24,
+      "reason_code": "result = sum(1 for c in \"United Kingdom of Great Britain and Ireland\".lower() if c in 'aeiou')\nprint(result)",
+      "depends_on": [
+        24
+      ]
+    },
+    {
+      "index": 29,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Silvio_(horse)",
+      "extraction_target": "the number of races Silvio won as a two-year-old in 1876",
+      "extraction_section": "1876: two-year-old season",
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Silvio_(horse)",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Complete a trio of historic racehorses to cement the horse-racing strand of the narrative.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        28
+      ]
+    },
+    {
+      "index": 30,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Silvio_(horse)",
+      "extraction_target": "Reason: the number of characters when written as a Roman numeral",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (roman_numeral_letter_count) on stop 14 value",
+      "reason_transform": "roman_numeral_letter_count",
+      "reason_source_stop": 29,
+      "reason_code": "def to_roman(n):\n    n = abs(int(n))\n    vals = [(1000,'M'),(900,'CM'),(500,'D'),(400,'CD'),(100,'C'),\n            (90,'XC'),(50,'L'),(40,'XL'),(10,'X'),(9,'IX'),(5,'V'),(4,'IV'),(1,'I')]\n    r = ''\n    for v, s in vals:\n        while n >= v:\n            r += s; n -= v\n    return r\nresult = len(to_roman(4))\nprint(result)",
+      "depends_on": [
+        29
+      ]
+    },
+    {
+      "index": 31,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Robin_of_Sherwood",
+      "extraction_target": "the number of series",
+      "extraction_section": null,
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Robin_of_Sherwood",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Return to television: a UK fantasy series that ties back to film/TV culture and the media world connected with the trail's opening (acting and screen presence).",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        30
+      ]
+    },
+    {
+      "index": 32,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Robin_of_Sherwood",
+      "extraction_target": "Count museums near Robin of Sherwood",
+      "extraction_section": null,
+      "extracted_value": 1,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "museums near Robin of Sherwood"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (nearby_poi) derived from https://en.wikipedia.org/wiki/Robin_of_Sherwood",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        31
+      ]
+    },
+    {
+      "index": 33,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: abs(396 - 21) % 10",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "abs(396 - 21) % 10",
+        "expression_code": "result = abs(396 - 21) % 10\nprint(result)",
+        "referenced_stops": [
+          7,
+          22,
+          30,
+          31
+        ]
+      },
+      "reasoning": "Compute stop: abs(396 - 21) % 10 = 5",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        7,
+        22,
+        30,
+        31
+      ]
+    }
+  ],
+  "passcode": 5,
+  "difficulty": {
+    "level": "extreme",
+    "depth": 34,
+    "tool_stop_count": 14,
+    "reason_stop_count": 5,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. **Unearth** the tale of a Norwegian luminary whose contributions spanned decades; from which years did she ignite her career? \n\n2. **What cryptic code signifies the Nordic lands? Seek its initial letters as enshrined in a geographical standard.**\n\n3. **Count the dining establishments that flourish near the realm designated by those letters.**\n\n4. **Should the first letter of your previous answer wear a crown, what is its royal rank in the alphabet?**\n\n5. **A certain assembly of legislators in a storied northern land speaks many tongues; how many do they converse?**\n\n6. **Gaze above to see how high this land rises; what is the elevation of the regions that house these lawmakers?**\n\n7. **Temples of worship are said to rise nearby these halls of governance; how many are there?**\n\n8. **Combine the height you just discovered with the total number of temples — what new figure emerges from their union?**\n\n9. **What stronghold has the Keith clan called home? Seek its name in the annals of history.**\n\n10. **Beneath the shadows of their ancestral seat, how high does the abode known as Keith Hall stand?**\n\n11. **Count the verdant parks that welcome visitors in the vicinity of Keith Hall — what is their number?**\n\n12. **Merge the elevation you uncovered with the parks’ tally to discover a new numerical elevation.**\n\n13. **In the grip of history, how many goals did Arbroath net during a match amidst their glorious campaign?**\n\n14. **Returning to the history of matches long gone, how many days stretched across the first-class competitions documented in an illustrious year?**\n\n15. **Many feasts are prepared in the name of the legends of sport; how many eateries thrive nearby the arena of that year?**\n\n16. **If you were to convert two kilometers into miles in the context of a timeless game, what distance do you find?**\n\n17. **In a legendary football tournament, how many squads vied for supremacy in the dusty heat of 1951?**\n\n18. **What is the digital essence captured within the number of teams you just unearthed? Reduce it to a single figure.**\n\n19. **The final match in that same thrilling year took place at a notable venue; what is the name of this memorable site?**\n\n20. **In the realm of iconic athletes, how tall does Ignacio Eizaguirre rise above the ground?**\n\n21. **Find the stature of a remarkable competitor known as Sabino Barinaga; what height does he attain?**\n\n22. **Among stalwart steeds, which country nurtures the lineage of a notable horse with a similar name in sporting circles?**\n\n23. **Taking your last answer’s first letter, what value does it hold in the context of the alphabet?**\n\n24. **Seek the number of cultural museums dotting the landscape near a city known for its vibrant sports history — what do you find?**\n\n25. **Like the last noble horse, which nation claims another distinguished equine major player?**\n\n26. **From this equine's heights, what elevation is noted in the place named after it?**\n\n27. **Count the peaceful parks resting close to this horse's name — what number stands before you?**\n\n28. **What emerges when you compute the difference between the elevation of this equine and the parks nearby?**\n\n29. **In your earlier discovery of the noble horse, how many vowels echoed in its name? What is that count?**\n\n30. **How many racing victories did Silvio notch as a two-year-old, long ago in 1876?**\n\n31. **Observe the Roman numeral portrayal of that figure; how many characters emerge in its form?**\n\n32. **A tale of gallantry unfolds through a certain legendary hero; just how many series does his story encompass?**\n\n33. **The chronicles of culture and community are vast. Count the museums that linger near the stories of this hero — what is their count?**\n\n34. **Finalize your journey by calculating the absolute difference between your answer from clue 8 and the Roman numeral's character count from clue 31, then take the result modulo 10.**\n\nThe answer is a single digit — between 0 and 9.",
+  "metadata": {
+    "theme": "From a Norwegian silver-screen beginning, a cultural road‑trip across British and European sport and horse racing, then outward to global places — using geographic and numeric tools to measure distances, elevations, populations and climate along the way.",
+    "difficulty": "extreme",
+    "sample_id": "sample_061",
+    "pages_crawled": 9868
+  },
+  "generated_at": "2026-03-17T05:37:16.174781+00:00"
+}

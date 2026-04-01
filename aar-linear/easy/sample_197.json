@@ -1,0 +1,197 @@
+{
+  "trail_id": "trail_021a8600",
+  "seed_url": "https://en.wikipedia.org/wiki/ASML_Holding",
+  "seed_title": "ASML Holding",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/ASML_Holding",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Founded')",
+      "extraction_section": "infobox",
+      "extracted_value": 1984,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Dublin wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Dublin",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Seed: ASML is the central supplier of photolithography equipment used by leading chipmakers — a natural starting point for mapping the semiconductor supply chain.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Dublin",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Founded')",
+      "extraction_section": "infobox",
+      "extracted_value": 10,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Ireland",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Dublin is a key European location for Intel fabs and tech operations — illustrating where ASML's equipment is ultimately deployed.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Ireland",
+      "extraction_target": "Look up the population of Ireland",
+      "extraction_section": null,
+      "extracted_value": 5458600,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "countries_population",
+            "arguments": {
+              "country": "Ireland"
+            },
+            "expected_output": null,
+            "output_key": "population"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: population of Ireland",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 3,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Ireland",
+      "extraction_target": "Reason: the next prime number after that figure",
+      "extraction_section": null,
+      "extracted_value": 5458601,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (next_prime) on stop 2 value",
+      "reason_transform": "next_prime",
+      "reason_source_stop": 2,
+      "reason_code": "def next_prime(n):\n    n = abs(int(n))\n    if n < 2: return 2\n    candidate = n + 1\n    while True:\n        if all(candidate % i != 0 for i in range(2, int(candidate**0.5)+1)):\n            return candidate\n        candidate += 1\nresult = next_prime(5458600)\nprint(result)"
+    },
+    {
+      "index": 4,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Austin,_Texas",
+      "extraction_target": "the number of languages the article is available in (as shown under the title)",
+      "extraction_section": null,
+      "extracted_value": 150,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Bengaluru wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Bengaluru",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Austin represents a major US semiconductor and tech cluster — connecting ASML and chipmakers to North American manufacturing and design centers.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 5,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Bengaluru",
+      "extraction_target": "the number of languages listed at the top of the article",
+      "extraction_section": null,
+      "extracted_value": 142,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Bengaluru",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Bengaluru highlights the design and engineering talent side of the semiconductor ecosystem, completing the trail from equipment (ASML) to makers (Intel), and to the cities and countries that house fabs and engineers.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 6,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: abs(10 - 5458600) % 10",
+      "extraction_section": null,
+      "extracted_value": 0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "abs(10 - 5458600) % 10",
+        "expression_code": "result = abs(10 - 5458600) % 10\nprint(result)",
+        "referenced_stops": [
+          1,
+          2
+        ]
+      },
+      "reasoning": "Compute stop: abs(10 - 5458600) % 10 = 0",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 0,
+  "difficulty": {
+    "level": "easy",
+    "depth": 7,
+    "tool_stop_count": 1,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "Here is the rewritten riddle:\n\n1. Seek the page titled after a Dutch company known for its role in producing advanced machinery for semiconductor manufacturing; in what year was this producer first founded?\n\n2. There exists a page whose lead calls it the capital and largest city of the island nation to the west of Great Britain; on that city's article, what year is given for its founding or establishment?\n\n3. What island in the North Atlantic — the one linked from the city in clue 2 — has how many inhabitants according to the population figure reported on its page?\n\n4. If you have the population number uncovered in clue 3, transform it by finding the next prime number greater than that population; once done, turn your attention to the English article that names the capital of the U.S. state famous for live music and longhorns.\n\n5. The article whose opening line declares it the capital of that Texas state contains a visible count of language editions at the top — how many language links are shown there? After noting that count, search for the major Indian city that serves as the capital of Karnataka.\n\n6. The tech‑hub city’s page — celebrated as a garden of startups and the seat of Karnataka — displays its own tally of language editions; record how many languages are listed at the top of that article.\n\n7. (One final arithmetic task.) Compute the absolute difference between clue 2 and clue 3, then take that result modulo 10 — i.e., compute abs(clue 2 - clue 3) % 10 — your answer must be a single digit from 0 to 9.",
+  "metadata": {
+    "theme": "Tracing the global semiconductor ecosystem: from ASML (lithography equipment) to major chipmakers and the cities/countries that host fabs, design talent and market impact.",
+    "difficulty": "easy",
+    "sample_id": "sample_197",
+    "pages_crawled": 4769
+  },
+  "generated_at": "2026-03-17T13:32:24.472336+00:00"
+}

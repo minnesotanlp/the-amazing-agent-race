@@ -1,0 +1,456 @@
+{
+  "trail_id": "trail_081704be",
+  "seed_url": "https://en.wikipedia.org/wiki/Metsämaa",
+  "seed_title": "Metsämaa",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Mets%C3%A4maa",
+      "extraction_target": "the coordinates listed in the infobox (field: 'Coordinates')",
+      "extraction_section": "infobox",
+      "extracted_value": "60.9377920, 23.1569686",
+      "extracted_value_type": "coords",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Immigration to Finland wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Immigration_to_Finland",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start at the seed: Metsämaa is a small former Finnish municipality whose population and location set the local stage for exploring broader Finnish social and geographic themes.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Immigration_to_Finland",
+      "extraction_target": "the percentage of the total population who are persons of foreign origin and background (Statistics Finland, as of 2024)",
+      "extraction_section": null,
+      "extracted_value": 11.1,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Islam in Morocco wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Islam_in_Morocco",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Moves from the local to the national: immigration patterns show how small communities like Metsämaa are affected by changing population flows and where newcomers come from.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Immigration_to_Finland",
+      "extraction_target": "Look up the elevation of Immigration to Finland",
+      "extraction_section": null,
+      "extracted_value": 174.1120452880859,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Immigration to Finland"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (elevation) derived from https://en.wikipedia.org/wiki/Immigration_to_Finland",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Islam_in_Morocco",
+      "extraction_target": "Look up the population of Finland",
+      "extraction_section": null,
+      "extracted_value": 5650325,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "countries_population",
+            "arguments": {
+              "country": "Finland"
+            },
+            "expected_output": null,
+            "output_key": "population"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: population of Finland",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Islam_in_Morocco",
+      "extraction_target": "Reason: the number of 1-bits in its binary representation",
+      "extraction_section": null,
+      "extracted_value": 13,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (binary_1bit_count) on stop 2 value",
+      "reason_transform": "binary_1bit_count",
+      "reason_source_stop": 3,
+      "reason_code": "result = bin(abs(int(5650325))).count('1')\nprint(result)",
+      "depends_on": [
+        3
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Religion_in_Finland",
+      "extraction_target": "the number of languages the article is available in (as shown at the top)",
+      "extraction_section": null,
+      "extracted_value": 17,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Religion_in_Finland",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Explores the religious composition of Finland, which helps explain cultural life in places like Metsämaa and the impact of immigration on religious demographics.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Religion_in_Finland",
+      "extraction_target": "Look up the elevation of Religion in Finland",
+      "extraction_section": null,
+      "extracted_value": 174.1120452880859,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Religion in Finland"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Religion in Finland) from https://en.wikipedia.org/wiki/Religion_in_Finland",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Religion_in_Finland",
+      "extraction_target": "Look up the count of hotels near Religion in Finland",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "hotels near Religion in Finland"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of hotels near Religion in Finland) from https://en.wikipedia.org/wiki/Religion_in_Finland",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Religion_in_Finland",
+      "extraction_target": "Combine the elevation of Religion in Finland and the count of hotels near Religion in Finland: (174 + 20)",
+      "extraction_section": null,
+      "extracted_value": 194,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(174.1120452880859) + int(20.0)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Religion in Finland add count of hotels near Religion in Finland",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6,
+        7
+      ]
+    },
+    {
+      "index": 9,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Religion_in_Finland",
+      "extraction_target": "Reason: the number you get by reversing its digits",
+      "extraction_section": null,
+      "extracted_value": 71,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_reversal) on stop 3 value",
+      "reason_transform": "digit_reversal",
+      "reason_source_stop": 5,
+      "reason_code": "result = int(str(abs(int(17)))[::-1])\nprint(result)",
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 10,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Finnish_Sign_Language",
+      "extraction_target": "the number of deaf native speakers listed in the infobox (2006)",
+      "extraction_section": null,
+      "extracted_value": 5000,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Finland-Swedish_Sign_Language",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Shifts to language and minority rights: Finnish Sign Language is a distinctive part of Finland's linguistic landscape and a reminder that demographic change intersects with language policy.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        9
+      ]
+    },
+    {
+      "index": 11,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Finland-Swedish_Sign_Language",
+      "extraction_target": "number of deaf native speakers (2014) reported in the infobox",
+      "extraction_section": null,
+      "extracted_value": 150,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Speaker of the Parliament of Finland wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Speaker_of_the_Parliament_of_Finland",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Complementary language stop: Finland-Swedish Sign Language highlights bilingual and minority-language realities in Finland, particularly relevant to local identity in bilingual regions.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        10
+      ]
+    },
+    {
+      "index": 12,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Speaker_of_the_Parliament_of_Finland",
+      "extraction_target": "the seat of the Speaker (city and country)",
+      "extraction_section": null,
+      "extracted_value": "Helsinki, Finland",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Speaker_of_the_Parliament_of_Finland",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Return to governance: the Speaker represents national parliamentary leadership, anchoring the trail in Finnish institutions that shape policy on immigration, language rights and regional affairs.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        11
+      ]
+    },
+    {
+      "index": 13,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: abs(174 - 13) % 10",
+      "extraction_section": null,
+      "extracted_value": 1,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "abs(174 - 13) % 10",
+        "expression_code": "result = abs(174 - 13) % 10\nprint(result)",
+        "referenced_stops": [
+          2,
+          4,
+          8,
+          11
+        ]
+      },
+      "reasoning": "Compute stop: abs(174 - 13) % 10 = 1",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2,
+        4,
+        8,
+        11
+      ]
+    }
+  ],
+  "passcode": 1,
+  "difficulty": {
+    "level": "medium",
+    "depth": 14,
+    "tool_stop_count": 5,
+    "reason_stop_count": 2,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Track down the small Finnish locality where every nature lover could find solace amid lush greenery—determine its geographical coordinates from the page that tells its tale.\n\n2. What percentage of citizens in this northern land proudly embrace their heritage from foreign origins? Seek the statistics related to the blend of nationalities within its borders.\n\n3. If you were to measure this geographical intrigue from the previous clue, can you discover how high it stands above sea level? \n\n4. Unravel the mystery of how many individuals inhabit the small yet powerful Nordic nation at the core of culture and governance.\n\n5. For the next revelation, take the population count you previously uncovered and explore its binary form—how many 1-bits can be found in that digital echo?\n\n6. An article that discusses the forms of belief flourishing in this territory holds your next number. How many languages does it offer to its curious visitors at the top of the page?\n\n7. By what height does the essence of faith rise in the land where many belief systems coalesce? Investigate the altitude of this cultural melting pot.\n\n8. Look nearby, and you'll find a collection of places devoted to hospitality. How many hotels are nestled in proximity to these beliefs?\n\n9. Now, let’s combine your discoveries: add the elevation from your earlier findings to the number of nearby hotels. What sum arises from these two values?\n\n10. As you reflect on the languages explored, see what number emerges when you reverse the digits you uncovered previously. What new figure springs forth?\n\n11. Seek out the dedicated conveyers of visual languages rooted within Finnish culture. How many deaf native speakers were reported in a notable year, as described in their article?\n\n12. Not far away is another form of sign language that flourishes in the same environment. What is the number of deaf native speakers recorded from this alternative dialect in 2014?\n\n13. Find the seat of authority that the nation’s representative calls home—identify the city and country that cradle this significant position.\n\n14. Finally, calculate the answer you seek: take the absolute difference between the elevation from clue 3 and 13, then apply modulo 10 to reveal your final single-digit answer.",
+  "metadata": {
+    "theme": "From a small Finnish locality to national identity and global connections — a short trail that begins in Metsämaa and explores Finland's demographics, languages and governance while using geographic and demographic tools to contrast place, climate and distance.",
+    "difficulty": "medium",
+    "sample_id": "sample_053",
+    "pages_crawled": 1563
+  },
+  "generated_at": "2026-03-16T09:06:39.605362+00:00"
+}

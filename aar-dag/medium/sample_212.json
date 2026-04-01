@@ -1,0 +1,454 @@
+{
+  "trail_id": "trail_a5a2e2bc",
+  "seed_url": "https://en.wikipedia.org/wiki/Topeka_USD_501",
+  "seed_title": "Topeka USD 501",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Topeka_USD_501",
+      "extraction_target": "the total number of schools in the district (infobox)",
+      "extraction_section": null,
+      "extracted_value": 33,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Brown v. Board of Education of Topeka wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Brown_v._Board_of_Education_of_Topeka",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Seed — the local school district at the center of the Brown case; starting point for a trail from local schooling to national law.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Brown_v._Board_of_Education_of_Topeka",
+      "extraction_target": "the date the Supreme Court issued its decision",
+      "extraction_section": null,
+      "extracted_value": "May 17, 1954",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Plessy_v._Ferguson",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "The landmark Supreme Court case that originated from Topeka and ended legal school segregation — the central historical pivot of the trail.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Plessy_v._Ferguson",
+      "extraction_target": "Calculate the number of days between 1954-05-17 and 2026-03-19",
+      "extraction_section": null,
+      "extracted_value": 26239,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "from datetime import date\nd1 = date.fromisoformat('1954-05-17')\nd2 = date.fromisoformat('2026-03-19')\nresult = abs((d2 - d1).days)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "days"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: date computation 1954-05-17 to 2026-03-19 (pinned)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/United_States_Constitution",
+      "extraction_target": "the year shown for the Eleventh Amendment in the Remaining amendments subsection",
+      "extraction_section": "Eleventh Amendment (1795)",
+      "extracted_value": "1795",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Civil_liberties",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "The constitutional basis (Equal Protection) that Brown relied on — connecting the case to the nation's founding legal document.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/United_States_Constitution",
+      "extraction_target": "Look up the elevation of United States Constitution",
+      "extraction_section": null,
+      "extracted_value": 3236.2353515625,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "United States Constitution"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of United States Constitution) from https://en.wikipedia.org/wiki/United_States_Constitution",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/United_States_Constitution",
+      "extraction_target": "Look up the count of hospitals near United States Constitution",
+      "extraction_section": null,
+      "extracted_value": 4.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "hospitals near United States Constitution"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of hospitals near United States Constitution) from https://en.wikipedia.org/wiki/United_States_Constitution",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/United_States_Constitution",
+      "extraction_target": "Combine the elevation of United States Constitution and the count of hospitals near United States Constitution: abs(3236 - 4)",
+      "extraction_section": null,
+      "extracted_value": 3232,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(3236.2353515625) - int(4.0))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of United States Constitution abs_diff count of hospitals near United States Constitution",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        4,
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/United_States_Constitution",
+      "extraction_target": "Look up the elevation of United States Constitution",
+      "extraction_section": null,
+      "extracted_value": 3236.2353515625,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "United States Constitution"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (elevation) derived from https://en.wikipedia.org/wiki/United_States_Constitution",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Civil_liberties",
+      "extraction_target": "the number of languages listed under the article title",
+      "extraction_section": null,
+      "extracted_value": 48,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/States%27_rights",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Places Brown within the broader category of civil liberties and rights protections affecting individuals and institutions.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        7
+      ]
+    },
+    {
+      "index": 9,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/States%27_rights",
+      "extraction_target": "the number of languages the article is available in (listed near the top)",
+      "extraction_section": null,
+      "extracted_value": 12,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/States%27_rights",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Explains the recurring tension between federal civil-rights rulings and state/local control over education — a continuing theme since Brown.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        8
+      ]
+    },
+    {
+      "index": 10,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/States%27_rights",
+      "extraction_target": "Reason: the number you get by reversing its digits",
+      "extraction_section": null,
+      "extracted_value": 21,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_reversal) on stop 5 value",
+      "reason_transform": "digit_reversal",
+      "reason_source_stop": 9,
+      "reason_code": "result = int(str(abs(int(12)))[::-1])\nprint(result)",
+      "depends_on": [
+        9
+      ]
+    },
+    {
+      "index": 11,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Second_presidency_of_Donald_Trump",
+      "extraction_target": "the number of languages the article is available in (as shown near the top)",
+      "extraction_section": null,
+      "extracted_value": 23,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Second_presidency_of_Donald_Trump",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Brings the trail into current politics: how modern administrations and appointments influence the enforcement and interpretation of civil-rights law.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        10
+      ]
+    },
+    {
+      "index": 12,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Second_presidency_of_Donald_Trump",
+      "extraction_target": "Reason: the number of divisors of that figure",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (num_divisors) on stop 6 value",
+      "reason_transform": "num_divisors",
+      "reason_source_stop": 11,
+      "reason_code": "n = abs(int(23))\ncount = sum(1 for i in range(1, n+1) if n % i == 0) if n > 0 else 0\nresult = count\nprint(result)",
+      "depends_on": [
+        11
+      ]
+    },
+    {
+      "index": 13,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: (33 + 3236 + 48) % 10",
+      "extraction_section": null,
+      "extracted_value": 7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "(33 + 3236 + 48) % 10",
+        "expression_code": "result = (33 + 3236 + 48) % 10\nprint(result)",
+        "referenced_stops": [
+          0,
+          7,
+          8
+        ]
+      },
+      "reasoning": "Compute stop: (33 + 3236 + 48) % 10 = 7",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0,
+        7,
+        8
+      ]
+    }
+  ],
+  "passcode": 7,
+  "difficulty": {
+    "level": "medium",
+    "depth": 14,
+    "tool_stop_count": 5,
+    "reason_stop_count": 2,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. A school district in Topeka oversees the education of many young minds. How many institutions do they manage within their boundaries? \n\n2. This landmark case reshaped the educational landscape, and in what year did the nation's highest court reveal its verdict, paving the way for crucial change?\n\n3. Between the decision made in May of 1954 and a date in March 2026, how many days separate these significant moments in civil rights history?\n\n4. Within the venerable document that lays the groundwork for American law, what year is noted for an amendment that speaks to federal powers and state boundaries?\n\n5. Seek the elevation above sea level of the foundational document of the nation — how high is it positioned?\n\n6. Discover the number of healing establishments, just a stone's throw away from the document mentioned above. How many can be counted in close proximity?\n\n7. Now, take the elevation you found in clue 5 and consider the number of hospitals from clue 6. What is the absolute difference between these two counts?\n\n8. To continue, revisit that very elevation of the foundational document. What is its height once more? \n\n9. A page exists, detailing rights held dear by individuals across lands — how many languages are represented in this article?\n\n10. Turn your gaze to another critical concept in the balance of power within the nation. How many languages make this article accessible to non-English speakers? \n\n11. By reversing the digits of the number you uncovered in clue 10, what new figure presents itself for your consideration? \n\n12. As you navigate towards the political arena, delve into an article chronicling a modern presidency. What number of tongues is this page available in? \n\n13. Ponder the value from your previous discovery. What is the count of unique factors that can produce that number? \n\n14. For your final revelation, compute the following: Take the sum of clue 1, clue 8, and clue 9, and then find the result modulo 10. What single digit emerges from this calculation?",
+  "metadata": {
+    "theme": "From a local Topeka school district to the national arc of U.S. civil rights — tracing the legal, constitutional and contemporary political/economic context that grew from Brown v. Board.",
+    "difficulty": "medium",
+    "sample_id": "sample_212",
+    "pages_crawled": 14726
+  },
+  "generated_at": "2026-03-20T03:33:37.474500+00:00"
+}

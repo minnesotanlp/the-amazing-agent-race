@@ -1,0 +1,205 @@
+{
+  "trail_id": "trail_7a3233ed",
+  "seed_url": "https://en.wikipedia.org/wiki/Charles_Schwab_Corporation",
+  "seed_title": "Charles Schwab Corporation",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Charles_Schwab_Corporation",
+      "extraction_target": "the company's headquarters city and state",
+      "extraction_section": null,
+      "extracted_value": "Westlake, Texas",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/San_Francisco,_California",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Seed: Charles Schwab is a major retail brokerage that connects individual investors to U.S. equity markets—perfect starting point for a financial/market-themed trail.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/San_Francisco,_California",
+      "extraction_target": "the coordinates listed in the infobox (field: 'Coordinates')",
+      "extraction_section": "infobox",
+      "extracted_value": "37.77750, -122.41639",
+      "extracted_value_type": "coords",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Wall Street Journal wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Wall_Street_Journal",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Schwab's corporate presence and large fintech ecosystem tie the company to San Francisco; this stop establishes the West Coast end of the national investing story.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/San_Francisco,_California",
+      "extraction_target": "Look up the elevation of San Francisco, California",
+      "extraction_section": null,
+      "extracted_value": 15.55781936645508,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "San Francisco, California"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (elevation) derived from https://en.wikipedia.org/wiki/San_Francisco,_California",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 3,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Wall_Street_Journal",
+      "extraction_target": "the number of subsections under the Features and operations section (2.1–2.4)",
+      "extraction_section": "Features and operations",
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Jersey City, New Jersey wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Jersey_City,_New_Jersey",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "The Wall Street Journal ties the narrative together as the national financial press that covers markets spanning the West Coast, Midwest, and East Coast—context for investors served by Schwab.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 4,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Jersey_City,_New_Jersey",
+      "extraction_target": "the area listed in the infobox (field: '[Area codes](/wiki/Telephone_numbering_plan \"Telephone numbering plan\")')",
+      "extraction_section": "infobox",
+      "extracted_value": 201,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Jersey_City,_New_Jersey",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Conclude on the East Coast side of the U.S. finance network: Jersey City sits across from Manhattan's financial district, representing the other endpoint of the coast-to-coast investing ecosystem.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 5,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Jersey_City,_New_Jersey",
+      "extraction_target": "Reason: the largest prime factor of that figure",
+      "extraction_section": null,
+      "extracted_value": 67,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (largest_prime_factor) on stop 3 value",
+      "reason_transform": "largest_prime_factor",
+      "reason_source_stop": 4,
+      "reason_code": "def largest_prime_factor(n):\n    n = abs(int(n))\n    if n <= 1: return n\n    d = 2\n    while d * d <= n:\n        while n % d == 0: n //= d\n        d += 1\n    return n\nresult = largest_prime_factor(201)\nprint(result)"
+    },
+    {
+      "index": 6,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: digital_root(15 + 201)",
+      "extraction_section": null,
+      "extracted_value": 9,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "digital_root(15 + 201)",
+        "expression_code": "def digital_root(n):\n    n = abs(int(n))\n    return n if n == 0 else ((n - 1) % 9) + 1\nresult = digital_root(15 + 201)\nprint(result)",
+        "referenced_stops": [
+          2,
+          4
+        ]
+      },
+      "reasoning": "Compute stop: digital_root(15 + 201) = 9",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 9,
+  "difficulty": {
+    "level": "easy",
+    "depth": 7,
+    "tool_stop_count": 1,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Track down the financial firm whose name is etched in the hearts of investors, based in a city known for its golden gate and vibrant hills. \n\n2. A bustling metropolis on the West Coast, this city is famous for its iconic landmarks. Can you uncover the coordinates that pinpoint this urban center?\n\n3. Discover how many meters above the sea level this vibrant city sits, a significant detail for its inhabitants.\n\n4. Among the major publications reporting on financial markets, which journal has a section detailing its various features that spans over three subsections?\n\n5. This thriving urban area across the Hudson is known for its skyline views. What numerical figure represents the space it occupies, as defined in its description?\n\n6. From the area you just found in clue 5, seek out its largest prime factor — a critical piece for this treasure hunt.\n\n7. Now, delve into simple numerology: find the digital root of the sum of the elevation from clue 3 and the area from clue 5. What single digit do you uncover? \n\nFinally, reveal the result of the computation from clue 7, which is the digital root of (clue 3 + clue 5). The answer will be a single digit between 0 and 9.",
+  "metadata": {
+    "theme": "Tracing a coast-to-coast U.S. investing story: from a national brokerage headquarters in San Francisco to major market centers and a blue-chip tech holding covered by financial press.",
+    "difficulty": "easy",
+    "sample_id": "sample_157",
+    "pages_crawled": 2333
+  },
+  "generated_at": "2026-03-17T09:34:02.489795+00:00"
+}

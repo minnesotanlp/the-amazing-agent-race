@@ -1,0 +1,494 @@
+{
+  "trail_id": "trail_1beef6ad",
+  "seed_url": "https://en.wikipedia.org/wiki/Coulsdon_and_Purley_Urban_District",
+  "seed_title": "Coulsdon and Purley Urban District",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Coulsdon_and_Purley_Urban_District",
+      "extraction_target": "area of the urban district in 1921 (in acres)",
+      "extraction_section": null,
+      "extracted_value": 8572,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Coulsdon_and_Purley_Urban_District",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Seed: the former urban district whose creation and abolition anchor this trail through local government change.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Coulsdon_and_Purley_Urban_District",
+      "extraction_target": "Reason: the number of divisors of that figure",
+      "extraction_section": null,
+      "extracted_value": 6,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (num_divisors) on stop 0 value",
+      "reason_transform": "num_divisors",
+      "reason_source_stop": 0,
+      "reason_code": "n = abs(int(8572))\ncount = sum(1 for i in range(1, n+1) if n % i == 0) if n > 0 else 0\nresult = count\nprint(result)"
+    },
+    {
+      "index": 2,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Coulsdon",
+      "extraction_target": "the population listed in the infobox (field: 'Population')",
+      "extraction_section": "infobox",
+      "extracted_value": 25530,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Coulsdon",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Coulsdon was one half of the district; extract location and population to locate the district on the map and size the community.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 3,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Coulsdon",
+      "extraction_target": "Reason: the largest prime factor of that figure",
+      "extraction_section": null,
+      "extracted_value": 37,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (largest_prime_factor) on stop 1 value",
+      "reason_transform": "largest_prime_factor",
+      "reason_source_stop": 2,
+      "reason_code": "def largest_prime_factor(n):\n    n = abs(int(n))\n    if n <= 1: return n\n    d = 2\n    while d * d <= n:\n        while n % d == 0: n //= d\n        d += 1\n    return n\nresult = largest_prime_factor(25530)\nprint(result)"
+    },
+    {
+      "index": 4,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Purley,_London",
+      "extraction_target": "Purley's population in 2022",
+      "extraction_section": "Demography",
+      "extracted_value": 15184,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Purley,_London",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Purley was the other principal settlement in the district — we need its demographic snapshot to compare communities within the district.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 5,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Purley,_London",
+      "extraction_target": "Reason: the sum of its distinct prime factors",
+      "extraction_section": null,
+      "extracted_value": 88,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (sum_prime_factors) on stop 2 value",
+      "reason_transform": "sum_prime_factors",
+      "reason_source_stop": 4,
+      "reason_code": "def prime_factors(n):\n    n = abs(int(n))\n    factors = []\n    d = 2\n    while d * d <= n:\n        while n % d == 0:\n            factors.append(d)\n            n //= d\n        d += 1\n    if n > 1: factors.append(n)\n    return factors\nresult = sum(set(prime_factors(15184)))\nprint(result)"
+    },
+    {
+      "index": 6,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Sanderstead",
+      "extraction_target": "the population listed in the infobox (field: 'Population')",
+      "extraction_section": "infobox",
+      "extracted_value": 12777,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Kenley",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Neighboring parish within the former local government landscape; helps show the local patchwork of communities around the district.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 7,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Sanderstead",
+      "extraction_target": "Count stadiums near Sanderstead",
+      "extraction_section": null,
+      "extracted_value": 7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "stadiums near Sanderstead"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (nearby_poi) derived from https://en.wikipedia.org/wiki/Sanderstead",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 8,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Kenley",
+      "extraction_target": "Look up the elevation at Kenley",
+      "extraction_section": null,
+      "extracted_value": 88.5782241821289,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Kenley"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for Kenley",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 9,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Banstead_Urban_District",
+      "extraction_target": "the area of Banstead in square kilometres as shown in the infobox",
+      "extraction_section": null,
+      "extracted_value": 8.25,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Urban_district_(England_and_Wales)",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Another nearby urban district — useful for comparing administrative units and boundary changes in the same era.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 10,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Urban_district_(England_and_Wales)",
+      "extraction_target": "net decrease in the number of urban districts between 1932 and 1938",
+      "extraction_section": null,
+      "extracted_value": 159,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Urban_district_(England_and_Wales)",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Context: explains what an urban district was and the statutory framework that defined the seed entity.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 11,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Urban_district_(England_and_Wales)",
+      "extraction_target": "Reason: the next prime number after that figure",
+      "extraction_section": null,
+      "extracted_value": 163,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (next_prime) on stop 6 value",
+      "reason_transform": "next_prime",
+      "reason_source_stop": 10,
+      "reason_code": "def next_prime(n):\n    n = abs(int(n))\n    if n < 2: return 2\n    candidate = n + 1\n    while True:\n        if all(candidate % i != 0 for i in range(2, int(candidate**0.5)+1)):\n            return candidate\n        candidate += 1\nresult = next_prime(159)\nprint(result)"
+    },
+    {
+      "index": 12,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Local_Government_Act_1972",
+      "extraction_target": "the date of royal assent",
+      "extraction_section": null,
+      "extracted_value": "26 October 1972",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Pavilion Kuala Lumpur–Bukit Bintang MRT station wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Pavilion_Kuala_Lumpur%E2%80%93Bukit_Bintang_MRT_station",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Key law that abolished many urban districts (including this seed); extract the operative date and the administrative consequences.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 13,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Pavilion_Kuala_Lumpur%E2%80%93Bukit_Bintang_MRT_station",
+      "extraction_target": "Count the number of universities near Jalan Bukit Bintang",
+      "extraction_section": null,
+      "extracted_value": 20,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "universities near Jalan Bukit Bintang"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: count universities near Jalan Bukit Bintang",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 14,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/London_Government_Act_1963",
+      "extraction_target": "the number of Acts listed under 'Amends' in the infobox",
+      "extraction_section": null,
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Municipal Corporations Act 1835 wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Municipal_Corporations_Act_1835",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Earlier London reorganisation that reshaped neighbouring boundaries — helps trace the incremental legal reforms affecting the district's region.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 15,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Municipal_Corporations_Act_1835",
+      "extraction_target": "the month and year the select committee to inquire into municipal corporations was appointed",
+      "extraction_section": "Royal commission",
+      "extracted_value": "February 1833",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Nigerians wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Nigerians",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Historic legislative milestone in municipal reform — provides long-term legal context for how local government in England developed into the 20th century.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 16,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Nigerians",
+      "extraction_target": "Look up the elevation at Nigerians",
+      "extraction_section": null,
+      "extracted_value": 479.4509582519531,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Nigerians"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for Nigerians",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 17,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: digital_root(37 + 88 + 479)",
+      "extraction_section": null,
+      "extracted_value": 1,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "digital_root(37 + 88 + 479)",
+        "expression_code": "def digital_root(n):\n    n = abs(int(n))\n    return n if n == 0 else ((n - 1) % 9) + 1\nresult = digital_root(37 + 88 + 479)\nprint(result)",
+        "referenced_stops": [
+          3,
+          8,
+          16
+        ]
+      },
+      "reasoning": "Compute stop: digital_root(37 + 88 + 479) = 1",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 1,
+  "difficulty": {
+    "level": "hard",
+    "depth": 18,
+    "tool_stop_count": 4,
+    "reason_stop_count": 4,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "Here is the revised riddle:\n\n1. Unearth the tale of an urban district that flourished in the 20th century; what was its expanse in acres back in 1921?\n\n2. From that figure, discover the number of divisors that give this area its mathematical character—what do you find?\n\n3. A neighboring place adds its own voice to the regional narrative. What does the population of this locality reveal about its vibrant community?\n\n4. Within its count, seek the largest prime number that divides this sum and declare it—what value do you hold?\n\n5. Shift your gaze to another borough nearby; how many people called this community home in 2022?\n\n6. Take the distinct prime factors of this population and sum them up—what total emerges?\n\n7. As you continue, another district awaits. What is the population figure written in its official account?\n\n8. How many stadiums can be spotted in the periphery of this picturesque district? Count them and keep that number close.\n\n9. What lies beneath the cloud cover of a certain suburban area known for its unique elevation? Ascertain the height that sets this location apart from its neighbors.\n\n10. In a connected tale of governance, measure the area of a nearby urban expansion in square kilometers. What's the figure housed in its history?\n\n11. Reflect on the years gone by; what was the net change in the number of urban districts recorded during the 1930s?\n\n12. Seek the prime number that follows your earlier discovery—what does it lead you to next?\n\n13. In history's annals, a significant act received royal assent. What was the date that marked this pivotal moment in local governance?\n\n14. Travel afar to a bustling district; how many institutions of higher learning can you count near the vibrant Jalan Bukit Bintang?\n\n15. Returning to London, how many legislative acts are noted in the columns of a specific governance law?\n\n16. A landmark inquiry unfolded in a specific month and year; unravel this date when the select committee was established.\n\n17. Ascend to the heights of another location; what elevation do people often refer to when discussing this area?\n\n18. Weave the threads together to compute the digital root of (clue 4 + clue 9 + clue 17). The answer shall be a single digit—what do you achieve?",
+  "metadata": {
+    "theme": "Tracing the administrative life of Coulsdon and Purley: local government history, neighbouring communities, and measurable place characteristics (topography, travel, amenities and scale).",
+    "difficulty": "hard",
+    "sample_id": "sample_083",
+    "pages_crawled": 2649
+  },
+  "generated_at": "2026-03-16T09:39:56.524398+00:00"
+}

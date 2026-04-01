@@ -1,0 +1,749 @@
+{
+  "trail_id": "trail_976d2d24",
+  "seed_url": "https://en.wikipedia.org/wiki/Denmark_Vesey_House",
+  "seed_title": "Denmark Vesey House",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Denmark_Vesey_House",
+      "extraction_target": "the coordinates listed in the infobox (field: 'Coordinates')",
+      "extraction_section": "infobox",
+      "extracted_value": "32°46′55.7″N 79°56′28″W﻿ / ﻿32.782139°N 79.94111°W﻿ / 32.782139; -79.94111",
+      "extracted_value_type": "coords",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Denmark_Vesey",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Seed site: the Denmark Vesey House anchors the trail as a preserved Charleston building linked to an important historical figure and the impetus for local preservation.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Denmark_Vesey",
+      "extraction_target": "cause of death as given in the infobox",
+      "extraction_section": null,
+      "extracted_value": "Execution by hanging",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Denmark_Vesey",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Contextual biography: Denmark Vesey's life and actions explain the historical significance that led to the house's recognition and preservation.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Denmark_Vesey",
+      "extraction_target": "Reason: the alphabetical position of its first letter (A=1, B=2, ...)",
+      "extraction_section": null,
+      "extracted_value": 5,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (alpha_position_first_letter) on stop 1 value",
+      "reason_transform": "alpha_position_first_letter",
+      "reason_source_stop": 1,
+      "reason_code": "first = \"Execution by hanging\"[0].upper()\nresult = ord(first) - ord('A') + 1 if first.isalpha() else 0\nprint(result)",
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Charleston_Historic_District",
+      "extraction_target": "date the district was added to the National Register of Historic Places",
+      "extraction_section": null,
+      "extracted_value": "October 15, 1966",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Slater Mill Historic Site wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Slater_Mill_Historic_Site",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Local scale: the Charleston Historic District shows how individual historic properties sit within broader protected urban districts.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Slater_Mill_Historic_Site",
+      "extraction_target": "Count the number of restaurants near Roosevelt Avenue",
+      "extraction_section": null,
+      "extracted_value": 20,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "restaurants near Roosevelt Avenue"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: count restaurants near Roosevelt Avenue",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Slater_Mill_Historic_Site",
+      "extraction_target": "Reason: the number you get by reversing its digits",
+      "extraction_section": null,
+      "extracted_value": 2,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_reversal) on stop 3 value",
+      "reason_transform": "digit_reversal",
+      "reason_source_stop": 4,
+      "reason_code": "result = int(str(abs(int(20)))[::-1])\nprint(result)",
+      "depends_on": [
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Historic_districts_in_the_United_States",
+      "extraction_target": "the year New Orleans followed Charleston by establishing a historic district and the Vieux Carré Commission",
+      "extraction_section": "History",
+      "extracted_value": "1937",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "National Historic Preservation Act wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/National_Historic_Preservation_Act",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Framework: this page explains the concept of historic districts in the U.S., tying the Charleston example to national practices for district-based preservation.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Historic_districts_in_the_United_States",
+      "extraction_target": "Look up the elevation of Historic districts in the United States",
+      "extraction_section": null,
+      "extracted_value": 3236.2353515625,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Historic districts in the United States"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Historic districts in the United States) from https://en.wikipedia.org/wiki/Historic_districts_in_the_United_States",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Historic_districts_in_the_United_States",
+      "extraction_target": "Look up the Google rating of Historic districts in the United States",
+      "extraction_section": null,
+      "extracted_value": 4.8,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "Historic districts in the United States"
+            },
+            "expected_output": null,
+            "output_key": "place_rating"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (Google rating of Historic districts in the United States) from https://en.wikipedia.org/wiki/Historic_districts_in_the_United_States",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 9,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Historic_districts_in_the_United_States",
+      "extraction_target": "Combine the elevation of Historic districts in the United States and the Google rating of Historic districts in the United States: abs(3236 - 4)",
+      "extraction_section": null,
+      "extracted_value": 3232,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(3236.2353515625) - int(4.8))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Historic districts in the United States abs_diff Google rating of Historic districts in the United States",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        7,
+        8
+      ]
+    },
+    {
+      "index": 10,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/National_Historic_Preservation_Act",
+      "extraction_target": "the effective date of the National Historic Preservation Act",
+      "extraction_section": null,
+      "extracted_value": "October 15, 1966",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "An Act for the Admission of the State of California wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/An_Act_for_the_Admission_of_the_State_of_California",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Legal backbone: the NHPA established the legal and institutional framework (including National Register and SHPOs) that protects places like Denmark Vesey House.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        9
+      ]
+    },
+    {
+      "index": 11,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/An_Act_for_the_Admission_of_the_State_of_California",
+      "extraction_target": "Calculate the number of days between 1937-01-01 and 2026-03-16",
+      "extraction_section": null,
+      "extracted_value": 32581,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "from datetime import date\nd1 = date.fromisoformat('1937-01-01')\nd2 = date.fromisoformat('2026-03-16')\nresult = abs((d2 - d1).days)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "days"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: date computation 1937-01-01 to 2026-03-16 (pinned)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        10
+      ]
+    },
+    {
+      "index": 12,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/National_Trust_for_Historic_Preservation",
+      "extraction_target": "the reported size of actively engaged visitors, followers, supporters, and advocates as of November 2023",
+      "extraction_section": "Overview",
+      "extracted_value": 1000000,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Advisory_Council_on_Historic_Preservation",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Non-governmental actor: the National Trust shows how private/nonprofit organizations participate in preserving and interpreting historic sites nationwide.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        11
+      ]
+    },
+    {
+      "index": 13,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Advisory_Council_on_Historic_Preservation",
+      "extraction_target": "the year the Advisory Council on Historic Preservation was formed",
+      "extraction_section": null,
+      "extracted_value": "1966",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Pennsylvania State Game Lands Number 259 wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Pennsylvania_State_Game_Lands_Number_259",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Advisory/oversight role: this council coordinates federal historic preservation policy and reviews projects that could affect historic properties—connecting national policy back to local sites.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        12
+      ]
+    },
+    {
+      "index": 14,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Advisory_Council_on_Historic_Preservation",
+      "extraction_target": "Look up the elevation of Advisory Council on Historic Preservation",
+      "extraction_section": null,
+      "extracted_value": 11.83440017700195,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Advisory Council on Historic Preservation"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Advisory Council on Historic Preservation) from https://en.wikipedia.org/wiki/Advisory_Council_on_Historic_Preservation",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        13
+      ]
+    },
+    {
+      "index": 15,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Advisory_Council_on_Historic_Preservation",
+      "extraction_target": "Look up the count of museums near Advisory Council on Historic Preservation",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "museums near Advisory Council on Historic Preservation"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of museums near Advisory Council on Historic Preservation) from https://en.wikipedia.org/wiki/Advisory_Council_on_Historic_Preservation",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        13
+      ]
+    },
+    {
+      "index": 16,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Advisory_Council_on_Historic_Preservation",
+      "extraction_target": "Combine the elevation of Advisory Council on Historic Preservation and the count of museums near Advisory Council on Historic Preservation: abs(11 - 20)",
+      "extraction_section": null,
+      "extracted_value": 9,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(11.83440017700195) - int(20.0))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Advisory Council on Historic Preservation abs_diff count of museums near Advisory Council on Historic Preservation",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        14,
+        15
+      ]
+    },
+    {
+      "index": 17,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Pennsylvania_State_Game_Lands_Number_259",
+      "extraction_target": "Find the sunshine duration (seconds) at Armstrong County on 1966-10-15",
+      "extraction_section": null,
+      "extracted_value": 32188.62,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Armstrong County"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "weather_historical",
+            "arguments": {
+              "__from_previous": "coords",
+              "start_date": "1966-10-15",
+              "end_date": "1966-10-15",
+              "select": [
+                "daily.sunshine_duration[0]"
+              ]
+            },
+            "expected_output": null,
+            "output_key": "sunshine"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: sunshine duration at Armstrong County on 1966-10-15",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        16
+      ]
+    },
+    {
+      "index": 18,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Pennsylvania_State_Game_Lands_Number_259",
+      "extraction_target": "Reason: the digital root (iterated digit sum until single digit)",
+      "extraction_section": null,
+      "extracted_value": 4,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digital_root) on stop 9 value",
+      "reason_transform": "digital_root",
+      "reason_source_stop": 17,
+      "reason_code": "n = abs(int(32188))\nresult = n if n == 0 else ((n - 1) % 9) + 1\nprint(result)",
+      "depends_on": [
+        17
+      ]
+    },
+    {
+      "index": 19,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Historic_Preservation_Fund",
+      "extraction_target": "the year the National Historic Preservation Act (NHPA) was enacted",
+      "extraction_section": null,
+      "extracted_value": 1966,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "9 Channel Nine Court wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/9_Channel_Nine_Court",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Funding: the Historic Preservation Fund shows the money behind preservation efforts—how federal grants and funds support local preservation of homes, districts and sites.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        18
+      ]
+    },
+    {
+      "index": 20,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/9_Channel_Nine_Court",
+      "extraction_target": "Get the driving duration in minutes from 9 Channel Nine Court Toronto to Charleston",
+      "extraction_section": null,
+      "extracted_value": 894,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_directions",
+            "arguments": {
+              "origin": "9 Channel Nine Court Toronto",
+              "destination": "Charleston",
+              "mode": "driving"
+            },
+            "expected_output": null,
+            "output_key": "duration"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: directions duration 9 Channel Nine Court Toronto to Charleston",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        19
+      ]
+    },
+    {
+      "index": 21,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/9_Channel_Nine_Court",
+      "extraction_target": "Reason: the largest prime factor of that figure",
+      "extraction_section": null,
+      "extracted_value": 149,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (largest_prime_factor) on stop 11 value",
+      "reason_transform": "largest_prime_factor",
+      "reason_source_stop": 20,
+      "reason_code": "def largest_prime_factor(n):\n    n = abs(int(n))\n    if n <= 1: return n\n    d = 2\n    while d * d <= n:\n        while n % d == 0: n //= d\n        d += 1\n    return n\nresult = largest_prime_factor(894)\nprint(result)",
+      "depends_on": [
+        20
+      ]
+    },
+    {
+      "index": 22,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: digital_root(32581 + 1966 + 20)",
+      "extraction_section": null,
+      "extracted_value": 7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "digital_root(32581 + 1966 + 20)",
+        "expression_code": "def digital_root(n):\n    n = abs(int(n))\n    return n if n == 0 else ((n - 1) % 9) + 1\nresult = digital_root(32581 + 1966 + 20)\nprint(result)",
+        "referenced_stops": [
+          11,
+          13,
+          15
+        ]
+      },
+      "reasoning": "Compute stop: digital_root(32581 + 1966 + 20) = 7",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        11,
+        13,
+        15
+      ]
+    }
+  ],
+  "passcode": 7,
+  "difficulty": {
+    "level": "hard",
+    "depth": 23,
+    "tool_stop_count": 10,
+    "reason_stop_count": 4,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Seek the humble residence of a man whose ambitions challenged the status quo; at its core lies the longitude and latitude that defines its place in history.\n\n2. The story of a man who sought freedom met its end by what fatality? Unravel this truth to uncover your next destination.\n\n3. What numeric letter from the beginning of that fatality reveals its place in the alphabet—hidden within this tale of struggle?\n\n4. A district transforms a city, preserving tales of yore; encircle the year it joined the roster of historic treasures, marking its significance anew.\n\n5. Track down a location where industry and history intertwine; how many eateries can you find peppered along Roosevelt Avenue in this manufacturing landmark?\n\n6. Reverse the count of dining spots you uncovered. What number emerges from this playful twist? \n\n7. Seek the document detailing the historic districts across this nation; find the date when a vibrant city emulated Charleston, launching its own legacy.\n\n8. Gaze upwards! What altitude does the landscape of historic districts in this nation command? \n\n9. From the same locales, gather the opinions of travelers: what rating do they bestow upon these cherished sites?\n\n10. Combine the elevation you found in clue 8 with the star rating from clue 9 to reveal the absolute difference; this measure guides the next step.\n\n11. A significant piece of legislation protects the nation’s historical assets—what was the effective date that marked its inception? \n\n12. A tale of statehood spans years; calculate the days from the start of 1937 until the middle of March in 2026. How long did it take?\n\n13. There exists a page chronicling the legion of supporters for preserving history; gather the number reported in November 2023 of those who stand for preservation.\n\n14. In the saga of safeguarding history, what year marked the establishment of the council protecting this heritage?\n\n15. Knowledge of place can be measured in height; what elevation does this council’s headquarters occupy?\n\n16. Nearby this council of protectors, as the sun sets, how many museums sparkle like gems awaiting curious minds?\n\n17. Combine the elevation from clue 15 with the count of museums from clue 16 to yield the absolute difference; this number aids your journey forward.\n\n18. In a land named after a past era, determine the sunlight bestowed upon Armstrong County on a fateful October day in 1966; how many seconds were washed in sunshine?\n\n19. For the gleam of knowledge, discover the digital root of that count of sunlight, distilled down to a single digit.\n\n20. Turning the pages of preservation, what year marked the enactment of the act that enveloped our beloved heritage in a simmering embrace?\n\n21. Investigate the distance across roads sprawling from the northern realm of a number to the heart of Charleston; how many minutes does the journey consume?\n\n22. What is the largest prime factor of that travel time you just recorded? Seek this number in the depths of your quest.\n\n23. As your journey culminates, compute the digital root of the ensemble of counts from clues 12, 14, and 16. This answer, a singular digit, will complete your search.",
+  "metadata": {
+    "theme": "From a single preserved Charleston home to the national machinery of preservation — follow Denmark Vesey House outward: the person, the local district, then the US preservation laws, agencies and funding, with geographic and climate checks that show why places and policy both matter.",
+    "difficulty": "hard",
+    "sample_id": "sample_031",
+    "pages_crawled": 1724
+  },
+  "generated_at": "2026-03-16T08:10:43.821962+00:00"
+}

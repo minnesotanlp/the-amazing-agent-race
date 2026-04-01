@@ -1,0 +1,1201 @@
+{
+  "trail_id": "trail_68070dec",
+  "seed_url": "https://en.wikipedia.org/wiki/Nubank",
+  "seed_title": "Nubank",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Nubank",
+      "extraction_target": "the company's founding date",
+      "extraction_section": null,
+      "extracted_value": "2013-05-06",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Google Pay (payment method) wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Google_Pay_(payment_method)",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Seed: Nubank is the Brazilian fintech starting point — digital banking and payment innovation that motivates the rest of the trail.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": []
+    },
+    {
+      "index": 1,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Google_Pay_(payment_method)",
+      "extraction_target": "the developer of Google Pay (payment method) as listed in the infobox",
+      "extraction_section": null,
+      "extracted_value": "Google",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Aptiv wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Aptiv",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Frames the global mobile payments ecosystem and a major platform that competes/partners with fintechs like Nubank.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        0
+      ]
+    },
+    {
+      "index": 2,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Aptiv",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Founded')",
+      "extraction_section": "infobox",
+      "extracted_value": 1994,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Aptiv",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "An automotive-technology company that exemplifies how payments/connected services integrate into mobility ecosystems (connected cars, in-car payments).",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        1
+      ]
+    },
+    {
+      "index": 3,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Aptiv",
+      "extraction_target": "Reason: the number of characters when written as a Roman numeral",
+      "extraction_section": null,
+      "extracted_value": 7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (roman_numeral_letter_count) on stop 2 value",
+      "reason_transform": "roman_numeral_letter_count",
+      "reason_source_stop": 2,
+      "reason_code": "def to_roman(n):\n    n = abs(int(n))\n    vals = [(1000,'M'),(900,'CM'),(500,'D'),(400,'CD'),(100,'C'),\n            (90,'XC'),(50,'L'),(40,'XL'),(10,'X'),(9,'IX'),(5,'V'),(4,'IV'),(1,'I')]\n    r = ''\n    for v, s in vals:\n        while n >= v:\n            r += s; n -= v\n    return r\nresult = len(to_roman(1994))\nprint(result)",
+      "depends_on": [
+        2
+      ]
+    },
+    {
+      "index": 4,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Autonomous_car",
+      "extraction_target": "the number of languages the article is available in (as listed near the top)",
+      "extraction_section": null,
+      "extracted_value": 53,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "SoFi Stadium wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/SoFi_Stadium",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Explores how vehicle technology intersects with payments (in-car commerce, mobility services) — a growth avenue for fintechs.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3
+      ]
+    },
+    {
+      "index": 5,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/SoFi_Stadium",
+      "extraction_target": "Look up the elevation at Inglewood",
+      "extraction_section": null,
+      "extracted_value": 38.3581657409668,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Inglewood"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: geocode+elevation for Inglewood",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        4
+      ]
+    },
+    {
+      "index": 6,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Downtown_Los_Angeles",
+      "extraction_target": "Count the number of libraries near 34.05",
+      "extraction_section": null,
+      "extracted_value": 11,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "libraries near 34.05"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: count libraries near 34.05",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        5
+      ]
+    },
+    {
+      "index": 7,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Major_League_Soccer",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Founded')",
+      "extraction_section": "infobox",
+      "extracted_value": 17,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Major_League_Soccer",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Sports leagues and events drive high-volume, event-driven payments (tickets, concessions, merchandise) — a use case for digital banking and payments.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        6
+      ]
+    },
+    {
+      "index": 8,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Major_League_Soccer",
+      "extraction_target": "Reason: the sum of its digits",
+      "extraction_section": null,
+      "extracted_value": 8,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_sum) on stop 6 value",
+      "reason_transform": "digit_sum",
+      "reason_source_stop": 7,
+      "reason_code": "result = sum(int(d) for d in str(abs(int(17))))\nprint(result)",
+      "depends_on": [
+        7
+      ]
+    },
+    {
+      "index": 9,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/US_Open_(tennis)",
+      "extraction_target": "the location listed in the infobox (field: 'Location')",
+      "extraction_section": "infobox",
+      "extracted_value": "Queens, New York City United States",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Framingham, Massachusetts wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Framingham,_Massachusetts",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Major international sporting event illustrating global payment flows and on-site fintech opportunities.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        8
+      ]
+    },
+    {
+      "index": 10,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/US_Open_(tennis)",
+      "extraction_target": "Look up the elevation of Queens, New York City United States",
+      "extraction_section": null,
+      "extracted_value": 16.7137336730957,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Queens, New York City United States"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Queens, New York City United States) from https://en.wikipedia.org/wiki/US_Open_(tennis)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        9
+      ]
+    },
+    {
+      "index": 11,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/US_Open_(tennis)",
+      "extraction_target": "Look up the count of restaurants near Queens, New York City United States",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "restaurants near Queens, New York City United States"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of restaurants near Queens, New York City United States) from https://en.wikipedia.org/wiki/US_Open_(tennis)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        9
+      ]
+    },
+    {
+      "index": 12,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/US_Open_(tennis)",
+      "extraction_target": "Combine the elevation of Queens, New York City United States and the count of restaurants near Queens, New York City United States: (16 + 20)",
+      "extraction_section": null,
+      "extracted_value": 36,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(16.7137336730957) + int(20.0)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Queens, New York City United States add count of restaurants near Queens, New York City United States",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        10,
+        11
+      ]
+    },
+    {
+      "index": 13,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Framingham,_Massachusetts",
+      "extraction_target": "the coordinates listed in the infobox (field: 'Coordinates')",
+      "extraction_section": "infobox",
+      "extracted_value": "42.27917, -71.41667",
+      "extracted_value_type": "coords",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Albuquerque wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Albuquerque",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "An example of a suburban U.S. market where consumer banking behavior differs from large coastal metros — useful for market segmentation.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        12
+      ]
+    },
+    {
+      "index": 14,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Framingham,_Massachusetts",
+      "extraction_target": "Look up the elevation of Framingham, Massachusetts",
+      "extraction_section": null,
+      "extracted_value": 50.82839584350586,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Framingham, Massachusetts"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Framingham, Massachusetts) from https://en.wikipedia.org/wiki/Framingham,_Massachusetts",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        13
+      ]
+    },
+    {
+      "index": 15,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Framingham,_Massachusetts",
+      "extraction_target": "Look up the count of churches near Framingham, Massachusetts",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "churches near Framingham, Massachusetts"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of churches near Framingham, Massachusetts) from https://en.wikipedia.org/wiki/Framingham,_Massachusetts",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        13
+      ]
+    },
+    {
+      "index": 16,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Framingham,_Massachusetts",
+      "extraction_target": "Combine the elevation of Framingham, Massachusetts and the count of churches near Framingham, Massachusetts: abs(50 - 20)",
+      "extraction_section": null,
+      "extracted_value": 30,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = abs(int(50.82839584350586) - int(20.0))\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Framingham, Massachusetts abs_diff count of churches near Framingham, Massachusetts",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        14,
+        15
+      ]
+    },
+    {
+      "index": 17,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Albuquerque",
+      "extraction_target": "the founding/establishment year in the infobox (field: 'Founded')",
+      "extraction_section": "infobox",
+      "extracted_value": 1706,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Albuquerque wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Albuquerque",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "A mid-sized U.S. city representing interior markets and regional adoption considerations for fintech expansion.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        16
+      ]
+    },
+    {
+      "index": 18,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Albuquerque",
+      "extraction_target": "Reason: the number of characters when written as a Roman numeral",
+      "extraction_section": null,
+      "extracted_value": 6,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (roman_numeral_letter_count) on stop 9 value",
+      "reason_transform": "roman_numeral_letter_count",
+      "reason_source_stop": 17,
+      "reason_code": "def to_roman(n):\n    n = abs(int(n))\n    vals = [(1000,'M'),(900,'CM'),(500,'D'),(400,'CD'),(100,'C'),\n            (90,'XC'),(50,'L'),(40,'XL'),(10,'X'),(9,'IX'),(5,'V'),(4,'IV'),(1,'I')]\n    r = ''\n    for v, s in vals:\n        while n >= v:\n            r += s; n -= v\n    return r\nresult = len(to_roman(1706))\nprint(result)",
+      "depends_on": [
+        17
+      ]
+    },
+    {
+      "index": 19,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Spokane,_Washington",
+      "extraction_target": "the coordinates listed in the infobox (field: 'Coordinates')",
+      "extraction_section": "infobox",
+      "extracted_value": "47.65889, -117.42500",
+      "extracted_value_type": "coords",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "United states dollar wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/United_states_dollar",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Another geographically distinct U.S. market to emphasize national coverage challenges for payment services and banking.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        18
+      ]
+    },
+    {
+      "index": 20,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Spokane,_Washington",
+      "extraction_target": "Look up the elevation of Spokane, Washington",
+      "extraction_section": null,
+      "extracted_value": 573.4098510742188,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Spokane, Washington"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of Spokane, Washington) from https://en.wikipedia.org/wiki/Spokane,_Washington",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        19
+      ]
+    },
+    {
+      "index": 21,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Spokane,_Washington",
+      "extraction_target": "Look up the count of museums near Spokane, Washington",
+      "extraction_section": null,
+      "extracted_value": 20.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "museums near Spokane, Washington"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of museums near Spokane, Washington) from https://en.wikipedia.org/wiki/Spokane,_Washington",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        19
+      ]
+    },
+    {
+      "index": 22,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Spokane,_Washington",
+      "extraction_target": "Combine the elevation of Spokane, Washington and the count of museums near Spokane, Washington: (573 + 20)",
+      "extraction_section": null,
+      "extracted_value": 593,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(573.4098510742188) + int(20.0)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of Spokane, Washington add count of museums near Spokane, Washington",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        20,
+        21
+      ]
+    },
+    {
+      "index": 23,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Spokane,_Washington",
+      "extraction_target": "Look up the elevation of Spokane, Washington",
+      "extraction_section": null,
+      "extracted_value": 573.4098510742188,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "Spokane, Washington"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (elevation) derived from https://en.wikipedia.org/wiki/Spokane,_Washington",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        22
+      ]
+    },
+    {
+      "index": 24,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/United_states_dollar",
+      "extraction_target": "the number of languages listed at the top of the article",
+      "extraction_section": null,
+      "extracted_value": 172,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "United States embargo against Cuba wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/United_States_embargo_against_Cuba",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "The USD is the primary settlement currency for many international transactions and listings — central to cross-border fintech operations.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        23
+      ]
+    },
+    {
+      "index": 25,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/United_states_dollar",
+      "extraction_target": "Look up the elevation of United states dollar",
+      "extraction_section": null,
+      "extracted_value": 3236.2353515625,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "United states dollar"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (elevation of United states dollar) from https://en.wikipedia.org/wiki/United_states_dollar",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        24
+      ]
+    },
+    {
+      "index": 26,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/United_states_dollar",
+      "extraction_target": "Look up the count of hotels near United states dollar",
+      "extraction_section": null,
+      "extracted_value": 9.0,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "hotels near United states dollar"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond branch (count of hotels near United states dollar) from https://en.wikipedia.org/wiki/United_states_dollar",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        24
+      ]
+    },
+    {
+      "index": 27,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/United_states_dollar",
+      "extraction_target": "Combine the elevation of United states dollar and the count of hotels near United states dollar: (3236 + 9)",
+      "extraction_section": null,
+      "extracted_value": 3245,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "result = int(3236.2353515625) + int(9.0)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "merged"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Diamond merge: elevation of United states dollar add count of hotels near United states dollar",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        25,
+        26
+      ]
+    },
+    {
+      "index": 28,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/United_States_embargo_against_Cuba",
+      "extraction_target": "the number of languages listed under the article title",
+      "extraction_section": null,
+      "extracted_value": 27,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/United_States_embargo_against_Cuba",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "An example of how sanctions and embargoes constrain cross-border payments and fintech services — regulatory boundaries fintechs must navigate.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        27
+      ]
+    },
+    {
+      "index": 29,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/United_States_embargo_against_Cuba",
+      "extraction_target": "Look up the elevation of United States embargo against Cuba",
+      "extraction_section": null,
+      "extracted_value": 3236.2353515625,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_geocode",
+            "arguments": {
+              "address": "United States embargo against Cuba"
+            },
+            "expected_output": null,
+            "output_key": "coords"
+          },
+          {
+            "tool_name": "maps_elevation",
+            "arguments": {
+              "__from_previous_as_locations": "coords"
+            },
+            "expected_output": null,
+            "output_key": "elevation"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (elevation) derived from https://en.wikipedia.org/wiki/United_States_embargo_against_Cuba",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        28
+      ]
+    },
+    {
+      "index": 30,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/United_States_embargo_against_Cuba",
+      "extraction_target": "Reason: the number you get by reversing its digits",
+      "extraction_section": null,
+      "extracted_value": 72,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (digit_reversal) on stop 12 value",
+      "reason_transform": "digit_reversal",
+      "reason_source_stop": 28,
+      "reason_code": "result = int(str(abs(int(27)))[::-1])\nprint(result)",
+      "depends_on": [
+        28
+      ]
+    },
+    {
+      "index": 31,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Biden_administration",
+      "extraction_target": "the number of languages listed in the interlanguage links",
+      "extraction_section": null,
+      "extracted_value": 20,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "US Senate wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/US_Senate",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Current U.S. administration and policy climate that shapes regulation, scrutiny, and support for fintech innovation and consumer protections.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        30
+      ]
+    },
+    {
+      "index": 32,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/US_Senate",
+      "extraction_target": "the capacity listed in the infobox (field: 'Seats')",
+      "extraction_section": "infobox",
+      "extracted_value": 100,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "US Senate wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/US_Senate",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Legislative body that influences financial regulation, data/privacy laws, and confirmations affecting fintech governance.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        31
+      ]
+    },
+    {
+      "index": 33,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/US_Senate",
+      "extraction_target": "Reason: the number of 1-bits in its binary representation",
+      "extraction_section": null,
+      "extracted_value": 3,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (binary_1bit_count) on stop 14 value",
+      "reason_transform": "binary_1bit_count",
+      "reason_source_stop": 32,
+      "reason_code": "result = bin(abs(int(100))).count('1')\nprint(result)",
+      "depends_on": [
+        32
+      ]
+    },
+    {
+      "index": 34,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Rutgers_University",
+      "extraction_target": "the location listed in the infobox (field: 'Location')",
+      "extraction_section": "infobox",
+      "extracted_value": "New Brunswick–Piscataway , New Jersey , United States",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "United States occupation of Haiti wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/United_States_occupation_of_Haiti",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "An example of an academic and innovation hub that feeds talent and research (payments, security, AI) into the fintech ecosystem.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        33
+      ]
+    },
+    {
+      "index": 35,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/United_States_occupation_of_Haiti",
+      "extraction_target": "Calculate the number of days between 2013-05-06 and 2026-03-19",
+      "extraction_section": null,
+      "extracted_value": 4700,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "python_execute_code",
+            "arguments": {
+              "code": "from datetime import date\nd1 = date.fromisoformat('2013-05-06')\nd2 = date.fromisoformat('2026-03-19')\nresult = abs((d2 - d1).days)\nprint(result)"
+            },
+            "expected_output": null,
+            "output_key": "days"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: date computation 2013-05-06 to 2026-03-19 (pinned)",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        34
+      ]
+    },
+    {
+      "index": 36,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: digital_root(7 + 4700)",
+      "extraction_section": null,
+      "extracted_value": 9,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "digital_root(7 + 4700)",
+        "expression_code": "def digital_root(n):\n    n = abs(int(n))\n    return n if n == 0 else ((n - 1) % 9) + 1\nresult = digital_root(7 + 4700)\nprint(result)",
+        "referenced_stops": [
+          3,
+          35
+        ]
+      },
+      "reasoning": "Compute stop: digital_root(7 + 4700) = 9",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null,
+      "depends_on": [
+        3,
+        35
+      ]
+    }
+  ],
+  "passcode": 9,
+  "difficulty": {
+    "level": "extreme",
+    "depth": 37,
+    "tool_stop_count": 17,
+    "reason_stop_count": 5,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Seek the page of the Brazilian fintech trailblazer, founded in the early days of the 21st century. What year did this innovative bank commence its journey?\n\n2. What tech giant, famed for enhancing transactions, reigns as the developer of a widely used payment platform? Discover its name.\n\n3. Delve into the history of a company providing solutions for smart vehicles; what year did this entity first open its doors?\n\n4. A number whispers in ancient symbols—convert the year you unearthed in clue 3 into Roman numerals. How many characters does it take?\n\n5. The world of drivers and travel awaits! Discover how many languages share the insights of the article on vehicles that drive themselves.\n\n6. With eyes on the ground in Southern California, what elevation can you find in the area known for its financial venues, specifically a stadium for a California football team?\n\n7. Nestled within the grid of an urban expanse, how many libraries can be gleaned from the streets surrounding the bustling area at 34.05 latitude?\n\n8. What professional sports league dedicated to the beautiful game first kicked off in the early 1990s — can you find the year it was established?\n\n9. Sum the digits you uncovered in clue 8. What total springs forth from your discovery?\n\n10. Where in New York do crowds gather to watch a prestigious annual tennis tournament? Identify this locale.\n\n11. Beneath the buzz of that tennis venue, what is the elevation of the area known as Queens, New York City?\n\n12. On the gastronomic map of Queens, how many restaurants can you count lining the streets?\n\n13. Add the elevation number you gathered in clue 11 to the dining options you pursued in clue 12. What total do you reach?\n\n14. In a town named for a founding father is a city marked by its coordinates; can you derive its latitude and longitude from the relevant page?\n\n15. What is the elevation of the town where the earliest settlers made their mark in Massachusetts?\n\n16. Count the number of churches that can be found in the surroundings of this historic Massachusetts town.\n\n17. Extract the absolute difference between the elevation from clue 15 and the number of churches from clue 16. What remains?\n\n18. Enter the domain of a vibrant desert city that bears the name of its Spanish founder; what year was it born into existence?\n\n19. The transformation continues! How many characters arise when the founding year from clue 18 is expressed in Roman numerals?\n\n20. In a city in the Pacific Northwest lies a treasure trove of geographic coordinates; seek them out in reference to the city of Spokane.\n\n21. Can you uncover the elevation of scenic Spokane, where the rivers flow and parks abound?\n\n22. Museums stand as bastions of culture; how many can be found in close proximity to Spokane, Washington?\n\n23. Combine the elevation from clue 21 with the count of cultural venues from clue 22. What total emerges?\n\n24. The city of Spokane has a distinctive altitude; how high does the ground rise beneath this vibrant urban landscape?\n\n25. Seek the page discussing a currency entrenched in history. How many languages provide translations for its details at the very top?\n\n26. The dollar has traveled far; what is its elevation, if we were to measure it in the global landscape?\n\n27. Look around: how many hotels can you find in the vicinity of this beloved currency?\n\n28. Unveil the total by adding the elevation you found in clue 26 to the count of hotels from clue 27.\n\n29. What embargo captures the world's attention and is marked by its multilingual dialogue? Discover the number at the onset of its article.\n\n30. What is the elevation of the political contention described in this historical context?\n\n31. Reverse the digits of the number you discovered in clue 29. What new figure do you unearth?\n\n32. Reflect on the administration that guides current affairs; how many languages are listed to bridge the divide in its entry?\n\n33. In the grand arena of U.S. governance, how many seats make up this legislative body?\n\n34. What is the tally of 1-bits in the binary showing of the number of seats uncovered in clue 33?\n\n35. Seek out a university known for vibrant traditions and remarkable achievements. What location is encapsulated in its description?\n\n36. Calculate the days that fall between May 6, 2013, and March 19, 2026. How long is this legislative journey?\n\n37. Combine the value from clue 4 with the total days from clue 36 through a unique digital transformation. What single-digit sum springs forth? \n\nIncorporate each of your findings to finish this quest! The final answer is a single digit (0-9). Compute the digital root of (clue 4 + clue 36).",
+  "metadata": {
+    "theme": "From Nubank's Brazilian fintech roots into the wider global payments ecosystem — following digital payments, retail and venue partners, geographic spread in U.S. markets, and the regulatory/currency context that shapes cross-border finance.",
+    "difficulty": "extreme",
+    "sample_id": "sample_187",
+    "pages_crawled": 23630
+  },
+  "generated_at": "2026-03-19T11:55:12.569066+00:00"
+}

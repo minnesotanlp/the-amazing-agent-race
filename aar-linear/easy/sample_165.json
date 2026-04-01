@@ -1,0 +1,174 @@
+{
+  "trail_id": "trail_9c86361c",
+  "seed_url": "https://en.wikipedia.org/wiki/Merck_%26_Co.",
+  "seed_title": "Merck & Co.",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Merck_%26_Co.",
+      "extraction_target": "the month and year Merck & Co. was founded as a subsidiary of Merck Group",
+      "extraction_section": null,
+      "extracted_value": "January 1891",
+      "extracted_value_type": "date",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "Research and development wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/Research_and_development",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Seed: Merck anchors the trail as a major pharmaceutical company whose HQ location and founding date let us connect corporate R&D, nearby research centers, and historical drug breakthroughs.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Research_and_development",
+      "extraction_target": "the abbreviation that redirects to this article",
+      "extraction_section": null,
+      "extracted_value": "R&D",
+      "extracted_value_type": "text",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Research_and_development",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Context stop: explains the R&D pipeline that companies like Merck operate within, linking corporate activity to the development timeline of drugs.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/Research_and_development",
+      "extraction_target": "Reason: the alphabetical position of its first letter (A=1, B=2, ...)",
+      "extraction_section": null,
+      "extracted_value": 18,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (alpha_position_first_letter) on stop 1 value",
+      "reason_transform": "alpha_position_first_letter",
+      "reason_source_stop": 1,
+      "reason_code": "first = \"R&D\"[0].upper()\nresult = ord(first) - ord('A') + 1 if first.isalpha() else 0\nprint(result)"
+    },
+    {
+      "index": 3,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Antibiotic",
+      "extraction_target": "the number of sub-subsections listed under '11.1 Replenishing the antibiotic pipeline and developing other new therapies' in the table of contents (11.1.1 to 11.1.6)",
+      "extraction_section": "Contents",
+      "extracted_value": 6,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "link_follow",
+        "target_url": "https://en.wikipedia.org/wiki/Antibiotic",
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Public-health stop: antibiotics are a class of drugs emblematic of pharma R&D impact; extracting a discovery date enables a final computation (years since discovery) to close the narrative.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 4,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/Antibiotic",
+      "extraction_target": "Count churches near Antibiotic",
+      "extraction_section": null,
+      "extracted_value": 20,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "maps_search_places",
+            "arguments": {
+              "query": "churches near Antibiotic"
+            },
+            "expected_output": null,
+            "output_key": "poi_count"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop (nearby_poi) derived from https://en.wikipedia.org/wiki/Antibiotic",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 5,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: digital_root(6 + 20)",
+      "extraction_section": null,
+      "extracted_value": 8,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "digital_root(6 + 20)",
+        "expression_code": "def digital_root(n):\n    n = abs(int(n))\n    return n if n == 0 else ((n - 1) % 9) + 1\nresult = digital_root(6 + 20)\nprint(result)",
+        "referenced_stops": [
+          3,
+          4
+        ]
+      },
+      "reasoning": "Compute stop: digital_root(6 + 20) = 8",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 8,
+  "difficulty": {
+    "level": "easy",
+    "depth": 6,
+    "tool_stop_count": 1,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "prose",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "1. Seeking the origins of healing, inquire about the month and year this American pharmaceutical giant, originally a subsidiary of a German company, was brought into existence.\n\n2. In your quest for innovation, find the abbreviation that leads you to the realm of corporate and governmental ingenuity, where ideas turn into reality.\n\n3. Consider the first letter of this abbreviation — its place in the alphabet reveals a number. What is that position?\n\n4. Your journey continues to a substance essential in the fight against bacteria. Delve into the contents and count how many subdivisions exist within the section devoted to revitalizing the arsenal of these life-saving agents.\n\n5. As you explore further, search for sacred places nearby this powerful substance. How many churches stand in close proximity?\n\n6. Finally, take what you found in clue 4 and the number from clue 5. Compute the digital root of the sum of these values (6 + 20). The answer to this riddle shrinks down to a single digit, reflecting your discoveries from previous steps — digital_root( clue 4 + clue 5 ).",
+  "metadata": {
+    "theme": "From corporate R&D to public health impact — tracing Merck's place in drug development, nearby research hubs, and how medicines reach the public",
+    "difficulty": "easy",
+    "sample_id": "sample_165",
+    "pages_crawled": 2769
+  },
+  "generated_at": "2026-03-17T10:00:03.218672+00:00"
+}

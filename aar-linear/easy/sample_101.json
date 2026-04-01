@@ -1,0 +1,129 @@
+{
+  "trail_id": "trail_ceba9d7c",
+  "seed_url": "https://en.wikipedia.org/wiki/Khijiphalate",
+  "seed_title": "Khijiphalate",
+  "stops": [
+    {
+      "index": 0,
+      "stop_type": "page",
+      "page_url": "https://en.wikipedia.org/wiki/Khijiphalate",
+      "extraction_target": "the coordinates listed in the infobox (field: 'Coordinates')",
+      "extraction_section": "infobox",
+      "extracted_value": "27.43, 86.37",
+      "extracted_value_type": "coords",
+      "bridge": {
+        "bridge_type": "search_query",
+        "target_url": null,
+        "search_query": "National Highway 75 (India) wikipedia",
+        "expected_result_url": "https://en.wikipedia.org/wiki/National_Highway_75_(India)",
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Start at the settlement itself: extract Khijiphalate's precise location so we can measure how accessible it is to regional transport.",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 1,
+      "stop_type": "tool",
+      "page_url": "https://en.wikipedia.org/wiki/National_Highway_75_(India)",
+      "extraction_target": "Look up the population of India",
+      "extraction_section": null,
+      "extracted_value": 1417492000,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "tool_call",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [
+          {
+            "tool_name": "countries_population",
+            "arguments": {
+              "country": "India"
+            },
+            "expected_output": null,
+            "output_key": "population"
+          }
+        ],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Tool stop: population of India",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    },
+    {
+      "index": 2,
+      "stop_type": "reason",
+      "page_url": "https://en.wikipedia.org/wiki/National_Highway_75_(India)",
+      "extraction_target": "Reason: the next prime number after that figure",
+      "extraction_section": null,
+      "extracted_value": 1417492007,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": null,
+        "expression_code": null,
+        "referenced_stops": []
+      },
+      "reasoning": "Analytical transform (next_prime) on stop 1 value",
+      "reason_transform": "next_prime",
+      "reason_source_stop": 1,
+      "reason_code": "def next_prime(n):\n    n = abs(int(n))\n    if n < 2: return 2\n    candidate = n + 1\n    while True:\n        if all(candidate % i != 0 for i in range(2, int(candidate**0.5)+1)):\n            return candidate\n        candidate += 1\nresult = next_prime(1417492000)\nprint(result)"
+    },
+    {
+      "index": 3,
+      "stop_type": "compute",
+      "page_url": null,
+      "extraction_target": "Compute: (1417492000 + 1417492007) % 10",
+      "extraction_section": null,
+      "extracted_value": 7,
+      "extracted_value_type": "number",
+      "bridge": {
+        "bridge_type": "compute",
+        "target_url": null,
+        "search_query": null,
+        "expected_result_url": null,
+        "tool_chain": [],
+        "expression": "(1417492000 + 1417492007) % 10",
+        "expression_code": "result = (1417492000 + 1417492007) % 10\nprint(result)",
+        "referenced_stops": [
+          1,
+          2
+        ]
+      },
+      "reasoning": "Compute stop: (1417492000 + 1417492007) % 10 = 7",
+      "reason_transform": null,
+      "reason_source_stop": null,
+      "reason_code": null
+    }
+  ],
+  "passcode": 7,
+  "difficulty": {
+    "level": "easy",
+    "depth": 4,
+    "tool_stop_count": 1,
+    "reason_stop_count": 1,
+    "extraction_difficulty": "infobox",
+    "bridge_obscurity": "search"
+  },
+  "riddle": "Here is the revised riddle:\n\n1. Seek the hamlet page known for the unique fruit it shares a name with, a tropical delight often utilized in delicacies; what geographic coordinates are shown near the top of that entry, and then hunt for the Indian national highway bearing the number 75.  \n2. There exists an article for that roadway which makes clear the nation it crosses — look up how many souls call that country home and record its population as your clue 2.  \n3. If you take the population found in clue 2, determine the next prime number greater than that population; that prime becomes the value for clue 3.  \n4. In the end, add clue 2 and clue 3 together, then compute the remainder when that sum is divided by 10 — report this single digit (0–9) as your final answer.",
+  "metadata": {
+    "theme": "From hamlet to highway — mapping Khijiphalate's connectivity to major road networks",
+    "difficulty": "easy",
+    "sample_id": "sample_101",
+    "pages_crawled": 4074,
+    "source": "trail_puzzles_v2"
+  },
+  "generated_at": "2026-03-15T19:30:57.774391+00:00"
+}
