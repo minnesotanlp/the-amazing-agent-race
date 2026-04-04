@@ -121,9 +121,9 @@ Each tool returns values in a canonical unit (elevation in meters, distance in k
 
 ## Evaluation via Harbor
 
-All evaluations run through [Harbor](https://github.com/vector-institute/harbor), an open-source agent evaluation framework that orchestrates trials in containerized Docker environments. Each agent receives the same Docker environment with a command-line tool executor (`tools.py`), the clue envelope as a Markdown instruction file, and internet access for web fetching. The agent must write its single-digit answer to `/app/answer.txt`.
+All evaluations run through [Harbor](https://github.com/harbor-framework/harbor), an open-source agent evaluation framework that orchestrates trials in containerized Docker environments. Each agent receives the same Docker environment with a command-line tool executor (`tools.py`), the clue envelope as a Markdown instruction file, and internet access for web fetching. The agent must write its single-digit answer to `/app/answer.txt`.
 
-The `harbor-adapter/` directory contains the AAR adapter, built on top of Harbor at commit [`48ae2ba`](https://github.com/vector-institute/harbor/tree/48ae2ba). See `harbor-adapter/README.md` for setup and usage instructions.
+The `harbor-adapter/` directory contains the AAR adapter, built on top of Harbor at commit [`48ae2ba`](https://github.com/harbor-framework/harbor/tree/48ae2ba). See `harbor-adapter/README.md` for setup and usage instructions.
 
 ### Evaluation Environment
 

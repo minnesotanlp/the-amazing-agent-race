@@ -1,8 +1,8 @@
 # AAR Harbor Adapter
 
-Converts AAR puzzle JSON files into [Harbor](https://github.com/vector-institute/harbor) task format for standardized agent evaluation.
+Converts AAR puzzle JSON files into [Harbor](https://github.com/harbor-framework/harbor) task format for standardized agent evaluation.
 
-Built on Harbor commit [`48ae2ba`](https://github.com/vector-institute/harbor/tree/48ae2ba).
+Built on Harbor commit [`48ae2ba`](https://github.com/harbor-framework/harbor/tree/48ae2ba).
 
 ## Setup
 
@@ -18,7 +18,7 @@ Built on Harbor commit [`48ae2ba`](https://github.com/vector-institute/harbor/tr
 
 1. Clone Harbor and checkout the base commit:
    ```bash
-   git clone https://github.com/vector-institute/harbor.git
+   git clone https://github.com/harbor-framework/harbor.git
    cd harbor
    git checkout 48ae2ba
    ```
