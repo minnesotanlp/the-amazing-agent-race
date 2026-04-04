@@ -29,6 +29,39 @@ Compositional puzzles with directed acyclic graph (DAG) structure featuring fork
 
 Each puzzle is a JSON file representing a single leg (trail). Puzzles are procedurally generated from Wikipedia seed pages and validated with live API calls across four difficulty levels.
 
+## Harbor Adapter
+
+The `harbor-adapter/` directory contains a [Harbor](https://github.com/vector-institute/harbor) adapter that converts AAR puzzles into Harbor task format for standardized agent evaluation.
+
+This adapter was built on top of Harbor at commit [`48ae2ba`](https://github.com/vector-institute/harbor/tree/48ae2ba). To use it:
+
+1. Clone Harbor and checkout the base commit:
+   ```bash
+   git clone https://github.com/vector-institute/harbor.git
+   cd harbor
+   git checkout 48ae2ba
+   ```
+
+2. Copy the adapter into Harbor:
+   ```bash
+   cp -r /path/to/this-repo/harbor-adapter harbor/adapters/aar
+   ```
+
+3. Generate Harbor tasks from AAR puzzles:
+   ```bash
+   cd adapters/aar
+   python run_adapter.py \
+       --data-dir /path/to/this-repo/data/trail_puzzles \
+       --output-dir ../../datasets/aar
+   ```
+
+4. Run evaluation:
+   ```bash
+   harbor run -c adapters/aar/aar.yaml
+   ```
+
+See `harbor-adapter/README.md` for full details on configuration, supported agents, and result analysis.
+
 ## Citation
 
 Paper under review.
