@@ -84,6 +84,8 @@ AAR releases **two variants** totaling 1,400 legs:
 
 ### Difficulty Levels
 
+AAR ships with 4 difficulty levels, but the generation pipeline is fully adjustable -- you can define custom levels by varying pit-stop count, roadblock density, detour frequency, diamond count, extraction type, and crawl depth.
+
 | Level | Pit Stops | Roadblocks | Detours | Diamonds | Extraction | Crawl Depth |
 |-------|-----------|------------|---------|----------|------------|-------------|
 | Easy | 3--6 | 1--2 | 1--2 | 1 | infobox, prose | 1 |
