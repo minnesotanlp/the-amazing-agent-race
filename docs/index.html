@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Amazing Agent Race</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --deep-blue: #0B1A3B;
+    --mid-blue: #122A5C;
+    --bright-blue: #1565C0;
+    --gold: #D4A017;
+    --light-gold: #E8B830;
+    --pale-gold: #F5D76E;
+    --orange: #D4581A;
+    --charcoal: #1E1E2A;
+    --gunmetal: #2C3E50;
+    --light-gray: #B0BEC5;
+    --off-white: #ECEFF1;
+    --white: #FFFFFF;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--charcoal);
+    color: var(--off-white);
+    line-height: 1.65;
+  }
+
+  /* ---- HERO ---- */
+  .hero {
+    background: linear-gradient(135deg, var(--deep-blue) 0%, var(--mid-blue) 50%, #0D2247 100%);
+    text-align: center;
+    padding: 4rem 1.5rem 3rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    background: radial-gradient(ellipse at 60% 40%, rgba(21,101,192,0.15) 0%, transparent 60%),
+                radial-gradient(ellipse at 30% 70%, rgba(212,160,23,0.08) 0%, transparent 50%);
+    pointer-events: none;
+  }
+  .hero-content { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; }
+
+  .hero h1 {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: clamp(2.4rem, 6vw, 4rem);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    line-height: 1.1;
+    margin-bottom: 0.3rem;
+  }
+  .hero h1 .the { color: var(--light-gray); font-weight: 400; font-size: 0.55em; display: block; letter-spacing: 0.15em; }
+  .hero h1 .amazing { color: var(--light-gold); }
+  .hero h1 .agent { color: var(--white); }
+  .hero h1 .race { background: linear-gradient(90deg, var(--orange), var(--gold)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+
+  .hero .subtitle {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 400;
+    font-size: 1.15rem;
+    color: var(--light-gold);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+  }
+  .hero .tagline {
+    font-size: 1.05rem;
+    color: var(--light-gray);
+    max-width: 680px;
+    margin: 0 auto 2rem;
+  }
+
+  .badges { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem; margin-bottom: 0.5rem; }
+  .badges a img { height: 26px; }
+
+  .hero-stat-row {
+    display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;
+    margin-top: 2rem;
+  }
+  .hero-stat {
+    text-align: center;
+  }
+  .hero-stat .num {
+    font-family: 'Oswald', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--light-gold);
+    line-height: 1;
+  }
+  .hero-stat .label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--light-gray);
+    margin-top: 0.25rem;
+  }
+
+  /* ---- SECTIONS ---- */
+  .container { max-width: 960px; margin: 0 auto; padding: 0 1.5rem; }
+
+  section { padding: 3.5rem 0; }
+  section:nth-child(even) { background: #181824; }
+  section:nth-child(odd) { background: var(--charcoal); }
+
+  h2 {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    font-size: 1.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--light-gold);
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--gold);
+    display: inline-block;
+  }
+  h3 {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    font-size: 1.25rem;
+    color: var(--off-white);
+    margin: 1.8rem 0 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+
+  /* ---- FINDINGS CARDS ---- */
+  .findings-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.2rem;
+    margin-top: 1rem;
+  }
+  .finding-card {
+    background: linear-gradient(135deg, var(--mid-blue), var(--deep-blue));
+    border-left: 4px solid var(--gold);
+    border-radius: 6px;
+    padding: 1.2rem 1.4rem;
+  }
+  .finding-card strong { color: var(--light-gold); }
+  .finding-card p { font-size: 0.92rem; color: var(--light-gray); margin-top: 0.4rem; }
+
+  /* ---- FIGURES ---- */
+  .figure {
+    margin: 1.5rem 0;
+    text-align: center;
+  }
+  .figure img {
+    max-width: 100%;
+    border-radius: 6px;
+    border: 1px solid rgba(212,160,23,0.2);
+  }
+  .figure figcaption {
+    font-size: 0.85rem;
+    color: var(--light-gray);
+    margin-top: 0.6rem;
+    font-style: italic;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* ---- TABLES ---- */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+    font-size: 0.9rem;
+  }
+  th {
+    background: var(--mid-blue);
+    color: var(--light-gold);
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0.7rem 1rem;
+    text-align: left;
+    border-bottom: 2px solid var(--gold);
+  }
+  td {
+    padding: 0.55rem 1rem;
+    border-bottom: 1px solid rgba(176,190,197,0.1);
+    color: var(--off-white);
+  }
+  tr:hover td { background: rgba(21,101,192,0.08); }
+  tr.highlight td { color: var(--light-gold); font-weight: 600; }
+
+  /* ---- CODE ---- */
+  pre {
+    background: var(--deep-blue);
+    border: 1px solid rgba(212,160,23,0.2);
+    border-radius: 6px;
+    padding: 1.2rem;
+    overflow-x: auto;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    color: var(--off-white);
+    margin: 1rem 0;
+  }
+  code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85em;
+    background: rgba(21,101,192,0.15);
+    padding: 0.15em 0.4em;
+    border-radius: 3px;
+    color: var(--pale-gold);
+  }
+  pre code { background: none; padding: 0; color: inherit; }
+  .comment { color: #6a7a8a; }
+  .cmd { color: var(--light-gold); }
+
+  /* ---- METRICS CARDS ---- */
+  .metrics-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1rem;
+    margin: 1rem 0;
+  }
+  .metric-card {
+    background: var(--deep-blue);
+    border-radius: 8px;
+    padding: 1.2rem;
+    text-align: center;
+    border-top: 3px solid var(--gold);
+  }
+  .metric-card .metric-name {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--light-gold);
+  }
+  .metric-card .metric-full {
+    font-size: 0.78rem;
+    color: var(--light-gray);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.4rem;
+  }
+  .metric-card .metric-desc {
+    font-size: 0.88rem;
+    color: var(--off-white);
+  }
+
+  /* ---- TOOL GRID ---- */
+  .tool-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 0.8rem;
+    margin: 1rem 0;
+  }
+  .tool-cat {
+    background: var(--deep-blue);
+    border-radius: 6px;
+    padding: 0.9rem 1rem;
+  }
+  .tool-cat-name {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    color: var(--light-gold);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.4rem;
+  }
+  .tool-cat code {
+    display: inline-block;
+    font-size: 0.78rem;
+    margin: 0.1rem 0;
+    background: rgba(212,160,23,0.1);
+  }
+
+  /* ---- QUALITY LIST ---- */
+  .quality-list {
+    list-style: none;
+    margin: 1rem 0;
+  }
+  .quality-list li {
+    padding: 0.5rem 0 0.5rem 1.8rem;
+    position: relative;
+    border-bottom: 1px solid rgba(176,190,197,0.08);
+    font-size: 0.92rem;
+  }
+  .quality-list li::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0.85rem;
+    width: 10px; height: 10px;
+    background: var(--gold);
+    border-radius: 50%;
+  }
+  .quality-list li strong { color: var(--light-gold); }
+
+  /* ---- CITATION ---- */
+  .citation-block {
+    background: var(--deep-blue);
+    border: 1px solid var(--gold);
+    border-radius: 6px;
+    padding: 1.5rem;
+    margin: 1rem 0;
+  }
+  .citation-block pre {
+    border: none;
+    padding: 0;
+    margin: 0;
+    background: none;
+    font-size: 0.85rem;
+  }
+
+  /* ---- FOOTER ---- */
+  footer {
+    background: var(--deep-blue);
+    text-align: center;
+    padding: 2rem 1.5rem;
+    font-size: 0.85rem;
+    color: var(--light-gray);
+    border-top: 2px solid var(--gold);
+  }
+  footer a { color: var(--light-gold); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+
+  /* ---- LINKS ---- */
+  a { color: var(--light-gold); }
+
+  /* ---- RESPONSIVE ---- */
+  @media (max-width: 600px) {
+    .hero { padding: 2.5rem 1rem 2rem; }
+    .hero-stat-row { gap: 1.2rem; }
+    .hero-stat .num { font-size: 1.6rem; }
+    section { padding: 2.5rem 0; }
+    .findings-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <div class="hero-content">
+    <h1>
+      <span class="the">The</span>
+      <span class="amazing">Amazing </span><span class="agent">Agent </span><span class="race">Race</span>
+    </h1>
+    <p class="subtitle">Strong Tool Users, Weak Navigators</p>
+    <p class="tagline">
+      A benchmark of <strong style="color:#fff">1,400 DAG-structured scavenger-hunt puzzles</strong> for evaluating LLM agents on multi-step tool use, web navigation, and arithmetic reasoning.
+    </p>
+    <div class="badges">
+      <a href="https://github.com/minnesotanlp/the-amazing-agent-race"><img src="https://img.shields.io/badge/GitHub-Code-0B1A3B?logo=github&logoColor=white&style=for-the-badge" alt="GitHub"></a>
+      <a href="#citation"><img src="https://img.shields.io/badge/Paper-Coming%20Soon-D4581A?style=for-the-badge" alt="Paper"></a>
+      <a href="https://github.com/harbor-framework/harbor"><img src="https://img.shields.io/badge/Eval-Harbor-1565C0?style=for-the-badge" alt="Harbor"></a>
+      <a href="https://huggingface.co/datasets/minnesotanlp/the-amazing-agent-race"><img src="https://img.shields.io/badge/HF-Dataset-E8B830?logo=huggingface&logoColor=white&style=for-the-badge" alt="HuggingFace"></a>
+      <a href="https://github.com/minnesotanlp/the-amazing-agent-race/blob/main/LICENSE.md"><img src="https://img.shields.io/badge/License-MIT-2C3E50?style=for-the-badge" alt="License"></a>
+    </div>
+    <div class="hero-stat-row">
+      <div class="hero-stat"><div class="num">1,400</div><div class="label">Puzzle Legs</div></div>
+      <div class="hero-stat"><div class="num">19</div><div class="label">Tools</div></div>
+      <div class="hero-stat"><div class="num">4</div><div class="label">Difficulty Levels</div></div>
+      <div class="hero-stat"><div class="num">36.6%</div><div class="label">Best Accuracy</div></div>
+      <div class="hero-stat"><div class="num">7,000</div><div class="label">Trials Run</div></div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ MOTIVATION ============ -->
+<section>
+  <div class="container">
+    <h2>Why AAR?</h2>
+    <figure class="figure">
+      <img src="assets/fig1_motivation.png" alt="Compositionality gap, agent accuracy, and failure analysis">
+      <figcaption>(a) Existing benchmarks are 55&ndash;100% linear; AAR is 0% linear (all DAGs). (b) Best agent accuracy is 36.6%. (c) Navigation errors dominate (27&ndash;52%) while tool-use errors stay below 17%.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ============ KEY FINDINGS ============ -->
+<section>
+  <div class="container">
+    <h2>Key Findings</h2>
+    <div class="findings-grid">
+      <div class="finding-card">
+        <strong>Strong tool users, weak navigators</strong>
+        <p>Navigation errors dominate 27&ndash;52% of trials while tool-use errors stay below 17%. The bottleneck is <em>reaching</em> the right information, not using tools once found.</p>
+      </div>
+      <div class="finding-card">
+        <strong>DAG structure amplifies the gap</strong>
+        <p>Moving from linear to DAG drops navigation scores (PVR) by 14&ndash;18 pp while tool-use scores (RCR) stay stable or even improve.</p>
+      </div>
+      <div class="finding-card">
+        <strong>Architecture &ge; model scale</strong>
+        <p>Claude Code matches Codex CLI at ~37% accuracy with <strong>6&times; fewer tokens</strong>. The framework gap is larger than the model-scale gap.</p>
+      </div>
+      <div class="finding-card">
+        <strong>Reasoning models struggle</strong>
+        <p>A 120B reasoning model achieves only 3.1% accuracy&mdash;barely above the 10% random baseline&mdash;spending its budget on internal reasoning instead of tool calls.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EXAMPLE PUZZLE ============ -->
+<section>
+  <div class="container">
+    <h2>Example Puzzle</h2>
+    <p>Each puzzle (a <em>leg</em>) presents the agent with a seed Wikipedia URL, a cryptic riddle, and 19 tools. The agent must navigate pages, call APIs, and compute a single-digit passcode (0&ndash;9).</p>
+    <figure class="figure">
+      <img src="assets/riddle_example.png" alt="Example DAG trail puzzle">
+      <figcaption>An example clue envelope: a DAG trail themed "NYSE to Global Finance" with 14 stops, showing route info, detour, roadblock, diamond fork, merge, and finish-line stops.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ============ RESULTS ============ -->
+<section>
+  <div class="container">
+    <h2>Results</h2>
+
+    <h3>Aggregate Performance (1,400 Legs)</h3>
+    <figure class="figure">
+      <img src="assets/fig5_results.png" alt="Aggregate results and FA by difficulty">
+      <figcaption>(a) FA, PVR, RCR across all configurations. PVR is consistently the weakest metric. (b) FA degrades monotonically with difficulty (&minus;14 pp best to &minus;19 pp worst).</figcaption>
+    </figure>
+
+    <table>
+      <thead>
+        <tr><th>Configuration</th><th>FA</th><th>PVR (Nav.)</th><th>RCR (Tool)</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Codex CLI + GPT-5.4</td><td>34.8%</td><td>52.9%</td><td>66.7%</td></tr>
+        <tr><td>Codex CLI + GPT-5.4-mini</td><td>32.1%</td><td>48.0%</td><td>55.3%</td></tr>
+        <tr><td>mini-swe-agent + GPT-5.4</td><td>30.5%</td><td>51.4%</td><td>43.7%</td></tr>
+        <tr><td>mini-swe-agent + GPT-5.4-mini</td><td>27.2%</td><td>&mdash;</td><td>&mdash;</td></tr>
+        <tr class="highlight"><td>Claude Code + Sonnet 4</td><td>36.6%</td><td>46.8%</td><td>67.4%</td></tr>
+      </tbody>
+    </table>
+
+    <h3>DAG Structure Penalizes Navigation, Not Tool Use</h3>
+    <figure class="figure">
+      <img src="assets/fig6_dag_delta.png" style="max-width:80%" alt="Linear vs DAG delta">
+      <figcaption>Percentage-point change from AAR-Linear to AAR-DAG. Navigation (PVR) drops 14&ndash;18 pp while tool use (RCR) remains stable or increases.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ============ BENCHMARK OVERVIEW ============ -->
+<section>
+  <div class="container">
+    <h2>Benchmark Overview</h2>
+
+    <table>
+      <thead>
+        <tr><th>Variant</th><th>Legs</th><th>Structure</th><th>Avg Stops</th><th>Avg Tools</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>AAR-Linear</strong></td><td>800</td><td>Sequential chains</td><td>15.0</td><td>4.0</td></tr>
+        <tr><td><strong>AAR-DAG</strong></td><td>600</td><td>Fork-merge diamonds</td><td>22.1</td><td>12.0</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Difficulty Levels</h3>
+    <table>
+      <thead>
+        <tr><th>Level</th><th>Pit Stops</th><th>Roadblocks</th><th>Detours</th><th>Diamonds</th><th>Extraction</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Easy</td><td>3&ndash;6</td><td>1&ndash;2</td><td>1&ndash;2</td><td>1</td><td>infobox, prose</td></tr>
+        <tr><td>Medium</td><td>7&ndash;12</td><td>2&ndash;4</td><td>2&ndash;3</td><td>1&ndash;2</td><td>+ cross-section</td></tr>
+        <tr><td>Hard</td><td>13&ndash;16</td><td>4&ndash;5</td><td>3&ndash;4</td><td>2&ndash;3</td><td>+ cross-section</td></tr>
+        <tr><td>Extreme</td><td>17&ndash;21</td><td>5&ndash;7</td><td>4&ndash;6</td><td>3&ndash;5</td><td>+ cross-section</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Generation Pipeline</h3>
+    <figure class="figure">
+      <img src="assets/pipeline.png" alt="Eight-step generation pipeline">
+      <figcaption>Automated eight-step pipeline: Crawl, Plan, Build, Validate, Link, Augment, Execute, Verbalize&mdash;with validation gates producing three complementary metrics.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ============ LEG STRUCTURE ============ -->
+<section>
+  <div class="container">
+    <h2>Leg Structure</h2>
+    <p>A leg is a directed acyclic graph (DAG) of <strong>pit stops</strong>, each producing a typed value:</p>
+    <div class="findings-grid" style="margin-top:1rem">
+      <div class="finding-card">
+        <strong>Route Info</strong>
+        <p>Navigate to a Wikipedia page and extract a fact (e.g., a numeric infobox field, a date from prose).</p>
+      </div>
+      <div class="finding-card">
+        <strong>Roadblock</strong>
+        <p>Execute a multi-step tool chain, e.g., geocode a location then query the elevation API.</p>
+      </div>
+      <div class="finding-card">
+        <strong>Detour</strong>
+        <p>Apply an analytical transform to a prior value, e.g., <code>next_prime(v)</code>, <code>digit_sum(v)</code>.</p>
+      </div>
+      <div class="finding-card">
+        <strong>Finish Line</strong>
+        <p>Aggregate values from earlier stops via arithmetic to produce the final answer y* &isin; {0,...,9}.</p>
+      </div>
+    </div>
+    <p style="margin-top:1rem"><strong style="color:var(--light-gold)">Diamond patterns (DAG only):</strong> A source stop forks into two independent tool-chain branches (e.g., elevation and POI count), which merge into a combining stop. Diamond count scales with difficulty (1 for easy, up to 3&ndash;5 for extreme).</p>
+  </div>
+</section>
+
+<!-- ============ METRICS ============ -->
+<section>
+  <div class="container">
+    <h2>Metrics</h2>
+    <div class="metrics-row">
+      <div class="metric-card">
+        <div class="metric-name">FA</div>
+        <div class="metric-full">Finish-line Accuracy</div>
+        <div class="metric-desc">Does the agent's single-digit answer match the golden code?</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-name">PVR</div>
+        <div class="metric-full">Pit-stop Visit Rate</div>
+        <div class="metric-desc">Fraction of required Wikipedia pages the agent actually visited.</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-name">RCR</div>
+        <div class="metric-full">Roadblock Completion Rate</div>
+        <div class="metric-desc">Fraction of required tool chains the agent fully executed.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TOOLS ============ -->
+<section>
+  <div class="container">
+    <h2>Tool Set</h2>
+    <p>AAR provides <strong>19 tools</strong> across eight categories:</p>
+    <div class="tool-grid">
+      <div class="tool-cat">
+        <div class="tool-cat-name">Fetch & Search</div>
+        <code>fetch_webpage</code><br><code>web_search</code>
+      </div>
+      <div class="tool-cat">
+        <div class="tool-cat-name">Google Maps</div>
+        <code>maps_geocode</code><br><code>maps_reverse_geocode</code><br><code>maps_elevation</code><br><code>maps_distance_matrix</code><br><code>maps_directions</code><br><code>maps_search_places</code><br><code>maps_place_details</code>
+      </div>
+      <div class="tool-cat">
+        <div class="tool-cat-name">Weather</div>
+        <code>weather_historical</code><br><code>weather_forecast</code>
+      </div>
+      <div class="tool-cat">
+        <div class="tool-cat-name">Code</div>
+        <code>python_execute_code</code><br><code>python_generate_code</code>
+      </div>
+      <div class="tool-cat">
+        <div class="tool-cat-name">Countries</div>
+        <code>countries_population</code><br><code>countries_area</code>
+      </div>
+      <div class="tool-cat">
+        <div class="tool-cat-name">Stocks</div>
+        <code>stock_historical_price</code><br><code>stock_volume</code>
+      </div>
+      <div class="tool-cat">
+        <div class="tool-cat-name">Crypto</div>
+        <code>crypto_historical_price</code><br><code>crypto_volume</code>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EVALUATION ============ -->
+<section>
+  <div class="container">
+    <h2>Evaluation via Harbor</h2>
+    <p>AAR evaluations run through <a href="https://github.com/harbor-framework/harbor">Harbor</a>, an open-source agent evaluation framework. The dataset is published on the Harbor registry:</p>
+
+<pre><code><span class="comment"># Install Harbor</span>
+<span class="cmd">uv tool install harbor</span>
+
+<span class="comment"># Run AAR with any agent</span>
+<span class="cmd">harbor run</span> -d minnesotanlp/aar@1.0 -a claude-code -m anthropic/claude-sonnet-4-6
+
+<span class="comment"># Run with API keys</span>
+<span class="cmd">harbor run</span> -d minnesotanlp/aar@1.0 -a claude-code -m anthropic/claude-sonnet-4-6 \
+  --ae GOOGLE_API_KEY=$GOOGLE_API_KEY</code></pre>
+
+    <h3>Required API Keys</h3>
+    <table>
+      <thead>
+        <tr><th>Variable</th><th>Purpose</th><th>Required</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>GOOGLE_API_KEY</code></td><td>Maps, elevation, directions, places</td><td>Yes</td></tr>
+        <tr><td><code>OPENAI_API_KEY</code></td><td>If using OpenAI-based agents</td><td>Depends on agent</td></tr>
+        <tr><td><code>SERPER_API_KEY</code></td><td>Web search tool</td><td>Optional</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Local Evaluation</h3>
+<pre><code><span class="comment"># Clone and generate Harbor tasks</span>
+<span class="cmd">git clone</span> https://github.com/minnesotanlp/the-amazing-agent-race.git
+<span class="cmd">cd</span> the-amazing-agent-race
+
+<span class="cmd">python</span> harbor-adapter/run_adapter.py \
+  --data-dir data/aar-linear --variant linear \
+  --output-dir /path/to/harbor/datasets/aar
+
+<span class="cmd">python</span> harbor-adapter/run_adapter.py \
+  --data-dir data/aar-dag --variant dag \
+  --output-dir /path/to/harbor/datasets/aar
+
+<span class="comment"># Run locally</span>
+<span class="cmd">harbor run</span> -p /path/to/harbor/datasets/aar -a claude-code -m anthropic/claude-sonnet-4-6</code></pre>
+  </div>
+</section>
+
+<!-- ============ QUALITY ============ -->
+<section>
+  <div class="container">
+    <h2>Quality Assurance</h2>
+    <p>Every leg satisfies six invariants:</p>
+    <ul class="quality-list">
+      <li><strong>Solvability</strong> &mdash; Golden executor produces the correct answer at generation time</li>
+      <li><strong>API stability</strong> &mdash; Cached traces and page snapshots for reproducibility</li>
+      <li><strong>Input cleanliness</strong> &mdash; Geocodability filtering for all location inputs</li>
+      <li><strong>Clue-envelope integrity</strong> &mdash; Round-trip alignment &ge; 0.7; no direct Wikipedia titles in clues</li>
+      <li><strong>Contamination resistance</strong> &mdash; Clue paraphrasing, live API dependencies, unseen transforms, modular arithmetic</li>
+      <li><strong>Inter-instance diversity</strong> &mdash; Mean pairwise Jaccard similarity of 0.0005 across 10K sampled pairs; 99.1% share zero pages</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ CITATION ============ -->
+<section id="citation">
+  <div class="container">
+    <h2>Citation</h2>
+    <div class="citation-block">
+<pre>@inproceedings{aar2026,
+  title={The Amazing Agent Race: Strong Tool Users, Weak Navigators},
+  author={Anonymous},
+  year={2026},
+  note={Under review}
+}</pre>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <p>
+    <a href="https://github.com/minnesotanlp/the-amazing-agent-race">GitHub</a> &middot;
+    <a href="https://github.com/harbor-framework/harbor">Harbor</a> &middot;
+    <a href="https://huggingface.co/datasets/minnesotanlp/the-amazing-agent-race">HuggingFace</a>
+  </p>
+  <p style="margin-top:0.5rem">&copy; 2026 Minnesota NLP &middot; MIT License</p>
+</footer>
+
+</body>
+</html>
