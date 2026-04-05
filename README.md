@@ -103,6 +103,38 @@ AAR ships with 4 difficulty levels, but the generation pipeline is fully adjusta
   <em>Automated eight-step pipeline: Crawl, Plan, Build, Validate, Link, Augment, Execute, Verbalize --- with validation gates producing three complementary metrics (FA, PVR, RCR).</em>
 </p>
 
+### Generating New Puzzles
+
+The generation pipeline is fully open --- you can create new puzzles from any Wikipedia seed. Requires `OPENAI_API_KEY` (for planning/verbalization) and `GOOGLE_API_KEY` (for tool-chain validation).
+
+```bash
+# Install dependencies
+uv sync
+
+# Generate 10 random-seed puzzles per difficulty level
+./scripts/batch_generate.sh
+
+# Generate 20 puzzles for a specific difficulty
+./scripts/batch_generate.sh --random 20 --only easy,medium
+
+# Generate from a specific Wikipedia article
+uv run python src/trail/generate.py \
+  --seed-url "https://en.wikipedia.org/wiki/Mount_Everest" \
+  --difficulty hard --num-samples 5
+
+# Generate DAG puzzles (with diamond fork-merge patterns)
+uv run python src/trail/generate.py \
+  --random-seeds --difficulty extreme --num-samples 10 \
+  --compositional
+
+# Use curated seed URLs
+uv run python src/trail/generate.py \
+  --seed-urls-file seeds/finance_seeds.txt \
+  --difficulty medium --num-samples 20
+```
+
+Generated puzzles are saved as JSON files in `data/trail_puzzles/{difficulty}/`. You can then convert them to Harbor tasks using the adapter (see [Evaluation via Harbor](#evaluation-via-harbor)).
+
 ## Leg Structure
 
 A leg is a directed acyclic graph (DAG) of **pit stops**, each producing a typed value:

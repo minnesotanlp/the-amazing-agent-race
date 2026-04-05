@@ -486,6 +486,29 @@
       <img src="assets/pipeline.png" alt="Eight-step generation pipeline">
       <figcaption>Automated eight-step pipeline: Crawl, Plan, Build, Validate, Link, Augment, Execute, Verbalize&mdash;with validation gates producing three complementary metrics.</figcaption>
     </figure>
+
+    <h3>Generating New Puzzles</h3>
+    <p>The generation pipeline is fully open&mdash;create new puzzles from any Wikipedia seed. Requires <code>OPENAI_API_KEY</code> (planning/verbalization) and <code>GOOGLE_API_KEY</code> (tool-chain validation).</p>
+
+<pre><code><span class="comment"># Generate 10 random-seed puzzles per difficulty level</span>
+<span class="cmd">./scripts/batch_generate.sh</span>
+
+<span class="comment"># Generate from a specific Wikipedia article</span>
+<span class="cmd">uv run python</span> src/trail/generate.py \
+  --seed-url "https://en.wikipedia.org/wiki/Mount_Everest" \
+  --difficulty hard --num-samples 5
+
+<span class="comment"># Generate DAG puzzles (with diamond fork-merge patterns)</span>
+<span class="cmd">uv run python</span> src/trail/generate.py \
+  --random-seeds --difficulty extreme --num-samples 10 \
+  --compositional
+
+<span class="comment"># Use curated seed URLs</span>
+<span class="cmd">uv run python</span> src/trail/generate.py \
+  --seed-urls-file seeds/finance_seeds.txt \
+  --difficulty medium --num-samples 20</code></pre>
+
+    <p>Generated puzzles are saved as JSON in <code>data/trail_puzzles/{difficulty}/</code>. Convert them to Harbor tasks using the adapter (see <a href="#evaluation">Evaluation via Harbor</a>).</p>
   </div>
 </section>
 
@@ -579,7 +602,7 @@
 </section>
 
 <!-- ============ EVALUATION ============ -->
-<section>
+<section id="evaluation">
   <div class="container">
     <h2>Evaluation via Harbor</h2>
     <p>AAR evaluations run through <a href="https://github.com/harbor-framework/harbor">Harbor</a>, an open-source agent evaluation framework. The dataset is published on the Harbor registry:</p>
