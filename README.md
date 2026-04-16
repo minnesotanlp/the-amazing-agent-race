@@ -4,9 +4,8 @@
 
 <p align="center">
   <a href="https://github.com/minnesotanlp/the-amazing-agent-race"><img src="https://img.shields.io/badge/GitHub-Code-blue?logo=github" alt="GitHub"></a>
-  <a href="#"><img src="https://img.shields.io/badge/Paper-Coming%20Soon-orange" alt="Paper"></a>
-  <a href="https://github.com/harbor-framework/harbor"><img src="https://img.shields.io/badge/Evaluation-Harbor-green" alt="Harbor"></a>
-  <a href="https://huggingface.co/datasets/minnesotanlp/the-amazing-agent-race"><img src="https://img.shields.io/badge/HuggingFace-Dataset-yellow?logo=huggingface" alt="HuggingFace"></a>
+  <a href="https://arxiv.org/abs/2604.10261"><img src="https://img.shields.io/badge/Paper-arXiv-orange" alt="Paper"></a>
+  <a href="https://registry.harborframework.com/datasets/minnesotanlp/aar/latest"><img src="https://img.shields.io/badge/Evaluation-Harbor-green" alt="Harbor"></a>
   <a href="LICENSE.md"><img src="https://img.shields.io/badge/License-MIT-lightgrey" alt="License"></a>
 </p>
 
@@ -254,11 +253,14 @@ the-amazing-agent-race/
 ## Citation
 
 ```bibtex
-@inproceedings{aar2026,
-  title={The Amazing Agent Race: Strong Tool Users, Weak Navigators},
-  author={Anonymous},
-  year={2026},
-  note={Under review}
+@misc{kim2026amazingagentracestrong,
+      title={The Amazing Agent Race: Strong Tool Users, Weak Navigators},
+      author={Zae Myung Kim and Dongseok Lee and Jaehyung Kim and Vipul Raheja and Dongyeop Kang},
+      year={2026},
+      eprint={2604.10261},
+      archivePrefix={arXiv},
+      primaryClass={cs.AI},
+      url={https://arxiv.org/abs/2604.10261},
 }
 ```
 
