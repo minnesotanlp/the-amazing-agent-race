@@ -95,7 +95,7 @@ AAR ships with 4 difficulty levels, but the generation pipeline is fully adjusta
 ### Generation Pipeline
 
 <p align="center">
-  <img src="assets/pipeline.png" width="100%" alt="Eight-step generation pipeline">
+  <img src="https://github.com/user-attachments/assets/ca0f7314-c368-4e62-8578-dc7e6a6ede17"" width="100%" alt="Eight-step generation pipeline">
 </p>
 
 <p align="center">
