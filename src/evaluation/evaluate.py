@@ -66,12 +66,20 @@ def compare_values(
     Returns (match: bool, method: str) where method describes how the
     match was determined.
     """
+    # Neither value is meaningful — cannot determine a match
+    if golden is None and agent_value is None:
+        return (False, "both_none")
+
     # Convert to strings for exact comparison
     golden_str = str(golden).strip() if golden is not None else ""
     agent_str = str(agent_value).strip() if agent_value is not None else ""
 
+    # One side is empty/None while the other is not — definite mismatch
+    if not golden_str or not agent_str:
+        return (False, "missing_value")
+
     # Exact string match
-    if golden_str and agent_str and golden_str == agent_str:
+    if golden_str == agent_str:
         return (True, "exact_match")
 
     # Numeric comparison
